@@ -1,7 +1,7 @@
 # Badges-Issuer
 A WordPress plugin for issuer language badges
 
-Contributors: @colomet, @ntorion
+Contributors: @colomet, @ntorion, @alevacher
 
 Tags: badges
 
