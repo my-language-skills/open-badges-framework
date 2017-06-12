@@ -101,3 +101,10 @@ class Badges_Issuer_For_Wp_Admin {
 	}
 
 }
+
+/**
+ * SEND BADGES TO 1 STUDENT CUSTOM SUBMENU
+ * A teacher can send certifications by mails to 1 student by the administration panel.
+ */
+require plugin_dir_path( __FILE__ ) . '../includes/submenu_pages/send-badges-to-one-student-page.php';
+require plugin_dir_path( __FILE__ ) . '../includes/submenu_pages/send-badges-to-more-than-one-student-page.php';

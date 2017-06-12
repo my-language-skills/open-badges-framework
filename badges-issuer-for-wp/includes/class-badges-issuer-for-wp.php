@@ -213,3 +213,5 @@ class Badges_Issuer_For_Wp {
 	}
 
 }
+
+require plugin_dir_path( __FILE__ ) . 'initialisation/custom_post_badge.php';
