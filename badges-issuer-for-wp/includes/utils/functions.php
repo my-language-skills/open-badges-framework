@@ -177,6 +177,18 @@ function display_error_message($message) {
   <?php
 }
 
+function display_not_logged_message() {
+  ?>
+  <center>
+    <img src="https://mylanguageskills.files.wordpress.com/2015/08/badges4languages-hi.png?w=800" width="400px" height="400px"/>
+    <br />
+    <h1>To get a badge, you need to be logged on the site.</h1>
+    <br />
+    <a href="<?php echo wp_login_url($_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]); ?>" title="Login">Login</a>
+  </center>
+  <?php
+}
+
 function apply_css_styles() {
   ?>
   <style>

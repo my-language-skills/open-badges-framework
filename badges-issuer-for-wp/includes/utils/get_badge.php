@@ -1,6 +1,7 @@
 <?php
 
 require_once("../../../../../wp-load.php");
+require_once plugin_dir_path( dirname( __FILE__ ) ) . 'utils/functions.php';
 
 if(is_user_logged_in()) {
   if(isset($_GET['hash'])) {
@@ -15,7 +16,7 @@ if(is_user_logged_in()) {
     </center>
 
     <?php
-    
+
     echo '<script src="https://backpack.openbadges.org/issuer.js"></script>';
     echo "
     <script>
@@ -37,6 +38,6 @@ if(is_user_logged_in()) {
   }
 }
 else
-  echo "Not connected!";
+  display_not_logged_message();
 
 ?>
