@@ -63,13 +63,19 @@ The Badges-Issuer plugin is supplied "as is" and all use is at your own risk.
 
 ## Changelog
 
+### 0.1
+
+* **INITIAL VERSION**
+  * Creation of the Custom Post Type 'Badge School'.
+  * Possibility to create the information of the badge inside of the badges custom post type page.
+  * Gestion of badges' description (and translations) inside txt files for an easy use.
+  * Creation of admin subpages to send a badge to one or several students.
+
 ## Upgrade Notice
 
 ### 0.1
 
-* Gestion of badges' description (and translations) inside txt files for an easy use.
-* Badges issuer to more than one student.
-* Possibility to create the information of the badge inside of the badges custom post type page.
+Starter
 
 ## Credits
 
