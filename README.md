@@ -61,18 +61,15 @@ The Badges-Issuer plugin is supplied "as is" and all use is at your own risk.
   * Inform the news users that they have to open a open badges account.
   * Information in the database as a custom post type.
 
-### 0.1
-
-* Badges issuer to more than one student.
-* Possibility to create the information of the badge inside of the badges custom post type page.
-
 ## Changelog
 
 ## Upgrade Notice
 
 ### 0.1
 
-Starter
+* Gestion of badges' description (and translations) inside txt files for an easy use.
+* Badges issuer to more than one student.
+* Possibility to create the information of the badge inside of the badges custom post type page.
 
 ## Credits
 
