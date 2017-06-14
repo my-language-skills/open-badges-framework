@@ -1,5 +1,22 @@
 <?php
+/**
+ * Util functions to use badges informations.
+ *
+ * @author Nicolas TORION
+ * @package badges-issuer-for-wp
+ * @subpackage includes/utils
+ * @since 1.0.0
+*/
 
+// GETTERS FUNCTIONS
+
+/**
+ * Returns all badges that exist
+ *
+ * @author Nicolas TORION
+ * @since 1.0.0
+ * @return $badges Array of all badges.
+*/
 function get_all_badges() {
   $badges = get_posts(array(
     'post_type'   => 'badge',
@@ -8,6 +25,14 @@ function get_all_badges() {
   return $badges;
 }
 
+/**
+ * Returns all languages of description of badges given.
+ *
+ * @author Nicolas TORION
+ * @since 1.0.0
+ * @param $badges Array of badges.
+ * @return $descriptions_languages Array of badges names associated to the available languages of their description.
+*/
 function get_all_languages_description($badges) {
   $descriptions_languages = array();
   foreach ($badges as $badge) {
@@ -18,6 +43,15 @@ function get_all_languages_description($badges) {
   return $descriptions_languages;
 }
 
+/**
+ * Returns the description of a badge which is writed in the lines given.
+ *
+ * @author Nicolas TORION
+ * @since 1.0.0
+ * @param $badge_name The name of the badge.
+ * @param $lines Lines given.
+ * @return $description Content of the description of the badge.
+*/
 function get_badge_description($badge_name, $lines) {
   $description_begin = "==".$badge_name."==\n";
   $i=0;
@@ -36,6 +70,14 @@ function get_badge_description($badge_name, $lines) {
   return $description;
 }
 
+/**
+ * Returns all the descriptions of a badge.
+ *
+ * @author Nicolas TORION
+ * @since 1.0.0
+ * @param $badge_name The name of the badge.
+ * @return $descriptions Array of descriptions of the badge associated to their language.
+*/
 function get_badge_descriptions($badge_name) {
   $descriptions_dir = plugin_dir_path( dirname( __FILE__ ) )."badges-descriptions/";
   $descriptions_files = scandir($descriptions_dir);
@@ -53,6 +95,16 @@ function get_badge_descriptions($badge_name) {
   return $descriptions;
 }
 
+/**
+ * Returns the badge informations associated to level and language given.
+ *
+ * @author Nicolas TORION
+ * @since 1.0.0
+ * @param $level The level of the badge.
+ * @param $badges A list of badges.
+ * @param $lang The language studied by the student.
+ * @return Array of badge's informations (name, description, image url).
+*/
 function get_badge($level, $badges, $lang) {
   foreach ($badges as $badge) {
     $badge_level = get_post_meta($badge->ID,"_level",true);
@@ -62,6 +114,14 @@ function get_badge($level, $badges, $lang) {
   }
 }
 
+/**
+ * Returns all levels that exist.
+ *
+ * @author Nicolas TORION
+ * @since 1.0.0
+ * @param $badges A list of badges.
+ * @return $levels Array of all levels found.
+*/
 function get_all_levels($badges) {
   $levels = array();
   foreach($badges as $badge){
@@ -73,6 +133,13 @@ function get_all_levels($badges) {
   return $levels;
 }
 
+/**
+ * Returns all the languages stocked in the languages files.
+ *
+ * @author Nicolas TORION
+ * @since 1.0.0
+ * @return $all_languages All the languages found.
+*/
 function get_all_languages() {
   $mostimportantlanguages = array();
   $languages = array();
@@ -96,6 +163,15 @@ function get_all_languages() {
   return $all_languages;
 }
 
+// DISPLAY FUNCTIONS
+
+/**
+ * Displays available levels in input radio tags. Used in the forms sending badges to students.
+ *
+ * @author Nicolas TORION
+ * @since 1.0.0
+ * @param $badges A list of badges.
+*/
 function display_levels_radio_buttons($badges) {
   $levels = get_all_levels($badges);
 
@@ -107,6 +183,12 @@ function display_levels_radio_buttons($badges) {
   echo '<br />';
 }
 
+/**
+ * Displays available languages in select tag. Used in the forms sending badges to students.
+ *
+ * @author Nicolas TORION
+ * @since 1.0.0
+*/
 function display_languages_select_form() {
   $all_languages = get_all_languages();
   $mostimportantlanguages = $all_languages[0];
@@ -129,6 +211,13 @@ function display_languages_select_form() {
   echo '</select><br>';
 }
 
+/**
+ * Displays the available languages of a badge's description.
+ *
+ * @author Nicolas TORION
+ * @since 1.0.0
+ * @param $badge_name The name of the badge.
+*/
 function display_languages_description_select_form($badge_name) {
   $translations_description = array_keys(get_badge_descriptions($badge_name));
 
@@ -139,6 +228,71 @@ function display_languages_description_select_form($badge_name) {
   echo '</select><br>';
 }
 
+// DISPLAY MESSAGES FUNCTIONS
+
+/**
+ * Displays a message of success.
+ *
+ * @author Nicolas TORION
+ * @since 1.0.0
+ * @param $message The message to display.
+*/
+function display_success_message($message) {
+  ?>
+  <div class="message success">
+    <?php echo $message; ?>
+  </div>
+  <?php
+}
+
+/**
+ * Displays a message of error.
+ *
+ * @author Nicolas TORION
+ * @since 1.0.0
+ * @param $message The message to display.
+*/
+function display_error_message($message) {
+  ?>
+  <div class="message error">
+    <?php echo $message; ?>
+  </div>
+  <?php
+}
+
+/**
+ * Displays a message indicating that a person is not logged. A link redirecting to the login page is also displayed.
+ *
+ * @author Nicolas TORION
+ * @since 1.0.0
+*/
+function display_not_logged_message() {
+  ?>
+  <center>
+    <img src="https://mylanguageskills.files.wordpress.com/2015/08/badges4languages-hi.png?w=800" width="400px" height="400px"/>
+    <br />
+    <h1>To get a badge, you need to be logged on the site.</h1>
+    <br />
+    <a href="<?php echo wp_login_url($_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]); ?>" title="Login">Login</a>
+  </center>
+  <?php
+}
+
+// CREATE JSON FILES FUNCTIONS
+
+/**
+ * Creates the badge json file with the badge's informations given.
+ *
+ * @author Nicolas TORION
+ * @since 1.0.0
+ * @param $level Badge's level.
+ * @param $language Badge's language.
+ * @param $comment Teacher's comment for the student.
+ * @param $others_items Other badge's informations (name, description, image).
+ * @param $path_dir_json_files Path of the json files directory in the server.
+ * @param $url_json_files Url of the json files directory in extern.
+ * @param $badge_filename Name of file that will be created.
+*/
 function create_badge_json_file($level, $language, $comment, $others_items, $path_dir_json_files, $url_json_files, $badge_filename) {
   $name = $others_items["name"];
   $description = "Language : ".$language.", Level : ".$level.", Comment : ".$comment.", Description : ".$others_items["description"];
@@ -159,6 +313,17 @@ function create_badge_json_file($level, $language, $comment, $others_items, $pat
   file_put_contents($file, json_encode($badge_informations, JSON_UNESCAPED_SLASHES));
 }
 
+/**
+ * Creates the assertion json file with send's informations.
+ *
+ * @author Nicolas TORION
+ * @since 1.0.0
+ * @param $mail Student's mail adress.
+ * @param $path_dir_json_files Path of the json files directory in the server.
+ * @param $url_json_files Url of the json files directory in extern.
+ * @param $badge_filename Name of the badge json file.
+ * @param $assertion_filename Name of the assertion json file that will be created.
+*/
 function create_assertion_json_file($mail, $path_dir_json_files, $url_json_files, $badge_filename, $assertion_filename) {
   $salt=uniqid();
   $date=date('Y-m-d');
@@ -175,6 +340,20 @@ function create_assertion_json_file($mail, $path_dir_json_files, $url_json_files
   file_put_contents($file, json_encode($assertion, JSON_UNESCAPED_SLASHES));
 }
 
+// SEND MAIL FUNCTION
+
+/**
+ * Sends a mail to the student in order to give him a link where he can get his badge.
+ *
+ * @author Nicolas TORION
+ * @since 1.0.0
+ * @param $mail Student's adress mail.
+ * @param $badge_name Badge's name.
+ * @param $badge_language Badge's language.
+ * @param $badge_image Badge's image.
+ * @param $url Page's URL where the student can get his badge.
+ * @return A boolean to know if the mail has been sent.
+*/
 function send_mail($mail, $badge_name, $badge_language, $badge_image, $url){
     $subject = "Badges4Languages - You have just earned a badge"; //entering a subject for email
 
@@ -217,34 +396,14 @@ function send_mail($mail, $badge_name, $badge_language, $badge_image, $url){
     return mail($mail, $subject, $message, $headers); //Sending the emails
 }
 
-function display_success_message($message) {
-  ?>
-  <div class="message success">
-    <?php echo $message; ?>
-  </div>
-  <?php
-}
+// CSS STYLES FUNCTIONS
 
-function display_error_message($message) {
-  ?>
-  <div class="message error">
-    <?php echo $message; ?>
-  </div>
-  <?php
-}
-
-function display_not_logged_message() {
-  ?>
-  <center>
-    <img src="https://mylanguageskills.files.wordpress.com/2015/08/badges4languages-hi.png?w=800" width="400px" height="400px"/>
-    <br />
-    <h1>To get a badge, you need to be logged on the site.</h1>
-    <br />
-    <a href="<?php echo wp_login_url($_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]); ?>" title="Login">Login</a>
-  </center>
-  <?php
-}
-
+/**
+ * Applies css styles of some elements.
+ *
+ * @author Nicolas TORION
+ * @since 1.0.0
+*/
 function apply_css_styles() {
   ?>
   <style>
@@ -292,9 +451,17 @@ function apply_css_styles() {
   <?php
 }
 
-add_action( 'admin_footer', 'ajax_form' ); // Write our JS below here
+// JAVASCRIPT FUNCTIONS
 
-function ajax_form() { ?>
+add_action( 'admin_footer', 'js_form' ); // Write our JS below here
+
+/**
+ * Loads and displays the available languages of badge's description according to the badge selected.  
+ *
+ * @author Nicolas TORION
+ * @since 1.0.0
+*/
+function js_form() { ?>
   <script>
   <?php
   $badges = get_all_badges();

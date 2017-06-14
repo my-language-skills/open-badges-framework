@@ -1,4 +1,12 @@
 <?php
+/**
+ * Create a submenu page in the administration menu to allow a teacher to send a badge to a student.
+ *
+ * @author Nicolas TORION
+ * @package badges-issuer-for-wp
+ * @subpackage includes/submenu_pages
+ * @since 1.0.0
+*/
 
     wp_enqueue_script("jquery");
 
@@ -29,6 +37,13 @@
 
     }
 
+    /**
+     * Displays the content of the submenu page
+     *
+     * @author Nicolas TORION
+     * @since 1.0.0
+     */
+
     function send_badges_to_one_student_page_callback() {
 
         apply_css_styles();
@@ -39,7 +54,7 @@
 
         <form id="badge_form" action="" method="post">
           <?php
-
+          // get all badges that exist
           $badges = get_all_badges();
 
           display_levels_radio_buttons($badges);
@@ -60,6 +75,8 @@
         </form>
 
         <?php
+        // Traitement of form, a mail is sent to the student.
+
         if(isset($_POST['level']) && isset($_POST['language']) && isset($_POST['mail']) && isset($_POST['comment']) && isset($_POST['language_description'])) {
           $url_json_files = "http://".$_SERVER['SERVER_NAME']."/wp-content/uploads/badges-issuer/json/";
           $path_dir_json_files = plugin_dir_path( dirname( __FILE__ ) ) . '../../../uploads/badges-issuer/json/';
