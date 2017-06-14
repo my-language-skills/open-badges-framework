@@ -30,21 +30,23 @@ The Badges-Issuer plugin is supplied "as is" and all use is at your own risk.
 
 ## Screenshots
 
+You can see all of the screenshots of the plugin [here](screenshot.md "screenshots")
+
 ## Roadmap
 
-### 0.5.0
+### 0.5
 
 * **ADDITIONS**
   * Create a default class for each new user (each time a new user have the teacher role, a new post with the name of the user is created).
   * Teachers can atach students to inside of the classes and create new classes.
   * Students can review the classes.
 
-### 0.4.0
+### 0.4
 
 * **ADDITIONS**
   * Creation of students and teacher pages to show their informations and badges received.
 
-### 0.3.0
+### 0.3
 
 * **ADDITIONS**
   * Creation of a settings page : possibility to delete all the information of the plugin if we wish by deleting the plugin
@@ -52,7 +54,7 @@ The Badges-Issuer plugin is supplied "as is" and all use is at your own risk.
   * Possibility to read the information of the badges translated inside of the custom post.
   * Creation of the basges issuer information page.
 
-### 0.2.0
+### 0.2
 
 * **ADDITIONS**
   * Badges issuer in the front-end (works with a shortcode).
@@ -63,7 +65,7 @@ The Badges-Issuer plugin is supplied "as is" and all use is at your own risk.
 
 ## Changelog
 
-### 0.1.0
+### 0.1
 
 * **INITIAL VERSION**
   * Creation of the Custom Post Type 'Badge School'.
@@ -73,7 +75,7 @@ The Badges-Issuer plugin is supplied "as is" and all use is at your own risk.
 
 ## Upgrade Notice
 
-### 0.1.0
+### 0.1
 
 Starter
 
