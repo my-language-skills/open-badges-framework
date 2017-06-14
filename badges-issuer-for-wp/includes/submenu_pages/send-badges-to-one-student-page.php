@@ -104,4 +104,14 @@
         }
     }
 
+   function send_badges_to_one_student_shortcode(){
+       send_badges_to_one_student_page_callback();
+   }
+
+   /**
+    * Shortcode : [send_badges_one_student].
+    * Displays the content of b4l_send_badges_one_student_shortcode function.
+    */
+   add_shortcode('send_badges_one_student', 'send_badges_to_one_student_shortcode');
+
 ?>

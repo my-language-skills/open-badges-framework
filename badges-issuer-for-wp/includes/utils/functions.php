@@ -434,10 +434,10 @@ function apply_css_styles() {
   <?php
 }
 
-// JAVASCRIPT FUNCTIONS
+// JAVASCRIPT & JQUERY FUNCTIONS
 
 add_action( 'admin_footer', 'js_form' ); // Write our JS below here
-
+add_action( 'wp_footer', 'js_form' );
 /**
  * Loads and displays the available languages of badge's description according to the badge selected.
  *
@@ -477,6 +477,41 @@ function js_form() { ?>
   });
   </script>
   <?php
+}
+
+add_action( 'admin_footer', 'js_send_badge_form' ); // Write our JS below here
+add_action( 'wp_footer', 'js_send_badge_form' );
+
+function js_send_badge_form() {
+  ?>
+  <script>
+    setInterval(function(){check_badge_form();}, 500);
+
+    function check_mails(mails) {
+
+      var testEmail = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
+
+      for (var i = 0; i < mails.length; i++) {
+        if(!testEmail.test(mails[i])) {
+          return false;
+        }
+      }
+      return true;
+    }
+
+    function check_badge_form() {
+      var mails = jQuery("#badge_form #mail").val().split("\n");
+      var level = jQuery("#badge_form .level");
+
+      if(!check_mails(mails) || !level.is(':checked')) {
+        jQuery('#submit_button').prop('disabled', true);
+      }
+      else {
+        jQuery('#submit_button').prop('disabled', false);
+      }
+    }
+  </script>
+<?php
 }
 
 ?>
