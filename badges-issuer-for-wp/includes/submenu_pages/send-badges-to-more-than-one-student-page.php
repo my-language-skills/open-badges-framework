@@ -49,14 +49,15 @@
 
           <br /><br />
           <label for="comment"><b>Comment : </b></label><br />
-          <textarea name="comment" id="comment" rows="10" cols="80"></textarea><br>
+          <textarea name="comment" id="comment" rows="10" cols="80"></textarea><br />
 
+          <div id="result_languages_description"></div>
           <br /><br />
           <input type="submit" id="submit_button" class="button-primary" value="Send a badge"/>
         </form>
 
         <?php
-        if(isset($_POST['level']) && isset($_POST['language']) && isset($_POST['mail']) && isset($_POST['comment'])) {
+        if(isset($_POST['level']) && isset($_POST['language']) && isset($_POST['mail']) && isset($_POST['comment']) && isset($_POST['language_description'])) {
           $url_json_files = "http://".$_SERVER['SERVER_NAME']."/wp-content/uploads/badges-issuer/json/";
           $path_dir_json_files = plugin_dir_path( dirname( __FILE__ ) ) . '../../../uploads/badges-issuer/json/';
 
@@ -66,7 +67,7 @@
           }
 
           $badges = get_all_badges();
-          $badge_others_items = get_badge($_POST['level'], $badges);
+          $badge_others_items = get_badge($_POST['level'], $badges, $_POST['language_description']);
 
           $mails = $_POST['mail'];
           $mails_list = explode("\n", $mails);

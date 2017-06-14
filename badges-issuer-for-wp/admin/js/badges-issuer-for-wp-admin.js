@@ -53,6 +53,6 @@
      else {
        jQuery('#submit_button').prop('disabled', false);
      }
-   }
+   }	
 
 })( jQuery );

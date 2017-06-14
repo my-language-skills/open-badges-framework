@@ -39,7 +39,9 @@
 
         <form id="badge_form" action="" method="post">
           <?php
+
           $badges = get_all_badges();
+
           display_levels_radio_buttons($badges);
           echo '<br /><br />';
           display_languages_select_form();
@@ -50,14 +52,15 @@
           <br /><br />
 
           <label for="comment"><b>Comment : </b></label><br />
-          <textarea name="comment" id="comment" rows="10" cols="80"></textarea><br>
+          <textarea name="comment" id="comment" rows="10" cols="80"></textarea><br />
 
+          <div id="result_languages_description"></div>
           <br /><br />
           <input type="submit" id="submit_button" class="button-primary" value="Send a badge"/>
         </form>
 
         <?php
-        if(isset($_POST['level']) && isset($_POST['language']) && isset($_POST['mail']) && isset($_POST['comment'])) {
+        if(isset($_POST['level']) && isset($_POST['language']) && isset($_POST['mail']) && isset($_POST['comment']) && isset($_POST['language_description'])) {
           $url_json_files = "http://".$_SERVER['SERVER_NAME']."/wp-content/uploads/badges-issuer/json/";
           $path_dir_json_files = plugin_dir_path( dirname( __FILE__ ) ) . '../../../uploads/badges-issuer/json/';
 
@@ -67,7 +70,7 @@
           }
 
           $badges = get_all_badges();
-          $badge_others_items = get_badge($_POST['level'], $badges);
+          $badge_others_items = get_badge($_POST['level'], $badges, $_POST['language_description']);
 
           $hash_name = hash("sha256", $_POST['mail'].$badge_others_items['name'].$_POST['language']);
           $badge_filename = 'badge_'.$hash_name.'.json';
@@ -83,4 +86,5 @@
             display_error_message("Badge not sent.");
         }
     }
+
 ?>

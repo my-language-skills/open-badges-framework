@@ -1,5 +1,7 @@
 <?php
 
+require_once plugin_dir_path( dirname( __FILE__ ) ) . 'utils/functions.php';
+
 add_action('init', 'register_badge');
 
 function register_badge()
@@ -69,11 +71,33 @@ function checkLevel($val, $level) {
     echo " checked";
 }
 
+//METABOX DESCRIPTIONS
+
+add_action('add_meta_boxes','add_meta_box_descriptions');
+
+function add_meta_box_descriptions(){
+  add_meta_box('id_meta_box_descriptions', 'Descriptions', 'meta_box_descriptions', 'badge', 'normal', 'high');
+}
+
+function meta_box_descriptions($post){
+  $descriptions = get_badge_descriptions($post->post_title);
+
+  foreach ($descriptions as $lang => $content) {
+    echo $lang." :<br />";
+    echo '<textarea name="description_'.$lang.'" rows="10" cols="100">'.$content.'</textarea><br />';
+  }
+}
+
 add_action('save_post','save_metaboxes');
 function save_metaboxes($post_ID){
   if(isset($_POST['level_input'])){
     update_post_meta($post_ID,'_level', esc_html($_POST['level_input']));
   }
+  /*foreach ($_POST as $key => $value) {
+    $exp_key = explode('_', $key);
+    if($exp_key[0]=='description')
+      save_badge_description(get_the_title($post_ID), $exp_key[1], $_POST[$key]);
+  }*/
 }
 
 ?>

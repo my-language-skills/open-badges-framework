@@ -8,11 +8,57 @@ function get_all_badges() {
   return $badges;
 }
 
-function get_badge($level, $badges) {
+function get_all_languages_description($badges) {
+  $descriptions_languages = array();
+  foreach ($badges as $badge) {
+    foreach (array_keys(get_badge_descriptions($badge->post_title)) as $lang) {
+      $descriptions_languages[$badge->post_title][] = $lang;
+    }
+  }
+  return $descriptions_languages;
+}
+
+function get_badge_description($badge_name, $lines) {
+  $description_begin = "==".$badge_name."==\n";
+  $i=0;
+  $description="";
+
+  while($lines[$i]!=$description_begin && $i<sizeof($lines)) {
+    $i++;
+  }
+
+  $i++;
+  while($lines[$i]!="======\n" && $i<sizeof($lines)) {
+    $description=$description.$lines[$i]."\n";
+    $i++;
+  }
+
+  return $description;
+}
+
+function get_badge_descriptions($badge_name) {
+  $descriptions_dir = plugin_dir_path( dirname( __FILE__ ) )."badges-descriptions/";
+  $descriptions_files = scandir($descriptions_dir);
+  $descriptions_files = array_diff($descriptions_files, array(".", "..") );
+  $descriptions = array();
+
+  foreach ($descriptions_files as $file) {
+    $lines = file($descriptions_dir.$file);
+    $lang = explode('.', $file)[0];
+    $content = get_badge_description($badge_name, $lines);
+    if(str_replace("\n", "", $content)!="")
+      $descriptions[$lang] = $content;
+  }
+
+  return $descriptions;
+}
+
+function get_badge($level, $badges, $lang) {
   foreach ($badges as $badge) {
     $badge_level = get_post_meta($badge->ID,"_level",true);
+    $badge_description = get_badge_descriptions($badge->post_title)[$lang];
     if($badge_level==$level)
-      return array("name"=>$badge->post_title, "description"=>$badge->post_content, "image"=>get_the_post_thumbnail_url($badge->ID));
+      return array("name"=>$badge->post_title, "description"=>$badge_description, "image"=>get_the_post_thumbnail_url($badge->ID));
   }
 }
 
@@ -80,6 +126,16 @@ function display_languages_select_form() {
   }
   echo '</optgroup>';
 
+  echo '</select><br>';
+}
+
+function display_languages_description_select_form($badge_name) {
+  $translations_description = array_keys(get_badge_descriptions($badge_name));
+
+  echo '<label for="language_description"><b>Language of badge description* : </b></label><br /><select name="language_description" id="language_description">';
+  foreach ($translations_description as $lang) {
+    echo '<option value="'.$lang.'">'.$lang.'</option>';
+  }
   echo '</select><br>';
 }
 
@@ -199,14 +255,14 @@ function apply_css_styles() {
 
   input[type=radio]:checked + label>img {
     border: 1px solid #fff;
-    box-shadow: 0 0 3px 3px red;
+    box-shadow: 0 0 0px 4px red;
   }
 
   input[type=radio] + label>img {
-    border: 1px solid #444;
+    border: 1px solid transparent;
     width: 70px;
     height: 70px;
-    transition: 300ms all;
+    transition: 500ms all;
     border-radius: 50%;
     margin: 5px;
   }
@@ -233,6 +289,43 @@ function apply_css_styles() {
     color: #D80D21;
   }
   </style>
+  <?php
+}
+
+add_action( 'admin_footer', 'ajax_form' ); // Write our JS below here
+
+function ajax_form() { ?>
+  <script>
+  <?php
+  $badges = get_all_badges();
+  $descriptions_languages = get_all_languages_description($badges);
+
+  foreach ($badges as $badge){
+    $langs = $descriptions_languages[$badge->post_title];
+    echo 'var '.$badge->post_title.'_description_languages = [';
+    $i = 0;
+    foreach ($langs as $lang) {
+      echo "'".$lang."'";
+      if($i!=(sizeof($langs)-1))
+        echo ', ';
+      $i++;
+    }
+    echo "]; \n";
+  }
+  ?>
+  jQuery(".level").on("click", function() {
+    var tab_name = jQuery(".level:checked").val() + "_description_languages";
+    var tab = eval(tab_name);
+
+    var content = '<label for="language_description"><b>Language of badge description* : </b></label><br /><select name="language_description" id="language_description">';
+    tab.forEach(function(lang) {
+      content = content + '<option value="' + lang + '">' + lang + '</option>';
+    });
+
+    content = content + '</select><br>';
+    jQuery("#result_languages_description").html(content);
+  });
+  </script>
   <?php
 }
 
