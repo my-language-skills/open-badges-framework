@@ -211,23 +211,6 @@ function display_languages_select_form() {
   echo '</select><br>';
 }
 
-/**
- * Displays the available languages of a badge's description.
- *
- * @author Nicolas TORION
- * @since 1.0.0
- * @param $badge_name The name of the badge.
-*/
-function display_languages_description_select_form($badge_name) {
-  $translations_description = array_keys(get_badge_descriptions($badge_name));
-
-  echo '<label for="language_description"><b>Language of badge description* : </b></label><br /><select name="language_description" id="language_description">';
-  foreach ($translations_description as $lang) {
-    echo '<option value="'.$lang.'">'.$lang.'</option>';
-  }
-  echo '</select><br>';
-}
-
 // DISPLAY MESSAGES FUNCTIONS
 
 /**
@@ -456,7 +439,7 @@ function apply_css_styles() {
 add_action( 'admin_footer', 'js_form' ); // Write our JS below here
 
 /**
- * Loads and displays the available languages of badge's description according to the badge selected.  
+ * Loads and displays the available languages of badge's description according to the badge selected.
  *
  * @author Nicolas TORION
  * @since 1.0.0
