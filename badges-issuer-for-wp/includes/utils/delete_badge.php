@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * When the student get his badge, the files corresponding to this badge are removed from the server.
+ *
+ * @author Nicolas TORION
+ * @package badges-issuer-for-wp
+ * @subpackage includes/utils
+ * @since 1.0.0
+*/
+
 require_once("../../../../../wp-load.php");
 
 if(is_user_logged_in()) {

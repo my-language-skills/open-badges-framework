@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * Allows a student to get his badge.
+ *
+ * @author Nicolas TORION
+ * @package badges-issuer-for-wp
+ * @subpackage includes/utils
+ * @since 1.0.0
+*/
+
 require_once("../../../../../wp-load.php");
 require_once plugin_dir_path( dirname( __FILE__ ) ) . 'utils/functions.php';
 
