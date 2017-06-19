@@ -34,6 +34,53 @@ function register_badge()
     );
 }
 
+function check($val, $expected) {
+  if($val==$expected)
+    echo " checked";
+}
+
+//METABOX CERTIFICATION
+
+add_action('add_meta_boxes','add_meta_box_certification');
+
+function add_meta_box_certification(){
+  add_meta_box('id_meta_box_certification', 'Certification', 'meta_box_certification', 'badge', 'side', 'high');
+}
+
+function meta_box_certification($post){
+  $val = get_post_meta($post->ID,'_certification',true);
+
+  echo '<input type="radio" value="not_certified" name="certification_input"';
+  check($val, 'not_certified');
+  echo '> Not certified<br>';
+
+  echo '<input type="radio" value="certified" name="certification_input"';
+  check($val, 'certified');
+  echo '> Certified<br>';
+
+}
+
+//METABOX TYPE
+
+add_action('add_meta_boxes','add_meta_box_type');
+
+function add_meta_box_type(){
+  add_meta_box('id_meta_box_type', 'Type', 'meta_box_type', 'badge', 'side', 'high');
+}
+
+function meta_box_type($post){
+  $val = get_post_meta($post->ID,'_type',true);
+
+  echo '<input type="radio" value="student" name="type_input"';
+  check($val, 'student');
+  echo '> Student<br>';
+
+  echo '<input type="radio" value="teacher" name="type_input"';
+  check($val, 'teacher');
+  echo '> Teacher<br>';
+
+}
+
 //METABOX LEVEL
 
 add_action('add_meta_boxes','add_meta_box_level');
@@ -46,29 +93,43 @@ function meta_box_level($post){
   $val = get_post_meta($post->ID,'_level',true);
 
   echo '<input type="radio" value="A1" name="level_input"';
-  checkLevel($val, 'A1');
+  check($val, 'A1');
   echo '> A1<br>';
   echo '<input type="radio" value="A2" name="level_input"';
-  checkLevel($val, 'A2');
+  check($val, 'A2');
   echo '> A2<br>';
   echo '<input type="radio" value="B1" name="level_input"';
-  checkLevel($val, 'B1');
+  check($val, 'B1');
   echo '> B1<br>';
   echo '<input type="radio" value="B2" name="level_input"';
-  checkLevel($val, 'B2');
+  check($val, 'B2');
   echo '> B2<br>';
   echo '<input type="radio" value="C1" name="level_input"';
-  checkLevel($val, 'C1');
+  check($val, 'C1');
   echo '> C1<br>';
   echo '<input type="radio" value="C2" name="level_input"';
-  checkLevel($val, 'C2');
+  check($val, 'C2');
   echo '> C2<br>';
 
-}
+  echo '<input type="radio" value="T1" name="level_input"';
+  check($val, 'T1');
+  echo '> T1<br>';
+  echo '<input type="radio" value="T2" name="level_input"';
+  check($val, 'T2');
+  echo '> T2<br>';
+  echo '<input type="radio" value="T3" name="level_input"';
+  check($val, 'T3');
+  echo '> T3<br>';
+  echo '<input type="radio" value="T4" name="level_input"';
+  check($val, 'T4');
+  echo '> T4<br>';
+  echo '<input type="radio" value="T5" name="level_input"';
+  check($val, 'T5');
+  echo '> T5<br>';
+  echo '<input type="radio" value="T6" name="level_input"';
+  check($val, 'T6');
+  echo '> T6<br>';
 
-function checkLevel($val, $level) {
-  if($val==$level)
-    echo " checked";
 }
 
 //METABOX DESCRIPTIONS
@@ -92,6 +153,12 @@ add_action('save_post','save_metaboxes');
 function save_metaboxes($post_ID){
   if(isset($_POST['level_input'])){
     update_post_meta($post_ID,'_level', esc_html($_POST['level_input']));
+  }
+  if(isset($_POST['certification_input'])){
+    update_post_meta($post_ID,'_certification', esc_html($_POST['certification_input']));
+  }
+  if(isset($_POST['type_input'])){
+    update_post_meta($post_ID,'_type', esc_html($_POST['type_input']));
   }
   /*foreach ($_POST as $key => $value) {
     $exp_key = explode('_', $key);

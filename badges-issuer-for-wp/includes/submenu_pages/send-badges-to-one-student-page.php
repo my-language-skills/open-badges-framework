@@ -58,6 +58,8 @@
           $badges = get_all_badges();
 
           display_levels_radio_buttons($badges);
+          echo '<div id="select_badge"></div>';
+
           echo '<br /><br />';
           display_languages_select_form();
           echo '<br /><br />';
@@ -77,7 +79,7 @@
         <?php
         // Traitement of form, a mail is sent to the student.
 
-        if(isset($_POST['level']) && isset($_POST['language']) && isset($_POST['mail']) && isset($_POST['comment']) && isset($_POST['language_description'])) {
+        if(isset($_POST['level']) && isset($_POST['input_badge_name']) && isset($_POST['language']) && isset($_POST['mail']) && isset($_POST['comment']) && isset($_POST['language_description'])) {
           $url_json_files = "http://".$_SERVER['SERVER_NAME']."/wp-content/uploads/badges-issuer/json/";
           $path_dir_json_files = plugin_dir_path( dirname( __FILE__ ) ) . '../../../uploads/badges-issuer/json/';
 
@@ -87,7 +89,7 @@
           }
 
           $badges = get_all_badges();
-          $badge_others_items = get_badge($_POST['level'], $badges, $_POST['language_description']);
+          $badge_others_items = get_badge($_POST['input_badge_name'], $badges, $_POST['language_description']);
 
           $hash_name = hash("sha256", $_POST['mail'].$badge_others_items['name'].$_POST['language']);
           $badge_filename = 'badge_'.$hash_name.'.json';

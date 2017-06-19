@@ -7,6 +7,7 @@
  * @subpackage includes/utils
  * @since 1.0.0
 */
+    wp_localize_script( 'some-script', 'ajaxvariable', array( 'customajax' => plugin_dir_path( dirname( __FILE__ ) ) . 'ajax/custom_ajax.php'));
 
 // GETTERS FUNCTIONS
 
@@ -36,7 +37,7 @@ function get_all_badges() {
 function get_all_languages_description($badges) {
   $descriptions_languages = array();
   foreach ($badges as $badge) {
-    foreach (array_keys(get_badge_descriptions($badge->post_title)) as $lang) {
+    foreach (array_keys(get_badge_descriptions(get_post_meta($badge->ID,"_level",true))) as $lang) {
       $descriptions_languages[$badge->post_title][] = $lang;
     }
   }
@@ -52,8 +53,8 @@ function get_all_languages_description($badges) {
  * @param $lines Lines given.
  * @return $description Content of the description of the badge.
 */
-function get_badge_description($badge_name, $lines) {
-  $description_begin = "==".$badge_name."==\n";
+function get_badge_description($badge_level, $lines) {
+  $description_begin = "==".$badge_level."==\n";
   $i=0;
   $description="";
 
@@ -78,7 +79,7 @@ function get_badge_description($badge_name, $lines) {
  * @param $badge_name The name of the badge.
  * @return $descriptions Array of descriptions of the badge associated to their language.
 */
-function get_badge_descriptions($badge_name) {
+function get_badge_descriptions($badge_level) {
   $descriptions_dir = plugin_dir_path( dirname( __FILE__ ) )."badges-descriptions/";
   $descriptions_files = scandir($descriptions_dir);
   $descriptions_files = array_diff($descriptions_files, array(".", "..") );
@@ -87,7 +88,7 @@ function get_badge_descriptions($badge_name) {
   foreach ($descriptions_files as $file) {
     $lines = file($descriptions_dir.$file);
     $lang = explode('.', $file)[0];
-    $content = get_badge_description($badge_name, $lines);
+    $content = get_badge_description($badge_level, $lines);
     if(str_replace("\n", "", $content)!="")
       $descriptions[$lang] = $content;
   }
@@ -100,17 +101,17 @@ function get_badge_descriptions($badge_name) {
  *
  * @author Nicolas TORION
  * @since 1.0.0
- * @param $level The level of the badge.
+ * @param $badge_name The name of the badge.
  * @param $badges A list of badges.
  * @param $lang The language studied by the student.
  * @return Array of badge's informations (name, description, image url).
 */
-function get_badge($level, $badges, $lang) {
+function get_badge($badge_name, $badges, $lang) {
   foreach ($badges as $badge) {
-    $badge_level = get_post_meta($badge->ID,"_level",true);
-    $badge_description = get_badge_descriptions($badge->post_title)[$lang];
-    if($badge_level==$level)
+    if($badge_name==$badge->post_name) {
+      $badge_description = get_badge_descriptions(get_post_meta($badge->ID,"_level",true))[$lang];
       return array("name"=>$badge->post_title, "description"=>$badge_description, "image"=>get_the_post_thumbnail_url($badge->ID));
+    }
   }
 }
 
@@ -131,6 +132,15 @@ function get_all_levels($badges) {
   }
   sort($levels);
   return $levels;
+}
+
+function get_all_badges_level($badges, $level) {
+  $badges_corresponding = array();
+  foreach ($badges as $badge) {
+    if(get_post_meta($badge->ID,"_level",true)==$level)
+      $badges_corresponding[] = $badge;
+  }
+  return $badges_corresponding;
 }
 
 /**
@@ -177,8 +187,7 @@ function display_levels_radio_buttons($badges) {
 
   echo '<b>Level* :</b><br />';
   foreach ($levels as $l) {
-    $badge = get_badge($l, $badges);
-    echo '<input type="radio" class="level input-hidden" name="level" id="'.$l.'" value="'.$l.'"><label for="'.$l.'"><img src="'.$badge['image'].'" width="70px" height="70px" /></label>';
+    echo '<label for="level_'.$l.'">'.$l.' </label><input type="radio" class="level" name="level" id="level_'.$l.'" value="'.$l.'"> ';
   }
   echo '<br />';
 }
@@ -444,36 +453,23 @@ add_action( 'wp_footer', 'js_form' );
  * @author Nicolas TORION
  * @since 1.0.0
 */
-function js_form() { ?>
-  <script>
-  <?php
-  $badges = get_all_badges();
-  $descriptions_languages = get_all_languages_description($badges);
-
-  foreach ($badges as $badge){
-    $langs = $descriptions_languages[$badge->post_title];
-    echo 'var '.$badge->post_title.'_description_languages = [';
-    $i = 0;
-    foreach ($langs as $lang) {
-      echo "'".$lang."'";
-      if($i!=(sizeof($langs)-1))
-        echo ', ';
-      $i++;
-    }
-    echo "]; \n";
-  }
+function js_form() {
   ?>
+
+  <script>
   jQuery(".level").on("click", function() {
-    var tab_name = jQuery(".level:checked").val() + "_description_languages";
-    var tab = eval(tab_name);
 
-    var content = '<label for="language_description"><b>Language of badge description* : </b></label><br /><select name="language_description" id="language_description">';
-    tab.forEach(function(lang) {
-      content = content + '<option value="' + lang + '">' + lang + '</option>';
-    });
+    jQuery("#select_badge").html("<br /><img src='http://<?php echo $_SERVER['SERVER_NAME']; ?>/wp-content/plugins/badges-issuer-for-wp/images/load.gif' width='50px' height='50px' />");
 
-    content = content + '</select><br>';
-    jQuery("#result_languages_description").html(content);
+    var data = {
+			'action': 'action_select_badge',
+			'level_selected': jQuery(".level:checked").val()
+		};
+
+		// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
+		jQuery.post("<?php echo "http://".$_SERVER['SERVER_NAME']."/wp-content/plugins/badges-issuer-for-wp/includes/ajax/custom_ajax.php"; ?>", data, function(response) {
+			jQuery("#select_badge").html(response);
+		});
   });
   </script>
   <?php
