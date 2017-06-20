@@ -36,7 +36,7 @@
 
       echo "<br /><b>Badge* : </b><br>";
       foreach ($badges_corresponding as $badge) {
-        echo '<input type="radio" name="input_badge_name" class="input-badge input-hidden" id="'.$badge->post_title.'" value="'.$badge->post_name.'"/><label for="'.$badge->post_title.'"><img src="'.get_the_post_thumbnail_url($badge->ID).'" width="40px" height="40px" /></label>';
+        echo '<input type="radio" name="input_badge_name" class="input-badge input-hidden" id="'.$_POST['form'].$badge->post_title.'" value="'.$badge->post_name.'"/><label for="'.$_POST['form'].$badge->post_title.'"><img src="'.get_the_post_thumbnail_url($badge->ID).'" width="40px" height="40px" /></label>';
       }
 
       ?>
@@ -58,8 +58,8 @@
             echo "]; \n";
           }
         ?>
-        jQuery(".input-badge").on("click", function() {
-          var tab_name = jQuery(".input-badge:checked").val().replace('-', '_') + "_description_languages";
+        jQuery("#badge_form_a .input-badge").on("click", function() {
+          var tab_name = jQuery("#badge_form_a .input-badge:checked").val().replace('-', '_') + "_description_languages";
           var tab = eval(tab_name);
 
           var content = '<label for="language_description"><b>Language of badge description* : </b></label><br /><select name="language_description" id="language_description">';
@@ -68,7 +68,33 @@
           });
 
           content = content + '</select><br>';
-          jQuery("#result_languages_description").html(content);
+          jQuery("#badge_form_a #result_languages_description").html(content);
+        });
+
+        jQuery("#badge_form_b .input-badge").on("click", function() {
+          var tab_name = jQuery("#badge_form_b .input-badge:checked").val().replace('-', '_') + "_description_languages";
+          var tab = eval(tab_name);
+
+          var content = '<label for="language_description"><b>Language of badge description* : </b></label><br /><select name="language_description" id="language_description">';
+          tab.forEach(function(lang) {
+            content = content + '<option value="' + lang + '">' + lang + '</option>';
+          });
+
+          content = content + '</select><br>';
+          jQuery("#badge_form_b #result_languages_description").html(content);
+        });
+
+        jQuery("#badge_form_c .input-badge").on("click", function() {
+          var tab_name = jQuery("#badge_form_c .input-badge:checked").val().replace('-', '_') + "_description_languages";
+          var tab = eval(tab_name);
+
+          var content = '<label for="language_description"><b>Language of badge description* : </b></label><br /><select name="language_description" id="language_description">';
+          tab.forEach(function(lang) {
+            content = content + '<option value="' + lang + '">' + lang + '</option>';
+          });
+
+          content = content + '</select><br>';
+          jQuery("#badge_form_c #result_languages_description").html(content);
         });
       </script>
       <?php

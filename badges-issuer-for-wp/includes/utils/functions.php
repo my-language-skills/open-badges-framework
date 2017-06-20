@@ -398,7 +398,48 @@ function send_mail($mail, $badge_name, $badge_language, $badge_image, $url){
 */
 function apply_css_styles() {
   ?>
+
   <style>
+
+  #tabs-elements {
+    display: block;
+  }
+
+  .tab-element {
+    margin-top: -5px;
+    background-color: #F7004A;
+    font-size: 20px;
+    color:#FFF;
+    padding: 10px;
+    max-width: 200px;
+    float: left;
+  }
+
+  .active {
+    background-color: #FFF;
+    color: #B50036;
+  }
+
+  .tab-element:hover {
+    background-color: #B50036;
+    color: #FFF;
+  }
+
+  .tab-element:active {
+    background-color: #B50036;
+    color: #FFF;
+  }
+
+  .tab-content {
+    display: block;
+    background-color: #FFF;
+    border-width: 5px;
+    border-color: #F7004A;
+    border-style: solid;
+    padding: 20px;
+    margin: 5px;
+  }
+
   .input-hidden {
     position: absolute;
     left: -9999px
@@ -457,18 +498,51 @@ function js_form() {
   ?>
 
   <script>
-  jQuery(".level").on("click", function() {
+  jQuery("#badge_form_a .level").on("click", function() {
 
-    jQuery("#select_badge").html("<br /><img src='http://<?php echo $_SERVER['SERVER_NAME']; ?>/wp-content/plugins/badges-issuer-for-wp/images/load.gif' width='50px' height='50px' />");
+    jQuery("#badge_form_a #select_badge").html("<br /><img src='http://<?php echo $_SERVER['SERVER_NAME']; ?>/wp-content/plugins/badges-issuer-for-wp/images/load.gif' width='50px' height='50px' />");
 
     var data = {
 			'action': 'action_select_badge',
-			'level_selected': jQuery(".level:checked").val()
+      'form': 'form_a_',
+			'level_selected': jQuery("#badge_form_a .level:checked").val()
 		};
 
 		// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
 		jQuery.post("<?php echo "http://".$_SERVER['SERVER_NAME']."/wp-content/plugins/badges-issuer-for-wp/includes/ajax/custom_ajax.php"; ?>", data, function(response) {
-			jQuery("#select_badge").html(response);
+			jQuery("#badge_form_a #select_badge").html(response);
+		});
+  });
+
+  jQuery("#badge_form_b .level").on("click", function() {
+
+    jQuery("#badge_form_b #select_badge").html("<br /><img src='http://<?php echo $_SERVER['SERVER_NAME']; ?>/wp-content/plugins/badges-issuer-for-wp/images/load.gif' width='50px' height='50px' />");
+
+    var data = {
+			'action': 'action_select_badge',
+      'form': 'form_b_',
+			'level_selected': jQuery("#badge_form_b .level:checked").val()
+		};
+
+		// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
+		jQuery.post("<?php echo "http://".$_SERVER['SERVER_NAME']."/wp-content/plugins/badges-issuer-for-wp/includes/ajax/custom_ajax.php"; ?>", data, function(response) {
+			jQuery("#badge_form_b #select_badge").html(response);
+		});
+  });
+
+  jQuery("#badge_form_c .level").on("click", function() {
+
+    jQuery("#badge_form_c #select_badge").html("<br /><img src='http://<?php echo $_SERVER['SERVER_NAME']; ?>/wp-content/plugins/badges-issuer-for-wp/images/load.gif' width='50px' height='50px' />");
+
+    var data = {
+			'action': 'action_select_badge',
+      'form': 'form_c_',
+			'level_selected': jQuery("#badge_form_c .level:checked").val()
+		};
+
+		// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
+		jQuery.post("<?php echo "http://".$_SERVER['SERVER_NAME']."/wp-content/plugins/badges-issuer-for-wp/includes/ajax/custom_ajax.php"; ?>", data, function(response) {
+			jQuery("#badge_form_c #select_badge").html(response);
 		});
   });
   </script>
@@ -496,14 +570,33 @@ function js_send_badge_form() {
     }
 
     function check_badge_form() {
-      var mails = jQuery("#badge_form #mail").val().split("\n");
-      var level = jQuery("#badge_form .level");
+      var badge_a = jQuery("#badge_form_a .input-badge");
 
-      if(!check_mails(mails) || !level.is(':checked')) {
-        jQuery('#submit_button').prop('disabled', true);
+      var mails_b = jQuery("#badge_form_b .mail").val().split("\n");
+      var badge_b = jQuery("#badge_form_b .input-badge");
+
+      var mails_c = jQuery("#badge_form_c .mail").val().split("\n");
+      var badge_c = jQuery("#badge_form_c .input-badge");
+
+      if(!badge_a.is(':checked')) {
+        jQuery('#submit_button_a').prop('disabled', true);
       }
       else {
-        jQuery('#submit_button').prop('disabled', false);
+        jQuery('#submit_button_a').prop('disabled', false);
+      }
+
+      if(!check_mails(mails_b) || !badge_b.is(':checked')) {
+        jQuery('#submit_button_b').prop('disabled', true);
+      }
+      else {
+        jQuery('#submit_button_b').prop('disabled', false);
+      }
+
+      if(!check_mails(mails_c) || !badge_c.is(':checked')) {
+        jQuery('#submit_button_c').prop('disabled', true);
+      }
+      else {
+        jQuery('#submit_button_c').prop('disabled', false);
       }
     }
   </script>
