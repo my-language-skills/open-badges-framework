@@ -76,7 +76,7 @@ function get_badge_description($badge_level, $lines) {
  *
  * @author Nicolas TORION
  * @since 1.0.0
- * @param $badge_name The name of the badge.
+ * @param $badge_level The level of the badge.
  * @return $descriptions Array of descriptions of the badge associated to their language.
 */
 function get_badge_descriptions($badge_level) {
@@ -123,19 +123,25 @@ function get_badge($badge_name, $badges, $lang) {
  * @param $badges A list of badges.
  * @return $levels Array of all levels found.
 */
-function get_all_levels($badges, $type) {
+function get_all_levels($badges) {
   $levels = array();
   foreach($badges as $badge){
-    $meta_type = get_post_meta($badge->ID,"_type",true);
     $level = get_post_meta($badge->ID,"_level",true);
-    if($meta_type==$type) {
-      if( ! in_array( $level, $levels) )
-        $levels[] = $level;
-    }
+    if( ! in_array( $level, $levels) )
+      $levels[] = $level;
   }
   sort($levels);
   return $levels;
 }
+
+/**
+ * Returns all badges of a level.
+ *
+ * @author Nicolas TORION
+ * @since 1.0.0
+ * @param $badges A list of badges.
+ * @return $level The level of bagdes to find.
+*/
 
 function get_all_badges_level($badges, $level) {
   $badges_corresponding = array();
@@ -186,19 +192,11 @@ function get_all_languages() {
  * @param $badges A list of badges.
 */
 function display_levels_radio_buttons($badges) {
-  $levels_student = get_all_levels($badges, 'student');
-  $levels_teacher = get_all_levels($badges, 'teacher');
+  $levels = get_all_levels($badges);
 
   echo '<b>Level* :</b><br />';
-  if (current_user_can('send_student_badge')) {
-    foreach ($levels_student as $l) {
-      echo '<label for="level_'.$l.'">'.$l.' </label><input type="radio" class="level" name="level" id="level_'.$l.'" value="'.$l.'"> ';
-    }
-  }
-  if (current_user_can('send_teacher_badge')) {
-    foreach ($levels_teacher as $l) {
-      echo '<label for="level_'.$l.'">'.$l.' </label><input type="radio" class="level" name="level" id="level_'.$l.'" value="'.$l.'"> ';
-    }
+  foreach ($levels as $l) {
+    echo '<label for="level_'.$l.'">'.$l.' </label><input type="radio" class="level" name="level" id="level_'.$l.'" value="'.$l.'"> ';
   }
   echo '<br />';
 }
@@ -208,25 +206,40 @@ function display_levels_radio_buttons($badges) {
  *
  * @author Nicolas TORION
  * @since 1.0.0
+ * @param $just_most_important_languages A boolean to know if only the most important languages must be displayed.
+ * @param $language_selected The language to select.
+ * @param $multiple A boolean to know if the select form must be in multiple mode.
 */
-function display_languages_select_form() {
+function display_languages_select_form($just_most_important_languages=false, $language_selected="", $multiple=false) {
   $all_languages = get_all_languages();
   $mostimportantlanguages = $all_languages[0];
   $languages = $all_languages[1];
 
-  echo '<label for="language"><b>Language* : </b></label><br /><select name="language" id="language">';
+  echo '<label for="language"><b>Language* : </b></label><br /><select name="language';
+  if($multiple)
+    echo '[]';
+  echo '" id="language">';
 
   echo '<optgroup>';
   foreach ($mostimportantlanguages as $language) {
-    echo '<option value="'.$language.'">'.$language.'</option>';
+    $language = str_replace("\n", "", $language);
+    echo '<option value="'.$language.'"';
+    if($language_selected==$language)
+      echo ' selected';
+    echo '>'.$language.'</option>';
   }
   echo '</optgroup>';
 
-  echo '<optgroup label="______________"';
-  foreach ($languages as $language) {
-    echo '<option value="'.$language.'">'.$language.'</option>';
+  if(!$just_most_important_languages) {
+    echo '<optgroup label="______________"';
+    foreach ($languages as $language) {
+      echo '<option value="'.$language.'"';
+      if($language_selected==$language)
+        echo ' selected';
+      echo '>'.$language.'</option>';
+    }
+    echo '</optgroup>';
   }
-  echo '</optgroup>';
 
   echo '</select><br>';
 }
@@ -416,6 +429,14 @@ function apply_css_styles() {
     display: block;
   }
 
+  .active {
+    border-width: 2px;
+    border-style: solid;
+    border-color: #FFF;
+    box-shadow: 1px 1px 12px #555;
+    transition-duration: 0.3s;
+  }
+
   .tab-element {
     margin-top: -5px;
     background-color: #F7004A;
@@ -426,19 +447,8 @@ function apply_css_styles() {
     float: left;
   }
 
-  .active {
-    background-color: #FFF;
-    color: #B50036;
-  }
-
-  .tab-element:hover {
+  .tab:hover {
     background-color: #B50036;
-    color: #FFF;
-  }
-
-  .tab-element:active {
-    background-color: #B50036;
-    color: #FFF;
   }
 
   .tab-content {
@@ -449,6 +459,7 @@ function apply_css_styles() {
     border-style: solid;
     padding: 20px;
     margin: 5px;
+    border-radius: 20px;
   }
 
   .input-hidden {
@@ -515,7 +526,7 @@ function js_form() {
 
     var data = {
 			'action': 'action_select_badge',
-      'form': 'form_a_',
+      'form': 'form_a_'
 			'level_selected': jQuery("#badge_form_a .level:checked").val()
 		};
 
@@ -531,7 +542,6 @@ function js_form() {
 
     var data = {
 			'action': 'action_select_badge',
-      'form': 'form_b_',
 			'level_selected': jQuery("#badge_form_b .level:checked").val()
 		};
 
@@ -547,7 +557,6 @@ function js_form() {
 
     var data = {
 			'action': 'action_select_badge',
-      'form': 'form_c_',
 			'level_selected': jQuery("#badge_form_c .level:checked").val()
 		};
 

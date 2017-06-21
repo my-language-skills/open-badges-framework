@@ -149,7 +149,76 @@ function meta_box_descriptions($post){
   }
 }
 
+//METABOX LINKS
+add_action('add_meta_boxes','add_meta_box_links');
+
+function add_meta_box_links(){
+  add_meta_box('id_meta_box_links', 'Badge Information', 'meta_box_links', 'badge', 'normal', 'high');
+}
+
+function display_add_link(){
+  echo '<tr>';
+  echo '<td width="0%">';
+  display_languages_select_form(true, "", true);
+  echo '</td>';
+  echo '<td width="100%">';
+  echo '<center><input type="text" size="50" name="link_url[]" value="" /></center>';
+  echo '</td>';
+  echo '<td width="0%">';
+  echo '<a class="button remove-row" onclick="jQuery(this).RemoveTr();" href="#">Remove</a>';
+  echo '</td>';
+  echo '</tr>';
+}
+
+function meta_box_links($post) {
+  $badge_links = get_post_meta($post->ID, '_badge_links', true);
+  ?>
+  <script type="text/javascript">
+	jQuery(document).ready(function( $ ){
+		jQuery( '#add-row' ).on('click', function() {
+      var content = '<?php display_add_link(); ?>';
+			jQuery("#box_links tbody").append(content);
+			return false;
+		});
+
+    $.fn.RemoveTr = function() {
+      jQuery(this).parent('td').parent('tr').remove();
+    };
+
+		return false;
+	});
+	</script>
+
+  <table id="box_links" width="100%">
+    <thead>
+      <tr>
+        <th width="0%">Language</th>
+        <th width="100%">URL</th>
+        <th width="0%"></th>
+      </tr>
+    </thead>
+    <tbody>
+  <?php
+
+  foreach ($badge_links as $link_lang => $link_url) {
+    echo '<tr>';
+      echo '<td width="0%">';
+        display_languages_select_form(true, $link_lang, true);
+      echo '</td>';
+      echo '<td width="100%">';
+        echo '<center><input type="text" size="50" name="link_url[]" value="'.$link_url.'" /></center>';
+      echo '</td>';
+      echo '<td width="0%">';
+      echo '<a class="button remove-row" onclick="jQuery(this).RemoveTr();" href="#">Remove</a>';
+      echo '</td>';
+    echo '</tr>';
+  }
+  echo '</tbody></table>';
+  echo '<p><a id="add-row" class="button" href="#">Add another</a></p>';
+}
+
 add_action('save_post','save_metaboxes');
+
 function save_metaboxes($post_ID){
   if(isset($_POST['level_input'])){
     update_post_meta($post_ID,'_level', esc_html($_POST['level_input']));
@@ -159,6 +228,14 @@ function save_metaboxes($post_ID){
   }
   if(isset($_POST['type_input'])){
     update_post_meta($post_ID,'_type', esc_html($_POST['type_input']));
+  }
+  if(isset($_POST['language']) && isset($_POST['link_url'])){
+    $count = count( $_POST['language'] );
+    $new = array();
+    for ( $i = 0; $i < $count; $i++ ) {
+      $new[$_POST['language'][$i]] = $_POST['link_url'][$i];
+    }
+  	update_post_meta( $post_ID, '_badge_links', $new );
   }
   /*foreach ($_POST as $key => $value) {
     $exp_key = explode('_', $key);
