@@ -123,12 +123,15 @@ function get_badge($badge_name, $badges, $lang) {
  * @param $badges A list of badges.
  * @return $levels Array of all levels found.
 */
-function get_all_levels($badges) {
+function get_all_levels($badges, $type) {
   $levels = array();
   foreach($badges as $badge){
+    $meta_type = get_post_meta($badge->ID,"_type",true);
     $level = get_post_meta($badge->ID,"_level",true);
-    if( ! in_array( $level, $levels) )
-      $levels[] = $level;
+    if($meta_type==$type) {
+      if( ! in_array( $level, $levels) )
+        $levels[] = $level;
+    }
   }
   sort($levels);
   return $levels;
@@ -183,11 +186,19 @@ function get_all_languages() {
  * @param $badges A list of badges.
 */
 function display_levels_radio_buttons($badges) {
-  $levels = get_all_levels($badges);
+  $levels_student = get_all_levels($badges, 'student');
+  $levels_teacher = get_all_levels($badges, 'teacher');
 
   echo '<b>Level* :</b><br />';
-  foreach ($levels as $l) {
-    echo '<label for="level_'.$l.'">'.$l.' </label><input type="radio" class="level" name="level" id="level_'.$l.'" value="'.$l.'"> ';
+  if (current_user_can('send_student_badge')) {
+    foreach ($levels_student as $l) {
+      echo '<label for="level_'.$l.'">'.$l.' </label><input type="radio" class="level" name="level" id="level_'.$l.'" value="'.$l.'"> ';
+    }
+  }
+  if (current_user_can('send_teacher_badge')) {
+    foreach ($levels_teacher as $l) {
+      echo '<label for="level_'.$l.'">'.$l.' </label><input type="radio" class="level" name="level" id="level_'.$l.'" value="'.$l.'"> ';
+    }
   }
   echo '<br />';
 }

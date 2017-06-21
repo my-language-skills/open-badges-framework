@@ -227,4 +227,6 @@
         <?php
     }
 
+    add_shortcode( 'send_badge', 'send_badges_page_callback' );
+
 ?>
