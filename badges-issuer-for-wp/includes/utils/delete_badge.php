@@ -19,6 +19,7 @@ if(is_user_logged_in()) {
     $url_badge = $json_files_dir."badge_".$_GET['hash'].".json";
 
     if(unlink($url_assertion) && unlink($url_badge)) {
+      echo "<center>You received your badge ! You can close this page. Thanks for using Badges For Languages.</center>";
       echo "<script>window.close();</script>";
     }
   }
