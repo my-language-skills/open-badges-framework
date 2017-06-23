@@ -215,5 +215,4 @@ class Badges_Issuer_For_Wp {
 }
 
 require plugin_dir_path( __FILE__ ) . 'initialisation/custom_post_badge.php';
-require plugin_dir_path( __FILE__ ) . 'initialisation/custom_post_user_badges.php';
 require plugin_dir_path( __FILE__ ) . 'initialisation/custom_roles.php';

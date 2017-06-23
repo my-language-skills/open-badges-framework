@@ -356,43 +356,63 @@ function create_assertion_json_file($mail, $path_dir_json_files, $url_json_files
   file_put_contents($file, json_encode($assertion, JSON_UNESCAPED_SLASHES));
 }
 
-function create_post_user_badges($mail) {
-  $user_badges = array(
-      'post_title'    => wp_strip_all_tags($mail),
-      'post_content'  => '',
-      'post_status'   => 'publish',
-      'post_type' => 'user_badges'
-  );
-  // Insert the post into the database.
-  $id = wp_insert_post($user_badges);
-  return $id;
-}
-
 function save_badge($mail, $badge_name, $badge_language, $sender, $comment) {
-  $user_badges = get_page_by_title($mail, OBJECT, 'user_badges');
 
-  if(is_null($user_badges)) {
-    $post_user_badges_id = create_post_user_badges($mail);
-  }
-  else {
-    $post_user_badges_id = $user_badges->ID;
-  }
+  $user_informations = get_user_by_email($mail);
+  $badges = get_the_author_meta( 'user_badges', $user_informations->ID );
 
-  if(!is_null($user_badges)) {
-    $badges = get_post_meta($post_user_badges_id, '_badges', true);
-    if(empty($badges))
-      $bagdes=array();
+  if(empty($badges))
+    $bagdes=array();
 
-    $badges[] = array(
-      'name' => $badge_name,
-      'language' => $badge_language,
-      'sender' => $sender,
-      'comment' => $comment
-    );
-    update_post_meta($post_user_badges_id, '_badges', $badges);
-  }
+  $badges[] = array(
+    'name' => $badge_name,
+    'language' => $badge_language,
+    'sender' => $sender,
+    'comment' => $comment
+  );
 
+  update_user_meta( $user_informations->ID, 'user_badges', $badges);
 }
+
+function tm_additional_profile_fields( $user ) {
+
+    $user_badges = get_the_author_meta( 'user_badges', $user->ID );
+    ?>
+    <h3>Badges</h3>
+    <table width="100%">
+      <thead>
+        <tr>
+          <th width="0%">Badge name</th>
+          <th width="0%">Badge language</th>
+          <th width="0%">Sender</th>
+          <th width="0%">Comment</th>
+        </tr>
+      </thead>
+      <tbody>
+    <?php
+
+    foreach ($user_badges as $user_badge) {
+      echo '<tr>';
+        echo '<td width="0%">';
+        echo $user_badge['name'];
+        echo '</td>';
+        echo '<td width="0%">';
+        echo $user_badge['language'];
+        echo '</td>';
+        echo '<td width="0%">';
+        echo $user_badge['sender'];
+        echo '</td>';
+        echo '<td width="0%">';
+        echo $user_badge['comment'];
+        echo '</td>';
+      echo '</tr>';
+    }
+    echo '</tbody></table>';
+}
+
+add_action( 'show_user_profile', 'tm_additional_profile_fields' );
+add_action( 'edit_user_profile', 'tm_additional_profile_fields' );
+
 
 // SEND MAIL FUNCTION
 
