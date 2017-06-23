@@ -356,6 +356,44 @@ function create_assertion_json_file($mail, $path_dir_json_files, $url_json_files
   file_put_contents($file, json_encode($assertion, JSON_UNESCAPED_SLASHES));
 }
 
+function create_post_user_badges($mail) {
+  $user_badges = array(
+      'post_title'    => wp_strip_all_tags($mail),
+      'post_content'  => '',
+      'post_status'   => 'publish',
+      'post_type' => 'user_badges'
+  );
+  // Insert the post into the database.
+  $id = wp_insert_post($user_badges);
+  return $id;
+}
+
+function save_badge($mail, $badge_name, $badge_language, $sender, $comment) {
+  $user_badges = get_page_by_title($mail, OBJECT, 'user_badges');
+
+  if(is_null($user_badges)) {
+    $post_user_badges_id = create_post_user_badges($mail);
+  }
+  else {
+    $post_user_badges_id = $user_badges->ID;
+  }
+
+  if(!is_null($user_badges)) {
+    $badges = get_post_meta($post_user_badges_id, '_badges', true);
+    if(empty($badges))
+      $bagdes=array();
+
+    $badges[] = array(
+      'name' => $badge_name,
+      'language' => $badge_language,
+      'sender' => $sender,
+      'comment' => $comment
+    );
+    update_post_meta($post_user_badges_id, '_badges', $badges);
+  }
+
+}
+
 // SEND MAIL FUNCTION
 
 /**
@@ -526,7 +564,7 @@ function js_form() {
 
     var data = {
 			'action': 'action_select_badge',
-      'form': 'form_a_'
+      'form': 'form_a_',
 			'level_selected': jQuery("#badge_form_a .level:checked").val()
 		};
 
@@ -542,6 +580,7 @@ function js_form() {
 
     var data = {
 			'action': 'action_select_badge',
+      'form': 'form_b_',
 			'level_selected': jQuery("#badge_form_b .level:checked").val()
 		};
 
@@ -557,6 +596,7 @@ function js_form() {
 
     var data = {
 			'action': 'action_select_badge',
+      'form': 'form_c_',
 			'level_selected': jQuery("#badge_form_c .level:checked").val()
 		};
 

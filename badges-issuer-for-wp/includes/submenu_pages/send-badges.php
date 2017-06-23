@@ -74,7 +74,7 @@
       </div>
       <?php
       // Traitement of form, a mail is sent to the student.
-      if(isset($_POST['level']) && isset($_POST['input_badge_name']) && isset($_POST['language']) && isset($_POST['mail']) && isset($_POST['comment']) && isset($_POST['language_description'])) {
+      if(isset($_POST['level']) && isset($_POST['sender']) && isset($_POST['input_badge_name']) && isset($_POST['language']) && isset($_POST['mail']) && isset($_POST['comment']) && isset($_POST['language_description'])) {
         $url_json_files = "http://".$_SERVER['SERVER_NAME']."/wp-content/uploads/badges-issuer/json/";
         $path_dir_json_files = plugin_dir_path( dirname( __FILE__ ) ) . '../../../uploads/badges-issuer/json/';
 
@@ -105,6 +105,8 @@
 
           if(!send_mail($mail, $badge_others_items['name'], $_POST['language'], $badge_others_items['image'], $url_mail))
             $notsent[] = $mail;
+          else
+            save_badge($mail, $badge_others_items['name'], $_POST['language'], $_POST['sender'], $_POST['comment']);
 
         }
 
@@ -141,6 +143,7 @@
         echo '<br /><br />';
         ?>
         <input type="hidden" name="mail" value="<?php echo $current_user->user_email; ?>" />
+        <input type="hidden" name="sender" value="SELF" />
 
         <label for="comment"><b>Comment : </b></label><br />
         <textarea name="comment" id="comment" rows="10" cols="80"></textarea><br />
@@ -165,6 +168,7 @@
 
         <form id="badge_form_b" action="" method="post">
           <?php
+          global $current_user;
           // get all badges that exist
           $badges = get_all_badges();
 
@@ -179,6 +183,7 @@
           <input type="text" name="mail" id="mail" class="mail"/>
           <br /><br />
 
+          <input type="hidden" name="sender" value="<?php echo $current_user->user_email; ?>" />
           <label for="comment"><b>Comment : </b></label><br />
           <textarea name="comment" id="comment" rows="10" cols="80"></textarea><br />
 
@@ -201,6 +206,7 @@
 
         <form id="badge_form_c" action="" method="post">
           <?php
+          global $current_user;
           // get all badges that exist
           $badges = get_all_badges();
 
@@ -214,6 +220,7 @@
           <label for="mail"><b>Receivers' mail adresses* (one mail adress per line) : </b></label><br />
           <textarea name="mail" id="mail" class="mail" rows="10" cols="50"></textarea>
 
+          <input type="hidden" name="sender" value="<?php echo $current_user->user_email; ?>" />
           <br /><br />
           <label for="comment"><b>Comment : </b></label><br />
           <textarea name="comment" id="comment" rows="10" cols="80"></textarea><br />
