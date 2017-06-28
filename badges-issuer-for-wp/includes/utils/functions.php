@@ -121,14 +121,22 @@ function get_badge($badge_name, $badges, $lang) {
  * @author Nicolas TORION
  * @since 1.0.0
  * @param $badges A list of badges.
+ * @param $level_type Type wanted of levels.
  * @return $levels Array of all levels found.
 */
-function get_all_levels($badges) {
+function get_all_levels($badges, $only_student=false) {
   $levels = array();
   foreach($badges as $badge){
+    $badge_type = get_post_meta($badge->ID,"_type",true);
     $level = get_post_meta($badge->ID,"_level",true);
-    if( ! in_array( $level, $levels) )
-      $levels[] = $level;
+    if( ! in_array( $level, $levels) ) {
+      if($only_student) {
+          if($badge_type=="student")
+            $levels[] = $level;
+      }
+      else
+        $levels[] = $level;
+    }
   }
   sort($levels);
   return $levels;
@@ -182,6 +190,69 @@ function get_all_languages() {
   return $all_languages;
 }
 
+/**
+ * Returns all classes that exist
+ *
+ * @author Nicolas TORION
+ * @since 1.0.0
+ * @return $classes Array of all classes.
+*/
+function get_all_classes() {
+  $classes = get_posts(array(
+    'post_type'   => 'class',
+    'numberposts' => -1
+  ));
+  return $classes;
+}
+
+function get_classes_teacher($teacher_login) {
+  $all_classes = get_all_classes();
+  $classes = array();
+  foreach ($all_classes as $class) {
+    if($class->post_title==$teacher_login)
+      $classes[]=$class;
+  }
+  return $classes;
+}
+
+/**
+ * Check if a class exists with the name of a teacher
+ *
+ * @author Nicolas TORION
+ * @since 1.0.0
+ * @param $teacher_name Name of the teacher
+ * @return $exists Boolean indicating if the class exists or not.
+*/
+function class_school_exists($teacher_name) {
+  $classes = get_all_classes();
+  $exists = false;
+  foreach ($classes as $class) {
+    if($class->post_title==$teacher_name)
+      $exists = true;
+  }
+  return $exists;
+}
+
+/**
+ * Check if a class exists with the name of a teacher
+ *
+ * @author Nicolas TORION
+ * @since 1.0.0
+ * @param $teacher_name Name of the teacher
+ * @return $exists Boolean indicating if the class exists or not.
+*/
+function add_teacher_class_post($teacher_name) {
+  // Create post object
+  $class_school_post = array(
+    'post_title'    => $teacher_name,
+    'post_content'  => '',
+    'post_status'   => 'publish',
+    'post_type'     => 'class'
+  );
+  // Insert the post into the database
+  wp_insert_post($class_school_post);
+}
+
 // DISPLAY FUNCTIONS
 
 /**
@@ -192,7 +263,13 @@ function get_all_languages() {
  * @param $badges A list of badges.
 */
 function display_levels_radio_buttons($badges) {
-  $levels = get_all_levels($badges);
+  global $current_user;
+  get_currentuserinfo();
+
+  if($current_user->roles[0]!="administrator")
+    $levels = get_all_levels($badges, true);
+  else
+    $levels = get_all_levels($badges);
 
   echo '<b>Level* :</b><br />';
   foreach ($levels as $l) {
@@ -294,6 +371,22 @@ function display_not_logged_message() {
   <?php
 }
 
+function display_classes_input() {
+  global $current_user;
+  get_currentuserinfo();
+  $classes_teacher = get_classes_teacher($current_user->user_login);
+
+  echo '<b>Class* : </b><br />';
+  $i = 1;
+  foreach ($classes_teacher as $class) {
+    echo '<label for="class_'.$class->ID.'">'.$class->post_title.' </label><input name="class_for_student" id="class_'.$class->ID.'" type="radio" value="'.$class->ID.'"';
+    if($i==1)
+      echo " checked";
+    echo '/>';
+    $i++;
+  }
+}
+
 // CREATE JSON FILES FUNCTIONS
 
 /**
@@ -372,6 +465,22 @@ function save_badge($mail, $badge_name, $badge_language, $sender, $comment) {
   );
 
   update_user_meta( $user_informations->ID, 'user_badges', $badges);
+}
+
+function add_class_student($student_mail, $level, $language, $class_id) {
+  $student = get_user_by_email($student_mail);
+  if($student) {
+    if(!is_null($class_id)) {
+      $student_infos = array(
+        'login' => $student->user_login,
+        'level' => $level,
+        'language' => $language
+      );
+      $class_students = get_post_meta($class_id, '_class_students', true);
+      $class_students[] = $student_infos;
+      update_post_meta($class_id,'_class_students', $class_students);
+    }
+  }
 }
 
 function tm_additional_profile_fields( $user ) {
@@ -482,43 +591,6 @@ function apply_css_styles() {
   ?>
 
   <style>
-
-  #tabs-elements {
-    display: block;
-  }
-
-  .active {
-    border-width: 2px;
-    border-style: solid;
-    border-color: #FFF;
-    box-shadow: 1px 1px 12px #555;
-    transition-duration: 0.3s;
-  }
-
-  .tab-element {
-    margin-top: -5px;
-    background-color: #F7004A;
-    font-size: 20px;
-    color:#FFF;
-    padding: 10px;
-    max-width: 200px;
-    float: left;
-  }
-
-  .tab:hover {
-    background-color: #B50036;
-  }
-
-  .tab-content {
-    display: block;
-    background-color: #FFF;
-    border-width: 5px;
-    border-color: #F7004A;
-    border-style: solid;
-    padding: 20px;
-    margin: 5px;
-    border-radius: 20px;
-  }
 
   .input-hidden {
     position: absolute;
@@ -682,5 +754,4 @@ function js_send_badge_form() {
   </script>
 <?php
 }
-
 ?>

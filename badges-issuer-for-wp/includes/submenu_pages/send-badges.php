@@ -29,7 +29,7 @@
             'edit.php?post_type=badge',
             'Send Badges',
             'Send Badges',
-            'manage_options', //capability: 'edit_posts' to give automatically the access to author/editor/admin
+            'capability_send_badge', //capability: 'edit_posts' to give automatically the access to author/editor/admin
             'send-badges',
             'send_badges_page_callback'
         );
@@ -89,6 +89,15 @@
         $mails = $_POST['mail'];
         $mails_list = explode("\n", $mails);
 
+        global $current_user;
+        get_currentuserinfo();
+
+        $class = null;
+        if($current_user->roles[0]=="teacher") {
+          if(isset($_POST['class_for_student']))
+            $class = $_POST['class_for_student'];
+        }
+
         $notsent = array();
 
         foreach ($mails_list as $mail) {
@@ -105,8 +114,10 @@
 
           if(!send_mail($mail, $badge_others_items['name'], $_POST['language'], $badge_others_items['image'], $url_mail))
             $notsent[] = $mail;
-          else
+          else {
+            add_class_student($mail, $_POST['level'], $_POST['language'], $class);
             save_badge($mail, $badge_others_items['name'], $_POST['language'], $_POST['sender'], $_POST['comment']);
+          }
 
         }
 
@@ -182,7 +193,12 @@
           <label for="mail"><b>Receiver's mail adress* : </b></label><br />
           <input type="text" name="mail" id="mail" class="mail"/>
           <br /><br />
-
+          <?php
+            if($current_user->roles[0]=="teacher" || $current_user->roles[0]=="academy") {
+                display_classes_input();
+                echo '<br /><br />';
+            }
+          ?>
           <input type="hidden" name="sender" value="<?php echo $current_user->user_email; ?>" />
           <label for="comment"><b>Comment : </b></label><br />
           <textarea name="comment" id="comment" rows="10" cols="80"></textarea><br />
