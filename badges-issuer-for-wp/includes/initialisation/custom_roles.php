@@ -38,6 +38,7 @@ function add_capabilities() {
     $academy = get_role('academy');
     $academy->add_cap('send_student_badge');
     $academy->add_cap('send_teacher_badge');
+    $academy->add_cap('capability_send_badge');
 
     // ADMINISTRATOR ROLE
     $administrator = get_role('administrator');
@@ -50,6 +51,9 @@ function add_capabilities() {
     $administrator->add_cap('read_classes');
     $administrator->add_cap('read_private_classes');
     $administrator->add_cap('delete_class');
+    $administrator->add_cap('send_student_badge');
+    $administrator->add_cap('send_teacher_badge');
+    $administrator->add_cap('capability_send_badge');
 }
 
 add_action( 'init', 'add_capabilities');

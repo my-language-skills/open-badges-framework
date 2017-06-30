@@ -9,8 +9,11 @@
 */
 
     wp_enqueue_script("jquery");
+    wp_enqueue_script('jquery-ui');
+    wp_enqueue_script('jquery-ui-tabs');
 
     require_once plugin_dir_path( dirname( __FILE__ ) ) . 'utils/functions.php';
+    require_once plugin_dir_path( dirname( __FILE__ ) ) . 'utils/class.badge.php';
     /**
     * Adds b4l_send_badges_one_student_submenu_page to the admin menu.
     */
@@ -43,17 +46,17 @@
      * @since 1.0.0
      */
     function send_badges_page_callback() {
-      wp_enqueue_script('jquery-ui-tabs');
     ?>
       <script>
-      jQuery(document).ready(function(jQuery) {
-        jQuery('#tabs').tabs();
-        jQuery(".tab-element").click(function(){
-          jQuery(".tab-element").removeClass("active");
-          jQuery(this).addClass("active");
+        jQuery(document).ready(function(jQuery) {
+          jQuery('#tabs').tabs();
+          jQuery(".tab-element").click(function(){
+            jQuery(".tab-element").removeClass("active");
+            jQuery(this).addClass("active");
+          });
         });
-      });
       </script>
+
       <div id="tabs">
         <div id="tabs-elements">
           <ul>
@@ -75,13 +78,9 @@
       <?php
       // Traitement of form, a mail is sent to the student.
       if(isset($_POST['level']) && isset($_POST['sender']) && isset($_POST['input_badge_name']) && isset($_POST['language']) && isset($_POST['mail']) && isset($_POST['comment']) && isset($_POST['language_description'])) {
+
         $url_json_files = "http://".$_SERVER['SERVER_NAME']."/wp-content/uploads/badges-issuer/json/";
         $path_dir_json_files = plugin_dir_path( dirname( __FILE__ ) ) . '../../../uploads/badges-issuer/json/';
-
-        //creates the folders recursively if they initially don't exist
-        if (!file_exists($path_dir_json_files)) {
-            mkdir($path_dir_json_files, 0777, true);
-        }
 
         $badges = get_all_badges();
         $badge_others_items = get_badge($_POST['input_badge_name'], $badges, $_POST['language_description']);
@@ -100,23 +99,18 @@
 
         $notsent = array();
 
+        $badge = new Badge($badge_others_items['name'], $_POST['level'], $_POST['language'], $_POST['comment'], $badge_others_items['description'], $badge_others_items['image'], $url_json_files, $path_dir_json_files);
+
         foreach ($mails_list as $mail) {
           $mail = str_replace("\r", "", $mail);
 
-          $hash_name = hash("sha256", $mail.$badge_others_items['name'].$_POST['language']);
-          $badge_filename = 'badge_'.$hash_name.'.json';
-          $assertion_filename = "assertion_".$hash_name.'.json';
+          $badge->create_json_files($mail);
 
-          $url_mail = "http://".$_SERVER['SERVER_NAME']."/wp-content/plugins/badges-issuer-for-wp/includes/utils/get_badge.php?hash=".$hash_name;
-
-          create_badge_json_file($_POST['level'], $_POST['language'], $_POST['comment'], $badge_others_items, $path_dir_json_files, $url_json_files, $badge_filename);
-          create_assertion_json_file($mail, $path_dir_json_files, $url_json_files, $badge_filename, $assertion_filename);
-
-          if(!send_mail($mail, $badge_others_items['name'], $_POST['language'], $badge_others_items['image'], $url_mail))
+          if(!$badge->send_mail($mail))
             $notsent[] = $mail;
           else {
-            add_class_student($mail, $_POST['level'], $_POST['language'], $class);
-            save_badge($mail, $badge_others_items['name'], $_POST['language'], $_POST['sender'], $_POST['comment']);
+            $badge->add_student_to_class($mail, $class);
+            $badge->add_badge_to_user_profile($mail, $_POST['sender']);
           }
 
         }
