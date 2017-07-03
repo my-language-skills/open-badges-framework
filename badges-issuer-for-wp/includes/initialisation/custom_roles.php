@@ -33,12 +33,16 @@ function add_capabilities() {
     $teacher->add_cap( 'read_classes' );
     $teacher->add_cap( 'edit_published_classes' );
     $teacher->add_cap('capability_send_badge');
+    $teacher->add_cap("read_job_listing");
 
     // ACADEMY ROLE
     $academy = get_role('academy');
     $academy->add_cap('send_student_badge');
     $academy->add_cap('send_teacher_badge');
     $academy->add_cap('capability_send_badge');
+    $academy->add_cap("read_job_listing");
+    $academy->add_cap("publish_job_listings");
+    $academy->add_cap("edit_published_job_listings");
 
     // ADMINISTRATOR ROLE
     $administrator = get_role('administrator');

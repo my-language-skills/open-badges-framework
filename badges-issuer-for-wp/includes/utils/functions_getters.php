@@ -190,7 +190,7 @@ function get_all_languages() {
 */
 function get_all_classes() {
   $classes = get_posts(array(
-    'post_type'   => 'class',
+    'post_type'   => 'job_listing',
     'numberposts' => -1
   ));
   return $classes;

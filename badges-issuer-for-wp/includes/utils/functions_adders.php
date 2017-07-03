@@ -12,7 +12,7 @@ function add_teacher_class_post($teacher_name) {
     'post_title'    => $teacher_name,
     'post_content'  => '',
     'post_status'   => 'publish',
-    'post_type'     => 'class'
+    'post_type'     => 'job_listing'
   );
   // Insert the post into the database
   wp_insert_post($class_school_post);
