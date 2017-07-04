@@ -1,6 +1,20 @@
 <?php
 
+/**
+ * This file allow to create roles and capabilities.
+ *
+ * @author Nicolas TORION
+ * @package badges-issuer-for-wp
+ * @subpackage includes/initialisation
+ * @since 1.0.0
+*/
+
+
 require_once plugin_dir_path( dirname( __FILE__ ) ) . 'utils/functions.php';
+
+/*
+Create available roles for the users of the website.
+*/
 
 $result = add_role( 'student', 'Student', array(
     'read' => true,
@@ -19,6 +33,10 @@ $result = add_role( 'academy', 'Academy', array(
     'edit_posts' => false,
     'delete_posts' => false
 ));
+
+/*
+Add capabilities to the existing roles.
+*/
 
 function add_capabilities() {
     // STUDENT ROLE
@@ -61,6 +79,10 @@ function add_capabilities() {
 }
 
 add_action( 'init', 'add_capabilities');
+
+/*
+Create a class for the teacher when he loggin for the first time.
+*/
 
 function create_teacher_class() {
   $current_user = wp_get_current_user();

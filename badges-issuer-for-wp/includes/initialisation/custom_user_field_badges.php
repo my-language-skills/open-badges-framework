@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * Adds a badges field in the user profile. Displays the badges of an user in his own user profile.
+ *
+ * @author Nicolas TORION
+ * @package badges-issuer-for-wp
+ * @subpackage includes/initialisation
+ * @since 1.0.0
+*/
+
 function user_field_badges( $user ) {
     $user_badges = get_the_author_meta( 'user_badges', $user->ID );
     ?>

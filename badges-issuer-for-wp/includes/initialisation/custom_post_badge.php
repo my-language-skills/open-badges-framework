@@ -1,6 +1,17 @@
 <?php
 
+/**
+ * This file creates a custom post type badge.
+ *
+ * @author Nicolas TORION
+ * @package badges-issuer-for-wp
+ * @subpackage includes/initialisation
+ * @since 1.0.0
+*/
+
 require_once plugin_dir_path( dirname( __FILE__ ) ) . 'utils/functions.php';
+
+/* Register the custom post type. */
 
 add_action('init', 'register_badge');
 
@@ -39,7 +50,7 @@ function check($val, $expected) {
     echo " checked";
 }
 
-//METABOX CERTIFICATION
+/* Adds the metabox certification into the badge custom post type */
 
 add_action('add_meta_boxes','add_meta_box_certification');
 
@@ -60,7 +71,7 @@ function meta_box_certification($post){
 
 }
 
-//METABOX TYPE
+/* Adds the metabox type into the badge custom post type */
 
 add_action('add_meta_boxes','add_meta_box_type');
 
@@ -81,7 +92,7 @@ function meta_box_type($post){
 
 }
 
-//METABOX LEVEL
+/* Adds the metabox level into the badge custom post type */
 
 add_action('add_meta_boxes','add_meta_box_level');
 
@@ -132,7 +143,7 @@ function meta_box_level($post){
 
 }
 
-//METABOX DESCRIPTIONS
+/* Adds the metabox descriptions into the badge custom post type */
 
 add_action('add_meta_boxes','add_meta_box_descriptions');
 
@@ -149,7 +160,8 @@ function meta_box_descriptions($post){
   }
 }
 
-//METABOX LINKS
+/* Adds the metabox links into the badge custom post type */
+
 add_action('add_meta_boxes','add_meta_box_links');
 
 function add_meta_box_links(){
@@ -217,6 +229,8 @@ function meta_box_links($post) {
   echo '<p><a id="add-row" class="button" href="#">Add another</a></p>';
 }
 
+/* Saves the metaboxes */
+
 add_action('save_post','save_metaboxes');
 
 function save_metaboxes($post_ID){
@@ -237,11 +251,6 @@ function save_metaboxes($post_ID){
     }
   	update_post_meta( $post_ID, '_badge_links', $new );
   }
-  /*foreach ($_POST as $key => $value) {
-    $exp_key = explode('_', $key);
-    if($exp_key[0]=='description')
-      save_badge_description(get_the_title($post_ID), $exp_key[1], $_POST[$key]);
-  }*/
 }
 
 ?>

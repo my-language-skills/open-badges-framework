@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * This file modifies the Job Listing post type of WP Job Manager in order to use it for Badge School plugin.
+ *
+ * @author Nicolas TORION
+ * @package badges-issuer-for-wp
+ * @subpackage includes/initialisation
+ * @since 1.0.0
+*/
+
 require_once plugin_dir_path( dirname( __FILE__ ) ) . 'utils/functions.php';
 
 add_action('init', 'load_job_listing_class_metaboxes');
@@ -14,11 +23,14 @@ function load_job_listing_class_metaboxes() {
 
     public function __construct() {
       add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ) );
+      add_filter( 'template_include', array($this, 'job_listing_template'), 1 );
     }
+
+    /* Adds the metaboxes.*/
 
     public function add_meta_boxes() {
       global $current_user;
-      get_currentuserinfo(); 
+      get_currentuserinfo();
 
       add_meta_box( 'id_meta_box_class_students', 'Class Students', array( $this, 'meta_box_class_students' ), 'job_listing', 'normal', 'low' );
 
@@ -44,6 +56,8 @@ function load_job_listing_class_metaboxes() {
       echo '</td>';
       echo '</tr>';
     }
+
+    /* Adds the metabox students of the class.*/
 
     function meta_box_class_students($post) {
       $class_students = get_post_meta($post->ID, '_class_students', true);
@@ -88,6 +102,8 @@ function load_job_listing_class_metaboxes() {
       echo '</tbody></table>';
     }
 
+    /* Adds the meatbox level of the class.*/
+
     function meta_box_class_level($post){
       $val = get_post_meta($post->ID,'_class_level',true);
 
@@ -116,6 +132,7 @@ function load_job_listing_class_metaboxes() {
       display_languages_select_form($language_selected=$val);
     }
 
+    /* Saves the job listing metaboxes.*/
     function save_metaboxes_class($post_ID){
       if(isset($_POST['class_level_input'])){
         update_post_meta($post_ID,'_class_level', esc_html($_POST['class_level_input']));
@@ -123,6 +140,27 @@ function load_job_listing_class_metaboxes() {
       if(isset($_POST['language'])){
         update_post_meta($post_ID,'_class_language', esc_html($_POST['language']));
       }
+    }
+
+    /**
+     * Load the custom template for a single job Listing.
+     *
+     * @author Nicolas TORION
+     * @since 1.0.0
+     * @param $template_path The path of the template.
+     * @return $template_path The path of the template.
+    */
+    function job_listing_template( $template_path ) {
+        if ( get_post_type() == 'job_listing' ) {
+            if ( is_single() ) {
+                if ( $theme_file = locate_template( array ( 'job_listing_template.php' ) ) ) {
+                    $template_path = $theme_file;
+                } else {
+                    $template_path = plugin_dir_path( dirname( __FILE__ ) ) . '/templates/job_listing_template.php';
+                }
+            }
+        }
+        return $template_path;
     }
 
   }
