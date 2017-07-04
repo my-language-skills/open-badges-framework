@@ -7,10 +7,7 @@
 
 global $job_id;
 get_header();
-global $current_user;
-get_currentuserinfo();
 
-require_once plugin_dir_path( dirname( __FILE__ ) ) . 'utils/functions.php';
 ?>
 
 	<?php while ( have_posts() ) : the_post(); ?>
@@ -118,18 +115,11 @@ require_once plugin_dir_path( dirname( __FILE__ ) ) . 'utils/functions.php';
                                 wp_parse_args( array( 'before_widget' => '<aside class="widget widget-job_listing listify_widget_panel_listing_content">' ), $defaults )
                             );
 
+														add_filter( 'comments_template', function ( $template ) {
+														    return plugin_dir_path( dirname( __FILE__ ) ) . 'templates/comments_template.php';
+														});
 
-                            if($current_user->roles[0]=='student') {
-                                if(is_student_in_class($current_user->user_login, $post->ID)) {
-                                  the_widget(
-                                      'Listify_Widget_Listing_Comments',
-                                      array(
-                                          'title' => ''
-                                      ),
-                                      $defaults
-                                  );
-                                }
-                            }
+														comments_template();
                         }
                     ?>
 

@@ -156,7 +156,7 @@ function load_job_listing_class_metaboxes() {
                 if ( $theme_file = locate_template( array ( 'job_listing_template.php' ) ) ) {
                     $template_path = $theme_file;
                 } else {
-                    $template_path = plugin_dir_path( dirname( __FILE__ ) ) . '/templates/job_listing_template.php';
+                    $template_path = plugin_dir_path( dirname( __FILE__ ) ) . 'templates/job_listing_template.php';
                 }
             }
         }
