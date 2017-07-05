@@ -65,6 +65,53 @@ function js_form() {
   <?php
 }
 
+add_action( 'admin_footer', 'js_save_metabox_students' ); // Write our JS below here
+add_action( 'wp_footer', 'js_save_metabox_students' );
+
+function js_save_metabox_students() {
+  ?>
+  <script>
+  function save_metabox_students() {
+
+    console.log("CHANGE DETECTED");
+    var post_id = jQuery("#box_students").attr('name');
+    var students = {};
+    var i = 0;
+    jQuery("#box_students tbody").find("tr").each(function(){
+      var student_infos = [];
+      jQuery(this).find("td").each(function(){
+        student_infos.push(jQuery(this).find("center").html());
+      });
+
+      var login = student_infos[0];
+      var level = student_infos[1];
+      var language = student_infos[2];
+
+      var student = {
+        'login': login,
+        'level': level,
+        'language': language
+      };
+
+      students[i] = student;
+      i = i + 1;
+    });
+
+    var data = {
+      'action': 'action_save_metabox_students',
+      'class_students': students,
+      'post_id': post_id
+    };
+
+		// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
+		jQuery.post("<?php echo "http://".$_SERVER['SERVER_NAME']."/wp-content/plugins/badges-issuer-for-wp/includes/ajax/custom_ajax.php"; ?>", data, function(response) {
+      console.log(response);
+    });
+  };
+  </script>
+  <?php
+}
+
 add_action( 'admin_footer', 'js_send_badge_form' ); // Write our JS below here
 add_action( 'wp_footer', 'js_send_badge_form' );
 
@@ -82,23 +129,32 @@ function js_send_badge_form() {
 
     function check_mails(mails) {
 
-      var testEmail = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
+      if(typeof mails !== 'undefined') {
+        var testEmail = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
 
-      for (var i = 0; i < mails.length; i++) {
-        if(!testEmail.test(mails[i])) {
-          return false;
+        for (var i = 0; i < mails.length; i++) {
+          if(!testEmail.test(mails[i])) {
+            return false;
+          }
         }
+        return true;
       }
-      return true;
+      else {
+        return false;
+      }
     }
 
     function check_badge_form() {
       var badge_a = jQuery("#badge_form_a .input-badge");
 
-      var mails_b = jQuery("#badge_form_b .mail").val().split("\n");
+      if(typeof jQuery("#badge_form_b .mail").val() !== 'undefined')
+        var mails_b = jQuery("#badge_form_b .mail").val().split("\n");
+
       var badge_b = jQuery("#badge_form_b .input-badge");
 
-      var mails_c = jQuery("#badge_form_c .mail").val().split("\n");
+      if(typeof jQuery("#badge_form_c .mail").val() !== 'undefined')
+        var mails_c = jQuery("#badge_form_c .mail").val().split("\n");
+
       var badge_c = jQuery("#badge_form_c .input-badge");
 
       if(!badge_a.is(':checked')) {

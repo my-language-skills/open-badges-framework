@@ -9,6 +9,7 @@
  * @since 1.0.0
 */
 
+wp_enqueue_script("jquery");
 require_once plugin_dir_path( dirname( __FILE__ ) ) . 'utils/functions.php';
 
 add_action('init', 'load_job_listing_class_metaboxes');
@@ -32,7 +33,7 @@ function load_job_listing_class_metaboxes() {
       global $current_user;
       get_currentuserinfo();
 
-      add_meta_box( 'id_meta_box_class_students', 'Class Students', array( $this, 'meta_box_class_students' ), 'job_listing', 'normal', 'low' );
+      add_meta_box( 'id_meta_box_class_students', 'Class Students', array( $this, 'meta_box_class_students' ), 'job_listing', 'normal', 'high' );
 
       if($current_user->roles[0]=="academy")
         add_meta_box('id_meta_box_class_language', 'Class language', array($this, 'meta_box_class_language'), 'job_listing', 'side', 'high');
@@ -40,49 +41,46 @@ function load_job_listing_class_metaboxes() {
       if($current_user->roles[0]=="academy")
         add_meta_box('id_meta_box_class_level', 'Class level', array($this, 'meta_box_class_level'), 'job_listing', 'side', 'high');
 
-      add_action('save_post','save_metaboxes_class');
-    }
-
-    function display_add_student(){
-      echo '<tr>';
-      echo '<td width="0%">';
-      display_languages_select_form(true, "", true);
-      echo '</td>';
-      echo '<td width="100%">';
-      echo '<center><input type="text" size="50" name="link_url[]" value="" /></center>';
-      echo '</td>';
-      echo '<td width="0%">';
-      echo '<a class="button remove-row" onclick="jQuery(this).RemoveTr();" href="#">Remove</a>';
-      echo '</td>';
-      echo '</tr>';
+      add_action('save_post', array($this, 'save_metaboxes_class'));
     }
 
     /* Adds the metabox students of the class.*/
 
     function meta_box_class_students($post) {
       $class_students = get_post_meta($post->ID, '_class_students', true);
+      global $current_user;
+      get_currentuserinfo();
       ?>
       <script type="text/javascript">
     	jQuery(document).ready(function( $ ){
-        $.fn.RemoveTr = function() {
-          jQuery(this).parent('td').parent('tr').remove();
+        jQuery.fn.RemoveTr = function() {
+          jQuery(this).parent('center').parent('td').parent('tr').remove();
         };
+        jQuery("#publish").on("click", function() {
+          save_metabox_students();
+        });
     		return false;
     	});
     	</script>
 
-      <table id="box_students" width="100%">
+      <table id="box_students" name="<?php echo $post->ID; ?>" width="100%">
         <thead>
           <tr>
             <th width="0%">Student's login</th>
             <th width="0%">Level</th>
             <th width="0%">Language</th>
-            <th width="0%">Remove</th>
+            <?php
+            if($current_user->roles[0]=='administrator') {
+              ?>
+              <th width="0%">Remove</th>
+              <?php
+            }
+             ?>
           </tr>
         </thead>
         <tbody>
       <?php
-
+      $i = 0;
       foreach ($class_students as $student) {
         echo '<tr>';
           echo '<td width="0%">';
@@ -94,10 +92,13 @@ function load_job_listing_class_metaboxes() {
           echo '<td width="0%">';
             echo '<center>'.$student['language'].'</center>';
           echo '</td>';
-          echo '<td width="0%">';
-          echo '<a class="button remove-row" onclick="jQuery(this).RemoveTr();" href="#">Remove</a>';
-          echo '</td>';
+          if($current_user->roles[0]=='administrator') {
+            echo '<td width="0%">';
+            echo '<center><a class="button remove-row" onclick="jQuery(this).RemoveTr();" href="#id_meta_box_class_students">Remove</a></center>';
+            echo '</td>';
+          }
         echo '</tr>';
+        $i++;
       }
       echo '</tbody></table>';
     }
