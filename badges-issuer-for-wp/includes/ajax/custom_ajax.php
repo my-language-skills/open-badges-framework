@@ -25,12 +25,16 @@
         'action_save_metabox_students'
     );
 
+    /* AJAX action to save metabox of students in class job listing type*/
+
     add_action('CUSTOMAJAX_action_save_metabox_students', 'action_save_metabox_students');
 
     function action_save_metabox_students() {
       $post_id = $_POST['post_id'];
       update_post_meta($post_id, '_class_students', $_POST['class_students']);
     }
+
+    /* AJAX action to load the badges of the level given */
 
     add_action( 'CUSTOMAJAX_action_select_badge', 'action_select_badge' );
 

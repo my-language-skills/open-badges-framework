@@ -126,11 +126,15 @@ function display_not_logged_message() {
 function display_classes_input() {
   global $current_user;
   get_currentuserinfo();
-  $classes_teacher = get_classes_teacher($current_user->user_login);
+
+  if($current_user->roles[0]=='administrator')
+    $classes = get_all_classes();
+  else
+    $classes = get_classes_teacher($current_user->user_login);
 
   echo '<b>Class* : </b><br />';
   $i = 1;
-  foreach ($classes_teacher as $class) {
+  foreach ($classes as $class) {
     echo '<label for="class_'.$class->ID.'">'.$class->post_title.' </label><input name="class_for_student" id="class_'.$class->ID.'" type="radio" value="'.$class->ID.'"';
     if($i==1)
       echo " checked";

@@ -68,6 +68,12 @@ function js_form() {
 add_action( 'admin_footer', 'js_save_metabox_students' ); // Write our JS below here
 add_action( 'wp_footer', 'js_save_metabox_students' );
 
+/**
+ * Saves the metabox students in the class job listing post type.
+ *
+ * @author Nicolas TORION
+ * @since 1.0.0
+*/
 function js_save_metabox_students() {
   ?>
   <script>
