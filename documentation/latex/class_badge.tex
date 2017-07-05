@@ -1,0 +1,310 @@
+\hypertarget{class_badge}{}\section{Badge Class Reference}
+\label{class_badge}\index{Badge@{Badge}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_badge_a5abb1a8e6e6c187ee5fdb8774af99571}{\+\_\+\+\_\+construct} (\$\+\_\+name, \$\+\_\+level, \$\+\_\+language, \$\+\_\+comment, \$\+\_\+description, \$\+\_\+image, \$\+\_\+url\+\_\+json\+\_\+files, \$\+\_\+path\+\_\+dir\+\_\+json\+\_\+files)
+\item 
+\hyperlink{class_badge_ae110d2fe3ba285589a45fa5bcc9be1c1}{create\+\_\+json\+\_\+files} (\$receiver)
+\item 
+\hyperlink{class_badge_ad98322bc6a8bafcfb74341b412c6d79e}{create\+\_\+badge\+\_\+json\+\_\+file} (\$badge\+\_\+filename)
+\item 
+\hyperlink{class_badge_a95417bf38dbd4d414a24a7e4d795ee27}{create\+\_\+assertion\+\_\+json\+\_\+file} (\$receiver, \$badge\+\_\+filename, \$assertion\+\_\+filename)
+\item 
+\hyperlink{class_badge_a64c3041fe3d488c19cc5461a0af0c353}{send\+\_\+mail} (\$receiver)
+\item 
+\hyperlink{class_badge_acd17df0ee44fc371bb3ef0be07525ddb}{console\+\_\+log} (\$content)
+\item 
+\hyperlink{class_badge_aa01bda205ac1364ddd4ab38d96336bd0}{add\+\_\+student\+\_\+to\+\_\+class} (\$mail, \$class\+\_\+id)
+\item 
+\hyperlink{class_badge_ade99eab50004c9c474a8d0640f6c59f8}{add\+\_\+badge\+\_\+to\+\_\+user\+\_\+profile} (\$mail, \$sender)
+\end{DoxyCompactItemize}
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_badge_ab2fc40d43824ea3e1ce5d86dee0d763b}{\$name}
+\item 
+\hyperlink{class_badge_abd32cc82c6a3f79491987de36ad580ca}{\$level}
+\item 
+\hyperlink{class_badge_a83170d318260a5a2e2a79dccdd371b10}{\$language}
+\item 
+\hyperlink{class_badge_a536677acc0163c53c067316a97456e6c}{\$comment}
+\item 
+\hyperlink{class_badge_a87b032cba06009e3467abf1c8018d960}{\$description}
+\item 
+\hyperlink{class_badge_aac6146b4cdec66c94263ddb55afd5946}{\$image}
+\item 
+\hyperlink{class_badge_aca6b9b407b17891eb273161b37bd3e22}{\$url\+\_\+json\+\_\+files}
+\item 
+\hyperlink{class_badge_a7a43ee957df14b549b2719c20fc8122f}{\$path\+\_\+dir\+\_\+json\+\_\+files}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 11 of file class.\+badge.\+php.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_badge_a5abb1a8e6e6c187ee5fdb8774af99571}\label{class_badge_a5abb1a8e6e6c187ee5fdb8774af99571}} 
+\index{Badge@{Badge}!\+\_\+\+\_\+construct@{\+\_\+\+\_\+construct}}
+\index{\+\_\+\+\_\+construct@{\+\_\+\+\_\+construct}!Badge@{Badge}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+construct()}{\_\_construct()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+construct (\begin{DoxyParamCaption}\item[{}]{\$\+\_\+name,  }\item[{}]{\$\+\_\+level,  }\item[{}]{\$\+\_\+language,  }\item[{}]{\$\+\_\+comment,  }\item[{}]{\$\+\_\+description,  }\item[{}]{\$\+\_\+image,  }\item[{}]{\$\+\_\+url\+\_\+json\+\_\+files,  }\item[{}]{\$\+\_\+path\+\_\+dir\+\_\+json\+\_\+files }\end{DoxyParamCaption})}
+
+
+
+Definition at line 22 of file class.\+badge.\+php.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_badge_ade99eab50004c9c474a8d0640f6c59f8}\label{class_badge_ade99eab50004c9c474a8d0640f6c59f8}} 
+\index{Badge@{Badge}!add\+\_\+badge\+\_\+to\+\_\+user\+\_\+profile@{add\+\_\+badge\+\_\+to\+\_\+user\+\_\+profile}}
+\index{add\+\_\+badge\+\_\+to\+\_\+user\+\_\+profile@{add\+\_\+badge\+\_\+to\+\_\+user\+\_\+profile}!Badge@{Badge}}
+\subsubsection{\texorpdfstring{add\+\_\+badge\+\_\+to\+\_\+user\+\_\+profile()}{add\_badge\_to\_user\_profile()}}
+{\footnotesize\ttfamily add\+\_\+badge\+\_\+to\+\_\+user\+\_\+profile (\begin{DoxyParamCaption}\item[{}]{\$mail,  }\item[{}]{\$sender }\end{DoxyParamCaption})}
+
+Add the badge informations into the user profile of the person who receive the badge.
+
+\begin{DoxyAuthor}{Author}
+Nicolas T\+O\+R\+I\+ON 
+\end{DoxyAuthor}
+\begin{DoxySince}{Since}
+1.\+0.\+0 
+\end{DoxySince}
+
+\begin{DoxyParams}{Parameters}
+{\em \$mail} & The mail of the person who receive the badge. \\
+\hline
+{\em \$sender} & The mail of the person who is sending the badge. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 194 of file class.\+badge.\+php.
+
+\mbox{\Hypertarget{class_badge_aa01bda205ac1364ddd4ab38d96336bd0}\label{class_badge_aa01bda205ac1364ddd4ab38d96336bd0}} 
+\index{Badge@{Badge}!add\+\_\+student\+\_\+to\+\_\+class@{add\+\_\+student\+\_\+to\+\_\+class}}
+\index{add\+\_\+student\+\_\+to\+\_\+class@{add\+\_\+student\+\_\+to\+\_\+class}!Badge@{Badge}}
+\subsubsection{\texorpdfstring{add\+\_\+student\+\_\+to\+\_\+class()}{add\_student\_to\_class()}}
+{\footnotesize\ttfamily add\+\_\+student\+\_\+to\+\_\+class (\begin{DoxyParamCaption}\item[{}]{\$mail,  }\item[{}]{\$class\+\_\+id }\end{DoxyParamCaption})}
+
+Add the student to the class selected by the teacher.
+
+\begin{DoxyAuthor}{Author}
+Nicolas T\+O\+R\+I\+ON 
+\end{DoxyAuthor}
+\begin{DoxySince}{Since}
+1.\+0.\+0 
+\end{DoxySince}
+
+\begin{DoxyParams}{Parameters}
+{\em \$mail} & The mail of the person who receive the badge. \\
+\hline
+{\em \$class\+\_\+id} & The ID of the class post selected. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 170 of file class.\+badge.\+php.
+
+\mbox{\Hypertarget{class_badge_acd17df0ee44fc371bb3ef0be07525ddb}\label{class_badge_acd17df0ee44fc371bb3ef0be07525ddb}} 
+\index{Badge@{Badge}!console\+\_\+log@{console\+\_\+log}}
+\index{console\+\_\+log@{console\+\_\+log}!Badge@{Badge}}
+\subsubsection{\texorpdfstring{console\+\_\+log()}{console\_log()}}
+{\footnotesize\ttfamily console\+\_\+log (\begin{DoxyParamCaption}\item[{}]{\$content }\end{DoxyParamCaption})}
+
+
+
+Definition at line 158 of file class.\+badge.\+php.
+
+\mbox{\Hypertarget{class_badge_a95417bf38dbd4d414a24a7e4d795ee27}\label{class_badge_a95417bf38dbd4d414a24a7e4d795ee27}} 
+\index{Badge@{Badge}!create\+\_\+assertion\+\_\+json\+\_\+file@{create\+\_\+assertion\+\_\+json\+\_\+file}}
+\index{create\+\_\+assertion\+\_\+json\+\_\+file@{create\+\_\+assertion\+\_\+json\+\_\+file}!Badge@{Badge}}
+\subsubsection{\texorpdfstring{create\+\_\+assertion\+\_\+json\+\_\+file()}{create\_assertion\_json\_file()}}
+{\footnotesize\ttfamily create\+\_\+assertion\+\_\+json\+\_\+file (\begin{DoxyParamCaption}\item[{}]{\$receiver,  }\item[{}]{\$badge\+\_\+filename,  }\item[{}]{\$assertion\+\_\+filename }\end{DoxyParamCaption})}
+
+Creates the assertion json file for sending the \hyperlink{class_badge}{Badge} into a Mozilla Backpack account
+
+\begin{DoxyAuthor}{Author}
+Nicolas T\+O\+R\+I\+ON 
+\end{DoxyAuthor}
+\begin{DoxySince}{Since}
+1.\+0.\+0 
+\end{DoxySince}
+
+\begin{DoxyParams}{Parameters}
+{\em \$receiver} & The mail of the person who will receive the \hyperlink{class_badge}{Badge}. \\
+\hline
+{\em \$badge\+\_\+filename} & The name of the badge json file. \\
+\hline
+{\em \$assertion\+\_\+filename} & The name of the assertion json file. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 89 of file class.\+badge.\+php.
+
+\mbox{\Hypertarget{class_badge_ad98322bc6a8bafcfb74341b412c6d79e}\label{class_badge_ad98322bc6a8bafcfb74341b412c6d79e}} 
+\index{Badge@{Badge}!create\+\_\+badge\+\_\+json\+\_\+file@{create\+\_\+badge\+\_\+json\+\_\+file}}
+\index{create\+\_\+badge\+\_\+json\+\_\+file@{create\+\_\+badge\+\_\+json\+\_\+file}!Badge@{Badge}}
+\subsubsection{\texorpdfstring{create\+\_\+badge\+\_\+json\+\_\+file()}{create\_badge\_json\_file()}}
+{\footnotesize\ttfamily create\+\_\+badge\+\_\+json\+\_\+file (\begin{DoxyParamCaption}\item[{}]{\$badge\+\_\+filename }\end{DoxyParamCaption})}
+
+Creates the badge json file for sending the \hyperlink{class_badge}{Badge} into a Mozilla Backpack account
+
+\begin{DoxyAuthor}{Author}
+Nicolas T\+O\+R\+I\+ON 
+\end{DoxyAuthor}
+\begin{DoxySince}{Since}
+1.\+0.\+0 
+\end{DoxySince}
+
+\begin{DoxyParams}{Parameters}
+{\em \$badge\+\_\+filename} & The name of the badge json file. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 61 of file class.\+badge.\+php.
+
+\mbox{\Hypertarget{class_badge_ae110d2fe3ba285589a45fa5bcc9be1c1}\label{class_badge_ae110d2fe3ba285589a45fa5bcc9be1c1}} 
+\index{Badge@{Badge}!create\+\_\+json\+\_\+files@{create\+\_\+json\+\_\+files}}
+\index{create\+\_\+json\+\_\+files@{create\+\_\+json\+\_\+files}!Badge@{Badge}}
+\subsubsection{\texorpdfstring{create\+\_\+json\+\_\+files()}{create\_json\_files()}}
+{\footnotesize\ttfamily create\+\_\+json\+\_\+files (\begin{DoxyParamCaption}\item[{}]{\$receiver }\end{DoxyParamCaption})}
+
+Creates the json files for sending the \hyperlink{class_badge}{Badge} into a Mozilla Backpack account
+
+\begin{DoxyAuthor}{Author}
+Nicolas T\+O\+R\+I\+ON 
+\end{DoxyAuthor}
+\begin{DoxySince}{Since}
+1.\+0.\+0 
+\end{DoxySince}
+
+\begin{DoxyParams}{Parameters}
+{\em \$receiver} & The mail of the person who will receive the \hyperlink{class_badge}{Badge}. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 40 of file class.\+badge.\+php.
+
+\mbox{\Hypertarget{class_badge_a64c3041fe3d488c19cc5461a0af0c353}\label{class_badge_a64c3041fe3d488c19cc5461a0af0c353}} 
+\index{Badge@{Badge}!send\+\_\+mail@{send\+\_\+mail}}
+\index{send\+\_\+mail@{send\+\_\+mail}!Badge@{Badge}}
+\subsubsection{\texorpdfstring{send\+\_\+mail()}{send\_mail()}}
+{\footnotesize\ttfamily send\+\_\+mail (\begin{DoxyParamCaption}\item[{}]{\$receiver }\end{DoxyParamCaption})}
+
+Sends a mail to the person who receive the badge, to give her the link of the page where she can get his badge.
+
+\begin{DoxyAuthor}{Author}
+Nicolas T\+O\+R\+I\+ON 
+\end{DoxyAuthor}
+\begin{DoxySince}{Since}
+1.\+0.\+0 
+\end{DoxySince}
+
+\begin{DoxyParams}{Parameters}
+{\em \$receiver} & The mail of the person who will receive the \hyperlink{class_badge}{Badge}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A boolean to know if the mail has been sent. 
+\end{DoxyReturn}
+
+
+Definition at line 113 of file class.\+badge.\+php.
+
+
+
+\subsection{Field Documentation}
+\mbox{\Hypertarget{class_badge_a536677acc0163c53c067316a97456e6c}\label{class_badge_a536677acc0163c53c067316a97456e6c}} 
+\index{Badge@{Badge}!\$comment@{\$comment}}
+\index{\$comment@{\$comment}!Badge@{Badge}}
+\subsubsection{\texorpdfstring{\$comment}{$comment}}
+{\footnotesize\ttfamily \$comment}
+
+
+
+Definition at line 16 of file class.\+badge.\+php.
+
+\mbox{\Hypertarget{class_badge_a87b032cba06009e3467abf1c8018d960}\label{class_badge_a87b032cba06009e3467abf1c8018d960}} 
+\index{Badge@{Badge}!\$description@{\$description}}
+\index{\$description@{\$description}!Badge@{Badge}}
+\subsubsection{\texorpdfstring{\$description}{$description}}
+{\footnotesize\ttfamily \$description}
+
+
+
+Definition at line 17 of file class.\+badge.\+php.
+
+\mbox{\Hypertarget{class_badge_aac6146b4cdec66c94263ddb55afd5946}\label{class_badge_aac6146b4cdec66c94263ddb55afd5946}} 
+\index{Badge@{Badge}!\$image@{\$image}}
+\index{\$image@{\$image}!Badge@{Badge}}
+\subsubsection{\texorpdfstring{\$image}{$image}}
+{\footnotesize\ttfamily \$image}
+
+
+
+Definition at line 18 of file class.\+badge.\+php.
+
+\mbox{\Hypertarget{class_badge_a83170d318260a5a2e2a79dccdd371b10}\label{class_badge_a83170d318260a5a2e2a79dccdd371b10}} 
+\index{Badge@{Badge}!\$language@{\$language}}
+\index{\$language@{\$language}!Badge@{Badge}}
+\subsubsection{\texorpdfstring{\$language}{$language}}
+{\footnotesize\ttfamily \$language}
+
+
+
+Definition at line 15 of file class.\+badge.\+php.
+
+\mbox{\Hypertarget{class_badge_abd32cc82c6a3f79491987de36ad580ca}\label{class_badge_abd32cc82c6a3f79491987de36ad580ca}} 
+\index{Badge@{Badge}!\$level@{\$level}}
+\index{\$level@{\$level}!Badge@{Badge}}
+\subsubsection{\texorpdfstring{\$level}{$level}}
+{\footnotesize\ttfamily \$level}
+
+
+
+Definition at line 14 of file class.\+badge.\+php.
+
+\mbox{\Hypertarget{class_badge_ab2fc40d43824ea3e1ce5d86dee0d763b}\label{class_badge_ab2fc40d43824ea3e1ce5d86dee0d763b}} 
+\index{Badge@{Badge}!\$name@{\$name}}
+\index{\$name@{\$name}!Badge@{Badge}}
+\subsubsection{\texorpdfstring{\$name}{$name}}
+{\footnotesize\ttfamily \$name}
+
+
+
+Definition at line 13 of file class.\+badge.\+php.
+
+\mbox{\Hypertarget{class_badge_a7a43ee957df14b549b2719c20fc8122f}\label{class_badge_a7a43ee957df14b549b2719c20fc8122f}} 
+\index{Badge@{Badge}!\$path\+\_\+dir\+\_\+json\+\_\+files@{\$path\+\_\+dir\+\_\+json\+\_\+files}}
+\index{\$path\+\_\+dir\+\_\+json\+\_\+files@{\$path\+\_\+dir\+\_\+json\+\_\+files}!Badge@{Badge}}
+\subsubsection{\texorpdfstring{\$path\+\_\+dir\+\_\+json\+\_\+files}{$path\_dir\_json\_files}}
+{\footnotesize\ttfamily \$path\+\_\+dir\+\_\+json\+\_\+files}
+
+
+
+Definition at line 20 of file class.\+badge.\+php.
+
+\mbox{\Hypertarget{class_badge_aca6b9b407b17891eb273161b37bd3e22}\label{class_badge_aca6b9b407b17891eb273161b37bd3e22}} 
+\index{Badge@{Badge}!\$url\+\_\+json\+\_\+files@{\$url\+\_\+json\+\_\+files}}
+\index{\$url\+\_\+json\+\_\+files@{\$url\+\_\+json\+\_\+files}!Badge@{Badge}}
+\subsubsection{\texorpdfstring{\$url\+\_\+json\+\_\+files}{$url\_json\_files}}
+{\footnotesize\ttfamily \$url\+\_\+json\+\_\+files}
+
+
+
+Definition at line 19 of file class.\+badge.\+php.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+includes/utils/\hyperlink{class_8badge_8php}{class.\+badge.\+php}\end{DoxyCompactItemize}

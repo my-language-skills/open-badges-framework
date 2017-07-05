@@ -1,0 +1,145 @@
+\hypertarget{comments__template_8php}{}\section{includes/templates/comments\+\_\+template.php File Reference}
+\label{comments__template_8php}\index{includes/templates/comments\+\_\+template.\+php@{includes/templates/comments\+\_\+template.\+php}}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespace_listify}{Listify}
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{comments__template_8php_aa69d65d13534429621eba50597158c85}{if} (post\+\_\+password\+\_\+required()$\vert$$\vert$(! have\+\_\+comments() \&\&! comments\+\_\+open())) = str\+\_\+replace( \textquotesingle{}ion-\/\textquotesingle{}, \textquotesingle{}\textquotesingle{}, \$comments\+\_\+widget\+\_\+icon )
+\item 
+\hyperlink{comments__template_8php_a672d9707ef91db026c210f98cc601123}{endforeach}
+\item 
+\hyperlink{comments__template_8php_a82cd33ca97ff99f2fcc5e9c81d65251b}{endif}
+\item 
+global \hyperlink{comments__template_8php_afc780c7283ff3743e92f9268ccad9bd3}{\$comments\+\_\+widget\+\_\+title}
+\item 
+global \hyperlink{comments__template_8php_a68374f7fb462305d6b7ffc2bd3ebdee6}{\$comments\+\_\+widget\+\_\+icon} = str\+\_\+replace( \textquotesingle{}ion-\/\textquotesingle{}, \textquotesingle{}\textquotesingle{}, \$comments\+\_\+widget\+\_\+icon )
+\item 
+global \hyperlink{comments__template_8php_ac5d4b088e49d4867c55ecad52ca4e864}{\$comments\+\_\+widget\+\_\+before\+\_\+title}
+\item 
+global \hyperlink{comments__template_8php_ad701a500377890cfe965100bdfe3fc98}{\$comments\+\_\+widget\+\_\+after\+\_\+title}
+\item 
+\hyperlink{comments__template_8php_a76b7e8c0cc26d2287e8b1f4515421721}{\$label\+\_\+submit} = ( is\+\_\+singular( \textquotesingle{}job\+\_\+listing\textquotesingle{} ) \&\& get\+\_\+current\+\_\+user\+\_\+id() != get\+\_\+post()-\/$>$post\+\_\+author ) ? \+\_\+\+\_\+( \textquotesingle{}Submit Your Review\textquotesingle{}, \textquotesingle{}listify\textquotesingle{} ) \+: \+\_\+\+\_\+( \textquotesingle{}Submit Reply\textquotesingle{}, \textquotesingle{}listify\textquotesingle{} )
+\item 
+\hyperlink{comments__template_8php_a46ad7c5fff64ab9b49b9cfcaff650baa}{\$reply} = isset( \$\+\_\+\+G\+ET\mbox{[} \textquotesingle{}replytocom\textquotesingle{} \mbox{]} ) ? (int) \$\+\_\+\+G\+ET\mbox{[} \textquotesingle{}replytocom\textquotesingle{} \mbox{]} \+: 0
+\item 
+\hyperlink{comments__template_8php_ada57e7bb7c152edad18fe2f166188691}{\$title} = ( \$comments\+\_\+widget\+\_\+icon ? \textquotesingle{}$<$span class=\char`\"{}ion-\/\textquotesingle{} . \$comments\+\_\+widget\+\_\+icon . \textquotesingle{}\char`\"{}$>$$<$/span$>$\textquotesingle{} \+: \textquotesingle{}\textquotesingle{} ) . \$comments\+\_\+widget\+\_\+title
+\item 
+global \hyperlink{comments__template_8php_a9ec72f91f0de7353b417cfeb60b0df86}{\$current\+\_\+user}
+\end{DoxyCompactItemize}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{comments__template_8php_ad701a500377890cfe965100bdfe3fc98}\label{comments__template_8php_ad701a500377890cfe965100bdfe3fc98}} 
+\index{comments\+\_\+template.\+php@{comments\+\_\+template.\+php}!\$comments\+\_\+widget\+\_\+after\+\_\+title@{\$comments\+\_\+widget\+\_\+after\+\_\+title}}
+\index{\$comments\+\_\+widget\+\_\+after\+\_\+title@{\$comments\+\_\+widget\+\_\+after\+\_\+title}!comments\+\_\+template.\+php@{comments\+\_\+template.\+php}}
+\subsubsection{\texorpdfstring{\$comments\+\_\+widget\+\_\+after\+\_\+title}{$comments\_widget\_after\_title}}
+{\footnotesize\ttfamily global \$comments\+\_\+widget\+\_\+after\+\_\+title}
+
+
+
+Definition at line 63 of file comments\+\_\+template.\+php.
+
+\mbox{\Hypertarget{comments__template_8php_ac5d4b088e49d4867c55ecad52ca4e864}\label{comments__template_8php_ac5d4b088e49d4867c55ecad52ca4e864}} 
+\index{comments\+\_\+template.\+php@{comments\+\_\+template.\+php}!\$comments\+\_\+widget\+\_\+before\+\_\+title@{\$comments\+\_\+widget\+\_\+before\+\_\+title}}
+\index{\$comments\+\_\+widget\+\_\+before\+\_\+title@{\$comments\+\_\+widget\+\_\+before\+\_\+title}!comments\+\_\+template.\+php@{comments\+\_\+template.\+php}}
+\subsubsection{\texorpdfstring{\$comments\+\_\+widget\+\_\+before\+\_\+title}{$comments\_widget\_before\_title}}
+{\footnotesize\ttfamily global \$comments\+\_\+widget\+\_\+before\+\_\+title}
+
+
+
+Definition at line 63 of file comments\+\_\+template.\+php.
+
+\mbox{\Hypertarget{comments__template_8php_a68374f7fb462305d6b7ffc2bd3ebdee6}\label{comments__template_8php_a68374f7fb462305d6b7ffc2bd3ebdee6}} 
+\index{comments\+\_\+template.\+php@{comments\+\_\+template.\+php}!\$comments\+\_\+widget\+\_\+icon@{\$comments\+\_\+widget\+\_\+icon}}
+\index{\$comments\+\_\+widget\+\_\+icon@{\$comments\+\_\+widget\+\_\+icon}!comments\+\_\+template.\+php@{comments\+\_\+template.\+php}}
+\subsubsection{\texorpdfstring{\$comments\+\_\+widget\+\_\+icon}{$comments\_widget\_icon}}
+{\footnotesize\ttfamily \hyperlink{comments__template_8php_aa69d65d13534429621eba50597158c85}{if} (\$reply) \hyperlink{comments__template_8php_aa69d65d13534429621eba50597158c85}{if} (! \$comments\+\_\+widget\+\_\+title) \$comments\+\_\+widget\+\_\+icon = str\+\_\+replace( \textquotesingle{}ion-\/\textquotesingle{}, \textquotesingle{}\textquotesingle{}, \$comments\+\_\+widget\+\_\+icon )}
+
+
+
+Definition at line 63 of file comments\+\_\+template.\+php.
+
+\mbox{\Hypertarget{comments__template_8php_afc780c7283ff3743e92f9268ccad9bd3}\label{comments__template_8php_afc780c7283ff3743e92f9268ccad9bd3}} 
+\index{comments\+\_\+template.\+php@{comments\+\_\+template.\+php}!\$comments\+\_\+widget\+\_\+title@{\$comments\+\_\+widget\+\_\+title}}
+\index{\$comments\+\_\+widget\+\_\+title@{\$comments\+\_\+widget\+\_\+title}!comments\+\_\+template.\+php@{comments\+\_\+template.\+php}}
+\subsubsection{\texorpdfstring{\$comments\+\_\+widget\+\_\+title}{$comments\_widget\_title}}
+{\footnotesize\ttfamily global \$comments\+\_\+widget\+\_\+title}
+
+
+
+Definition at line 63 of file comments\+\_\+template.\+php.
+
+\mbox{\Hypertarget{comments__template_8php_a9ec72f91f0de7353b417cfeb60b0df86}\label{comments__template_8php_a9ec72f91f0de7353b417cfeb60b0df86}} 
+\index{comments\+\_\+template.\+php@{comments\+\_\+template.\+php}!\$current\+\_\+user@{\$current\+\_\+user}}
+\index{\$current\+\_\+user@{\$current\+\_\+user}!comments\+\_\+template.\+php@{comments\+\_\+template.\+php}}
+\subsubsection{\texorpdfstring{\$current\+\_\+user}{$current\_user}}
+{\footnotesize\ttfamily global \$current\+\_\+user}
+
+
+
+Definition at line 83 of file comments\+\_\+template.\+php.
+
+\mbox{\Hypertarget{comments__template_8php_a76b7e8c0cc26d2287e8b1f4515421721}\label{comments__template_8php_a76b7e8c0cc26d2287e8b1f4515421721}} 
+\index{comments\+\_\+template.\+php@{comments\+\_\+template.\+php}!\$label\+\_\+submit@{\$label\+\_\+submit}}
+\index{\$label\+\_\+submit@{\$label\+\_\+submit}!comments\+\_\+template.\+php@{comments\+\_\+template.\+php}}
+\subsubsection{\texorpdfstring{\$label\+\_\+submit}{$label\_submit}}
+{\footnotesize\ttfamily \$label\+\_\+submit = ( is\+\_\+singular( \textquotesingle{}job\+\_\+listing\textquotesingle{} ) \&\& get\+\_\+current\+\_\+user\+\_\+id() != get\+\_\+post()-\/$>$post\+\_\+author ) ? \+\_\+\+\_\+( \textquotesingle{}Submit Your Review\textquotesingle{}, \textquotesingle{}listify\textquotesingle{} ) \+: \+\_\+\+\_\+( \textquotesingle{}Submit Reply\textquotesingle{}, \textquotesingle{}listify\textquotesingle{} )}
+
+
+
+Definition at line 65 of file comments\+\_\+template.\+php.
+
+\mbox{\Hypertarget{comments__template_8php_a46ad7c5fff64ab9b49b9cfcaff650baa}\label{comments__template_8php_a46ad7c5fff64ab9b49b9cfcaff650baa}} 
+\index{comments\+\_\+template.\+php@{comments\+\_\+template.\+php}!\$reply@{\$reply}}
+\index{\$reply@{\$reply}!comments\+\_\+template.\+php@{comments\+\_\+template.\+php}}
+\subsubsection{\texorpdfstring{\$reply}{$reply}}
+{\footnotesize\ttfamily \$reply = isset( \$\+\_\+\+G\+ET\mbox{[} \textquotesingle{}replytocom\textquotesingle{} \mbox{]} ) ? (int) \$\+\_\+\+G\+ET\mbox{[} \textquotesingle{}replytocom\textquotesingle{} \mbox{]} \+: 0}
+
+
+
+Definition at line 67 of file comments\+\_\+template.\+php.
+
+\mbox{\Hypertarget{comments__template_8php_ada57e7bb7c152edad18fe2f166188691}\label{comments__template_8php_ada57e7bb7c152edad18fe2f166188691}} 
+\index{comments\+\_\+template.\+php@{comments\+\_\+template.\+php}!\$title@{\$title}}
+\index{\$title@{\$title}!comments\+\_\+template.\+php@{comments\+\_\+template.\+php}}
+\subsubsection{\texorpdfstring{\$title}{$title}}
+{\footnotesize\ttfamily \$title = ( \$comments\+\_\+widget\+\_\+icon ? \textquotesingle{}$<$span class=\char`\"{}ion-\/\textquotesingle{} . \$comments\+\_\+widget\+\_\+icon . \textquotesingle{}\char`\"{}$>$$<$/span$>$\textquotesingle{} \+: \textquotesingle{}\textquotesingle{} ) . \$comments\+\_\+widget\+\_\+title}
+
+
+
+Definition at line 81 of file comments\+\_\+template.\+php.
+
+\mbox{\Hypertarget{comments__template_8php_a672d9707ef91db026c210f98cc601123}\label{comments__template_8php_a672d9707ef91db026c210f98cc601123}} 
+\index{comments\+\_\+template.\+php@{comments\+\_\+template.\+php}!endforeach@{endforeach}}
+\index{endforeach@{endforeach}!comments\+\_\+template.\+php@{comments\+\_\+template.\+php}}
+\subsubsection{\texorpdfstring{endforeach}{endforeach}}
+{\footnotesize\ttfamily endforeach}
+
+
+
+Definition at line 29 of file comments\+\_\+template.\+php.
+
+\mbox{\Hypertarget{comments__template_8php_a82cd33ca97ff99f2fcc5e9c81d65251b}\label{comments__template_8php_a82cd33ca97ff99f2fcc5e9c81d65251b}} 
+\index{comments\+\_\+template.\+php@{comments\+\_\+template.\+php}!endif@{endif}}
+\index{endif@{endif}!comments\+\_\+template.\+php@{comments\+\_\+template.\+php}}
+\subsubsection{\texorpdfstring{endif}{endif}}
+{\footnotesize\ttfamily endif}
+
+
+
+Definition at line 33 of file comments\+\_\+template.\+php.
+
+\mbox{\Hypertarget{comments__template_8php_aa69d65d13534429621eba50597158c85}\label{comments__template_8php_aa69d65d13534429621eba50597158c85}} 
+\index{comments\+\_\+template.\+php@{comments\+\_\+template.\+php}!if@{if}}
+\index{if@{if}!comments\+\_\+template.\+php@{comments\+\_\+template.\+php}}
+\subsubsection{\texorpdfstring{if}{if}}
+{\footnotesize\ttfamily if = str\+\_\+replace( \textquotesingle{}ion-\/\textquotesingle{}, \textquotesingle{}\textquotesingle{}, \$comments\+\_\+widget\+\_\+icon )}
+
+
+
+Definition at line 16 of file comments\+\_\+template.\+php.
+

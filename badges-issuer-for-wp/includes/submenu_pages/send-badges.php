@@ -127,6 +127,12 @@
       }
     }
 
+    /**
+     * The content of the tab for sending a badge to himself.
+     *
+     * @author Nicolas TORION
+     * @since 1.0.0
+     */
     function tab_self() {
       ?>
 
@@ -161,6 +167,12 @@
       <?php
     }
 
+    /**
+     * The content of the tab for sending a badge to someone.
+     *
+     * @author Nicolas TORION
+     * @since 1.0.0
+     */
     function tab_issue() {
 
         apply_css_styles();
@@ -206,6 +218,12 @@
         <?php
     }
 
+    /**
+     * The content of the tab for sending a badge to several persons.
+     *
+     * @author Nicolas TORION
+     * @since 1.0.0
+     */
     function tab_multiple_issues() {
 
         apply_css_styles();

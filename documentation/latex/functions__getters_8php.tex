@@ -1,0 +1,339 @@
+\hypertarget{functions__getters_8php}{}\section{includes/utils/functions\+\_\+getters.php File Reference}
+\label{functions__getters_8php}\index{includes/utils/functions\+\_\+getters.\+php@{includes/utils/functions\+\_\+getters.\+php}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{functions__getters_8php_a8e4b9c0ac59627ef8f3ed4ee586b0542}{get\+\_\+all\+\_\+badges} ()
+\item 
+\hyperlink{functions__getters_8php_a3cdd298c6d6686cbbc3c2d0510a87eec}{get\+\_\+all\+\_\+languages\+\_\+description} (\$badges)
+\item 
+\hyperlink{functions__getters_8php_a57e8cb3d87ff5e56ed6d41016b176a57}{get\+\_\+badge\+\_\+description} (\$badge\+\_\+level, \$lines)
+\item 
+\hyperlink{functions__getters_8php_a7b98f284ce9eccf0745bac524b852d20}{get\+\_\+badge\+\_\+descriptions} (\$badge\+\_\+level)
+\item 
+\hyperlink{functions__getters_8php_a093235574953d7d977e7145a4a2fe251}{get\+\_\+badge} (\$badge\+\_\+name, \$badges, \$lang)
+\item 
+\hyperlink{functions__getters_8php_a09f10d63f6129341de45d8fd52fb6afa}{get\+\_\+all\+\_\+levels} (\$badges, \$only\+\_\+student=false)
+\item 
+\hyperlink{functions__getters_8php_ab8d88d98b70855358641934ab1c74029}{get\+\_\+all\+\_\+badges\+\_\+level} (\$badges, \$level)
+\item 
+\hyperlink{functions__getters_8php_aba7804caab456cdfd18f0f16c3b46d5d}{get\+\_\+all\+\_\+languages} ()
+\item 
+\hyperlink{functions__getters_8php_a1d3aea28087a0dfb5fa9b30d3daddadd}{get\+\_\+all\+\_\+classes} ()
+\item 
+\hyperlink{functions__getters_8php_a1535d2e27e19b7ad8820f6b37c546f60}{get\+\_\+classes\+\_\+teacher} (\$teacher\+\_\+login)
+\item 
+\hyperlink{functions__getters_8php_a06549af6ed538e2854ac6977399f4736}{class\+\_\+school\+\_\+exists} (\$teacher\+\_\+name)
+\item 
+\hyperlink{functions__getters_8php_ad7b9531b5adf7e3fd2fbbdabc9e15ebb}{is\+\_\+student\+\_\+in\+\_\+class} (\$student\+\_\+login, \$class\+\_\+id)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{functions__getters_8php_a06549af6ed538e2854ac6977399f4736}\label{functions__getters_8php_a06549af6ed538e2854ac6977399f4736}} 
+\index{functions\+\_\+getters.\+php@{functions\+\_\+getters.\+php}!class\+\_\+school\+\_\+exists@{class\+\_\+school\+\_\+exists}}
+\index{class\+\_\+school\+\_\+exists@{class\+\_\+school\+\_\+exists}!functions\+\_\+getters.\+php@{functions\+\_\+getters.\+php}}
+\subsubsection{\texorpdfstring{class\+\_\+school\+\_\+exists()}{class\_school\_exists()}}
+{\footnotesize\ttfamily class\+\_\+school\+\_\+exists (\begin{DoxyParamCaption}\item[{}]{\$teacher\+\_\+name }\end{DoxyParamCaption})}
+
+Check if a class exists with the name of a teacher
+
+\begin{DoxyAuthor}{Author}
+Nicolas T\+O\+R\+I\+ON 
+\end{DoxyAuthor}
+\begin{DoxySince}{Since}
+1.\+0.\+0 
+\end{DoxySince}
+
+\begin{DoxyParams}{Parameters}
+{\em \$teacher\+\_\+name} & Name of the teacher \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\$exists Boolean indicating if the class exists or not. 
+\end{DoxyReturn}
+
+
+Definition at line 225 of file functions\+\_\+getters.\+php.
+
+\mbox{\Hypertarget{functions__getters_8php_a8e4b9c0ac59627ef8f3ed4ee586b0542}\label{functions__getters_8php_a8e4b9c0ac59627ef8f3ed4ee586b0542}} 
+\index{functions\+\_\+getters.\+php@{functions\+\_\+getters.\+php}!get\+\_\+all\+\_\+badges@{get\+\_\+all\+\_\+badges}}
+\index{get\+\_\+all\+\_\+badges@{get\+\_\+all\+\_\+badges}!functions\+\_\+getters.\+php@{functions\+\_\+getters.\+php}}
+\subsubsection{\texorpdfstring{get\+\_\+all\+\_\+badges()}{get\_all\_badges()}}
+{\footnotesize\ttfamily get\+\_\+all\+\_\+badges (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Returns all badges that exist
+
+\begin{DoxyAuthor}{Author}
+Nicolas T\+O\+R\+I\+ON 
+\end{DoxyAuthor}
+\begin{DoxySince}{Since}
+1.\+0.\+0 
+\end{DoxySince}
+\begin{DoxyReturn}{Returns}
+\$badges Array of all badges. 
+\end{DoxyReturn}
+
+
+Definition at line 12 of file functions\+\_\+getters.\+php.
+
+\mbox{\Hypertarget{functions__getters_8php_ab8d88d98b70855358641934ab1c74029}\label{functions__getters_8php_ab8d88d98b70855358641934ab1c74029}} 
+\index{functions\+\_\+getters.\+php@{functions\+\_\+getters.\+php}!get\+\_\+all\+\_\+badges\+\_\+level@{get\+\_\+all\+\_\+badges\+\_\+level}}
+\index{get\+\_\+all\+\_\+badges\+\_\+level@{get\+\_\+all\+\_\+badges\+\_\+level}!functions\+\_\+getters.\+php@{functions\+\_\+getters.\+php}}
+\subsubsection{\texorpdfstring{get\+\_\+all\+\_\+badges\+\_\+level()}{get\_all\_badges\_level()}}
+{\footnotesize\ttfamily get\+\_\+all\+\_\+badges\+\_\+level (\begin{DoxyParamCaption}\item[{}]{\$badges,  }\item[{}]{\$level }\end{DoxyParamCaption})}
+
+Returns all badges of a level.
+
+\begin{DoxyAuthor}{Author}
+Nicolas T\+O\+R\+I\+ON 
+\end{DoxyAuthor}
+\begin{DoxySince}{Since}
+1.\+0.\+0 
+\end{DoxySince}
+
+\begin{DoxyParams}{Parameters}
+{\em \$badges} & A list of badges. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\$level The level of bagdes to find. 
+\end{DoxyReturn}
+
+
+Definition at line 145 of file functions\+\_\+getters.\+php.
+
+\mbox{\Hypertarget{functions__getters_8php_a1d3aea28087a0dfb5fa9b30d3daddadd}\label{functions__getters_8php_a1d3aea28087a0dfb5fa9b30d3daddadd}} 
+\index{functions\+\_\+getters.\+php@{functions\+\_\+getters.\+php}!get\+\_\+all\+\_\+classes@{get\+\_\+all\+\_\+classes}}
+\index{get\+\_\+all\+\_\+classes@{get\+\_\+all\+\_\+classes}!functions\+\_\+getters.\+php@{functions\+\_\+getters.\+php}}
+\subsubsection{\texorpdfstring{get\+\_\+all\+\_\+classes()}{get\_all\_classes()}}
+{\footnotesize\ttfamily get\+\_\+all\+\_\+classes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Returns all classes that exist
+
+\begin{DoxyAuthor}{Author}
+Nicolas T\+O\+R\+I\+ON 
+\end{DoxyAuthor}
+\begin{DoxySince}{Since}
+1.\+0.\+0 
+\end{DoxySince}
+\begin{DoxyReturn}{Returns}
+\$classes Array of all classes. 
+\end{DoxyReturn}
+
+
+Definition at line 191 of file functions\+\_\+getters.\+php.
+
+\mbox{\Hypertarget{functions__getters_8php_aba7804caab456cdfd18f0f16c3b46d5d}\label{functions__getters_8php_aba7804caab456cdfd18f0f16c3b46d5d}} 
+\index{functions\+\_\+getters.\+php@{functions\+\_\+getters.\+php}!get\+\_\+all\+\_\+languages@{get\+\_\+all\+\_\+languages}}
+\index{get\+\_\+all\+\_\+languages@{get\+\_\+all\+\_\+languages}!functions\+\_\+getters.\+php@{functions\+\_\+getters.\+php}}
+\subsubsection{\texorpdfstring{get\+\_\+all\+\_\+languages()}{get\_all\_languages()}}
+{\footnotesize\ttfamily get\+\_\+all\+\_\+languages (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Returns all the languages stocked in the languages files.
+
+\begin{DoxyAuthor}{Author}
+Nicolas T\+O\+R\+I\+ON 
+\end{DoxyAuthor}
+\begin{DoxySince}{Since}
+1.\+0.\+0 
+\end{DoxySince}
+\begin{DoxyReturn}{Returns}
+\$all\+\_\+languages All the languages found. 
+\end{DoxyReturn}
+
+
+Definition at line 161 of file functions\+\_\+getters.\+php.
+
+\mbox{\Hypertarget{functions__getters_8php_a3cdd298c6d6686cbbc3c2d0510a87eec}\label{functions__getters_8php_a3cdd298c6d6686cbbc3c2d0510a87eec}} 
+\index{functions\+\_\+getters.\+php@{functions\+\_\+getters.\+php}!get\+\_\+all\+\_\+languages\+\_\+description@{get\+\_\+all\+\_\+languages\+\_\+description}}
+\index{get\+\_\+all\+\_\+languages\+\_\+description@{get\+\_\+all\+\_\+languages\+\_\+description}!functions\+\_\+getters.\+php@{functions\+\_\+getters.\+php}}
+\subsubsection{\texorpdfstring{get\+\_\+all\+\_\+languages\+\_\+description()}{get\_all\_languages\_description()}}
+{\footnotesize\ttfamily get\+\_\+all\+\_\+languages\+\_\+description (\begin{DoxyParamCaption}\item[{}]{\$badges }\end{DoxyParamCaption})}
+
+Returns all languages of description of badges given.
+
+\begin{DoxyAuthor}{Author}
+Nicolas T\+O\+R\+I\+ON 
+\end{DoxyAuthor}
+\begin{DoxySince}{Since}
+1.\+0.\+0 
+\end{DoxySince}
+
+\begin{DoxyParams}{Parameters}
+{\em \$badges} & Array of badges. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\$descriptions\+\_\+languages Array of badges names associated to the available languages of their description. 
+\end{DoxyReturn}
+
+
+Definition at line 28 of file functions\+\_\+getters.\+php.
+
+\mbox{\Hypertarget{functions__getters_8php_a09f10d63f6129341de45d8fd52fb6afa}\label{functions__getters_8php_a09f10d63f6129341de45d8fd52fb6afa}} 
+\index{functions\+\_\+getters.\+php@{functions\+\_\+getters.\+php}!get\+\_\+all\+\_\+levels@{get\+\_\+all\+\_\+levels}}
+\index{get\+\_\+all\+\_\+levels@{get\+\_\+all\+\_\+levels}!functions\+\_\+getters.\+php@{functions\+\_\+getters.\+php}}
+\subsubsection{\texorpdfstring{get\+\_\+all\+\_\+levels()}{get\_all\_levels()}}
+{\footnotesize\ttfamily get\+\_\+all\+\_\+levels (\begin{DoxyParamCaption}\item[{}]{\$badges,  }\item[{}]{\$only\+\_\+student = {\ttfamily false} }\end{DoxyParamCaption})}
+
+Returns all levels that exist.
+
+\begin{DoxyAuthor}{Author}
+Nicolas T\+O\+R\+I\+ON 
+\end{DoxyAuthor}
+\begin{DoxySince}{Since}
+1.\+0.\+0 
+\end{DoxySince}
+
+\begin{DoxyParams}{Parameters}
+{\em \$badges} & A list of badges. \\
+\hline
+{\em \$level\+\_\+type} & Type wanted of levels. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\$levels Array of all levels found. 
+\end{DoxyReturn}
+
+
+Definition at line 118 of file functions\+\_\+getters.\+php.
+
+\mbox{\Hypertarget{functions__getters_8php_a093235574953d7d977e7145a4a2fe251}\label{functions__getters_8php_a093235574953d7d977e7145a4a2fe251}} 
+\index{functions\+\_\+getters.\+php@{functions\+\_\+getters.\+php}!get\+\_\+badge@{get\+\_\+badge}}
+\index{get\+\_\+badge@{get\+\_\+badge}!functions\+\_\+getters.\+php@{functions\+\_\+getters.\+php}}
+\subsubsection{\texorpdfstring{get\+\_\+badge()}{get\_badge()}}
+{\footnotesize\ttfamily get\+\_\+badge (\begin{DoxyParamCaption}\item[{}]{\$badge\+\_\+name,  }\item[{}]{\$badges,  }\item[{}]{\$lang }\end{DoxyParamCaption})}
+
+Returns the badge informations associated to level and language given.
+
+\begin{DoxyAuthor}{Author}
+Nicolas T\+O\+R\+I\+ON 
+\end{DoxyAuthor}
+\begin{DoxySince}{Since}
+1.\+0.\+0 
+\end{DoxySince}
+
+\begin{DoxyParams}{Parameters}
+{\em \$badge\+\_\+name} & The name of the badge. \\
+\hline
+{\em \$badges} & A list of badges. \\
+\hline
+{\em \$lang} & The language studied by the student. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Array of badge\textquotesingle{}s informations (name, description, image url). 
+\end{DoxyReturn}
+
+
+Definition at line 100 of file functions\+\_\+getters.\+php.
+
+\mbox{\Hypertarget{functions__getters_8php_a57e8cb3d87ff5e56ed6d41016b176a57}\label{functions__getters_8php_a57e8cb3d87ff5e56ed6d41016b176a57}} 
+\index{functions\+\_\+getters.\+php@{functions\+\_\+getters.\+php}!get\+\_\+badge\+\_\+description@{get\+\_\+badge\+\_\+description}}
+\index{get\+\_\+badge\+\_\+description@{get\+\_\+badge\+\_\+description}!functions\+\_\+getters.\+php@{functions\+\_\+getters.\+php}}
+\subsubsection{\texorpdfstring{get\+\_\+badge\+\_\+description()}{get\_badge\_description()}}
+{\footnotesize\ttfamily get\+\_\+badge\+\_\+description (\begin{DoxyParamCaption}\item[{}]{\$badge\+\_\+level,  }\item[{}]{\$lines }\end{DoxyParamCaption})}
+
+Returns the description of a badge which is writed in the lines given.
+
+\begin{DoxyAuthor}{Author}
+Nicolas T\+O\+R\+I\+ON 
+\end{DoxyAuthor}
+\begin{DoxySince}{Since}
+1.\+0.\+0 
+\end{DoxySince}
+
+\begin{DoxyParams}{Parameters}
+{\em \$badge\+\_\+name} & The name of the badge. \\
+\hline
+{\em \$lines} & Lines given. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\$description Content of the description of the badge. 
+\end{DoxyReturn}
+
+
+Definition at line 47 of file functions\+\_\+getters.\+php.
+
+\mbox{\Hypertarget{functions__getters_8php_a7b98f284ce9eccf0745bac524b852d20}\label{functions__getters_8php_a7b98f284ce9eccf0745bac524b852d20}} 
+\index{functions\+\_\+getters.\+php@{functions\+\_\+getters.\+php}!get\+\_\+badge\+\_\+descriptions@{get\+\_\+badge\+\_\+descriptions}}
+\index{get\+\_\+badge\+\_\+descriptions@{get\+\_\+badge\+\_\+descriptions}!functions\+\_\+getters.\+php@{functions\+\_\+getters.\+php}}
+\subsubsection{\texorpdfstring{get\+\_\+badge\+\_\+descriptions()}{get\_badge\_descriptions()}}
+{\footnotesize\ttfamily get\+\_\+badge\+\_\+descriptions (\begin{DoxyParamCaption}\item[{}]{\$badge\+\_\+level }\end{DoxyParamCaption})}
+
+Returns all the descriptions of a badge.
+
+\begin{DoxyAuthor}{Author}
+Nicolas T\+O\+R\+I\+ON 
+\end{DoxyAuthor}
+\begin{DoxySince}{Since}
+1.\+0.\+0 
+\end{DoxySince}
+
+\begin{DoxyParams}{Parameters}
+{\em \$badge\+\_\+level} & The level of the badge. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\$descriptions Array of descriptions of the badge associated to their language. 
+\end{DoxyReturn}
+
+
+Definition at line 73 of file functions\+\_\+getters.\+php.
+
+\mbox{\Hypertarget{functions__getters_8php_a1535d2e27e19b7ad8820f6b37c546f60}\label{functions__getters_8php_a1535d2e27e19b7ad8820f6b37c546f60}} 
+\index{functions\+\_\+getters.\+php@{functions\+\_\+getters.\+php}!get\+\_\+classes\+\_\+teacher@{get\+\_\+classes\+\_\+teacher}}
+\index{get\+\_\+classes\+\_\+teacher@{get\+\_\+classes\+\_\+teacher}!functions\+\_\+getters.\+php@{functions\+\_\+getters.\+php}}
+\subsubsection{\texorpdfstring{get\+\_\+classes\+\_\+teacher()}{get\_classes\_teacher()}}
+{\footnotesize\ttfamily get\+\_\+classes\+\_\+teacher (\begin{DoxyParamCaption}\item[{}]{\$teacher\+\_\+login }\end{DoxyParamCaption})}
+
+Returns all the classes of a teacher.
+
+\begin{DoxyAuthor}{Author}
+Nicolas T\+O\+R\+I\+ON 
+\end{DoxyAuthor}
+\begin{DoxySince}{Since}
+1.\+0.\+0 
+\end{DoxySince}
+
+\begin{DoxyParams}{Parameters}
+{\em \$teacher\+\_\+login} & The login of the teacher. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\$classes All the classes corresponding. 
+\end{DoxyReturn}
+
+
+Definition at line 207 of file functions\+\_\+getters.\+php.
+
+\mbox{\Hypertarget{functions__getters_8php_ad7b9531b5adf7e3fd2fbbdabc9e15ebb}\label{functions__getters_8php_ad7b9531b5adf7e3fd2fbbdabc9e15ebb}} 
+\index{functions\+\_\+getters.\+php@{functions\+\_\+getters.\+php}!is\+\_\+student\+\_\+in\+\_\+class@{is\+\_\+student\+\_\+in\+\_\+class}}
+\index{is\+\_\+student\+\_\+in\+\_\+class@{is\+\_\+student\+\_\+in\+\_\+class}!functions\+\_\+getters.\+php@{functions\+\_\+getters.\+php}}
+\subsubsection{\texorpdfstring{is\+\_\+student\+\_\+in\+\_\+class()}{is\_student\_in\_class()}}
+{\footnotesize\ttfamily is\+\_\+student\+\_\+in\+\_\+class (\begin{DoxyParamCaption}\item[{}]{\$student\+\_\+login,  }\item[{}]{\$class\+\_\+id }\end{DoxyParamCaption})}
+
+Check if a student is in a class school.
+
+\begin{DoxyAuthor}{Author}
+Nicolas T\+O\+R\+I\+ON 
+\end{DoxyAuthor}
+\begin{DoxySince}{Since}
+1.\+0.\+0 
+\end{DoxySince}
+
+\begin{DoxyParams}{Parameters}
+{\em \$student\+\_\+login} & Login of the student. \\
+\hline
+{\em \$class\+\_\+id} & The ID of the class (job\+\_\+listing) post. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\$result A boolean indicating if the student is in the class or not. 
+\end{DoxyReturn}
+
+
+Definition at line 244 of file functions\+\_\+getters.\+php.
+
