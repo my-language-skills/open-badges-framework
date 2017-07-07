@@ -201,7 +201,7 @@
           <br /><br />
           <?php
             if($current_user->roles[0]=="teacher" || $current_user->roles[0]=="academy" || $current_user->roles[0]=="administrator") {
-                display_classes_input();
+                echo '<div id="select_class"></div>';
                 echo '<br /><br />';
             }
           ?>
@@ -247,6 +247,13 @@
           <br /><br />
           <label for="mail"><b>Receivers' mail adresses* (one mail adress per line) : </b></label><br />
           <textarea name="mail" id="mail" class="mail" rows="10" cols="50"></textarea>
+          <br /><br />
+          <?php
+            if($current_user->roles[0]=="teacher" || $current_user->roles[0]=="academy" || $current_user->roles[0]=="administrator") {
+                echo '<div id="select_class"></div>';
+                echo '<br /><br />';
+            }
+          ?>
 
           <input type="hidden" name="sender" value="<?php echo $current_user->user_email; ?>" />
           <br /><br />

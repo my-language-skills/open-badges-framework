@@ -107,3 +107,8 @@ class Badges_Issuer_For_Wp_Admin {
  * A teacher can send certifications by mails to 1 student by the administration panel.
  */
 require plugin_dir_path( __FILE__ ) . '../includes/submenu_pages/send-badges.php';
+
+/**
+ * SETTINGS PAGE OF THE PLUGIN
+ */
+require plugin_dir_path( __FILE__ ) . '../includes/submenu_pages/settings.php';

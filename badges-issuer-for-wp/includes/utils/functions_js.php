@@ -11,58 +11,63 @@ add_action( 'wp_footer', 'js_form' );
  * @since 1.0.0
 */
 function js_form() {
+  $forms = ["a", "b", "c"];
+
+  foreach ($forms as $form) {
+    ?>
+    <script>
+    jQuery("#badge_form_<?php echo $form; ?> .level").on("click", function() {
+
+      jQuery("#badge_form_<?php echo $form; ?> #select_badge").html("<br /><img src='http://<?php echo $_SERVER['SERVER_NAME']; ?>/wp-content/plugins/badges-issuer-for-wp/images/load.gif' width='50px' height='50px' />");
+
+      var data = {
+  			'action': 'action_select_badge',
+        'form': 'form_<?php echo $form; ?>_',
+  			'level_selected': jQuery("#badge_form_<?php echo $form; ?> .level:checked").val()
+  		};
+
+  		// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
+  		jQuery.post("<?php echo "http://".$_SERVER['SERVER_NAME']."/wp-content/plugins/badges-issuer-for-wp/includes/ajax/custom_ajax.php"; ?>", data, function(response) {
+  			jQuery("#badge_form_<?php echo $form; ?> #select_badge").html(response);
+  		});
+    });
+    </script>
+    <?php
+  }
+
   ?>
-
   <script>
-  jQuery("#badge_form_a .level").on("click", function() {
-
-    jQuery("#badge_form_a #select_badge").html("<br /><img src='http://<?php echo $_SERVER['SERVER_NAME']; ?>/wp-content/plugins/badges-issuer-for-wp/images/load.gif' width='50px' height='50px' />");
-
-    var data = {
-			'action': 'action_select_badge',
-      'form': 'form_a_',
-			'level_selected': jQuery("#badge_form_a .level:checked").val()
-		};
-
-		// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
-		jQuery.post("<?php echo "http://".$_SERVER['SERVER_NAME']."/wp-content/plugins/badges-issuer-for-wp/includes/ajax/custom_ajax.php"; ?>", data, function(response) {
-			jQuery("#badge_form_a #select_badge").html(response);
-		});
-  });
-
-  jQuery("#badge_form_b .level").on("click", function() {
-
-    jQuery("#badge_form_b #select_badge").html("<br /><img src='http://<?php echo $_SERVER['SERVER_NAME']; ?>/wp-content/plugins/badges-issuer-for-wp/images/load.gif' width='50px' height='50px' />");
+  function load_classes(form) {
+    jQuery("#badge_form_"+form+" #select_class").html("<br /><img src='http://<?php echo $_SERVER['SERVER_NAME']; ?>/wp-content/plugins/badges-issuer-for-wp/images/load.gif' width='50px' height='50px' />");
 
     var data = {
-			'action': 'action_select_badge',
-      'form': 'form_b_',
-			'level_selected': jQuery("#badge_form_b .level:checked").val()
-		};
+      'action': 'action_select_class',
+      'form': 'form_'+form+'_',
+      'level_selected': jQuery("#badge_form_"+form+" .level:checked").val(),
+      'language_selected': jQuery("#badge_form_"+form+" #language option:selected").text()
+    };
 
-		// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
-		jQuery.post("<?php echo "http://".$_SERVER['SERVER_NAME']."/wp-content/plugins/badges-issuer-for-wp/includes/ajax/custom_ajax.php"; ?>", data, function(response) {
-			jQuery("#badge_form_b #select_badge").html(response);
-		});
-  });
-
-  jQuery("#badge_form_c .level").on("click", function() {
-
-    jQuery("#badge_form_c #select_badge").html("<br /><img src='http://<?php echo $_SERVER['SERVER_NAME']; ?>/wp-content/plugins/badges-issuer-for-wp/images/load.gif' width='50px' height='50px' />");
-
-    var data = {
-			'action': 'action_select_badge',
-      'form': 'form_c_',
-			'level_selected': jQuery("#badge_form_c .level:checked").val()
-		};
-
-		// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
-		jQuery.post("<?php echo "http://".$_SERVER['SERVER_NAME']."/wp-content/plugins/badges-issuer-for-wp/includes/ajax/custom_ajax.php"; ?>", data, function(response) {
-			jQuery("#badge_form_c #select_badge").html(response);
-		});
-  });
+    // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
+    jQuery.post("<?php echo "http://".$_SERVER['SERVER_NAME']."/wp-content/plugins/badges-issuer-for-wp/includes/ajax/custom_ajax.php"; ?>", data, function(response) {
+      jQuery("#badge_form_"+form+" #select_class").html(response);
+    });
+  }
   </script>
   <?php
+
+  $forms_class = ["b", "c"];
+  foreach ($forms_class as $form) {
+  ?>
+    <script>
+    jQuery("#badge_form_<?php echo $form; ?> .level").on("click", function() {
+      load_classes('<?php echo $form; ?>');
+    });
+    jQuery("#badge_form_<?php echo $form; ?> #language").change(function() {
+      load_classes('<?php echo $form; ?>');
+    });
+    </script>
+  <?php
+  }
 }
 
 add_action( 'admin_footer', 'js_save_metabox_students' ); // Write our JS below here

@@ -46,39 +46,48 @@ function add_capabilities() {
     // TEACHER ROLE
     $teacher = get_role('teacher');
     $teacher->add_cap('send_student_badge');
-    $teacher->add_cap( 'read' );
-    $teacher->add_cap( 'read_class');
-    $teacher->add_cap( 'read_classes' );
-    $teacher->add_cap( 'edit_published_classes' );
     $teacher->add_cap('capability_send_badge');
-    $teacher->add_cap("read_job_listing");
+    $teacher->add_cap('job_listing');
+    $teacher->add_cap("edit_private_job_listings");
+    $teacher->add_cap("edit_published_job_listings");
 
     // ACADEMY ROLE
     $academy = get_role('academy');
     $academy->add_cap('send_student_badge');
     $academy->add_cap('send_teacher_badge');
     $academy->add_cap('capability_send_badge');
-    $academy->add_cap("read_job_listing");
+    $academy->add_cap("read_published_job_listings");
     $academy->add_cap("publish_job_listings");
+    $academy->add_cap("delete_published_job_listings");
     $academy->add_cap("edit_published_job_listings");
 
     // ADMINISTRATOR ROLE
     $administrator = get_role('administrator');
-    $administrator->add_cap('edit_class');
-    $administrator->add_cap('edit_classes');
-    $administrator->add_cap('edit_other_classes');
-    $administrator->add_cap('edit_published_classes');
-    $administrator->add_cap('publish_classes');
-    $administrator->add_cap('read_class');
-    $administrator->add_cap('read_classes');
-    $administrator->add_cap('read_private_classes');
-    $administrator->add_cap('delete_class');
     $administrator->add_cap('send_student_badge');
     $administrator->add_cap('send_teacher_badge');
     $administrator->add_cap('capability_send_badge');
+    $administrator->add_cap('capability_settings');
+    $administrator->add_cap('job_listing');
+    $administrator->add_cap("edit_job_listing");
+    $administrator->add_cap("read_job_listing");
+    $administrator->add_cap("delete_job_listing");
+    $administrator->add_cap("edit_job_listings");
+    $administrator->add_cap("edit_others_job_listings");
+    $administrator->add_cap("publish_job_listings");
+    $administrator->add_cap("read_private_job_listings");
+    $administrator->add_cap("delete_job_listings");
+    $administrator->add_cap("delete_private_job_listings");
+    $administrator->add_cap("delete_published_job_listings");
+    $administrator->add_cap("delete_others_job_listings");
+    $administrator->add_cap("edit_private_job_listings");
+    $administrator->add_cap("edit_published_job_listings");
+    $administrator->add_cap("manage_job_listing_terms");
+    $administrator->add_cap("edit_job_listing_terms");
+    $administrator->add_cap("delete_job_listing_terms");
+    $administrator->add_cap("assign_job_listing_terms");
 }
 
-add_action( 'init', 'add_capabilities');
+add_action( 'admin_init', 'add_capabilities');
 
 /*
 Create a class for the teacher when he loggin for the first time.
@@ -95,5 +104,19 @@ function create_teacher_class() {
 }
 
 add_action('init', 'create_teacher_class');
+
+function posts_for_current_author($query) {
+	global $pagenow;
+
+	if( 'edit.php' != $pagenow || !$query->is_admin )
+	    return $query;
+
+	if( !current_user_can( 'edit_others_posts' ) && $query->get('post_type')=="job_listing") {
+		global $user_ID;
+		$query->set('author', $user_ID );
+	}
+	return $query;
+}
+add_filter('pre_get_posts', 'posts_for_current_author');
 
 ?>

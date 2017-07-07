@@ -30,7 +30,7 @@ The Badges-Issuer plugin is supplied "as is" and all use is at your own risk.
 
 ## Screenshots
 
-You can see all of the screenshots of the plugin [here](screenshot.md "screenshots")
+You can see all of the screenshots of the plugin [here](doc/screenshot.md "screenshots")
 
 ## Roadmap
 

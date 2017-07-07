@@ -21,6 +21,7 @@
 
     //A bit of security
     $allowed_actions = array(
+        'action_select_class',
         'action_select_badge',
         'action_save_metabox_students'
     );
@@ -32,6 +33,46 @@
     function action_save_metabox_students() {
       $post_id = $_POST['post_id'];
       update_post_meta($post_id, '_class_students', $_POST['class_students']);
+    }
+
+    /* AJAX action to load the classes correspondong to the level and the language selected */
+
+    add_action( 'CUSTOMAJAX_action_select_class', 'action_select_class' );
+
+    function action_select_class() {
+      $level = $_POST['level_selected'];
+      $language = $_POST['language_selected'];
+
+      global $current_user;
+      get_currentuserinfo();
+
+      if($current_user->roles[0]=='administrator')
+        $classes = get_all_classes();
+      else {
+        $classes_teacher = get_classes_teacher($current_user->user_login);
+        $classes = array();
+        foreach ($classes_teacher as $class) {
+          $class_level = get_post_meta($class->ID,'_class_level',true);
+          $class_language = get_post_meta($class->ID,'_class_language',true);
+          if(empty($class_level) && empty($class_language))
+            $classes[] = $class;
+          elseif ($class_level==$level && $class_language==$language) {
+            $classes[] = $class;
+          }
+        }
+      }
+
+      echo '<b>Class* : </b><br />';
+      $i = 1;
+      foreach ($classes as $class) {
+        echo '<label for="class_'.$class->ID.'">'.$class->post_title.' </label><input name="class_for_student" id="class_'.$class->ID.'" type="radio" value="'.$class->ID.'"';
+        if($i==1)
+          echo " checked";
+        echo '/>';
+        $i++;
+      }
+      if($i==2)
+        echo ' <a href="http://'.$_SERVER['SERVER_NAME'].'/wp-admin/post-new.php?post_type=job_listing">Don\'t you want to create a specific class for that student(s) ?</a>';
     }
 
     /* AJAX action to load the badges of the level given */
