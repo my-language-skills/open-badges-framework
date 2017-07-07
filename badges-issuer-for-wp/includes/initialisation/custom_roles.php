@@ -104,14 +104,16 @@ function create_teacher_class() {
 }
 
 add_action('init', 'create_teacher_class');
-
+/*
+Add a filter for checking if the user can only see these own job listings (classes)
+*/
 function posts_for_current_author($query) {
 	global $pagenow;
 
 	if( 'edit.php' != $pagenow || !$query->is_admin )
 	    return $query;
 
-	if( !current_user_can( 'edit_others_posts' ) && $query->get('post_type')=="job_listing") {
+	if( !current_user_can( 'edit_others_posts' ) && $query->get('post_type')=="job_list") {
 		global $user_ID;
 		$query->set('author', $user_ID );
 	}
