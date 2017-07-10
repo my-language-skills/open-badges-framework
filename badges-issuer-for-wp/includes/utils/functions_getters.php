@@ -161,21 +161,19 @@ function get_all_badges_level($badges, $level) {
 function get_all_languages() {
   $mostimportantlanguages = array();
   $languages = array();
-  $handle = fopen(plugin_dir_path( dirname( __FILE__ ) )."languages/languagesSorted.tab", "r");
-  $handle2 = fopen(plugin_dir_path(dirname(__FILE__))."languages/mostImportantLanguages.tab", "r");
-  if ($handle && $handle2) {
-    while (($line = fgets($handle)) !== false) {
-      $languages[] = substr(strstr($line,"	"), 1);
-    }
-    while (($line = fgets($handle2)) !== false) {
-      $mostimportantlanguages[] = substr(strstr($line,"	"), 1);
-    }
-    fclose($handle);
-    fclose($handle2);
-  } else {
-    echo "Error : Can't open languages files !";
-  }
+  $xml_file_content = file_get_contents(plugin_dir_path( dirname( __FILE__ ))."languages/languages.xml");
 
+  $rss = new SimpleXMLElement($xml_file_content);
+
+  foreach ($rss->channel->children('wp', true)->term as $lang_tag) {
+    $parent = $lang_tag->children('wp', true)->term_parent;
+    $language = $lang_tag->children('wp', true)->term_slug;
+
+    if($parent=="most-important-languages")
+      $mostimportantlanguages[] = $language;
+    elseif ($parent=="other-languages")
+      $languages[] = $language;
+  }
   $all_languages = array($mostimportantlanguages, $languages);
 
   return $all_languages;
