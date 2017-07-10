@@ -56,21 +56,24 @@ You can see all of the screenshots of the plugin [here](doc/screenshot.md "scree
 ## Changelog
 
 ### 0.2
-
-* **BUGS SOLVED**
-  * Undefined variable in javascript code.
  
 * **ADDITIONS**
-  * Badges issuer in the front-end (works with a shortcode).
-  * Introduction of WP roles : Student, Teacher and Academy. Possibility to restrict the content for each role.
-  * Links of bibliography in the badges custom post type.
-  * Inform the news users that they have to open a open badges account.
-  * Information in the database as a custom post type.
+  * Badges issuer in the front-end (works with a shortcode). #5
+  * Introduction of WP roles : Student, Teacher and Academy. Possibility to restrict the content for each role. #6
+  * Links of bibliography in the badges custom post type. #7
+  * Inform the news users that they have to open a open badges account. #18
+  * Information in the database as a custom post type. #19
   * Use of job listing type of WP Job Manager plugin for the classes.
   * Stock of the students' informations in the class type (job listing type).
   * Creation of a settings page in the class type (job listing type).
   * Possibility to add a student to a class in the send badges form.
-  * Create automatically the badges issuer json file in the "updates" directory. 
+  * Create automatically the badges issuer json file in the "updates" directory.
+
+* **ENHANCEMENTS** 
+  * Simplification of code. #22
+
+* **BUGFIXES**
+  * Undefined variable in javascript code.
 
 ### 0.1
 
