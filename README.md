@@ -82,6 +82,10 @@ You can see all of the screenshots of the plugin [here](doc/screenshot.md "scree
 
 ## Upgrade Notice
 
+### 0.2
+
+Badges functionality
+
 ### 0.1
 
 Starter
