@@ -33,25 +33,29 @@ You can see all of the screenshots of the plugin [here](doc/screenshot.md "scree
 
 ## Roadmap
 
-### 0.5
+### 0.x
 
-* **ADDITIONS**
-  * Create a default class for each new user (each time a new user have the teacher role, a new post with the name of the user is created).
-  * Teachers can atach students to inside of the classes and create new classes.
-  * Students can review the classes.
+ * **ADDITIONS**
+ 
+ * **ENHANCEMENTS**
 
-### 0.4
+### now
 
-* **ADDITIONS**
-  * Creation of students and teacher pages to show their informations and badges received.
-
-### 0.3
-
-* **ADDITIONS**
   * Creation of a settings page : possibility to delete all the information of the plugin if we wish by deleting the plugin
   * Add of an import buttom for the information of the badges.
   * Possibility to read the information of the badges translated inside of the custom post.
   * Creation of the basges issuer information page.
+
+### soon
+
+  * Creation of students and teacher pages to show their informations and badges received.
+
+### future
+
+  * Create a default class for each new user (each time a new user have the teacher role, a new post with the name of the user is created).
+  * Teachers can atach students to inside of the classes and create new classes.
+  * Students can review the classes.
+
 
 ## Changelog
 
