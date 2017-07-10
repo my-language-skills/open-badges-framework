@@ -14,7 +14,6 @@ Badges-Issuer extends this possibility by giving the proof that your certificati
 
 1. Clone (or copy) this repository to the `/wp-content/plugins/` directory
 1. Activate the plugin through the 'Plugins' screen in WordPress
-1. Create folders `badges-issuer/json/` in your `uploads/` folder and copy the file `badge-issuer.json` in `json/` folder
 
 ## Frequently Asked Questions
 
@@ -71,6 +70,7 @@ You can see all of the screenshots of the plugin [here](doc/screenshot.md "scree
   * Stock of the students' informations in the class type (job listing type).
   * Creation of a settings page in the class type (job listing type).
   * Possibility to add a student to a class in the send badges form.
+  * Create automatically the badges issuer json file in the "updates" directory. 
 
 ### 0.1
 
