@@ -23,7 +23,8 @@
     $allowed_actions = array(
         'action_select_class',
         'action_select_badge',
-        'action_save_metabox_students'
+        'action_save_metabox_students',
+        'action_languages_form'
     );
 
     /* AJAX action to save metabox of students in class job listing type*/
@@ -33,6 +34,14 @@
     function action_save_metabox_students() {
       $post_id = $_POST['post_id'];
       update_post_meta($post_id, '_class_students', $_POST['class_students']);
+    }
+
+    /* AJAX action to load all languages in a select form*/
+
+    add_action('CUSTOMAJAX_action_languages_form', 'action_languages_form');
+
+    function action_languages_form() {
+      display_languages_select_form();
     }
 
     /* AJAX action to load the classes correspondong to the level and the language selected */
@@ -81,7 +90,14 @@
 
     function action_select_badge() {
       $badges = get_all_badges();
-      $badges_corresponding = get_all_badges_level($badges, $_POST['level_selected']);
+
+      global $current_user;
+      get_currentuserinfo();
+
+      if($current_user->roles[0]=="administrator" || $current_user->roles[0]=="academy")
+        $badges_corresponding = get_all_badges_level($badges, $_POST['level_selected'], $certification=true);
+      else
+        $badges_corresponding = get_all_badges_level($badges, $_POST['level_selected']);
 
       usort($badges_corresponding, function($a, $b) {
         return strcmp($a->post_title, $b->post_title);

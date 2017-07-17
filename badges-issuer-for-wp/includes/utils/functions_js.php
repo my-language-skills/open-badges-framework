@@ -31,6 +31,21 @@ function js_form() {
   			jQuery("#badge_form_<?php echo $form; ?> #select_badge").html(response);
   		});
     });
+
+    jQuery("#display_languages_<?php echo $form ?>").on("click", function() {
+      jQuery("#languages_form_<?php echo $form; ?>").html("<br /><img src='http://<?php echo $_SERVER['SERVER_NAME']; ?>/wp-content/plugins/badges-issuer-for-wp/images/load.gif' width='50px' height='50px' />");
+
+      var data = {
+  			'action': 'action_languages_form'
+  		};
+
+  		// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
+  		jQuery.post("<?php echo "http://".$_SERVER['SERVER_NAME']."/wp-content/plugins/badges-issuer-for-wp/includes/ajax/custom_ajax.php"; ?>", data, function(response) {
+  			jQuery("#languages_form_<?php echo $form; ?>").html(response);
+  		});
+
+      jQuery(this).remove();
+    });
     </script>
     <?php
   }
@@ -123,8 +138,8 @@ function js_save_metabox_students() {
   <?php
 }
 
-add_action( 'admin_footer', 'js_send_badge_form' ); // Write our JS below here
-add_action( 'wp_footer', 'js_send_badge_form' );
+add_action( 'admin_footer', 'js_forms' ); // Write our JS below here
+add_action( 'wp_footer', 'js_forms' );
 
 /**
  * Check if different forms for sending badges are completed well.
@@ -133,10 +148,11 @@ add_action( 'wp_footer', 'js_send_badge_form' );
  * @author Nicolas TORION
  * @since 1.0.0
 */
-function js_send_badge_form() {
+function js_forms() {
   ?>
   <script>
     setInterval(function(){check_badge_form();}, 500);
+    setInterval(function(){check_settings_badges_issuer_form();}, 500);
 
     function check_mails(mails) {
 
@@ -152,6 +168,35 @@ function js_send_badge_form() {
       }
       else {
         return false;
+      }
+    }
+
+    function check_urls(urls) {
+      var pattern = /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
+      if(typeof urls !== 'undefined') {
+        for (var i = 0; i < urls.length; i++) {
+          if(!pattern.test(urls[i])) {
+            return false;
+          }
+        }
+        return true;
+      }
+      else {
+        return false;
+      }
+    }
+
+    function check_settings_badges_issuer_form() {
+      var name = jQuery("#settings_form_badges_issuer #badges_issuer_name").val();
+      var image = jQuery("#settings_form_badges_issuer #badges_issuer_image").val();
+      var website = jQuery("#settings_form_badges_issuer #badges_issuer_website").val();
+      var mail = jQuery("#settings_form_badges_issuer #badges_issuer_mail").val();
+
+      if(check_mails([mail]) && name!="" && check_urls([image, website])) {
+        jQuery('#settings_form_badges_issuer #settings_submit_badges_issuer').prop('disabled', false);
+      }
+      else {
+        jQuery('#settings_form_badges_issuer #settings_submit_badges_issuer').prop('disabled', true);
       }
     }
 

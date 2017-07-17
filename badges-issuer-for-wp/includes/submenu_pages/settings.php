@@ -7,6 +7,12 @@
  * @subpackage includes/submenu_pages
  * @since 1.0.0
 */
+
+wp_enqueue_script("jquery");
+wp_enqueue_script('jquery-ui');
+wp_enqueue_script('jquery-ui-tabs');
+require_once plugin_dir_path( dirname( __FILE__ ) ) . 'utils/functions.php';
+
     /**
     * Adds b4l_send_badges_one_student_submenu_page to the admin menu.
     */
@@ -47,12 +53,12 @@
         <h2>Change the badges issuer informations</h2>
         <br/>
 
-        <form action="" method="post">
-          <label for="badges_issuer_name">Name : </label><input type="text" name="badges_issuer_name" value="" style="float:right"/><br /><br />
-          <label for="badges_issuer_image">Image URL : </label><input type="text" name="badges_issuer_image" value="" style="float:right"/><br /><br />
-          <label for="badges_issuer_website">Website URL : </label><input type="text" name="badges_issuer_website" value="" style="float:right"/><br /><br />
-          <label for="badges_issuer_mail">Backpack account (mail) : </label><input type="text" name="badges_issuer_mail" value="" style="float:right"/><br /><br /><br />
-          <input type="submit" class="button-primary" value="Change badges issuer informations" />
+        <form id="settings_form_badges_issuer" action="" method="post">
+          <label for="badges_issuer_name">Name : </label><input type="text" id="badges_issuer_name" name="badges_issuer_name" value="" style="float:right"/><br /><br />
+          <label for="badges_issuer_image">Image URL : </label><input type="text" id="badges_issuer_image" name="badges_issuer_image" value="" placeholder="http://example.com/image.jpg" style="float:right"/><br /><br />
+          <label for="badges_issuer_website">Website URL : </label><input type="text" id="badges_issuer_website" name="badges_issuer_website" value="" placeholder="http://example.com/" style="float:right"/><br /><br />
+          <label for="badges_issuer_mail">Backpack account (mail) : </label><input type="text" id="badges_issuer_mail" name="badges_issuer_mail" value="" style="float:right"/><br /><br /><br />
+          <input type="submit" id="settings_submit_badges_issuer" class="button-primary" value="Change badges issuer informations" />
         </form>
       </div>
       <?php

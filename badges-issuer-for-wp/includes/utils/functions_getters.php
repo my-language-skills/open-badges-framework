@@ -142,11 +142,17 @@ function get_all_levels($badges, $only_student=false) {
  * @return $level The level of bagdes to find.
 */
 
-function get_all_badges_level($badges, $level) {
+function get_all_badges_level($badges, $level, $certification=false) {
   $badges_corresponding = array();
   foreach ($badges as $badge) {
-    if(get_post_meta($badge->ID,"_level",true)==$level)
-      $badges_corresponding[] = $badge;
+    if(get_post_meta($badge->ID,"_level",true)==$level) {
+      if(get_post_meta($badge->ID,'_certification',true)=="certified") {
+        if($certification)
+          $badges_corresponding[] = $badge;
+      }
+      else
+        $badges_corresponding[] = $badge;
+    }
   }
   return $badges_corresponding;
 }
@@ -161,19 +167,32 @@ function get_all_badges_level($badges, $level) {
 function get_all_languages() {
   $mostimportantlanguages = array();
   $languages = array();
-  $xml_file_content = file_get_contents(plugin_dir_path( dirname( __FILE__ ))."languages/languages.xml");
 
-  $rss = new SimpleXMLElement($xml_file_content);
+  $term_mil = get_term_by('slug', 'most-important-languages', 'job_listing_category');
+  $id_mil = $term_mil->term_id;
+  $term_ol = get_term_by('slug', 'other-languages', 'job_listing_category');
+  $id_ol = $term_ol->term_id;
 
-  foreach ($rss->channel->children('wp', true)->term as $lang_tag) {
-    $parent = $lang_tag->children('wp', true)->term_parent;
-    $language = $lang_tag->children('wp', true)->term_slug;
+  $languages_mil = get_terms( array(
+    'taxonomy' => 'job_listing_category',
+    'hide_empty' => false,
+    'child_of' => $id_mil
+  ));
 
-    if($parent=="most-important-languages")
-      $mostimportantlanguages[] = $language;
-    elseif ($parent=="other-languages")
-      $languages[] = $language;
+  foreach ($languages_mil as $language_mil) {
+    $mostimportantlanguages[] = $language_mil->name;
   }
+
+  $languages_ol = get_terms( array(
+    'taxonomy' => 'job_listing_category',
+    'hide_empty' => false,
+    'child_of' => $id_ol
+  ));
+
+  foreach ($languages_ol as $language_ol) {
+    $languages[] = $language_ol->name;
+  }
+
   $all_languages = array($mostimportantlanguages, $languages);
 
   return $all_languages;

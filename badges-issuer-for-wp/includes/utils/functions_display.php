@@ -8,14 +8,24 @@
  * @since 1.0.0
  * @param $badges A list of badges.
 */
-function display_levels_radio_buttons($badges) {
+function display_levels_radio_buttons($badges, $context) {
   global $current_user;
   get_currentuserinfo();
 
-  if($current_user->roles[0]!="administrator")
-    $levels = get_all_levels($badges, true);
-  else
+  if($current_user->roles[0]=="administrator")
     $levels = get_all_levels($badges);
+  else {
+    if($context=="self") {
+      if($current_user->roles[0]=="student")
+        $levels = get_all_levels($badges, true);
+      elseif ($current_user->roles[0]=="teacher" || $current_user->roles[0]=="academy")
+        $levels = get_all_levels($badges);
+    }
+    elseif ($context=="send") {
+      if ($current_user->roles[0]=="teacher" || $current_user->roles[0]=="academy")
+        $levels = get_all_levels($badges, true);
+    }
+  }
 
   echo '<b>Level* :</b><br />';
   foreach ($levels as $l) {
