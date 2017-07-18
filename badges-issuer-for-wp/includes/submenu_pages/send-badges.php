@@ -59,7 +59,9 @@
         });
       </script>
 
+      <h1><span class="dashicons dashicons-awards"></span>Send Badges</h1>
       <div id="tabs">
+        <h2>To whom do you want to send the badge ?</h2>
         <div id="tabs-elements">
           <ul>
             <li><a href="#tabs-1"><div class="tab-element">Self</div></a></li>
