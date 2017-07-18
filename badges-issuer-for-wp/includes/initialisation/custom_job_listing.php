@@ -102,17 +102,17 @@ function load_job_listing_class_metaboxes() {
       foreach ($class_students as $student) {
         echo '<tr>';
           echo '<td width="0%">';
-            echo '<center>'.$student['login'].'</center>';
+          printf(esc_html__('<center>'.$student["login"].'</center>','badges-issuer-for-wp'));
           echo '</td>';
           echo '<td width="0%">';
-            echo '<center>'.$student['level'].'</center>';
+            printf(esc_html__('<center>'/$student["level"].'</center>','badges-issuer-for-wp'));
           echo '</td>';
           echo '<td width="0%">';
-            echo '<center>'.$student['language'].'</center>';
+            printf(esc_html__('<center>'.$student["language"].'</center>','badges-issuer-for-wp'));
           echo '</td>';
           if($current_user->roles[0]=='administrator') {
             echo '<td width="0%">';
-            echo '<center><a class="button remove-row" onclick="jQuery(this).RemoveTr();" href="#id_meta_box_class_students">Remove</a></center>';
+            printf(esc_html__('<center><a class="button remove-row" onclick="jQuery(this).RemoveTr();" href="#id_meta_box_class_students">Remove</a></center>','badges-issuer-for-wp'));
             echo '</td>';
           }
         echo '</tr>';
