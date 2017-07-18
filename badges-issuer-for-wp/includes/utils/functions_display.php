@@ -142,7 +142,7 @@ function display_classes_input() {
   else
     $classes = get_classes_teacher($current_user->user_login);
 
-  echo '<b>Class* : </b><br />';
+  printf(esc_html__( '<b>Class* : </b><br />','badges-issuer-for-wp'));
   $i = 1;
   foreach ($classes as $class) {
     echo '<label for="class_'.$class->ID.'">'.$class->post_title.' </label><input name="class_for_student" id="class_'.$class->ID.'" type="radio" value="'.$class->ID.'"';
