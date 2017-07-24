@@ -71,7 +71,7 @@
         }
       }
 
-      echo '<b>Class* : </b><br />';
+      printf(esc_html( '<b>Class* : </b><br />','badges-issuer-for-wp'));
       $i = 1;
       foreach ($classes as $class) {
         echo '<label for="class_'.$class->ID.'">'.$class->post_title.' </label><input name="class_for_student" id="class_'.$class->ID.'" type="radio" value="'.$class->ID.'"';
@@ -103,7 +103,7 @@
         return strcmp($a->post_title, $b->post_title);
       });
 
-      echo "<br /><b>Badge* : </b><br>";
+      printf(esc_html('<br /><b>Badge* : </b><br>','badges-issuer-for-wp'));
       foreach ($badges_corresponding as $badge) {
         echo '<input type="radio" name="input_badge_name" class="input-badge input-hidden" id="'.$_POST['form'].$badge->post_title.'" value="'.$badge->post_name.'"/><label for="'.$_POST['form'].$badge->post_title.'"><img src="'.get_the_post_thumbnail_url($badge->ID).'" width="40px" height="40px" /></label>';
       }

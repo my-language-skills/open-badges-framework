@@ -26,14 +26,17 @@ if(is_user_logged_in()) {
     }
     </style>
     <center>
-            <h1>Get your badge</h1><br />
+            <h1><?php _e( 'Get your badge','badges-issuer-for-wp' ); ?></h1><br/>
             <img src="http://dougbelshaw.com/blog/wp-content/uploads/2013/03/openbadges-600px.jpg" width="300px" height="150px"/>
             <p>
+              <?php _e('
               To get your badge, you need a Mozilla OpenBadges account.<br />
-              If you don't have a Mozilla OpenBadges account, you can create one <a href="https://backpack.openbadges.org/backpack/signup" target="_blank">here</a>.
+              If you don\'t have a Mozilla OpenBadges account, you can create one <a href="https://backpack.openbadges.org/backpack/signup" target="_blank">here</a>.','badges-issuer-for-wp' );
+              ?>
             </p>
             <br /><br />
-            <button onclick="getBadge()">Get badge</button>
+            <button onclick="getBadge()">  <?php _e( 'Get badge','badges-issuer-for-wp' ); ?>
+            </button>
     </center>
 
     <?php

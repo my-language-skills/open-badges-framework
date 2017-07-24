@@ -84,9 +84,9 @@ function load_job_listing_class_metaboxes() {
       <table id="box_students" name="<?php echo $post->ID; ?>" width="100%">
         <thead>
           <tr>
-            <th width="0%">Student's login</th>
-            <th width="0%">Level</th>
-            <th width="0%">Language</th>
+            <th width="0%"><?php _e( 'Student\'s login','badges-issuer-for-wp' ); ?></th>
+            <th width="0%"><?php _e( 'Level','badges-issuer-for-wp' ); ?></th>
+            <th width="0%"><?php _e( 'Language','badges-issuer-for-wp' ); ?></th>
             <?php
             if($current_user->roles[0]=='administrator') {
               ?>

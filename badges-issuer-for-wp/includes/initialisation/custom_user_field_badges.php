@@ -12,14 +12,14 @@
 function user_field_badges( $user ) {
     $user_badges = get_the_author_meta( 'user_badges', $user->ID );
     ?>
-    <h3>Badges</h3>
+    <h3><?php _e( 'Badges', 'badges-issuer-for-wp' ); ?></h3>
     <table width="100%">
       <thead>
         <tr>
-          <th width="0%">Badge name</th>
-          <th width="0%">Badge language</th>
-          <th width="0%">Sender</th>
-          <th width="0%">Comment</th>
+          <th width="0%"><?php _e( 'Badge name', 'badges-issuer-for-wp' ); ?></th>
+          <th width="0%"><?php _e( 'Badge language', 'badges-issuer-for-wp' ); ?></th>
+          <th width="0%"><?php _e( 'Sender', 'badges-issuer-for-wp' ); ?></th>
+          <th width="0%"><?php _e( 'Comment', 'badges-issuer-for-wp' ); ?></th>
         </tr>
       </thead>
       <tbody>

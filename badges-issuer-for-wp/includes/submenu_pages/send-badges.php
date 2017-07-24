@@ -59,17 +59,17 @@
         });
       </script>
 
-      <h1><span class="dashicons dashicons-awards"></span>Send Badges</h1>
+      <h1><span class="dashicons dashicons-awards"></span><?php _e( 'Send Badges','badges-issuer-for-wp' ); ?></h1>
       <div id="tabs">
-        <h2>To whom do you want to send the badge ?</h2>
+        <h2><?php _e( 'To whom do you want to send the badge','badges-issuer-for-wp' ); ?></h2>
         <div id="tabs-elements">
           <ul>
             <li><a href="#tabs-1"><div class="tab-element">Self</div></a></li>
             <?php
             if($current_user->roles[0]=="teacher" || $current_user->roles[0]=="academy" || $current_user->roles[0]=="administrator" ) {
             ?>
-            <li><a href="#tabs-2"><div class="tab-element">Issue</div></a></li>
-            <li><a href="#tabs-3"><div class="tab-element">Multiple issue</div></a></li>
+            <li><a href="#tabs-2"><div class="tab-element"><?php _e( 'Issue','badges-issuer-for-wp' ); ?></div></a></li>
+            <li><a href="#tabs-3"><div class="tab-element"><?php _e( 'Multiple issue','badges-issuer-for-wp' ); ?></div></a></li>
             <?php } ?>
           </ul>
         </div>
@@ -151,7 +151,7 @@
 
       <div class="tab-content">
       <br /><br />
-      <h2>Send a badge to yourself</h2>
+      <h2><?php _e( 'Send a badge to yourself','badges-issuer-for-wp' ); ?></h2>
       <form id="badge_form_a" action="" method="post">
         <?php
         global $current_user;
@@ -172,7 +172,7 @@
         <input type="hidden" name="mail" value="<?php echo $current_user->user_email; ?>" />
         <input type="hidden" name="sender" value="SELF" />
 
-        <label for="comment"><b>Comment : </b></label><br />
+        <label for="comment"><b><?php _e( 'Comment : ','badges-issuer-for-wp' ); ?></b></label><br />
         <textarea name="comment" id="comment" rows="10" cols="80"></textarea><br />
 
         <div id="result_languages_description"></div>
@@ -197,7 +197,7 @@
 
         <div class="tab-content">
           <br /><br />
-        <h2>Send a badge</h2>
+        <h2><?php _e( 'Send a badge','badges-issuer-for-wp' ); ?></h2>
 
         <form id="badge_form_b" action="" method="post">
           <?php
@@ -215,7 +215,7 @@
           echo '<a href="#" id="display_languages_b">Display all languages</a>';
           echo '<br /><br />';
           ?>
-          <label for="mail"><b>Receiver's mail adress* : </b></label><br />
+          <label for="mail"><b><?php _e( 'Receiver\'s mail adress* :','badges-issuer-for-wp' ); ?> </b></label><br />
           <input type="text" name="mail" id="mail" class="mail"/>
           <br /><br />
           <?php
@@ -225,7 +225,7 @@
             }
           ?>
           <input type="hidden" name="sender" value="<?php echo $current_user->user_email; ?>" />
-          <label for="comment"><b>Comment : </b></label><br />
+          <label for="comment"><b><?php _e( 'Comment : ','badges-issuer-for-wp' ); ?></b></label><br />
           <textarea name="comment" id="comment" rows="10" cols="80"></textarea><br />
 
           <div id="result_languages_description"></div>
@@ -249,7 +249,7 @@
         ?>
         <div class="tab-content">
           <br /><br />
-        <h2>Send a badge to several persons</h2>
+        <h2><?php _e( 'Send a badge to several persons','badges-issuer-for-wp' ); ?></h2>
 
         <form id="badge_form_c" action="" method="post">
           <?php
@@ -267,7 +267,7 @@
           echo '<a href="#" id="display_languages_c">Display all languages</a>';
           ?>
           <br /><br />
-          <label for="mail"><b>Receivers' mail adresses* (one mail adress per line) : </b></label><br />
+          <label for="mail"><b><?php _e( 'Receivers\' mail adresses* (one mail adress per line) : ','badges-issuer-for-wp' ); ?></b></label><br />
           <textarea name="mail" id="mail" class="mail" rows="10" cols="50"></textarea>
           <br /><br />
           <?php
@@ -279,7 +279,7 @@
 
           <input type="hidden" name="sender" value="<?php echo $current_user->user_email; ?>" />
           <br /><br />
-          <label for="comment"><b>Comment : </b></label><br />
+          <label for="comment"><b><?php _e( 'Comment : ','badges-issuer-for-wp' ); ?></b></label><br />
           <textarea name="comment" id="comment" rows="10" cols="80"></textarea><br />
 
           <div id="result_languages_description"></div>

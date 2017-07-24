@@ -1,0 +1,511 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: badges-issuer-for-wp\n"
+"POT-Creation-Date: 2017-07-23 15:14+0200\n"
+"PO-Revision-Date: 2017-07-23 15:14+0200\n"
+"Last-Translator: \n"
+"Language-Team: Corentin_PERROT\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.2\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=3; plural=n<=1 ? n : 2;\n"
+"X-Poedit-KeywordsList: __;_e;esc_html__;_n:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: fz3temp-3/custom_job_listing.php:87
+msgid "Student's login"
+msgstr "Connexion de l'élève"
+
+#: fz3temp-3/custom_job_listing.php:88
+msgid "Level"
+msgstr "Niveau"
+
+#: fz3temp-3/custom_job_listing.php:89 fz3temp-3/custom_post_badge.php:207
+#, fuzzy
+#| msgid "Site Language:"
+msgid "Language"
+msgstr "Langage du site :"
+
+#: fz3temp-3/custom_job_listing.php:105 fz3temp-3/custom_job_listing.php:108
+#: fz3temp-3/custom_job_listing.php:111
+msgid "<center>"
+msgstr ""
+
+#: fz3temp-3/custom_job_listing.php:115
+msgid ""
+"<center><a class=\"button remove-row\" onclick=\"jQuery(this).RemoveTr();\" "
+"href=\"#id_meta_box_class_students\">Remove</a></center>"
+msgstr ""
+"<center><a class=\"button remove-row\" onclick=\"jQuery(this).RemoveTr();\" "
+"href=\"#id_meta_box_class_students\">Supprimer</a></center>"
+
+#: fz3temp-3/custom_post_badge.php:66
+msgid "> Not certified<br>"
+msgstr "> Non certifié<br>"
+
+#: fz3temp-3/custom_post_badge.php:70
+msgid "> Certified<br>"
+msgstr "> Certifié<br>"
+
+#: fz3temp-3/custom_post_badge.php:87
+msgid "> Student<br>"
+msgstr "> Etudiant<br>"
+
+#: fz3temp-3/custom_post_badge.php:91
+msgid "> Teacher<br>"
+msgstr "> Professeur<br>"
+
+#: fz3temp-3/custom_post_badge.php:208
+msgid "URL"
+msgstr "URL"
+
+#: fz3temp-3/custom_user_field_badges.php:15
+msgid "Badges"
+msgstr "Badges"
+
+#: fz3temp-3/custom_user_field_badges.php:19
+msgid "Badge name"
+msgstr "Nom du badge"
+
+#: fz3temp-3/custom_user_field_badges.php:20
+msgid "Badge language"
+msgstr "Langage du badge :"
+
+#: fz3temp-3/custom_user_field_badges.php:21
+msgid "Sender"
+msgstr "Expéditeur"
+
+#: fz3temp-3/custom_user_field_badges.php:22
+msgid "Comment"
+msgstr "Commentaire"
+
+#: wp-signup.php:106
+msgid "Site Name:"
+msgstr "Nom du site :"
+
+#: wp-signup.php:108
+msgid "Site Domain:"
+msgstr "Domaine du site :"
+
+#: wp-signup.php:121
+msgid "sitename"
+msgstr "nomdusite"
+
+#: wp-signup.php:123
+msgid "domain"
+msgstr "domain"
+
+#: wp-signup.php:127
+#, php-format
+msgid "Your address will be %s."
+msgstr "Votre adresse sera %s."
+
+#: wp-signup.php:127
+msgid ""
+"Must be at least 4 characters, letters and numbers only. It cannot be "
+"changed, so choose carefully!"
+msgstr ""
+"Il doit comporter au moins 4 caractères et uniquement des chiffres et des "
+"lettres. Attention, il ne pourra plus être changé !"
+
+#: wp-signup.php:132
+msgid "Site Title:"
+msgstr "Titre du site :"
+
+#: wp-signup.php:146
+msgid "Site Language:"
+msgstr "Langage du site :"
+
+#: wp-signup.php:173
+msgid "Privacy:"
+msgstr "Confidentialité :"
+
+#: wp-signup.php:174
+msgid "Allow search engines to index this site."
+msgstr "Autoriser les moteurs de recherche à indexer ce site."
+
+#: wp-signup.php:178
+msgid "Yes"
+msgstr "Oui"
+
+#: wp-signup.php:182
+msgid "No"
+msgstr "Non"
+
+#: wp-signup.php:228
+msgid "Username:"
+msgstr "Nom d'utilisateur :"
+
+#: wp-signup.php:233
+msgid "(Must be at least 4 characters, letters and numbers only.)"
+msgstr ""
+"(Doit comporter au moins 4 caractères et uniquement des chiffres et des "
+"lettres.)"
+
+#: wp-signup.php:236
+msgid "Email&nbsp;Address:"
+msgstr "Email&nbsp;Addresse:"
+
+#: wp-signup.php:240
+msgid ""
+"We send your registration email to this address. (Double-check your email "
+"address before continuing.)"
+msgstr ""
+"Nous envoyons votre e-mail d'inscription à cette adresse. (Vérifiez votre "
+"adresse email avant de continuer.)"
+
+#: wp-signup.php:307
+#, php-format
+msgid "Get <em>another</em> %s site in seconds"
+msgstr "Obtenez <em> un autre </ em>% s  site en secondes"
+
+#: wp-signup.php:310
+msgid "There was a problem, please correct the form below and try again."
+msgstr "Il y a eu un problème, corrigez le formulaire ci-dessous et réessayez."
+
+#: wp-signup.php:313
+#, php-format
+msgid ""
+"Welcome back, %s. By filling out the form below, you can <strong>add another "
+"site to your account</strong>. There is no limit to the number of sites you "
+"can have, so create to your heart&#8217;s content, but write responsibly!"
+msgstr ""
+"Bienvenue,% s. En remplissant le formulaire ci-dessous, vous pouvez <strong> "
+"ajouter un autre site à votre compte </ strong>. Il n'y a pas de limite au "
+"nombre de sites que vous pouvez avoir, alors créez le contenu de votre "
+"coeur, mais écris de manière responsable!"
+
+#: wp-signup.php:319
+msgid "Sites you are already a member of:"
+msgstr "Les sites auxquels vous êtes déjà membre :"
+
+#: wp-signup.php:328
+msgid ""
+"If you&#8217;re not going to use a great site domain, leave it for a new "
+"user. Now have at it!"
+msgstr ""
+"Si vous n&#8217;êtes pas en train d'utiliser le bon domaine de siten, "
+"changez-le pour un nouvel . Now have at it!"
+
+#: wp-signup.php:469
+#, php-format
+msgid "The site %s is yours."
+msgstr "Le site %s est à vous."
+
+#: wp-signup.php:474
+#, php-format
+msgid ""
+"<a href=\"%1$s\">%2$s</a> is your new site. <a href=\"%3$s\">Log in</a> as "
+"&#8220;%4$s&#8221; using your existing password."
+msgstr ""
+"<a href=\"%1$s\">%2$s</a> est votre nouveau site. <a href=\"%3$s\"> "
+"Identifiant</a> en &#8220;%4$s&#8221; utilisant votre mot de passe existant."
+
+#: wp-signup.php:535
+#, php-format
+msgid "Get your own %s account in seconds"
+msgstr "Obtenez votre propre % s compte en quelques secondes"
+
+#: wp-signup.php:552
+msgid "Gimme a site!"
+msgstr "Donne-moi un site!"
+
+#: wp-signup.php:555
+msgid "Just a username, please."
+msgstr "Juste un nom d'utilisateur, s'il vous plaît."
+
+#: wp-signup.php:605
+#, php-format
+msgid "%s is your new username"
+msgstr "%s est votre nouveau nom d'utilisateur"
+
+#: wp-signup.php:606
+msgid ""
+"But, before you can start using your new username, <strong>you must activate "
+"it</strong>."
+msgstr ""
+"Mais, avant de pouvoir utiliser votre nouveau nom d'utilisateur, <strong>, "
+"vous devez l'activer </ strong>."
+
+#: wp-signup.php:608 wp-signup.php:754
+#, php-format
+msgid "Check your inbox at %s and click the link given."
+msgstr "Vérifiez votre boîte de réception à % s et cliquez sur le lien donné."
+
+#: wp-signup.php:609
+msgid ""
+"If you do not activate your username within two days, you will have to sign "
+"up again."
+msgstr ""
+"Si vous n'activez pas votre nom d'utilisateur dans les deux jours, vous "
+"devrez vous inscrire à nouveau."
+
+#: wp-signup.php:750
+#, php-format
+msgid "Congratulations! Your new site, %s, is almost ready."
+msgstr "Toutes nos félicitations! Votre nouveau site,%s, est presque prêt."
+
+#: wp-signup.php:752
+msgid ""
+"But, before you can start using your site, <strong>you must activate it</"
+"strong>."
+msgstr ""
+"Mais, avant de pouvoir utiliser votre site, <strong>, vous devez l'activer </"
+"strong>."
+
+#: wp-signup.php:755
+msgid ""
+"If you do not activate your site within two days, you will have to sign up "
+"again."
+msgstr ""
+"Si vous n'activez pas votre site dans les deux jours, vous devrez vous "
+"inscrire à nouveau."
+
+#: wp-signup.php:756
+msgid "Still waiting for your email?"
+msgstr "Toujours en attente de votre courrier électronique?"
+
+#: wp-signup.php:758
+msgid ""
+"If you haven&#8217;t received your email yet, there are a number of things "
+"you can do:"
+msgstr ""
+"Si vous n'avez pas encore reçu votre e-mail, vous pouvez faire plusieurs "
+"choses:"
+
+#: wp-signup.php:760
+msgid ""
+"Wait a little longer. Sometimes delivery of email can be delayed by "
+"processes outside of our control."
+msgstr ""
+"Attendez un peu plus longtemps. Parfois, l'envoi du courrier électronique "
+"peut être retardé par des processus hors de notre contrôle."
+
+#: wp-signup.php:761
+msgid ""
+"Check the junk or spam folder of your email client. Sometime emails wind up "
+"there by mistake."
+msgstr ""
+"Vérifiez le dossier indésirable ou spam de votre client de messagerie. De "
+"temps en temps, les courriels y arrivent par erreur."
+
+#: wp-signup.php:764
+#, php-format
+msgid ""
+"Have you entered your email correctly? You have entered %s, if it&#8217;s "
+"incorrect, you will not receive your email."
+msgstr ""
+"Have you entered your email correctly? You have entered %s, if it&#8217;s "
+"incorrect, you will not receive your email."
+
+#: wp-signup.php:821
+msgid "Greetings Network Administrator!"
+msgstr "Salutations, aministrateur réseau!"
+
+#: wp-signup.php:826
+msgid "The network currently disallows registrations."
+msgstr "Le réseau interdit actuellement les enregistrements."
+
+#: wp-signup.php:829
+msgid "The network currently allows site registrations."
+msgstr "Le réseau permet actuellement les enregistrements de sites."
+
+#: wp-signup.php:832
+msgid "The network currently allows user registrations."
+msgstr "Le réseau permet actuellement les enregistrements de sites."
+
+#: wp-signup.php:835
+msgid "The network currently allows both site and user registrations."
+msgstr ""
+"Le réseau permet actuellement les enregistrements de sites et d'utilisateurs."
+
+#: wp-signup.php:842
+#, php-format
+msgid ""
+"To change or disable registration go to your <a href=\"%s\">Options page</a>."
+msgstr ""
+"Pour modifier ou désactiver l'inscription, accédez à votre <a href=\"%s"
+"\">page d'options </a>."
+
+#: wp-signup.php:850
+msgid "Registration has been disabled."
+msgstr "L'enregistrement a été désactivé."
+
+#: wp-signup.php:854
+#, php-format
+msgid ""
+"You must first <a href=\"%s\">log in</a>, and then you can create a new site."
+msgstr ""
+"Vous devez d'abord <a href=\"%s\"> vous connecter </a>, pour ensuite pouvoir "
+"créer un nouveau site."
+
+#: wp-signup.php:862
+msgid "User registration has been disabled."
+msgstr "L'enregistrement de l'utilisateur a été désactivé."
+
+#: wp-signup.php:868
+msgid "Site registration has been disabled."
+msgstr "L'enregistrement du site a été désactivé."
+
+#: wp-signup.php:887
+msgid "Sorry, new registrations are not allowed at this time."
+msgstr ""
+"Désolé, de nouveaux enregistrements ne sont pas autorisés en ce moment."
+
+#: wp-signup.php:889
+msgid "You are logged in already. No need to register again!"
+msgstr "Vous êtes déjà connecté. Pas besoin de vous enregistrer à nouveau!"
+
+#: wp-signup.php:896
+#, php-format
+msgid ""
+"The site you were looking for, %s, does not exist, but you can create it now!"
+msgstr ""
+"Le site que vous recherchiez,% s, n'existe pas, mais vous pouvez le créer "
+"maintenant!"
+
+#: wp-signup.php:901
+#, php-format
+msgid "The site you were looking for, %s, does not exist."
+msgstr "Le site que vous recherchiez,% s, n'existe pas."
+
+#~ msgid ""
+#~ "<center>You received your badge ! You can close this page. Thanks for "
+#~ "using Badges For Languages.</center>"
+#~ msgstr ""
+#~ "<center>Vous avez reçu votre badge! Vous pouvez fermer cette page. Merci "
+#~ "d'utiliser Badges For Languages.</center>"
+
+#~ msgid "Not connected!"
+#~ msgstr "Pas connecté!"
+
+#~ msgid "<b>Class* : </b><br />"
+#~ msgstr "<b>Classe* : </b><br />"
+
+#~ msgid "Get your badge"
+#~ msgstr "Obtenez votre badge"
+
+#~ msgid ""
+#~ "\n"
+#~ "              To get your badge, you need a Mozilla OpenBadges account."
+#~ "<br />\n"
+#~ "              If you don't have a Mozilla OpenBadges account, you can "
+#~ "create one <a href=\"https://backpack.openbadges.org/backpack/signup\" "
+#~ "target=\"_blank\">here</a>."
+#~ msgstr ""
+#~ "\n"
+#~ "              Pour obtenir votre badge, vous avez besoin d'un compte "
+#~ "Mozilla OpenBadges.<br />\n"
+#~ "              Si vous n'avez pas de compte Badges Mozilla, vous pouvez en "
+#~ "créer un <a href=\"https://backpack.openbadges.org/backpack/signup\" "
+#~ "target=\"_blank\">ici</a>."
+
+#~ msgid "Get badge"
+#~ msgstr "Obtenir un badge"
+
+#~ msgid "Send Badges"
+#~ msgstr "Envoyer des badges"
+
+#~ msgid "To whom do you want to send the badge"
+#~ msgstr "À qui voulez-vous envoyer le badge"
+
+#~ msgid "Issue"
+#~ msgstr "Envoi"
+
+#~ msgid "Multiple issue"
+#~ msgstr "Envoi multiple"
+
+#~ msgid "Send a badge to yourself"
+#~ msgstr "Envoyez-vous un badge "
+
+#~ msgid "Comment : "
+#~ msgstr "Commentaire :"
+
+#~ msgid "Send a badge"
+#~ msgstr "Envoyer un badge"
+
+#~ msgid "Receiver's mail adress* :"
+#~ msgstr "Adresse mail du destinataire *:"
+
+#~ msgid "Send a badge to several persons"
+#~ msgstr "Envoyer un badge à plusieurs personnes"
+
+#~ msgid "Receivers' mail adresses* (one mail adress per line) : "
+#~ msgstr "Adresse postale des destinataires * (une adresse mail par ligne):"
+
+#~ msgid ""
+#~ "\n"
+#~ "    <html>\n"
+#~ "            <head>\n"
+#~ "                    <meta http-equiv=\"Content-Type\" content=\"text/html"
+#~ "\"; charset=\"utf-8\" />\n"
+#~ "            </head>\n"
+#~ "            <body>\n"
+#~ "                <div id=\"b4l-award-actions-wrap\">\n"
+#~ "                    <div align=\"center\">\n"
+#~ "                        <h1>BADGES FOR LANGUAGES</h1>\n"
+#~ "                        <h2>Learn languages and get official "
+#~ "certifications</h2>\n"
+#~ "                        <hr/>\n"
+#~ "                        <h1>Congratulations you have just earned a badge!"
+#~ "</h1>\n"
+#~ "                        <h2>"
+#~ msgstr ""
+#~ "\n"
+#~ "    <html>\n"
+#~ "            <head>\n"
+#~ "                    <meta http-equiv=\"Content-Type\" content=\"text/html"
+#~ "\"; charset=\"utf-8\" />\n"
+#~ "            </head>\n"
+#~ "            <body>\n"
+#~ "                <div id=\"b4l-award-actions-wrap\">\n"
+#~ "                    <div align=\"center\">\n"
+#~ "                        <h1>BADGES FOR LANGUAGES</h1>\n"
+#~ "                        <h2>Apprendre des langues et obtenir des "
+#~ "certifications officielles</h2>\n"
+#~ "                        <hr/>\n"
+#~ "                        <h1>Félicitations, vous venez de gagner un badge!"
+#~ "</h1>\n"
+#~ "                        <h2>"
+
+#~ msgid "Sort By"
+#~ msgstr "Trier par"
+
+#~ msgid "Comment navigation"
+#~ msgstr "Commenter la navigation"
+
+#~ msgid "&larr; Older Comments"
+#~ msgstr "&larr; Commentaires plus anciens"
+
+#~ msgid "Newer Comments &rarr;"
+#~ msgstr "Commentaires plus récents &rarr;"
+
+#~ msgid "Submit Your Review"
+#~ msgstr "Soumettez votre avis"
+
+#~ msgid "Submit Reply"
+#~ msgstr "Soumettre une réponse"
+
+#~ msgid "Publish Reply"
+#~ msgstr "Publier une réponse"
+
+#~ msgid "Leave a Reply"
+#~ msgstr "Laisser une réponse"
+
+#~ msgid "Leave a Review"
+#~ msgstr "Laisser un commentaire"
+
+#~ msgid "This listing is expired."
+#~ msgstr "Cette liste est expirée."
+
+#~ msgid "Listing Location"
+#~ msgstr "Lieu de l'inscription"
+
+#~ msgid "Video"
+#~ msgstr "Vidéo"
+
+#~ msgid "Listing Description"
+#~ msgstr "Description du listing"
