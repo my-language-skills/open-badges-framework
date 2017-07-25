@@ -33,6 +33,7 @@ function js_form() {
     });
 
     jQuery("#languages_form_<?php echo $form; ?>").on("click", "#display_languages_<?php echo $form ?>", function() {
+      console.log("clicked");
       jQuery("#languages_form_<?php echo $form; ?>").html("<br /><img src='http://<?php echo $_SERVER['SERVER_NAME']; ?>/wp-content/plugins/badges-issuer-for-wp/images/load.gif' width='50px' height='50px' />");
 
       var data = {

@@ -214,8 +214,8 @@
           echo '<br /><br />';
           echo '<div id="languages_form_b">';
           display_languages_select_form($just_most_important_languages=true);
-          echo '</div>';
           printf(__('<a href="#" id="display_languages_b">Display all languages</a>','badges-issuer-for-wp'));
+          echo '</div>';
           echo '<br /><br />';
           ?>
           <label for="mail"><b><?php _e( 'Receiver\'s mail adress* :','badges-issuer-for-wp' ); ?> </b></label><br />
@@ -266,8 +266,8 @@
           echo '<br /><br />';
           echo '<div id="languages_form_c">';
           display_languages_select_form($just_most_important_languages=true);
-          echo '</div>';
           printf(__('<a href="#" id="display_languages_c">Display all languages</a>','badges-issuer-for-wp'));
+          echo '</div>';
           ?>
           <br /><br />
           <label for="mail"><b><?php _e( 'Receivers\' mail adresses* (one mail adress per line) : ','badges-issuer-for-wp' ); ?></b></label><br />

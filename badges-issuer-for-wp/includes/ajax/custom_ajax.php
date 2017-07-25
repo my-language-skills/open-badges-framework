@@ -59,30 +59,33 @@
     add_action( 'CUSTOMAJAX_action_select_class', 'action_select_class' );
 
     function action_select_class() {
-      $level = $_POST['level_selected'];
-      $language = $_POST['language_selected'];
-
-      global $current_user;
-      get_currentuserinfo();
-
-      if($current_user->roles[0]=='administrator')
-        $classes = get_all_classes();
-      else {
-        $classes_teacher = get_classes_teacher($current_user->user_login);
-        $classes = array();
-        foreach ($classes_teacher as $class) {
-          $class_level = get_post_meta($class->ID,'_class_level',true);
-          $class_language = get_post_meta($class->ID,'_class_language',true);
-          if(empty($class_level) && empty($class_language))
-            $classes[] = $class;
-          elseif ($class_level==$level && $class_language==$language) {
-            $classes[] = $class;
-          }
-        }
-      }
 
       if(is_plugin_active(plugin_dir_path( __DIR__ )."wp-job-manager/wp-job-manager.php")) {
-       printf(esc_html( '<b>Class* : </b><br />','badges-issuer-for-wp'));
+
+        $level = $_POST['level_selected'];
+        $language = $_POST['language_selected'];
+
+        global $current_user;
+        get_currentuserinfo();
+
+        if($current_user->roles[0]=='administrator')
+          $classes = get_all_classes();
+        else {
+          $classes_teacher = get_classes_teacher($current_user->user_login);
+          $classes = array();
+          foreach ($classes_teacher as $class) {
+            $class_level = get_post_meta($class->ID,'_class_level',true);
+            $class_language = get_post_meta($class->ID,'_class_language',true);
+            if(empty($class_level) && empty($class_language))
+              $classes[] = $class;
+            elseif ($class_level==$level && $class_language==$language) {
+              $classes[] = $class;
+            }
+          }
+        }
+
+
+       _e( '<b>Class* : </b><br />','badges-issuer-for-wp');
 
         if(empty($classes)) {
           if($current_user->roles[0]=="teacher")
@@ -96,8 +99,7 @@
           }
         }
       }
-
-      }
+    }
 
     /* AJAX action to load the badges of the level given */
 
@@ -118,7 +120,7 @@
         return strcmp($a->post_title, $b->post_title);
       });
 
-      printf(esc_html('<br /><b>Badge* : </b><br>','badges-issuer-for-wp'));
+      _e('<br /><b>Badge* : </b><br>','badges-issuer-for-wp');
       foreach ($badges_corresponding as $badge) {
         echo '<input type="radio" name="input_badge_name" class="input-badge input-hidden" id="'.$_POST['form'].$badge->post_title.'" value="'.$badge->post_name.'"/><label for="'.$_POST['form'].$badge->post_title.'"><img src="'.get_the_post_thumbnail_url($badge->ID).'" width="40px" height="40px" /></label>';
       }

@@ -33,24 +33,18 @@ function apply_css_styles() {
 
   .message {
     padding: 10px;
-    border-width: 1px;
-    border-radius: 10px;
-    border-style: solid;
     font-size: 20px;
     position: absolute;
     top:0;
+    color: #FFF;
   }
 
   .success {
-    background-color: #A7DFA9;
-    border-color: #2F7D31;
-    color: #2F7D31;
+    background-color: #01BF2B;
   }
 
   .error {
-    background-color: #F66C7A;
-    border-color: #D80D21;
-    color: #D80D21;
+    background-color: #C90101;
   }
   </style>
   <?php
