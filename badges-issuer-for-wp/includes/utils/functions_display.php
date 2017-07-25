@@ -27,7 +27,7 @@ function display_levels_radio_buttons($badges, $context) {
     }
   }
 
-  echo '<b>Level* :</b><br />';
+  _e('<b> Level* : </b><br/>','badges-issuer-for-wp');
   foreach ($levels as $l) {
     echo '<label for="level_'.$l.'">'.$l.' </label><input type="radio" class="level" name="level" id="level_'.$l.'" value="'.$l.'"> ';
   }
@@ -48,7 +48,7 @@ function display_languages_select_form($just_most_important_languages=false, $la
   $mostimportantlanguages = $all_languages[0];
   $languages = $all_languages[1];
 
-  echo '<label for="language"><b>Language* : </b></label><br /><select name="language';
+  _e('<label for="language"><b> Language* : </b></label><br /><select name="language','badges-issuer-for-wp');
   if($multiple)
     echo '[]';
   echo '" id="language">';

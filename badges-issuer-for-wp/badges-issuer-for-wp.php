@@ -71,5 +71,11 @@ function run_badges_issuer_for_wp() {
 	$plugin = new Badges_Issuer_For_Wp();
 	$plugin->run();
 
+function badges_issuer_for_wp_init() {
+	$plugin_dir = basename(dirname(__FILE__));
+	load_plugin_textdomain( 'badges_issuer_for_wp', false, $plugin_dir );
+	}
+add_action('plugins_loaded', 'badges_issuer_for_wp_init');
+
 }
 run_badges_issuer_for_wp();

@@ -64,7 +64,7 @@
         <h2><?php _e( 'To whom do you want to send the badge','badges-issuer-for-wp' ); ?></h2>
         <div id="tabs-elements">
           <ul>
-            <li><a href="#tabs-1"><div class="tab-element">Self</div></a></li>
+            <li><a href="#tabs-1"><div class="tab-element"><?php _e( 'Self','badges-issuer-for-wp' ); ?></div></a></li>
             <?php
             if($current_user->roles[0]=="teacher" || $current_user->roles[0]=="academy" || $current_user->roles[0]=="administrator" ) {
             ?>
@@ -166,7 +166,7 @@
         echo '<div id="languages_form_a">';
         display_languages_select_form($just_most_important_languages=true);
         echo '</div>';
-        echo '<a href="#" id="display_languages_a">Display all languages</a>';
+        printf(__('<a href="#" id="display_languages_a">Display all languages</a>','badges-issuer-for-wp'));
         echo '<br /><br />';
         ?>
         <input type="hidden" name="mail" value="<?php echo $current_user->user_email; ?>" />
@@ -177,7 +177,7 @@
 
         <div id="result_languages_description"></div>
         <br /><br />
-        <input type="submit" id="submit_button_a" class="button-primary" value="Send a badge"/>
+        <input type="submit" id="submit_button_a" class="button-primary" value="<?php _e('Send a badge','badges-issuer-for-wp'); ?>"/>
       </form>
       </div>
       <?php
@@ -212,7 +212,7 @@
           echo '<div id="languages_form_b">';
           display_languages_select_form($just_most_important_languages=true);
           echo '</div>';
-          echo '<a href="#" id="display_languages_b">Display all languages</a>';
+          printf(__('<a href="#" id="display_languages_b">Display all languages</a>','badges-issuer-for-wp'));
           echo '<br /><br />';
           ?>
           <label for="mail"><b><?php _e( 'Receiver\'s mail adress* :','badges-issuer-for-wp' ); ?> </b></label><br />
@@ -264,7 +264,7 @@
           echo '<div id="languages_form_c">';
           display_languages_select_form($just_most_important_languages=true);
           echo '</div>';
-          echo '<a href="#" id="display_languages_c">Display all languages</a>';
+          printf(__('<a href="#" id="display_languages_c">Display all languages</a>','badges-issuer-for-wp'));
           ?>
           <br /><br />
           <label for="mail"><b><?php _e( 'Receivers\' mail adresses* (one mail adress per line) : ','badges-issuer-for-wp' ); ?></b></label><br />
@@ -284,8 +284,7 @@
 
           <div id="result_languages_description"></div>
           <br /><br />
-          <input type="submit" id="submit_button_c" class="button-primary" value="Send a badge"/>
-        </form>
+        <input type="submit" id="submit_button_a" class="button-primary" value="<?php _e('Send a badge','badges-issuer-for-wp'); ?>"/>        </form>
 
         </div>
         <?php
