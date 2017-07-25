@@ -24,7 +24,8 @@
         'action_select_class',
         'action_select_badge',
         'action_save_metabox_students',
-        'action_languages_form'
+        'action_languages_form',
+        'action_mi_languages_form'
     );
 
     /* AJAX action to save metabox of students in class job listing type*/
@@ -42,6 +43,15 @@
 
     function action_languages_form() {
       display_languages_select_form();
+      echo ' Can take few seconds to load.';
+      echo '<br /> <a href="#" id="display_mi_languages_'.$_POST['form'].'">Just display most important languages</a>';
+    }
+
+    add_action('CUSTOMAJAX_action_mi_languages_form', 'action_mi_languages_form');
+
+    function action_mi_languages_form() {
+      display_languages_select_form($just_most_important_languages=true);
+      echo '<a href="#" id="display_languages_'.$_POST['form'].'">Display all languages</a>';
     }
 
     /* AJAX action to load the classes correspondong to the level and the language selected */
@@ -71,18 +81,23 @@
         }
       }
 
-      echo '<b>Class* : </b><br />';
-      $i = 1;
-      foreach ($classes as $class) {
-        echo '<label for="class_'.$class->ID.'">'.$class->post_title.' </label><input name="class_for_student" id="class_'.$class->ID.'" type="radio" value="'.$class->ID.'"';
-        if($i==1)
-          echo " checked";
-        echo '/>';
-        $i++;
+      if(is_plugin_active(plugin_dir_path( __DIR__ )."wp-job-manager/wp-job-manager.php")) {
+        echo '<b>Class* : </b><br />';
+
+        if(empty($classes)) {
+          if($current_user->roles[0]=="teacher")
+            echo 'You need an academy account in order to create your own classes.';
+          elseif($current_user->roles[0]=="academy")
+            echo ' <a href="http://'.$_SERVER['SERVER_NAME'].'/wp-admin/post-new.php?post_type=job_listing">Don\'t you want to create a specific class for that student(s) ?</a>';
+        }
+        else {
+          foreach ($classes as $class) {
+            echo '<label for="class_'.$class->ID.'">'.$class->post_title.' </label><input name="class_for_student" id="class_'.$class->ID.'" type="radio" value="'.$class->ID.'"/>';
+          }
+        }
       }
-      if($i==2)
-        echo ' <a href="http://'.$_SERVER['SERVER_NAME'].'/wp-admin/post-new.php?post_type=job_listing">Don\'t you want to create a specific class for that student(s) ?</a>';
-    }
+
+      }
 
     /* AJAX action to load the badges of the level given */
 

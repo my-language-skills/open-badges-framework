@@ -102,17 +102,17 @@ function load_job_listing_class_metaboxes() {
       foreach ($class_students as $student) {
         echo '<tr>';
           echo '<td width="0%">';
-          printf(esc_html__('<center>'.$student["login"].'</center>','badges-issuer-for-wp'));
+          echo '<center>'.$student["login"].'</center>';
           echo '</td>';
           echo '<td width="0%">';
-            printf(esc_html__('<center>'/$student["level"].'</center>','badges-issuer-for-wp'));
+            echo '<center>'.$student["level"].'</center>';
           echo '</td>';
           echo '<td width="0%">';
-            printf(esc_html__('<center>'.$student["language"].'</center>','badges-issuer-for-wp'));
+            printf(__('<center>%s</center>','badges-issuer-for-wp'),$student["language"]);
           echo '</td>';
           if($current_user->roles[0]=='administrator') {
             echo '<td width="0%">';
-            printf(esc_html__('<center><a class="button remove-row" onclick="jQuery(this).RemoveTr();" href="#id_meta_box_class_students">Remove</a></center>','badges-issuer-for-wp'));
+            printf(__('<center><a class="button remove-row" onclick="jQuery(this).RemoveTr();" href="#id_meta_box_class_students">Remove</a></center>','badges-issuer-for-wp'));
             echo '</td>';
           }
         echo '</tr>';
@@ -123,22 +123,30 @@ function load_job_listing_class_metaboxes() {
 
       if($current_user->roles[0]=='administrator') {
 
-      echo '<tfoot>';
-      echo '<tr>';
-      echo '<td width="0%">';
-      echo '<input type="text" id="add_student_login"/>';
-      echo '</td>';
-      echo '<td width="0%">';
-      echo '<input type="text" id="add_student_level"/>';
-      echo '</td>';
-      echo '<td width="0%">';
-      echo '<input type="text" id="add_student_language"/>';
-      echo '</td>';
-      echo '<td width="0%">';
-      echo '<a class="button" href="#" id="add_student_job_listing">Add student</a>';
-      echo '</td>';
-      echo '</tr>';
-      echo '</tfoot>';
+        echo '<tfoot>';
+        echo '<tr>';
+        echo '<td width="0%">';
+        echo '<center>';
+        echo '<input type="text" id="add_student_login"/>';
+        echo '</center>';
+        echo '</td>';
+        echo '<td width="0%">';
+        echo '<center>';
+        echo '<input type="text" id="add_student_level"/>';
+        echo '</center>';
+        echo '</td>';
+        echo '<td width="0%">';
+        echo '<center>';
+        echo '<input type="text" id="add_student_language"/>';
+        echo '</center>';
+        echo '</td>';
+        echo '<td width="0%">';
+        echo '<center>';
+        echo '<a class="button" href="#" id="add_student_job_listing">Add student</a>';
+        echo '</center>';
+        echo '</td>';
+        echo '</tr>';
+        echo '</tfoot>';
       }
 
       echo '</table>';

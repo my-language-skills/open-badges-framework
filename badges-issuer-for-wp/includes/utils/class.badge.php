@@ -176,9 +176,46 @@ class Badge
           'level' => $this->level,
           'language' => $this->language
         );
-        $class_students = get_post_meta($class_id, '_class_students', true);
+
+        if(!get_post_meta($class_id, '_class_students', true))
+          $class_students = array();
+        else
+          $class_students = get_post_meta($class_id, '_class_students', true);
+
         $class_students[] = $student_infos;
         update_post_meta($class_id,'_class_students', $class_students);
+      }
+    }
+  }
+
+  /**
+   * Add the student to the class zero of the teacher.
+   *
+   * @author Nicolas TORION
+   * @since 1.0.0
+   * @param $mail The mail of the person who receive the badge.
+   */
+  function add_student_to_class_zero($mail) {
+    global $current_user;
+    get_currentuserinfo();
+
+    if($current_user->roles[0]=="teacher" || $current_user->roles[0]=="academy") {
+      $student = get_user_by_email($mail);
+      if($student) {
+        $student_infos = array(
+          'login' => $student->user_login,
+          'level' => $this->level,
+          'language' => $this->language
+        );
+        $class = get_class_zero_teacher($current_user->user_login);
+
+        if(!get_post_meta($class->ID, '_class_students', true))
+          $class_students = array();
+        else
+          $class_students = get_post_meta($class->ID, '_class_students', true);
+
+        $class_students[] = $student_infos;
+        update_post_meta($class->ID,'_class_students', $class_students);
       }
     }
   }

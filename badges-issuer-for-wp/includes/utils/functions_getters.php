@@ -168,13 +168,13 @@ function get_all_languages() {
   $mostimportantlanguages = array();
   $languages = array();
 
-  $term_mil = get_term_by('slug', 'most-important-languages', 'job_listing_category');
+  $term_mil = get_term_by('slug', 'most-important-languages', 'field_of_education');
   $id_mil = $term_mil->term_id;
-  $term_ol = get_term_by('slug', 'other-languages', 'job_listing_category');
+  $term_ol = get_term_by('slug', 'other-languages', 'field_of_education');
   $id_ol = $term_ol->term_id;
 
   $languages_mil = get_terms( array(
-    'taxonomy' => 'job_listing_category',
+    'taxonomy' => 'field_of_education',
     'hide_empty' => false,
     'child_of' => $id_mil
   ));
@@ -184,7 +184,7 @@ function get_all_languages() {
   }
 
   $languages_ol = get_terms( array(
-    'taxonomy' => 'job_listing_category',
+    'taxonomy' => 'field_of_education',
     'hide_empty' => false,
     'child_of' => $id_ol
   ));
@@ -214,6 +214,21 @@ function get_all_classes() {
 }
 
 /**
+ * Returns all classes zero that exist
+ *
+ * @author Nicolas TORION
+ * @since 1.0.0
+ * @return $classes Array of all classes zero.
+*/
+function get_all_classes_zero() {
+  $classes = get_posts(array(
+    'post_type'   => 'class',
+    'numberposts' => -1
+  ));
+  return $classes;
+}
+
+/**
  * Returns all the classes of a teacher.
  *
  * @author Nicolas TORION
@@ -232,21 +247,37 @@ function get_classes_teacher($teacher_login) {
 }
 
 /**
- * Check if a class exists with the name of a teacher
+ * Returns all the class zero of a teacher.
+ *
+ * @author Nicolas TORION
+ * @since 1.0.0
+ * @param $teacher_login The login of the teacher.
+ * @return $result The class zero corresponding.
+*/
+function get_class_zero_teacher($teacher_login) {
+  $classes = get_all_classes_zero();
+  foreach ($classes as $class) {
+    if($class->post_title==$teacher_login)
+      return $class;
+  }
+  return null;
+}
+
+/**
+ * Check if a class zero exists with the name of a teacher
  *
  * @author Nicolas TORION
  * @since 1.0.0
  * @param $teacher_name Name of the teacher
- * @return $exists Boolean indicating if the class exists or not.
+ * @return Boolean indicating if the class zero exists or not.
 */
 function class_school_exists($teacher_name) {
-  $classes = get_all_classes();
-  $exists = false;
+  $classes = get_all_classes_zero();
   foreach ($classes as $class) {
     if($class->post_title==$teacher_name)
-      $exists = true;
+      return true;
   }
-  return $exists;
+  return false;
 }
 
 /**
