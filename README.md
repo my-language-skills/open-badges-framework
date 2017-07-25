@@ -104,6 +104,3 @@ Here's a link to [Plugin Boilerplate](http://wppb.io/ "Uses the WordPress Plugin
 Here's a link to [WordPress](http://wordpress.org/ "Your favorite software")
 
 Here's a link to [OpenBadges](http://openbadges.org/ "Mozilla Open Badges official site")
-
-
-
