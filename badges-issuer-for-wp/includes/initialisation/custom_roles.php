@@ -93,17 +93,17 @@ add_action( 'admin_init', 'add_capabilities');
 Create a class for the teacher when he loggin for the first time.
 */
 
-function create_teacher_class() {
+function create_teacher_class_zero() {
   $current_user = wp_get_current_user();
-  if($current_user->roles[0]=='teacher') {
+  if($current_user->roles[0]=='teacher' || $current_user->roles[0]=='academy') {
     $name = $current_user->user_login;
 
     if(!class_school_exists($name))
-      add_teacher_class_post($name);
+      add_teacher_class_zero_post($name);
   }
 }
 
-add_action('init', 'create_teacher_class');
+add_action('init', 'create_teacher_class_zero');
 /*
 Add a filter for checking if the user can only see these own job listings (classes)
 */

@@ -36,7 +36,6 @@ if(is_user_logged_in()) {
             </p>
             <br /><br />
             <button onclick="getBadge()">  <?php _e( 'Get badge','badges-issuer-for-wp' ); ?>
-            </button>
     </center>
 
     <?php

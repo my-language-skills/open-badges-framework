@@ -204,8 +204,8 @@ function meta_box_links($post) {
   <table id="box_links" width="100%">
     <thead>
       <tr>
-        <th width="0%"><?php _e( 'Language', 'badges-issuer-for-wp' ); ?></th>
-        <th width="100%"><?php _e( 'URL', 'badges-issuer-for-wp' ); ?></th>
+        <th width="0%">Language</th>
+        <th width="100%">URL</th>
         <th width="0%"></th>
       </tr>
     </thead>

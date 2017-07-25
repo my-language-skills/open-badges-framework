@@ -121,6 +121,9 @@
           if(!$badge->send_mail($mail))
             $notsent[] = $mail;
           else {
+            if($_POST['sender']!="SELF")
+              $badge->add_student_to_class_zero($mail);
+
             $badge->add_student_to_class($mail, $class);
             $badge->add_badge_to_user_profile($mail, $_POST['sender']);
           }
@@ -165,8 +168,8 @@
         echo '<br /><br />';
         echo '<div id="languages_form_a">';
         display_languages_select_form($just_most_important_languages=true);
-        echo '</div>';
         printf(__('<a href="#" id="display_languages_a">Display all languages</a>','badges-issuer-for-wp'));
+        echo '</div>';
         echo '<br /><br />';
         ?>
         <input type="hidden" name="mail" value="<?php echo $current_user->user_email; ?>" />
@@ -230,7 +233,7 @@
 
           <div id="result_languages_description"></div>
           <br /><br />
-          <input type="submit" id="submit_button_b" class="button-primary" value="Send a badge"/>
+          <input type="submit" id="submit_button_b" class="button-primary" value="<?php _e('Send a badge','badges-issuer-for-wp'); ?>"/>
         </form>
 
         </div>
@@ -284,7 +287,8 @@
 
           <div id="result_languages_description"></div>
           <br /><br />
-        <input type="submit" id="submit_button_a" class="button-primary" value="<?php _e('Send a badge','badges-issuer-for-wp'); ?>"/>        </form>
+          <input type="submit" id="submit_button_c" class="button-primary" value="<?php _e('Send a badge','badges-issuer-for-wp'); ?>"/>
+        </form>
 
         </div>
         <?php

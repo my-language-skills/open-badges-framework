@@ -79,3 +79,5 @@ add_action('plugins_loaded', 'badges_issuer_for_wp_init');
 
 }
 run_badges_issuer_for_wp();
+
+?>

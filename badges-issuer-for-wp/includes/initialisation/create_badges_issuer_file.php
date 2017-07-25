@@ -13,8 +13,9 @@ if (!file_exists($path_dir_json_files)) {
     mkdir($path_dir_json_files, 0777, true);
 }
 
-$file = $path_dir_json_files."badges-issuer.json";
+$file = $path_dir_json_files."badge-issuer.json";
 
-file_put_contents($file, json_encode($badges_issuer_file_content, JSON_UNESCAPED_SLASHES));
+if(!file_get_contents($file))
+  file_put_contents($file, json_encode($badges_issuer_file_content, JSON_UNESCAPED_SLASHES));
 
 ?>
