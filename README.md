@@ -41,10 +41,13 @@ You can see all of the screenshots of the plugin [here](doc/screenshot.md "scree
 
 ### now
 
-  * Creation of a settings page : possibility to delete all the information of the plugin if we wish by deleting the plugin
-  * Add of an import buttom for the information of the badges.
-  * Possibility to read the information of the badges translated inside of the custom post.
-  * Creation of the basges issuer information page.
+ * System of trust
+ * To allow to the administrator to add and delete students from a created class
+ * Inform of the process to the senders of badges
+ * Some modifications in class job listing template
+ * To review the classes
+ * To create students and teacher page
+ * The sign languages inside a specific file
 
 ### soon
 
@@ -58,6 +61,18 @@ You can see all of the screenshots of the plugin [here](doc/screenshot.md "scree
 
 
 ## Changelog
+
+### 0.3
+
+* **ADDITIONS**
+  * Plugin can work without job manager.
+  * One place all data : all students of a teacher stocked in his class zero.
+  * Integration of translations.
+
+* **ENHANCEMENTS**
+  * Languages form more smart : display in first time the most important languages.
+  * Amelioration of the settings page.
+  * Possibility to read the information of the badges translated inside of the custom post.
 
 ### 0.2
  
