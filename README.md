@@ -62,6 +62,16 @@ You can see all of the screenshots of the plugin [here](doc/screenshot.md "scree
 
 ## Changelog
 
+### 0.4
+
+* **ADDITIONS**
+  * "Can take few seconds to load" message for display all languages link.
+
+* **ENHANCEMENTS**
+  * Change metabox levels into taxonomies.
+  * Move field of education taxonomy into Badge CPT.
+  * Class CPT page into Badge CPT menu.
+
 ### 0.3
 
 * **ADDITIONS**
@@ -103,6 +113,10 @@ You can see all of the screenshots of the plugin [here](doc/screenshot.md "scree
   * Creation of admin subpages to send a badge to one or several students.
 
 ## Upgrade Notice
+
+### 0.4
+
+Plugin better organized.
 
 ### 0.3
 
