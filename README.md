@@ -120,7 +120,7 @@ Plugin better organized.
 
 ### 0.3
 
-Plugin flexible : wan work without WP Job Manager
+Plugin flexible : can work without WP Job Manager
 
 ### 0.2
 
