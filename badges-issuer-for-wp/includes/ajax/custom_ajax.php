@@ -51,7 +51,7 @@
 
     function action_mi_languages_form() {
       display_languages_select_form($just_most_important_languages=true);
-      echo '<a href="#" id="display_languages_'.$_POST['form'].'">Display all languages</a>';
+      printf(__('<a href="#" id="display_languages_'.$_POST['form'].'">Display all languages</a> Can take few seconds to load.','badges-issuer-for-wp'));
     }
 
     /* AJAX action to load the classes correspondong to the level and the language selected */

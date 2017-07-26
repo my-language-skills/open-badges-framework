@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+			<rss version="2.0"
+				xmlns:excerpt="http://wordpress.org/export/1.2/excerpt/"
+				xmlns:content="http://purl.org/rss/1.0/modules/content/"
+				xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+				xmlns:dc="http://purl.org/dc/elements/1.1/"
+				xmlns:wp="http://wordpress.org/export/1.2/">
+
+			<channel>
+				<title>Badges4Languages</title>
+				<link>http://releases.badges4languages.com</link>
+				<description>Just another WordPress site</description>
+				<pubDate>Thu, 06 Jul 2017 14:04:07 +0000</pubDate>
+				<language>en-US</language>
+				<wp:wxr_version>1.2</wp:wxr_version>
+				<wp:base_site_url>http://releases.badges4languages.com</wp:base_site_url>
+				<wp:base_blog_url>http://releases.badges4languages.com</wp:base_blog_url><wp:term><wp:term_id>7840</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>sign-languages</wp:term_slug><wp:term_parent></wp:term_parent><wp:term_name><![CDATA[Sign languages]]></wp:term_name></wp:term><wp:term><wp:term_id>7841</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Adamorobe Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Adamorobe Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7842</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Afghan Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Afghan Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7843</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Albanian Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Albanian Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7844</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Algerian Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Algerian Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7845</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Al-Sayyid Bedouin Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Al-Sayyid Bedouin Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7846</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>American Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[American Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7847</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Arabic Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Arabic Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7848</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Argentine Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Argentine Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7849</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Armenian Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Armenian Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7850</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Australian Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Australian Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7851</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Australian Aborigines Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Australian Aborigines Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7852</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Austrian Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Austrian Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7853</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Bamako Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Bamako Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7854</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Ban Khor Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Ban Khor Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7855</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Bengkala Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Bengkala Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7856</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Bolivian Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Bolivian Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7857</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Brazilian Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Brazilian Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7858</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>British Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[British Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7859</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Bulgarian Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Bulgarian Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7860</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Catalan Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Catalan Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7861</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Chadian Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Chadian Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7862</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Chiangmai Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Chiangmai Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7863</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Chilean Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Chilean Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7864</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Chinese Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Chinese Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7865</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Colombian Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Colombian Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7866</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Costa Rican Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Costa Rican Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7867</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Croatia Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Croatia Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7868</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Cuba Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Cuba Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7869</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Czech Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Czech Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7870</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Danish Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Danish Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7871</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Dominican Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Dominican Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7872</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Dutch Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Dutch Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7873</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Ecuadorian Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Ecuadorian Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7874</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Egypt Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Egypt Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7875</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>English Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[English Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7876</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Estonian Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Estonian Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7877</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Ethiopian Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Ethiopian Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7878</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Finland-Swedish Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Finland-Swedish Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7879</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Finnish Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Finnish Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7880</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>French Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[French Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7881</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>German Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[German Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7882</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Ghanaian Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Ghanaian Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7883</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Ghandruk Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Ghandruk Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7884</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Guatemalan Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Guatemalan Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7885</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Guinean Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Guinean Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7886</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Haiphong Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Haiphong Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7887</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Hanoi Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Hanoi Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7888</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Hausa Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Hausa Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7889</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Hawai'i Sign Language (HSL)
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Hawai'i Sign Language (HSL)
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7890</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Ho Chi Minh City Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Ho Chi Minh City Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7891</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Honduras Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Honduras Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7892</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Hong Kong Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Hong Kong Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7893</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Hungarian Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Hungarian Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7894</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Icelandic Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Icelandic Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7895</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Indian Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Indian Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7896</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Indonesian Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Indonesian Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7897</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>International Sign
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[International Sign
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7898</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Inuit Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Inuit Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7899</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Irish Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Irish Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7900</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Israeli Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Israeli Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7901</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Italian Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Italian Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7902</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Jamaican Country Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Jamaican Country Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7903</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Jamaican Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Jamaican Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7904</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Japanese Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Japanese Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7905</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Jhankot Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Jhankot Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7906</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Jordanian Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Jordanian Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7907</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Jumla Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Jumla Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7908</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Kenyan Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Kenyan Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7909</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Korean Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Korean Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7910</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Laos Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Laos Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7911</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Latvian Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Latvian Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7912</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Libyan Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Libyan Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7913</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Lithuanian Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Lithuanian Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7914</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Lyons Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Lyons Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7915</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Madagascar Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Madagascar Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7916</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Malaysian Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Malaysian Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7917</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Maltese Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Maltese Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7918</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Maritime Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Maritime Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7919</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Martha's Vineyard Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Martha's Vineyard Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7920</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Mauritian Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Mauritian Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7921</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Mexican Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Mexican Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7922</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Miriwoong Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Miriwoong Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7923</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Moldova Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Moldova Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7924</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Monastic Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Monastic Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7925</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Mongolian Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Mongolian Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7926</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Moroccan Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Moroccan Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7927</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Mozambican Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Mozambican Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7928</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Namibian Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Namibian Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7929</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Nepalese Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Nepalese Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7930</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>New Zealand Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[New Zealand Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7931</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Nicaraguan Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Nicaraguan Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7932</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Nigerian Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Nigerian Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7933</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Norwegian Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Norwegian Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7934</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Old Kentish Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Old Kentish Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7935</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Pakistan Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Pakistan Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7936</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Panamanian Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Panamanian Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7937</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Papua New Guinean Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Papua New Guinean Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7938</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Paraguayan Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Paraguayan Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7939</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Penang Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Penang Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7940</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Persian Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Persian Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7941</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Peruvian Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Peruvian Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7942</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Philippine Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Philippine Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7943</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Plains Indian Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Plains Indian Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7944</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Polish Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Polish Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7945</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Portuguese Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Portuguese Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7946</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Providencia Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Providencia Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7947</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Puerto Rican Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Puerto Rican Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7948</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Quebec Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Quebec Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7949</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Romanian Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Romanian Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7950</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Russian Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Russian Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7951</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Salvadoran Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Salvadoran Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7952</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Saudi Arabian Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Saudi Arabian Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7953</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Selangor Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Selangor Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7954</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Sierra Leone Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Sierra Leone Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7955</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Singapore Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Singapore Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7956</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Slovakian Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Slovakian Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7957</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Solomon Islands Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Solomon Islands Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7958</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>South African Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[South African Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7959</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Spanish Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Spanish Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7960</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Sri Lankan Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Sri Lankan Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7961</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Swedish Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Swedish Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7962</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Swiss-French Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Swiss-French Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7963</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Swiss-German Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Swiss-German Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7964</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Swiss-Italian Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Swiss-Italian Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7965</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Taiwan Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Taiwan Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7966</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Tanzanian Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Tanzanian Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7967</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Tebul Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Tebul Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7968</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Thai Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Thai Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7969</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Trinidad and Tobago Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Trinidad and Tobago Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7970</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Tunisian Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Tunisian Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7971</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Turkish Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Turkish Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7972</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Ugandan Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Ugandan Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7973</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Ukrainian Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Ukrainian Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7974</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Urubú-Kaapor Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Urubú-Kaapor Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7975</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Uruguayan Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Uruguayan Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7976</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Venezuelan Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Venezuelan Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7977</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>West Bengal Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[West Bengal Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7978</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Yan-nhaŋu Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Yan-nhaŋu Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7979</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Yolŋu Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Yolŋu Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7980</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Yucatec Maya Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Yucatec Maya Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7981</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Yugoslavian Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Yugoslavian Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7982</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Zambian Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Zambian Sign Language
+]]></wp:term_name></wp:term><wp:term><wp:term_id>7983</wp:term_id><wp:term_taxonomy>field_of_education</wp:term_taxonomy><wp:term_slug>Zimbabwe Sign Language
+</wp:term_slug><wp:term_parent>sign-languages</wp:term_parent><wp:term_name><![CDATA[Zimbabwe Sign Language
+]]></wp:term_name></wp:term></channel>
+</rss>

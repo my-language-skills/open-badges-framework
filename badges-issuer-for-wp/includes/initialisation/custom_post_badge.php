@@ -92,55 +92,20 @@ function meta_box_type($post){
 
 }
 
-/* Adds the metabox level into the badge custom post type */
+/* Adds the taxonomy level into the badge custom post type */
 
-add_action('add_meta_boxes','add_meta_box_level');
+add_action( 'init', 'add_badge_levels_tax' );
 
-function add_meta_box_level(){
-  add_meta_box('id_meta_box_level', 'Level', 'meta_box_level', 'badge', 'side', 'high');
-}
-
-function meta_box_level($post){
-  $val = get_post_meta($post->ID,'_level',true);
-
-  echo '<input type="radio" value="A1" name="level_input"';
-  check($val, 'A1');
-  echo '> A1<br>';
-  echo '<input type="radio" value="A2" name="level_input"';
-  check($val, 'A2');
-  echo '> A2<br>';
-  echo '<input type="radio" value="B1" name="level_input"';
-  check($val, 'B1');
-  echo '> B1<br>';
-  echo '<input type="radio" value="B2" name="level_input"';
-  check($val, 'B2');
-  echo '> B2<br>';
-  echo '<input type="radio" value="C1" name="level_input"';
-  check($val, 'C1');
-  echo '> C1<br>';
-  echo '<input type="radio" value="C2" name="level_input"';
-  check($val, 'C2');
-  echo '> C2<br>';
-
-  echo '<input type="radio" value="T1" name="level_input"';
-  check($val, 'T1');
-  echo '> T1<br>';
-  echo '<input type="radio" value="T2" name="level_input"';
-  check($val, 'T2');
-  echo '> T2<br>';
-  echo '<input type="radio" value="T3" name="level_input"';
-  check($val, 'T3');
-  echo '> T3<br>';
-  echo '<input type="radio" value="T4" name="level_input"';
-  check($val, 'T4');
-  echo '> T4<br>';
-  echo '<input type="radio" value="T5" name="level_input"';
-  check($val, 'T5');
-  echo '> T5<br>';
-  echo '<input type="radio" value="T6" name="level_input"';
-  check($val, 'T6');
-  echo '> T6<br>';
-
+function add_badge_levels_tax() {
+	register_taxonomy(
+		'level',
+		'badge',
+		array(
+			'label' => __( 'Level' ),
+			'rewrite' => array( 'slug' => 'level' ),
+			'hierarchical' => true,
+		)
+	);
 }
 
 /* Adds the metabox descriptions into the badge custom post type */
@@ -234,9 +199,6 @@ function meta_box_links($post) {
 add_action('save_post','save_metaboxes');
 
 function save_metaboxes($post_ID){
-  if(isset($_POST['level_input'])){
-    update_post_meta($post_ID,'_level', esc_html($_POST['level_input']));
-  }
   if(isset($_POST['certification_input'])){
     update_post_meta($post_ID,'_certification', esc_html($_POST['certification_input']));
   }
@@ -251,6 +213,22 @@ function save_metaboxes($post_ID){
     }
   	update_post_meta( $post_ID, '_badge_links', $new );
   }
+}
+
+/*Creates languages taxonomy*/
+
+add_action( 'init', 'create_field_of_education_tax' );
+
+function create_field_of_education_tax() {
+	register_taxonomy(
+		'field_of_education',
+		'badge',
+		array(
+			'label' => __( 'Field of education' ),
+			'rewrite' => array( 'slug' => 'field_of_education' ),
+			'hierarchical' => true,
+		)
+	);
 }
 
 ?>

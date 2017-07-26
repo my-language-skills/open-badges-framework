@@ -168,7 +168,7 @@
         echo '<br /><br />';
         echo '<div id="languages_form_a">';
         display_languages_select_form($just_most_important_languages=true);
-        printf(__('<a href="#" id="display_languages_a">Display all languages</a>','badges-issuer-for-wp'));
+        printf(__('<a href="#" id="display_languages_a">Display all languages</a> Can take few seconds to load.','badges-issuer-for-wp'));
         echo '</div>';
         echo '<br /><br />';
         ?>

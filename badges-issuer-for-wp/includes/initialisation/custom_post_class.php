@@ -23,10 +23,9 @@ function register_class()
                 'parent' => 'Parent Classes'
             ),
             'public' => true,
-            'menu_position' => 15,
+            'show_in_menu' => 'edit.php?post_type=badge',
             'supports' => array('title', 'editor', 'thumbnail'),
             'taxonomies' => array(''),
-            'menu_icon' => plugins_url('../../images/icon.png', __FILE__),
             'has_archive' => true,
             'capabilities' => array(
               'edit_post' => 'edit_class',
@@ -205,22 +204,6 @@ function save_metaboxes_class_zero($post_ID){
   if(isset($_POST['language'])){
     update_post_meta($post_ID,'_class_language', esc_html($_POST['language']));
   }
-}
-
-/*Creates languages taxonomy*/
-
-add_action( 'init', 'create_field_of_education_tax' );
-
-function create_field_of_education_tax() {
-	register_taxonomy(
-		'field_of_education',
-		'class',
-		array(
-			'label' => __( 'Field of education' ),
-			'rewrite' => array( 'slug' => 'field_of_education' ),
-			'hierarchical' => true,
-		)
-	);
 }
 
 ?>

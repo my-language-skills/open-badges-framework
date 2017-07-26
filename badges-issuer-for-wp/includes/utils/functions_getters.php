@@ -28,7 +28,7 @@ function get_all_badges() {
 function get_all_languages_description($badges) {
   $descriptions_languages = array();
   foreach ($badges as $badge) {
-    foreach (array_keys(get_badge_descriptions(get_post_meta($badge->ID,"_level",true))) as $lang) {
+    foreach (array_keys(get_badge_descriptions(get_the_terms($badge->ID, 'level')[0]->name)) as $lang) {
       $descriptions_languages[$badge->post_title][] = $lang;
     }
   }
@@ -100,7 +100,7 @@ function get_badge_descriptions($badge_level) {
 function get_badge($badge_name, $badges, $lang) {
   foreach ($badges as $badge) {
     if($badge_name==$badge->post_name) {
-      $badge_description = get_badge_descriptions(get_post_meta($badge->ID,"_level",true))[$lang];
+      $badge_description = get_badge_descriptions(get_the_terms($badge->ID, 'level')[0]->name)[$lang];
       return array("name"=>$badge->post_title, "description"=>$badge_description, "image"=>get_the_post_thumbnail_url($badge->ID));
     }
   }
@@ -119,7 +119,7 @@ function get_all_levels($badges, $only_student=false) {
   $levels = array();
   foreach($badges as $badge){
     $badge_type = get_post_meta($badge->ID,"_type",true);
-    $level = get_post_meta($badge->ID,"_level",true);
+    $level = get_the_terms($badge->ID, 'level')[0]->name;
     if( ! in_array( $level, $levels) ) {
       if($only_student) {
           if($badge_type=="student")
@@ -145,7 +145,7 @@ function get_all_levels($badges, $only_student=false) {
 function get_all_badges_level($badges, $level, $certification=false) {
   $badges_corresponding = array();
   foreach ($badges as $badge) {
-    if(get_post_meta($badge->ID,"_level",true)==$level) {
+    if(get_the_terms($badge->ID, 'level')[0]->name==$level) {
       if(get_post_meta($badge->ID,'_certification',true)=="certified") {
         if($certification)
           $badges_corresponding[] = $badge;
