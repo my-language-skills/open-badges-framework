@@ -51,7 +51,7 @@
 
     function action_mi_languages_form() {
       display_languages_select_form($just_most_important_languages=true);
-      printf(__('<a href="#" id="display_languages_'.$_POST['form'].'">Display all languages</a> Can take few seconds to load.','badges-issuer-for-wp'));
+      printf(__('<a href="#" id="display_languages_%s">Display all languages</a> Can take few seconds to load.','badges-issuer-for-wp'),$_POST['form']);
     }
 
     /* AJAX action to load the classes correspondong to the level and the language selected */
@@ -89,7 +89,7 @@
 
         if(empty($classes)) {
           if($current_user->roles[0]=="teacher")
-            echo 'You need an academy account in order to create your own classes.';
+            printf(__('You need an academy account in order to create your own classes.','badges-issuer-for-wp');
           elseif($current_user->roles[0]=="academy")
             echo ' <a href="http://'.$_SERVER['SERVER_NAME'].'/wp-admin/post-new.php?post_type=job_listing">Don\'t you want to create a specific class for that student(s) ?</a>';
         }
@@ -148,7 +148,7 @@
           var tab_name = jQuery("#badge_form_a .input-badge:checked").val().replace('-', '_') + "_description_languages";
           var tab = eval(tab_name);
 
-          var content = '<label for="language_description"><b>Language of badge description* : </b></label><br /><select name="language_description" id="language_description">';
+          var content = '<label for="language_description"><b><?php _e('Language of badge description* : ','badges-issuer-for-wp') ?></b></label><br /><select name="language_description" id="language_description">';
           tab.forEach(function(lang) {
             content = content + '<option value="' + lang + '">' + lang + '</option>';
           });
@@ -161,7 +161,7 @@
           var tab_name = jQuery("#badge_form_b .input-badge:checked").val().replace('-', '_') + "_description_languages";
           var tab = eval(tab_name);
 
-          var content = '<label for="language_description"><b>Language of badge description* : </b></label><br /><select name="language_description" id="language_description">';
+          var content = '<label for="language_description"><b><?php _e('Language of badge description* : ','badges-issuer-for-wp') ?></b></label><br /><select name="language_description" id="language_description">';
           tab.forEach(function(lang) {
             content = content + '<option value="' + lang + '">' + lang + '</option>';
           });
@@ -174,7 +174,7 @@
           var tab_name = jQuery("#badge_form_c .input-badge:checked").val().replace('-', '_') + "_description_languages";
           var tab = eval(tab_name);
 
-          var content = '<label for="language_description"><b>Language of badge description* : </b></label><br /><select name="language_description" id="language_description">';
+          var content = '<label for="language_description"><b><?php _e('Language of badge description* : ','badges-issuer-for-wp') ?></b></label><br /><select name="language_description" id="language_description">';
           tab.forEach(function(lang) {
             content = content + '<option value="' + lang + '">' + lang + '</option>';
           });
