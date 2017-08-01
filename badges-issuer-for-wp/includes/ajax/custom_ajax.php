@@ -35,6 +35,7 @@
     function action_save_metabox_students() {
       $post_id = $_POST['post_id'];
       update_post_meta($post_id, '_class_students', $_POST['class_students']);
+      echo $_POST['class_students'];
     }
 
     /* AJAX action to load all languages in a select form*/
@@ -54,13 +55,13 @@
       printf(__('<a href="#" id="display_languages_'.$_POST['form'].'">Display all languages</a> Can take few seconds to load.','badges-issuer-for-wp'));
     }
 
-    /* AJAX action to load the classes correspondong to the level and the language selected */
+    /* AJAX action to load the classes corresponding to the level and the language selected */
 
     add_action( 'CUSTOMAJAX_action_select_class', 'action_select_class' );
 
     function action_select_class() {
 
-      if(is_plugin_active(plugin_dir_path( __DIR__ )."wp-job-manager/wp-job-manager.php")) {
+      if(is_plugin_active("wp-job-manager/wp-job-manager.php")) {
 
         $level = $_POST['level_selected'];
         $language = $_POST['language_selected'];
@@ -74,16 +75,13 @@
           $classes_teacher = get_classes_teacher($current_user->user_login);
           $classes = array();
           foreach ($classes_teacher as $class) {
-            $class_level = get_post_meta($class->ID,'_class_level',true);
-            $class_language = get_post_meta($class->ID,'_class_language',true);
-            if(empty($class_level) && empty($class_language))
-              $classes[] = $class;
-            elseif ($class_level==$level && $class_language==$language) {
+            $class_level = get_post_meta($class->ID,'_job_listing_level',true);
+            $class_language = get_post_meta($class->ID,'_job_listing_language',true);
+            if ($class_level==$level && $class_language==$language) {
               $classes[] = $class;
             }
           }
         }
-
 
        _e( '<b>Class* : </b><br />','badges-issuer-for-wp');
 

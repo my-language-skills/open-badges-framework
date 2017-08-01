@@ -168,13 +168,16 @@ class Badge
    * @param $class_id The ID of the class post selected.
    */
   function add_student_to_class($mail, $class_id) {
+    echo "<script>console.log('dans fonction');</script>";
     $student = get_user_by_email($mail);
     if($student) {
       if(!is_null($class_id)) {
+        echo "<script>console.log('".$class_id."');</script>";
         $student_infos = array(
           'login' => $student->user_login,
           'level' => $this->level,
-          'language' => $this->language
+          'language' => $this->language,
+          'date' => date("Y-m-d")
         );
 
         if(!get_post_meta($class_id, '_class_students', true))
@@ -184,6 +187,7 @@ class Badge
 
         $class_students[] = $student_infos;
         update_post_meta($class_id,'_class_students', $class_students);
+        echo "<script>console.log('fin');</script>";
       }
     }
   }
@@ -205,7 +209,8 @@ class Badge
         $student_infos = array(
           'login' => $student->user_login,
           'level' => $this->level,
-          'language' => $this->language
+          'language' => $this->language,
+          'date' => date("Y-m-d")
         );
         $class = get_class_zero_teacher($current_user->user_login);
 

@@ -24,6 +24,7 @@ function load_job_listing_class_metaboxes() {
 
     public function __construct() {
       add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ) );
+      add_action( 'save_post', array($this, 'save_metaboxes_job_listing'));  
       add_filter( 'template_include', array($this, 'job_listing_template'), 1 );
     }
 
@@ -39,9 +40,7 @@ function load_job_listing_class_metaboxes() {
         add_meta_box('id_meta_box_class_language', 'Class language', array($this, 'meta_box_class_language'), 'job_listing', 'side', 'high');
 
       if($current_user->roles[0]=="academy")
-        add_meta_box('id_meta_box_class_level', 'Class level', array($this, 'meta_box_class_level'), 'job_listing', 'side', 'high');
-
-      add_action('save_post', array($this, 'save_metaboxes_class'));
+        add_meta_box('id_meta_box_class_level', 'Class level', array($this, 'meta_box_class_level'), 'job_listing', 'side', 'high');    
     }
 
     /* Adds the metabox students of the class.*/
@@ -63,14 +62,22 @@ function load_job_listing_class_metaboxes() {
           var input_login = jQuery("#add_student_login").val();
           var input_level = jQuery("#add_student_level").val();
           var input_language = jQuery("#add_student_language").val();
+          var dateObj = new Date();
+          var month = dateObj.getUTCMonth() + 1; //months from 1-12
+          var day = dateObj.getUTCDate();
+          var year = dateObj.getUTCFullYear();
+
+          newdate = year + "-" + month + "-" + day;
 
           jQuery("#box_students tbody").append(
             '<tr><td width="0%"><center>' +
             input_login
-             + '</center></td><td width="0%"><center>'+
+             +'</center></td><td width="0%"><center>'+
             input_level
              +'</center></td><td width="0%"><center>'+
             input_language
+             +'</center></td><td width="0%"><center>'+
+            newdate
              +'</center></td><td width="0%"><center><a class="button remove-row" onclick="jQuery(this).RemoveTr();" href="#id_meta_box_class_students">Remove</a></center></td></tr>'
           );
           jQuery("#add_student_login").val('');
@@ -87,6 +94,7 @@ function load_job_listing_class_metaboxes() {
             <th width="0%">Student's login</th>
             <th width="0%">Level</th>
             <th width="0%">Language</th>
+            <th width="0%">Date</th>
             <?php
             if($current_user->roles[0]=='administrator') {
               ?>
@@ -109,6 +117,9 @@ function load_job_listing_class_metaboxes() {
           echo '</td>';
           echo '<td width="0%">';
             printf(__('<center>%s</center>','badges-issuer-for-wp'),$student["language"]);
+          echo '</td>';
+          echo '<td width="0%">';
+            echo '<center>'.$student["date"].'</center>';
           echo '</td>';
           if($current_user->roles[0]=='administrator') {
             echo '<td width="0%">';
@@ -141,6 +152,8 @@ function load_job_listing_class_metaboxes() {
         echo '</center>';
         echo '</td>';
         echo '<td width="0%">';
+        echo '</td>';
+        echo '<td width="0%">';
         echo '<center>';
         echo '<a class="button" href="#" id="add_student_job_listing">Add student</a>';
         echo '</center>';
@@ -155,40 +168,29 @@ function load_job_listing_class_metaboxes() {
     /* Adds the meatbox level of the class.*/
 
     function meta_box_class_level($post){
-      $val = get_post_meta($post->ID,'_class_level',true);
+      $val = get_post_meta($post->ID,'_job_listing_level',true);
+      
+      $levels = get_all_levels(get_all_badges(), $only_student=true);
 
-      echo '<input type="radio" value="A1" name="class_level_input"';
-      check($val, 'A1');
-      echo '> A1<br>';
-      echo '<input type="radio" value="A2" name="class_level_input"';
-      check($val, 'A2');
-      echo '> A2<br>';
-      echo '<input type="radio" value="B1" name="class_level_input"';
-      check($val, 'B1');
-      echo '> B1<br>';
-      echo '<input type="radio" value="B2" name="class_level_input"';
-      check($val, 'B2');
-      echo '> B2<br>';
-      echo '<input type="radio" value="C1" name="class_level_input"';
-      check($val, 'C1');
-      echo '> C1<br>';
-      echo '<input type="radio" value="C2" name="class_level_input"';
-      check($val, 'C2');
-      echo '> C2<br>';
+      foreach($levels as $level) {
+        echo '<input type="radio" value="'.$level.'" name="job_listing_level_input"';
+        check($val, $level);
+        echo '> '.$level.'<br>';
+      }
     }
 
     function meta_box_class_language($post){
-      $val = get_post_meta($post->ID,'_class_language',true);
-      display_languages_select_form($language_selected=$val);
+      $val = get_post_meta($post->ID,'_job_listing_language',true);
+      display_languages_select_form($just_most_important_languages=true, $language_selected=$val);
     }
 
     /* Saves the job listing metaboxes.*/
-    function save_metaboxes_class($post_ID){
-      if(isset($_POST['class_level_input'])){
-        update_post_meta($post_ID,'_class_level', esc_html($_POST['class_level_input']));
+    function save_metaboxes_job_listing($post_id){
+      if(isset($_POST['job_listing_level_input'])){
+        update_post_meta($post_id,'_job_listing_level', esc_html($_POST['job_listing_level_input']));
       }
       if(isset($_POST['language'])){
-        update_post_meta($post_ID,'_class_language', esc_html($_POST['language']));
+        update_post_meta($post_id,'_job_listing_language', esc_html($_POST['language']));
       }
     }
 
@@ -215,7 +217,7 @@ function load_job_listing_class_metaboxes() {
 
   }
 
-  $writepanel = new WP_Job_Manager_Class_Writepanels;
+  $writepanel = new WP_Job_Manager_Class_Writepanels();
 
 }
 ?>

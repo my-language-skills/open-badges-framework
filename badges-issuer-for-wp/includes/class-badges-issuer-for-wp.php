@@ -221,7 +221,7 @@ require plugin_dir_path( __FILE__ ) . 'initialisation/custom_post_class.php';
 require plugin_dir_path( __FILE__ ) . 'initialisation/custom_roles.php';
 require plugin_dir_path( __FILE__ ) . 'initialisation/custom_user_field_badges.php';
 
-if(is_plugin_active(plugin_dir_path( __DIR__ )."../wp-job-manager/wp-job-manager.php"))
-	require plugin_dir_path( __FILE__ ) . 'initialisation/custom_job_listing.php';
+if(is_plugin_active("wp-job-manager/wp-job-manager.php")) 
+	require_once plugin_dir_path( __FILE__ ) . 'initialisation/custom_job_listing.php';
 
 require plugin_dir_path( __FILE__ ) . 'initialisation/create_badges_issuer_file.php';

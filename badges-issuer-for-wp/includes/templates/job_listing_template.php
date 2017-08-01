@@ -116,7 +116,7 @@ get_header();
                             );
 
 														add_filter( 'comments_template', function ( $template ) {
-														    return plugin_dir_path( dirname( __FILE__ ) ) . 'templates/comments_template.php';
+														    return plugin_dir_path( dirname( __FILE__ ) ) . 'templates/job_listing_comments_template.php';
 														});
 
 														comments_template();

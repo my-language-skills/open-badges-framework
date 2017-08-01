@@ -104,7 +104,7 @@
         get_currentuserinfo();
 
         $class = null;
-        if($current_user->roles[0]=="teacher" || $current_user->roles[0]=="administrator") {
+        if($current_user->roles[0]=="teacher" || $current_user->roles[0]=="academy" || $current_user->roles[0]=="administrator") {
           if(isset($_POST['class_for_student']))
             $class = $_POST['class_for_student'];
         }

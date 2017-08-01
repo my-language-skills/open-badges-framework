@@ -128,11 +128,13 @@ function js_save_metabox_students() {
       var login = student_infos[0];
       var level = student_infos[1];
       var language = student_infos[2];
+      var date = student_infos[3];
 
       var student = {
         'login': login,
         'level': level,
-        'language': language
+        'language': language,
+        'date': date
       };
 
       students[i] = student;

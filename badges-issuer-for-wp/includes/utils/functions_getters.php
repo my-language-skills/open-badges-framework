@@ -240,7 +240,7 @@ function get_classes_teacher($teacher_login) {
   $all_classes = get_all_classes();
   $classes = array();
   foreach ($all_classes as $class) {
-    if($class->post_title==$teacher_login)
+    if(get_userdata($class->post_author)->user_login==$teacher_login)
       $classes[]=$class;
   }
   return $classes;
@@ -297,6 +297,62 @@ function is_student_in_class($student_login, $class_id) {
       $result = true;
   }
   return $result;
+}
+
+/**
+ * Check if a student can write a comment for the specified class.
+ *
+ * @author Nicolas TORION
+ * @since 1.0.0
+ * @param $class_id The ID of the class (job_listing) post.
+ * @return $result A boolean indicating if the student can write a comment for the specified class.
+*/
+function can_student_write_comment($student_login, $class_id) {
+  if(is_student_in_class($student_login, $class_id) && !has_student_write_comment($student_login, $class_id)) {
+    $class_students = get_post_meta($class_id, '_class_students', true);
+    $student_date = null;
+    foreach ($class_students as $class_student) {
+      if($class_student['login']==$student_login)
+        $student_date = $class_students['date'];
+    }
+    if(get_days_from_date($student_date)<=15)
+      return true;
+    else
+      return false;
+  }
+  else
+    return false;
+}
+
+function get_days_from_date($date) {
+  $datetime1 = date_create($date);
+  $datetime2 = date_create(date("Y-m-d"));
+    
+  $interval = date_diff($datetime1, $datetime2);
+    
+  return $interval->format('%d');
+}
+
+function has_student_write_comment($student_login, $class_id) {
+  $comments = get_comments(array(
+    'post_id' => $class_id,
+    'number' => -1
+  ));
+
+  foreach($comments as $comment) {
+    if($comment->comment_author==$student_login)
+      return true;
+  }
+  return false;
+}
+
+function can_user_reply($user_login, $class_id) {
+  $class_name = get_the_title($class_id);
+  
+  if($class_name==$user_login)
+    return true;
+  else
+    return false;
 }
 
 ?>
