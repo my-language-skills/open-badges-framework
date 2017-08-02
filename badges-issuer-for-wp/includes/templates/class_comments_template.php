@@ -47,7 +47,7 @@
     if(can_student_write_comment($current_user->user_login, $post->ID) || can_user_reply($current_user->user_login, get_the_ID()))
         comment_form();
     else
-        echo "You cannot write a comment for this class.";
+        printf(__("You cannot write a comment for this class.",'badges-issuer-for-wp'));
     ?>
 
 </div><!-- #comments .comments-area -->
@@ -96,7 +96,7 @@ function custom_comment($comment, $args, $depth) {
     <?php comment_text();
 
     if(can_user_reply($current_user->user_login, get_the_ID())) {
-    ?> 
+    ?>
     <div class="reply">
         <?php comment_reply_link( array_merge( $args, array( 'add_below' => $add_below, 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
     </div>
