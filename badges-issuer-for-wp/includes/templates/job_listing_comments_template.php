@@ -83,7 +83,7 @@ require_once plugin_dir_path( dirname( __FILE__ ) ) . 'utils/functions.php';
   global $current_user;
   get_currentuserinfo();
 
-  if(can_student_write_comment($current_user->user_login, $post->ID)) {
+  if(can_student_write_comment($current_user->user_login, $post->ID) || can_user_reply($current_user->user_login, $post->ID)) {
     comment_form( apply_filters( 'listify_comment_form', array(
       'title_reply' => $title,
       'title_reply_to' => $title,

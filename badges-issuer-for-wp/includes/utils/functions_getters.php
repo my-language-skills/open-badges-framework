@@ -304,7 +304,8 @@ function is_student_in_class($student_login, $class_id) {
  *
  * @author Nicolas TORION
  * @since 1.0.0
- * @param $class_id The ID of the class (job_listing) post.
+ * @param $student_login The login of the student.
+ * @param $class_id The ID of the class post.
  * @return $result A boolean indicating if the student can write a comment for the specified class.
 */
 function can_student_write_comment($student_login, $class_id) {
@@ -324,6 +325,14 @@ function can_student_write_comment($student_login, $class_id) {
     return false;
 }
 
+/**
+ * Calculates the days passed from a date given.
+ *
+ * @author Nicolas TORION
+ * @since 1.0.0
+ * @param $date The date given.
+ * @return The days passed from the date.
+*/
 function get_days_from_date($date) {
   $datetime1 = date_create($date);
   $datetime2 = date_create(date("Y-m-d"));
@@ -333,6 +342,15 @@ function get_days_from_date($date) {
   return $interval->format('%d');
 }
 
+/**
+ * Indicates if the student has already written or not a comment for a specified class.
+ *
+ * @author Nicolas TORION
+ * @since 1.0.0
+ * @param $student_login The login of the student.
+ * @param $class_id The ID of the class post.
+ * @return $result A boolean indicating if the student has already written a comment for the specified class.
+*/
 function has_student_write_comment($student_login, $class_id) {
   $comments = get_comments(array(
     'post_id' => $class_id,
@@ -346,11 +364,32 @@ function has_student_write_comment($student_login, $class_id) {
   return false;
 }
 
+/**
+ * Indicates if the user can write or not a reply for a specified class.
+ *
+ * @author Nicolas TORION
+ * @since 1.0.0
+ * @param $user_login The login of the user.
+ * @param $class_id The ID of the class post.
+ * @return $result A boolean indicating if the user can write or not a reply for the specified class.
+*/
 function can_user_reply($user_login, $class_id) {
-  $class_name = get_the_title($class_id);
+  $class_post = get_post($class_id);
   
-  if($class_name==$user_login)
-    return true;
+  if($class_post->post_type=="class") {
+    if($class_post->post_title==$user_login)
+      return true;
+    else
+      return false;
+  }
+  elseif ($class_post->post_type=="job_listing") {
+    $author_login = get_userdata($class_post->post_author)->user_login;
+  
+    if($author_login==$user_login)
+      return true;
+    else
+      return false;
+  }
   else
     return false;
 }

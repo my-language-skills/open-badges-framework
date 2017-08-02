@@ -44,7 +44,7 @@
 
 	<?php
 
-    if(can_student_write_comment($current_user->user_login, $post->ID))
+    if(can_student_write_comment($current_user->user_login, $post->ID) || can_user_reply($current_user->user_login, get_the_ID()))
         comment_form();
     else
         echo "You cannot write a comment for this class.";
@@ -55,6 +55,12 @@
 
 <?php
 
+/**
+ * Override of the Wordpress function custom_comment in order to manage the rights to reply to a comment.
+ *
+ *
+ * @package WordPress
+ */
 function custom_comment($comment, $args, $depth) {
     global $current_user;
     get_currentuserinfo();
