@@ -168,27 +168,32 @@ class Badge
    * @param $class_id The ID of the class post selected.
    */
   function add_student_to_class($mail, $class_id) {
-    echo "<script>console.log('dans fonction');</script>";
-    $student = get_user_by_email($mail);
-    if($student) {
-      if(!is_null($class_id)) {
-        echo "<script>console.log('".$class_id."');</script>";
+    if(!is_null($class_id)) {
+      $student = get_user_by_email($mail);
+      if($student) {
         $student_infos = array(
           'login' => $student->user_login,
           'level' => $this->level,
           'language' => $this->language,
           'date' => date("Y-m-d")
         );
-
-        if(!get_post_meta($class_id, '_class_students', true))
-          $class_students = array();
-        else
-          $class_students = get_post_meta($class_id, '_class_students', true);
-
-        $class_students[] = $student_infos;
-        update_post_meta($class_id,'_class_students', $class_students);
-        echo "<script>console.log('fin');</script>";
       }
+      else {
+        $student_infos = array(
+          'login' => $mail,
+          'level' => $this->level,
+          'language' => $this->language,
+          'date' => date("Y-m-d")
+        );
+      }
+
+      if(!get_post_meta($class_id, '_class_students', true))
+        $class_students = array();
+      else
+        $class_students = get_post_meta($class_id, '_class_students', true);
+
+      $class_students[] = $student_infos;
+      update_post_meta($class_id,'_class_students', $class_students);
     }
   }
 
@@ -212,16 +217,24 @@ class Badge
           'language' => $this->language,
           'date' => date("Y-m-d")
         );
-        $class = get_class_zero_teacher($current_user->user_login);
-
-        if(!get_post_meta($class->ID, '_class_students', true))
-          $class_students = array();
-        else
-          $class_students = get_post_meta($class->ID, '_class_students', true);
-
-        $class_students[] = $student_infos;
-        update_post_meta($class->ID,'_class_students', $class_students);
       }
+      else {
+         $student_infos = array(
+          'login' => $mail,
+          'level' => $this->level,
+          'language' => $this->language,
+          'date' => date("Y-m-d")
+        );
+      }
+
+      $class = get_class_zero_teacher($current_user->user_login);
+      if(!get_post_meta($class->ID, '_class_students', true))
+        $class_students = array();
+      else
+        $class_students = get_post_meta($class->ID, '_class_students', true);
+
+      $class_students[] = $student_infos;
+      update_post_meta($class->ID,'_class_students', $class_students);
     }
   }
 
