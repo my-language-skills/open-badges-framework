@@ -2,84 +2,85 @@ One common worldwide standard
 All the certified teachers follow the same CEFR recommendations
 
 Lower price
-Students do not need to pay anymore for expensive official language examinations
+ Due to the estandarisation, Students no longer need to pay more for Official language exams.
 
-Reputation profile
-Show your Rating and Reviews
+Profile of the Reputation
+Rating and Reviews for teachers and classes
 
 System of Trust
-online Data logger recording on real time the data about teachers, students and their classes.
+Data logger recording online to see all of the information about teachers, students and their classes.
 
 
 ——
 Easy registration
-By default, any user is an student and can start to save the information is their profile
+By default, any user is a student and can start saving information on their profile
 
 Different Roles
 Students, Teachers and Academies offer different tools for each situation
 
 CEFR Badges
-Use badges alienated with the CEFR for the languages A1, A2, B1, B2, C1 and C2
+Use badges alienated with CEFR for languages (A1, A2, B1, B2, C1 and C2)
 
 Badges for teachers
-Show your level expertise for the language you teach (T1, T2, T3, T4, T5 and T6)
+Show your level of expertise for the language you teach (T1, T2, T3, T4, T5 and T6)
 
 Unlimited type of badges
-Academy teachers can create unlimited number of badges for specifically purposes
+Academy teachers can create unlimited number of badges for specified purposes
 
-All the languages
-For 7.306 languages. If some language do not exist, let us to know.
+All of the languages
+In all of the 7.306 languages, if we are missing one, let us to know.
 
 Single badge issue
-Send badges to one student by the email
+Teachers send badges to the students (one student at a time).
 
 Multiple badges issue
-Send badges to your class by pasting the emails at once.
+Academy Role teachers send badges to the class (multiple students at once).
 
-Students Log
-Save the information of your classes and badges. Forever.
+Students' Log
+Save the information of your classes and badges forever.
 
 Class Review
-Students can write a comment for your class
+Students can write feedbacks for the classes.
 
 Answer the Review
-Teacher can answer the students feedback
+Teacher can answer students' reviews.
 
-Teachers Rating
-Students can rate the Teacher (knowledge of the language, of the transmission of the knowledge)
+Teachers' Rating
+Students can rate teacher's knowledge of the language, and their teaching skills.
 
-Classes Rating
-Students can rate the classes (methodology, installations, price..)
+Class Rating
+Students can rate classes (methodology, installations, price..)
 
 Unlimited classes
-Create as many classes as you wish and organice your students
+Arrange your students by creating as many classes as you need.
 
 Directory of teachers and classes
-for Academy of Languages, Official Institute, Private Teacher and School of Languages
+Show your class in the directory of four different groups:
+Academy of Languages, Official Institute, Private Teacher and School of Languages
 
 Advance filter system
-Search the teacher and classes by multiple options
+Search teachers and classes with multiple options.
 
 Manual Academies Role approval
-Just real teachers can be an Academy and to unlock the special features
+Only real teachers can receive the Academy Role teacher and unlock the extended features.
 
 Certified badges
-Academies can offer Certified badges with the endorsement of B4L
+Academy Role teacher can offer certified badges with the endorsement of B4L.
 
 Official examinations
-Following the MCER recommendations, the Academies can offer an international examination
+Following MCER recommendations, the Academics can offer an international examination.
 
 Teacher Porftolio
-Full description of your teacher skills
+Full description of teachers' skills.
 
 Student Portfolio
-Full description of the student learning process
+Full description of the students' learning process.
 
 Student Profile
-Show your badges and your classes in your profile
+Show badges and classes in the profile.
 
 Teacher profile
-Show your badges, classes and the rating in your profile
+Show badges, classes and rating in the profile.
 
 Self badges issue
-Receive the badges for your level of languages
+Receive badges for different levels of the language.
