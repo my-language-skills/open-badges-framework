@@ -37,15 +37,22 @@ Out of the box, a new user can be (after the login) one of those roles (upon the
 The B4L Settings page allow to select the page where the [Register Form](http://docs.restrictcontentpro.com/article/1597-registerform) is created.
 
 ### Creation of the Badges
-Badges-Issuer-for-wp allow the creation of two types of badges for the **Administartors** of the site. Normal badges and Certificed badges.
+Badges-Issuer-for-wp allow the creation of two types of badges for the **Administartors** of the site. Normal badges and Certified badges.
 * Normal badges can be delivery by any user of the site with Teacher Role.
-* Certificed badges are allowed just for teachers with the Academy Role.
+* Certified badges are allowed just for teachers with the Academy Role.
 
 For the creation of a badge is necessary:
-* The name of the badge
-* A description for the badge
-* The feature image
+* Name: The name of the badge.
+* Description: A description for the badge.
+* Badge Criteria: The Criteria for different languages (just the first one is used).
+* Image: The feature image.
 
+Other information is necessary for the correct integration with the site:
+* Content: information about the badge.
+* The Certification Type: Not certified/Certified.
+* The Target type: Student/Teacher.
+* Field of education: the subject of the class (The second language). Not used.
+* Levels: the level of the class (Students: A1-A2-B1-B2-C1-C2; Teachers: T1-T2-T3-T4-T5-T6).
 
 
 
