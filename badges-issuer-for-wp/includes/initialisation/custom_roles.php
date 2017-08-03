@@ -85,18 +85,23 @@ function add_capabilities() {
     $academy->add_cap('read_private_classes', false);
     $academy->add_cap('delete_class', false);
 
-    $academy->add_cap('manage_job_listings', false);
-    $academy->add_cap('job_listing', false);
-
-    $teacher->add_cap('edit_job_listing', false);
-    $teacher->add_cap('delete_job_listing', false);
-    $teacher->add_cap('delete_job_listings', false);
-    $teacher->add_cap('delete_others_job_listings', false);
-
-    $academy->add_cap('manage_job_listing_terms', false);
-    $academy->add_cap('edit_job_listing_terms', false);
-    $academy->add_cap('delete_job_listing_terms', false);
-    $academy->add_cap('assign_job_listing_terms', false);
+    $academy->add_cap('manage_job_listings');
+    $academy->add_cap('job_listing');
+    $academy->add_cap('edit_job_listing');
+    $academy->add_cap('read_job_listing');
+    $academy->add_cap('delete_job_listing');
+    $academy->add_cap('edit_job_listings');
+    $academy->add_cap('publish_job_listings');
+    $academy->add_cap('read_private_job_listings');
+    $academy->add_cap('delete_job_listings');
+    $academy->add_cap('delete_published_job_listings');
+    $academy->add_cap('delete_others_job_listings');
+    $academy->add_cap('edit_private_job_listings');
+    $academy->add_cap('edit_published_job_listings');
+    $academy->add_cap('manage_job_listing_terms');
+    $academy->add_cap('edit_job_listing_terms');
+    $academy->add_cap('delete_job_listing_terms');
+    $academy->add_cap('assign_job_listing_terms');
 }
 
 add_action( 'init', 'add_capabilities');

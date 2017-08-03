@@ -131,14 +131,14 @@
         }
 
         if(sizeof($notsent)>0) {
-          $message = __("Badge not sent to these persons : ",'badges-issuer-for-wp');
+          $message = "Badge not sent to these persons : ";
           foreach ($notsent as $notsent_mail) {
             $message = $message.$notsent_mail." ";
           }
           display_error_message($message);
         }
         else
-          display_success_message (__("Badge sent to all persons.",'badges-issuer-for-wp'));
+          display_success_message(__("Badge sent to all persons.",'badges-issuer-for-wp'));
       }
     }
 

@@ -45,7 +45,7 @@
     function action_languages_form() {
       display_languages_select_form();
       printf(__(' Can take few seconds to load.','badges-issuer-for-wp'));
-      echo '<br /> <a href="#" id="display_mi_languages_'.$_POST['form'].'">Just display most important languages</a>';
+      printf(esc_html__('<br /> <a href="#" id="display_mi_languages_'.$_POST['form'].'">Just display most important languages</a>'));
     }
 
     add_action('CUSTOMAJAX_action_mi_languages_form', 'action_mi_languages_form');
@@ -89,7 +89,7 @@
           if($current_user->roles[0]=="teacher")
             printf(__('You need an academy account in order to create your own classes.','badges-issuer-for-wp'));
           elseif($current_user->roles[0]=="academy")
-            printf(__( ' <a href="http://'.$_SERVER['SERVER_NAME'].'/wp-admin/post-new.php?post_type=job_listing">Don\'t you want to create a specific class for that student(s) ?</a>','badges-issuer-for-wp'));
+            printf(esc_html__(' <a href="http://'.$_SERVER['SERVER_NAME'].'/wp-admin/post-new.php?post_type=job_listing">Don\'t you want to create a specific class for that student(s) ?</a>';
         }
         else {
           foreach ($classes as $class) {
