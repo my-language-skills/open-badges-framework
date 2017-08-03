@@ -1,4 +1,4 @@
-#Badges-Issuer-for-wp
+# Badges-Issuer-for-wp Documentation 1
 
 Badges for Languages is a on-line certification issuer with OpenBadges technology. Badges for Languages issue non official certifications for all the languages that exist for the C.E.F.R for Languages levels, and certifications for the level of the teachers.
 
@@ -13,7 +13,6 @@ Badges for languages is created for second languages education but out of the bo
 * Collect the student certifications in the student profile
 
 Books for languages integrate in one place several digital tools for Language teachers. All of those complements are possible thanks to WordPress and some Plugins made for the project or  Badges-Issuer-for-wp installed.
-
 
 ## Complements
 Badges-Issuer-for-wp works  with any theme. But we did integrate with several plugins and one theme in order to be able to enhance the power of the plugin.
@@ -54,7 +53,6 @@ This section provides a set of technical resources to guide you through the proc
 ### openbadges-backpack
 With the Issuer API, you can push earner badges to the Mozilla hosted Backpack. This tutorial will walk you through the process of sending earner badges to the Backpack via the Issuer API script. The API handles getting the earner's permission to push to their Backpack, so your own code only has to pass the details of badges you are trying to send, then if necessary retrieve the response from the API.
 [Using the Issuer API](https://github.com/mozilla/openbadges-backpack/wiki/using-the-issuer-api)
-
 
 As an issuer, you can push earner badges to the Mozilla hosted Backpack with their permission. You can do this using the Issuer API or using Backpack Connect. This guide demonstrates using the Backpack Connect approach to send earner badges to their Backpacks.
 
