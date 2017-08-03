@@ -114,10 +114,10 @@ class Badge
     $hash_name = hash("sha256", $receiver.$this->name.$this->language);
     $url_mail = "http://".$_SERVER['SERVER_NAME']."/wp-content/plugins/badges-issuer-for-wp/includes/utils/get_badge.php?hash=".$hash_name;
 
-    $subject = "Badges4Languages - You have just earned a badge"; //entering a subject for email
+    $subject = __("Badges4Languages - You have just earned a badge",'badges-issuer-for-wp'); //entering a subject for email
 
     //Message displayed in the email
-    $message= '
+    $message= __('
     <html>
             <head>
                     <meta http-equiv="Content-Type" content="text/html"; charset="utf-8" />
@@ -144,7 +144,7 @@ class Badge
                 </div>
             </body>
     </html>
-    ';
+    ','badges-issuer-for-wp');
 
     //Setting headers so it's a MIME mail and a html
     $headers = "From: badges4languages <colomet@hotmail.com>\n";

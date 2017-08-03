@@ -138,7 +138,7 @@
           display_error_message($message);
         }
         else
-          display_success_message("Badge sent to all persons.");
+          display_success_message(__("Badge sent to all persons.",'badges-issuer-for-wp'));
       }
     }
 
