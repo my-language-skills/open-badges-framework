@@ -21,6 +21,9 @@ Students, Teachers and Academies offer different tools for each situation
 CEFR Badges
 Use badges alienated with the CEFR for the languages A1, A2, B1, B2, C1 and C2
 
+Badges for teachers
+Show your level expertise for the language you teach (T1, T2, T3, T4, T5 and T6)
+
 Unlimited type of badges
 Academy teachers can create unlimited number of badges for specifically purposes
 
@@ -36,7 +39,7 @@ Send badges to your class by pasting the emails at once.
 Students Log
 Save the information of your classes and badges. Forever.
 
-Class Revie
+Class Review
 Students can write a comment for your class
 
 Answer the Review
@@ -77,3 +80,6 @@ Show your badges and your classes in your profile
 
 Teacher profile
 Show your badges, classes and the rating in your profile
+
+Self badges issue
+Receive the badges for your level of languages
