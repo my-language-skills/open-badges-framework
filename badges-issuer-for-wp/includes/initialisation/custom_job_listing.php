@@ -36,10 +36,10 @@ function load_job_listing_class_metaboxes() {
 
       add_meta_box( 'id_meta_box_class_students', 'Class Students', array( $this, 'meta_box_class_students' ), 'job_listing', 'normal', 'high' );
 
-      if($current_user->roles[0]=="academy")
+      if($current_user->roles[0]=="academy" || $current_user->roles[0]=="administrator")
         add_meta_box('id_meta_box_class_language', 'Class language', array($this, 'meta_box_class_language'), 'job_listing', 'side', 'high');
 
-      if($current_user->roles[0]=="academy")
+      if($current_user->roles[0]=="academy" || $current_user->roles[0]=="administrator")
         add_meta_box('id_meta_box_class_level', 'Class level', array($this, 'meta_box_class_level'), 'job_listing', 'side', 'high');    
     }
 
@@ -91,7 +91,7 @@ function load_job_listing_class_metaboxes() {
       <table id="box_students" name="<?php echo $post->ID; ?>" width="100%">
         <thead>
           <tr>
-            <th width="0%">Student's login</th>
+            <th width="0%">Student's login/mail</th>
             <th width="0%">Level</th>
             <th width="0%">Language</th>
             <th width="0%">Date</th>

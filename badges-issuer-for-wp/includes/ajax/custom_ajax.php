@@ -44,8 +44,8 @@
 
     function action_languages_form() {
       display_languages_select_form();
-      echo ' Can take few seconds to load.';
-      echo '<br /> <a href="#" id="display_mi_languages_'.$_POST['form'].'">Just display most important languages</a>';
+      printf(__(' Can take few seconds to load.','badges-issuer-for-wp'));
+      printf(esc_html__('<br /> <a href="#" id="display_mi_languages_'.$_POST['form'].'">Just display most important languages</a>'));
     }
 
     add_action('CUSTOMAJAX_action_mi_languages_form', 'action_mi_languages_form');
@@ -85,11 +85,13 @@
 
        _e( '<b>Class* : </b><br />','badges-issuer-for-wp');
 
+        $settings_id_links = get_settings_links();
+
         if(empty($classes)) {
           if($current_user->roles[0]=="teacher")
-            printf(__('You need an academy account in order to create your own classes.','badges-issuer-for-wp'));
+            printf(__('<a href="'.get_page_link($settings_id_links["link_not_academy"]).'">You need an academy account in order to create your own classes.</a>','badges-issuer-for-wp'));
           elseif($current_user->roles[0]=="academy")
-            echo ' <a href="http://'.$_SERVER['SERVER_NAME'].'/wp-admin/post-new.php?post_type=job_listing">Don\'t you want to create a specific class for that student(s) ?</a>';
+            printf(esc_html__(' <a href="'.get_page_link($settings_id_links["link_create_new_class"]).'">Don\'t you want to create a specific class for that student(s) ?</a>'));
         }
         else {
           foreach ($classes as $class) {
@@ -161,7 +163,7 @@
           var tab = eval(tab_name);
 
           var content = '<label for="language_description"><b><?php _e("Language of badge description* : ","badges-issuer-for-wp") ?></b></label><br /><select name="language_description" id="language_description">';
- 
+
           tab.forEach(function(lang) {
             content = content + '<option value="' + lang + '">' + lang + '</option>';
           });
@@ -175,7 +177,7 @@
           var tab = eval(tab_name);
 
           var content = '<label for="language_description"><b><?php _e("Language of badge description* : ","badges-issuer-for-wp") ?></b></label><br /><select name="language_description" id="language_description">';
- 
+
           tab.forEach(function(lang) {
             content = content + '<option value="' + lang + '">' + lang + '</option>';
           });

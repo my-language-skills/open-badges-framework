@@ -92,21 +92,6 @@ function meta_box_type($post){
 
 }
 
-/* Adds the taxonomy level into the badge custom post type */
-
-add_action( 'init', 'add_badge_levels_tax' );
-
-function add_badge_levels_tax() {
-	register_taxonomy(
-		'level',
-		'badge',
-		array(
-			'label' => __( 'Level' ),
-			'rewrite' => array( 'slug' => 'level' ),
-			'hierarchical' => true,
-		)
-	);
-}
 
 /* Adds the metabox descriptions into the badge custom post type */
 
@@ -226,6 +211,22 @@ function create_field_of_education_tax() {
 		array(
 			'label' => __( 'Field of education' ),
 			'rewrite' => array( 'slug' => 'field_of_education' ),
+			'hierarchical' => true,
+		)
+	);
+}
+
+/* Adds the taxonomy level into the badge custom post type */
+
+add_action( 'init', 'add_badge_levels_tax' );
+
+function add_badge_levels_tax() {
+	register_taxonomy(
+		'level',
+		'badge',
+		array(
+			'label' => __( 'Level' ),
+			'rewrite' => array( 'slug' => 'level' ),
 			'hierarchical' => true,
 		)
 	);
