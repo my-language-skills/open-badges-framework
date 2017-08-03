@@ -85,11 +85,13 @@
 
        _e( '<b>Class* : </b><br />','badges-issuer-for-wp');
 
+        $settings_id_links = get_settings_links();
+
         if(empty($classes)) {
           if($current_user->roles[0]=="teacher")
-            printf(__('You need an academy account in order to create your own classes.','badges-issuer-for-wp'));
+            printf(__('<a href="'.get_page_link($settings_id_links["link_not_academy"]).'">You need an academy account in order to create your own classes.</a>','badges-issuer-for-wp'));
           elseif($current_user->roles[0]=="academy")
-            echo ' <a href="http://'.$_SERVER['SERVER_NAME'].'/wp-admin/post-new.php?post_type=job_listing">Don\'t you want to create a specific class for that student(s) ?</a>';
+            echo ' <a href="'.get_page_link($settings_id_links["link_create_new_class"]).'">Don\'t you want to create a specific class for that student(s) ?</a>';
         }
         else {
           foreach ($classes as $class) {

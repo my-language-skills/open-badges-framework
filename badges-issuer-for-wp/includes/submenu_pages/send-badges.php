@@ -162,24 +162,27 @@
         // get all badges that exist
         $badges = get_all_badges();
 
-        display_levels_radio_buttons($badges, "self");
-        echo '<div id="select_badge"></div>';
-
         echo '<br /><br />';
+
         echo '<div id="languages_form_a">';
         display_languages_select_form($just_most_important_languages=true);
         _e('<a href="#" id="display_languages_a">Display all languages</a> Can take few seconds to load.','badges-issuer-for-wp');
         echo '</div>';
-        echo '<br /><br />';
+        echo '<br />';
+
+        display_levels_radio_buttons($badges, "self");
+        echo '<div id="select_badge"></div>';
+
+        echo '<br />';
         ?>
+        <div id="result_languages_description"></div>
+
         <input type="hidden" name="mail" value="<?php echo $current_user->user_email; ?>" />
         <input type="hidden" name="sender" value="SELF" />
 
         <label for="comment"><b><?php _e( 'Comment : ','badges-issuer-for-wp' ); ?></b></label><br />
         <textarea name="comment" id="comment" rows="10" cols="80"></textarea><br />
 
-        <div id="result_languages_description"></div>
-        <br /><br />
         <input type="submit" id="submit_button_a" class="button-primary" value="<?php _e('Send a badge','badges-issuer-for-wp'); ?>"/>
       </form>
       </div>
@@ -208,31 +211,36 @@
           // get all badges that exist
           $badges = get_all_badges();
 
-          display_levels_radio_buttons($badges, "send");
-          echo '<div id="select_badge"></div>';
-
           echo '<br /><br />';
           echo '<div id="languages_form_b">';
           display_languages_select_form($just_most_important_languages=true);
           _e('<a href="#" id="display_languages_b">Display all languages</a>','badges-issuer-for-wp');
           echo '</div>';
-          echo '<br /><br />';
+          echo '<br />';
+
+          display_levels_radio_buttons($badges, "send");
+          echo '<div id="select_badge"></div>';
+
+          echo '<br />';
+          
           ?>
-          <label for="mail"><b><?php _e( 'Receiver\'s mail adress* :','badges-issuer-for-wp' ); ?> </b></label><br />
-          <input type="text" name="mail" id="mail" class="mail"/>
-          <br /><br />
+          <div id="result_languages_description"></div>
+
           <?php
             if($current_user->roles[0]=="teacher" || $current_user->roles[0]=="academy" || $current_user->roles[0]=="administrator") {
                 echo '<div id="select_class"></div>';
-                echo '<br /><br />';
+                echo '<br />';
             }
           ?>
+
+          <label for="mail"><b><?php _e( 'Receiver\'s mail adress* :','badges-issuer-for-wp' ); ?> </b></label><br />
+          <input type="text" name="mail" id="mail" class="mail"/>
+          <br /><br />
+
           <input type="hidden" name="sender" value="<?php echo $current_user->user_email; ?>" />
           <label for="comment"><b><?php _e( 'Comment : ','badges-issuer-for-wp' ); ?></b></label><br />
           <textarea name="comment" id="comment" rows="10" cols="80"></textarea><br />
 
-          <div id="result_languages_description"></div>
-          <br /><br />
           <input type="submit" id="submit_button_b" class="button-primary" value="<?php _e('Send a badge','badges-issuer-for-wp'); ?>"/>
         </form>
 
@@ -260,32 +268,38 @@
           // get all badges that exist
           $badges = get_all_badges();
 
-          display_levels_radio_buttons($badges, "send");
-          echo '<div id="select_badge"></div>';
-
           echo '<br /><br />';
           echo '<div id="languages_form_c">';
           display_languages_select_form($just_most_important_languages=true);
           printf(__('<a href="#" id="display_languages_c">Display all languages</a>','badges-issuer-for-wp'));
           echo '</div>';
+
+          echo '<br />';
+
+          display_levels_radio_buttons($badges, "send");
+          echo '<div id="select_badge"></div>';
+
+          echo '<br />';
+          
           ?>
-          <br /><br />
-          <label for="mail"><b><?php _e( 'Receivers\' mail adresses* (one mail adress per line) : ','badges-issuer-for-wp' ); ?></b></label><br />
-          <textarea name="mail" id="mail" class="mail" rows="10" cols="50"></textarea>
-          <br /><br />
+          <div id="result_languages_description"></div>
+
           <?php
             if($current_user->roles[0]=="teacher" || $current_user->roles[0]=="academy" || $current_user->roles[0]=="administrator") {
                 echo '<div id="select_class"></div>';
-                echo '<br /><br />';
+                echo '<br />';
             }
           ?>
+
+          <label for="mail"><b><?php _e( 'Receivers\' mail adresses* (one mail adress per line) : ','badges-issuer-for-wp' ); ?></b></label><br />
+          <textarea name="mail" id="mail" class="mail" rows="10" cols="50"></textarea>
+          <br /><br />
 
           <input type="hidden" name="sender" value="<?php echo $current_user->user_email; ?>" />
           <br /><br />
           <label for="comment"><b><?php _e( 'Comment : ','badges-issuer-for-wp' ); ?></b></label><br />
           <textarea name="comment" id="comment" rows="10" cols="80"></textarea><br />
-
-          <div id="result_languages_description"></div>
+          
           <br /><br />
           <input type="submit" id="submit_button_c" class="button-primary" value="<?php _e('Send a badge','badges-issuer-for-wp'); ?>"/>
         </form>
