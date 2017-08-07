@@ -55,7 +55,7 @@ get_header();
 
 												<li class="date-posted" itemprop="datePosted"><?php the_job_publish_date(); ?></li>
 
-												<li class="level" ><?php get_post_meta($post->ID, '_job_listing_level', true); ?></li>
+												<li class="level" ><?php echo get_post_meta($post->ID, '_job_listing_level', true); ?></li>
 
 												<?php if ( is_position_filled() ) : ?>
 													<li class="position-filled"><?php _e( 'This position has been filled', 'wp-job-manager' ); ?></li>

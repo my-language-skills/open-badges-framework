@@ -394,4 +394,18 @@ function can_user_reply($user_login, $class_id) {
     return false;
 }
 
+/**
+ * Returns the id links written in the corresponding json file.
+ *
+ * @author Nicolas TORION
+ * @since 1.0.0
+ * @return $settings_links The array of id links.
+*/
+function get_settings_links() {
+  $content = file_get_contents(plugin_dir_path( dirname( __FILE__ ) ) . '../../../uploads/settings/json/links.json');
+  $settings_links = json_decode($content, true);
+
+  return $settings_links;
+}
+
 ?>

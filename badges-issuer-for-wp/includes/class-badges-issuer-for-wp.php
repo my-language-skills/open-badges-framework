@@ -225,3 +225,4 @@ if(is_plugin_active("wp-job-manager/wp-job-manager.php"))
 	require_once plugin_dir_path( __FILE__ ) . 'initialisation/custom_job_listing.php';
 
 require plugin_dir_path( __FILE__ ) . 'initialisation/create_badges_issuer_file.php';
+require plugin_dir_path( __FILE__ ) . 'initialisation/create_settings_json_files.php';
