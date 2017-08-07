@@ -174,6 +174,18 @@ An Academy teacher role can send Multiple badges to Multiple students (Certified
 
 ## Creation of Classes
 
+## User profile
+All the roles have a profile for tracking the information of the receive badges.
+
+The save information in the profile is:
+* Badge name
+* Badge language
+* Sender
+* Comment
+
+## Shortcodes
+The frond-end fuctionality can be use in any page with the shortcode [send_badges]
+
 
 
 Manage Listings and Content Organization
