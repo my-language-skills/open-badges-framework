@@ -14,7 +14,7 @@ Badges for languages is created for second languages education but out of the bo
 
 Books for languages integrate in one place several digital tools for Language teachers. All of those complements are possible thanks to WordPress and some Plugins made for the project or  Badges-Issuer-for-wp installed.
 
-## Complements
+### Complements
 Badges-Issuer-for-wp works  with any theme. But we did integrate with several plugins and one theme in order to be able to enhance the power of the plugin.
 
 Thanks to those complements, Badges4Languages can offer a listing/directory for teachers and their classes, charge for the classes, and much more. With those plugins and theme, Badges-Issuer-for-wp can:
@@ -24,12 +24,12 @@ Thanks to those complements, Badges4Languages can offer a listing/directory for 
 * To have a rating for classes and teachers
 * To offer a portfolio for students and teachers
 
-### Theme
+## Theme
 [Listify](https://themeforest.net/item/listify-wordpress-directory-theme/9602611)
  is a top rated and popular directory theme. It’s compatible with several WordPress plugins (the WP Job Manager and WooCommerce plugins are required with the theme) and booking services as well. To add to this, [Astoundify provides detailed documentation](http://listify.astoundify.com/)
 , and several hooks and settings to customize the look of the theme.
 
-### The Plugin integrates with the following plugins right out of the box:
+## The Plugin integrates with the following plugins right out of the box:
 
 [WP Job Manager (free)](https://wordpress.org/plugins/wp-job-manager/)
 [Reviews for Job Manager (free)](https://astoundify.com/products/wp-job-manager-reviews/)
@@ -44,7 +44,7 @@ Open Badges are verifiable, portable digital badges with embedded metadata about
 Each Open Badge is associated with an image and information about the badge, its recipient, the issuer, and any supporting evidence. All this information may be packaged within a badge image file that can be displayed via online CVs and social networks. Thousands of organizations across the world issue badges in accordance with the Open Badges Specification, from non-profits to major employers to educational institutions at all levels.
 [What’s an Open Badge?](https://openbadges.org/get-started/)
 
-## Developers Guide
+### Developers Guide
 Badges for Languages use OpenBadges API for the delivery of the credentials (Badges). The badges go from the plugin to the [Backpack](https://backpack.openbadges.org/backpack/welcome).
 
 This section provides a set of technical resources to guide you through the processes of creating, issuing and displaying Open Badges. The Specification provides technical documentation and code examples. These guides will build on those examples.
