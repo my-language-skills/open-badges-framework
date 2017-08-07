@@ -28,64 +28,41 @@ Listify also use several plugins for an enhancement of the features of the theme
 
 #### Plugins
 http://listify.astoundify.com/article/481-currently-compatible-add-ons
-WP All Import
+
+* (WP All Import)[http://listify.astoundify.com/category/832-wp-all-import]
 Import your listings from a CSV or XML file.
-
-
-WP Job Manager
+* (WP Job Manager)[http://listify.astoundify.com/category/220-wp-job-manager]
 Customization, Support, and More
-
-
-WooCommerce Simple Registration
+* (WooCommerce Simple Registration)[http://listify.astoundify.com/category/548-woocommerce-simple-registration]
 Site Registration Using WooCommerce
-
-
-WooCommerce Social Login
+* (WooCommerce Social Login)[http://listify.astoundify.com/category/528-woocommerce-social-login]
 Make It Easy for Customers to Login
-
-
-WooCommerce
+* (WooCommerce)[http://listify.astoundify.com/category/225-woocommerce]
 Create a Shop
-
-
-Restrict Content Pro
+* (Restrict Content Pro)[http://listify.astoundify.com/category/324-restrict-content-pro]
 Restrict Content Based on Payment
-
-
-FacetWP
+* (FacetWP)[http://listify.astoundify.com/category/314-facetwp]
 Control Your Listing Filters
-
-
-Listing Payments
+* (Listing Payments)[http://listify.astoundify.com/category/222-listing-payments]
 Charge to Post a Listing
-
-
-JetPack
+* (JetPack)[http://listify.astoundify.com/category/226-jetpack]
 Social Sharing, Custom CSS, and More
-
-
-Reviews
+* (Reviews)[http://listify.astoundify.com/category/477-reviews]
 Add In-Depth Review Options
-
-Products
+* (Products)[http://listify.astoundify.com/category/565-products]
 Link WooCommerce Products to Listings
-
-Contact and Claim
+* (Contact and Claim)[http://listify.astoundify.com/category/224-wp-job-manager---contact-listing]
 Contact Listing Authors and Claim Listings
-
-Tags/Ammenities
+* (Tags/Ammenities)[http://listify.astoundify.com/category/346-tags]
 Tag and Organize by Terms
-
-Regions/Locations
+* (Regions/Locations)[http://listify.astoundify.com/category/223-wp-job-manager---regions]
 Filter by Predefined Regions
-
-Bookmarks/Favorites
+* (Bookmarks/Favorites)[http://listify.astoundify.com/category/345-bookmarksfavorites]
 Show Your Love for Listings
 
 
 ## Setup the plugin
 ### Plugin settings
-
 #### Change the badges issuer informations
 OpenBadges need some key information for the delivery of the badge. Without that information, the plugin will not work:
 * Site Name
@@ -108,7 +85,28 @@ Out of the box, a new user can be (after the login) one of those roles (upon the
 
 The B4L Settings page allow in **Change issuer badges page links** to select the page where the [Register Form](http://docs.restrictcontentpro.com/article/1597-registerform) is created.
 
-### Creation of the Badges
+#### Student role
+* Can receive badges and to keep the profile information.
+* Can self issue a non certified badge.
+* Can comment the class after receiving the badge.
+
+#### Teacher role
+The same as Student role plus:
+* Can self issue a teacher badge.
+* Can send a non certified badge to one student at a time.
+* Save all the students information in one single class.
+* Can answer the class Studens' comments.
+* The profile can be delete but the Classes information can not ever be deleted.
+
+#### Academy teacher role
+* Can send a non certified badge to multiple students at a time.
+* Can send a certified badge to one student/multiple students at a time.
+* Can create multiple classes.
+
+#### Administrator role
+* Can send certified teachers badges
+
+## Creation of the Badges
 Badges-Issuer-for-wp allow the creation of two types of badges for the **Administartors** of the site. Normal badges and Certified badges.
 * Normal badges can be delivery by any user of the site with Teacher Role.
 * Certified badges are allowed just for teachers with the Academy Role.
