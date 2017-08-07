@@ -21,7 +21,7 @@ Not all the plugins are 100% integrated with Badges-Issuer-for-wp, some of them 
 ### Integrated Theme
 Any theme can work with Badges-Issuer-for-wp, but just themes that are integrated with Job Manager can use al the features of the plugin as both plugins are integrated.
 
-At Books for Languages we use (Listify)[https://themeforest.net/item/listify-wordpress-directory-theme/9602611] as the theme for the platform. Here is the link to the (documentation)[http://listify.astoundify.com/].
+At Books for Languages we use [Listify](https://themeforest.net/item/listify-wordpress-directory-theme/9602611] as the theme for the platform. Here is the link to the (documentation)[http://listify.astoundify.com/).
 
 Listify also use several plugins for an enhancement of the features of the theme.
 
@@ -29,35 +29,35 @@ Listify also use several plugins for an enhancement of the features of the theme
 #### Plugins
 http://listify.astoundify.com/article/481-currently-compatible-add-ons
 
-* (WP All Import)[http://listify.astoundify.com/category/832-wp-all-import]
+* [WP All Import](http://listify.astoundify.com/category/832-wp-all-import)
 Import your listings from a CSV or XML file.
-* (WP Job Manager)[http://listify.astoundify.com/category/220-wp-job-manager]
+* [WP Job Manager](http://listify.astoundify.com/category/220-wp-job-manager)
 Customization, Support, and More
-* (WooCommerce Simple Registration)[http://listify.astoundify.com/category/548-woocommerce-simple-registration]
+* [WooCommerce Simple Registration](http://listify.astoundify.com/category/548-woocommerce-simple-registration)
 Site Registration Using WooCommerce
-* (WooCommerce Social Login)[http://listify.astoundify.com/category/528-woocommerce-social-login]
+* [WooCommerce Social Login](http://listify.astoundify.com/category/528-woocommerce-social-login)
 Make It Easy for Customers to Login
-* (WooCommerce)[http://listify.astoundify.com/category/225-woocommerce]
+* [WooCommerce](http://listify.astoundify.com/category/225-woocommerce)
 Create a Shop
-* (Restrict Content Pro)[http://listify.astoundify.com/category/324-restrict-content-pro]
+* [Restrict Content Pro](http://listify.astoundify.com/category/324-restrict-content-pro)
 Restrict Content Based on Payment
-* (FacetWP)[http://listify.astoundify.com/category/314-facetwp]
+* [FacetWP](http://listify.astoundify.com/category/314-facetwp)
 Control Your Listing Filters
-* (Listing Payments)[http://listify.astoundify.com/category/222-listing-payments]
+* [Listing Payments](http://listify.astoundify.com/category/222-listing-payments)
 Charge to Post a Listing
-* (JetPack)[http://listify.astoundify.com/category/226-jetpack]
+* [JetPack](http://listify.astoundify.com/category/226-jetpack)
 Social Sharing, Custom CSS, and More
-* (Reviews)[http://listify.astoundify.com/category/477-reviews]
+* [Reviews](http://listify.astoundify.com/category/477-reviews)
 Add In-Depth Review Options
-* (Products)[http://listify.astoundify.com/category/565-products]
+* [Products](http://listify.astoundify.com/category/565-products)
 Link WooCommerce Products to Listings
-* (Contact and Claim)[http://listify.astoundify.com/category/224-wp-job-manager---contact-listing]
+* [Contact and Claim](http://listify.astoundify.com/category/224-wp-job-manager---contact-listing)
 Contact Listing Authors and Claim Listings
-* (Tags/Ammenities)[http://listify.astoundify.com/category/346-tags]
+* [Tags/Ammenities](http://listify.astoundify.com/category/346-tags)
 Tag and Organize by Terms
-* (Regions/Locations)[http://listify.astoundify.com/category/223-wp-job-manager---regions]
+* [Regions/Locations](http://listify.astoundify.com/category/223-wp-job-manager---regions)
 Filter by Predefined Regions
-* (Bookmarks/Favorites)[http://listify.astoundify.com/category/345-bookmarksfavorites]
+* [Bookmarks/Favorites](http://listify.astoundify.com/category/345-bookmarksfavorites)
 Show Your Love for Listings
 
 
