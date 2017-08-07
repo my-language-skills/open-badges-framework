@@ -18,51 +18,6 @@ function get_all_badges() {
 }
 
 /**
- * Returns all languages of description of badges given.
- *
- * @author Nicolas TORION
- * @since 1.0.0
- * @param $badges Array of badges.
- * @return $descriptions_languages Array of badges names associated to the available languages of their description.
-*/
-function get_all_languages_description($badges) {
-  $descriptions_languages = array();
-  foreach ($badges as $badge) {
-    foreach (array_keys(get_badge_descriptions(get_the_terms($badge->ID, 'level')[0]->name)) as $lang) {
-      $descriptions_languages[$badge->post_title][] = $lang;
-    }
-  }
-  return $descriptions_languages;
-}
-
-/**
- * Returns the description of a badge which is writed in the lines given.
- *
- * @author Nicolas TORION
- * @since 1.0.0
- * @param $badge_name The name of the badge.
- * @param $lines Lines given.
- * @return $description Content of the description of the badge.
-*/
-function get_badge_description($badge_level, $lines) {
-  $description_begin = "==".$badge_level."==\n";
-  $i=0;
-  $description="";
-
-  while($lines[$i]!=$description_begin && $i<sizeof($lines)) {
-    $i++;
-  }
-
-  $i++;
-  while($lines[$i]!="======\n" && $i<sizeof($lines)) {
-    $description=$description.$lines[$i]."\n";
-    $i++;
-  }
-
-  return $description;
-}
-
-/**
  * Returns all the descriptions of a badge.
  *
  * @author Nicolas TORION
@@ -70,18 +25,15 @@ function get_badge_description($badge_level, $lines) {
  * @param $badge_level The level of the badge.
  * @return $descriptions Array of descriptions of the badge associated to their language.
 */
-function get_badge_descriptions($badge_level) {
-  $descriptions_dir = plugin_dir_path( dirname( __FILE__ ) )."badges-descriptions/";
-  $descriptions_files = scandir($descriptions_dir);
-  $descriptions_files = array_diff($descriptions_files, array(".", "..") );
+function get_badge_descriptions($badge) {
   $descriptions = array();
 
-  foreach ($descriptions_files as $file) {
-    $lines = file($descriptions_dir.$file);
-    $lang = explode('.', $file)[0];
-    $content = get_badge_description($badge_level, $lines);
-    if(str_replace("\n", "", $content)!="")
-      $descriptions[$lang] = $content;
+  $descriptions["English"] = $badge->post_content;
+
+  $comments = get_comments(array('post_id'=>$badge->ID));
+  foreach($comments as $comment) {
+    $lang = get_comment_meta($comment->comment_ID, '_comment_translation_language', true);
+    $descriptions[$lang] = $comment->comment_content;
   }
 
   return $descriptions;
@@ -100,7 +52,7 @@ function get_badge_descriptions($badge_level) {
 function get_badge($badge_name, $badges, $lang) {
   foreach ($badges as $badge) {
     if($badge_name==$badge->post_name) {
-      $badge_description = get_badge_descriptions(get_the_terms($badge->ID, 'level')[0]->name)[$lang];
+      $badge_description = get_badge_descriptions($badge)[$lang];
       return array("name"=>$badge->post_title, "description"=>$badge_description, "image"=>get_the_post_thumbnail_url($badge->ID));
     }
   }
@@ -336,9 +288,9 @@ function can_student_write_comment($student_login, $class_id) {
 function get_days_from_date($date) {
   $datetime1 = date_create($date);
   $datetime2 = date_create(date("Y-m-d"));
-    
+
   $interval = date_diff($datetime1, $datetime2);
-    
+
   return $interval->format('%d');
 }
 
@@ -375,7 +327,7 @@ function has_student_write_comment($student_login, $class_id) {
 */
 function can_user_reply($user_login, $class_id) {
   $class_post = get_post($class_id);
-  
+
   if($class_post->post_type=="class") {
     if($class_post->post_title==$user_login)
       return true;
@@ -384,7 +336,7 @@ function can_user_reply($user_login, $class_id) {
   }
   elseif ($class_post->post_type=="job_listing") {
     $author_login = get_userdata($class_post->post_author)->user_login;
-  
+
     if($author_login==$user_login)
       return true;
     else

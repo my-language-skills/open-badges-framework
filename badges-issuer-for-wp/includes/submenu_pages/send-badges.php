@@ -79,13 +79,18 @@
         <?php
         if($current_user->roles[0]=="teacher" || $current_user->roles[0]=="academy" || $current_user->roles[0]=="administrator" ) {
         ?>
-        <div id="tabs-2">
-          <?php tab_issue(); ?>
-        </div>
-        <div id="tabs-3">
-          <?php tab_multiple_issues(); ?>
-        </div>
-        <?php } ?>
+          <div id="tabs-2">
+            <?php tab_issue(); ?>
+          </div>
+          <?php
+          if($current_user->roles[0]=="academy" || $current_user->roles[0]=="administrator" ) {
+          ?>
+          <div id="tabs-3">
+            <?php tab_multiple_issues(); ?>
+          </div>
+          <?php 
+          }
+        } ?>
       </div>
       <?php
       // Traitement of form, a mail is sent to the student.

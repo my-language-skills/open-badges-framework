@@ -129,13 +129,12 @@
       <script>
         <?php
           $badges = get_all_badges();
-          $descriptions_languages = get_all_languages_description($badges);
 
           foreach ($badges as $badge){
-            $langs = $descriptions_languages[$badge->post_title];
+            $descriptions = get_badge_descriptions($badge);
             echo 'var '.str_replace("-", "_", $badge->post_name).'_description_languages = [';
             $i = 0;
-            foreach ($langs as $lang) {
+            foreach ($descriptions as $lang=>$description) {
               echo "'".$lang."'";
               if($i!=(sizeof($langs)-1))
                 echo ', ';
