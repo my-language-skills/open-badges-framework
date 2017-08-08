@@ -103,10 +103,26 @@ function custom_comment_badge($comment, $args, $depth) {
     <?php
     $translationlanguage = get_comment_meta( get_comment_ID(), '_comment_translation_language', true );
     echo '<p class="comment-language">Language of the translation : '.$translationlanguage.'</p>';
-
-    comment_text();
     ?>
-    <?php if ( 'div' != $args['style'] ) : ?>
+
+    <div id="<?php echo $comment->comment_ID; ?>" class="comment_content">
+      <div id="comment_text">
+        <?php
+        comment_text();
+        ?>
+      </div>
+
+      <?php
+      if ($current_user->roles[0]=="academy" && $current_user->ID==$comment->user_id) {
+        ?>
+        <a href="#" id="edit_comment_link">Edit your translation</a>
+        <?php
+      }
+      ?>
+    </div>
+
+    <?php
+    if ( 'div' != $args['style'] ) : ?>
     </div>
     <?php endif; ?>
     <?php

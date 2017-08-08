@@ -25,7 +25,8 @@
         'action_select_badge',
         'action_save_metabox_students',
         'action_languages_form',
-        'action_mi_languages_form'
+        'action_mi_languages_form',
+        'action_save_comment'
     );
 
     /* AJAX action to save metabox of students in class job listing type*/
@@ -186,6 +187,21 @@
         });
       </script>
       <?php
+    }
+
+    /* AJAX action to save the modifications made on a comment*/
+
+    add_action('CUSTOMAJAX_action_save_comment', 'action_save_comment');
+
+    function action_save_comment() {
+      $comment_id = $_POST['comment_id'];
+      $comment_text = $_POST['comment_text'];
+
+      $comment_arr = array();
+      $comment_arr['comment_ID'] = $comment_id;
+      $comment_arr['comment_content'] = $comment_text;
+
+      wp_update_comment($comment_arr);
     }
 
     if(in_array($action, $allowed_actions)) {
