@@ -40,11 +40,7 @@ function load_job_listing_class_metaboxes() {
         add_meta_box('id_meta_box_class_language', 'Class language', array($this, 'meta_box_class_language'), 'job_listing', 'side', 'high');
 
       if($current_user->roles[0]=="academy" || $current_user->roles[0]=="administrator")
-<<<<<<< HEAD
         add_meta_box('id_meta_box_class_level', 'Class level', array($this, 'meta_box_class_level'), 'job_listing', 'side', 'high');
-=======
-        add_meta_box('id_meta_box_class_level', 'Class level', array($this, 'meta_box_class_level'), 'job_listing', 'side', 'high');    
->>>>>>> 4e19c403a8beacf06ccb3d93cca589014fb428b7
     }
 
     /* Adds the metabox students of the class.*/
