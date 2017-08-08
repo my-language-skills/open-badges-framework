@@ -62,6 +62,17 @@ You can see all of the screenshots of the plugin [here](doc/screenshot.md "scree
 
 ## Changelog
 
+### 0.4.1
+
+* **ADDITIONS**
+  * Add of a section in the settings page for managing the links of the website.
+
+* **ENHANCEMENTS**
+  * Administrator can add or delete students from classes.
+  * System of trust improved : only students of a class can leave a review and a comment, and the teacher of the class is able to answer.
+* **BUGFIXES**
+  * Roles and capabilities.
+
 ### 0.4
 
 * **ADDITIONS**
