@@ -10,11 +10,29 @@
 
 class BadgeIssuer
 {
+  /**
+  *  $name The name of the badges issuer (The name of the company).
+  */
   var $name;
+  /**
+  * $image The image URL of the badges issuer.
+  */
   var $image;
+  /**
+  * $url The URL of the badges issuer's website.
+  */
   var $url;
+  /**
+  * $email The mail adress corresponding to the Mozilla Backpack account of the badges issuer.
+  */
   var $email;
 
+  /**
+   * The constructor of the BadgeIssuer Object. The constructor loads himself the values of the badges issuer in the JSON file.
+   *
+   * @author Nicolas TORION
+   * @since 1.0.0
+   */
   function __construct() {
     $content = file_get_contents(plugin_dir_path( dirname( __FILE__ ) ) . '../../../uploads/badges-issuer/json/badge-issuer.json');
     $badge_issuer_informations = json_decode($content, true);
@@ -25,6 +43,16 @@ class BadgeIssuer
     $this->email = $badge_issuer_informations['email'];
   }
 
+  /**
+   * Changes the informations of the badges issuer by the new ones.
+   *
+   * @author Nicolas TORION
+   * @since 1.0.0
+   * @param $name The new name of the badges issuer.
+   * @param $image The new image URL of the badges issuer.
+   * @param $url The new URL of the badges issuer's website.
+   * @param $email The new mail adress corresponding to the Mozilla Backpack account of the badges issuer.
+   */
   function change_informations($name, $image, $url, $email) {
     $this->name = $name;
     $this->image = $image;
@@ -34,6 +62,12 @@ class BadgeIssuer
     $this->save_informations();
   }
 
+  /**
+   * Saves the informations of the badges issuer in the JSON file used by Backpack to send badges.
+   *
+   * @author Nicolas TORION
+   * @since 1.0.0
+   */
   function save_informations() {
     $badges_issuer_file_content = array(
       "name"  => $this->name,
