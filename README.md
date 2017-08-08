@@ -21,7 +21,7 @@ Badges-Issuer extends this possibility by giving the proof that your certificati
 
 Plugin/Template Name works with:
 
- * ![PHP](https://img.shields.io/badge/PHP-5.6.X-blue.svg)
+ * ![PHP](https://img.shields.io/badge/PHP-7.X-blue.svg)
 
 ## Disclaimers
 
@@ -40,27 +40,31 @@ You can see all of the screenshots of the plugin [here](doc/screenshot.md "scree
  * **ENHANCEMENTS**
 
 ### now
-
- * System of trust
- * To allow to the administrator to add and delete students from a created class
- * Inform of the process to the senders of badges
  * Some modifications in class job listing template
- * To review the classes
  * To create students and teacher page
- * The sign languages inside a specific file
 
 ### soon
-
-  * Creation of students and teacher pages to show their informations and badges received.
-
-### future
-
-  * Create a default class for each new user (each time a new user have the teacher role, a new post with the name of the user is created).
-  * Teachers can atach students to inside of the classes and create new classes.
-  * Students can review the classes.
-
+ * To review the classes
+ * Inform of the process to the senders of badges
+ * Add a section in settings page to manage time for commenting a class
+ * Replace students' login by mail in the user profiles and class pages
+ * Description metabox - txt with translations
+ * Recomended resolution for cover image in "post class" page
+ * To use schema metadata for the badges information
+ * Fixing spam problem with email
+ * To delete all the information of the plugin option if we wish by deleting the plugin
 
 ## Changelog
+
+### 0.5
+
+* **ADDITIONS**
+  * Move descriptions into the content of the badges post. And teachers of academy can add translations of these descriptions directly in the comments of the badges post.
+  * Teachers of academy are able to modify their own translations of descriptions.
+
+* **ENHANCEMENTS**
+  * In the send badges page, certified badges are separated from the others badges.
+  * Some change of elements' name as written in documentation.md file.
 
 ### 0.4.1
 
