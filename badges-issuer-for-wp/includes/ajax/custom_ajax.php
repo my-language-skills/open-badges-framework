@@ -122,8 +122,17 @@
       });
 
       _e('<br /><b>Badge* : </b><br>','badges-issuer-for-wp');
+      $first_certified_badge = true;
       foreach ($badges_corresponding as $badge) {
-        echo '<input type="radio" name="input_badge_name" class="input-badge input-hidden" id="'.$_POST['form'].$badge->post_title.'" value="'.$badge->post_name.'"/><label for="'.$_POST['form'].$badge->post_title.'"><img src="'.get_the_post_thumbnail_url($badge->ID).'" width="40px" height="40px" /></label>';
+        if(get_post_meta($badge->ID,'_certification',true)=="not_certified")
+          echo '<input type="radio" name="input_badge_name" class="input-badge input-hidden" id="'.$_POST['form'].$badge->post_title.'" value="'.$badge->post_name.'"/><label for="'.$_POST['form'].$badge->post_title.'"><img src="'.get_the_post_thumbnail_url($badge->ID).'" width="40px" height="40px" /></label>';
+        elseif(get_post_meta($badge->ID,'_certification',true)=="certified") {
+          if($first_certified_badge) {
+            echo '<br><b>Certified Badges : </b><br>';
+            $first_certified_badge = false;
+          }
+          echo '<input type="radio" name="input_badge_name" class="input-badge input-hidden" id="'.$_POST['form'].$badge->post_title.'" value="'.$badge->post_name.'"/><label for="'.$_POST['form'].$badge->post_title.'"><img src="'.get_the_post_thumbnail_url($badge->ID).'" width="40px" height="40px" /></label>';
+        }
       }
 
       ?>
