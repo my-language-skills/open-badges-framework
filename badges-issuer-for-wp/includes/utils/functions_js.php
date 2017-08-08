@@ -255,4 +255,52 @@ function js_forms() {
   </script>
 <?php
 }
+
+
+add_action( 'admin_footer', 'edit_comment_translation' );
+add_action( 'wp_footer', 'edit_comment_translation' );
+
+/**
+ *
+ * JAVASCRIPT code to allow a teacher of the academy to edit his translations.
+ *
+ * @author Nicolas TORION
+ * @since 1.0.0
+*/
+function edit_comment_translation() {
+  ?>
+  <script>
+  jQuery("#edit_comment_link").on("click", function(){
+    var comment_content = jQuery(this).parent();
+    var comment_id = comment_content.attr("id");
+    var comment_text = comment_content.find("#comment_text");
+    var comment_text_value = comment_text.text();
+
+    var content='<textarea id="textarea_edit_comment" rows="6" cols="40">'+ comment_text_value +'</textarea>'
+    + '<a href="#" id="save_comment_link">Save your modifications</a>';
+    comment_content.html(content);
+
+    jQuery("#save_comment_link").on("click", function(){
+      var comment_text_value = comment_content.find("textarea").val();
+
+      var data = {
+        'action': 'action_save_comment',
+        'comment_id': comment_id,
+        'comment_text': comment_text_value
+      };
+
+  		// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
+  		jQuery.post("<?php echo "http://".$_SERVER['SERVER_NAME']."/wp-content/plugins/badges-issuer-for-wp/includes/ajax/custom_ajax.php"; ?>", data, function(response) {
+        console.log(response);
+      });
+
+      var content = comment_text_value + '<br /><br /><a href="#" id="edit_comment_link">Edit your translation</a>';
+      comment_content.html(content);
+    });
+  });
+
+  </script>
+
+  <?php
+}
  ?>

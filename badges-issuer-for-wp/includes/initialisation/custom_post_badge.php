@@ -55,7 +55,7 @@ function check($val, $expected) {
 add_action('add_meta_boxes','add_meta_box_certification');
 
 function add_meta_box_certification(){
-  add_meta_box('id_meta_box_certification', 'Certification', 'meta_box_certification', 'badge', 'side', 'high');
+  add_meta_box('id_meta_box_certification', 'Certification Type', 'meta_box_certification', 'badge', 'side', 'high');
 }
 
 function meta_box_certification($post){
@@ -76,7 +76,7 @@ function meta_box_certification($post){
 add_action('add_meta_boxes','add_meta_box_type');
 
 function add_meta_box_type(){
-  add_meta_box('id_meta_box_type', 'Type', 'meta_box_type', 'badge', 'side', 'high');
+  add_meta_box('id_meta_box_type', 'Target Type', 'meta_box_type', 'badge', 'side', 'high');
 }
 
 function meta_box_type($post){
@@ -115,7 +115,7 @@ function meta_box_descriptions($post){
 add_action('add_meta_boxes','add_meta_box_links');
 
 function add_meta_box_links(){
-  add_meta_box('id_meta_box_links', 'Badge Information', 'meta_box_links', 'badge', 'normal', 'high');
+  add_meta_box('id_meta_box_links', 'Badge Criteria', 'meta_box_links', 'badge', 'normal', 'high');
 }
 
 function display_add_link(){
@@ -230,6 +230,44 @@ function add_badge_levels_tax() {
 			'hierarchical' => true,
 		)
 	);
+}
+
+add_filter( 'template_include', 'badge_template', 1 );
+
+/**
+* Load the custom template for a single badge.
+*
+* @author Nicolas TORION
+* @since 1.0.0
+* @param $template_path The path of the template.
+* @return $template_path The path of the template.
+*/
+function badge_template( $template_path ) {
+  if ( get_post_type() == 'badge' ) {
+    if ( is_single() ) {
+      if ( $theme_file = locate_template( array ( 'badge_template.php' ) ) ) {
+        $template_path = $theme_file;
+      } else {
+       $template_path = plugin_dir_path( dirname( __FILE__ ) ) . 'templates/badge_template.php';
+      }
+    }
+  }
+  return $template_path;
+}
+
+
+add_action( 'comment_post', 'save_comment_meta_data' );
+function save_comment_meta_data( $comment_id ) {
+  echo "<script>console.log('save comment');</script>";
+  if (( isset( $_POST['language'] )) && ($_POST['language'] != ''))
+    add_comment_meta( $comment_id, '_comment_translation_language', $_POST['language'] );
+}
+
+add_filter( 'preprocess_comment', 'verify_comment_meta_data' );
+function verify_comment_meta_data( $commentdata ) {
+  if ( ! isset( $_POST['language'] ) )
+  wp_die( __( 'Error: You did not add a language. Hit the Back button on your Web browser and resubmit your comment with a language.' ) );
+  return $commentdata;
 }
 
 ?>

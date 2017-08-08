@@ -100,14 +100,14 @@ function meta_box_class_zero_students($post) {
   <table id="box_students" name="<?php echo $post->ID; ?>" width="100%">
     <thead>
       <tr>
-        <th width="0%">Student's login/mail</th>
-        <th width="0%">Level</th>
-        <th width="0%">Language</th>
-        <th width="0%">Date</th>
+        <th width="0%"><?php _e( 'Student\'s login/mail', 'badges-issuer-for-wp' ); ?></th>
+        <th width="0%"><?php _e( 'Level', 'badges-issuer-for-wp' ); ?></th>
+        <th width="0%"><?php _e( 'Language', 'badges-issuer-for-wp' ); ?></th>
+        <th width="0%"><?php _e( 'Date', 'badges-issuer-for-wp' ); ?></th>
         <?php
         if($current_user->roles[0]=='administrator') {
           ?>
-          <th width="0%">Action</th>
+          <th width="0%"><?php _e( 'Action', 'badges-issuer-for-wp' ); ?></th>
           <?php
         }
          ?>

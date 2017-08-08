@@ -25,7 +25,8 @@
         'action_select_badge',
         'action_save_metabox_students',
         'action_languages_form',
-        'action_mi_languages_form'
+        'action_mi_languages_form',
+        'action_save_comment'
     );
 
     /* AJAX action to save metabox of students in class job listing type*/
@@ -121,21 +122,29 @@
       });
 
       _e('<br /><b>Badge* : </b><br>','badges-issuer-for-wp');
+      $first_certified_badge = true;
       foreach ($badges_corresponding as $badge) {
-        echo '<input type="radio" name="input_badge_name" class="input-badge input-hidden" id="'.$_POST['form'].$badge->post_title.'" value="'.$badge->post_name.'"/><label for="'.$_POST['form'].$badge->post_title.'"><img src="'.get_the_post_thumbnail_url($badge->ID).'" width="40px" height="40px" /></label>';
+        if(get_post_meta($badge->ID,'_certification',true)=="not_certified")
+          echo '<input type="radio" name="input_badge_name" class="input-badge input-hidden" id="'.$_POST['form'].$badge->post_title.'" value="'.$badge->post_name.'"/><label for="'.$_POST['form'].$badge->post_title.'"><img src="'.get_the_post_thumbnail_url($badge->ID).'" width="40px" height="40px" /></label>';
+        elseif(get_post_meta($badge->ID,'_certification',true)=="certified") {
+          if($first_certified_badge) {
+            echo '<br><b>Certified Badges : </b><br>';
+            $first_certified_badge = false;
+          }
+          echo '<input type="radio" name="input_badge_name" class="input-badge input-hidden" id="'.$_POST['form'].$badge->post_title.'" value="'.$badge->post_name.'"/><label for="'.$_POST['form'].$badge->post_title.'"><img src="'.get_the_post_thumbnail_url($badge->ID).'" width="40px" height="40px" /></label>';
+        }
       }
 
       ?>
       <script>
         <?php
           $badges = get_all_badges();
-          $descriptions_languages = get_all_languages_description($badges);
 
           foreach ($badges as $badge){
-            $langs = $descriptions_languages[$badge->post_title];
+            $descriptions = get_badge_descriptions($badge);
             echo 'var '.str_replace("-", "_", $badge->post_name).'_description_languages = [';
             $i = 0;
-            foreach ($langs as $lang) {
+            foreach ($descriptions as $lang=>$description) {
               echo "'".$lang."'";
               if($i!=(sizeof($langs)-1))
                 echo ', ';
@@ -187,6 +196,21 @@
         });
       </script>
       <?php
+    }
+
+    /* AJAX action to save the modifications made on a comment*/
+
+    add_action('CUSTOMAJAX_action_save_comment', 'action_save_comment');
+
+    function action_save_comment() {
+      $comment_id = $_POST['comment_id'];
+      $comment_text = $_POST['comment_text'];
+
+      $comment_arr = array();
+      $comment_arr['comment_ID'] = $comment_id;
+      $comment_arr['comment_content'] = $comment_text;
+
+      wp_update_comment($comment_arr);
     }
 
     if(in_array($action, $allowed_actions)) {
