@@ -84,6 +84,25 @@ function add_roles() {
     $academy->add_cap('edit_job_listing_terms', false);
     $academy->add_cap('delete_job_listing_terms', false);
     $academy->add_cap('assign_job_listing_terms', false);
+
+    // ADMINISTRATOR ROLE
+    $admin = get_role('administrator');
+    $admin->add_cap('capability_send_badge');
+    $admin->add_cap('send_badge');
+
+    $admin->add_cap('job_listing');
+
+    $admin->add_cap('edit_class');
+    $admin->add_cap('edit_classes');
+    $admin->add_cap('edit_other_classes');
+    $admin->add_cap('edit_published_classes');
+    $admin->add_cap('publish_classes');
+    $admin->add_cap('read_class');
+    $admin->add_cap('read_classes');
+    $admin->add_cap('read_private_classes');
+    $admin->add_cap('delete_class');
+
+    $admin->add_cap('capability_settings');
 }
 
 add_action( 'init', 'add_roles');
