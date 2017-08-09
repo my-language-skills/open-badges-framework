@@ -56,6 +56,14 @@ You can see all of the screenshots of the plugin [here](doc/screenshot.md "scree
 
 ## Changelog
 
+### 0.5.1
+
+* **ENHANCEMENTS**
+  * Remove job listing metaboxes level and language.
+  
+* **BUGFIXES**
+  * Add verification on meta values before access. 
+
 ### 0.5
 
 * **ADDITIONS**
