@@ -242,7 +242,10 @@ function class_school_exists($teacher_name) {
  * @return $result A boolean indicating if the student is in the class or not.
 */
 function is_student_in_class($student_login, $class_id) {
-  $class_students = get_post_meta($class_id,"_class_students",true);
+  if(get_post_meta($class_id,"_class_students",true))
+    $class_students = get_post_meta($class_id,"_class_students",true);
+  else
+    $class_students = array();
   $result = false;
   foreach ($class_students as $class_student) {
     if($class_student['login']==$student_login)

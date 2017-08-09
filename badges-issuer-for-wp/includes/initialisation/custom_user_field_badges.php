@@ -10,7 +10,10 @@
 */
 
 function user_field_badges( $user ) {
-    $user_badges = get_the_author_meta( 'user_badges', $user->ID );
+    if(get_the_author_meta( 'user_badges', $user->ID ))
+      $user_badges = get_the_author_meta( 'user_badges', $user->ID );
+    else
+      $user_badges = array();
     ?>
     <h3><?php _e( 'Badges', 'badges-issuer-for-wp' ); ?></h3>
     <table width="100%">

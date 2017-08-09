@@ -55,7 +55,10 @@ function add_meta_boxes_class_zero() {
 /* Adds the metabox students of the class.*/
 
 function meta_box_class_zero_students($post) {
-  $class_students = get_post_meta($post->ID, '_class_students', true);
+  if(get_post_meta($post->ID, '_class_students', true))
+    $class_students = get_post_meta($post->ID, '_class_students', true);
+  else
+    $class_students = array();
 
   $current_user = wp_get_current_user();
   ?>

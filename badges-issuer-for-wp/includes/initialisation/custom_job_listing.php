@@ -24,7 +24,6 @@ function load_job_listing_class_metaboxes() {
 
     public function __construct() {
       add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ) );
-      add_action( 'save_post', array($this, 'save_metaboxes_job_listing'));
       add_filter( 'template_include', array($this, 'job_listing_template'), 1 );
     }
 
@@ -35,18 +34,16 @@ function load_job_listing_class_metaboxes() {
       get_currentuserinfo();
 
       add_meta_box( 'id_meta_box_class_students', 'Class Students', array( $this, 'meta_box_class_students' ), 'job_listing', 'normal', 'high' );
-
-      if($current_user->roles[0]=="academy" || $current_user->roles[0]=="administrator")
-        add_meta_box('id_meta_box_class_language', 'Class language', array($this, 'meta_box_class_language'), 'job_listing', 'side', 'high');
-
-      if($current_user->roles[0]=="academy" || $current_user->roles[0]=="administrator")
-        add_meta_box('id_meta_box_class_level', 'Class level', array($this, 'meta_box_class_level'), 'job_listing', 'side', 'high');
     }
 
     /* Adds the metabox students of the class.*/
 
     function meta_box_class_students($post) {
-      $class_students = get_post_meta($post->ID, '_class_students', true);
+      if(get_post_meta($post->ID, '_class_students', true))
+        $class_students = get_post_meta($post->ID, '_class_students', true);
+      else
+        $class_students = array();
+
       global $current_user;
       get_currentuserinfo();
       ?>
@@ -163,35 +160,6 @@ function load_job_listing_class_metaboxes() {
       }
 
       echo '</table>';
-    }
-
-    /* Adds the meatbox level of the class.*/
-
-    function meta_box_class_level($post){
-      $val = get_post_meta($post->ID,'_job_listing_level',true);
-
-      $levels = get_all_levels(get_all_badges(), $only_student=true);
-
-      foreach($levels as $level) {
-        echo '<input type="radio" value="'.$level.'" name="job_listing_level_input"';
-        check($val, $level);
-        echo '> '.$level.'<br>';
-      }
-    }
-
-    function meta_box_class_language($post){
-      $val = get_post_meta($post->ID,'_job_listing_language',true);
-      display_languages_select_form($just_most_important_languages=true, $language_selected=$val);
-    }
-
-    /* Saves the job listing metaboxes.*/
-    function save_metaboxes_job_listing($post_id){
-      if(isset($_POST['job_listing_level_input'])){
-        update_post_meta($post_id,'_job_listing_level', esc_html($_POST['job_listing_level_input']));
-      }
-      if(isset($_POST['language'])){
-        update_post_meta($post_id,'_job_listing_language', esc_html($_POST['language']));
-      }
     }
 
     /**

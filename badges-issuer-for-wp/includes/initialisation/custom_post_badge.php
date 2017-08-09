@@ -133,7 +133,10 @@ function display_add_link(){
 }
 
 function meta_box_links($post) {
-  $badge_links = get_post_meta($post->ID, '_badge_links', true);
+  if(get_post_meta($post->ID, '_badge_links', true))
+    $badge_links = get_post_meta($post->ID, '_badge_links', true);
+  else
+    $badge_links = array();
   ?>
   <script type="text/javascript">
 	jQuery(document).ready(function( $ ){

@@ -18,7 +18,7 @@ function js_form() {
     <script>
     jQuery("#badge_form_<?php echo $form; ?> .level").on("click", function() {
 
-      jQuery("#badge_form_<?php echo $form; ?> #select_badge").html("<br /><img src='http://<?php echo $_SERVER['SERVER_NAME']; ?>/wp-content/plugins/badges-issuer-for-wp/images/load.gif' width='50px' height='50px' />");
+      jQuery("#badge_form_<?php echo $form; ?> #select_badge").html("<br /><img src='<?php echo plugins_url( '../../images/load.gif', __FILE__ ); ?>' width='50px' height='50px' />");
 
       var data = {
   			'action': 'action_select_badge',
@@ -27,14 +27,14 @@ function js_form() {
   		};
 
   		// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
-  		jQuery.post("<?php echo "http://".$_SERVER['SERVER_NAME']."/wp-content/plugins/badges-issuer-for-wp/includes/ajax/custom_ajax.php"; ?>", data, function(response) {
+  		jQuery.post("<?php echo plugins_url( '../ajax/custom_ajax.php', __FILE__ ); ?>", data, function(response) {
   			jQuery("#badge_form_<?php echo $form; ?> #select_badge").html(response);
   		});
     });
 
     jQuery("#languages_form_<?php echo $form; ?>").on("click", "#display_languages_<?php echo $form ?>", function() {
       console.log("clicked");
-      jQuery("#languages_form_<?php echo $form; ?>").html("<br /><img src='http://<?php echo $_SERVER['SERVER_NAME']; ?>/wp-content/plugins/badges-issuer-for-wp/images/load.gif' width='50px' height='50px' />");
+      jQuery("#languages_form_<?php echo $form; ?>").html("<br /><img src='<?php echo plugins_url( '../../images/load.gif', __FILE__ ); ?>' width='50px' height='50px' />");
 
       var data = {
   			'action': 'action_languages_form',
@@ -42,14 +42,14 @@ function js_form() {
   		};
 
   		// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
-  		jQuery.post("<?php echo "http://".$_SERVER['SERVER_NAME']."/wp-content/plugins/badges-issuer-for-wp/includes/ajax/custom_ajax.php"; ?>", data, function(response) {
+  		jQuery.post("<?php echo plugins_url( '../ajax/custom_ajax.php', __FILE__ ); ?>", data, function(response) {
   			jQuery("#languages_form_<?php echo $form; ?>").html(response);
   		});
 
     });
 
     jQuery("#languages_form_<?php echo $form; ?>").on("click", "#display_mi_languages_<?php echo $form ?>", function() {
-      jQuery("#languages_form_<?php echo $form; ?>").html("<br /><img src='http://<?php echo $_SERVER['SERVER_NAME']; ?>/wp-content/plugins/badges-issuer-for-wp/images/load.gif' width='50px' height='50px' />");
+      jQuery("#languages_form_<?php echo $form; ?>").html("<br /><img src='<?php echo plugins_url( '../../images/load.gif', __FILE__ ); ?>' width='50px' height='50px' />");
 
       var data = {
         'action': 'action_mi_languages_form',
@@ -57,7 +57,7 @@ function js_form() {
       };
 
       // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
-      jQuery.post("<?php echo "http://".$_SERVER['SERVER_NAME']."/wp-content/plugins/badges-issuer-for-wp/includes/ajax/custom_ajax.php"; ?>", data, function(response) {
+      jQuery.post("<?php echo plugins_url( '../ajax/custom_ajax.php', __FILE__ ); ?>", data, function(response) {
         jQuery("#languages_form_<?php echo $form; ?>").html(response);
       });
 
@@ -69,7 +69,7 @@ function js_form() {
   ?>
   <script>
   function load_classes(form) {
-    jQuery("#badge_form_"+form+" #select_class").html("<br /><img src='http://<?php echo $_SERVER['SERVER_NAME']; ?>/wp-content/plugins/badges-issuer-for-wp/images/load.gif' width='50px' height='50px' />");
+    jQuery("#badge_form_"+form+" #select_class").html("<br /><img src='<?php echo plugins_url( '../../images/load.gif', __FILE__ ); ?>' width='50px' height='50px' />");
 
     var data = {
       'action': 'action_select_class',
@@ -79,7 +79,7 @@ function js_form() {
     };
 
     // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
-    jQuery.post("<?php echo "http://".$_SERVER['SERVER_NAME']."/wp-content/plugins/badges-issuer-for-wp/includes/ajax/custom_ajax.php"; ?>", data, function(response) {
+    jQuery.post("<?php echo plugins_url( '../ajax/custom_ajax.php', __FILE__ ); ?>", data, function(response) {
       jQuery("#badge_form_"+form+" #select_class").html(response);
     });
   }
@@ -148,7 +148,7 @@ function js_save_metabox_students() {
     };
 
 		// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
-		jQuery.post("<?php echo "http://".$_SERVER['SERVER_NAME']."/wp-content/plugins/badges-issuer-for-wp/includes/ajax/custom_ajax.php"; ?>", data, function(response) {
+		jQuery.post("<?php echo plugins_url( '../ajax/custom_ajax.php', __FILE__ ); ?>", data, function(response) {
       console.log(response);
     });
   };
@@ -290,7 +290,7 @@ function edit_comment_translation() {
       };
 
   		// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
-  		jQuery.post("<?php echo "http://".$_SERVER['SERVER_NAME']."/wp-content/plugins/badges-issuer-for-wp/includes/ajax/custom_ajax.php"; ?>", data, function(response) {
+  		jQuery.post("<?php echo plugins_url( '../ajax/custom_ajax.php', __FILE__ ); ?>", data, function(response) {
         console.log(response);
       });
 

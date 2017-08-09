@@ -63,25 +63,13 @@
     function action_select_class() {
 
       if(is_plugin_active("wp-job-manager/wp-job-manager.php")) {
-
-        $level = $_POST['level_selected'];
-        $language = $_POST['language_selected'];
-
         global $current_user;
         get_currentuserinfo();
 
         if($current_user->roles[0]=='administrator')
           $classes = get_all_classes();
         else {
-          $classes_teacher = get_classes_teacher($current_user->user_login);
-          $classes = array();
-          foreach ($classes_teacher as $class) {
-            $class_level = get_post_meta($class->ID,'_job_listing_level',true);
-            $class_language = get_post_meta($class->ID,'_job_listing_language',true);
-            if ($class_level==$level && $class_language==$language) {
-              $classes[] = $class;
-            }
-          }
+          $classes = get_classes_teacher($current_user->user_login);
         }
 
        _e( '<b>Class* : </b><br />','badges-issuer-for-wp');
