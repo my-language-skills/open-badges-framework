@@ -56,6 +56,18 @@ You can see all of the screenshots of the plugin [here](doc/screenshot.md "scree
 
 ## Changelog
 
+### 0.5.2
+
+* **ADDITIONS**
+  * A default image for representing a badge is displayed when the badge don't have an image.
+
+* **ENHANCEMENTS**
+  * Administrator can select the zeros classes of all teachers in the send badges page.
+  * The useless metabox descriptions in badge post page has been removed.
+  
+* **BUGFIXES**
+  * The bug in the send badges form when the badge name is a number is fixed.
+
 ### 0.5.1
 
 * **ENHANCEMENTS**
