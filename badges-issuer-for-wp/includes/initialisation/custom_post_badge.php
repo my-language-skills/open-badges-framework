@@ -92,24 +92,6 @@ function meta_box_type($post){
 
 }
 
-
-/* Adds the metabox descriptions into the badge custom post type */
-
-add_action('add_meta_boxes','add_meta_box_descriptions');
-
-function add_meta_box_descriptions(){
-  add_meta_box('id_meta_box_descriptions', 'Descriptions', 'meta_box_descriptions', 'badge', 'normal', 'high');
-}
-
-function meta_box_descriptions($post){
-  $descriptions = get_badge_descriptions($post->post_title);
-
-  foreach ($descriptions as $lang => $content) {
-    echo $lang." :<br />";
-    echo '<textarea name="description_'.$lang.'" rows="10" cols="100">'.$content.'</textarea><br />';
-  }
-}
-
 /* Adds the metabox links into the badge custom post type */
 
 add_action('add_meta_boxes','add_meta_box_links');

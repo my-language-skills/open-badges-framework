@@ -62,14 +62,19 @@
 
     function action_select_class() {
 
-      if(is_plugin_active("wp-job-manager/wp-job-manager.php")) {
         global $current_user;
         get_currentuserinfo();
 
-        if($current_user->roles[0]=='administrator')
-          $classes = get_all_classes();
+        if($current_user->roles[0]=='administrator') {
+          $classes = get_all_classes_zero();
+          if(is_plugin_active("wp-job-manager/wp-job-manager.php")) {
+            $classes_job_listing = get_all_classes();
+            $classes = array_merge($classes, $classes_job_listing);
+          }
+        }
         else {
-          $classes = get_classes_teacher($current_user->user_login);
+          if(is_plugin_active("wp-job-manager/wp-job-manager.php"))
+            $classes = get_classes_teacher($current_user->user_login);
         }
 
        _e( '<b>Class* : </b><br />','badges-issuer-for-wp');
@@ -87,7 +92,6 @@
             echo '<label for="class_'.$class->ID.'">'.$class->post_title.' </label><input name="class_for_student" id="class_'.$class->ID.'" type="radio" value="'.$class->ID.'"/>';
           }
         }
-      }
     }
 
     /* AJAX action to load the badges of the level given */
@@ -112,14 +116,25 @@
       _e('<br /><b>Badge* : </b><br>','badges-issuer-for-wp');
       $first_certified_badge = true;
       foreach ($badges_corresponding as $badge) {
-        if(get_post_meta($badge->ID,'_certification',true)=="not_certified")
-          echo '<input type="radio" name="input_badge_name" class="input-badge input-hidden" id="'.$_POST['form'].$badge->post_title.'" value="'.$badge->post_name.'"/><label for="'.$_POST['form'].$badge->post_title.'"><img src="'.get_the_post_thumbnail_url($badge->ID).'" width="40px" height="40px" /></label>';
+        if(get_post_meta($badge->ID,'_certification',true)=="not_certified") {
+          echo '<input type="radio" name="input_badge_name" class="input-badge input-hidden" id="'.$_POST['form'].$badge->post_title.'" value="'.$badge->post_name.'"/><label for="'.$_POST['form'].$badge->post_title.'"><img src="';
+          if(get_the_post_thumbnail_url($badge->ID))
+            echo get_the_post_thumbnail_url($badge->ID);
+          else
+            echo plugins_url( '../../images/default-badge.png', __FILE__ );
+          echo '" width="40px" height="40px" /></label>';
+        }
         elseif(get_post_meta($badge->ID,'_certification',true)=="certified") {
           if($first_certified_badge) {
             echo '<br><b>Certified Badges : </b><br>';
             $first_certified_badge = false;
           }
-          echo '<input type="radio" name="input_badge_name" class="input-badge input-hidden" id="'.$_POST['form'].$badge->post_title.'" value="'.$badge->post_name.'"/><label for="'.$_POST['form'].$badge->post_title.'"><img src="'.get_the_post_thumbnail_url($badge->ID).'" width="40px" height="40px" /></label>';
+          echo '<input type="radio" name="input_badge_name" class="input-badge input-hidden" id="'.$_POST['form'].$badge->post_title.'" value="'.$badge->post_name.'"/><label for="'.$_POST['form'].$badge->post_title.'"><img src="';
+          if(get_the_post_thumbnail_url($badge->ID))
+            echo get_the_post_thumbnail_url($badge->ID);
+          else
+            echo plugins_url( '../../images/default-badge.png', __FILE__ );
+          echo '" width="40px" height="40px" /></label>';
         }
       }
 
@@ -130,11 +145,11 @@
 
           foreach ($badges as $badge){
             $descriptions = get_badge_descriptions($badge);
-            echo 'var '.str_replace("-", "_", $badge->post_name).'_description_languages = [';
+            echo 'var _'.str_replace("-", "_", $badge->post_name).'_description_languages = [';
             $i = 0;
             foreach ($descriptions as $lang=>$description) {
               echo "'".$lang."'";
-              if($i!=(sizeof($langs)-1))
+              if($i!=(sizeof($descriptions)-1))
                 echo ', ';
               $i++;
             }
@@ -142,7 +157,7 @@
           }
         ?>
         jQuery("#badge_form_a .input-badge").on("click", function() {
-          var tab_name = jQuery("#badge_form_a .input-badge:checked").val().replace('-', '_') + "_description_languages";
+          var tab_name = "_" + jQuery("#badge_form_a .input-badge:checked").val().replace('-', '_') + "_description_languages";
           var tab = eval(tab_name);
 
           var content = '<label for="language_description"><b><?php _e("Language of badge description* : ","badges-issuer-for-wp") ?></b></label><br /><select name="language_description" id="language_description">';
@@ -156,7 +171,7 @@
         });
 
         jQuery("#badge_form_b .input-badge").on("click", function() {
-          var tab_name = jQuery("#badge_form_b .input-badge:checked").val().replace('-', '_') + "_description_languages";
+          var tab_name = "_" + jQuery("#badge_form_b .input-badge:checked").val().replace('-', '_') + "_description_languages";
           var tab = eval(tab_name);
 
           var content = '<label for="language_description"><b><?php _e("Language of badge description* : ","badges-issuer-for-wp") ?></b></label><br /><select name="language_description" id="language_description">';
@@ -170,7 +185,7 @@
         });
 
         jQuery("#badge_form_c .input-badge").on("click", function() {
-          var tab_name = jQuery("#badge_form_c .input-badge:checked").val().replace('-', '_') + "_description_languages";
+          var tab_name = "_" + jQuery("#badge_form_c .input-badge:checked").val().replace('-', '_') + "_description_languages";
           var tab = eval(tab_name);
 
           var content = '<label for="language_description"><b><?php _e("Language of badge description* : ","badges-issuer-for-wp") ?></b></label><br /><select name="language_description" id="language_description">';
