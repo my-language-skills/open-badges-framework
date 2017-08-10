@@ -146,11 +146,15 @@ class Badge
    * @author Nicolas TORION
    * @since 1.0.0
    * @param $receiver The mail of the person who will receive the Badge.
+   * @param $class_id The ID of the class in which the student is.
    * @return A boolean to know if the mail has been sent.
    */
-  function send_mail($receiver) {
+  function send_mail($receiver, $class_id) {
     $hash_name = hash("sha256", $receiver.$this->name.$this->language);
     $url_mail = "http://".$_SERVER['SERVER_NAME']."/wp-content/plugins/badges-issuer-for-wp/includes/utils/get_badge.php?hash=".$hash_name;
+
+    if(!is_null($class_id))
+      $url_mail = $url_mail."&class=".$class_id;
 
     $subject = __("Badges4Languages - You have just earned a badge",'badges-issuer-for-wp'); //entering a subject for email
 

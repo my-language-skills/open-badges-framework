@@ -88,7 +88,7 @@
           <div id="tabs-3">
             <?php tab_multiple_issues(); ?>
           </div>
-          <?php 
+          <?php
           }
         } ?>
       </div>
@@ -123,7 +123,7 @@
 
           $badge->create_json_files($mail);
 
-          if(!$badge->send_mail($mail))
+          if(!$badge->send_mail($mail, $class))
             $notsent[] = $mail;
           else {
             if($_POST['sender']!="SELF")
@@ -227,7 +227,7 @@
           echo '<div id="select_badge"></div>';
 
           echo '<br />';
-          
+
           ?>
           <div id="result_languages_description"></div>
 
@@ -285,7 +285,7 @@
           echo '<div id="select_badge"></div>';
 
           echo '<br />';
-          
+
           ?>
           <div id="result_languages_description"></div>
 
@@ -304,7 +304,7 @@
           <br /><br />
           <label for="comment"><b><?php _e( 'Comment : ','badges-issuer-for-wp' ); ?></b></label><br />
           <textarea name="comment" id="comment" rows="10" cols="80"></textarea><br />
-          
+
           <br /><br />
           <input type="submit" id="submit_button_c" class="button-primary" value="<?php _e('Send a badge','badges-issuer-for-wp'); ?>"/>
         </form>

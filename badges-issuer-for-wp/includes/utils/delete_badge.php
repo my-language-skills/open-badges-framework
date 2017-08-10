@@ -19,8 +19,12 @@ if(is_user_logged_in()) {
     $url_badge = $json_files_dir."badge_".$_GET['hash'].".json";
 
     if(unlink($url_assertion) && unlink($url_badge)) {
-      printf( esc_html__('<center>You received your badge ! You can close this page. Thanks for using Badges For Languages.</center>','badges-issuer-for-wp'));
+      echo "<center>";
+      printf( esc_html__('You received your badge ! You can close this page. Thanks for using Badges For Languages.','badges-issuer-for-wp'));
+      if(isset($_GET['class']))
+        echo '<script>window.location.href = "'.get_permalink($_GET['class']).'";</script>';
       echo "<script>window.close();</script>";
+      echo "</center>";
     }
   }
 }
