@@ -52,9 +52,9 @@
       <script>
         jQuery(document).ready(function(jQuery) {
           jQuery('#tabs').tabs();
-          jQuery(".tab-element").click(function(){
-            jQuery(".tab-element").removeClass("active");
-            jQuery(this).addClass("active");
+          jQuery(".nav-tab").click(function(){
+            jQuery(".nav-tab").removeClass("nav-tab-active");
+            jQuery(this).addClass("nav-tab-active");
           });
         });
       </script>
@@ -63,15 +63,19 @@
       <div id="tabs">
         <h2><?php _e( 'To whom do you want to send the badge','badges-issuer-for-wp' ); ?></h2>
         <div id="tabs-elements">
-          <ul>
-            <li><a href="#tabs-1"><div class="tab-element"><?php _e( 'Self','badges-issuer-for-wp' ); ?></div></a></li>
-            <?php
-            if($current_user->roles[0]=="teacher" || $current_user->roles[0]=="academy" || $current_user->roles[0]=="administrator" ) {
-            ?>
-            <li><a href="#tabs-2"><div class="tab-element"><?php _e( 'Issue','badges-issuer-for-wp' ); ?></div></a></li>
-            <li><a href="#tabs-3"><div class="tab-element"><?php _e( 'Multiple issue','badges-issuer-for-wp' ); ?></div></a></li>
-            <?php } ?>
+          <div>
+          <h2 class="nav-tab-wrapper">
+            <ul>
+              <li><a href="#tabs-1"><div class="nav-tab nav-tab-active" ><?php _e( 'Self','badges-issuer-for-wp' ); ?></div></a></li>
+              <?php
+              if($current_user->roles[0]=="teacher" || $current_user->roles[0]=="academy" || $current_user->roles[0]=="administrator" ) {
+              ?>
+              <li><a href="#tabs-2"><div class="nav-tab"><?php _e( 'Issue','badges-issuer-for-wp' ); ?></div></a></li>
+              <li><a href="#tabs-3"><div class="nav-tab"><?php _e( 'Multiple issue','badges-issuer-for-wp' ); ?></div></a></li>
+              <?php } ?>
           </ul>
+        </h2>
+        </div>
         </div>
         <div id="tabs-1">
           <?php tab_self(); ?>
