@@ -165,30 +165,51 @@
       <br /><br />
       <h2><?php _e( 'Send a badge to yourself','badges-issuer-for-wp' ); ?></h2>
       <form id="badge_form_a" action="" method="post">
+
         <?php
         global $current_user;
         get_currentuserinfo();
         // get all badges that exist
         $badges = get_all_badges();
 
-        echo '<br /><br />';
 
-        echo '<div id="languages_form_a">';
-        display_languages_select_form($just_most_important_languages=true);
-        _e('<a href="#" id="display_languages_a">Display all languages</a> Can take few seconds to load.','badges-issuer-for-wp');
-        echo '</div>';
-        echo '<br />';
+        echo '<br /><br />';?>
 
-        display_levels_radio_buttons($badges, "self");
-        echo '<div id="select_badge"></div>';
+        <table>
+          <tr>
+            <td>
+              <h3>STEP 1: </h3>
+              <?php
+                echo '<div id="languages_form_a">';
+                display_languages_select_form($just_most_important_languages=true);
+                _e('<a href="#" id="display_languages_a">Display all languages</a> Can take few seconds to load.','badges-issuer-for-wp');
+                echo '</div>';
+                echo '<br />';
+              ?>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <h3>STEP 2: </h3
+              <?php
+                display_levels_radio_buttons($badges, "self");
+                echo '<h3>STEP 3:</h3>';
+                echo '<div id="select_badge"><b>Badge*:</b>
+                </br></br>
+                <img src="http://localhost/myWebsite/wp-content/plugins/badges-issuer-for-wp/includes/ajax/../../images/default-badge.png" width="72px" height="72px">
+                </div>';
+                echo '<br />';
+              ?>
+            </td>
+          </tr>
+        </table>
 
-        echo '<br />';
-        ?>
-        <div id="result_languages_description"></div>
+        <h3>STEP 4:</h3>
+        <div id="result_languages_description"><b><?php _e("Language of badge description* : ","badges-issuer-for-wp") ?></b></div>
 
         <input type="hidden" name="mail" value="<?php echo $current_user->user_email; ?>" />
         <input type="hidden" name="sender" value="SELF" />
-
+        <h3>STEP 5: </h3>
         <label for="comment"><b><?php _e( 'Comment : ','badges-issuer-for-wp' ); ?></b></label><br />
         <textarea name="comment" id="comment" rows="10" cols="80"></textarea><br />
 
@@ -221,32 +242,40 @@
           $badges = get_all_badges();
 
           echo '<br /><br />';
+          echo '<h3>STEP 1: </h3>';
           echo '<div id="languages_form_b">';
           display_languages_select_form($just_most_important_languages=true);
           _e('<a href="#" id="display_languages_b">Display all languages</a>','badges-issuer-for-wp');
           echo '</div>';
           echo '<br />';
-
+          echo '<h3>STEP 2: </h3>';
           display_levels_radio_buttons($badges, "send");
-          echo '<div id="select_badge"></div>';
+          echo '<h3>STEP 3: </h3>';
+          echo '<div id="select_badge"><b>Badge*:</b>
+          </br></br>
+          <img src="http://localhost/myWebsite/wp-content/plugins/badges-issuer-for-wp/includes/ajax/../../images/default-badge.png" width="72px" height="72px">
+
+          </div>';
 
           echo '<br />';
 
           ?>
-          <div id="result_languages_description"></div>
-
+          <h3>STEP 4: </h3>
+          <div id="result_languages_description"><b>Language of badge description* :</b></div>
+          <h3>STEP 5:</h3>
           <?php
             if($current_user->roles[0]=="teacher" || $current_user->roles[0]=="academy" || $current_user->roles[0]=="administrator") {
-                echo '<div id="select_class"></div>';
+                echo '<div id="select_class"><b>Class*:</b></div>';
                 echo '<br />';
             }
           ?>
-
+          <h3>STEP 6: </h3>
           <label for="mail"><b><?php _e( 'Receiver\'s mail adress* :','badges-issuer-for-wp' ); ?> </b></label><br />
           <input type="text" name="mail" id="mail" class="mail"/>
           <br /><br />
 
           <input type="hidden" name="sender" value="<?php echo $current_user->user_email; ?>" />
+          <h3>STEP 7: </h3>
           <label for="comment"><b><?php _e( 'Comment : ','badges-issuer-for-wp' ); ?></b></label><br />
           <textarea name="comment" id="comment" rows="10" cols="80"></textarea><br />
 
@@ -278,6 +307,7 @@
           $badges = get_all_badges();
 
           echo '<br /><br />';
+          echo '<h3>STEP 1: </h3>';
           echo '<div id="languages_form_c">';
           display_languages_select_form($just_most_important_languages=true);
           printf(__('<a href="#" id="display_languages_c">Display all languages</a>','badges-issuer-for-wp'));
@@ -285,27 +315,37 @@
 
           echo '<br />';
 
+          echo '<h3>STEP 2: </h3>';
           display_levels_radio_buttons($badges, "send");
-          echo '<div id="select_badge"></div>';
+            echo '<h3>STEP 3: </h3>';
+          echo '<div id="select_badge"><b>Badge*:</b>
+          </br></br>
+          <img src="http://localhost/myWebsite/wp-content/plugins/badges-issuer-for-wp/includes/ajax/../../images/default-badge.png" width="72px" height="72px">
+          </div>';
 
           echo '<br />';
 
           ?>
-          <div id="result_languages_description"></div>
+          <h3>STEP 4: </h3>
+          <div id="result_languages_description"><b>Language of badge description* :</b></div>
 
+          <h3>STEP 5: </h3>
           <?php
             if($current_user->roles[0]=="teacher" || $current_user->roles[0]=="academy" || $current_user->roles[0]=="administrator") {
-                echo '<div id="select_class"></div>';
+                echo '<div id="select_class"><b>Class*:</b></div>';
                 echo '<br />';
             }
           ?>
 
+
+          <h3>STEP 6: </h3>
           <label for="mail"><b><?php _e( 'Receivers\' mail adresses* (one mail adress per line) : ','badges-issuer-for-wp' ); ?></b></label><br />
           <textarea name="mail" id="mail" class="mail" rows="10" cols="50"></textarea>
           <br /><br />
 
           <input type="hidden" name="sender" value="<?php echo $current_user->user_email; ?>" />
           <br /><br />
+          <h3>STEP 7: </h3>
           <label for="comment"><b><?php _e( 'Comment : ','badges-issuer-for-wp' ); ?></b></label><br />
           <textarea name="comment" id="comment" rows="10" cols="80"></textarea><br />
 
