@@ -27,7 +27,7 @@ function display_levels_radio_buttons($badges, $context) {
     }
   }
 
-  _e('<b> Level* : </b><br/>','badges-issuer-for-wp');
+  _e('<b> Level* : </b>','badges-issuer-for-wp');
   foreach ($levels as $l) {
     echo '<label for="level_'.$l.'">'.$l.' </label><input type="radio" class="level" name="level" id="level_'.$l.'" value="'.$l.'"> ';
   }
@@ -39,7 +39,7 @@ function display_levels_radio_buttons($badges, $context) {
  *
  * @author Nicolas TORION
  * @since 1.0.0
- * @param $just_most_important_languages A boolean to know if only the most important languages must be displayed.
+ * @param $_most_important_languages A boolean to know if only the most important languages must be displayed.
  * @param $language_selected The language to select.
  * @param $multiple A boolean to know if the select form must be in multiple mode.
 */
@@ -74,7 +74,7 @@ function display_languages_select_form($just_most_important_languages=false, $la
     echo '</optgroup>';
   }
 
-  echo '</select><br>';
+  echo '</select>';
 }
 
 // DISPLAY MESSAGES FUNCTIONS
