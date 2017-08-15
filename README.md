@@ -1,7 +1,7 @@
 # Badges-Issuer
 A WordPress plugin for issuer language badges
 
-Contributors: @colomet, @ntorion, @alevacher
+Contributors: @colomet, @ntorion, @uzair043, @CorentinPerrot, @alevacher
 
 Tags: badges
 
@@ -55,6 +55,16 @@ You can see all of the screenshots of the plugin [here](doc/screenshot.md "scree
  * To delete all the information of the plugin option if we wish by deleting the plugin
 
 ## Changelog
+
+### 0.5.3
+
+* **ENHANCEMENTS**
+  * The send badges page is organized with tabs (change front-end style of tabs).
+  * The form for sending badges is more simple (with steps).
+  * The user is redirected to the class after that he received the badge in his backpack account.
+  
+* **BUGFIXES**
+  * Fix relative url (for json files directory) in send-badges.php.
 
 ### 0.5.2
 
