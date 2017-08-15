@@ -16,7 +16,6 @@ var searchData=
   ['_24file',['$file',['../create__badges__issuer__file_8php.html#a42222d1363bf72f8d63e526edd7cdfed',1,'create_badges_issuer_file.php']]],
   ['_24file_5fsettings_5flinks',['$file_settings_links',['../create__settings__json__files_8php.html#a3b36b2d537b7fd960662fd4a336b7d1c',1,'create_settings_json_files.php']]],
   ['_24filters',['$filters',['../class_badges___issuer___for___wp___loader.html#ae222f32233a38635bef58d24a13c9df5',1,'Badges_Issuer_For_Wp_Loader']]],
-  ['_24forms_5fclass',['$forms_class',['../functions__js_8php.html#ab0078c695761fe647090900aa8551c24',1,'functions_js.php']]],
   ['_24handle',['$handle',['../generator_8php.html#ad86c3fbc5672e1deeafc5229012b0b5d',1,'$handle():&#160;generator.php'],['../generator_sign_languages_8php.html#ad86c3fbc5672e1deeafc5229012b0b5d',1,'$handle():&#160;generatorSignLanguages.php']]],
   ['_24handle2',['$handle2',['../generator_8php.html#a446ae4f3a0fa5fb57b8b63616bb72c5a',1,'generator.php']]],
   ['_24i',['$i',['../generator_8php.html#a83018d9153d17d91fbcf3bc10158d34f',1,'$i():&#160;generator.php'],['../generator_sign_languages_8php.html#a83018d9153d17d91fbcf3bc10158d34f',1,'$i():&#160;generatorSignLanguages.php']]],

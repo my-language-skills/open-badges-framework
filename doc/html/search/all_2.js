@@ -13,7 +13,6 @@ var searchData=
   ['add_5fbadge_5fto_5fuser_5fprofile',['add_badge_to_user_profile',['../class_badge.html#ade99eab50004c9c474a8d0640f6c59f8',1,'Badge']]],
   ['add_5ffilter',['add_filter',['../class_badges___issuer___for___wp___loader.html#a4439fdd53cfd224aaa9cb360f641958d',1,'Badges_Issuer_For_Wp_Loader']]],
   ['add_5fmeta_5fbox_5fcertification',['add_meta_box_certification',['../custom__post__badge_8php.html#a6e6e0c44942c25f85776256861a3fd1b',1,'custom_post_badge.php']]],
-  ['add_5fmeta_5fbox_5fdescriptions',['add_meta_box_descriptions',['../custom__post__badge_8php.html#a75c89049cd1078ac576d58767c940e08',1,'custom_post_badge.php']]],
   ['add_5fmeta_5fbox_5flinks',['add_meta_box_links',['../custom__post__badge_8php.html#a87f911057c5751a522ab5348959de73b',1,'custom_post_badge.php']]],
   ['add_5fmeta_5fbox_5ftype',['add_meta_box_type',['../custom__post__badge_8php.html#aece38a3aed297c3dd41ba1004b81d285',1,'custom_post_badge.php']]],
   ['add_5fmeta_5fboxes_5fclass_5fzero',['add_meta_boxes_class_zero',['../custom__post__class_8php.html#a3c79f20f00d27a02009f024c3f6daaf7',1,'custom_post_class.php']]],

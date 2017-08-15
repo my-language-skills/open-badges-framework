@@ -23,7 +23,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Badges Issuer for WP
-   &#160;<span id="projectnumber">Release 0.5</span>
+   &#160;<span id="projectnumber">Release 0.5.3</span>
    </div>
   </td>
  </tr>
@@ -78,8 +78,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ad98322bc6a8bafcfb74341b412c6d79e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a95417bf38dbd4d414a24a7e4d795ee27"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_badge.html#a95417bf38dbd4d414a24a7e4d795ee27">create_assertion_json_file</a> ($receiver, $badge_filename, $assertion_filename)</td></tr>
 <tr class="separator:a95417bf38dbd4d414a24a7e4d795ee27"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a64c3041fe3d488c19cc5461a0af0c353"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_badge.html#a64c3041fe3d488c19cc5461a0af0c353">send_mail</a> ($receiver)</td></tr>
-<tr class="separator:a64c3041fe3d488c19cc5461a0af0c353"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0dcd2990740999073cb30ef1147e8feb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_badge.html#a0dcd2990740999073cb30ef1147e8feb">send_mail</a> ($receiver, $class_id)</td></tr>
+<tr class="separator:a0dcd2990740999073cb30ef1147e8feb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd17df0ee44fc371bb3ef0be07525ddb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_badge.html#acd17df0ee44fc371bb3ef0be07525ddb">console_log</a> ($content)</td></tr>
 <tr class="separator:acd17df0ee44fc371bb3ef0be07525ddb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa01bda205ac1364ddd4ab38d96336bd0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_badge.html#aa01bda205ac1364ddd4ab38d96336bd0">add_student_to_class</a> ($mail, $class_id)</td></tr>
@@ -410,8 +410,8 @@ Data Fields</h2></td></tr>
 
 </div>
 </div>
-<a id="a64c3041fe3d488c19cc5461a0af0c353"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a64c3041fe3d488c19cc5461a0af0c353">&#9670;&nbsp;</a></span>send_mail()</h2>
+<a id="a0dcd2990740999073cb30ef1147e8feb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0dcd2990740999073cb30ef1147e8feb">&#9670;&nbsp;</a></span>send_mail()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -420,8 +420,18 @@ Data Fields</h2></td></tr>
           <td class="memname">send_mail </td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$receiver</em></td><td>)</td>
+          <td class="paramname"><em>$receiver</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$class_id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -431,6 +441,7 @@ Data Fields</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">$receiver</td><td>The mail of the person who will receive the <a class="el" href="class_badge.html">Badge</a>. </td></tr>
+    <tr><td class="paramname">$class_id</td><td>The ID of the class in which the student is. </td></tr>
   </table>
   </dd>
 </dl>
@@ -560,7 +571,7 @@ Data Fields</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>includes/utils/<a class="el" href="class_8badge_8php.html">class.badge.php</a></li>
+<li>badges-issuer-for-wp/includes/utils/<a class="el" href="class_8badge_8php.html">class.badge.php</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
