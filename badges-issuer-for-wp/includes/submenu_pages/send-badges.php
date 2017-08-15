@@ -175,7 +175,7 @@
         echo '<h3>STEP 1: </h3>';
         echo '<div id="languages_form_a">';
         display_languages_select_form($Just_most_important_languages=true);
-        _e('<a href="#" id="display_languages_a">Display all languages</a> (Can take few seconds to load.)','badges-issuer-for-wp');
+        _e(' <a href="#" id="display_languages_a">Display all languages</a> (Can take few seconds to load.)','badges-issuer-for-wp');
         echo '</div>';
         echo '<br />';
 
@@ -186,14 +186,14 @@
         echo '<div id="select_badge"><b>Badge*:</b>
 
         </br></br>
-        <img src="http://localhost/myWebsite/wp-content/plugins/badges-issuer-for-wp/includes/ajax/../../images/default-badge.png" width="72px" height="72px">
+        <img src="'.plugins_url( '../../images/default-badge.png', __FILE__ ).'" width="72px" height="72px"/>
 
         </div>';
-
-        echo '<br />';
         ?>
-        <h3>STEP 4: </h3>
-        <div id="result_languages_description"><b>Language of badge description* :</b></div>
+        <div style="display:block;">
+          <h3>STEP 4: </h3>
+          <div id="result_languages_description"><b>Language of badge description* :</b></div>
+        </div>
 
         <input type="hidden" name="mail" value="<?php echo $current_user->user_email; ?>" />
         <input type="hidden" name="sender" value="SELF" />
@@ -234,7 +234,7 @@
           echo '<h3>STEP 1: </h3>';
           echo '<div id="languages_form_b">';
           display_languages_select_form($just_most_important_languages=true);
-          _e('<a href="#" id="display_languages_b">Display all languages</a> (Can take few seconds to load.)','badges-issuer-for-wp');
+          _e(' <a href="#" id="display_languages_b">Display all languages</a> (Can take few seconds to load.)','badges-issuer-for-wp');
           echo '</div>';
           echo '<br />';
           echo '<h3>STEP 2: </h3>';
@@ -242,7 +242,7 @@
           echo '<h3>STEP 3: </h3>';
           echo '<div id="select_badge"><b>Badge*:</b>
           </br></br>
-          <img src="http://localhost/myWebsite/wp-content/plugins/badges-issuer-for-wp/includes/ajax/../../images/default-badge.png" width="72px" height="72px">
+          <img src="'.plugins_url( '../../images/default-badge.png', __FILE__ ).'" width="72px" height="72px">
 
           </div>';
 
@@ -299,7 +299,7 @@
           echo '<h3>STEP 1: </h3>';
           echo '<div id="languages_form_c">';
           display_languages_select_form($just_most_important_languages=true);
-          printf(__('<a href="#" id="display_languages_c">Display all languages</a> (Can take few seconds to load.)','badges-issuer-for-wp'));
+          printf(__(' <a href="#" id="display_languages_c">Display all languages</a> (Can take few seconds to load.)','badges-issuer-for-wp'));
           echo '</div>';
 
           echo '<br />';
@@ -309,7 +309,7 @@
             echo '<h3>STEP 3: </h3>';
           echo '<div id="select_badge"><b>Badge*:</b>
           </br></br>
-          <img src="http://localhost/myWebsite/wp-content/plugins/badges-issuer-for-wp/includes/ajax/../../images/default-badge.png" width="72px" height="72px">
+          <img src="'.plugins_url( '../../images/default-badge.png', __FILE__ ).'" width="72px" height="72px">
           </div>';
 
           echo '<br />';
@@ -330,7 +330,6 @@
           <h3>STEP 6: </h3>
           <label for="mail"><b><?php _e( 'Receivers\' mail adresses* (one mail adress per line) : ','badges-issuer-for-wp' ); ?></b></label><br />
           <textarea name="mail" id="mail" class="mail" rows="10" cols="50"></textarea>
-          <br /><br />
 
           <input type="hidden" name="sender" value="<?php echo $current_user->user_email; ?>" />
           <br /><br />

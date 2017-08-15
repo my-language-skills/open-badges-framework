@@ -20,7 +20,7 @@ if(is_user_logged_in()) {
 
     if(unlink($url_assertion) && unlink($url_badge)) {
       echo "<center>";
-      printf( esc_html__('You received your badge ! You can close this page. Thanks for using Badges For Languages.','badges-issuer-for-wp'));
+      printf( _e('You received your badge ! <br /> You are going to be redirected to the class page corresponding to the badge or you can close this page. <br /> Thanks for using Badges For Languages.','badges-issuer-for-wp'));
       if(isset($_GET['class']))
         echo '<script>window.location.href = "'.get_permalink($_GET['class']).'";</script>';
       echo "<script>window.close();</script>";

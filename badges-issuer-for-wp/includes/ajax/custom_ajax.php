@@ -115,18 +115,21 @@
 
       _e('<br /><b>Badge* : </b><br>','badges-issuer-for-wp');
       $first_certified_badge = true;
+      echo '<div style="display:block; width:100%; overflow:hidden;">';
       foreach ($badges_corresponding as $badge) {
         if(get_post_meta($badge->ID,'_certification',true)=="not_certified") {
-          echo '<input type="radio" name="input_badge_name" class="input-badge input-hidden" id="'.$_POST['form'].$badge->post_title.'" value="'.$badge->post_name.'"/><label for="'.$_POST['form'].$badge->post_title.'"><img src="';
+          echo '<div style="float:left;">';
+          echo '<center><input type="radio" name="input_badge_name" class="input-badge input-hidden" id="'.$_POST['form'].$badge->post_title.'" value="'.$badge->post_name.'"/><label for="'.$_POST['form'].$badge->post_title.'"><img src="';
           if(get_the_post_thumbnail_url($badge->ID)){
             echo get_the_post_thumbnail_url($badge->ID);
             echo '" width="40px" height="40px" /></label>';
-            echo '</br><b>'.$_POST['language_selected']. " "  . $badge->post_title . '<b></br>';
+            echo '</br><b>'.$_POST['language_selected']. " "  . $badge->post_title . '</b></center>';
           }
           else{
             echo plugins_url( '../../images/default-badge.png', __FILE__ );
-            echo '" width="40px" height="40px" /></label>';
+            echo '" width="40px" height="40px" /></label></center>';
           }
+          echo "</div>";
         }
         elseif(get_post_meta($badge->ID,'_certification',true)=="certified") {
           if($first_certified_badge) {
@@ -141,6 +144,7 @@
           echo '" width="40px" height="40px" /></label>';
         }
       }
+      echo "</div>";
 
       ?>
       <script>
@@ -164,7 +168,7 @@
           var tab_name = "_" + jQuery("#badge_form_a .input-badge:checked").val().replace('-', '_') + "_description_languages";
           var tab = eval(tab_name);
 
-          var content = '<label for="language_description"><b><?php _e("Language of badge description* : ","badges-issuer-for-wp") ?></b></label><br /><select name="language_description" id="language_description"><option value="default"> Default </option>';
+          var content = '<label for="language_description"><b><?php _e("Language of badge description* : ","badges-issuer-for-wp") ?></b></label><br /><select name="language_description" id="language_description"><option value="English"> Default </option>';
           tab.forEach(function(lang) {
             content = content + '<option value="' + lang + '">' + lang + '</option>';
           });
@@ -177,7 +181,7 @@
           var tab_name = "_" + jQuery("#badge_form_b .input-badge:checked").val().replace('-', '_') + "_description_languages";
           var tab = eval(tab_name);
 
-          var content = '<label for="language_description"><b><?php _e("Language of badge description* : ","badges-issuer-for-wp") ?></b></label><br /><select name="language_description" id="language_description"><option value="default"> Default </option>';
+          var content = '<label for="language_description"><b><?php _e("Language of badge description* : ","badges-issuer-for-wp") ?></b></label><br /><select name="language_description" id="language_description"><option value="English"> Default </option>';
 
           tab.forEach(function(lang) {
             content = content + '<option value="' + lang + '">' + lang + '</option>';
@@ -191,7 +195,7 @@
           var tab_name = "_" + jQuery("#badge_form_c .input-badge:checked").val().replace('-', '_') + "_description_languages";
           var tab = eval(tab_name);
 
-          var content = '<label for="language_description"><b><?php _e("Language of badge description* : ","badges-issuer-for-wp") ?></b></label><br /><select name="language_description" id="language_description"><option value="default"> Default </option>';
+          var content = '<label for="language_description"><b><?php _e("Language of badge description* : ","badges-issuer-for-wp") ?></b></label><br /><select name="language_description" id="language_description"><option value="English"> Default </option>';
 
           tab.forEach(function(lang) {
             content = content + '<option value="' + lang + '">' + lang + '</option>';
