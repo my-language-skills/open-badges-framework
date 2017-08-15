@@ -59,9 +59,9 @@
         });
       </script>
 
-      <h1><span class="dashicons dashicons-awards"></span><?php _e( 'Send Badges','badges-issuer-for-wp' ); ?></h1>
+      <br><br>
+      <h1><i><span class="dashicons dashicons-awards"></span><?php _e( 'Send Badges','badges-issuer-for-wp' ); ?></i></h1>
       <div id="tabs">
-        <h2><?php _e( 'To whom do you want to send the badge','badges-issuer-for-wp' ); ?></h2>
         <div id="tabs-elements">
           <div>
           <h2 class="nav-tab-wrapper">
@@ -175,7 +175,7 @@
         echo '<h3>STEP 1: </h3>';
         echo '<div id="languages_form_a">';
         display_languages_select_form($Just_most_important_languages=true);
-        _e('<a href="#" id="display_languages_a">Display all languages</a> Can take few seconds to load.','badges-issuer-for-wp');
+        _e('<a href="#" id="display_languages_a">Display all languages</a> (Can take few seconds to load.)','badges-issuer-for-wp');
         echo '</div>';
         echo '<br />';
 

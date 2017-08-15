@@ -23,7 +23,8 @@ function js_form() {
       var data = {
   			'action': 'action_select_badge',
         'form': 'form_<?php echo $form; ?>_',
-  			'level_selected': jQuery("#badge_form_<?php echo $form; ?> .level:checked").val()
+  			'level_selected': jQuery("#badge_form_<?php echo $form; ?> .level:checked").val(),
+        "language_selected": jQuery("#badge_form_<?php echo $form; ?> #language").val()
   		};
 
   		// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php

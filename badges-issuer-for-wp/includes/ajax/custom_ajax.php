@@ -46,7 +46,7 @@
     function action_languages_form() {
       display_languages_select_form();
       _e(' <a href="#" id="display_mi_languages_'.$_POST['form'].'">Just display most important languages</a>', 'badges-issuer-for-wp');
-      printf(__(' Can take few seconds to load.','badges-issuer-for-wp'));
+      printf(__(' (Can take few seconds to load.)','badges-issuer-for-wp'));
     }
 
     add_action('CUSTOMAJAX_action_mi_languages_form', 'action_mi_languages_form');
@@ -118,11 +118,15 @@
       foreach ($badges_corresponding as $badge) {
         if(get_post_meta($badge->ID,'_certification',true)=="not_certified") {
           echo '<input type="radio" name="input_badge_name" class="input-badge input-hidden" id="'.$_POST['form'].$badge->post_title.'" value="'.$badge->post_name.'"/><label for="'.$_POST['form'].$badge->post_title.'"><img src="';
-          if(get_the_post_thumbnail_url($badge->ID))
+          if(get_the_post_thumbnail_url($badge->ID)){
             echo get_the_post_thumbnail_url($badge->ID);
-          else
+            echo '" width="40px" height="40px" /></label>';
+            echo '</br><b>'.$_POST['language_selected']. " "  . $badge->post_title . '<b></br>';
+          }
+          else{
             echo plugins_url( '../../images/default-badge.png', __FILE__ );
-          echo '" width="40px" height="40px" /></label>';
+            echo '" width="40px" height="40px" /></label>';
+          }
         }
         elseif(get_post_meta($badge->ID,'_certification',true)=="certified") {
           if($first_certified_badge) {
