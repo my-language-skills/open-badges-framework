@@ -123,7 +123,7 @@
           if(get_the_post_thumbnail_url($badge->ID)){
             echo get_the_post_thumbnail_url($badge->ID, 'thumbnail');
             echo '" width="40px" height="40px" /></label>';
-            echo '</br><b>' . 'Title of the badge: '. $badge->post_title . '</b></center>';
+            echo '</br><b>' . $badge->post_title . '</b></center>';
           }
           else{
             echo plugins_url( '../../images/default-badge-thumbnail.png', __FILE__ );
@@ -133,16 +133,17 @@
         }
 
         elseif(get_post_meta($badge->ID,'_certification',true)=="certified") {
-          echo '<div style="clear:left; float:left">';
+          echo '<div style="clear:left; float:left;">';
+          echo '<br><b>Certified Badges : </b><br>';
           if($first_certified_badge) {
-            echo '<br><b>Certified Badges : </b><br>';
             $first_certified_badge = false;
           }
+
           echo '<center><input type="radio" name="input_badge_name" class="input-badge input-hidden" id="'.$_POST['form'].$badge->post_title.'" value="'.$badge->post_name.'"/><label for="'.$_POST['form'].$badge->post_title.'"><img src="';
           if(get_the_post_thumbnail_url($badge->ID)){
             echo get_the_post_thumbnail_url($badge->ID, 'thumbnail');
               echo '" width="40px" height="40px" /></label>';
-              echo '</br><b>' . 'Title of the badge: '. $badge->post_title . '</b></center>';
+              echo '</br><b>' . $badge->post_title . '</b></center>';
           }
           else{
             echo plugins_url( '../../images/default-badge-thumbnail.png', __FILE__ );
