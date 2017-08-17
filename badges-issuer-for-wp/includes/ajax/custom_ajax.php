@@ -126,7 +126,7 @@
             echo '</br><b>' . 'Title of the badge: '. $badge->post_title . '</b></center>';
           }
           else{
-            echo plugins_url( '../../images/default-badge.png', __FILE__ );
+            echo plugins_url( '../../images/default-badge-thumbnail.png', __FILE__ );
             echo '" width="40px" height="40px" /></label></center>';
           }
           echo "</div>";
@@ -140,12 +140,12 @@
           }
           echo '<center><input type="radio" name="input_badge_name" class="input-badge input-hidden" id="'.$_POST['form'].$badge->post_title.'" value="'.$badge->post_name.'"/><label for="'.$_POST['form'].$badge->post_title.'"><img src="';
           if(get_the_post_thumbnail_url($badge->ID)){
-            echo get_the_post_thumbnail_url($badge->ID);
+            echo get_the_post_thumbnail_url($badge->ID, 'thumbnail');
               echo '" width="40px" height="40px" /></label>';
               echo '</br><b>' . 'Title of the badge: '. $badge->post_title . '</b></center>';
           }
           else{
-            echo plugins_url( '../../images/default-badge.png', __FILE__ );
+            echo plugins_url( '../../images/default-badge-thumbnail.png', __FILE__ );
             echo '" width="40px" height="40px" /></label>';
           }
             echo "</div>";
