@@ -1,10 +1,10 @@
 <?php
 
 $badges_issuer_file_content = array(
-  "name"  => "My Language Skills",
-  "image" => "https://mylanguageskills.files.wordpress.com/2015/08/badges4languages-hi.png?w=800",
-  "url"   => "https://mylanguageskills.files.wordpress.com/",
-  "email" => "nicolastorion@gmail.com"
+  "name"  => "",
+  "image" => "",
+  "url"   => "",
+  "email" => ""
 );
 
 $path_dir_json_files = plugin_dir_path( dirname( __FILE__ ) ) . '../../../uploads/badges-issuer/json/';

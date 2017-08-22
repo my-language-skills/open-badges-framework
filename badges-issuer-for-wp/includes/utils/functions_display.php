@@ -120,9 +120,9 @@ function display_not_logged_message() {
   <center>
     <img src="https://mylanguageskills.files.wordpress.com/2015/08/badges4languages-hi.png?w=800" width="400px" height="400px"/>
     <br />
-    <h1><?php __('To get a badge, you need to be logged on the site.','badges-issuer-for-wp'); ?></h1>
+    <h1><?php _e('To get a badge, you need to be logged on the site.','badges-issuer-for-wp'); ?></h1>
     <br />
-    <a href="<?php echo wp_login_url($_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]); ?>" title="Login"><?php __('Login','badges-issuer-for-wp'); ?></a>
+    <a href="<?php echo wp_registration_url(); ?>" title="Register"><?php _e('Register','badges-issuer-for-wp'); ?></a> | <a href="<?php echo wp_login_url($_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]); ?>" title="Login"><?php _e('Login','badges-issuer-for-wp'); ?></a>
   </center>
   <?php
 }
