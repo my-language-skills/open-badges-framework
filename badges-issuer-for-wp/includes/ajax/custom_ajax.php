@@ -65,7 +65,7 @@
         global $current_user;
         get_currentuserinfo();
 
-        if($current_user->roles[0]=='administrator') {
+        if(in_array("administrator", $current_user->roles)) {
           $classes = get_all_classes_zero();
           if(is_plugin_active("wp-job-manager/wp-job-manager.php")) {
             $classes_job_listing = get_all_classes();
@@ -82,9 +82,9 @@
         $settings_id_links = get_settings_links();
 
         if(empty($classes)) {
-          if($current_user->roles[0]=="teacher")
+          if(in_array("teacher", $current_user->roles))
             _e('<a href="'.get_page_link($settings_id_links["link_not_academy"]).'">You need an academy account in order to create your own classes.</a>','badges-issuer-for-wp');
-          elseif($current_user->roles[0]=="academy")
+          elseif(in_array("academy", $current_user->roles))
             _e('<a href="'.get_page_link($settings_id_links["link_create_new_class"]).'">Don\'t you want to create a specific class for that student(s) ?</a>', 'badges-issuer-for-wp');
         }
         else {
@@ -104,7 +104,7 @@
       global $current_user;
       get_currentuserinfo();
 
-      if($current_user->roles[0]=="administrator" || $current_user->roles[0]=="academy")
+      if(in_array("administrator", $current_user->roles) || in_array("academy", $current_user->roles))
         $badges_corresponding = get_all_badges_level($badges, $_POST['level_selected'], $certification=true);
       else
         $badges_corresponding = get_all_badges_level($badges, $_POST['level_selected']);

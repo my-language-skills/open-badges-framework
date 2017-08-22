@@ -113,7 +113,7 @@ Create a class for the teacher when he loggin for the first time.
 
 function create_teacher_class_zero() {
   $current_user = wp_get_current_user();
-  if($current_user->roles[0]=='teacher' || $current_user->roles[0]=='academy') {
+  if(in_array("teacher", $current_user->roles) || in_array("academy", $current_user->roles)) {
     $name = $current_user->user_login;
 
     if(!class_school_exists($name))

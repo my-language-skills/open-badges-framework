@@ -250,7 +250,7 @@ class Badge
     global $current_user;
     get_currentuserinfo();
 
-    if($current_user->roles[0]=="teacher" || $current_user->roles[0]=="academy") {
+    if(in_array("teacher", $current_user->roles) || in_array("academy", $current_user->roles)) {
       $student = get_user_by_email($mail);
       if($student) {
         $student_infos = array(

@@ -12,17 +12,17 @@ function display_levels_radio_buttons($badges, $context) {
   global $current_user;
   get_currentuserinfo();
 
-  if($current_user->roles[0]=="administrator")
+  if(in_array("administrator", $current_user->roles))
     $levels = get_all_levels($badges);
   else {
     if($context=="self") {
-      if($current_user->roles[0]=="student")
+      if(in_array("student", $current_user->roles))
         $levels = get_all_levels($badges, true);
-      elseif ($current_user->roles[0]=="teacher" || $current_user->roles[0]=="academy")
+      elseif (in_array("teacher", $current_user->roles) || in_array("academy", $current_user->roles))
         $levels = get_all_levels($badges);
     }
     elseif ($context=="send") {
-      if ($current_user->roles[0]=="teacher" || $current_user->roles[0]=="academy")
+      if (in_array("teacher", $current_user->roles) || in_array("academy", $current_user->roles))
         $levels = get_all_levels($badges, true);
     }
   }
@@ -137,7 +137,7 @@ function display_classes_input() {
   global $current_user;
   get_currentuserinfo();
 
-  if($current_user->roles[0]=='administrator')
+  if($in_array("administrator", $current_user->roles))
     $classes = get_all_classes();
   else
     $classes = get_classes_teacher($current_user->user_login);

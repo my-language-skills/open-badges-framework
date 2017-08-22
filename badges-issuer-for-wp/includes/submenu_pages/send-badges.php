@@ -68,11 +68,15 @@
             <ul>
               <li><a href="#tabs-1"><div class="nav-tab nav-tab-active" ><?php _e( 'Self','badges-issuer-for-wp' ); ?></div></a></li>
               <?php
-              if($current_user->roles[0]=="teacher" || $current_user->roles[0]=="academy" || $current_user->roles[0]=="administrator" ) {
+              if(in_array("teacher", $current_user->roles) || in_array("academy", $current_user->roles) || in_array("administrator", $current_user->roles) ) {
               ?>
               <li><a href="#tabs-2"><div class="nav-tab"><?php _e( 'Issue','badges-issuer-for-wp' ); ?></div></a></li>
-              <li><a href="#tabs-3"><div class="nav-tab"><?php _e( 'Multiple issue','badges-issuer-for-wp' ); ?></div></a></li>
-              <?php } ?>
+              <?php
+                  if(in_array("academy", $current_user->roles) || in_array("administrator", $current_user->roles)) {
+              ?>
+                    <li><a href="#tabs-3"><div class="nav-tab"><?php _e( 'Multiple issue','badges-issuer-for-wp' ); ?></div></a></li>
+                  <?php } ?>
+            <?php } ?>
           </ul>
         </h2>
         </div>
@@ -81,13 +85,13 @@
           <?php tab_self(); ?>
         </div>
         <?php
-        if($current_user->roles[0]=="teacher" || $current_user->roles[0]=="academy" || $current_user->roles[0]=="administrator" ) {
+        if(in_array("teacher", $current_user->roles) || in_array("academy", $current_user->roles) || in_array("administrator", $current_user->roles) ) {
         ?>
           <div id="tabs-2">
             <?php tab_issue(); ?>
           </div>
           <?php
-          if($current_user->roles[0]=="academy" || $current_user->roles[0]=="administrator" ) {
+          if(in_array("academy", $current_user->roles) || in_array("administrator", $current_user->roles) ) {
           ?>
           <div id="tabs-3">
             <?php tab_multiple_issues(); ?>
@@ -113,7 +117,7 @@
         get_currentuserinfo();
 
         $class = null;
-        if($current_user->roles[0]=="teacher" || $current_user->roles[0]=="academy" || $current_user->roles[0]=="administrator") {
+        if(in_array("teacher", $current_user->roles) || in_array("academy", $current_user->roles) || in_array("administrator", $current_user->roles)) {
           if(isset($_POST['class_for_student']))
             $class = $_POST['class_for_student'];
         }
@@ -253,7 +257,7 @@
           <div id="result_languages_description"><b>Language of badge description* :</b></div>
           <h3>STEP 5:</h3>
           <?php
-            if($current_user->roles[0]=="teacher" || $current_user->roles[0]=="academy" || $current_user->roles[0]=="administrator") {
+            if(in_array("teacher", $current_user->roles) || in_array("academy", $current_user->roles) || in_array("administrator", $current_user->roles)) {
                 echo '<div id="select_class"><b>Class*:</b></div>';
                 echo '<br />';
             }
@@ -320,7 +324,7 @@
 
           <h3>STEP 5: </h3>
           <?php
-            if($current_user->roles[0]=="teacher" || $current_user->roles[0]=="academy" || $current_user->roles[0]=="administrator") {
+            if(in_array("teacher", $current_user->roles) || in_array("academy", $current_user->roles) || in_array("administrator", $current_user->roles)) {
                 echo '<div id="select_class"><b>Class*:</b></div>';
                 echo '<br />';
             }

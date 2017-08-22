@@ -53,7 +53,7 @@
 	<?php endif; // have_comments() ?>
 
   <?php
-  if($current_user->roles[0]=="academy") {
+  if(in_array("academy", $current_user->roles)) {
     comment_form();
   }
   ?>
@@ -113,7 +113,7 @@ function custom_comment_badge($comment, $args, $depth) {
       </div>
 
       <?php
-      if ($current_user->roles[0]=="academy" && $current_user->ID==$comment->user_id) {
+      if (in_array("academy", $current_user->roles) && $current_user->ID==$comment->user_id) {
         ?>
         <a href="#" id="edit_comment_link">Edit your translation</a>
         <?php

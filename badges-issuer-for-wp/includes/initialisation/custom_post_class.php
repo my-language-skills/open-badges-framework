@@ -108,7 +108,7 @@ function meta_box_class_zero_students($post) {
         <th width="0%"><?php _e( 'Language', 'badges-issuer-for-wp' ); ?></th>
         <th width="0%"><?php _e( 'Date', 'badges-issuer-for-wp' ); ?></th>
         <?php
-        if($current_user->roles[0]=='administrator') {
+        if(in_array("administrator", $current_user->roles)) {
           ?>
           <th width="0%"><?php _e( 'Action', 'badges-issuer-for-wp' ); ?></th>
           <?php
@@ -133,7 +133,7 @@ function meta_box_class_zero_students($post) {
       echo '<td width="0%">';
         echo '<center>'.$student["date"].'</center>';
       echo '</td>';
-      if($current_user->roles[0]=='administrator') {
+      if(in_array("administrator", $current_user->roles)) {
         echo '<td width="0%">';
         printf(__('<center><a class="button remove-row" onclick="jQuery(this).RemoveTr();" href="#id_meta_box_class_students">Remove</a></center>','badges-issuer-for-wp'));
         echo '</td>';
@@ -144,7 +144,7 @@ function meta_box_class_zero_students($post) {
 
   echo '</tbody>';
 
-  if($current_user->roles[0]=='administrator') {
+  if(in_array("administrator", $current_user->roles)) {
 
   echo '<tfoot>';
   echo '<tr>';

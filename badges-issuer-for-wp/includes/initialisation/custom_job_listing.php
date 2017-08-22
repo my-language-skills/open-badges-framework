@@ -93,7 +93,7 @@ function load_job_listing_class_metaboxes() {
             <th width="0%">Language</th>
             <th width="0%">Date</th>
             <?php
-            if($current_user->roles[0]=='administrator') {
+            if(in_array("administrator", $current_user->roles)) {
               ?>
               <th width="0%">Action</th>
               <?php
@@ -118,7 +118,7 @@ function load_job_listing_class_metaboxes() {
           echo '<td width="0%">';
             echo '<center>'.$student["date"].'</center>';
           echo '</td>';
-          if($current_user->roles[0]=='administrator') {
+          if(in_array("administrator", $current_user->roles)) {
             echo '<td width="0%">';
             printf(__('<center><a class="button remove-row" onclick="jQuery(this).RemoveTr();" href="#id_meta_box_class_students">Remove</a></center>','badges-issuer-for-wp'));
             echo '</td>';
@@ -129,7 +129,7 @@ function load_job_listing_class_metaboxes() {
 
       echo '</tbody>';
 
-      if($current_user->roles[0]=='administrator') {
+      if(in_array("administrator", $current_user->roles)) {
 
         echo '<tfoot>';
         echo '<tr>';
