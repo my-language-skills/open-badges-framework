@@ -250,8 +250,8 @@ function save_comment_meta_data( $comment_id ) {
 
 add_filter( 'preprocess_comment', 'verify_comment_meta_data' );
 function verify_comment_meta_data( $commentdata ) {
-  if ( ! isset( $_POST['language'] ) )
-  wp_die( __( 'Error: You did not add a language. Hit the Back button on your Web browser and resubmit your comment with a language.' ) );
+  if (isset($_POST['badge_translation_comment']) && !isset($_POST['language']))
+    wp_die( __( 'Error: You did not add a language. Hit the Back button on your Web browser and resubmit your comment with a language.' ) );
   return $commentdata;
 }
 
