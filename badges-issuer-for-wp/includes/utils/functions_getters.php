@@ -109,6 +109,35 @@ function get_all_badges_level($badges, $level, $certification=false) {
   return $badges_corresponding;
 }
 
+
+/**
+ * Returns all the parent categories for languages
+ *
+ * @author Muhammad Uzair
+ * @since 1.0.0
+ * @return $all_parent_categories
+*/
+
+function get_all_parent_categories(){
+
+  $parents_categories = get_terms( array(
+    'taxonomy' => 'field_of_education',
+    'hide_empty' => false,
+    'parent' => 0,
+  ));
+
+  $categories  = array();
+  $all_parent_categories = array();
+
+  foreach ($parents_categories as $parents_category) {
+    $categories[$parents_category->slug] = array($parents_category->term_id, $parents_category->name, $parents_category->slug);
+  }
+
+  $all_parent_categories = $categories;
+  return $all_parent_categories;
+}
+
+
 /**
  * Returns all the languages stocked in the languages files.
  *
@@ -117,36 +146,22 @@ function get_all_badges_level($badges, $level, $certification=false) {
  * @return $all_languages All the languages found.
 */
 function get_all_languages() {
-  $mostimportantlanguages = array();
-  $languages = array();
 
-  $term_mil = get_term_by('slug', 'most-important-languages', 'field_of_education');
-  $id_mil = $term_mil->term_id;
-  $term_ol = get_term_by('slug', 'other-languages', 'field_of_education');
-  $id_ol = $term_ol->term_id;
+  $categories = get_all_parent_categories();
 
-  $languages_mil = get_terms( array(
-    'taxonomy' => 'field_of_education',
-    'hide_empty' => false,
-    'child_of' => $id_mil
-  ));
-
-  foreach ($languages_mil as $language_mil) {
-    $mostimportantlanguages[] = $language_mil->name;
+  foreach($categories as $key => $category){
+    $languages = get_terms( array(
+        'taxonomy' => 'field_of_education',
+        'hide_empty' => false,
+        'child_of' => $category[0]
+      ));
+    $langs = array();
+    foreach ($languages as $lang) {
+      $langs[] = $lang->name;
+    }
+    //$languages = $langs;
+    $all_languages[$key] = $langs;
   }
-
-  $languages_ol = get_terms( array(
-    'taxonomy' => 'field_of_education',
-    'hide_empty' => false,
-    'child_of' => $id_ol
-  ));
-
-  foreach ($languages_ol as $language_ol) {
-    $languages[] = $language_ol->name;
-  }
-
-  $all_languages = array($mostimportantlanguages, $languages);
-
   return $all_languages;
 }
 

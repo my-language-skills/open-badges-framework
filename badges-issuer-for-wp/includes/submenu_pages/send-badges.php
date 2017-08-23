@@ -68,15 +68,11 @@
             <ul>
               <li><a href="#tabs-1"><div class="nav-tab nav-tab-active" ><?php _e( 'Self','badges-issuer-for-wp' ); ?></div></a></li>
               <?php
-              if(in_array("teacher", $current_user->roles) || in_array("academy", $current_user->roles) || in_array("administrator", $current_user->roles) ) {
+              if($current_user->roles[0]=="teacher" || $current_user->roles[0]=="academy" || $current_user->roles[0]=="administrator" ) {
               ?>
               <li><a href="#tabs-2"><div class="nav-tab"><?php _e( 'Issue','badges-issuer-for-wp' ); ?></div></a></li>
-              <?php
-                  if(in_array("academy", $current_user->roles) || in_array("administrator", $current_user->roles)) {
-              ?>
-                    <li><a href="#tabs-3"><div class="nav-tab"><?php _e( 'Multiple issue','badges-issuer-for-wp' ); ?></div></a></li>
-                  <?php } ?>
-            <?php } ?>
+              <li><a href="#tabs-3"><div class="nav-tab"><?php _e( 'Multiple Issue','badges-issuer-for-wp' ); ?></div></a></li>
+              <?php } ?>
           </ul>
         </h2>
         </div>
@@ -85,13 +81,13 @@
           <?php tab_self(); ?>
         </div>
         <?php
-        if(in_array("teacher", $current_user->roles) || in_array("academy", $current_user->roles) || in_array("administrator", $current_user->roles) ) {
+        if($current_user->roles[0]=="teacher" || $current_user->roles[0]=="academy" || $current_user->roles[0]=="administrator" ) {
         ?>
           <div id="tabs-2">
             <?php tab_issue(); ?>
           </div>
           <?php
-          if(in_array("academy", $current_user->roles) || in_array("administrator", $current_user->roles) ) {
+          if($current_user->roles[0]=="academy" || $current_user->roles[0]=="administrator" ) {
           ?>
           <div id="tabs-3">
             <?php tab_multiple_issues(); ?>
@@ -117,7 +113,7 @@
         get_currentuserinfo();
 
         $class = null;
-        if(in_array("teacher", $current_user->roles) || in_array("academy", $current_user->roles) || in_array("administrator", $current_user->roles)) {
+        if($current_user->roles[0]=="teacher" || $current_user->roles[0]=="academy" || $current_user->roles[0]=="administrator") {
           if(isset($_POST['class_for_student']))
             $class = $_POST['class_for_student'];
         }
@@ -156,6 +152,20 @@
     }
 
     /**
+     * The parent categories default
+     *
+     * @author Muhammad Uzair
+     * @since 1.0.0
+     */
+
+     function show_parent_categories(){
+         $parent_languages = get_all_parent_categories();
+         foreach($parent_languages as $language){
+             echo '<a style="margin-left:20px;" href="#" class="display_parent_categories" id=" '.$language[2].'">Display '.$language[1].'</a>';
+           }
+         }
+
+    /**
      * The content of the tab for sending a badge to himself.
      *
      * @author Nicolas TORION
@@ -178,8 +188,9 @@
         echo '<br /><br />';
         echo '<h3>STEP 1: </h3>';
         echo '<div id="languages_form_a">';
-        display_languages_select_form($Just_most_important_languages=true);
-        _e(' <a href="#" id="display_languages_a">Display all languages</a> (Can take few seconds to load.)','badges-issuer-for-wp');
+
+        display_languages_select_form();
+        show_parent_categories();
         echo '</div>';
         echo '<br />';
 
@@ -193,7 +204,7 @@
         </div>';
         ?>
         <div style="display:block;">
-          <h3>STEP 4: </h3>
+        </br><h3>STEP 4: </h3>
           <div id="result_languages_description"><b>Language of badge description* :</b></div>
         </div>
 
@@ -202,7 +213,7 @@
 
         <h3>STEP 5: </h3>
         <label for="comment"><b><?php _e( 'Comment : ','badges-issuer-for-wp' ); ?></b></label><br />
-        <textarea name="comment" id="comment" rows="10" cols="80"></textarea><br /><br />
+        <textarea name="comment" id="comment" rows="10" cols="80"></textarea><br />
 
         <input type="submit" id="submit_button_a" class="button-primary" value="<?php _e('Send a badge','badges-issuer-for-wp'); ?>"/>
       </form>
@@ -235,8 +246,8 @@
           echo '<br /><br />';
           echo '<h3>STEP 1: </h3>';
           echo '<div id="languages_form_b">';
-          display_languages_select_form($just_most_important_languages=true);
-          _e(' <a href="#" id="display_languages_b">Display all languages</a> (Can take few seconds to load.)','badges-issuer-for-wp');
+          display_languages_select_form();
+          show_parent_categories();
           echo '</div>';
           echo '<br />';
           echo '<h3>STEP 2: </h3>';
@@ -255,7 +266,7 @@
           <div id="result_languages_description"><b>Language of badge description* :</b></div>
           <h3>STEP 5:</h3>
           <?php
-            if(in_array("teacher", $current_user->roles) || in_array("academy", $current_user->roles) || in_array("administrator", $current_user->roles)) {
+            if($current_user->roles[0]=="teacher" || $current_user->roles[0]=="academy" || $current_user->roles[0]=="administrator") {
                 echo '<div id="select_class"><b>Class*:</b></div>';
                 echo '<br />';
             }
@@ -268,7 +279,7 @@
           <input type="hidden" name="sender" value="<?php echo $current_user->user_email; ?>" />
           <h3>STEP 7: </h3>
           <label for="comment"><b><?php _e( 'Comment : ','badges-issuer-for-wp' ); ?></b></label><br />
-          <textarea name="comment" id="comment" rows="10" cols="80"></textarea><br /><br />
+          <textarea name="comment" id="comment" rows="10" cols="80"></textarea><br />
 
           <input type="submit" id="submit_button_b" class="button-primary" value="<?php _e('Send a badge','badges-issuer-for-wp'); ?>"/>
         </form>
@@ -300,10 +311,9 @@
           echo '<br /><br />';
           echo '<h3>STEP 1: </h3>';
           echo '<div id="languages_form_c">';
-          display_languages_select_form($just_most_important_languages=true);
-          printf(__(' <a href="#" id="display_languages_c">Display all languages</a> (Can take few seconds to load.)','badges-issuer-for-wp'));
+          display_languages_select_form();
+          show_parent_categories();
           echo '</div>';
-
           echo '<br />';
 
           echo '<h3>STEP 2: </h3>';
@@ -322,7 +332,7 @@
 
           <h3>STEP 5: </h3>
           <?php
-            if(in_array("teacher", $current_user->roles) || in_array("academy", $current_user->roles) || in_array("administrator", $current_user->roles)) {
+            if($current_user->roles[0]=="teacher" || $current_user->roles[0]=="academy" || $current_user->roles[0]=="administrator") {
                 echo '<div id="select_class"><b>Class*:</b></div>';
                 echo '<br />';
             }
@@ -337,8 +347,9 @@
           <br /><br />
           <h3>STEP 7: </h3>
           <label for="comment"><b><?php _e( 'Comment : ','badges-issuer-for-wp' ); ?></b></label><br />
-          <textarea name="comment" id="comment" rows="10" cols="80"></textarea><br /><br />
-          
+          <textarea name="comment" id="comment" rows="10" cols="80"></textarea><br />
+
+          <br /><br />
           <input type="submit" id="submit_button_c" class="button-primary" value="<?php _e('Send a badge','badges-issuer-for-wp'); ?>"/>
         </form>
 

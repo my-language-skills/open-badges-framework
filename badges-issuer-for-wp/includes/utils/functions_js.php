@@ -33,13 +33,16 @@ function js_form() {
   		});
     });
 
-    jQuery("#languages_form_<?php echo $form; ?>").on("click", "#display_languages_<?php echo $form ?>", function() {
+    jQuery("#languages_form_<?php echo $form; ?>").on("click", ".display_parent_categories", function() {
       console.log("clicked");
       jQuery("#languages_form_<?php echo $form; ?>").html("<br /><img src='<?php echo plugins_url( '../../images/load.gif', __FILE__ ); ?>' width='50px' height='50px' />");
 
+      var id_lan = jQuery(this).attr('id');
+      id_lan = id_lan.replace(/\s/g, '');
       var data = {
   			'action': 'action_languages_form',
-        'form': '<?php echo $form; ?>'
+        'form': '<?php echo $form; ?>',
+        'slug': id_lan
   		};
 
   		// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php

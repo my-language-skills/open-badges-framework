@@ -12,22 +12,22 @@ function display_levels_radio_buttons($badges, $context) {
   global $current_user;
   get_currentuserinfo();
 
-  if(in_array("administrator", $current_user->roles))
+  if($current_user->roles[0]=="administrator")
     $levels = get_all_levels($badges);
   else {
     if($context=="self") {
-      if(in_array("student", $current_user->roles))
+      if($current_user->roles[0]=="student")
         $levels = get_all_levels($badges, true);
-      elseif (in_array("teacher", $current_user->roles) || in_array("academy", $current_user->roles))
+      elseif ($current_user->roles[0]=="teacher" || $current_user->roles[0]=="academy")
         $levels = get_all_levels($badges);
     }
     elseif ($context=="send") {
-      if (in_array("teacher", $current_user->roles) || in_array("academy", $current_user->roles))
+      if ($current_user->roles[0]=="teacher" || $current_user->roles[0]=="academy")
         $levels = get_all_levels($badges, true);
     }
   }
 
-  _e('<b> Level* : </b>','badges-issuer-for-wp');
+  _e('<b> Level* : </b></br>','badges-issuer-for-wp');
   foreach ($levels as $l) {
     echo '<label for="level_'.$l.'">'.$l.' </label><input type="radio" class="level" name="level" id="level_'.$l.'" value="'.$l.'"> ';
   }
@@ -43,18 +43,19 @@ function display_levels_radio_buttons($badges, $context) {
  * @param $language_selected The language to select.
  * @param $multiple A boolean to know if the select form must be in multiple mode.
 */
-function display_languages_select_form($just_most_important_languages=false, $language_selected="", $multiple=false) {
+//function to display langugaes
+function display_languages_select_form($category="most-important-languages", $language_selected="", $multiple=false) {
   $all_languages = get_all_languages();
-  $mostimportantlanguages = $all_languages[0];
-  $languages = $all_languages[1];
+  $language_to_display = $all_languages[$category];
+  _e('<label for="language"><b> Field of Education* : </b></label></br>','badges-issuer-for-wp');
 
-  _e('<label for="language"><b> Field of Education* : </b></label><select name="language','badges-issuer-for-wp');
+  // Showing the most important languages
+  echo '<select name="language';
   if($multiple)
     echo '[]';
   echo '" id="language">';
-
   echo '<optgroup>';
-  foreach ($mostimportantlanguages as $language) {
+  foreach ($language_to_display as $language) {
     $language = str_replace("\n", "", $language);
     echo '<option value="'.$language.'"';
     if($language_selected==$language)
@@ -62,19 +63,8 @@ function display_languages_select_form($just_most_important_languages=false, $la
     echo '>'.$language.'</option>';
   }
   echo '</optgroup>';
-
-  if(!$just_most_important_languages) {
-    echo '<optgroup label="______________"';
-    foreach ($languages as $language) {
-      echo '<option value="'.$language.'"';
-      if($language_selected==$language)
-        echo ' selected';
-      echo '>'.$language.'</option>';
-    }
-    echo '</optgroup>';
-  }
-
   echo '</select>';
+
 }
 
 // DISPLAY MESSAGES FUNCTIONS
@@ -120,9 +110,9 @@ function display_not_logged_message() {
   <center>
     <img src="https://mylanguageskills.files.wordpress.com/2015/08/badges4languages-hi.png?w=800" width="400px" height="400px"/>
     <br />
-    <h1><?php _e('To get a badge, you need to be logged on the site.','badges-issuer-for-wp'); ?></h1>
+    <h1><?php __('To get a badge, you need to be logged on the site.','badges-issuer-for-wp'); ?></h1>
     <br />
-    <a href="<?php echo wp_registration_url(); ?>" title="Register"><?php _e('Register','badges-issuer-for-wp'); ?></a> | <a href="<?php echo wp_login_url($_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]); ?>" title="Login"><?php _e('Login','badges-issuer-for-wp'); ?></a>
+    <a href="<?php echo wp_login_url($_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]); ?>" title="Login"><?php __('Login','badges-issuer-for-wp'); ?></a>
   </center>
   <?php
 }
@@ -137,7 +127,7 @@ function display_classes_input() {
   global $current_user;
   get_currentuserinfo();
 
-  if($in_array("administrator", $current_user->roles))
+  if($current_user->roles[0]=='administrator')
     $classes = get_all_classes();
   else
     $classes = get_classes_teacher($current_user->user_login);
