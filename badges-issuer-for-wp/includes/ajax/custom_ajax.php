@@ -39,7 +39,22 @@
       echo $_POST['class_students'];
     }
 
+
     /* AJAX action to load all languages in a select form*/
+
+    add_action('CUSTOMAJAX_action_languages_form', 'action_languages_form');
+
+    function action_languages_form() {
+      display_languages_select_form($category = $_POST['slug']);
+      $parent_languages = get_all_parent_categories();
+      foreach($parent_languages as $language){
+        echo '<a style="margin-left:20px;" href="#" class="display_parent_categories" id=" '.$language[2].'">Display '.$language[1].'</a>';
+      }
+    }
+
+
+
+    /* AJAX action to load all languages in a select form
 
     add_action('CUSTOMAJAX_action_languages_form', 'action_languages_form');
 
@@ -54,7 +69,7 @@
     function action_mi_languages_form() {
       display_languages_select_form($just_most_important_languages=true);
       _e('<a href="#" id="display_languages_'.$_POST['form'].'">Display all languages</a> (Can take few seconds to load.)','badges-issuer-for-wp');
-    }
+    }*/
 
     /* AJAX action to load the classes corresponding to the level and the language selected */
 
@@ -88,11 +103,23 @@
             _e('<a href="'.get_page_link($settings_id_links["link_create_new_class"]).'">Don\'t you want to create a specific class for that student(s) ?</a>', 'badges-issuer-for-wp');
         }
         else {
-          foreach ($classes as $class) {
-            echo '<label for="class_'.$class->ID.'">'.$class->post_title.' </label><input name="class_for_student" id="class_'.$class->ID.'" type="radio" value="'.$class->ID.'"/>';
+              echo '</br><b>Default Class:</b>';
+              foreach ($classes as $class) {
+                if($class->post_type == 'class'){
+                  echo '<span style="margin-left:20px;"></span>';
+                  echo '<label  for="class_'.$class->ID.'">'.$class->post_title.' </label><input name="class_for_student" id="class_'.$class->ID.'" type="radio" value="'.$class->ID.'"/>';
+              }
+            }
+            echo '</br></br>';
+            echo '</br><b>Specific Class:</b>';
+            foreach ($classes as $class) {
+              if($class->post_type == 'job_listing'){
+                echo '<span style="margin-left:20px;"></span>';
+                echo '<label for="class_'.$class->ID.'">'.$class->post_title.' </label><input name="class_for_student" id="class_'.$class->ID.'" type="radio" value="'.$class->ID.'"/>';
+              }
+            }
           }
         }
-    }
 
     /* AJAX action to load the badges of the level given */
 
@@ -121,27 +148,35 @@
           echo '<div style="float:left;">';
           echo '<center><input type="radio" name="input_badge_name" class="input-badge input-hidden" id="'.$_POST['form'].$badge->post_title.'" value="'.$badge->post_name.'"/><label for="'.$_POST['form'].$badge->post_title.'"><img src="';
           if(get_the_post_thumbnail_url($badge->ID)){
-            echo get_the_post_thumbnail_url($badge->ID);
+            echo get_the_post_thumbnail_url($badge->ID, 'thumbnail');
             echo '" width="40px" height="40px" /></label>';
-            echo '</br><b>'.$_POST['language_selected']. " "  . $badge->post_title . '</b></center>';
+            echo '</br><b>' . $badge->post_title . '</b></center>';
           }
           else{
-            echo plugins_url( '../../images/default-badge.png', __FILE__ );
+            echo plugins_url( '../../images/default-badge-thumbnail.png', __FILE__ );
             echo '" width="40px" height="40px" /></label></center>';
           }
           echo "</div>";
         }
+
         elseif(get_post_meta($badge->ID,'_certification',true)=="certified") {
+          echo '<div style="clear:left; float:left;">';
+          echo '<br><b>Certified Badges : </b><br>';
           if($first_certified_badge) {
-            echo '<br><b>Certified Badges : </b><br>';
             $first_certified_badge = false;
           }
-          echo '<input type="radio" name="input_badge_name" class="input-badge input-hidden" id="'.$_POST['form'].$badge->post_title.'" value="'.$badge->post_name.'"/><label for="'.$_POST['form'].$badge->post_title.'"><img src="';
-          if(get_the_post_thumbnail_url($badge->ID))
-            echo get_the_post_thumbnail_url($badge->ID);
-          else
-            echo plugins_url( '../../images/default-badge.png', __FILE__ );
-          echo '" width="40px" height="40px" /></label>';
+
+          echo '<center><input type="radio" name="input_badge_name" class="input-badge input-hidden" id="'.$_POST['form'].$badge->post_title.'" value="'.$badge->post_name.'"/><label for="'.$_POST['form'].$badge->post_title.'"><img src="';
+          if(get_the_post_thumbnail_url($badge->ID)){
+            echo get_the_post_thumbnail_url($badge->ID, 'thumbnail');
+              echo '" width="40px" height="40px" /></label>';
+              echo '</br><b>' . $badge->post_title . '</b></center>';
+          }
+          else{
+            echo plugins_url( '../../images/default-badge-thumbnail.png', __FILE__ );
+            echo '" width="40px" height="40px" /></label>';
+          }
+            echo "</div>";
         }
       }
       echo "</div>";

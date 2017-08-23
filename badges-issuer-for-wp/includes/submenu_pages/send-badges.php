@@ -156,6 +156,20 @@
     }
 
     /**
+     * The parent categories default
+     *
+     * @author Muhammad Uzair
+     * @since 1.0.0
+     */
+
+     function show_parent_categories(){
+         $parent_languages = get_all_parent_categories();
+         foreach($parent_languages as $language){
+             echo '<a style="margin-left:20px;" href="#" class="display_parent_categories" id=" '.$language[2].'">Display '.$language[1].'</a>';
+           }
+         }
+
+    /**
      * The content of the tab for sending a badge to himself.
      *
      * @author Nicolas TORION
@@ -178,8 +192,9 @@
         echo '<br /><br />';
         echo '<h3>STEP 1: </h3>';
         echo '<div id="languages_form_a">';
-        display_languages_select_form($Just_most_important_languages=true);
-        _e(' <a href="#" id="display_languages_a">Display all languages</a> (Can take few seconds to load.)','badges-issuer-for-wp');
+
+        display_languages_select_form();
+        show_parent_categories();
         echo '</div>';
         echo '<br />';
 
@@ -188,14 +203,12 @@
 
         echo '<h3>STEP 3: </h3>';
         echo '<div id="select_badge"><b>Badge*:</b>
-
-        </br></br>
-        <img src="'.plugins_url( '../../images/default-badge.png', __FILE__ ).'" width="72px" height="72px"/>
-
+            </br></br>
+            <img src="'.plugins_url( '../../images/default-badge.png', __FILE__ ).'" width="72px" height="72px"/>
         </div>';
         ?>
         <div style="display:block;">
-          <h3>STEP 4: </h3>
+        </br><h3>STEP 4: </h3>
           <div id="result_languages_description"><b>Language of badge description* :</b></div>
         </div>
 
@@ -237,8 +250,8 @@
           echo '<br /><br />';
           echo '<h3>STEP 1: </h3>';
           echo '<div id="languages_form_b">';
-          display_languages_select_form($just_most_important_languages=true);
-          _e(' <a href="#" id="display_languages_b">Display all languages</a> (Can take few seconds to load.)','badges-issuer-for-wp');
+          display_languages_select_form();
+          show_parent_categories();
           echo '</div>';
           echo '<br />';
           echo '<h3>STEP 2: </h3>';
@@ -302,10 +315,9 @@
           echo '<br /><br />';
           echo '<h3>STEP 1: </h3>';
           echo '<div id="languages_form_c">';
-          display_languages_select_form($just_most_important_languages=true);
-          printf(__(' <a href="#" id="display_languages_c">Display all languages</a> (Can take few seconds to load.)','badges-issuer-for-wp'));
+          display_languages_select_form();
+          show_parent_categories();
           echo '</div>';
-
           echo '<br />';
 
           echo '<h3>STEP 2: </h3>';

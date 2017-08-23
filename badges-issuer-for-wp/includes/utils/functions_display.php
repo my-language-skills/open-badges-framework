@@ -27,7 +27,7 @@ function display_levels_radio_buttons($badges, $context) {
     }
   }
 
-  _e('<b> Level* : </b>','badges-issuer-for-wp');
+  _e('<b> Level* : </b></br>','badges-issuer-for-wp');
   foreach ($levels as $l) {
     echo '<label for="level_'.$l.'">'.$l.' </label><input type="radio" class="level" name="level" id="level_'.$l.'" value="'.$l.'"> ';
   }
@@ -43,18 +43,19 @@ function display_levels_radio_buttons($badges, $context) {
  * @param $language_selected The language to select.
  * @param $multiple A boolean to know if the select form must be in multiple mode.
 */
-function display_languages_select_form($just_most_important_languages=false, $language_selected="", $multiple=false) {
+//function to display langugaes
+function display_languages_select_form($category="most-important-languages", $language_selected="", $multiple=false) {
   $all_languages = get_all_languages();
-  $mostimportantlanguages = $all_languages[0];
-  $languages = $all_languages[1];
+  $language_to_display = $all_languages[$category];
+  _e('<label for="language"><b> Field of Education* : </b></label></br>','badges-issuer-for-wp');
 
-  _e('<label for="language"><b> Field of Education* : </b></label><select name="language','badges-issuer-for-wp');
+  // Showing the most important languages
+  echo '<select name="language';
   if($multiple)
     echo '[]';
   echo '" id="language">';
-
   echo '<optgroup>';
-  foreach ($mostimportantlanguages as $language) {
+  foreach ($language_to_display as $language) {
     $language = str_replace("\n", "", $language);
     echo '<option value="'.$language.'"';
     if($language_selected==$language)
@@ -62,19 +63,8 @@ function display_languages_select_form($just_most_important_languages=false, $la
     echo '>'.$language.'</option>';
   }
   echo '</optgroup>';
-
-  if(!$just_most_important_languages) {
-    echo '<optgroup label="______________"';
-    foreach ($languages as $language) {
-      echo '<option value="'.$language.'"';
-      if($language_selected==$language)
-        echo ' selected';
-      echo '>'.$language.'</option>';
-    }
-    echo '</optgroup>';
-  }
-
   echo '</select>';
+
 }
 
 // DISPLAY MESSAGES FUNCTIONS
