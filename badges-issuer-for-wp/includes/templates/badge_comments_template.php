@@ -17,6 +17,7 @@
 
   function additional_fields () {
     echo '<p class="comment-form-language">';
+    echo '<input type="hidden" name="badge_translation_comment" value="true" />';
     echo display_languages_select_form($just_most_important_languages=true);
     echo '</p>';
   }
@@ -27,9 +28,9 @@
 
 	<?php // You can start editing here -- including this comment! ?>
 
-    <h2>Translations of description</h2><br />
 	<?php if ( have_comments() ) : ?>
-
+    <h2>Translations of description</h2><br />
+    
 		<ol class="commentlist">
 			<?php wp_list_comments( array('style' => 'ol', 'callback' => 'custom_comment_badge' ) ); ?>
 		</ol><!-- .commentlist -->
@@ -53,7 +54,7 @@
 	<?php endif; // have_comments() ?>
 
   <?php
-  if($current_user->roles[0]=="academy") {
+  if(in_array("academy", $current_user->roles)) {
     comment_form();
   }
   ?>
@@ -113,7 +114,7 @@ function custom_comment_badge($comment, $args, $depth) {
       </div>
 
       <?php
-      if ($current_user->roles[0]=="academy" && $current_user->ID==$comment->user_id) {
+      if (in_array("academy", $current_user->roles) && $current_user->ID==$comment->user_id) {
         ?>
         <a href="#" id="edit_comment_link">Edit your translation</a>
         <?php

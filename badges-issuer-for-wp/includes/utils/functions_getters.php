@@ -363,4 +363,13 @@ function get_settings_links() {
   return $settings_links;
 }
 
+function check_if_user_has_already_a_badge($hash) {
+  global $current_user;
+  get_currentuserinfo();
+
+  $badges = get_the_author_meta( 'badges_received', $current_user->ID );
+
+  return in_array($hash, $badges);
+}
+
 ?>

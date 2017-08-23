@@ -151,7 +151,8 @@ class Badge
    */
   function send_mail($receiver, $class_id) {
     $hash_name = hash("sha256", $receiver.$this->name.$this->language);
-    $url_mail = "http://".$_SERVER['SERVER_NAME']."/wp-content/plugins/badges-issuer-for-wp/includes/utils/get_badge.php?hash=".$hash_name;
+    $url_mail = plugins_url( './get_badge.php', __FILE__ );
+    $url_mail = $url_mail."?hash=".$hash_name;
 
     if(!is_null($class_id))
       $url_mail = $url_mail."&class=".$class_id;
@@ -250,7 +251,7 @@ class Badge
     global $current_user;
     get_currentuserinfo();
 
-    if($current_user->roles[0]=="teacher" || $current_user->roles[0]=="academy") {
+    if(in_array("teacher", $current_user->roles) || in_array("academy", $current_user->roles)) {
       $student = get_user_by_email($mail);
       if($student) {
         $student_infos = array(
@@ -288,19 +289,24 @@ class Badge
    * @param $mail The mail of the person who receive the badge.
    * @param $sender The mail of the person who is sending the badge.
    */
-  function add_badge_to_user_profile($mail, $sender) {
+  function add_badge_to_user_profile($mail, $sender, $class_id) {
     $user_informations = get_user_by_email($mail);
     $badges = get_the_author_meta( 'user_badges', $user_informations->ID );
 
     if(empty($badges))
       $bagdes=array();
 
-    $badges[] = array(
+    $badge = array(
       'name' => $this->name,
       'language' => $this->language,
       'sender' => $sender,
       'comment' => $this->comment
     );
+
+    if(!is_null($class_id))
+      $badge['class']=get_the_title($class_id);
+
+    $badges[] = $badge;
 
     update_user_meta( $user_informations->ID, 'user_badges', $badges);
   }

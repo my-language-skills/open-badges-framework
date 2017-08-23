@@ -68,11 +68,15 @@
             <ul>
               <li><a href="#tabs-1"><div class="nav-tab nav-tab-active" ><?php _e( 'Self','badges-issuer-for-wp' ); ?></div></a></li>
               <?php
-              if($current_user->roles[0]=="teacher" || $current_user->roles[0]=="academy" || $current_user->roles[0]=="administrator" ) {
+              if(in_array("teacher", $current_user->roles) || in_array("academy", $current_user->roles) || in_array("administrator", $current_user->roles) || in_array("editor", $current_user->roles)) {
               ?>
               <li><a href="#tabs-2"><div class="nav-tab"><?php _e( 'Issue','badges-issuer-for-wp' ); ?></div></a></li>
-              <li><a href="#tabs-3"><div class="nav-tab"><?php _e( 'Multiple issue','badges-issuer-for-wp' ); ?></div></a></li>
-              <?php } ?>
+              <?php
+                  if(in_array("academy", $current_user->roles) || in_array("administrator", $current_user->roles) || in_array("editor", $current_user->roles)) {
+              ?>
+                    <li><a href="#tabs-3"><div class="nav-tab"><?php _e( 'Multiple issue','badges-issuer-for-wp' ); ?></div></a></li>
+                  <?php } ?>
+            <?php } ?>
           </ul>
         </h2>
         </div>
@@ -81,13 +85,13 @@
           <?php tab_self(); ?>
         </div>
         <?php
-        if($current_user->roles[0]=="teacher" || $current_user->roles[0]=="academy" || $current_user->roles[0]=="administrator" ) {
+        if(in_array("teacher", $current_user->roles) || in_array("academy", $current_user->roles) || in_array("administrator", $current_user->roles) || in_array("editor", $current_user->roles)) {
         ?>
           <div id="tabs-2">
             <?php tab_issue(); ?>
           </div>
           <?php
-          if($current_user->roles[0]=="academy" || $current_user->roles[0]=="administrator" ) {
+          if(in_array("academy", $current_user->roles) || in_array("administrator", $current_user->roles) || in_array("editor", $current_user->roles)) {
           ?>
           <div id="tabs-3">
             <?php tab_multiple_issues(); ?>
@@ -113,7 +117,7 @@
         get_currentuserinfo();
 
         $class = null;
-        if($current_user->roles[0]=="teacher" || $current_user->roles[0]=="academy" || $current_user->roles[0]=="administrator") {
+        if(in_array("teacher", $current_user->roles) || in_array("academy", $current_user->roles) || in_array("administrator", $current_user->roles) || in_array("editor", $current_user->roles)) {
           if(isset($_POST['class_for_student']))
             $class = $_POST['class_for_student'];
         }
@@ -134,7 +138,7 @@
               $badge->add_student_to_class_zero($mail);
 
             $badge->add_student_to_class($mail, $class);
-            $badge->add_badge_to_user_profile($mail, $_POST['sender']);
+            $badge->add_badge_to_user_profile($mail, $_POST['sender'], $class);
           }
 
         }
@@ -200,7 +204,7 @@
 
         <h3>STEP 5: </h3>
         <label for="comment"><b><?php _e( 'Comment : ','badges-issuer-for-wp' ); ?></b></label><br />
-        <textarea name="comment" id="comment" rows="10" cols="80"></textarea><br />
+        <textarea name="comment" id="comment" rows="10" cols="80"></textarea><br /><br />
 
         <input type="submit" id="submit_button_a" class="button-primary" value="<?php _e('Send a badge','badges-issuer-for-wp'); ?>"/>
       </form>
@@ -253,7 +257,7 @@
           <div id="result_languages_description"><b>Language of badge description* :</b></div>
           <h3>STEP 5:</h3>
           <?php
-            if($current_user->roles[0]=="teacher" || $current_user->roles[0]=="academy" || $current_user->roles[0]=="administrator") {
+            if(in_array("teacher", $current_user->roles) || in_array("academy", $current_user->roles) || in_array("administrator", $current_user->roles) || in_array("editor", $current_user->roles)) {
                 echo '<div id="select_class"><b>Class*:</b></div>';
                 echo '<br />';
             }
@@ -266,7 +270,7 @@
           <input type="hidden" name="sender" value="<?php echo $current_user->user_email; ?>" />
           <h3>STEP 7: </h3>
           <label for="comment"><b><?php _e( 'Comment : ','badges-issuer-for-wp' ); ?></b></label><br />
-          <textarea name="comment" id="comment" rows="10" cols="80"></textarea><br />
+          <textarea name="comment" id="comment" rows="10" cols="80"></textarea><br /><br />
 
           <input type="submit" id="submit_button_b" class="button-primary" value="<?php _e('Send a badge','badges-issuer-for-wp'); ?>"/>
         </form>
@@ -320,7 +324,7 @@
 
           <h3>STEP 5: </h3>
           <?php
-            if($current_user->roles[0]=="teacher" || $current_user->roles[0]=="academy" || $current_user->roles[0]=="administrator") {
+            if(in_array("teacher", $current_user->roles) || in_array("academy", $current_user->roles) || in_array("administrator", $current_user->roles) || in_array("editor", $current_user->roles)) {
                 echo '<div id="select_class"><b>Class*:</b></div>';
                 echo '<br />';
             }
@@ -335,9 +339,8 @@
           <br /><br />
           <h3>STEP 7: </h3>
           <label for="comment"><b><?php _e( 'Comment : ','badges-issuer-for-wp' ); ?></b></label><br />
-          <textarea name="comment" id="comment" rows="10" cols="80"></textarea><br />
+          <textarea name="comment" id="comment" rows="10" cols="80"></textarea><br /><br />
 
-          <br /><br />
           <input type="submit" id="submit_button_c" class="button-primary" value="<?php _e('Send a badge','badges-issuer-for-wp'); ?>"/>
         </form>
 

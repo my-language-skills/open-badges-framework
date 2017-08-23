@@ -103,6 +103,25 @@ function add_roles() {
     $admin->add_cap('delete_class');
 
     $admin->add_cap('capability_settings');
+
+    // EDITOR ROLE
+    $editor = get_role('editor');
+    $editor->add_cap('capability_send_badge');
+    $editor->add_cap('send_badge');
+
+    $editor->add_cap('job_listing');
+
+    $editor->add_cap('edit_class');
+    $editor->add_cap('edit_classes');
+    $editor->add_cap('edit_other_classes');
+    $editor->add_cap('edit_published_classes');
+    $editor->add_cap('publish_classes');
+    $editor->add_cap('read_class');
+    $editor->add_cap('read_classes');
+    $editor->add_cap('read_private_classes');
+    $editor->add_cap('delete_class');
+
+    $editor->add_cap('capability_settings');
 }
 
 add_action( 'init', 'add_roles');
@@ -113,7 +132,7 @@ Create a class for the teacher when he loggin for the first time.
 
 function create_teacher_class_zero() {
   $current_user = wp_get_current_user();
-  if($current_user->roles[0]=='teacher' || $current_user->roles[0]=='academy') {
+  if(in_array("teacher", $current_user->roles) || in_array("academy", $current_user->roles)) {
     $name = $current_user->user_login;
 
     if(!class_school_exists($name))
