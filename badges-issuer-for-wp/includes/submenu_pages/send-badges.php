@@ -204,7 +204,7 @@
 
         <h3>STEP 5: </h3>
         <label for="comment"><b><?php _e( 'Comment : ','badges-issuer-for-wp' ); ?></b></label><br />
-        <textarea name="comment" id="comment" rows="10" cols="80"></textarea><br />
+        <textarea name="comment" id="comment" rows="10" cols="80"></textarea><br /><br />
 
         <input type="submit" id="submit_button_a" class="button-primary" value="<?php _e('Send a badge','badges-issuer-for-wp'); ?>"/>
       </form>
@@ -270,7 +270,7 @@
           <input type="hidden" name="sender" value="<?php echo $current_user->user_email; ?>" />
           <h3>STEP 7: </h3>
           <label for="comment"><b><?php _e( 'Comment : ','badges-issuer-for-wp' ); ?></b></label><br />
-          <textarea name="comment" id="comment" rows="10" cols="80"></textarea><br />
+          <textarea name="comment" id="comment" rows="10" cols="80"></textarea><br /><br />
 
           <input type="submit" id="submit_button_b" class="button-primary" value="<?php _e('Send a badge','badges-issuer-for-wp'); ?>"/>
         </form>
@@ -339,9 +339,8 @@
           <br /><br />
           <h3>STEP 7: </h3>
           <label for="comment"><b><?php _e( 'Comment : ','badges-issuer-for-wp' ); ?></b></label><br />
-          <textarea name="comment" id="comment" rows="10" cols="80"></textarea><br />
-
-          <br /><br />
+          <textarea name="comment" id="comment" rows="10" cols="80"></textarea><br /><br />
+          
           <input type="submit" id="submit_button_c" class="button-primary" value="<?php _e('Send a badge','badges-issuer-for-wp'); ?>"/>
         </form>
 

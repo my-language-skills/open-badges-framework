@@ -17,6 +17,7 @@
 
   function additional_fields () {
     echo '<p class="comment-form-language">';
+    echo '<input type="hidden" name="badge_translation_comment" value="true" />';
     echo display_languages_select_form($just_most_important_languages=true);
     echo '</p>';
   }
