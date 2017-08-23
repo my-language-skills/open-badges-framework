@@ -28,9 +28,9 @@
 
 	<?php // You can start editing here -- including this comment! ?>
 
-    <h2>Translations of description</h2><br />
 	<?php if ( have_comments() ) : ?>
-
+    <h2>Translations of description</h2><br />
+    
 		<ol class="commentlist">
 			<?php wp_list_comments( array('style' => 'ol', 'callback' => 'custom_comment_badge' ) ); ?>
 		</ol><!-- .commentlist -->
