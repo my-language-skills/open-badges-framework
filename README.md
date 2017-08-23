@@ -40,6 +40,15 @@ You can see all of the screenshots of the plugin [here](doc/screenshot.md "scree
  * **ENHANCEMENTS**
 
 ### now
+ * Fix comments always activated
+ * Fix problem of redirection after login from get badge page
+ * Selection of badge description language
+ * Set default language description as not english but default
+ * Create statistics of badges sent
+ * Delete all informations when the plugin is deleted
+ * Add picture of badge in front end page of badge
+ * Tabs in settings page
+ * Change languages load
  * Some modifications in class job listing template
  * To create students and teacher page
 
@@ -55,6 +64,26 @@ You can see all of the screenshots of the plugin [here](doc/screenshot.md "scree
  * To delete all the information of the plugin option if we wish by deleting the plugin
 
 ## Changelog
+
+### 0.6
+
+* **ADDITIONS**
+  * Add messages to get_badge page (if user has already received this badge, inform user that he will be able to review the class after he received the badge).
+  * Save name of class in user profile (section badges).
+  * Editor role has same permissions than the Administrator.
+  * Show badge title in send badges page when the badge is selected.
+  * Add register link into get_badge page when the user is not logged.
+
+* **ENHANCEMENTS**
+  * Increase text size in delete_badge page.
+  * Show "Translations of description" title oly when translations exist in class template.
+  * Remove default badges issuer informations.
+  * Send badges page and forms more simple.
+  
+* **BUGFIXES**
+  * Fix message when user is not logged in the get_badge page.
+  * Fix teacher shouldn't be able to see multiple send badges tab.
+  * Fix check of roles.
 
 ### 0.5.3
 
@@ -158,6 +187,10 @@ You can see all of the screenshots of the plugin [here](doc/screenshot.md "scree
   * Creation of admin subpages to send a badge to one or several students.
 
 ## Upgrade Notice
+
+### 0.6
+
+Plugin more stable, more ergonomic and more simple.
 
 ### 0.5
 
