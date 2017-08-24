@@ -5,10 +5,19 @@
  *
  */
 
-require_once plugin_dir_path( dirname( __FILE__ ) ) . 'utils/functions.php';
+require_once plugin_dir_path( dirname( __FILE__ ) ) . 'utils/functions.php'; ?>
 
+<style>
+  .post-content {
+    width: 70%;
+    margin: 0 auto;
+    background-image: url('default-badge-thumbnail.png');
+  }
+</style>
+
+<?php
 get_header(); ?>
-
+<?php wp_enqueue_style( 'style', get_stylesheet_uri() ); ?>
 <div class="main page">
     <?php if (have_posts()) : ?>
     <?php while (have_posts()) : the_post(); ?>
@@ -17,7 +26,6 @@ get_header(); ?>
         <div class="post-content">
             <?php the_content(); ?>
             <?php
-
             add_filter( 'comments_template', function ( $template ) {
       				return plugin_dir_path( dirname( __FILE__ ) ) . 'templates/badge_comments_template.php';
       			});
