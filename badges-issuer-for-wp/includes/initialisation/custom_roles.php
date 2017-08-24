@@ -103,6 +103,7 @@ function add_roles() {
     $admin->add_cap('delete_class');
 
     $admin->add_cap('capability_settings');
+    $admin->add_cap('capability_statistics');
 
     // EDITOR ROLE
     $editor = get_role('editor');
@@ -122,6 +123,7 @@ function add_roles() {
     $editor->add_cap('delete_class');
 
     $editor->add_cap('capability_settings');
+    $editor->add_cap('capability_statistics');
 }
 
 add_action( 'init', 'add_roles');

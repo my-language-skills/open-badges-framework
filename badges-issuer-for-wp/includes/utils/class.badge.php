@@ -300,7 +300,9 @@ class Badge
       'name' => $this->name,
       'language' => $this->language,
       'sender' => $sender,
-      'comment' => $this->comment
+      'comment' => $this->comment,
+      'level' => $this->level,
+      'date' => date("Y-m-d")
     );
 
     if(!is_null($class_id))
