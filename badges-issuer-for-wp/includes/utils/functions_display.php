@@ -49,7 +49,6 @@ function display_languages_select_form($category="most-important-languages", $la
   $language_to_display = $all_languages[$category];
   _e('<label for="language"><b> Field of Education* : </b></label></br>','badges-issuer-for-wp');
 
-  // Showing the most important languages
   echo '<select name="language';
   if($multiple)
     echo '[]';
