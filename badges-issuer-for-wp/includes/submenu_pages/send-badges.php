@@ -59,13 +59,20 @@
         });
       </script>
 
+      <style>
+      .tabs-inline li {
+        display: inline;
+	      list-style: none;
+      }
+      </style>
+
       <br><br>
       <h1><i><span class="dashicons dashicons-awards"></span><?php _e( 'Send Badges','badges-issuer-for-wp' ); ?></i></h1>
       <div id="tabs">
         <div id="tabs-elements">
           <div>
           <h2 class="nav-tab-wrapper">
-            <ul>
+            <ul class="tabs-inline">
               <li><a href="#tabs-1"><div class="nav-tab nav-tab-active" ><?php _e( 'Self','badges-issuer-for-wp' ); ?></div></a></li>
               <?php
               if(in_array("teacher", $current_user->roles) || in_array("academy", $current_user->roles) || in_array("administrator", $current_user->roles) || in_array("editor", $current_user->roles)) {
@@ -239,7 +246,7 @@
 
         <div class="tab-content">
           <br /><br />
-        <h2><?php _e( 'Send a badge','badges-issuer-for-wp' ); ?></h2>
+        <h2><?php _e( 'Send a badge to one person','badges-issuer-for-wp' ); ?></h2>
 
         <form id="badge_form_b" action="" method="post">
           <?php
