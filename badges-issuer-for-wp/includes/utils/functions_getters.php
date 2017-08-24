@@ -207,8 +207,9 @@ function get_classes_teacher($teacher_login) {
   $all_classes = get_all_classes();
   $classes = array();
   foreach ($all_classes as $class) {
-    if(get_userdata($class->post_author)->user_login==$teacher_login)
+    if(get_userdata($class->post_author)->user_login==$teacher_login) {
       $classes[]=$class;
+    }
   }
   return $classes;
 }

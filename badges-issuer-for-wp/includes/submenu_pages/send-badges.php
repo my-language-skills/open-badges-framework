@@ -68,6 +68,7 @@
 
       <br><br>
       <h1><i><span class="dashicons dashicons-awards"></span><?php _e( 'Send Badges','badges-issuer-for-wp' ); ?></i></h1>
+      <h3>STEP 0: Please select the receiver of the badge.</h3>
       <div id="tabs">
         <div id="tabs-elements">
           <div>
@@ -127,6 +128,8 @@
         if(in_array("teacher", $current_user->roles) || in_array("academy", $current_user->roles) || in_array("administrator", $current_user->roles) || in_array("editor", $current_user->roles)) {
           if(isset($_POST['class_for_student']))
             $class = $_POST['class_for_student'];
+          elseif ($_POST['class_zero_teacher'])
+            $class = $_POST['class_zero_teacher'];
         }
 
         $notsent = array();
@@ -277,6 +280,11 @@
           <div id="result_languages_description"><b>Language of badge description* :</b></div>
           <h3>STEP 5:</h3>
           <?php
+          if(in_array("academy", $current_user->roles) || in_array("teacher", $current_user->roles)) {
+            $class_zero = get_class_zero_teacher($current_user->user_login);
+            echo '<input name="class_zero_teacher" type="hidden" value="'.$class_zero->ID.'"/>';
+          }
+
             if(in_array("teacher", $current_user->roles) || in_array("academy", $current_user->roles) || in_array("administrator", $current_user->roles) || in_array("editor", $current_user->roles)) {
                 echo '<div id="select_class"><b>Class*:</b></div>';
                 echo '<br />';

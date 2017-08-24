@@ -69,9 +69,10 @@
             $classes = array_merge($classes, $classes_job_listing);
           }
         }
-        else {
-          if(is_plugin_active("wp-job-manager/wp-job-manager.php"))
+        elseif(in_array("academy", $current_user->roles)) {
+          if(is_plugin_active("wp-job-manager/wp-job-manager.php")) {
             $classes = get_classes_teacher($current_user->user_login);
+          }
         }
 
        _e( '<b>Class* : </b><br />','badges-issuer-for-wp');
@@ -80,24 +81,33 @@
 
         if(empty($classes)) {
           if(in_array("teacher", $current_user->roles))
-            _e('<a href="'.get_page_link($settings_id_links["link_not_academy"]).'">You need an academy account in order to create your own classes.</a>','badges-issuer-for-wp');
+            _e('<a href="'.get_page_link($settings_id_links["link_not_academy"]).'" target="_blank">You need an academy account in order to create your own classes.</a>','badges-issuer-for-wp');
           elseif(in_array("academy", $current_user->roles))
-            _e('<a href="'.get_page_link($settings_id_links["link_create_new_class"]).'">Don\'t you want to create a specific class for that student(s) ?</a>', 'badges-issuer-for-wp');
+            _e('<a href="'.get_page_link($settings_id_links["link_create_new_class"]).'" target="_blank">Don\'t you want to create a specific class for that student(s) ?</a>', 'badges-issuer-for-wp');
         }
         else {
+            if(count($classes)>1)
+              $input_type="radio";
+            else
+              $input_type="checkbox";
+
+            if(in_array("administrator", $current_user->roles) || in_array("editor", $current_user->roles)) {
               echo '</br><b>Default Class:</b>';
               foreach ($classes as $class) {
                 if($class->post_type == 'class'){
                   echo '<span style="margin-left:20px;"></span>';
-                  echo '<label  for="class_'.$class->ID.'">'.$class->post_title.' </label><input name="class_for_student" id="class_'.$class->ID.'" type="radio" value="'.$class->ID.'"/>';
+                  echo '<label  for="class_'.$class->ID.'">'.$class->post_title.' </label><input name="class_for_student" id="class_'.$class->ID.'" type="'.$input_type.'" value="'.$class->ID.'"/>';
+                }
               }
             }
-            echo '</br></br>';
-            echo '</br><b>Specific Class:</b>';
-            foreach ($classes as $class) {
-              if($class->post_type == 'job_listing'){
-                echo '<span style="margin-left:20px;"></span>';
-                echo '<label for="class_'.$class->ID.'">'.$class->post_title.' </label><input name="class_for_student" id="class_'.$class->ID.'" type="radio" value="'.$class->ID.'"/>';
+            if(in_array("academy", $current_user->roles) || in_array("administrator", $current_user->roles) || in_array("editor", $current_user->roles)) {
+              echo '</br></br>';
+              echo '</br><b>Specific Class:</b>';
+              foreach ($classes as $class) {
+                if($class->post_type == 'job_listing'){
+                  echo '<span style="margin-left:20px;"></span>';
+                  echo '<label for="class_'.$class->ID.'">'.$class->post_title.' </label><input name="class_for_student" id="class_'.$class->ID.'" type="'.$input_type.'" value="'.$class->ID.'"/>';
+                }
               }
             }
           }

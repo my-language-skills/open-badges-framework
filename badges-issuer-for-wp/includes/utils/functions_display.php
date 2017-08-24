@@ -49,6 +49,7 @@ function display_languages_select_form($category="most-important-languages", $la
   $language_to_display = $all_languages[$category];
   _e('<label for="language"><b> Field of Education* : </b></label></br>','badges-issuer-for-wp');
 
+  // Showing the most important languages
   echo '<select name="language';
   if($multiple)
     echo '[]';
@@ -111,7 +112,7 @@ function display_not_logged_message() {
     <br />
     <h1><?php _e('To get a badge, you need to be logged on the site.','badges-issuer-for-wp'); ?></h1>
     <br />
-    <a href="<?php echo wp_registration_url(plugins_url( 'get_badge.php', __FILE__ ).'?hash='.$_GET['hash']); ?>" title="Register"><?php _e('Register','badges-issuer-for-wp'); ?></a> | <a href="<?php echo wp_login_url(plugins_url( 'get_badge.php', __FILE__ ).'?hash='.$_GET['hash']); ?>" title="Login"><?php _e('Login','badges-issuer-for-wp'); ?></a>
+    <a href="<?php echo wp_registration_url(); ?>" title="Register"><?php _e('Register','badges-issuer-for-wp'); ?></a> | <a href="<?php echo wp_login_url(); ?>" title="Login"><?php _e('Login','badges-issuer-for-wp'); ?></a>
   </center>
   <?php
 }

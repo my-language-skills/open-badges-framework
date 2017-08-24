@@ -171,6 +171,10 @@ class Badge
                         <h1>BADGES FOR LANGUAGES</h1>
                         <h2>Learn languages and get official certifications</h2>
                         <hr/>
+                        <h2>You need to a have an account and to be logged in the website.</h2>
+                        <center><img src="'.plugins_url( "../../images/b4l_logo.png", __FILE__ ).'" /></center>
+                        <a href="'.wp_registration_url().'">Register</a> | <a href="'.wp_login_url().'">Login</a>
+                        <hr/>
                         <h1>Congratulations you have just earned a badge!</h1>
                         <h2>'.$this->name.' - '.$this->language.'</h2>
                         <a href="'.$url_mail.'">
