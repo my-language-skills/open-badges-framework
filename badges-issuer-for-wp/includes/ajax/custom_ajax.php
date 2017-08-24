@@ -53,24 +53,6 @@
     }
 
 
-
-    /* AJAX action to load all languages in a select form
-
-    add_action('CUSTOMAJAX_action_languages_form', 'action_languages_form');
-
-    function action_languages_form() {
-      display_languages_select_form();
-      _e(' <a href="#" id="display_mi_languages_'.$_POST['form'].'">Just display most important languages</a>', 'badges-issuer-for-wp');
-      printf(__(' (Can take few seconds to load.)','badges-issuer-for-wp'));
-    }
-
-    add_action('CUSTOMAJAX_action_mi_languages_form', 'action_mi_languages_form');
-
-    function action_mi_languages_form() {
-      display_languages_select_form($just_most_important_languages=true);
-      _e('<a href="#" id="display_languages_'.$_POST['form'].'">Display all languages</a> (Can take few seconds to load.)','badges-issuer-for-wp');
-    }*/
-
     /* AJAX action to load the classes corresponding to the level and the language selected */
 
     add_action( 'CUSTOMAJAX_action_select_class', 'action_select_class' );
