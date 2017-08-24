@@ -41,7 +41,7 @@ function sended_badges_by_type(){
   return $types_counts;
 }
 
-function display_pie_chart($types_counts) {
+function display_pie_chart($types_counts, $target) {
   $values_printed = "[[";
   $nb_elements = count($types_counts);
   $i=0;
@@ -54,7 +54,7 @@ function display_pie_chart($types_counts) {
   echo "
   <script>
   jQuery(document).ready(function(){
-      var plot1 = jQuery.jqplot('pie1', ".$values_printed.", {
+      var plot1 = jQuery.jqplot('".$target."', ".$values_printed.", {
           gridPadding: {top:0, bottom:38, left:0, right:0},
           seriesDefaults:{
               renderer:jQuery.jqplot.PieRenderer,
@@ -72,6 +72,57 @@ function display_pie_chart($types_counts) {
           }
       });
   });
+</script>
+  ";
+}
+
+function display_bar_chart($types_counts, $target, $targer_infos) {
+  $values = "[";
+  $elements = "[";
+  $nb_elements = count($types_counts);
+  $i=0;
+  foreach ($types_counts as $type=>$count) {
+    $values = $values.$count;
+    $elements = $elements."'".$type."'";
+    if(++$i!=$nb_elements) {
+      $values = $values.",";
+      $elements = $elements.",";
+    }
+  }
+  $values = $values."]";
+  $elements = $elements."]";
+  echo "
+  <script>
+  jQuery(document).ready(function(){
+        jQuery.jqplot.config.enablePlugins = true;
+        var s1 = ".$values.";
+        var ticks = ".$elements.";
+
+        plot1 = jQuery.jqplot('".$target."', [s1], {
+            // Only animate if we're not using excanvas (not in IE 7 or IE 8)..
+            animate: !jQuery.jqplot.use_excanvas,
+            seriesDefaults:{
+                renderer:jQuery.jqplot.BarRenderer,
+                rendererOptions: {
+                    varyBarColor: true
+                },
+                pointLabels: { show: true }
+            },
+            axes: {
+                xaxis: {
+                    renderer: jQuery.jqplot.CategoryAxisRenderer,
+                    ticks: ticks
+                }
+            },
+            highlighter: { show: false }
+        });
+
+        jQuery('#".$target."').bind('jqplotDataClick',
+            function (ev, seriesIndex, pointIndex, data) {
+                jQuery('#".$target_infos."').html('series: '+seriesIndex+', point: '+pointIndex+', data: '+data);
+            }
+        );
+    });
 </script>
   ";
 }

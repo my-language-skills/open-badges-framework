@@ -48,6 +48,10 @@ require_once plugin_dir_path( dirname( __FILE__ ) ) . 'utils/functions.php';
       ?>
 
       <script type="text/javascript" src="<?php echo plugins_url('../utils/jqplot/jquery.jqplot.js', __FILE__); ?>"></script>
+
+      <script type="text/javascript" src="<?php echo plugins_url('../utils/jqplot/plugins/jqplot.barRenderer.js', __FILE__); ?>"></script>
+      <script type="text/javascript" src="<?php echo plugins_url('../utils/jqplot/plugins/jqplot.categoryAxisRenderer.js', __FILE__); ?>"></script>
+      <script type="text/javascript" src="<?php echo plugins_url('../utils/jqplot/plugins/jqplot.pointLabels.js', __FILE__); ?>"></script>
       <script type="text/javascript" src="<?php echo plugins_url('../utils/jqplot/plugins/jqplot.pieRenderer.js', __FILE__); ?>"></script>
       <link rel="stylesheet" type="text/css" href="<?php echo plugins_url('../utils/jqplot/jquery.jqplot.css', __FILE__); ?>" />
       <h1>Statistics</h1>
@@ -57,7 +61,8 @@ require_once plugin_dir_path( dirname( __FILE__ ) ) . 'utils/functions.php';
 
       <h2>Repartition of sended badges</h2><br />
       <div id="pie1"></div>
-      <?php display_pie_chart(sended_badges_by_type()); ?>
+      <div id="info1"></div>
+      <?php display_bar_chart(sended_badges_by_type(), "pie1", "info1"); ?>
 
       <!-- <h2>Repartition of sended badges</h2><br />
       <div id="pie1"></div>
