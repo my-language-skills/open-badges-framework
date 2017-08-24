@@ -28,7 +28,7 @@ function get_all_badges() {
 function get_badge_descriptions($badge) {
   $descriptions = array();
 
-  $descriptions["English"] = $badge->post_content;
+  $descriptions["Default"] = $badge->post_content;
 
   $comments = get_comments(array('post_id'=>$badge->ID));
   foreach($comments as $comment) {
@@ -279,14 +279,18 @@ function is_student_in_class($student_login, $class_id) {
  * @return $result A boolean indicating if the student can write a comment for the specified class.
 */
 function can_student_write_comment($student_login, $class_id) {
-  if(is_student_in_class($student_login, $class_id) && !has_student_write_comment($student_login, $class_id)) {
-    $class_students = get_post_meta($class_id, '_class_students', true);
-    $student_date = null;
-    foreach ($class_students as $class_student) {
-      if($class_student['login']==$student_login)
-        $student_date = $class_students['date'];
-    }
-    if(get_days_from_date($student_date)<=15)
+  $class_post = get_post($class_id);
+  $class_students = get_post_meta($class_id, '_class_students', true);
+  $student_date = null;
+  foreach ($class_students as $class_student) {
+    if($class_student['login']==$student_login)
+      $student_date = $class_students['date'];
+  }
+  if(get_days_from_date($student_date)<=15) {
+    if($class_post->post_type=="class" && is_student_in_class($student_login, $class_id))
+      return true;
+    elseif($class_post->post_type=="job_listing" && is_student_in_class($student_login, $class_id)
+     && !has_student_write_comment($student_login, $class_id))
       return true;
     else
       return false;

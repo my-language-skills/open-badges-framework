@@ -203,7 +203,7 @@
           var tab_name = "_" + jQuery("#badge_form_a .input-badge:checked").val().replace('-', '_') + "_description_languages";
           var tab = eval(tab_name);
 
-          var content = '<label for="language_description"><b><?php _e("Language of badge description* : ","badges-issuer-for-wp") ?></b></label><br /><select name="language_description" id="language_description"><option value="English"> Default </option>';
+          var content = '<label for="language_description"><b><?php _e("Language of badge description* : ","badges-issuer-for-wp") ?></b></label><br /><select name="language_description" id="language_description">';
           tab.forEach(function(lang) {
             content = content + '<option value="' + lang + '">' + lang + '</option>';
           });
@@ -216,7 +216,7 @@
           var tab_name = "_" + jQuery("#badge_form_b .input-badge:checked").val().replace('-', '_') + "_description_languages";
           var tab = eval(tab_name);
 
-          var content = '<label for="language_description"><b><?php _e("Language of badge description* : ","badges-issuer-for-wp") ?></b></label><br /><select name="language_description" id="language_description"><option value="English"> Default </option>';
+          var content = '<label for="language_description"><b><?php _e("Language of badge description* : ","badges-issuer-for-wp") ?></b></label><br /><select name="language_description" id="language_description">';
 
           tab.forEach(function(lang) {
             content = content + '<option value="' + lang + '">' + lang + '</option>';
@@ -230,7 +230,7 @@
           var tab_name = "_" + jQuery("#badge_form_c .input-badge:checked").val().replace('-', '_') + "_description_languages";
           var tab = eval(tab_name);
 
-          var content = '<label for="language_description"><b><?php _e("Language of badge description* : ","badges-issuer-for-wp") ?></b></label><br /><select name="language_description" id="language_description"><option value="English"> Default </option>';
+          var content = '<label for="language_description"><b><?php _e("Language of badge description* : ","badges-issuer-for-wp") ?></b></label><br /><select name="language_description" id="language_description">';
 
           tab.forEach(function(lang) {
             content = content + '<option value="' + lang + '">' + lang + '</option>';
