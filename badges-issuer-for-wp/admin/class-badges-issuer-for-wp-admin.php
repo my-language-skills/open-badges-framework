@@ -109,8 +109,11 @@ class Badges_Issuer_For_Wp_Admin {
 require plugin_dir_path( __FILE__ ) . '../includes/submenu_pages/send-badges.php';
 
 /**
+ * STATISTICS PAGE OF THE PLUGIN
+ */
+require_once plugin_dir_path( __FILE__ ) . '../includes/submenu_pages/statistics.php';
+
+/**
  * SETTINGS PAGE OF THE PLUGIN
  */
 require plugin_dir_path( __FILE__ ) . '../includes/submenu_pages/settings.php';
-
-?>
