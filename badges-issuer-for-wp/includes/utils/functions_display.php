@@ -44,7 +44,7 @@ function display_levels_radio_buttons($badges, $context) {
  * @param $multiple A boolean to know if the select form must be in multiple mode.
 */
 //function to display langugaes
-function display_languages_select_form($category="most-important-languages", $language_selected="", $multiple=false) {
+function display_languages_select_form($category="most-important", $language_selected="", $multiple=false) {
   $all_languages = get_all_languages();
   $language_to_display = $all_languages[$category];
   _e('<label for="language"><b> Field of Education* : </b></label></br>','badges-issuer-for-wp');

@@ -103,7 +103,7 @@ function add_meta_box_links(){
 function display_add_link(){
   echo '<tr>';
   echo '<td width="0%">';
-  display_languages_select_form($category="most-important-languages");
+  display_languages_select_form($category="most-important");
   echo '</td>';
   echo '<td width="100%">';
   echo '<center><input type="text" size="50" name="link_url[]" value="" /></center>';
@@ -150,7 +150,7 @@ function meta_box_links($post) {
   foreach ($badge_links as $link_lang => $link_url) {
     echo '<tr>';
       echo '<td width="0%">';
-        display_languages_select_form($category="most-important-languages");
+        display_languages_select_form($category="most-important");
       echo '</td>';
       echo '<td width="100%">';
         echo '<center><input type="text" size="50" name="link_url[]" value="'.$link_url.'" /></center>';
