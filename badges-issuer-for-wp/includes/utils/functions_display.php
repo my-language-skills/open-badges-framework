@@ -44,25 +44,50 @@ function display_levels_radio_buttons($badges, $context) {
  * @param $multiple A boolean to know if the select form must be in multiple mode.
 */
 //function to display langugaes
-function display_languages_select_form($category="most-important", $language_selected="", $multiple=false) {
+function display_languages_select_form($category="most-important-languages", $language_selected="", $multiple=false) {
   $all_languages = get_all_languages();
-  $language_to_display = $all_languages[$category];
+
   _e('<label for="language"><b> Field of Education* : </b></label></br>','badges-issuer-for-wp');
 
-  echo '<select name="language';
-  if($multiple)
-    echo '[]';
-  echo '" id="language">';
-  echo '<optgroup>';
-  foreach ($language_to_display as $language) {
-    $language = str_replace("\n", "", $language);
-    echo '<option value="'.$language.'"';
-    if($language_selected==$language)
-      echo ' selected';
-    echo '>'.$language.'</option>';
+
+  // Display all the languages if the user click the link to display all the languages
+  if($category == "all_languages"){
+      $language_to_display = $all_languages;
+      echo '<select name="language';
+      if($multiple)
+        echo '[]';
+      echo '" id="language">';
+      echo '<optgroup>';
+      foreach ($language_to_display as $language) {
+          foreach($language as $children){
+        $children = str_replace("\n", "", $children);
+        echo '<option value="'.$children.'"';
+        if($language_selected==$children)
+          echo ' selected';
+        echo '>'.$children.'</option>';
+      }}
+      echo '</optgroup>';
+      echo '</select>';
   }
-  echo '</optgroup>';
-  echo '</select>';
+
+  // Display the language category if the user click any other link
+  else {
+      $language_to_display = $all_languages[$category];
+        echo '<select name="language';
+        if($multiple)
+            echo '[]';
+          echo '" id="language">';
+          echo '<optgroup>';
+          foreach ($language_to_display as $language) {
+            $language = str_replace("\n", "", $language);
+            echo '<option value="'.$language.'"';
+            if($language_selected==$language)
+              echo ' selected';
+            echo '>'.$language.'</option>';
+          }
+          echo '</optgroup>';
+          echo '</select>';
+  }
 
 }
 
