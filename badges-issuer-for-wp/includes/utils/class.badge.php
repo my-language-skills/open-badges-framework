@@ -153,6 +153,7 @@ class Badge
     $hash_name = hash("sha256", $receiver.$this->name.$this->language);
     $url_mail = plugins_url( './get_badge.php', __FILE__ );
     $url_mail = $url_mail."?hash=".$hash_name;
+    $settings_id_login_links = get_settings_login_links();
 
     if(!is_null($class_id))
       $url_mail = $url_mail."&class=".$class_id;
@@ -173,14 +174,17 @@ class Badge
                         <hr/>
                         <h2>You need to a have an account and to be logged in the website.</h2>
                         <center><img src="'.plugins_url( "../../images/b4l_logo.png", __FILE__ ).'" /></center>
-                        <a href="'.wp_registration_url().'">Register</a> | <a href="'.wp_login_url().'">Login</a>
+                        <a href="'.get_page_link($settings_id_login_links["link_register"]).'">Register</a> | <a href="'.get_page_link($settings_id_login_links["link_login"]).'">Login</a>
                         <hr/>
                         <h1>Congratulations you have just earned a badge!</h1>
                         <h2>'.$this->name.' - '.$this->language.'</h2>
                         <a href="'.$url_mail.'">
                             <img src="'.$this->image.'" width="150" height="150"/>
                         </a>
-                        </br>
+                        <br />
+                        <br />
+                        Get your badge and write a review for the class <a href="'.$url_mail.'">here</a>.
+                        <br />
                         <div class="browserSupport"><b>Please use Firefox or Google Chrome to retrieve your badge.<b></div>
                         <hr/>
                         <p style="font-size:9px; color:grey">Badges for Languages by My Language Skills, based in Valencia, Spain.

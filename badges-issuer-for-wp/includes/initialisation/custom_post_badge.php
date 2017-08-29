@@ -190,15 +190,15 @@ function save_metaboxes($post_ID){
 add_action( 'init', 'create_field_of_education_tax' );
 
 function create_field_of_education_tax() {
-	register_taxonomy(
-		'field_of_education',
-		'badge',
-		array(
-			'label' => __( 'Field of education' ),
-			'rewrite' => array( 'slug' => 'field_of_education' ),
-			'hierarchical' => true,
-		)
-	);
+  register_taxonomy(
+    'field_of_education',
+    'badge',
+    array(
+      'label' => __( 'Field of education' ),
+      'rewrite' => array( 'slug' => 'field_of_education' ),
+      'hierarchical' => true,
+    )
+  );
 }
 
 /* Adds the taxonomy level into the badge custom post type */

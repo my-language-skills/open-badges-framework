@@ -44,8 +44,22 @@
 
 	<?php
 
-    if(can_student_write_comment($current_user->user_login, $post->ID) || can_user_reply($current_user->user_login, get_the_ID()))
-        comment_form();
+    if(can_student_write_comment($current_user->user_login, $post->ID) || can_user_reply($current_user->user_login, get_the_ID())) {
+      global $current_user;
+      get_currentuserinfo();
+
+      $comments_args = array();
+
+      $student_infos = get_student_infos_in_class($current_user->user_login, $post->ID);
+
+      if($student_infos) {
+        $comments_args = array(
+          'comment_field' => '<input type="hidden" name="student_level" value="'.$student_infos['level'].'" /><input type="hidden" name="student_language" value="'.$student_infos['language'].'" /><input type="hidden" name="student_date" value="'.$student_infos['date'].'" /><p class="comment-form-comment"><label for="comment">' . _x( 'Comment', 'noun' ) . '</label><br /><textarea id="comment" name="comment" aria-required="true"></textarea></p>',
+        );
+      }
+
+      comment_form($comments_args);
+    }
     else
         echo "You cannot write a comment for this class.";
     ?>
@@ -90,13 +104,19 @@ function custom_comment($comment, $args, $depth) {
         <?php
         /* translators: 1: date, 2: time */
         printf( __('%1$s at %2$s'), get_comment_date(),  get_comment_time() ); ?></a><?php edit_comment_link( __( '(Edit)' ), '  ', '' );
+        $student_level = get_comment_meta($comment->comment_ID, 'student_level')[0];
+        $student_language = get_comment_meta($comment->comment_ID, 'student_language')[0];
+        $student_date = get_comment_meta($comment->comment_ID, 'student_date')[0];
+
+        if($student_level && $student_language && $student_date)
+          echo "Level : ".$student_level.", Language : ".$student_language.", Badge date : ".$student_date;
         ?>
     </div>
 
     <?php comment_text();
 
     if(can_user_reply($current_user->user_login, get_the_ID())) {
-    ?> 
+    ?>
     <div class="reply">
         <?php comment_reply_link( array_merge( $args, array( 'add_below' => $add_below, 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
     </div>

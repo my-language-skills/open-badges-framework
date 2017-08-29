@@ -56,7 +56,11 @@ require_once plugin_dir_path( dirname( __FILE__ ) ) . 'utils/class.badge-issuer.
       if(isset($_POST["link_not_academy"]) && isset($_POST["link_create_new_class"]))
         set_settings_links(array("link_not_academy" => $_POST["link_not_academy"], "link_create_new_class" => $_POST["link_create_new_class"]));
 
+      if(isset($_POST["link_login"]) && isset($_POST["link_register"]))
+        set_settings_login_links(array("link_login" => $_POST["link_login"], "link_register" => $_POST["link_register"]));
+
       $settings_id_links = get_settings_links();
+      $settings_id_login_links = get_settings_login_links();
 
       ?>
       <h1>Settings</h1>
@@ -100,6 +104,35 @@ require_once plugin_dir_path( dirname( __FILE__ ) ) . 'utils/class.badge-issuer.
           </div>
           <br /><br />
           <input type="submit" id="settings_submit_links" class="button-primary" value="Change links" />
+
+        </form>
+      </div>
+
+      <br /><br />
+
+      <div style="width:400px;">
+        <h2>Change register and login pages links</h2>
+        <br/>
+
+        <form id="settings_form_login_links" action="" method="post">
+
+          <div style="display:inline-block;">
+            <label for="link_login">Login page : </label>
+            <div style="float:right; margin-left:10px;">
+              <?php wp_dropdown_pages(array('name' => 'link_login', 'selected' => $settings_id_login_links["link_login"])); ?>
+              <p class="description" id="tagline-description">Link to the login page.</p>
+            </div>
+          </div>
+
+          <div style="display:inline-block;">
+            <label for="link_register">Register page : </label>
+            <div style="float:right; margin-left:10px;">
+              <?php wp_dropdown_pages(array('name' => 'link_register', 'selected' => $settings_id_login_links["link_register"])); ?>
+              <p class="description" id="tagline-description">Link to the register page.</p>
+            </div>
+          </div>
+          <br /><br />
+          <input type="submit" id="settings_submit_login_links" class="button-primary" value="Change links" />
 
         </form>
       </div>

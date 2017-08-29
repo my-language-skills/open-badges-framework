@@ -106,13 +106,19 @@ function display_error_message($message) {
  * @since 1.0.0
 */
 function display_not_logged_message() {
+  $settings_id_login_links = get_settings_login_links();
   ?>
   <center>
     <img src="https://mylanguageskills.files.wordpress.com/2015/08/badges4languages-hi.png?w=800" width="400px" height="400px"/>
     <br />
     <h1><?php _e('To get a badge, you need to be logged on the site.','badges-issuer-for-wp'); ?></h1>
     <br />
-    <a href="<?php echo wp_registration_url(); ?>" title="Register"><?php _e('Register','badges-issuer-for-wp'); ?></a> | <a href="<?php echo wp_login_url(); ?>" title="Login"><?php _e('Login','badges-issuer-for-wp'); ?></a>
+    <a href="<?php echo get_page_link($settings_id_login_links["link_register"]); ?>" title="Register"><?php _e('Register','badges-issuer-for-wp'); ?></a> | <a href="<?php echo get_page_link($settings_id_login_links["link_login"]); ?>" title="Login"><?php _e('Login','badges-issuer-for-wp'); ?></a>
+    <p style="color:red;">
+      <?php
+      _e('Once connected to the site, go back to your email and click again on the link for receiving your badge.', 'badges-issuer-for-wp');
+      ?>
+    </p>
   </center>
   <?php
 }

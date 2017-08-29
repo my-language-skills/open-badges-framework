@@ -383,6 +383,20 @@ function get_settings_links() {
   return $settings_links;
 }
 
+/**
+ * Returns the id links written in the corresponding json file.
+ *
+ * @author Nicolas TORION
+ * @since 1.0.0
+ * @return $settings_login_links The array of id links.
+*/
+function get_settings_login_links() {
+  $content = file_get_contents(plugin_dir_path( dirname( __FILE__ ) ) . '../../../uploads/settings/json/login_links.json');
+  $settings_login_links = json_decode($content, true);
+
+  return $settings_login_links;
+}
+
 function check_if_user_has_already_a_badge($hash) {
   global $current_user;
   get_currentuserinfo();
@@ -390,6 +404,22 @@ function check_if_user_has_already_a_badge($hash) {
   $badges = get_the_author_meta( 'badges_received', $current_user->ID );
 
   return in_array($hash, $badges);
+}
+
+function get_student_infos_in_class($student_login, $class_id) {
+  $class_students = get_post_meta($class_id, '_class_students', true);
+  $student_infos = false;
+
+  foreach ($class_students as $class_student) {
+    if($class_student['login']==$student_login) {
+      $student_infos = array();
+      $student_infos['date'] = $class_student['date'];
+      $student_infos['level'] = $class_student['level'];
+      $student_infos['language'] = $class_student['language'];
+    }
+  }
+
+  return $student_infos;
 }
 
 ?>

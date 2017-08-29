@@ -97,7 +97,7 @@ function js_form() {
     jQuery("#badge_form_<?php echo $form; ?> .level").on("click", function() {
       load_classes('<?php echo $form; ?>');
     });
-    jQuery("#badge_form_<?php echo $form; ?> #language").change(function() {
+    jQuery(document).on("change", "#badge_form_<?php echo $form; ?> #language",function() {
       load_classes('<?php echo $form; ?>');
     });
     </script>
@@ -302,9 +302,30 @@ function edit_comment_translation() {
       comment_content.html(content);
     });
   });
-
   </script>
-
   <?php
 }
  ?>
+
+ <?php
+ add_action( 'admin_footer', 'reset_input_radio' );
+ add_action( 'wp_footer', 'reset_input_radio' );
+
+ /**
+  *
+  * JAVASCRIPT code to reset an input radio selection.
+  *
+  * @author Nicolas TORION
+  * @since 1.0.0
+ */
+ function reset_input_radio() {
+   ?>
+   <script>
+   function reset_input_radio() {
+     jQuery('input[name="class_for_student"]').prop('checked', false);
+   }
+   </script>
+
+ <?php
+}
+?>

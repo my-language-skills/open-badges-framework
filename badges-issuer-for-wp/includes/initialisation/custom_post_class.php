@@ -200,5 +200,14 @@ function class_template( $template_path ) {
   return $template_path;
 }
 
+add_action( 'comment_post', 'save_comment_meta_data_class' );
+
+function save_comment_meta_data_class( $comment_id ) {
+  if (isset($_POST['student_level']) && isset($_POST['student_language']) && isset($_POST['student_date'])) {
+    add_comment_meta( $comment_id, 'student_level', $_POST['student_level']);
+    add_comment_meta( $comment_id, 'student_language', $_POST['student_language']);
+    add_comment_meta( $comment_id, 'student_date', $_POST['student_date']);
+  }
+}
 
 ?>

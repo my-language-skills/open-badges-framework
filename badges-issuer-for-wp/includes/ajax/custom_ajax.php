@@ -76,6 +76,8 @@
         }
 
        _e( '<b>Class* : </b><br />','badges-issuer-for-wp');
+       if(count($classes)>1)
+         echo '<a href="#" onclick="javascript:reset_input_radio()">Reset class selection</a><br />';
 
         $settings_id_links = get_settings_links();
 
@@ -105,8 +107,8 @@
               echo '</br><b>Specific Class:</b>';
               foreach ($classes as $class) {
                 if($class->post_type == 'job_listing'){
-                  echo '<span style="margin-left:20px;"></span>';
-                  echo '<label for="class_'.$class->ID.'">'.$class->post_title.' </label><input name="class_for_student" id="class_'.$class->ID.'" type="'.$input_type.'" value="'.$class->ID.'"/>';
+                    echo '<span style="margin-left:20px;"></span>';
+                    echo '<label for="class_'.$class->ID.'">'.$class->post_title.' </label><input name="class_for_student" id="class_'.$class->ID.'" type="'.$input_type.'" value="'.$class->ID.'"/>';
                 }
               }
             }
