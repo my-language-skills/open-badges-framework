@@ -50,6 +50,8 @@
       foreach($parent_languages as $language){
         echo '<a style="margin-left:20px;" href="#" class="display_parent_categories" id=" '.$language[2].'">Display '.$language[1].'</a>';
       }
+      // To display the link to show all the languages
+       echo '<a style="margin-left:20px;" href="#" class="display_parent_categories" id="all_languages">Display all languages</a>';
     }
 
 
