@@ -14,7 +14,7 @@ get_header(); ?>
     <?php while (have_posts()) : the_post(); ?>
     <div class="post">
         <center><h1 class="post-title"><?php the_title(); ?></h1></center>
-        <div class="post-content">
+        <div class="post-content" style="width:70%; margin:0 auto;">
             <?php the_content(); ?>
             <?php
 
