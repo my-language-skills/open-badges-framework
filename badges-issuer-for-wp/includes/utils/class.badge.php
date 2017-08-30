@@ -77,9 +77,8 @@ class Badge
    */
   function create_json_files($receiver) {
     //creates the folders recursively if they initially don't exist
-    if (!file_exists($this->path_dir_json_files)) {
+    if (!file_exists($this->path_dir_json_files))
         mkdir($this->path_dir_json_files, 0777, true);
-    }
 
     $hash_name = hash("sha256", $receiver.$this->name.$this->language);
     $badge_filename = 'badge_'.$hash_name.'.json';
@@ -100,6 +99,9 @@ class Badge
 
     $description_combined = "Language : ".$this->language.", Level : ".$this->level.", Comment : ".$this->comment.", Description : ".$this->description;
 
+    if (!file_exists($this->path_dir_json_files.$this->level."_criteria.html"))
+        file_put_contents($this->path_dir_json_files.$this->level."_criteria.html", "");
+
     $badge_informations = array(
       '@context'=>'https://w3id.org/openbadges/v1',
       "name"=>$this->name." ".$this->language,
@@ -107,7 +109,7 @@ class Badge
       "image"=>$this->image,
       "language"=>$this->language,
       "level"=>$this->level,
-      "criteria"=>$this->url_json_files."criteria.html",
+      "criteria"=>$this->url_json_files.$this->level."_criteria.html",
     	"issuer"=>$this->url_json_files."badge-issuer.json"
     );
 
@@ -170,22 +172,23 @@ class Badge
                 <div id="b4l-award-actions-wrap">
                     <div align="center">
                         <h1>BADGES FOR LANGUAGES</h1>
+                        <h1><b>Congratulations you have just earned a badge!</b></h1>
                         <h2>Learn languages and get official certifications</h2>
                         <hr/>
                         <h2>You need to a have an account and to be logged in the website.</h2>
                         <center><img src="'.plugins_url( "../../images/b4l_logo.png", __FILE__ ).'" /></center>
                         <a href="'.get_page_link($settings_id_login_links["link_register"]).'">Register</a> | <a href="'.get_page_link($settings_id_login_links["link_login"]).'">Login</a>
                         <hr/>
-                        <h1>Congratulations you have just earned a badge!</h1>
+                        Open the link, and get the badge.
                         <h2>'.$this->name.' - '.$this->language.'</h2>
                         <a href="'.$url_mail.'">
                             <img src="'.$this->image.'" width="150" height="150"/>
                         </a>
-                        <br />
-                        <br />
-                        Get your badge and write a review for the class <a href="'.$url_mail.'">here</a>.
-                        <br />
+                        <br /><br />
                         <div class="browserSupport"><b>Please use Firefox or Google Chrome to retrieve your badge.<b></div>
+                        <br />
+                        Once you get the badge, you can write the review of your teacher\'s class.
+                        <br />
                         <hr/>
                         <p style="font-size:9px; color:grey">Badges for Languages by My Language Skills, based in Valencia, Spain.
                         More information <a href="https://mylanguageskills.wordpress.com/">here</a>.

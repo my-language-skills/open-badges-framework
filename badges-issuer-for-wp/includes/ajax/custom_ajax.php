@@ -109,8 +109,11 @@
               echo '</br><b>Specific Class:</b>';
               foreach ($classes as $class) {
                 if($class->post_type == 'job_listing'){
+                  $languages = get_the_terms($class->ID, 'job_listing_category');
+                  if((in_array("academy", $current_user->roles) && in_array($_POST['language_selected'], $languages)) || in_array("administrator", $current_user->roles) || in_array("editor", $current_user->roles)) {
                     echo '<span style="margin-left:20px;"></span>';
                     echo '<label for="class_'.$class->ID.'">'.$class->post_title.' </label><input name="class_for_student" id="class_'.$class->ID.'" type="'.$input_type.'" value="'.$class->ID.'"/>';
+                  }
                 }
               }
             }
