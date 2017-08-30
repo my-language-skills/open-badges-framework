@@ -40,13 +40,9 @@ You can see all of the screenshots of the plugin [here](doc/screenshot.md "scree
  * **ENHANCEMENTS**
 
 ### now
- * Fix comments always activated
  * Fix problem of redirection after login from get badge page
  * Selection of badge description language
- * Set default language description as not english but default
- * Create statistics of badges sent
  * Delete all informations when the plugin is deleted
- * Add picture of badge in front end page of badge
  * Tabs in settings page
  * Change languages load
  * Some modifications in class job listing template
@@ -64,6 +60,23 @@ You can see all of the screenshots of the plugin [here](doc/screenshot.md "scree
  * To delete all the information of the plugin option if we wish by deleting the plugin
 
 ## Changelog
+
+### 0.6.1
+
+* **ADDITIONS**
+  * New section in Settings page for changing register and login links.
+  * One criteria file for each level.
+
+* **ENHANCEMENTS**
+  * Deselect input radio in selection of classes in send badges page by clicking on reset link.
+  * Links for displaying all categories of languages
+  * In CPT class to show more information in the reviews
+  * Multiple reviews in the same class forbidden.
+  * Send badge page integration with the CPT job manager.
+  * New email organization.
+  
+* **BUGFIXES**
+  * Fix pages for get the badge
 
 ### 0.6
 
