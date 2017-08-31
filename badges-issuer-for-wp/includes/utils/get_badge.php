@@ -31,7 +31,7 @@ if(is_user_logged_in()) {
     </style>
     <center>
             <h1><?php _e( 'Get your badge','badges-issuer-for-wp' ); ?></h1><br/>
-            <img src="<?php echo plugins_url( '../../images/b4l_logo.png', __FILE__ ); ?>" width="200px" height="200px"/>
+            <img src="<?php echo plugins_url( '../../assets/b4l_logo.png', __FILE__ ); ?>" width="200px" height="200px"/>
             <p>
               <?php _e('
               To get your badge, you need a Mozilla OpenBadges account.<br />
@@ -48,7 +48,7 @@ if(is_user_logged_in()) {
               ?>
             </p>
             <?php } ?>
-            <img src="<?php echo plugins_url( '../../images/openbadges_logo.jpg', __FILE__ ); ?>" width="300px" height="150px"/>
+            <img src="<?php echo plugins_url( '../../assets/openbadges_logo.jpg', __FILE__ ); ?>" width="300px" height="150px"/>
             <br /><br />
             <button onclick="getBadge()"><?php _e( 'Get badge','badges-issuer-for-wp' ); ?></button>
     </center>

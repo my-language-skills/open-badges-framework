@@ -18,7 +18,7 @@ function js_form() {
     <script>
     jQuery("#badge_form_<?php echo $form; ?> .level").on("click", function() {
 
-      jQuery("#badge_form_<?php echo $form; ?> #select_badge").html("<br /><img src='<?php echo plugins_url( '../../images/load.gif', __FILE__ ); ?>' width='50px' height='50px' />");
+      jQuery("#badge_form_<?php echo $form; ?> #select_badge").html("<br /><img src='<?php echo plugins_url( '../../assets/load.gif', __FILE__ ); ?>' width='50px' height='50px' />");
 
       var data = {
   			'action': 'action_select_badge',
@@ -35,7 +35,7 @@ function js_form() {
 
     jQuery("#languages_form_<?php echo $form; ?>").on("click", ".display_parent_categories", function() {
       console.log("clicked");
-      jQuery("#languages_form_<?php echo $form; ?>").html("<br /><img src='<?php echo plugins_url( '../../images/load.gif', __FILE__ ); ?>' width='50px' height='50px' />");
+      jQuery("#languages_form_<?php echo $form; ?>").html("<br /><img src='<?php echo plugins_url( '../../assets/load.gif', __FILE__ ); ?>' width='50px' height='50px' />");
 
       var id_lan = jQuery(this).attr('id');
       id_lan = id_lan.replace(/\s/g, '');
@@ -53,7 +53,7 @@ function js_form() {
     });
 
     jQuery("#languages_form_<?php echo $form; ?>").on("click", "#display_mi_languages_<?php echo $form ?>", function() {
-      jQuery("#languages_form_<?php echo $form; ?>").html("<br /><img src='<?php echo plugins_url( '../../images/load.gif', __FILE__ ); ?>' width='50px' height='50px' />");
+      jQuery("#languages_form_<?php echo $form; ?>").html("<br /><img src='<?php echo plugins_url( '../../assets/load.gif', __FILE__ ); ?>' width='50px' height='50px' />");
 
       var data = {
         'action': 'action_mi_languages_form',
@@ -73,7 +73,7 @@ function js_form() {
   ?>
   <script>
   function load_classes(form) {
-    jQuery("#badge_form_"+form+" #select_class").html("<br /><img src='<?php echo plugins_url( '../../images/load.gif', __FILE__ ); ?>' width='50px' height='50px' />");
+    jQuery("#badge_form_"+form+" #select_class").html("<br /><img src='<?php echo plugins_url( '../../assets/load.gif', __FILE__ ); ?>' width='50px' height='50px' />");
 
     var data = {
       'action': 'action_select_class',

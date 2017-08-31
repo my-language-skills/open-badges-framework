@@ -216,7 +216,7 @@
         echo '<h3>STEP 3: </h3>';
         echo '<div id="select_badge"><b>Badge*:</b>
             </br></br>
-            <img src="'.plugins_url( '../../images/default-badge.png', __FILE__ ).'" width="72px" height="72px"/>
+            <img src="'.plugins_url( '../../assets/default-badge.png', __FILE__ ).'" width="72px" height="72px"/>
         </div>';
         ?>
         <div style="display:block;">
@@ -271,7 +271,7 @@
           echo '<h3>STEP 3: </h3>';
           echo '<div id="select_badge"><b>Badge*:</b>
           </br></br>
-          <img src="'.plugins_url( '../../images/default-badge.png', __FILE__ ).'" width="72px" height="72px">
+          <img src="'.plugins_url( '../../assets/default-badge.png', __FILE__ ).'" width="72px" height="72px">
 
           </div>';
 
@@ -342,7 +342,7 @@
             echo '<h3>STEP 3: </h3>';
           echo '<div id="select_badge"><b>Badge*:</b>
           </br></br>
-          <img src="'.plugins_url( '../../images/default-badge.png', __FILE__ ).'" width="72px" height="72px">
+          <img src="'.plugins_url( '../../assets/default-badge.png', __FILE__ ).'" width="72px" height="72px">
           </div>';
 
           echo '<br />';

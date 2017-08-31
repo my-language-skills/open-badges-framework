@@ -39,7 +39,7 @@ function register_badge()
             'menu_position' => 15,
             'supports' => array('title', 'editor', 'thumbnail'),
             'taxonomies' => array(''),
-            'menu_icon' => plugins_url('../../images/icon.png', __FILE__),
+            'menu_icon' => plugins_url('../../assets/icon.png', __FILE__),
             'has_archive' => true
         )
     );

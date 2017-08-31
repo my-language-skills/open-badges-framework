@@ -152,7 +152,7 @@
             echo '</br><b>' . $badge->post_title . '</b></center>';
           }
           else{
-            echo plugins_url( '../../images/default-badge-thumbnail.png', __FILE__ );
+            echo plugins_url( '../../assets/default-badge-thumbnail.png', __FILE__ );
             echo '" width="40px" height="40px" /></label></center>';
           }
           echo "</div>";
@@ -172,7 +172,7 @@
               echo '</br><b>' . $badge->post_title . '</b></center>';
           }
           else{
-            echo plugins_url( '../../images/default-badge-thumbnail.png', __FILE__ );
+            echo plugins_url( '../../assets/default-badge-thumbnail.png', __FILE__ );
             echo '" width="40px" height="40px" /></label>';
           }
             echo "</div>";
