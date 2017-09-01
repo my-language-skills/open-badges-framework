@@ -61,6 +61,16 @@ You can see all of the screenshots of the plugin [here](doc/screenshot.md "scree
 
 ## Changelog
 
+### 0.6.2
+
+* **ENHANCEMENTS**
+
+ * To save more information in the student profile
+ * Criteria section
+ * Fix images folder and pages for frond end in wrong place
+ * to show the link of the badge in the email to the students
+ * Show description in send badges form
+
 ### 0.6.1
 
 * **ADDITIONS**
