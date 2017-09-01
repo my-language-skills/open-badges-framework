@@ -57,6 +57,7 @@ function load_job_listing_class_metaboxes() {
         });
         jQuery("#add_student_job_listing").on("click", function() {
           var input_login = jQuery("#add_student_login").val();
+          var input_mail = jQuery("#add_student_mail").val();
           var input_level = jQuery("#add_student_level").val();
           var input_language = jQuery("#add_student_language").val();
           var dateObj = new Date();
@@ -70,6 +71,8 @@ function load_job_listing_class_metaboxes() {
             '<tr><td width="0%"><center>' +
             input_login
              +'</center></td><td width="0%"><center>'+
+            input_mail
+             +'</center></td><td width="0%"><center>'+
             input_level
              +'</center></td><td width="0%"><center>'+
             input_language
@@ -78,6 +81,7 @@ function load_job_listing_class_metaboxes() {
              +'</center></td><td width="0%"><center><a class="button remove-row" onclick="jQuery(this).RemoveTr();" href="#id_meta_box_class_students">Remove</a></center></td></tr>'
           );
           jQuery("#add_student_login").val('');
+          jQuery("#add_student_mail").val('');
           jQuery("#add_student_level").val('');
           jQuery("#add_student_language").val('');
         });
@@ -88,7 +92,8 @@ function load_job_listing_class_metaboxes() {
       <table id="box_students" name="<?php echo $post->ID; ?>" width="100%">
         <thead>
           <tr>
-            <th width="0%">Student's login/mail</th>
+            <th width="0%">Student's login</th>
+            <th width="0%">Student's email</th>
             <th width="0%">Level</th>
             <th width="0%">Language</th>
             <th width="0%">Date</th>
@@ -108,6 +113,9 @@ function load_job_listing_class_metaboxes() {
         echo '<tr>';
           echo '<td width="0%">';
           echo '<center>'.$student["login"].'</center>';
+          echo '</td>';
+          echo '<td width="0%">';
+          echo '<center>'.$student["mail"].'</center>';
           echo '</td>';
           echo '<td width="0%">';
             echo '<center>'.$student["level"].'</center>';
@@ -136,6 +144,11 @@ function load_job_listing_class_metaboxes() {
         echo '<td width="0%">';
         echo '<center>';
         echo '<input type="text" id="add_student_login"/>';
+        echo '</center>';
+        echo '</td>';
+        echo '<td width="0%">';
+        echo '<center>';
+        echo '<input type="text" id="add_student_mail"/>';
         echo '</center>';
         echo '</td>';
         echo '<td width="0%">';

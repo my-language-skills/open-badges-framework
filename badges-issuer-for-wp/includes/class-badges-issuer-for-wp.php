@@ -7,7 +7,7 @@
  * public-facing side of the site and the admin area.
  *
  * @link       www.badges4languages.com
- * @since      1.0.0
+ * @since      0.6
  *
  * @package    Badges_Issuer_For_Wp
  * @subpackage Badges_Issuer_For_Wp/includes
@@ -22,7 +22,7 @@
  * Also maintains the unique identifier of this plugin as well as the current
  * version of the plugin.
  *
- * @since      1.0.0
+ * @since      0.6
  * @package    Badges_Issuer_For_Wp
  * @subpackage Badges_Issuer_For_Wp/includes
  * @author     My language skills team <mylanguageskills@hotmail.com>
@@ -33,7 +33,7 @@ class Badges_Issuer_For_Wp {
 	 * The loader that's responsible for maintaining and registering all hooks that power
 	 * the plugin.
 	 *
-	 * @since    1.0.0
+	 * @since    0.6
 	 * @access   protected
 	 * @var      Badges_Issuer_For_Wp_Loader    $loader    Maintains and registers all hooks for the plugin.
 	 */
@@ -42,7 +42,7 @@ class Badges_Issuer_For_Wp {
 	/**
 	 * The unique identifier of this plugin.
 	 *
-	 * @since    1.0.0
+	 * @since    0.6
 	 * @access   protected
 	 * @var      string    $plugin_name    The string used to uniquely identify this plugin.
 	 */
@@ -51,7 +51,7 @@ class Badges_Issuer_For_Wp {
 	/**
 	 * The current version of the plugin.
 	 *
-	 * @since    1.0.0
+	 * @since    0.6
 	 * @access   protected
 	 * @var      string    $version    The current version of the plugin.
 	 */
@@ -64,12 +64,12 @@ class Badges_Issuer_For_Wp {
 	 * Load the dependencies, define the locale, and set the hooks for the admin area and
 	 * the public-facing side of the site.
 	 *
-	 * @since    1.0.0
+	 * @since    0.6
 	 */
 	public function __construct() {
 
 		$this->plugin_name = 'badges-issuer-for-wp';
-		$this->version = '1.0.0';
+		$this->version = '0.6';
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -91,7 +91,7 @@ class Badges_Issuer_For_Wp {
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
 	 *
-	 * @since    1.0.0
+	 * @since    0.6
 	 * @access   private
 	 */
 	private function load_dependencies() {
@@ -129,7 +129,7 @@ class Badges_Issuer_For_Wp {
 	 * Uses the Badges_Issuer_For_Wp_i18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
-	 * @since    1.0.0
+	 * @since    0.6
 	 * @access   private
 	 */
 	private function set_locale() {
@@ -144,7 +144,7 @@ class Badges_Issuer_For_Wp {
 	 * Register all of the hooks related to the admin area functionality
 	 * of the plugin.
 	 *
-	 * @since    1.0.0
+	 * @since    0.6
 	 * @access   private
 	 */
 	private function define_admin_hooks() {
@@ -160,7 +160,7 @@ class Badges_Issuer_For_Wp {
 	 * Register all of the hooks related to the public-facing functionality
 	 * of the plugin.
 	 *
-	 * @since    1.0.0
+	 * @since    0.6
 	 * @access   private
 	 */
 	private function define_public_hooks() {
@@ -175,7 +175,7 @@ class Badges_Issuer_For_Wp {
 	/**
 	 * Run the loader to execute all of the hooks with WordPress.
 	 *
-	 * @since    1.0.0
+	 * @since    0.6
 	 */
 	public function run() {
 		$this->loader->run();
@@ -185,7 +185,7 @@ class Badges_Issuer_For_Wp {
 	 * The name of the plugin used to uniquely identify it within the context of
 	 * WordPress and to define internationalization functionality.
 	 *
-	 * @since     1.0.0
+	 * @since     0.6
 	 * @return    string    The name of the plugin.
 	 */
 	public function get_plugin_name() {
@@ -195,7 +195,7 @@ class Badges_Issuer_For_Wp {
 	/**
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
-	 * @since     1.0.0
+	 * @since     0.6
 	 * @return    Badges_Issuer_For_Wp_Loader    Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader() {
@@ -205,7 +205,7 @@ class Badges_Issuer_For_Wp {
 	/**
 	 * Retrieve the version number of the plugin.
 	 *
-	 * @since     1.0.0
+	 * @since     0.6
 	 * @return    string    The version number of the plugin.
 	 */
 	public function get_version() {

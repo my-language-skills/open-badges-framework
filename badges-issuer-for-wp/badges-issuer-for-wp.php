@@ -9,14 +9,14 @@
  * that starts the plugin.
  *
  * @link              www.badges4languages.com
- * @since             1.0.0
+ * @since             0.6
  * @package           Badges_Issuer_For_Wp
  *
  * @wordpress-plugin
  * Plugin Name:       Badges-Issuer-for-wp
  * Plugin URI:        www.badges4languages.com
  * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
- * Version:           1.0.0
+ * Version:           0.6
  * Author:            My language skills team
  * Author URI:        www.badges4languages.com
  * License:           GPL-2.0+
@@ -64,7 +64,7 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-badges-issuer-for-wp.php';
  * then kicking off the plugin from this point in the file does
  * not affect the page life cycle.
  *
- * @since    1.0.0
+ * @since    0.6
  */
 function run_badges_issuer_for_wp() {
 

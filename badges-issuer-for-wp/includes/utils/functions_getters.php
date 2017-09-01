@@ -398,6 +398,14 @@ function get_settings_login_links() {
   return $settings_login_links;
 }
 
+/**
+ * Checks if the user has already a badge
+ *
+ * @author Nicolas TORION
+ * @since 1.0.0
+ * @param $hash The hash for searching the badge.
+ * @return boolean
+*/
 function check_if_user_has_already_a_badge($hash) {
   global $current_user;
   get_currentuserinfo();
@@ -407,6 +415,15 @@ function check_if_user_has_already_a_badge($hash) {
   return in_array($hash, $badges);
 }
 
+/**
+ * Get student infos in class.
+ *
+ * @author Nicolas TORION
+ * @since 1.0.0
+ * @param $student_login The login of the student.
+ * @param $class_id The ID of the class.
+ * @return $student_infos The infos of the student.
+*/
 function get_student_infos_in_class($student_login, $class_id) {
   $class_students = get_post_meta($class_id, '_class_students', true);
   $student_infos = false;

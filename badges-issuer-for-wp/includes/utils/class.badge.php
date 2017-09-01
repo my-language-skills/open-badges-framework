@@ -271,22 +271,18 @@ class Badge
 
     if(in_array("teacher", $current_user->roles) || in_array("academy", $current_user->roles)) {
       $student = get_user_by_email($mail);
-      if($student) {
-        $student_infos = array(
-          'login' => $student->user_login,
-          'level' => $this->level,
-          'language' => $this->language,
-          'date' => date("Y-m-d")
-        );
-      }
-      else {
-         $student_infos = array(
-          'login' => $mail,
-          'level' => $this->level,
-          'language' => $this->language,
-          'date' => date("Y-m-d")
-        );
-      }
+      $login = "no account";
+
+      if($student)
+        $login = $student->user_login;
+
+      $student_infos = array(
+        'login' => $login,
+        'mail' => $mail,
+        'level' => $this->level,
+        'language' => $this->language,
+        'date' => date("Y-m-d")
+      );
 
       $class = get_class_zero_teacher($current_user->user_login);
       if(!get_post_meta($class->ID, '_class_students', true))
