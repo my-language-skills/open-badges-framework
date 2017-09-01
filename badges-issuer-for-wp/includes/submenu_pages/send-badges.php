@@ -117,6 +117,7 @@
 
         $badges = get_all_badges();
         $badge_others_items = get_badge($_POST['input_badge_name'], $badges, $_POST['language_description']);
+        $certification = get_post_meta($badge_others_items['id'],'_certification',true);
 
         $mails = $_POST['mail'];
         $mails_list = explode("\n", $mails);
@@ -134,7 +135,7 @@
 
         $notsent = array();
 
-        $badge = new Badge($badge_others_items['name'], $_POST['level'], $_POST['language'], $_POST['comment'], $badge_others_items['description'], $badge_others_items['image'], $url_json_files, $path_dir_json_files);
+        $badge = new Badge($badge_others_items['name'], $_POST['level'], $_POST['language'], $certification, $_POST['comment'], $badge_others_items['description'], $_POST['language_description'], $badge_others_items['image'], $url_json_files, $path_dir_json_files);
 
         foreach ($mails_list as $mail) {
           $mail = str_replace("\r", "", $mail);
@@ -219,10 +220,9 @@
             <img src="'.plugins_url( '../../assets/default-badge.png', __FILE__ ).'" width="72px" height="72px"/>
         </div>';
         ?>
-        <div style="display:block;">
         </br><h3>STEP 4: </h3>
           <div id="result_languages_description"><b>Language of badge description* :</b></div>
-        </div>
+          <div id="result_preview_description"></div>
 
         <input type="hidden" name="mail" value="<?php echo $current_user->user_email; ?>" />
         <input type="hidden" name="sender" value="SELF" />
@@ -280,6 +280,8 @@
           ?>
           <h3>STEP 4: </h3>
           <div id="result_languages_description"><b>Language of badge description* :</b></div>
+          <div id="result_preview_description"></div>
+
           <h3>STEP 5:</h3>
           <?php
           if(in_array("academy", $current_user->roles) || in_array("teacher", $current_user->roles)) {
@@ -350,6 +352,7 @@
           ?>
           <h3>STEP 4: </h3>
           <div id="result_languages_description"><b>Language of badge description* :</b></div>
+          <div id="result_preview_description"></div>
 
           <h3>STEP 5: </h3>
           <?php

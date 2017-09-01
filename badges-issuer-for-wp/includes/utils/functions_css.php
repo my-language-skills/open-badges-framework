@@ -46,6 +46,7 @@ function apply_css_styles() {
   .error {
     background-color: #C90101;
   }
+
   </style>
   <?php
 }

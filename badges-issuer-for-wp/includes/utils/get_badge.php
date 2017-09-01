@@ -50,7 +50,7 @@ if(is_user_logged_in()) {
             <?php } ?>
             <img src="<?php echo plugins_url( '../../assets/openbadges_logo.jpg', __FILE__ ); ?>" width="300px" height="150px"/>
             <br /><br />
-            <button onclick="getBadge()"><?php _e( 'Get badge','badges-issuer-for-wp' ); ?></button>
+            <button onclick="getBadge()"><?php _e( 'Get badge '.$_GET['level'].' '.$_GET['language'],'badges-issuer-for-wp' ); ?></button>
     </center>
 
     <?php

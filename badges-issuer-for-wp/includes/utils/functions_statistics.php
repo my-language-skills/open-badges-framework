@@ -41,12 +41,51 @@ function sended_badges_by_type(){
   return $types_counts;
 }
 
+function nb_badges_until_date($date) {
+  $result = 0;
+  $users = get_users();
+  $date_object = new DateTime($date);
+  foreach ($users as $user) {
+      $badges = get_the_author_meta('user_badges', $user->ID);
+      if ($badges){
+        foreach ($badges as $badge) {
+          if($badge['date']!="") {
+            $badge_date = new DateTime($badge['date']);
+            if($badge_date<$date_object) {
+              $result++;
+            }
+          }
+        }
+      }
+  }
+  return $result;
+}
+
+function sended_badges_by_dates(){
+  $all_weeks = array();
+  $date = new DateTime('2017-01-01');
+  $current_date = new DateTime(date("Y-m-d"));
+
+  while($date<$current_date) {
+    $all_weeks[] = $date->format('Y-m-d');
+    $date->modify('+1 week');
+  }
+  $all_weeks[] = $current_date->format('Y-m-d');
+
+  $dates_counts = array();
+  foreach ($all_weeks as $week) {
+    $dates_counts[$week] = nb_badges_until_date($week);
+  }
+
+  return $dates_counts;
+}
+
 function display_pie_chart($types_counts, $target) {
   $values_printed = "[[";
   $nb_elements = count($types_counts);
   $i=0;
   foreach ($types_counts as $type=>$count) {
-    $values_printed = $values_printed."['".$type."', ".$count."]";
+    $values_printed = $values_printed.'["'.$type.'", '.$count.']';
     if(++$i!=$nb_elements)
       $values_printed = $values_printed.",";
   }
@@ -125,5 +164,61 @@ function display_bar_chart($types_counts, $target, $targer_infos) {
     });
 </script>
   ";
+}
+
+function display_plot_chart($dates_counts, $target) {
+  $values_printed = "[";
+  $nb_elements = count($dates_counts);
+  $i=0;
+  foreach ($dates_counts as $date=>$count) {
+    $values_printed = $values_printed."['".$date."', ".$count."]";
+    if(++$i!=$nb_elements)
+      $values_printed = $values_printed.",";
+  }
+  $values_printed = $values_printed."]";
+  echo '
+  <script>
+  jQuery(document).ready(function(){
+    // Enable plugins like highlighter and cursor by default.
+    // Otherwise, must specify show: true option for those plugins.
+    jQuery.jqplot.config.enablePlugins = true;
+
+    var line1='.$values_printed.';
+
+    var plot1 = jQuery.jqplot("'.$target.'", [line1], {
+        title:"Badges sended",
+        animate: true,
+        axes:{
+            xaxis:{
+                renderer:jQuery.jqplot.DateAxisRenderer,
+                rendererOptions:{
+                    tickRenderer:jQuery.jqplot.CanvasAxisTickRenderer
+                },
+                tickOptions:{
+                    fontSize:"10pt",
+                    fontFamily:"Tahoma",
+                    angle:-40
+                }
+            },
+            yaxis:{
+                rendererOptions:{
+                    tickRenderer:jQuery.jqplot.CanvasAxisTickRenderer},
+                    tickOptions:{
+                        fontSize:"10pt",
+                        fontFamily:"Tahoma",
+                        angle:30
+                    }
+            }
+        },
+        series:[{ lineWidth:4, markerOptions:{ style:"square" } }],
+        cursor:{
+            zoom:true,
+            looseZoom: true
+        }
+    });
+
+  });
+  </script>
+  ';
 }
 ?>

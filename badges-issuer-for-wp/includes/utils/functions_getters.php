@@ -53,7 +53,7 @@ function get_badge($badge_name, $badges, $lang) {
   foreach ($badges as $badge) {
     if($badge_name==$badge->post_name) {
       $badge_description = get_badge_descriptions($badge)[$lang];
-      return array("name"=>$badge->post_title, "description"=>$badge_description, "image"=>get_the_post_thumbnail_url($badge->ID));
+      return array("id"=>$badge->ID, "name"=>$badge->post_title, "description"=>$badge_description, "image"=>get_the_post_thumbnail_url($badge->ID));
     }
   }
 }
@@ -288,7 +288,8 @@ function can_student_write_comment($student_login, $class_id) {
       $student_date = $class_students['date'];
   }
   if(get_days_from_date($student_date)<=15) {
-    if($class_post->post_type=="class" && is_student_in_class($student_login, $class_id))
+    if($class_post->post_type=="class" && is_student_in_class($student_login, $class_id)
+     && !has_student_write_comment($student_login, $class_id))
       return true;
     elseif($class_post->post_type=="job_listing" && is_student_in_class($student_login, $class_id)
      && !has_student_write_comment($student_login, $class_id))
@@ -412,10 +413,12 @@ function get_student_infos_in_class($student_login, $class_id) {
 
   foreach ($class_students as $class_student) {
     if($class_student['login']==$student_login) {
-      $student_infos = array();
-      $student_infos['date'] = $class_student['date'];
-      $student_infos['level'] = $class_student['level'];
-      $student_infos['language'] = $class_student['language'];
+      if(strtotime($student_infos['date']) < strtotime($class_student['date'])) {
+        $student_infos = array();
+        $student_infos['date'] = $class_student['date'];
+        $student_infos['level'] = $class_student['level'];
+        $student_infos['language'] = $class_student['language'];
+      }
     }
   }
 

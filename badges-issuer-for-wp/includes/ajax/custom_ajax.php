@@ -26,7 +26,8 @@
         'action_save_metabox_students',
         'action_languages_form',
         'action_mi_languages_form',
-        'action_save_comment'
+        'action_save_comment',
+        'action_select_description_preview'
     );
 
     /* AJAX action to save metabox of students in class job listing type*/
@@ -54,6 +55,19 @@
        echo '<a style="margin-left:20px;" href="#" class="display_parent_categories" id="all_languages">Display all languages</a>';
     }
 
+    /* AJAX action to load a preview of the description selected in a select form*/
+
+    add_action('CUSTOMAJAX_action_select_description_preview', 'action_select_description_preview');
+
+    function action_select_description_preview() {
+      $badges = get_all_badges();
+      foreach ($badges as $badge) {
+        if($_POST['badge_name']==$badge->post_name) {
+          $badge_description = get_badge_descriptions($badge)[$_POST['language_description_selected']];
+          echo str_replace("\n", "<br>", "<p>".$badge_description."</p><br>");
+        }
+      }
+    }
 
     /* AJAX action to load the classes corresponding to the level and the language selected */
 
@@ -103,17 +117,17 @@
                   echo '<label  for="class_'.$class->ID.'">'.$class->post_title.' </label><input name="class_for_student" id="class_'.$class->ID.'" type="'.$input_type.'" value="'.$class->ID.'"/>';
                 }
               }
+              echo '</br></br>';
             }
             if(in_array("academy", $current_user->roles) || in_array("administrator", $current_user->roles) || in_array("editor", $current_user->roles)) {
-              echo '</br></br>';
               echo '</br><b>Specific Class:</b>';
               foreach ($classes as $class) {
                 if($class->post_type == 'job_listing'){
                   $languages = get_the_terms($class->ID, 'job_listing_category');
-                  if((in_array("academy", $current_user->roles) && in_array($_POST['language_selected'], $languages)) || in_array("administrator", $current_user->roles) || in_array("editor", $current_user->roles)) {
+                  //if((in_array("academy", $current_user->roles) && in_array($_POST['language_selected'], $languages)) || in_array("administrator", $current_user->roles) || in_array("editor", $current_user->roles)) {
                     echo '<span style="margin-left:20px;"></span>';
                     echo '<label for="class_'.$class->ID.'">'.$class->post_title.' </label><input name="class_for_student" id="class_'.$class->ID.'" type="'.$input_type.'" value="'.$class->ID.'"/>';
-                  }
+                  //}
                 }
               }
             }
@@ -209,6 +223,8 @@
 
           content = content + '</select><br>';
           jQuery("#badge_form_a #result_languages_description").html(content);
+
+          load_description("a");
         });
 
         jQuery("#badge_form_b .input-badge").on("click", function() {
@@ -223,6 +239,8 @@
 
           content = content + '</select><br>';
           jQuery("#badge_form_b #result_languages_description").html(content);
+
+          load_description("b");
         });
 
         jQuery("#badge_form_c .input-badge").on("click", function() {
@@ -237,6 +255,8 @@
 
           content = content + '</select><br>';
           jQuery("#badge_form_c #result_languages_description").html(content);
+
+          load_description("c");
         });
       </script>
       <?php

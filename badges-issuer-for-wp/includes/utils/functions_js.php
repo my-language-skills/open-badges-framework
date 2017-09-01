@@ -87,6 +87,23 @@ function js_form() {
       jQuery("#badge_form_"+form+" #select_class").html(response);
     });
   }
+
+  function load_description(form) {
+    jQuery("#badge_form_"+form+" #result_preview_description").html("<br /><img src='<?php echo plugins_url( '../../assets/load.gif', __FILE__ ); ?>' width='50px' height='50px' />");
+
+    console.log(jQuery("#badge_form_"+form+" #language_description option:selected").text());
+    console.log(jQuery("#badge_form_"+form+" input[name=input_badge_name]").val());
+    var data = {
+      'action': 'action_select_description_preview',
+      'language_description_selected': jQuery("#badge_form_"+form+" #language_description option:selected").text(),
+      'badge_name': jQuery("#badge_form_"+form+" input[name=input_badge_name]").val()
+    };
+
+    // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
+    jQuery.post("<?php echo plugins_url( '../ajax/custom_ajax.php', __FILE__ ); ?>", data, function(response) {
+      jQuery("#badge_form_"+form+" #result_preview_description").html(response);
+    });
+  }
   </script>
   <?php
 
@@ -99,6 +116,9 @@ function js_form() {
     });
     jQuery(document).on("change", "#badge_form_<?php echo $form; ?> #language",function() {
       load_classes('<?php echo $form; ?>');
+    });
+    jQuery(document).on("change", "#badge_form_<?php echo $form; ?> #language_description",function() {
+      load_description('<?php echo $form; ?>');
     });
     </script>
   <?php

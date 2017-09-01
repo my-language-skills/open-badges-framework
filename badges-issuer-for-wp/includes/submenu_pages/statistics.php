@@ -53,7 +53,15 @@ require_once plugin_dir_path( dirname( __FILE__ ) ) . 'utils/functions.php';
       <script type="text/javascript" src="<?php echo plugins_url('../utils/jqplot/plugins/jqplot.categoryAxisRenderer.js', __FILE__); ?>"></script>
       <script type="text/javascript" src="<?php echo plugins_url('../utils/jqplot/plugins/jqplot.pointLabels.js', __FILE__); ?>"></script>
       <script type="text/javascript" src="<?php echo plugins_url('../utils/jqplot/plugins/jqplot.pieRenderer.js', __FILE__); ?>"></script>
+      <script type="text/javascript" src="<?php echo plugins_url('../utils/jqplot/plugins/jqplot.dateAxisRenderer.js', __FILE__); ?>"></script>
+      <script type="text/javascript" src="<?php echo plugins_url('../utils/jqplot/plugins/jqplot.logAxisRenderer.js', __FILE__); ?>"></script>
+      <script type="text/javascript" src="<?php echo plugins_url('../utils/jqplot/plugins/jqplot.canvasTextRenderer.js', __FILE__); ?>"></script>
+      <script type="text/javascript" src="<?php echo plugins_url('../utils/jqplot/plugins/jqplot.canvasAxisTickRenderer.js', __FILE__); ?>"></script>
+      <script type="text/javascript" src="<?php echo plugins_url('../utils/jqplot/plugins/jqplot.highlighter.js', __FILE__); ?>"></script>
+      <script type="text/javascript" src="<?php echo plugins_url('../utils/jqplot/plugins/jqplot.cursor.js', __FILE__); ?>"></script>
+
       <link rel="stylesheet" type="text/css" href="<?php echo plugins_url('../utils/jqplot/jquery.jqplot.css', __FILE__); ?>" />
+      <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/themes/smoothness/jquery-ui.css" />
       <h1>Statistics</h1>
       <br>
       <h2>Total sended badges</h2>
@@ -64,9 +72,9 @@ require_once plugin_dir_path( dirname( __FILE__ ) ) . 'utils/functions.php';
       <div id="info1"></div>
       <?php display_bar_chart(sended_badges_by_type(), "pie1", "info1"); ?>
 
-      <!-- <h2>Repartition of sended badges</h2><br />
-      <div id="pie1"></div>
-      <?php display_pie_chart(sended_badges_by_type()); ?> -->
+      <h2>Sended Badges during this year</h2>
+      <div id="badges_dates"></div>
+      <?php display_plot_chart(sended_badges_by_dates(), "badges_dates"); ?>
 
       <?php
 

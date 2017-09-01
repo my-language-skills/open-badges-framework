@@ -23,6 +23,10 @@ class Badge
   */
   var $language;
   /**
+  *  $certified To know if the badge is certified or not.
+  */
+  var $certified;
+  /**
   *  $comment The comment written by the sender about the badge.
   */
   var $comment;
@@ -30,6 +34,10 @@ class Badge
   *  $description The description of the badge selected by the sender.
   */
   var $description;
+  /**
+  *  $description_language The language description of the badge selected by the sender.
+  */
+  var $description_language;
   /**
   *  $image The image of the badge.
   */
@@ -57,12 +65,14 @@ class Badge
    * @param $_url_json_files The url (extern location) of the json files directory.
    * @param $_path_dir_json_files The path (intern location) of the json files directory.
    */
-  function __construct($_name, $_level, $_language, $_comment, $_description, $_image, $_url_json_files, $_path_dir_json_files) {
+  function __construct($_name, $_level, $_language, $_certified, $_comment, $_description, $_description_language, $_image, $_url_json_files, $_path_dir_json_files) {
     $this->name = $_name;
     $this->level = $_level;
     $this->language = $_language;
+    $this->certified = $_certified;
     $this->comment = $_comment;
     $this->description = $_description;
+    $this->description_language = $_description_language;
     $this->image = urldecode(str_replace("\\", "", $_image));
     $this->url_json_files = $_url_json_files;
     $this->path_dir_json_files = $_path_dir_json_files;
@@ -99,9 +109,6 @@ class Badge
 
     $description_combined = "Language : ".$this->language.", Level : ".$this->level.", Comment : ".$this->comment.", Description : ".$this->description;
 
-    if (!file_exists($this->path_dir_json_files.$this->level."_criteria.html"))
-        file_put_contents($this->path_dir_json_files.$this->level."_criteria.html", "");
-
     $badge_informations = array(
       '@context'=>'https://w3id.org/openbadges/v1',
       "name"=>$this->name." ".$this->language,
@@ -109,7 +116,7 @@ class Badge
       "image"=>$this->image,
       "language"=>$this->language,
       "level"=>$this->level,
-      "criteria"=>$this->url_json_files.$this->level."_criteria.html",
+      "criteria"=>"http://".$_SERVER['SERVER_NAME']."/badge/".strtolower($this->level),
     	"issuer"=>$this->url_json_files."badge-issuer.json"
     );
 
@@ -154,7 +161,7 @@ class Badge
   function send_mail($receiver, $class_id) {
     $hash_name = hash("sha256", $receiver.$this->name.$this->language);
     $url_mail = plugins_url( './get_badge.php', __FILE__ );
-    $url_mail = $url_mail."?hash=".$hash_name;
+    $url_mail = $url_mail."?hash=".$hash_name."&level=".$this->level."&language=".$this->language;
     $settings_id_login_links = get_settings_login_links();
 
     if(!is_null($class_id))
@@ -304,6 +311,22 @@ class Badge
     $user_informations = get_user_by_email($mail);
     $badges = get_the_author_meta( 'user_badges', $user_informations->ID );
 
+    $user_roles = $user_informations->roles;
+    if($sender=="SELF")
+      $sender_type = $sender;
+    else {
+      if(in_array("teacher", $user_roles))
+        $sender_type = "teacher";
+      elseif(in_array("academy", $user_roles))
+        $sender_type = "academy";
+      elseif(in_array("administrator", $user_roles))
+        $sender_type = "administrator";
+      elseif(in_array("editor", $user_roles))
+        $sender_type = "editor";
+      else
+        $sender_tyep = "unknown";
+    }
+
     if(empty($badges))
       $bagdes=array();
 
@@ -311,8 +334,11 @@ class Badge
       'name' => $this->name,
       'language' => $this->language,
       'sender' => $sender,
+      'sender_type' => $sender_type,
+      'certified' => $this->certified,
       'comment' => $this->comment,
       'level' => $this->level,
+      'description_language' => $this->description_language,
       'date' => date("Y-m-d")
     );
 
