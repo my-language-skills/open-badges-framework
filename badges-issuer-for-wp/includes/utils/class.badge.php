@@ -183,7 +183,7 @@ class Badge
                         <h2>Learn languages and get official certifications</h2>
                         <hr/>
                         <h2>You need to a have an account and to be logged in the website.</h2>
-                        <center><img src="'.plugins_url( "../../assets/b4l_logo.png", __FILE__ ).'" /></center>
+                        <center><img src="'.plugins_url( "../../assets/b4l_logo.png", __FILE__ ).'" width="150" height="150"/></center>
                         <a href="'.get_page_link($settings_id_login_links["link_register"]).'">Register</a> | <a href="'.get_page_link($settings_id_login_links["link_login"]).'">Login</a>
                         <hr/>
                         Open the link, and get the badge.
