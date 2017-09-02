@@ -36,16 +36,14 @@ You can see all of the screenshots of the plugin [here](doc/screenshot.md "scree
 ### 0.x
 
  * **ADDITIONS**
- 
+
  * **ENHANCEMENTS**
+  * New images/ images optimization
+
+ * **BUGFIXES**
+  * Correct version number of release
 
 ### now
- * Fix problem of redirection after login from get badge page
- * Selection of badge description language
- * Delete all informations when the plugin is deleted
- * Tabs in settings page
- * Change languages load
- * Some modifications in class job listing template
  * To create students and teacher page
 
 ### soon
@@ -84,7 +82,7 @@ You can see all of the screenshots of the plugin [here](doc/screenshot.md "scree
   * Multiple reviews in the same class forbidden.
   * Send badge page integration with the CPT job manager.
   * New email organization.
-  
+
 * **BUGFIXES**
   * Fix pages for get the badge
 
@@ -102,7 +100,7 @@ You can see all of the screenshots of the plugin [here](doc/screenshot.md "scree
   * Show "Translations of description" title oly when translations exist in class template.
   * Remove default badges issuer informations.
   * Send badges page and forms more simple.
-  
+
 * **BUGFIXES**
   * Fix message when user is not logged in the get_badge page.
   * Fix teacher shouldn't be able to see multiple send badges tab.
@@ -114,7 +112,7 @@ You can see all of the screenshots of the plugin [here](doc/screenshot.md "scree
   * The send badges page is organized with tabs (change front-end style of tabs).
   * The form for sending badges is more simple (with steps).
   * The user is redirected to the class after that he received the badge in his backpack account.
-  
+
 * **BUGFIXES**
   * Fix relative url (for json files directory) in send-badges.php.
 
@@ -126,7 +124,7 @@ You can see all of the screenshots of the plugin [here](doc/screenshot.md "scree
 * **ENHANCEMENTS**
   * Administrator can select the zeros classes of all teachers in the send badges page.
   * The useless metabox descriptions in badge post page has been removed.
-  
+
 * **BUGFIXES**
   * The bug in the send badges form when the badge name is a number is fixed.
 
@@ -134,9 +132,9 @@ You can see all of the screenshots of the plugin [here](doc/screenshot.md "scree
 
 * **ENHANCEMENTS**
   * Remove job listing metaboxes level and language.
-  
+
 * **BUGFIXES**
-  * Add verification on meta values before access. 
+  * Add verification on meta values before access.
 
 ### 0.5
 
@@ -182,7 +180,7 @@ You can see all of the screenshots of the plugin [here](doc/screenshot.md "scree
   * Possibility to read the information of the badges translated inside of the custom post.
 
 ### 0.2
- 
+
 * **ADDITIONS**
   * Badges issuer in the front-end (works with a shortcode). #5
   * Introduction of WP roles : Student, Teacher and Academy. Possibility to restrict the content for each role. #6
@@ -195,7 +193,7 @@ You can see all of the screenshots of the plugin [here](doc/screenshot.md "scree
   * Possibility to add a student to a class in the send badges form.
   * Create automatically the badges issuer json file in the "updates" directory.
 
-* **ENHANCEMENTS** 
+* **ENHANCEMENTS**
   * Simplification of code. #22
 
 * **BUGFIXES**
