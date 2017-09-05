@@ -4,7 +4,7 @@
  * The admin-specific functionality of the plugin.
  *
  * @link       www.badges4languages.com
- * @since      1.0.0
+ * @since      0.0.1
  *
  * @package    Badges_Issuer_For_Wp
  * @subpackage Badges_Issuer_For_Wp/admin
@@ -25,7 +25,7 @@ class Badges_Issuer_For_Wp_Admin {
 	/**
 	 * The ID of this plugin.
 	 *
-	 * @since    1.0.0
+	 * @since    0.0.1
 	 * @access   private
 	 * @var      string    $plugin_name    The ID of this plugin.
 	 */
@@ -34,7 +34,7 @@ class Badges_Issuer_For_Wp_Admin {
 	/**
 	 * The version of this plugin.
 	 *
-	 * @since    1.0.0
+	 * @since    0.0.1
 	 * @access   private
 	 * @var      string    $version    The current version of this plugin.
 	 */
@@ -43,7 +43,7 @@ class Badges_Issuer_For_Wp_Admin {
 	/**
 	 * Initialize the class and set its properties.
 	 *
-	 * @since    1.0.0
+	 * @since    0.0.1
 	 * @param      string    $plugin_name       The name of this plugin.
 	 * @param      string    $version    The version of this plugin.
 	 */
@@ -57,7 +57,7 @@ class Badges_Issuer_For_Wp_Admin {
 	/**
 	 * Register the stylesheets for the admin area.
 	 *
-	 * @since    1.0.0
+	 * @since    0.0.1
 	 */
 	public function enqueue_styles() {
 
@@ -80,7 +80,7 @@ class Badges_Issuer_For_Wp_Admin {
 	/**
 	 * Register the JavaScript for the admin area.
 	 *
-	 * @since    1.0.0
+	 * @since    0.0.1
 	 */
 	public function enqueue_scripts() {
 
@@ -101,19 +101,26 @@ class Badges_Issuer_For_Wp_Admin {
 	}
 
 }
-
 /**
- * SEND BADGES TO 1 STUDENT CUSTOM SUBMENU
+ * SEND BADGES TO STUDENTS CUSTOM SUBMENU
  * A teacher can send certifications by mails to 1 student by the administration panel.
+ *
+ * @since    0.1
  */
+
 require plugin_dir_path( __FILE__ ) . '../includes/submenu_pages/send-badges.php';
 
-/**
- * STATISTICS PAGE OF THE PLUGIN
- */
-require_once plugin_dir_path( __FILE__ ) . '../includes/submenu_pages/statistics.php';
 
 /**
  * SETTINGS PAGE OF THE PLUGIN
+ *
+ * @since    0.2
  */
 require plugin_dir_path( __FILE__ ) . '../includes/submenu_pages/settings.php';
+
+/**
+ * STATISTICS PAGE OF THE PLUGIN
+ *
+ * @since    0.6
+ */
+require_once plugin_dir_path( __FILE__ ) . '../includes/submenu_pages/statistics.php';

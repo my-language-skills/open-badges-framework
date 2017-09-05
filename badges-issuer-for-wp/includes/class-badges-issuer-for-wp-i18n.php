@@ -7,7 +7,7 @@
  * so that it is ready for translation.
  *
  * @link       www.badges4languages.com
- * @since      1.0.0
+ * @since      0.0.1
  *
  * @package    Badges_Issuer_For_Wp
  * @subpackage Badges_Issuer_For_Wp/includes
@@ -19,7 +19,7 @@
  * Loads and defines the internationalization files for this plugin
  * so that it is ready for translation.
  *
- * @since      1.0.0
+ * @since      0.0.1
  * @package    Badges_Issuer_For_Wp
  * @subpackage Badges_Issuer_For_Wp/includes
  * @author     My language skills team <mylanguageskills@hotmail.com>
@@ -30,7 +30,7 @@ class Badges_Issuer_For_Wp_i18n {
 	/**
 	 * Load the plugin text domain for translation.
 	 *
-	 * @since    1.0.0
+	 * @since    0.0.1
 	 */
 	public function load_plugin_textdomain() {
 

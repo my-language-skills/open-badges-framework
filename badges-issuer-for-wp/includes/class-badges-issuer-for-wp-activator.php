@@ -4,7 +4,7 @@
  * Fired during plugin activation
  *
  * @link       www.badges4languages.com
- * @since      1.0.0
+ * @since      0.0.1
  *
  * @package    Badges_Issuer_For_Wp
  * @subpackage Badges_Issuer_For_Wp/includes
@@ -15,7 +15,7 @@
  *
  * This class defines all code necessary to run during the plugin's activation.
  *
- * @since      1.0.0
+ * @since      0.0.1
  * @package    Badges_Issuer_For_Wp
  * @subpackage Badges_Issuer_For_Wp/includes
  * @author     My language skills team <mylanguageskills@hotmail.com>
@@ -27,7 +27,7 @@ class Badges_Issuer_For_Wp_Activator {
 	 *
 	 * Long Description.
 	 *
-	 * @since    1.0.0
+	 * @since    0.0.1
 	 */
 	public static function activate() {
 

@@ -58,6 +58,7 @@ You can see all of the screenshots of the plugin [here](doc/screenshot.md "scree
  * To delete all the information of the plugin option if we wish by deleting the plugin
 
 ## Changelog
+FIRST VERSION WITH STATISTICS???
 
 ### 0.6.2
 

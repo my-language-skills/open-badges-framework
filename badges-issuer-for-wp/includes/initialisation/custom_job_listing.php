@@ -6,7 +6,7 @@
  * @author Nicolas TORION
  * @package badges-issuer-for-wp
  * @subpackage includes/initialisation
- * @since 1.0.0
+ * @since 0.2
 */
 
 wp_enqueue_script("jquery");
@@ -179,7 +179,7 @@ function load_job_listing_class_metaboxes() {
      * Load the custom template for a single job Listing.
      *
      * @author Nicolas TORION
-     * @since 1.0.0
+     * @since 0.2
      * @param $template_path The path of the template.
      * @return $template_path The path of the template.
     */
