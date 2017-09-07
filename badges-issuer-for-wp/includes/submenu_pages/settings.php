@@ -66,7 +66,7 @@ require_once plugin_dir_path( dirname( __FILE__ ) ) . 'utils/class.badge-issuer.
       <h1>Settings</h1>
       <br/>
 
-      <div style="width:400px;">
+      <div style="width:500px;">
         <h2>Change the badges issuer informations</h2>
         <br/>
 
@@ -133,7 +133,7 @@ require_once plugin_dir_path( dirname( __FILE__ ) ) . 'utils/class.badge-issuer.
           </div>
           <br /><br />
           <input type="submit" id="settings_submit_login_links" class="button-primary" value="Change links" />
-
+          <br /><br />
         </form>
       </div>
       <?php

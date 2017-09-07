@@ -167,7 +167,7 @@ class Badge
     if(!is_null($class_id))
       $url_mail = $url_mail."&class=".$class_id;
 
-    $subject = __("Badges4Languages - You have just earned a badge",'badges-issuer-for-wp'); //entering a subject for email
+    $subject = __("Your teacher of '.$this->language.' just send you a badge",'badges-issuer-for-wp'); //entering a subject for email
 
     //Message displayed in the email
     $message= __('
@@ -187,14 +187,14 @@ class Badge
                         <a href="'.get_page_link($settings_id_login_links["link_register"]).'">Register</a> | <a href="'.get_page_link($settings_id_login_links["link_login"]).'">Login</a>
                         <hr/>
                         Open the link, and get the badge.
+                        <br />
+                        Once you get the badge, you can write the review of your teacher\'s class.
                         <h2>'.$this->name.' - '.$this->language.'</h2>
                         <a href="'.$url_mail.'">
                             <img src="'.$this->image.'" width="150" height="150"/>
                         </a>
                         <br /><br />
                         <div class="browserSupport"><b>Please use Firefox or Google Chrome to retrieve your badge.<b></div>
-                        <br />
-                        Once you get the badge, you can write the review of your teacher\'s class.
                         <br />
                         <hr/>
                         <p style="font-size:9px; color:grey">Badges for Languages by My Language Skills, based in Valencia, Spain.
@@ -208,10 +208,10 @@ class Badge
     ','badges-issuer-for-wp');
 
     //Setting headers so it's a MIME mail and a html
-    $headers = "From: badges4languages <colomet@hotmail.com>\n";
+    $headers = "From: badges4languages <mylanguageskills@hotmail.com>\n";
     $headers .= "MIME-Version: 1.0"."\n";
     $headers .= "Content-type: text/html; charset=utf-8"."\n";
-    $headers .= "Reply-To: colomet@hotmail.com\n";
+    $headers .= "Reply-To: mylanguageskills@hotmail.com\n";
 
     return mail($receiver, $subject, $message, $headers); //Sending the emails
   }

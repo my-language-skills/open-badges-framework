@@ -22,7 +22,7 @@ if(is_user_logged_in()) {
     if(unlink($url_assertion) && unlink($url_badge)) {
       set_badge_as_received($_GET['hash']);
       echo "<center>";
-      printf( _e('<h2>You received your badge ! <br /> You are going to be redirected to the class page corresponding to the badge or you can close this page. <br /> Thanks for using Badges For Languages.</h2>','badges-issuer-for-wp'));
+      printf( _e('<h2><br />You received your badge ! <br /> <br />You are going to be redirected to the class page corresponding to the badge or you can close this page. <br /><br /> Thanks for using Badges For Languages.</h2>','badges-issuer-for-wp'));
       if(isset($_GET['class']))
         echo '<script>window.location.href = "'.get_permalink($_GET['class']).'";</script>';
       echo "<script>window.close();</script>";

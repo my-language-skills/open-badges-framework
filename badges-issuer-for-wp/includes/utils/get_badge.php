@@ -37,7 +37,7 @@ if(is_user_logged_in()) {
               To get your badge, you need a Mozilla OpenBadges account.<br />
               If you don\'t have a Mozilla OpenBadges account, you can create one <a href="https://backpack.openbadges.org/backpack/signup" target="_blank">here</a>.
               <br /><br />
-              <b>By accepting the badge, you will have access to the class page in order to post a review.</b>
+              <b>By accepting the badge, you will have access to the class page where you can post a review of your teacher.</b>
               ','badges-issuer-for-wp' );
               ?>
             </p>
