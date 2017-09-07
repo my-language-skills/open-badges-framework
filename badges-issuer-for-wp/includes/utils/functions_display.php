@@ -158,8 +158,9 @@ function display_error_message($message) {
 function display_not_logged_message() {
   $settings_id_login_links = get_settings_login_links();
   ?>
+
   <center>
-    <img src="https://mylanguageskills.files.wordpress.com/2015/08/badges4languages-hi.png?w=800" width="400px" height="400px"/>
+    <img src="'.plugins_url( "../../assets/b4l_logo.png", __FILE__ ).'" width="256" height="256"/>
     <br />
     <h1><?php _e('To get a badge, you need to be logged on the site.','badges-issuer-for-wp'); ?></h1>
     <br />
