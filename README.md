@@ -60,10 +60,20 @@ You can see all of the screenshots of the plugin [here](doc/screenshot.md "scree
 ## Changelog
 FIRST VERSION WITH STATISTICS???
 
+### 0.6.3
+* **ENHANCEMENTS**
+ * New images
+ * Images optimization
+ * Images redimension in front-end
+ * New text in email and templates
+ * change issuer email to mylanguageskills@hotmail.com
+ * New xml and wie (widget) files with dummy content
+ * update version numbers in some files
+
+
 ### 0.6.2
 
 * **ENHANCEMENTS**
-
  * To save more information in the student profile
  * Criteria section
  * Fix images folder and pages for frond end in wrong place
