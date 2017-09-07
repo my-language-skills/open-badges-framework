@@ -66,7 +66,7 @@ require_once plugin_dir_path( dirname( __FILE__ ) ) . 'utils/class.badge-issuer.
       <h1>Settings</h1>
       <br/>
 
-      <div style="width:500px;">
+      <div style="width:400px;">
         <h2>Change the badges issuer informations</h2>
         <br/>
 
