@@ -178,8 +178,9 @@ class Badge
             <body>
                 <div id="b4l-award-actions-wrap">
                     <div align="center">
-                        <h1>BADGES FOR LANGUAGES</h1>
-                        <h1><b>Congratulations you have just earned a badge!</b></h1>
+                        <h1>BADGES FOR LANGUAGES - Congratulations</h1>
+                        <br />
+                        <h1><b>You have just earned a badge for '.$this->language.' language, '.$this->name.' level!</b></h1>
                         <h2>The following steps will help you to receive a badge.
                         <br />
                         If you allready have badges, go to the step 3</h2>
