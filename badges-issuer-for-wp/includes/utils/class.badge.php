@@ -167,7 +167,7 @@ class Badge
     if(!is_null($class_id))
       $url_mail = $url_mail."&class=".$class_id;
 
-    $subject = __("Your teacher of '.$this->language.' just send you a badge",'badges-issuer-for-wp'); //entering a subject for email
+    $subject = __("Your teacher of $this->language just send you a badge",'badges-issuer-for-wp'); //entering a subject for email
 
     //Message displayed in the email
     $message= __('
