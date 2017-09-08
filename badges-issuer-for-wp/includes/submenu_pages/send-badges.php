@@ -217,7 +217,7 @@
         echo '<h3>STEP 3: </h3>';
         echo '<div id="select_badge"><b>Badge*:</b>
             </br></br>
-            <img src="'.plugins_url( '../../assets/default-badge.png', __FILE__ ).'" width="72px" height="72px"/>
+            <img src="'.plugins_url( '../../assets/default-badge-thumbnail.png', __FILE__ ).'" width="72px" height="72px"/>
         </div>';
         ?>
         </br><h3>STEP 4: </h3>
@@ -271,7 +271,7 @@
           echo '<h3>STEP 3: </h3>';
           echo '<div id="select_badge"><b>Badge*:</b>
           </br></br>
-          <img src="'.plugins_url( '../../assets/default-badge.png', __FILE__ ).'" width="72px" height="72px">
+          <img src="'.plugins_url( '../../assets/default-badge-thumbnail.png', __FILE__ ).'" width="72px" height="72px">
 
           </div>';
 
@@ -344,7 +344,7 @@
             echo '<h3>STEP 3: </h3>';
           echo '<div id="select_badge"><b>Badge*:</b>
           </br></br>
-          <img src="'.plugins_url( '../../assets/default-badge.png', __FILE__ ).'" width="72px" height="72px">
+          <img src="'.plugins_url( '../../assets/default-badge-thumbnail.png', __FILE__ ).'" width="72px" height="72px">
           </div>';
 
           echo '<br />';
