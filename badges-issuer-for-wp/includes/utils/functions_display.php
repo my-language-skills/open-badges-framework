@@ -160,7 +160,7 @@ function display_not_logged_message() {
   ?>
 
   <center>
-    <img src="'.plugins_url( "../../assets/b4l_logo.png", __FILE__ ).'" width="256" height="256"/>
+    <img src="'.plugins_url( '../../assets/b4l_logo.png', __FILE__ ).'" width="256" height="256"/>
     <br />
     <h1><?php _e('To get a badge, you need to be logged on the site.','badges-issuer-for-wp'); ?></h1>
     <br />

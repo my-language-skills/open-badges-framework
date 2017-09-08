@@ -180,15 +180,18 @@ class Badge
                     <div align="center">
                         <h1>BADGES FOR LANGUAGES</h1>
                         <h1><b>Congratulations you have just earned a badge!</b></h1>
-                        <h2>Learn languages and get official certifications</h2>
                         <hr/>
-                        <h2>You need to a have an account and to be logged in the website.</h2>
+                        <img src="<?php echo plugins_url( '../../assets/openbadges_logo.jpg', __FILE__ ); ?>" width="300px" height="150px"/>
+                        <hr/>
+                        <h2>Follow the indications below to receive the badge and to save it in your <a href="https://backpack.openbadges.org/">backpack</a></h2>
+                        <hr/>
+                        <h2>1: For receiving a badge, you need to a have an account and to be logged in the website.</h2>
                         <center><img src="'.plugins_url( "../../assets/b4l_logo.png", __FILE__ ).'" width="150" height="150"/></center>
                         <a href="'.get_page_link($settings_id_login_links["link_register"]).'">Register</a> | <a href="'.get_page_link($settings_id_login_links["link_login"]).'">Login</a>
                         <hr/>
-                        Open the link, and get the badge.
+                        <h2>2: Open the link, and get the badge.</h2>
                         <br />
-                        Once you get the badge, you can write the review of your teacher\'s class.
+                        Remember, once you get the badge, you can write the review of your teacher\'s class.
                         <h2>'.$this->name.' - '.$this->language.'</h2>
                         <a href="'.$url_mail.'">
                             <img src="'.$this->image.'" width="150" height="150"/>
@@ -197,7 +200,7 @@ class Badge
                         <div class="browserSupport"><b>Please use Firefox or Google Chrome to retrieve your badge.<b></div>
                         <br />
                         <hr/>
-                        <p style="font-size:9px; color:grey">Badges for Languages by My Language Skills, based in Valencia, Spain.
+                        <p style="font-size:9px; color:grey"><a href="http://badges4languages.com/">Badges for Languages</a> by My Language Skills, based in Valencia, Spain.
                         More information <a href="https://mylanguageskills.wordpress.com/">here</a>.
                         Legal information <a href="https://mylanguageskillslegal.wordpress.com/category/english/badges-for-languages-english/">here</a>.
                         </p>
