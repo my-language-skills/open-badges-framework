@@ -181,7 +181,7 @@ class Badge
                         <h1>BADGES FOR LANGUAGES</h1>
                         <h1><b>Congratulations you have just earned a badge!</b></h1>
                         <hr/>
-                        <img src="<?php echo plugins_url( '../../assets/openbadges_logo.jpg', __FILE__ ); ?>" width="300px" height="150px"/>
+                        <center><img src="'.plugins_url( "../../assets/openbadges_logo.jpg", __FILE__ ).'" width="300" height="150"/></center>
                         <hr/>
                         <h2>Follow the indications below to receive the badge and to save it in your <a href="https://backpack.openbadges.org/">backpack</a></h2>
                         <hr/>
