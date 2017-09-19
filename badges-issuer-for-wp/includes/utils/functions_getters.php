@@ -128,8 +128,14 @@ function get_all_parent_categories(){
 
   $categories  = array();
   $all_parent_categories = array();
+  $term_children = array();
 
   foreach ($parents_categories as $parents_category) {
+    // getting the children of each parent category
+
+    $term_children = get_term_children($parents_category->term_id, 'field_of_education');
+    // if any child exists for a category, it will be added to the array
+    if(!empty( $term_children ) && !is_wp_error( $term_children))
     $categories[$parents_category->slug] = array($parents_category->term_id, $parents_category->name, $parents_category->slug);
   }
 

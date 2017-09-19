@@ -102,7 +102,7 @@
           if(in_array("academy", $current_user->roles) || in_array("administrator", $current_user->roles) || in_array("editor", $current_user->roles)) {
           ?>
           <div id="tabs-3">
-            <?php tab_multiple_issues(); ?>
+            <?php tab_multiple(); ?>
           </div>
           <?php
           }
@@ -176,7 +176,7 @@
      function show_parent_categories(){
          $parent_languages = get_all_parent_categories();
          foreach($parent_languages as $language){
-             echo '<a style="margin-left:20px;" href="#" class="display_parent_categories" id=" '.$language[2].'">Display '.$language[1].'</a>';
+            echo '<a style="margin-left:20px;" href="#" class="display_parent_categories" id=" '.$language[2].'">Display '.$language[1].'</a>';
            }
            // To display the link to show all the languages
             echo '<a style="margin-left:20px;" href="#" class="display_parent_categories" id="all_languages">Display all languages</a>';
@@ -317,7 +317,7 @@
      * @author Nicolas TORION
      * @since 1.0.0
      */
-    function tab_multiple_issues() {
+    function tab_multiple() {
 
         apply_css_styles();
         ?>
@@ -381,5 +381,8 @@
     }
 
     add_shortcode( 'send_badge', 'send_badges_page_callback' );
+    add_shortcode( 'send-self', 'tab_self' );
+    add_shortcode( 'send-single', 'tab_issue' );
+    add_shortcode( 'send-multiple', 'tab_multiple');
 
 ?>
