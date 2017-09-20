@@ -380,9 +380,12 @@
         <?php
     }
 
-    add_shortcode( 'send_badge', 'send_badges_page_callback' );
-    add_shortcode( 'send-self', 'tab_self' );
-    add_shortcode( 'send-single', 'tab_issue' );
-    add_shortcode( 'send-multiple', 'tab_multiple');
+add_shortcode( 'send_badge', 'send_badges_page_callback' );
+    // Adding the shortcode to send the badge to yourself
+add_shortcode( 'send-self', 'tab_self' );
+  // Adding the shortcode to send a badge to a single person
+add_shortcode( 'send-single', 'tab_issue' );
+  // Adding the shortcode to send the badge to several persons
+add_shortcode( 'send-multiple', 'tab_multiple');
 
 ?>
