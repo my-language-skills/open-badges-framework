@@ -19,16 +19,18 @@ function user_field_badges( $user ) {
     <table width="100%">
       <thead>
         <tr>
-          <th width="0%"><?php _e( 'Badge name', 'badges-issuer-for-wp' ); ?></th>
-          <th width="0%"><?php _e( 'Badge language', 'badges-issuer-for-wp' ); ?></th>
-          <th width="0%"><?php _e( 'Sender', 'badges-issuer-for-wp' ); ?></th>
-          <th width="0%"><?php _e( 'Sender Type', 'badges-issuer-for-wp' ); ?></th>
-          <th width="0%"><?php _e( 'Certification', 'badges-issuer-for-wp' ); ?></th>
-          <th width="0%"><?php _e( 'Comment', 'badges-issuer-for-wp' ); ?></th>
-          <th width="0%"><?php _e( 'Level', 'badges-issuer-for-wp' ); ?></th>
-          <th width="0%"><?php _e( 'Description Language', 'badges-issuer-for-wp' ); ?></th>
-          <th width="0%"><?php _e( 'Date', 'badges-issuer-for-wp' ); ?></th>
-          <th width="0%"><?php _e( 'Class', 'badges-issuer-for-wp' ); ?></th>
+          <!-- changes made to these lines by uzair-->
+          <th width="0%" align="left"><?php _e( 'Date', 'badges-issuer-for-wp' ); ?></th>
+          <th width="0%" align="left"><?php _e( 'Badge name', 'badges-issuer-for-wp' ); ?></th>
+          <th width="0%" align="left"><?php _e( 'Badge language', 'badges-issuer-for-wp' ); ?></th>
+          <th width="0%" align="left"><?php _e( 'Level', 'badges-issuer-for-wp' ); ?></th>
+          <th width="0%" align="left"><?php _e( 'Description Language', 'badges-issuer-for-wp' ); ?></th>
+          <th width="0%" align="left"><?php _e( 'Sender', 'badges-issuer-for-wp' ); ?></th>
+          <th width="0%" align="left"><?php _e( 'Sender Type', 'badges-issuer-for-wp' ); ?></th>
+          <th width="0%" align="left"><?php _e( 'Certification', 'badges-issuer-for-wp' ); ?></th>
+          <th width="0%" align="left"><?php _e( 'Class', 'badges-issuer-for-wp' ); ?></th>
+          <th width="0%" align="left"><?php _e( 'Comment', 'badges-issuer-for-wp' ); ?></th>
+          <!-- /changes made to these lines by uzair-->
         </tr>
       </thead>
       <tbody>
@@ -36,35 +38,35 @@ function user_field_badges( $user ) {
     foreach ($user_badges as $user_badge) {
       echo '<tr>';
         echo '<td width="0%">';
-        echo $user_badge['name'];
+          echo $user_badge['date'];
         echo '</td>';
         echo '<td width="0%">';
-        echo $user_badge['language'];
+          echo $user_badge['name'];
         echo '</td>';
         echo '<td width="0%">';
-        echo $user_badge['sender'];
+          echo $user_badge['language'];
         echo '</td>';
         echo '<td width="0%">';
-        echo $user_badge['sender_type'];
+          echo $user_badge['level'];
         echo '</td>';
         echo '<td width="0%">';
-        echo $user_badge['certified'];
+          echo $user_badge['description_language'];
         echo '</td>';
         echo '<td width="0%">';
-        echo $user_badge['comment'];
+          echo $user_badge['sender'];
         echo '</td>';
         echo '<td width="0%">';
-        echo $user_badge['level'];
+          echo $user_badge['sender_type'];
         echo '</td>';
         echo '<td width="0%">';
-        echo $user_badge['description_language'];
-        echo '</td>';
-        echo '<td width="0%">';
-        echo $user_badge['date'];
+          echo $user_badge['certified'];
         echo '</td>';
         echo '<td width="0%">';
         if(array_key_exists('class', $user_badge))
           echo $user_badge['class'];
+        echo '</td>';
+        echo '<td width="0%">';
+          echo $user_badge['comment'];
         echo '</td>';
       echo '</tr>';
     }
