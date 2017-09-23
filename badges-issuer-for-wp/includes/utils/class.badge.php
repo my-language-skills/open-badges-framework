@@ -178,19 +178,21 @@ class Badge
             <body>
                 <div id="b4l-award-actions-wrap">
                     <div align="center">
-                        <h1>BADGES FOR LANGUAGES - Congratulations</h1>
+                        <h1>BADGES FOR LANGUAGES</h1>
                         <br />
-                        <h1><b>You have just earned a badge for '.$this->language.' language, '.$this->name.' level!</b></h1>
+                        <h1><b>Congratulations: You have just earned a badge
+                        <br />
+                        '.$this->language.' language - '.$this->name.' level!</b></h1>
                         <h2>The following steps will help you to receive a badge.
                         <br />
                         If you allready have badges, go to the step 3</h2>
                         <hr/ >
                         <H1> Step One: Loggin into Badges for languages </H1>
-                        <h2>Is the first step for getting the badge and to write a review of your teacher</h2>
+                        <h2>Necesary for getting the badge and to write a teacher review</h2>
                         <center><img src="'.plugins_url( "../../assets/b4l_logo.png", __FILE__ ).'" width="150" height="150"/></center>
                         <a href="'.get_page_link($settings_id_login_links["link_register"]).'">Register</a> | <a href="'.get_page_link($settings_id_login_links["link_login"]).'">Login</a>
-                        <br/ >
-                        For a better education, we need to start by evaluating teacher performance. Once you receive the badge, the review section of your teacher\'s class would be open.
+                        <br />
+                        Just registered users can receive badges.
                         <hr/ >
                         <H1> Step Two: Open a Mozzilla OpenBadges Backpack account </H1>
                         <h2>Moz://a Backpack Store and Share your Open Badges.</h2>
@@ -203,8 +205,8 @@ class Badge
                         Badges for languages uses Mozzilla <a href="https://openbadges.org/">OpenBadges</a> and his <a href="https://backpack.openbadges.org/">backpack</a>, a tool for collecting, managing and controlling privacy settings for badges you have been awarded as an earner.</h2>
                         <br />
                         <hr/>
-                        <H1> Step Three </H1>
-                        <h2>Open the link, and get the badge.</h2>
+                        <H1> Step Three: Open the link, and get the badge. </H1>
+                        <h2> Don´t forget to write a teacher review</h2>
                         <br />
                         <h2>'.$this->name.' - '.$this->language.'</h2>
                         <a href="'.$url_mail.'">
@@ -214,6 +216,8 @@ class Badge
                         <br />
                         <a href="'.$url_mail.'">'.$url_mail.'</a>
                         <br /><br />
+                        For a better education, we need to start by evaluating teacher performance. Once you receive the badge, the review section of your teacher\'s class would be open.
+                        <br/ >
                         <div class="browserSupport"><b>Please use Firefox or Google Chrome to retrieve your badge.<b></div>
                         <br />
                         <hr/>
