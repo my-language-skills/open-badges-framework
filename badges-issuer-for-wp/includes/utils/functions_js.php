@@ -1,15 +1,17 @@
 <?php
 
-// JAVASCRIPT & JQUERY FUNCTIONS
-
-add_action( 'admin_footer', 'js_form' ); // Write our JS below here
-add_action( 'wp_footer', 'js_form' );
 /**
  * Loads and displays the available languages of badge's description according to the badge selected.
  *
  * @author Nicolas TORION
- * @since 1.0.0
+ * @since 0.6.2
 */
+
+// JAVASCRIPT & JQUERY FUNCTIONS
+
+add_action( 'admin_footer', 'js_form' ); // Write our JS below here
+add_action( 'wp_footer', 'js_form' );
+
 function js_form() {
   $forms = ["a", "b", "c"];
 
