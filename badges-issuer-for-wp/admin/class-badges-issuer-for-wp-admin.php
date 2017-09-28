@@ -121,6 +121,6 @@ require plugin_dir_path( __FILE__ ) . '../includes/submenu_pages/settings.php';
 /**
  * STATISTICS PAGE OF THE PLUGIN
  *
- * @since    0.6
+ * @since    0.6.1
  */
 require_once plugin_dir_path( __FILE__ ) . '../includes/submenu_pages/statistics.php';
