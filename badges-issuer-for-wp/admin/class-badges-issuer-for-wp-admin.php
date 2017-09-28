@@ -4,7 +4,7 @@
  * The admin-specific functionality of the plugin.
  *
  * @link       www.badges4languages.com
- * @since      0.0.1
+ * @since      0.6.2
  *
  * @package    Badges_Issuer_For_Wp
  * @subpackage Badges_Issuer_For_Wp/admin
