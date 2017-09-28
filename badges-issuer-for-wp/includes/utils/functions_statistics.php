@@ -1,4 +1,12 @@
 <?php
+
+/**
+ * This is the statistic page
+ *
+ * @author Nicolas TORION
+ * @since 0.6.2
+*/
+
 function nb_sended_badges(){
   $result = 0;
   $users = get_users();
