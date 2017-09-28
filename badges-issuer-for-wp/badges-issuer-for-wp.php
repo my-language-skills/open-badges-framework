@@ -9,7 +9,7 @@
  * that starts the plugin.
  *
  * @link              www.badges4languages.com
- * @since             0.6
+ * @since             0.6.2
  * @package           Badges_Issuer_For_Wp
  *
  * @wordpress-plugin
