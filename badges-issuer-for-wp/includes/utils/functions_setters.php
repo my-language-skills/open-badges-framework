@@ -4,7 +4,7 @@
  * Change the id links in the corresponding json file.
  *
  * @author Nicolas TORION
- * @since 1.0.0
+ * @since 0.6.1
  * @param $settings_links The array of the new id links values.
 */
 function set_settings_links($settings_id_links) {
