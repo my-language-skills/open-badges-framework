@@ -6,7 +6,7 @@
  * @author Nicolas TORION
  * @package badges-issuer-for-wp
  * @subpackage includes/utils
- * @since 1.0.0
+ * @since 0.6.2
 */
 
 require_once("../../../../../wp-load.php");
