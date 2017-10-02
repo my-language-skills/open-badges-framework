@@ -3,6 +3,7 @@
 /**
  * Template Name : Badge template
  *
+ * @since 0.6.1
  */
 
 require_once plugin_dir_path( dirname( __FILE__ ) ) . 'utils/functions.php';
