@@ -5,7 +5,7 @@
  * @author Nicolas TORION
  * @package badges-issuer-for-wp
  * @subpackage includes/utils
- * @since 1.0.0
+ * @since 0.6.2
 */
 
 class Badge
@@ -55,7 +55,7 @@ class Badge
    * The constructor of the Badge object.
    *
    * @author Nicolas TORION
-   * @since 1.0.0
+   * @since 0.6.2
    * @param $_name The name of the badge.
    * @param $_level The level of the badge.
    * @param $_language The language of the badge.
@@ -82,7 +82,7 @@ class Badge
    * Creates the json files for sending the Badge into a Mozilla Backpack account
    *
    * @author Nicolas TORION
-   * @since 1.0.0
+   * @since 0.6.1
    * @param $receiver The mail of the person who will receive the Badge.
    */
   function create_json_files($receiver) {
@@ -102,7 +102,7 @@ class Badge
    * Creates the badge json file for sending the Badge into a Mozilla Backpack account
    *
    * @author Nicolas TORION
-   * @since 1.0.0
+   * @since 0.6.2
    * @param $badge_filename The name of the badge json file.
    */
   function create_badge_json_file($badge_filename) {
@@ -128,7 +128,7 @@ class Badge
    * Creates the assertion json file for sending the Badge into a Mozilla Backpack account
    *
    * @author Nicolas TORION
-   * @since 1.0.0
+   * @since 0.3
    * @param $receiver The mail of the person who will receive the Badge.
    * @param $badge_filename The name of the badge json file.
    * @param $assertion_filename The name of the assertion json file.
@@ -153,7 +153,7 @@ class Badge
    * Sends a mail to the person who receive the badge, to give her the link of the page where she can get his badge.
    *
    * @author Nicolas TORION
-   * @since 1.0.0
+   * @since 0.6.3
    * @param $receiver The mail of the person who will receive the Badge.
    * @param $class_id The ID of the class in which the student is.
    * @return A boolean to know if the mail has been sent.
@@ -248,7 +248,7 @@ class Badge
    * Add the student to the class selected by the teacher.
    *
    * @author Nicolas TORION
-   * @since 1.0.0
+   * @since 0.6.2
    * @param $mail The mail of the person who receive the badge.
    * @param $class_id The ID of the class post selected.
    */
@@ -286,7 +286,7 @@ class Badge
    * Add the student to the class zero of the teacher.
    *
    * @author Nicolas TORION
-   * @since 1.0.0
+   * @since 0.6
    * @param $mail The mail of the person who receive the badge.
    */
   function add_student_to_class_zero($mail) {
@@ -323,7 +323,7 @@ class Badge
    * Add the badge informations into the user profile of the person who receive the badge.
    *
    * @author Nicolas TORION
-   * @since 1.0.0
+   * @since 0.6.2
    * @param $mail The mail of the person who receive the badge.
    * @param $sender The mail of the person who is sending the badge.
    */
