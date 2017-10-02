@@ -3,6 +3,12 @@ require_once plugin_dir_path( dirname( __FILE__ ) ) . 'utils/functions.php';
 
 add_action('init', 'register_class');
 
+/**
+* ...
+*
+* @author Nicolas TORION
+* @since 0.4.1
+*/
 function register_class()
 {
     register_post_type('class',
@@ -46,13 +52,26 @@ function register_class()
 
 add_action('add_meta_boxes', 'add_meta_boxes_class_zero');
 
+/**
+* ...
+*
+* @author Nicolas TORION
+* @since 0.4.1
+*/
 function add_meta_boxes_class_zero() {
   $current_user = wp_get_current_user();
 
   add_meta_box( 'id_meta_box_class_zero_students', 'Class Students', 'meta_box_class_zero_students', 'class', 'normal', 'high' );
 }
 
-/* Adds the metabox students of the class.*/
+/**
+* Adds the metabox students of the class.
+*
+* @author Nicolas TORION
+* @since 0.6.2
+* @param $post The post
+* @return 
+*/
 
 function meta_box_class_zero_students($post) {
   if(get_post_meta($post->ID, '_class_students', true))
@@ -213,8 +232,14 @@ function class_template( $template_path ) {
   return $template_path;
 }
 
+/**
+* Saven the comment meta data
+*
+* @author Nicolas TORION
+* @since 0.6.1
+* @param $comment_id that we want to save.
+*/
 add_action( 'comment_post', 'save_comment_meta_data_class' );
-
 function save_comment_meta_data_class( $comment_id ) {
   if (isset($_POST['student_level']) && isset($_POST['student_language']) && isset($_POST['student_date'])) {
     add_comment_meta( $comment_id, 'student_level', $_POST['student_level']);
