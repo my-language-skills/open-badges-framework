@@ -6,7 +6,7 @@
  * Returns all badges that exist
  *
  * @author Nicolas TORION
- * @since 1.0.0
+ * @since 0.3
  * @return $badges Array of all badges.
 */
 function get_all_badges() {
@@ -328,7 +328,7 @@ function get_days_from_date($date) {
  * Indicates if the student has already written or not a comment for a specified class.
  *
  * @author Nicolas TORION
- * @since 1.0.0
+ * @since 0.3
  * @param $student_login The login of the student.
  * @param $class_id The ID of the class post.
  * @return $result A boolean indicating if the student has already written a comment for the specified class.
