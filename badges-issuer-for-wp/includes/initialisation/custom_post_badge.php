@@ -6,15 +6,18 @@
  * @author Nicolas TORION
  * @package badges-issuer-for-wp
  * @subpackage includes/initialisation
- * @since 0.1
+ * @since 0.6.2
 */
 
 require_once plugin_dir_path( dirname( __FILE__ ) ) . 'utils/functions.php';
 
-/* Register the custom post type. */
-
+/**
+* Register the custom post type.
+*
+* @author Nicolas TORION
+* @since 0.4
+*/
 add_action('init', 'register_badge');
-
 function register_badge()
 {
     register_post_type('badge',
@@ -45,19 +48,37 @@ function register_badge()
     );
 }
 
+/**
+* Check if the $val is equal to the $expected value.
+*
+* @author Nicolas TORION
+* @since 0.4
+* @param $val value to verify
+* $expected value that is confronted with the first param.
+*/
 function check($val, $expected) {
   if($val==$expected)
     echo " checked";
 }
 
-/* Adds the metabox certification into the badge custom post type */
-
+/**
+* Adds the metabox certification into the badge custom post type.
+*
+* @author Nicolas TORION
+* @since 0.5
+*/
 add_action('add_meta_boxes','add_meta_box_certification');
-
 function add_meta_box_certification(){
   add_meta_box('id_meta_box_certification', 'Certification Type', 'meta_box_certification', 'badge', 'side', 'high');
 }
 
+/**
+* ...
+*
+* @author Nicolas TORION
+* @since 0.5
+* @param $post 
+*/
 function meta_box_certification($post){
   $val = get_post_meta($post->ID,'_certification',true);
 
@@ -71,14 +92,23 @@ function meta_box_certification($post){
 
 }
 
-/* Adds the metabox type into the badge custom post type */
-
+/**
+* Adds the metabox type into the badge custom post type.
+*
+* @author Nicolas TORION
+* @since 0.5
+*/
 add_action('add_meta_boxes','add_meta_box_type');
-
 function add_meta_box_type(){
   add_meta_box('id_meta_box_type', 'Target Type', 'meta_box_type', 'badge', 'side', 'high');
 }
 
+/**
+* ...
+*
+* @author Nicolas TORION
+* @since 0.5
+*/
 function meta_box_type($post){
   $val = get_post_meta($post->ID,'_type',true);
 
@@ -92,14 +122,23 @@ function meta_box_type($post){
 
 }
 
-/* Adds the metabox links into the badge custom post type */
-
+/**
+* Adds the metabox links into the badge custom post type.
+*
+* @author Nicolas TORION
+* @since 0.5
+*/
 add_action('add_meta_boxes','add_meta_box_links');
-
 function add_meta_box_links(){
   add_meta_box('id_meta_box_links', 'Badge Criteria', 'meta_box_links', 'badge', 'normal', 'high');
 }
 
+/**
+ * Display add link
+ *
+ * @author Nicolas TORION
+ * @since 0.6.1
+*/
 function display_add_link(){
   echo '<tr>';
   echo '<td width="0%">';
@@ -114,6 +153,12 @@ function display_add_link(){
   echo '</tr>';
 }
 
+/**
+ * Meta box links
+ *
+ * @author Nicolas TORION
+ * @since 0.6.1
+*/
 function meta_box_links($post) {
   if(get_post_meta($post->ID, '_badge_links', true))
     $badge_links = get_post_meta($post->ID, '_badge_links', true);
@@ -164,10 +209,14 @@ function meta_box_links($post) {
   echo '<p><a id="add-row" class="button" href="#">Add another</a></p>';
 }
 
-/* Saves the metaboxes */
-
+/**
+* Saves the metaboxes.
+*
+* @author Nicolas TORION
+* @since 0.4.1
+* @param $comment_id 
+*/
 add_action('save_post','save_metaboxes');
-
 function save_metaboxes($post_ID){
   if(isset($_POST['certification_input'])){
     update_post_meta($post_ID,'_certification', esc_html($_POST['certification_input']));
@@ -185,10 +234,13 @@ function save_metaboxes($post_ID){
   }
 }
 
-/*Creates languages taxonomy*/
-
+/**
+ * Creates languages taxonomy.
+ *
+ * @author Nicolas TORION
+ * @since 0.6.1
+*/
 add_action( 'init', 'create_field_of_education_tax' );
-
 function create_field_of_education_tax() {
   register_taxonomy(
     'field_of_education',
@@ -201,10 +253,14 @@ function create_field_of_education_tax() {
   );
 }
 
-/* Adds the taxonomy level into the badge custom post type */
-
+/**
+* Adds the taxonomy level into the badge custom post type.
+*
+* @author Nicolas TORION
+* @since 0.5
+* @param $comment_id 
+*/
 add_action( 'init', 'add_badge_levels_tax' );
-
 function add_badge_levels_tax() {
 	register_taxonomy(
 		'level',
@@ -217,16 +273,15 @@ function add_badge_levels_tax() {
 	);
 }
 
-add_filter( 'template_include', 'badge_template', 1 );
-
 /**
 * Load the custom template for a single badge.
 *
 * @author Nicolas TORION
-* @since 1.0.0
+* @since 0.5
 * @param $template_path The path of the template.
 * @return $template_path The path of the template.
 */
+add_filter( 'template_include', 'badge_template', 1 );
 function badge_template( $template_path ) {
   if ( get_post_type() == 'badge' ) {
     if ( is_single() ) {
@@ -240,7 +295,13 @@ function badge_template( $template_path ) {
   return $template_path;
 }
 
-
+/**
+* ...
+*
+* @author Nicolas TORION
+* @since 0.5
+* @param $comment_id 
+*/
 add_action( 'comment_post', 'save_comment_meta_data' );
 function save_comment_meta_data( $comment_id ) {
   echo "<script>console.log('save comment');</script>";
@@ -248,6 +309,14 @@ function save_comment_meta_data( $comment_id ) {
     add_comment_meta( $comment_id, '_comment_translation_language', $_POST['language'] );
 }
 
+/**
+* ...
+*
+* @author Nicolas TORION
+* @since 0.6
+* @param $commentdata 
+* @return $commentdata
+*/
 add_filter( 'preprocess_comment', 'verify_comment_meta_data' );
 function verify_comment_meta_data( $commentdata ) {
   if (isset($_POST['badge_translation_comment']) && !isset($_POST['language']))
