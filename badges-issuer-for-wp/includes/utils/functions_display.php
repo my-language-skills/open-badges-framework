@@ -5,7 +5,7 @@
  * Displays available levels in input radio tags. Used in the forms sending badges to students.
  *
  * @author Nicolas TORION
- * @since 1.0.0
+ * @since 0.6
  * @param $badges A list of badges.
 */
 function display_levels_radio_buttons($badges, $context) {
@@ -38,7 +38,7 @@ function display_levels_radio_buttons($badges, $context) {
  * Displays available languages in a select tag. Used in the forms sending badges to students.
  *
  * @author Nicolas TORION
- * @since 1.0.0
+ * @since 0.6.1
  * @param $_most_important_languages A boolean to know if only the most important languages must be displayed.
  * @param $language_selected The language to select.
  * @param $multiple A boolean to know if the select form must be in multiple mode.
@@ -123,7 +123,7 @@ function display_languages_select_form($category="", $language_selected="", $mul
  * Displays a message of success.
  *
  * @author Nicolas TORION
- * @since 1.0.0
+ * @since 0.3
  * @param $message The message to display.
 */
 function display_success_message($message) {
@@ -138,7 +138,7 @@ function display_success_message($message) {
  * Displays a message of error.
  *
  * @author Nicolas TORION
- * @since 1.0.0
+ * @since 0.3
  * @param $message The message to display.
 */
 function display_error_message($message) {
@@ -153,7 +153,7 @@ function display_error_message($message) {
  * Displays a message indicating that a person is not logged. A link redirecting to the login page is also displayed.
  *
  * @author Nicolas TORION
- * @since 1.0.0
+ * @since 0.6.3
 */
 function display_not_logged_message() {
   $settings_id_login_links = get_settings_login_links();
@@ -178,7 +178,7 @@ function display_not_logged_message() {
  * Displays the classes of the teacher in input tags. Used in the forms sending badges to students.
  *
  * @author Nicolas TORION
- * @since 1.0.0
+ * @since 0.6
 */
 function display_classes_input() {
   global $current_user;
