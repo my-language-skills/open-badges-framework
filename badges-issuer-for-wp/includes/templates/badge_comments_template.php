@@ -2,8 +2,7 @@
 /**
  * The template for displaying Comments
  *
- *
- * @package WordPress
+ * @since 0.6
  */
 
   require_once plugin_dir_path( dirname( __FILE__ ) ) . 'utils/functions.php';
