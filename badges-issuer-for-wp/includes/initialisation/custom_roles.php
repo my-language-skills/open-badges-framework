@@ -6,7 +6,7 @@
  * @author Nicolas TORION
  * @package badges-issuer-for-wp
  * @subpackage includes/initialisation
- * @since 1.0.0
+ * @since 0.3
 */
 
 
