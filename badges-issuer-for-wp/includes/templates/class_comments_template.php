@@ -2,8 +2,7 @@
 /**
  * The template for displaying Comments
  *
- *
- * @package WordPress
+ * @since 0.6.1
  */
 
  require_once plugin_dir_path( dirname( __FILE__ ) ) . 'utils/functions.php';
@@ -72,8 +71,7 @@
 /**
  * Override of the Wordpress function custom_comment in order to manage the rights to reply to a comment.
  *
- *
- * @package WordPress
+ * @since 0.6.1
  */
 function custom_comment($comment, $args, $depth) {
     global $current_user;
