@@ -21,7 +21,7 @@ function get_all_badges() {
  * Returns all the descriptions of a badge.
  *
  * @author Nicolas TORION
- * @since 1.0.0
+ * @since 0.6.1
  * @param $badge_level The level of the badge.
  * @return $descriptions Array of descriptions of the badge associated to their language.
 */
@@ -62,7 +62,7 @@ function get_badge($badge_name, $badges, $lang) {
  * Returns all levels that exist.
  *
  * @author Nicolas TORION
- * @since 1.0.0
+ * @since 0.4
  * @param $badges A list of badges.
  * @param $level_type Type wanted of levels.
  * @return $levels Array of all levels found.
@@ -89,7 +89,7 @@ function get_all_levels($badges, $only_student=false) {
  * Returns all badges of a level.
  *
  * @author Nicolas TORION
- * @since 1.0.0
+ * @since 0.3
  * @param $badges A list of badges.
  * @return $level The level of bagdes to find.
 */
@@ -148,7 +148,7 @@ function get_all_parent_categories(){
  * Returns all the languages stocked in the languages files.
  *
  * @author Nicolas TORION
- * @since 1.0.0
+ * @since 0.6
  * @return $all_languages All the languages found.
 */
 function get_all_languages() {
@@ -175,7 +175,7 @@ function get_all_languages() {
  * Returns all classes that exist
  *
  * @author Nicolas TORION
- * @since 1.0.0
+ * @since 0.3
  * @return $classes Array of all classes.
 */
 function get_all_classes() {
@@ -190,7 +190,7 @@ function get_all_classes() {
  * Returns all classes zero that exist
  *
  * @author Nicolas TORION
- * @since 1.0.0
+ * @since 0.3
  * @return $classes Array of all classes zero.
 */
 function get_all_classes_zero() {
@@ -205,7 +205,7 @@ function get_all_classes_zero() {
  * Returns all the classes of a teacher.
  *
  * @author Nicolas TORION
- * @since 1.0.0
+ * @since 0.6.1
  * @param $teacher_login The login of the teacher.
  * @return $classes All the classes corresponding.
 */
@@ -224,7 +224,7 @@ function get_classes_teacher($teacher_login) {
  * Returns all the class zero of a teacher.
  *
  * @author Nicolas TORION
- * @since 1.0.0
+ * @since 0.3
  * @param $teacher_login The login of the teacher.
  * @return $result The class zero corresponding.
 */
@@ -241,7 +241,7 @@ function get_class_zero_teacher($teacher_login) {
  * Check if a class zero exists with the name of a teacher
  *
  * @author Nicolas TORION
- * @since 1.0.0
+ * @since 0.3
  * @param $teacher_name Name of the teacher
  * @return Boolean indicating if the class zero exists or not.
 */
@@ -258,7 +258,7 @@ function class_school_exists($teacher_name) {
  * Check if a student is in a class school.
  *
  * @author Nicolas TORION
- * @since 1.0.0
+ * @since 0.5.1
  * @param $student_login Login of the student.
  * @param $class_id The ID of the class (job_listing) post.
  * @return $result A boolean indicating if the student is in the class or not.
@@ -311,7 +311,7 @@ function can_student_write_comment($student_login, $class_id) {
  * Calculates the days passed from a date given.
  *
  * @author Nicolas TORION
- * @since 1.0.0
+ * @since 0.4.1
  * @param $date The date given.
  * @return The days passed from the date.
 */
@@ -350,7 +350,7 @@ function has_student_write_comment($student_login, $class_id) {
  * Indicates if the user can write or not a reply for a specified class.
  *
  * @author Nicolas TORION
- * @since 1.0.0
+ * @since 0.4.1
  * @param $user_login The login of the user.
  * @param $class_id The ID of the class post.
  * @return $result A boolean indicating if the user can write or not a reply for the specified class.
