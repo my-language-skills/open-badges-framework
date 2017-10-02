@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Creation of the badges issuer file.
+ *
+ * @since 0.6
+ */
+
 $badges_issuer_file_content = array(
   "name"  => "",
   "image" => "",
