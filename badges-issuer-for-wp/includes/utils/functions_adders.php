@@ -3,7 +3,7 @@
  * Add and publish a class zero post associated to a teacher.
  *
  * @author Nicolas TORION
- * @since 1.0.0
+ * @since 0.3
  * @param $teacher_name Name of the teacher
 */
 function add_teacher_class_zero_post($teacher_name) {
@@ -22,7 +22,7 @@ function add_teacher_class_zero_post($teacher_name) {
  * Add and publish a class post associated to a teacher.
  *
  * @author Nicolas TORION
- * @since 1.0.0
+ * @since 0.3
  * @param $teacher_name Name of the teacher
 */
 function add_teacher_class_post($teacher_name) {
