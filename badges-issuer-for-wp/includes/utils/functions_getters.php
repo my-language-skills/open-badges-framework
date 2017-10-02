@@ -114,7 +114,7 @@ function get_all_badges_level($badges, $level, $certification=false) {
  * Returns all the parent categories for languages
  *
  * @author Muhammad Uzair
- * @since 1.0.0
+ * @since 0.6.2
  * @return $all_parent_categories
 */
 
