@@ -5,7 +5,7 @@
  * Applies css styles of some elements.
  *
  * @author Nicolas TORION
- * @since 1.0.0
+ * @since 0.3
 */
 function apply_css_styles() {
   ?>
