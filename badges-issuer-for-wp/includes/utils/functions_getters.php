@@ -43,7 +43,7 @@ function get_badge_descriptions($badge) {
  * Returns the badge informations associated to level and language given.
  *
  * @author Nicolas TORION
- * @since 1.0.0
+ * @since 0.6.2
  * @param $badge_name The name of the badge.
  * @param $badges A list of badges.
  * @param $lang The language studied by the student.
@@ -280,7 +280,7 @@ function is_student_in_class($student_login, $class_id) {
  * Check if a student can write a comment for the specified class.
  *
  * @author Nicolas TORION
- * @since 1.0.0
+ * @since 0.6.2
  * @param $student_login The login of the student.
  * @param $class_id The ID of the class post.
  * @return $result A boolean indicating if the student can write a comment for the specified class.
@@ -380,7 +380,7 @@ function can_user_reply($user_login, $class_id) {
  * Returns the id links written in the corresponding json file.
  *
  * @author Nicolas TORION
- * @since 1.0.0
+ * @since 0.6.1
  * @return $settings_links The array of id links.
 */
 function get_settings_links() {
@@ -394,7 +394,7 @@ function get_settings_links() {
  * Returns the id links written in the corresponding json file.
  *
  * @author Nicolas TORION
- * @since 1.0.0
+ * @since 0.6.1
  * @return $settings_login_links The array of id links.
 */
 function get_settings_login_links() {
@@ -408,7 +408,7 @@ function get_settings_login_links() {
  * Checks if the user has already a badge
  *
  * @author Nicolas TORION
- * @since 1.0.0
+ * @since 0.6.1
  * @param $hash The hash for searching the badge.
  * @return boolean
 */
@@ -425,7 +425,7 @@ function check_if_user_has_already_a_badge($hash) {
  * Get student infos in class.
  *
  * @author Nicolas TORION
- * @since 1.0.0
+ * @since 0.6.2
  * @param $student_login The login of the student.
  * @param $class_id The ID of the class.
  * @return $student_infos The infos of the student.
