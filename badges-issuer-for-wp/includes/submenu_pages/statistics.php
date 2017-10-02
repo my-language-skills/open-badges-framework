@@ -5,7 +5,7 @@
  * @author Nicolas TORION
  * @package badges-issuer-for-wp
  * @subpackage includes/submenu_pages
- * @since 1.0.0
+ * @since 0.6.2
 */
 
 wp_enqueue_script("jquery");
@@ -42,7 +42,7 @@ require_once plugin_dir_path( dirname( __FILE__ ) ) . 'utils/functions.php';
      * Displays the content of the submenu page
      *
      * @author Nicolas TORION
-     * @since 1.0.0
+     * @since 0.6.2
      */
     function statistics_callback() {
       ?>
