@@ -5,7 +5,7 @@
  * @author Nicolas TORION
  * @package badges-issuer-for-wp
  * @subpackage includes/submenu_pages
- * @since 1.0.0
+ * @since 0.3
 */
 
     wp_enqueue_script("jquery");
@@ -43,7 +43,7 @@
      * Displays the content of the submenu page
      *
      * @author Nicolas TORION
-     * @since 1.0.0
+     * @since 0.6.3
      */
     function send_badges_page_callback() {
       global $current_user;
@@ -115,7 +115,7 @@
      * The parent categories default
      *
      * @author Muhammad Uzair
-     * @since 1.0.0
+     * @since 0.6.3
      */
 
      function show_parent_categories(){
@@ -131,7 +131,7 @@
      * The content of the tab for sending a badge to himself.
      *
      * @author Nicolas TORION
-     * @since 1.0.0
+     * @since 0.6.3
      */
     function tab_self() {
 		apply_css_styles();
@@ -188,7 +188,7 @@
      * The content of the tab for sending a badge to someone.
      *
      * @author Nicolas TORION
-     * @since 1.0.0
+     * @since 0.6.3
      */
     function tab_issue() {
 
@@ -264,7 +264,7 @@
      * The content of the tab for sending a badge to several persons.
      *
      * @author Nicolas TORION
-     * @since 1.0.0
+     * @since 0.6.3
      */
     function tab_multiple() {
 
@@ -330,7 +330,12 @@
 	    email_engine();
     }
 
-
+    /**
+     * This function rappresent the core of email managment
+     *
+     * @author Nicolas TORION
+     * @since 0.6.3
+     */
     function email_engine(){
 		// Traitement of form, a mail is sent to the student.
 		if(isset($_POST['level']) && isset($_POST['sender']) && isset($_POST['input_badge_name']) && isset($_POST['language']) && isset($_POST['mail']) &&
