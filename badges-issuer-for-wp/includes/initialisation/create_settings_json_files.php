@@ -1,9 +1,9 @@
 <?php
 
 /*
-
-CREATE SETTINGS LINKS JSON FILE
-
+ * Create settinngs links json file.
+ *
+ * @since 0.6.1
 */
 
 $settings_links_file_content = array(
