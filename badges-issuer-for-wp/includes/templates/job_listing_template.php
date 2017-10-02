@@ -2,22 +2,13 @@
 /**
  * The Template for displaying a single listing.
  *
- * @package Listify
+ * @since 0.5
  */
 
 global $job_id;
 get_header();
 
-?>
-
-	<?php while ( have_posts() ) : the_post(); ?>
-
-    <?php
-    /**
-     * The template for displaying a single job listings' content.
-     *
-     * @package Listify
-     */
+while ( have_posts() ) : the_post();
 
     global $job_manager, $post;
     ?>
