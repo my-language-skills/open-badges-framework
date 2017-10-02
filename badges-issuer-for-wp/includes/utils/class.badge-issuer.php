@@ -5,7 +5,7 @@
  * @author Nicolas TORION
  * @package badges-issuer-for-wp
  * @subpackage includes/utils
- * @since 1.0.0
+ * @since 0.3
 */
 
 class BadgeIssuer
@@ -31,7 +31,7 @@ class BadgeIssuer
    * The constructor of the BadgeIssuer Object. The constructor loads himself the values of the badges issuer in the JSON file.
    *
    * @author Nicolas TORION
-   * @since 1.0.0
+   * @since 0.3
    */
   function __construct() {
     $content = file_get_contents(plugin_dir_path( dirname( __FILE__ ) ) . '../../../uploads/badges-issuer/json/badge-issuer.json');
@@ -47,7 +47,7 @@ class BadgeIssuer
    * Changes the informations of the badges issuer by the new ones.
    *
    * @author Nicolas TORION
-   * @since 1.0.0
+   * @since 0.3
    * @param $name The new name of the badges issuer.
    * @param $image The new image URL of the badges issuer.
    * @param $url The new URL of the badges issuer's website.
@@ -66,7 +66,7 @@ class BadgeIssuer
    * Saves the informations of the badges issuer in the JSON file used by Backpack to send badges.
    *
    * @author Nicolas TORION
-   * @since 1.0.0
+   * @since 0.3
    */
   function save_informations() {
     $badges_issuer_file_content = array(
