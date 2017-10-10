@@ -11,20 +11,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="custom_ajax.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/includes/ajax/custom_ajax.php">
+      <file leaf-file-name="functions_display.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/includes/utils/functions_display.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="735">
-              <caret line="49" column="31" lean-forward="false" selection-start-line="49" selection-start-column="31" selection-end-line="49" selection-end-column="31" />
-              <folding>
-                <element signature="e#6#140#0#PHP" expanded="true" />
-                <marker date="1507289521573" expanded="true" signature="1814:1831" ph="..." />
-                <marker date="1507289521573" expanded="true" signature="4489:4506" ph="..." />
-                <marker date="1507289521573" expanded="true" signature="5392:5409" ph="..." />
-                <marker date="1507289521573" expanded="true" signature="6536:6579" ph="..." />
-                <marker date="1507289521573" expanded="true" signature="6729:6740" ph="..." />
-                <marker date="1507289521573" expanded="true" signature="7518:7541" ph="..." />
-              </folding>
+            <state relative-caret-position="135">
+              <caret line="9" column="39" lean-forward="false" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="functions_getters.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/includes/utils/functions_getters.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -44,9 +46,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/includes/submenu_pages/send-badges.php" />
         <option value="$PROJECT_DIR$/includes/utils/functions_getters.php" />
         <option value="$PROJECT_DIR$/includes/utils/functions_display.php" />
-        <option value="$PROJECT_DIR$/includes/submenu_pages/send-badges.php" />
       </list>
     </option>
   </component>
@@ -92,30 +94,6 @@
               <item name="badges-issuer-for-wp" type="b2602c69:ProjectViewProjectNode" />
               <item name="badges-issuer-for-wp" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="includes" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="badges-issuer-for-wp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="badges-issuer-for-wp" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="includes" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="ajax" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="badges-issuer-for-wp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="badges-issuer-for-wp" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="includes" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="initialisation" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="badges-issuer-for-wp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="badges-issuer-for-wp" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="includes" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="submenu_pages" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="badges-issuer-for-wp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="badges-issuer-for-wp" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="includes" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="templates" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="badges-issuer-for-wp" type="b2602c69:ProjectViewProjectNode" />
@@ -177,15 +155,16 @@
       <option name="presentableId" value="Default" />
       <updated>1507287518792</updated>
       <workItem from="1507287520323" duration="11201000" />
-      <workItem from="1507620835280" duration="15000" />
+      <workItem from="1507620835280" duration="257000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11216000" />
+    <option name="totallyTimeSpent" value="11458000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2532189" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -234,6 +213,22 @@
             <marker date="1507289521573" expanded="true" signature="6729:6740" ph="..." />
             <marker date="1507289521573" expanded="true" signature="7518:7541" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/utils/functions_getters.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/utils/functions_display.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="39" lean-forward="false" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
+          <folding />
         </state>
       </provider>
     </entry>
