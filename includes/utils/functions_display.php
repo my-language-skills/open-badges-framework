@@ -106,7 +106,7 @@
 
 				echo '<select name="language" id="language">';
 
-				foreach ( $parents["$p_parent"] as $language ) {
+				foreach ( (array) $parents[$p_parent] as $language ) {
 					echo '<option value="' . $language->term_id . '">';
 					echo $language->name . '</option>';
 				}
