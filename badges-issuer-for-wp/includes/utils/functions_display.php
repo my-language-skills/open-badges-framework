@@ -41,16 +41,15 @@
 	 *
 	 * @author Nicolas TORION
 	 * @since  0.6.1
+	 * @since  0.6.3 recreated the function more simply
 	 *
-	 * @param string $category          permit to display the child taxonomy of the parent taxonomy (category).
-	 * @param string $language_selected The language to select.
-	 * @param bool   $multiple          A boolean to know if the select form must be in multiple mode.
+	 * @param string $parent          permit to display the child taxonomy of the parent taxonomy (category).
 	 */
-	function display_languages_select_form( $category = "", $language_selected = "", $multiple = false ) {
+	function show_all_the_language( $p_parent = "") {
 
 		_e( '<label for="language"><b> Field of Education* : </b></label>', 'badges-issuer-for-wp' );
 
-		if ( have_only_parent_education() ) {
+		if ( have_no_children() ) {
 			$languages = get_languages();
 
 			echo '<select name="language';
@@ -64,91 +63,86 @@
 			echo '</select>';
 
 		} else {
+		    //If there parent with children
 
-			$parents = get_languages();
-			echo '<select name="language" id="language">';
+            if ($p_parent === ""){
+	            // Display the default parent
 
-			foreach ( $parents[2] as $language ) {
-				echo '<option value="' . $language->term_id . '">';
-				echo $language->name . '</option>';
-			}
+	            $parents = get_languages();
+	            $actual_parent = key($parents);
 
-			echo '</select>';
+	            echo '<select name="language" id="language">';
+	            foreach ($parents as $parent){
+
+                    foreach ( $parent as $language ) {
+
+                        echo '<option value="' . $language->term_id . '">';
+                        echo $language->name . '</option>';
+                        break;
+                    }
+	            }
+
+	            echo '</select>';
+	            display_parents($actual_parent);
+            } else if ($p_parent === "all_field") {
+	            // Display all the child
+
+	            $parents = get_languages();
+
+	            echo '<select name="language" id="language">';
+                foreach ($parents as $parent) {
+	                foreach ( $parent as $language ) {
+		                echo '<option value="' . $language->term_id . '">';
+		                echo $language->name . '</option>';
+	                }
+                }
+	            echo '</select>';
+	            display_parents($p_parent);
+
+            } else {
+	            // Display the children of the right parent
+
+	            $parents = get_languages();
+
+	            echo '<select name="language" id="language">';
+
+	            foreach ( $parents["$p_parent"] as $language ) {
+		            echo '<option value="' . $language->term_id . '">';
+		            echo $language->name . '</option>';
+	            }
+	            echo '</select>';
+	            display_parents($p_parent);
+
+            }
+
 		}
-
-//////////////////////////////////////////////////
-		/*
-			$all_languages = get_all_languages();
-
-		  _e('<label for="language"><b> Field of Education* : </b></label>‚','badges-issuer-for-wp');
-
-		  //To display the first parent category as default language
-		  if($category == ""){
-			$cat_count = 0;
-			$language_to_display = $all_languages;
-			echo '<select name="language';
-			if($multiple)
-			  echo '[]';
-			echo '" id="language">';
-			echo '<optgroup>';
-			foreach ($language_to_display as $language => $children) {
-			  if($cat_count == 0){
-			  foreach($children as $key => $value){
-				  $value = str_replace("\n", "", $value);
-				  echo '<option value="'.$value.'"';
-				  if($language_selected==$value)
-					echo ' selected';
-					echo '>'.$value.'</option>';
-				}
-			  }
-				$cat_count++;
-			  }
-			echo '</optgroup>';
-			echo '</select>';
-		  }
-
-
-		  // Display all the languages if the user click the link to display all the languages
-		  else if($category == "all_languages"){
-			  $language_to_display = $all_languages;
-			  echo '<select name="language';
-			  if($multiple)
-				echo '[]';
-			  echo '" id="language">';
-			  echo '<optgroup>';
-			  foreach ($language_to_display as $language ) {
-				  foreach($language as $children){
-					$children = str_replace("\n", "", $children);
-					echo '<option value="'.$children.'"';
-					if($language_selected==$children)
-					  echo ' selected';
-					  echo '>'.$children.'</option>';
-					}
-				  }
-			  echo '</optgroup>';
-			  echo '</select>';
-		  }
-
-		  // Display the language category if the user click any other link
-		  else {
-			  $language_to_display = $all_languages[$category];
-				echo '<select name="language';
-				if($multiple)
-					echo '[]';
-				  echo '" id="language">';
-				  echo '<optgroup>';
-				  foreach ($language_to_display as $language) {
-					$language = str_replace("\n", "", $language);
-					echo '<option value="'.$language.'"';
-					if($language_selected==$language)
-					  echo ' selected';
-					echo '>'.$language.'</option>';
-				  }
-				  echo '</optgroup>';
-				  echo '</select>';
-		  }
-		*/
 	}
+
+	/**
+	 * Displays all the parents whit the possibility to change the visualization of the children.
+	 *
+	 * @author Alessandro RICCARDI
+	 * @since  0.6.3
+	 *
+	 * @param string $p_parent  permit to understand the active parent
+	 */
+	function display_parents($p_parent = ""){
+		$parents = get_parent_categories();
+		foreach ( $parents as $parent ) {
+		    if ($parent[2] == $p_parent ){
+			    echo '<a href="#" class="btn btn-default btn-xs display_parent_categories active" id="' . $parent[2] . '">Display ' . $parent[1] . '</a>';
+            } else {
+			    echo '<a href="#" class="btn btn-default btn-xs display_parent_categories" id="' . $parent[2] . '">Display ' . $parent[1] . '</a>';
+            }
+		}
+		// Display the link to show all the languages
+        if($p_parent === "all_field"){
+	        echo '<a href="#" class="btn btn-default btn-xs display_parent_categories active" id="all_field">Display Field</a>';
+        } else {
+	        echo '<a class="btn btn-default btn-xs display_parent_categories" id="all_field">Display Field</a>';
+        }
+
+    }
 
 	/**
 	 * Displays a message of success.

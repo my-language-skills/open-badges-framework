@@ -130,9 +130,15 @@
 
 
 	/**
+	 * This function permit to understand if the "field of education" have subcategory (children) or not.
 	 *
+	 * @author Alessandro RICCARDI
+	 * @since  0.6.3
+	 *
+	 * @return bool     True if don't have children
+	 *                  False if have children
 	 */
-	function have_only_parent_education() {
+	function have_no_children() {
 		$taxanomyName = "field_of_education";
 
 		$parents = get_terms( array(
@@ -150,11 +156,20 @@
 		return true;
 	}
 
+	/**
+	 * This function permit to get the languages.
+	 *
+	 * @author Alessandro RICCARDI
+	 * @since  0.6.3
+	 *
+	 * @return bool     If have_no_children() is true return all tha value because it's mean that there aren't children,
+	 *                  else return an array of parents, inside of every parent there're children of the specific parent.
+	 */
 	function get_languages() {
 
 		$taxanomyName = "field_of_education";
 
-		if ( have_only_parent_education() ) {
+		if ( have_no_children() ) {
 			$languages = get_terms( array(
 				'taxonomy'   => $taxanomyName,
 				'hide_empty' => false,
@@ -177,40 +192,12 @@
 					'hide_empty' => false,
 					'child_of'   => $parent->term_id
 				) );
-
-				$parentsAndChild["$parent->term_id"] = $childs;
+				//and punt inside an array
+				$parentsAndChild["$parent->slug"] = $childs;
 			}
 
 			return $parentsAndChild;
 		}
-	}
-
-	/**
-	 * Returns all the languages stocked in the languages files.
-	 *
-	 * @author Nicolas TORION
-	 * @since  0.6
-	 * @return $all_languages All the languages found.
-	 */
-	function get_all_languages() {
-
-		$categories = get_parent_categories();
-
-		foreach ( $categories as $key => $category ) {
-			$languages = get_terms( array(
-				'taxonomy'   => 'field_of_education',
-				'hide_empty' => false,
-				'child_of'   => $category[0]
-			) );
-			$langs     = array();
-			foreach ( $languages as $lang ) {
-				$langs[] = $lang->name;
-			}
-			//$languages = $langs;
-			$all_languages[ $key ] = $langs;
-		}
-
-		return $all_languages;
 	}
 
 	/**

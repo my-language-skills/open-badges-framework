@@ -122,10 +122,10 @@
 	function show_parent_categories() {
 		$parent_languages = get_parent_categories();
 		foreach ( $parent_languages as $language ) {
-			echo '<a style="margin-left:20px;" href="#" class="display_parent_categories" id=" ' . $language[2] . '">Display ' . $language[1] . '</a>';
+			echo '<a style="margin-left:20px;" href="#" class="display_parent_categories" id="' . $language[2] . '">Display ' . $language[1] . '</a>';
 		}
 		// To display the link to show all the languages
-		echo '<a style="margin-left:20px;" href="#" class="display_parent_categories" id="all_languages">Display all languages</a>';
+		echo '<a style="margin-left:20px;" href="#" class="display_parent_categories" id="all_field">Display Field</a>';
 	}
 
 	/**
@@ -151,8 +151,8 @@
 					echo '<br><p>';
 					echo '<h3>STEP 1: </h3>';
 					echo '<div id="languages_form_a">';
-					display_languages_select_form();
-					show_parent_categories();
+					show_all_the_language();
+					echo '</div>';
 					echo '</p>';
 
 					echo '<br><p>';
@@ -214,7 +214,7 @@
 					echo '<br /><br />';
 					echo '<h3>STEP 1: </h3>';
 					echo '<div id="languages_form_b">';
-					display_languages_select_form();
+					show_all_the_language();
 					show_parent_categories();
 					echo '</div>';
 					echo '<br />';
@@ -289,7 +289,7 @@
 					echo '<br /><br />';
 					echo '<h3>STEP 1: </h3>';
 					echo '<div id="languages_form_c">';
-					display_languages_select_form();
+					show_all_the_language();
 					show_parent_categories();
 					echo '</div>';
 					echo '<br />';

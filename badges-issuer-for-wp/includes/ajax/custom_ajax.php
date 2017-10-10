@@ -62,13 +62,7 @@ function action_save_metabox_students() {
 */
 add_action('CUSTOMAJAX_action_languages_form', 'action_languages_form');
 function action_languages_form() {
-  display_languages_select_form($category = $_POST['slug']);
-  $parent_languages = get_parent_categories();
-  foreach($parent_languages as $language){
-    echo '<a style="margin-left:20px;" href="#" class="display_parent_categories" id=" '.$language[2].'">Display '.$language[1].'</a>';
-  }
-  // To display the link to show all the languages
-   echo '<a style="margin-left:20px;" href="#" class="display_parent_categories" id="all_languages">Display all languages</a>';
+  show_all_the_language($category = $_POST['slug']);
 }
 
 /**
