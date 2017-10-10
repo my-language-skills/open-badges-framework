@@ -1,162 +1,157 @@
 <?php
-/**
- * The Template for displaying a single listing.
- *
- * @since 0.5
- */
+	/**
+	 * The Template for displaying a single listing.
+	 *
+	 * @since 0.5
+	 */
 
-global $job_id;
-get_header();
+	global $job_id;
+	get_header();
 
-while ( have_posts() ) : the_post();
+	while ( have_posts() ) : the_post();
 
-    global $job_manager, $post;
-    ?>
+		global $job_manager, $post;
+		?>
 
-    <div itemscope itemtype="http://schema.org/LocalBusiness" <?php echo apply_filters( 'listify_job_listing_data', '', false ); ?>>
+        <div itemscope
+             itemtype="http://schema.org/LocalBusiness" <?php echo apply_filters( 'listify_job_listing_data', '', false ); ?>>
 
-    	<img itemprop="image" src="<?php the_post_thumbnail_url( 'thumbnail' ); ?>" alt="<?php the_title_attribute(); ?>" style="display: none;" />
+            <img itemprop="image" src="<?php the_post_thumbnail_url( 'thumbnail' ); ?>"
+                 alt="<?php the_title_attribute(); ?>" style="display: none;"/>
 
-        <div <?php echo apply_filters( 'listify_cover', 'listing-cover listing-cover--' . get_theme_mod( 'listing-single-hero-overlay-style', 'gradient' ) . ' listing-cover--size-' . get_theme_mod( 'listing-single-hero-size', 'default' ) . ' content-single-job_listing-hero', array( 'size' => 'full' ) ); ?>>
+            <div <?php echo apply_filters( 'listify_cover', 'listing-cover listing-cover--' . get_theme_mod( 'listing-single-hero-overlay-style', 'gradient' ) . ' listing-cover--size-' . get_theme_mod( 'listing-single-hero-size', 'default' ) . ' content-single-job_listing-hero', array( 'size' => 'full' ) ); ?>>
 
-    		<?php do_action( 'listify_single_job_listing_cover_start' ); ?>
+				<?php do_action( 'listify_single_job_listing_cover_start' ); ?>
 
-            <div class="content-single-job_listing-hero-wrapper cover-wrapper container">
+                <div class="content-single-job_listing-hero-wrapper cover-wrapper container">
 
-                <div class="content-single-job_listing-hero-inner row">
+                    <div class="content-single-job_listing-hero-inner row">
 
-                    <div class="content-single-job_listing-hero-company col-md-7 col-sm-12">
-											<?php
+                        <div class="content-single-job_listing-hero-company col-md-7 col-sm-12">
+							<?php
 
-											do_action( 'single_job_listing_meta_before' ); ?>
+								do_action( 'single_job_listing_meta_before' ); ?>
 
-											<ul class="job-listing-meta meta">
-												<?php do_action( 'single_job_listing_meta_start' ); ?>
+                            <ul class="job-listing-meta meta">
+								<?php do_action( 'single_job_listing_meta_start' ); ?>
 
-												<?php if ( get_option( 'job_manager_enable_types' ) ) { ?>
-													<?php $types = wpjm_get_the_job_types(); ?>
-													<?php if ( ! empty( $types ) ) : foreach ( $types as $type ) : ?>
+								<?php if ( get_option( 'job_manager_enable_types' ) ) { ?>
+									<?php $types = wpjm_get_the_job_types(); ?>
+									<?php if ( ! empty( $types ) ) : foreach ( $types as $type ) : ?>
 
-														<li class="job-type <?php echo esc_attr( sanitize_title( $type->slug ) ); ?>" itemprop="employmentType"><?php echo esc_html( $type->name ); ?></li>
+                                        <li class="job-type <?php echo esc_attr( sanitize_title( $type->slug ) ); ?>"
+                                            itemprop="employmentType"><?php echo esc_html( $type->name ); ?></li>
 
-													<?php endforeach; endif; ?>
-												<?php } ?>
+									<?php endforeach; endif; ?>
+								<?php } ?>
 
-												<li class="location" itemprop="jobLocation"><?php the_job_location(); ?></li>
+                                <li class="location" itemprop="jobLocation"><?php the_job_location(); ?></li>
 
-												<li class="date-posted" itemprop="datePosted"><?php the_job_publish_date(); ?></li>
+                                <li class="date-posted" itemprop="datePosted"><?php the_job_publish_date(); ?></li>
 
-												<li class="level" ><?php echo get_post_meta($post->ID, '_job_listing_level', true); ?></li>
+                                <li class="level"><?php echo get_post_meta( $post->ID, '_job_listing_level', true ); ?></li>
 
-												<?php if ( is_position_filled() ) : ?>
-													<li class="position-filled"><?php _e( 'This position has been filled', 'wp-job-manager' ); ?></li>
-												<?php elseif ( ! candidates_can_apply() && 'preview' !== $post->post_status ) : ?>
-													<li class="listing-expired"><?php _e( 'Applications have closed', 'wp-job-manager' ); ?></li>
-												<?php endif; ?>
+								<?php if ( is_position_filled() ) : ?>
+                                    <li class="position-filled"><?php _e( 'This position has been filled', 'wp-job-manager' ); ?></li>
+								<?php elseif ( ! candidates_can_apply() && 'preview' !== $post->post_status ) : ?>
+                                    <li class="listing-expired"><?php _e( 'Applications have closed', 'wp-job-manager' ); ?></li>
+								<?php endif; ?>
 
-												<?php do_action( 'single_job_listing_meta_end' ); ?>
-											</ul>
+								<?php do_action( 'single_job_listing_meta_end' ); ?>
+                            </ul>
 
-											<?php do_action( 'single_job_listing_meta_after' ); ?>
-                    </div>
+							<?php do_action( 'single_job_listing_meta_after' ); ?>
+                        </div>
 
-                    <div class="content-single-job_listing-hero-actions col-md-5 col-sm-12">
-                        <?php do_action( 'listify_single_job_listing_actions' ); ?>
+                        <div class="content-single-job_listing-hero-actions col-md-5 col-sm-12">
+							<?php do_action( 'listify_single_job_listing_actions' ); ?>
+                        </div>
+
                     </div>
 
                 </div>
 
+				<?php do_action( 'listify_single_job_listing_cover_end' ); ?>
+
             </div>
 
-    		<?php do_action( 'listify_single_job_listing_cover_end' ); ?>
+            <div id="primary" class="container">
+                <div class="row content-area">
 
-        </div>
+					<?php if ( get_option( 'job_manager_hide_expired_content', 1 ) && 'expired' === $post->post_status ) : ?>
 
-        <div id="primary" class="container">
-            <div class="row content-area">
+                        <div class="woocommerce-message"><?php _e( 'This listing is expired.', 'listify' ); ?></div>
 
-            <?php if ( get_option( 'job_manager_hide_expired_content', 1 ) && 'expired' === $post->post_status ) : ?>
+					<?php else : ?>
 
-                <div class="woocommerce-message"><?php _e( 'This listing is expired.', 'listify' ); ?></div>
+						<?php if ( 'left' == esc_attr( listify_theme_mod( 'listing-single-sidebar-position', 'right' ) ) ) : ?>
+							<?php get_sidebar( 'single-job_listing' ); ?>
+						<?php endif; ?>
 
-            <?php else : ?>
+                        <main id="main"
+                              class="site-main col-xs-12 <?php if ( 'none' != esc_attr( listify_theme_mod( 'listing-single-sidebar-position', 'right' ) ) ) : ?>col-sm-7 col-md-8<?php endif; ?>"
+                              role="main">
 
-                <?php if ( 'left' == esc_attr( listify_theme_mod( 'listing-single-sidebar-position', 'right' ) ) ) : ?>
-                    <?php get_sidebar( 'single-job_listing' ); ?>
-                <?php endif; ?>
+							<?php if ( listify_has_integration( 'woocommerce' ) ) : ?>
+								<?php wc_print_notices(); ?>
+							<?php endif; ?>
 
-                <main id="main" class="site-main col-xs-12 <?php if ( 'none' != esc_attr( listify_theme_mod( 'listing-single-sidebar-position', 'right' ) ) ) : ?>col-sm-7 col-md-8<?php endif; ?>" role="main">
+							<?php do_action( 'single_job_listing_start' ); ?>
 
-                    <?php if ( listify_has_integration( 'woocommerce' ) ) : ?>
-                        <?php wc_print_notices(); ?>
-                    <?php endif; ?>
+							<?php
+								if ( ! dynamic_sidebar( 'single-job_listing-widget-area' ) ) {
+									$defaults = array(
+										'before_widget' => '<aside class="widget widget-job_listing">',
+										'after_widget'  => '</aside>',
+										'before_title'  => '<h3 class="widget-title widget-title-job_listing %s">',
+										'after_title'   => '</h3>',
+										'widget_id'     => ''
+									);
 
-                    <?php do_action( 'single_job_listing_start' ); ?>
+									the_widget( 'Listify_Widget_Listing_Map', array(
+											'title'      => __( 'Listing Location', 'listify' ),
+											'icon'       => 'compass',
+											'map'        => 1,
+											'address'    => 1,
+											'phone'      => 1,
+											'web'        => 1,
+											'email'      => 1,
+											'directions' => 1
+										), wp_parse_args( array( 'before_widget' => '<aside class="widget widget-job_listing listify_widget_panel_listing_map">' ), $defaults ) );
 
-                    <?php
-                        if ( ! dynamic_sidebar( 'single-job_listing-widget-area' ) ) {
-                            $defaults = array(
-                                'before_widget' => '<aside class="widget widget-job_listing">',
-                                'after_widget'  => '</aside>',
-                                'before_title'  => '<h3 class="widget-title widget-title-job_listing %s">',
-                                'after_title'   => '</h3>',
-                                'widget_id'     => ''
-                            );
+									the_widget( 'Listify_Widget_Listing_Video', array(
+											'title' => __( 'Video', 'listify' ),
+											'icon'  => 'ios-film-outline',
+										), wp_parse_args( array(
+											'before_widget' => '<aside class="widget widget-job_listing
+                                listify_widget_panel_listing_video">'
+										), $defaults ) );
 
-                            the_widget(
-                                'Listify_Widget_Listing_Map',
-                                array(
-                                    'title' => __( 'Listing Location', 'listify' ),
-                                    'icon'  => 'compass',
-                                    'map'   => 1,
-                                    'address' => 1,
-                                    'phone' => 1,
-                    								'web' => 1,
-                    								'email' => 1,
-                    								'directions' => 1
-                                ),
-                                wp_parse_args( array( 'before_widget' => '<aside class="widget widget-job_listing listify_widget_panel_listing_map">' ), $defaults )
-                            );
+									the_widget( 'Listify_Widget_Listing_Content', array(
+											'title' => __( 'Listing Description', 'listify' ),
+											'icon'  => 'clipboard'
+										), wp_parse_args( array( 'before_widget' => '<aside class="widget widget-job_listing listify_widget_panel_listing_content">' ), $defaults ) );
 
-                            the_widget(
-                                'Listify_Widget_Listing_Video',
-                                array(
-                                    'title' => __( 'Video', 'listify' ),
-                                    'icon'  => 'ios-film-outline',
-                                ),
-                                wp_parse_args( array( 'before_widget' => '<aside class="widget widget-job_listing
-                                listify_widget_panel_listing_video">' ), $defaults )
-                            );
+									add_filter( 'comments_template', function ( $template ) {
+										return plugin_dir_path( dirname( __FILE__ ) ) . 'templates/job_listing_comments_template.php';
+									} );
 
-                            the_widget(
-                                'Listify_Widget_Listing_Content',
-                                array(
-                                    'title' => __( 'Listing Description', 'listify' ),
-                                    'icon'  => 'clipboard'
-                                ),
-                                wp_parse_args( array( 'before_widget' => '<aside class="widget widget-job_listing listify_widget_panel_listing_content">' ), $defaults )
-                            );
+									comments_template();
+								}
+							?>
 
-														add_filter( 'comments_template', function ( $template ) {
-														    return plugin_dir_path( dirname( __FILE__ ) ) . 'templates/job_listing_comments_template.php';
-														});
+							<?php do_action( 'single_job_listing_end' ); ?>
 
-														comments_template();
-                        }
-                    ?>
+                        </main>
 
-                    <?php do_action( 'single_job_listing_end' ); ?>
+						<?php if ( 'right' == esc_attr( listify_theme_mod( 'listing-single-sidebar-position', 'right' ) ) ) : ?>
+							<?php get_sidebar( 'single-job_listing' ); ?>
+						<?php endif; ?>
 
-                </main>
-
-                <?php if ( 'right' == esc_attr( listify_theme_mod( 'listing-single-sidebar-position', 'right' ) ) ) : ?>
-                    <?php get_sidebar( 'single-job_listing' ); ?>
-                <?php endif; ?>
-
-            <?php endif; ?>
+					<?php endif; ?>
+                </div>
             </div>
         </div>
-    </div>
 
 
 	<?php endwhile; ?>

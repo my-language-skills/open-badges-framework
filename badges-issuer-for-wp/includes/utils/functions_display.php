@@ -43,9 +43,9 @@
 	 * @since  0.6.1
 	 * @since  0.6.3 recreated the function more simply
 	 *
-	 * @param string $parent          permit to display the child taxonomy of the parent taxonomy (category).
+	 * @param string $parent permit to display the child taxonomy of the parent taxonomy (category).
 	 */
-	function show_all_the_language( $p_parent = "") {
+	function show_all_the_language( $p_parent = "" ) {
 
 		_e( '<label for="language"><b> Field of Education* : </b></label>', 'badges-issuer-for-wp' );
 
@@ -63,57 +63,57 @@
 			echo '</select>';
 
 		} else {
-		    //If there parent with children
+			//If there parent with children
 
-            if ($p_parent === ""){
-	            // Display the default parent
+			if ( $p_parent === "" ) {
+				// Display the default parent
 
-	            $parents = get_languages();
-	            $actual_parent = key($parents);
+				$parents       = get_languages();
+				$actual_parent = key( $parents );
 
-	            echo '<select name="language" id="language">';
-	            foreach ($parents as $parent){
+				echo '<select name="language" id="language">';
+				foreach ( $parents as $parent ) {
 
-                    foreach ( $parent as $language ) {
+					foreach ( $parent as $language ) {
 
-                        echo '<option value="' . $language->term_id . '">';
-                        echo $language->name . '</option>';
-                        break;
-                    }
-	            }
+						echo '<option value="' . $language->term_id . '">';
+						echo $language->name . '</option>';
+						break;
+					}
+				}
 
-	            echo '</select>';
-	            display_parents($actual_parent);
-            } else if ($p_parent === "all_field") {
-	            // Display all the child
+				echo '</select>';
+				display_parents( $actual_parent );
+			} else if ( $p_parent === "all_field" ) {
+				// Display all the child
 
-	            $parents = get_languages();
+				$parents = get_languages();
 
-	            echo '<select name="language" id="language">';
-                foreach ($parents as $parent) {
-	                foreach ( $parent as $language ) {
-		                echo '<option value="' . $language->term_id . '">';
-		                echo $language->name . '</option>';
-	                }
-                }
-	            echo '</select>';
-	            display_parents($p_parent);
+				echo '<select name="language" id="language">';
+				foreach ( $parents as $parent ) {
+					foreach ( $parent as $language ) {
+						echo '<option value="' . $language->term_id . '">';
+						echo $language->name . '</option>';
+					}
+				}
+				echo '</select>';
+				display_parents( $p_parent );
 
-            } else {
-	            // Display the children of the right parent
+			} else {
+				// Display the children of the right parent
 
-	            $parents = get_languages();
+				$parents = get_languages();
 
-	            echo '<select name="language" id="language">';
+				echo '<select name="language" id="language">';
 
-	            foreach ( $parents["$p_parent"] as $language ) {
-		            echo '<option value="' . $language->term_id . '">';
-		            echo $language->name . '</option>';
-	            }
-	            echo '</select>';
-	            display_parents($p_parent);
+				foreach ( $parents["$p_parent"] as $language ) {
+					echo '<option value="' . $language->term_id . '">';
+					echo $language->name . '</option>';
+				}
+				echo '</select>';
+				display_parents( $p_parent );
 
-            }
+			}
 
 		}
 	}
@@ -124,25 +124,25 @@
 	 * @author Alessandro RICCARDI
 	 * @since  0.6.3
 	 *
-	 * @param string $p_parent  permit to understand the active parent
+	 * @param string $p_parent permit to understand the active parent
 	 */
-	function display_parents($p_parent = ""){
+	function display_parents( $p_parent = "" ) {
 		$parents = get_parent_categories();
 		foreach ( $parents as $parent ) {
-		    if ($parent[2] == $p_parent ){
-			    echo '<a href="#" class="btn btn-default btn-xs display_parent_categories active" id="' . $parent[2] . '">Display ' . $parent[1] . '</a>';
-            } else {
-			    echo '<a href="#" class="btn btn-default btn-xs display_parent_categories" id="' . $parent[2] . '">Display ' . $parent[1] . '</a>';
-            }
+			if ( $parent[2] == $p_parent ) {
+				echo '<a href="#" class="btn btn-default btn-xs display_parent_categories active" id="' . $parent[2] . '">Display ' . $parent[1] . '</a>';
+			} else {
+				echo '<a href="#" class="btn btn-default btn-xs display_parent_categories" id="' . $parent[2] . '">Display ' . $parent[1] . '</a>';
+			}
 		}
 		// Display the link to show all the languages
-        if($p_parent === "all_field"){
-	        echo '<a href="#" class="btn btn-default btn-xs display_parent_categories active" id="all_field">Display Field</a>';
-        } else {
-	        echo '<a class="btn btn-default btn-xs display_parent_categories" id="all_field">Display Field</a>';
-        }
+		if ( $p_parent === "all_field" ) {
+			echo '<a href="#" class="btn btn-default btn-xs display_parent_categories active" id="all_field">Display Field</a>';
+		} else {
+			echo '<a class="btn btn-default btn-xs display_parent_categories" id="all_field">Display Field</a>';
+		}
 
-    }
+	}
 
 	/**
 	 * Displays a message of success.

@@ -162,8 +162,10 @@
 	 * @author Alessandro RICCARDI
 	 * @since  0.6.3
 	 *
-	 * @return bool     If have_no_children() is true return all tha value because it's mean that there aren't children,
-	 *                  else return an array of parents, inside of every parent there're children of the specific parent.
+	 * @return bool     If have_no_children() is true return all tha value because it's mean that there aren't
+	 *                  children,
+	 *                  else return an array of parents, inside of every parent there're children of the specific
+	 *                  parent.
 	 */
 	function get_languages() {
 
