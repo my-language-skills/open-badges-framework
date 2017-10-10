@@ -39,15 +39,45 @@ function display_levels_radio_buttons($badges, $context) {
  *
  * @author Nicolas TORION
  * @since 0.6.1
- * @param $_most_important_languages A boolean to know if only the most important languages must be displayed.
- * @param $language_selected The language to select.
- * @param $multiple A boolean to know if the select form must be in multiple mode.
+ * @param string $category permit to display the child taxonomy of the parent taxonomy (category).
+ * @param string $language_selected The language to select.
+ * @param bool $multiple A boolean to know if the select form must be in multiple mode.
 */
-//function to display langugaes
 function display_languages_select_form($category="", $language_selected="", $multiple=false) {
-  $all_languages = get_all_languages();
 
-  _e('<label for="language"><b> Field of Education* : </b></label></br>','badges-issuer-for-wp');
+	_e('<label for="language"><b> Field of Education* : </b></label>','badges-issuer-for-wp');
+
+    if(have_only_parent_education()){
+        $languages = get_languages();
+
+	    echo '<select name="language';
+	    echo '" id="language">';
+
+	    foreach($languages as $language){
+		    echo '<option value="'.$language->term_id.'">';
+		    echo $language->name.'</option>';
+	    }
+
+	    echo '</select>';
+
+    } else {
+
+	    $parents = get_languages();
+	    echo '<select name="language" id="language">';
+
+	    foreach($parents[2] as $language){
+		    echo '<option value="'.$language->term_id.'">';
+		    echo $language->name.'</option>';
+	    }
+
+	    echo '</select>';
+    }
+
+//////////////////////////////////////////////////
+/*
+    $all_languages = get_all_languages();
+
+  _e('<label for="language"><b> Field of Education* : </b></label>‚','badges-issuer-for-wp');
 
   //To display the first parent category as default language
   if($category == ""){
@@ -114,10 +144,8 @@ function display_languages_select_form($category="", $language_selected="", $mul
           echo '</optgroup>';
           echo '</select>';
   }
-
+*/
 }
-
-// DISPLAY MESSAGES FUNCTIONS
 
 /**
  * Displays a message of success.
