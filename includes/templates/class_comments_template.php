@@ -7,7 +7,7 @@
 
 	require_once plugin_dir_path( dirname( __FILE__ ) ) . 'utils/functions.php';
 	global $current_user;
-	get_currentuserinfo();
+	wp_get_current_user();
 
 	global $post;
 ?>
@@ -45,7 +45,7 @@
 
 		if ( can_student_write_comment( $current_user->user_login, $post->ID ) || can_user_reply( $current_user->user_login, get_the_ID() ) ) {
 			global $current_user;
-			get_currentuserinfo();
+			wp_get_current_user();
 
 			$comments_args = array();
 
@@ -75,7 +75,7 @@
 	 */
 	function custom_comment( $comment, $args, $depth ) {
 		global $current_user;
-		get_currentuserinfo();
+		wp_get_current_user();
 
 		if ( 'div' === $args['style'] ) {
 			$tag       = 'div';

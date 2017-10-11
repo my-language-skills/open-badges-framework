@@ -61,68 +61,30 @@
 		 * @since    0.0.1
 		 */
 		public function enqueue_styles() {
-
-			/**
-			 * This function is provided for demonstration purposes only.
-			 *
-			 * An instance of this class should be passed to the run() function
-			 * defined in Badges_Issuer_For_Wp_Loader as all of the hooks are defined
-			 * in that particular class.
-			 *
-			 * The Badges_Issuer_For_Wp_Loader will then create the relationship
-			 * between the defined hooks and the functions defined in this
-			 * class.
-			 */
-
 			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/badges-issuer-for-wp-admin.css', array(), $this->version, 'all' );
-
 		}
 
 		/**
 		 * Register the JavaScript for the admin area.
 		 *
-		 * @since    0.0.1
+		 * @since    0.6.3
 		 */
 		public function enqueue_scripts() {
-
-			/**
-			 * This function is provided for demonstration purposes only.
-			 *
-			 * An instance of this class should be passed to the run() function
-			 * defined in Badges_Issuer_For_Wp_Loader as all of the hooks are defined
-			 * in that particular class.
-			 *
-			 * The Badges_Issuer_For_Wp_Loader will then create the relationship
-			 * between the defined hooks and the functions defined in this
-			 * class.
-			 */
-
-			wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/badges-issuer-for-wp-admin.js', array( 'jquery' ), $this->version, false );
-
+		    wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/badges-issuer-for-wp-admin.js', array( 'jquery' ), $this->version, false );
+            wp_enqueue_script("jquery");
+            wp_enqueue_script('jquery-ui');
+            wp_enqueue_script('jquery-ui-tabs');
 		}
 
+        /**
+         * Load the #Send Badge#, #Setting#, #Statistics#  pages
+         *
+         * @since    0.6.3
+         */
+		function load_page() {
+            require plugin_dir_path( __FILE__ ) . '../includes/submenu_pages/send-badges.php';
+            require plugin_dir_path( __FILE__ ) . '../includes/submenu_pages/settings.php';
+            require_once plugin_dir_path( __FILE__ ) . '../includes/submenu_pages/statistics.php';
+        }
+
 	}
-
-	/**
-	 * SEND BADGES TO STUDENTS CUSTOM SUBMENU
-	 * A teacher can send certifications by mails to 1 student by the administration panel.
-	 *
-	 * @since    0.1
-	 */
-
-	require plugin_dir_path( __FILE__ ) . '../includes/submenu_pages/send-badges.php';
-
-
-	/**
-	 * SETTINGS PAGE OF THE PLUGIN
-	 *
-	 * @since    0.2
-	 */
-	require plugin_dir_path( __FILE__ ) . '../includes/submenu_pages/settings.php';
-
-	/**
-	 * STATISTICS PAGE OF THE PLUGIN
-	 *
-	 * @since    0.6.1
-	 */
-	require_once plugin_dir_path( __FILE__ ) . '../includes/submenu_pages/statistics.php';

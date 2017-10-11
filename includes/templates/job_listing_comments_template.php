@@ -81,7 +81,7 @@
 	$title = ( $comments_widget_icon ? '<span class="ion-' . $comments_widget_icon . '"></span>' : '' ) . $comments_widget_title;
 
 	global $current_user;
-	get_currentuserinfo();
+	wp_get_current_user();
 
 	if ( can_student_write_comment( $current_user->user_login, $post->ID ) || can_user_reply( $current_user->user_login, $post->ID ) ) {
 		comment_form( apply_filters( 'listify_comment_form', array(

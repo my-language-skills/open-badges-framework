@@ -291,7 +291,7 @@ class Badge
    */
   function add_student_to_class_zero($mail) {
     global $current_user;
-    get_currentuserinfo();
+    wp_get_current_user();
 
     if(in_array("teacher", $current_user->roles) || in_array("academy", $current_user->roles)) {
       $student = get_user_by_email($mail);

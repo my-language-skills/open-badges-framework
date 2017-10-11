@@ -8,9 +8,6 @@
 	 * @since      0.3
 	 */
 
-	//wp_enqueue_script( "jquery" );
-	//wp_enqueue_script( 'jquery-ui' );
-	//wp_enqueue_script( 'jquery-ui-tabs' );
 
 	require_once plugin_dir_path( dirname( __FILE__ ) ) . 'utils/functions.php';
 	require_once plugin_dir_path( dirname( __FILE__ ) ) . 'utils/class.badge.php';
@@ -41,7 +38,7 @@
 	 */
 	function send_badges_page_callback() {
 		global $current_user;
-		get_currentuserinfo();
+		wp_get_current_user();
 		?>
         <script>
             jQuery(document).ready(function (jQuery) {
@@ -63,7 +60,7 @@
         <br><br>
         <h1><i><span class="dashicons dashicons-awards"></span><?php _e( 'Send Badges', 'badges-issuer-for-wp' ); ?></i>
         </h1>
-        <h3>STEP 0: Please select the receiver of the badge.</h3>
+        <h3>Select the possibility to send the badge.</h3>
         <div id="tabs">
             <div id="tabs-elements">
                 <div>
@@ -144,7 +141,7 @@
             <form id="badge_form_a" action="" method="post">
 				<?php
 					global $current_user;
-					get_currentuserinfo();
+					wp_get_current_user();
 					// get all badges that exist
 					$badges = get_all_badges();
 
@@ -358,7 +355,7 @@
 			$mails_list = explode( "\n", $mails );
 
 			global $current_user;
-			get_currentuserinfo();
+			wp_get_current_user();
 
 			$class = null;
 			if ( in_array( "teacher", $current_user->roles ) || in_array( "academy", $current_user->roles ) || in_array( "administrator", $current_user->roles ) || in_array( "editor", $current_user->roles ) ) {

@@ -11,7 +11,7 @@
 	 */
 	function display_levels_radio_buttons( $badges, $context ) {
 		global $current_user;
-		get_currentuserinfo();
+		wp_get_current_user();
 
 		if ( in_array( "administrator", $current_user->roles ) || in_array( "editor", $current_user->roles ) ) {
 			$levels = get_all_levels( $badges );
@@ -78,8 +78,8 @@
 
 						echo '<option value="' . $language->term_id . '">';
 						echo $language->name . '</option>';
-						break;
 					}
+                    break;
 				}
 
 				echo '</select>';
@@ -127,6 +127,7 @@
 	 * @param string $p_parent permit to understand the active parent
 	 */
 	function display_parents( $p_parent = "" ) {
+	    echo "&nbsp&nbsp&nbsp&nbsp&nbsp |";
 		$parents = get_parent_categories();
 		foreach ( $parents as $parent ) {
 			if ( $parent[2] == $p_parent ) {
@@ -137,7 +138,7 @@
 		}
 		// Display the link to show all the languages
 		if ( $p_parent === "all_field" ) {
-			echo '<a href="#" class="btn btn-default btn-xs display_parent_categories active" id="all_field">Display Field</a>';
+			echo '<a href="#" class="btn btn-default btn-xs display_parent_categories active" id="all_field">Display all Fields</a>';
 		} else {
 			echo '<a class="btn btn-default btn-xs display_parent_categories" id="all_field">Display Field</a>';
 		}
@@ -214,7 +215,7 @@
 	 */
 	function display_classes_input() {
 		global $current_user;
-		get_currentuserinfo();
+		wp_get_current_user();
 
 		if ( $in_array( "administrator", $current_user->roles ) || in_array( "editor", $current_user->roles ) ) {
 			$classes = get_all_classes();

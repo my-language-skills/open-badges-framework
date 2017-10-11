@@ -7,7 +7,7 @@
 
 	require_once plugin_dir_path( dirname( __FILE__ ) ) . 'utils/functions.php';
 	global $current_user;
-	get_currentuserinfo();
+	wp_get_current_user();
 
 	global $post;
 
@@ -70,7 +70,7 @@
 	 */
 	function custom_comment_badge( $comment, $args, $depth ) {
 		global $current_user;
-		get_currentuserinfo();
+		wp_get_current_user();
 
 		if ( 'div' === $args['style'] ) {
 			$tag       = 'div';

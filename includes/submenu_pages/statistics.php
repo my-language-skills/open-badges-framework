@@ -8,9 +8,6 @@
 	 * @since      0.6.2
 	 */
 
-	//wp_enqueue_script( "jquery" );
-	//wp_enqueue_script( 'jquery-ui' );
-	//wp_enqueue_script( 'jquery-ui-tabs' );
 	require_once plugin_dir_path( dirname( __FILE__ ) ) . 'utils/functions.php';
 
 	/**

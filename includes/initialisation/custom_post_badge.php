@@ -240,16 +240,48 @@
 		 * Creates languages taxonomy.
 		 *
 		 * @author Nicolas TORION
-		 * @since  0.6.1
+		 * @since  0.6.3
 		 */
 		add_action( 'init', 'create_field_of_education_tax' );
 		function create_field_of_education_tax() {
-			register_taxonomy( 'field_of_education', 'badge', array(
-				'label'        => __( 'Field of education' ),
-				'rewrite'      => array( 'slug' => 'field_of_education' ),
-				'hierarchical' => true,
-			) );
+			/*register_taxonomy(
+			        'field_of_education',
+                    'badge',
+                    array(
+                            'label'        => __( 'Field of education' ),
+                            'rewrite'      => array( 'slug' => 'field_of_education' ),
+
+                        )
+            );*/
+
+            $labels = array(
+                'name' => _x( 'Fields of education', 'taxonomy general name' ),
+                'singular_name' => _x( 'Field of education', 'taxonomy singular name' ),
+                'search_items' => __( 'Search Fields of education' ),
+                'all_items' => __( 'All Fields of education' ),
+                'parent_item' => __( 'Parent Field' ),
+                'parent_item_colon' => __( 'Parent Field:' ),
+                'edit_item' => __( 'Edit Field' ),
+                'update_item' => __( 'Update Field' ),
+                'add_new_item' => __( 'Add New Field' ),
+                'new_item_name' => __( 'New Field Name' ),
+                'menu_name' => __( 'Field' ),
+            );
+
+            register_taxonomy(
+                    'field_of_education',
+                    'badge',
+                    array(
+                        'hierarchical' => true,
+                        'labels' => $labels,
+                        'show_ui' => true,
+                        'show_admin_column' => true,
+                        'query_var' => true,
+                        'rewrite' => array( 'slug' => 'field_of_education' ),
+                    )
+            );
 		}
+
 
 		/**
 		 * Adds the taxonomy level into the badge custom post type.

@@ -31,7 +31,7 @@
 
 	public function add_meta_boxes() {
 		global $current_user;
-		get_currentuserinfo();
+		wp_get_current_user();
 
 		add_meta_box( 'id_meta_box_class_students', 'Class Students', array(
 			$this,
@@ -49,7 +49,7 @@
 	}
 
 	global $current_user;
-	get_currentuserinfo();
+	wp_get_current_user();
 ?>
 <script type="text/javascript">
     jQuery(document).ready(function ($) {
