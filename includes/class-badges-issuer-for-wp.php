@@ -119,7 +119,7 @@
 			 */
 			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-badges-issuer-for-wp-public.php';
 
-			$this->loader = new Badges_Issuer_For_Wp_Loader();
+            $this->loader = new Badges_Issuer_For_Wp_Loader();
 
 		}
 

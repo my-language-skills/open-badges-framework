@@ -332,9 +332,7 @@
 		<?php
 	}
 
-?>
 
-<?php
 	add_action( 'admin_footer', 'reset_input_radio' );
 	add_action( 'wp_footer', 'reset_input_radio' );
 
@@ -355,5 +353,4 @@
 
 		<?php
 	}
-
 ?>

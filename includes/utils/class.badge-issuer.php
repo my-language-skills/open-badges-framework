@@ -1,6 +1,6 @@
 <?php
 	/**
-	 * Class Badge Issuer which allows interactions with the badge issuer informations in the plugin.
+	 * Class Badge Issuer which allows interactions with the badge issuer information in the plugin.
 	 *
 	 * @author     Nicolas TORION
 	 * @package    badges-issuer-for-wp
