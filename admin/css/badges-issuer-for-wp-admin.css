@@ -45,5 +45,8 @@
 
 .display_parent_categories.active{
     color: black;
-    text-decoration: underline;
+    background-color: #f2f2f2;
+    border-color: #9d9d9d;
+    pointer-events: none;
+    cursor: default;
 }

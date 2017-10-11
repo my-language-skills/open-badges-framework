@@ -8,7 +8,7 @@
  * that starts the plugin.
  *
  * @link              www.badges4languages.com
- * @since             0.6.2
+ * @since             0.6.3
  * @package           Badges_Issuer_For_Wp
  *
  * @wordpress-plugin
@@ -44,6 +44,7 @@ if (!class_exists('BadgeIssuerForWp')) {
 
         function init() {
             load_plugin_textdomain('badges_issuer_for_wp', false, $this->path_plugin);
+
         }
 
         /**
@@ -56,12 +57,16 @@ if (!class_exists('BadgeIssuerForWp')) {
             $plugin->run();
         }
 
+        function load_script() {
+
+        }
+
         /**
          * The code that runs during plugin activation.
          * This action is documented in includes/class-badges-issuer-for-wp-activator.php
          */
         function activate() {
-            require_once $this->path_plugin.'includes/class-badges-issuer-for-wp-activator.php';
+            require_once $this->path_plugin . 'includes/class-badges-issuer-for-wp-activator.php';
             Badges_Issuer_For_Wp_Activator::activate();
         }
 
@@ -70,7 +75,7 @@ if (!class_exists('BadgeIssuerForWp')) {
          * This action is documented in includes/class-badges-issuer-for-wp-deactivator.php
          */
         function deactivate() {
-            require_once $this->path_plugin.'includes/class-badges-issuer-for-wp-deactivator.php';
+            require_once $this->path_plugin . 'includes/class-badges-issuer-for-wp-deactivator.php';
             Badges_Issuer_For_Wp_Deactivator::deactivate();
         }
     }
@@ -78,8 +83,9 @@ if (!class_exists('BadgeIssuerForWp')) {
     $badge_issuer = new BadgeIssuerForWp();
     $badge_issuer->register();
     $badge_issuer->start();
+    $badge_issuer->load_script();
 
-    
+
     register_activation_hook(__FILE__, array($badge_issuer, 'activate'));
     register_deactivation_hook(__FILE__, array($badge_issuer, 'deactivate'));
 

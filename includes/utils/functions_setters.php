@@ -18,7 +18,7 @@
 
 	function set_badge_as_received( $hash ) {
 		global $current_user;
-		get_currentuserinfo();
+		wp_get_current_user();
 
 		$badges = get_the_author_meta( 'badges_received', $current_user->ID );
 

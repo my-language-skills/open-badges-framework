@@ -97,7 +97,6 @@ class Badges_Issuer_For_Wp_Public {
 		 */
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/badges-issuer-for-wp-public.js', array( 'jquery' ), $this->version, false );
-
 	}
 
 }

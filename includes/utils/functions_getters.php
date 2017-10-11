@@ -517,7 +517,7 @@
 	 */
 	function check_if_user_has_already_a_badge( $hash ) {
 		global $current_user;
-		get_currentuserinfo();
+		wp_get_current_user();
 
 		$badges = get_the_author_meta( 'badges_received', $current_user->ID );
 

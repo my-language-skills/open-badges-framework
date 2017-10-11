@@ -93,7 +93,7 @@
 	function action_select_class() {
 
 		global $current_user;
-		get_currentuserinfo();
+		wp_get_current_user();
 
 		if ( in_array( "administrator", $current_user->roles ) || in_array( "editor", $current_user->roles ) ) {
 			$classes = get_all_classes_zero();
@@ -163,7 +163,7 @@
 		$badges = get_all_badges();
 
 		global $current_user;
-		get_currentuserinfo();
+		wp_get_current_user();
 
 		if ( in_array( "administrator", $current_user->roles ) || in_array( "academy", $current_user->roles ) || in_array( "editor", $current_user->roles ) ) {
 			$badges_corresponding = get_all_badges_level( $badges, $_POST['level_selected'], $certification = true );
