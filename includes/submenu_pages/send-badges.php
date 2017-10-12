@@ -170,8 +170,8 @@
                 <div id="result_languages_description"><b>Language of badge description* :</b></div>
                 <div id="result_preview_description"></div>
 
-                <input type="hidden" name="mail" value="<?php echo $current_user->user_email; ?>"/>
-                <input type="hidden" name="sender" value="SELF"/>
+                <!--<input type="hidden" name="mail" value="<?php echo $current_user->user_email; ?>"/>
+                <input type="hidden" name="sender" value="SELF"/>-->
 
                 <h3>STEP 5: </h3>
                 <label for="comment"><b><?php _e( 'Comment : ', 'badges-issuer-for-wp' ); ?></b></label><br/>
