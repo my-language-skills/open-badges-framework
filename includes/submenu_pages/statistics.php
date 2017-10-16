@@ -8,7 +8,7 @@
  * @since      0.6.2
  */
 
-require_once plugin_dir_path(dirname(__FILE__)) . 'utils/functions.php';
+	require_once plugin_dir_path( dirname( __FILE__ ) ) . 'utils/functions.php';
 
 /**
  * Adds b4l_send_badges_one_student_submenu_page to the admin menu.

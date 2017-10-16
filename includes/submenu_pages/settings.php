@@ -1,69 +1,66 @@
 <?php
-/**
- * Create a submenu page in the administration menu to change settings of the Badge School plugin.
- *
- * @author     Nicolas TORION
- * @package    badges-issuer-for-wp
- * @subpackage includes/submenu_pages
- * @since      0.6.2
- */
 
-require_once plugin_dir_path(dirname(__FILE__)) . 'utils/functions.php';
-require_once plugin_dir_path(dirname(__FILE__)) . 'utils/class.badge-issuer.php';
+	/**
+	 * Create a submenu page in the administration menu to change settings of the Badge School plugin.
+	 *
+	 * @author     Nicolas TORION
+	 * @package    badges-issuer-for-wp
+	 * @subpackage includes/submenu_pages
+	 * @since      0.6.2
+	 */
 
-/**
- * Adds b4l_send_badges_one_student_submenu_page to the admin menu.
- */
-add_action('admin_menu', 'settings_submenu_page');
+	require_once plugin_dir_path( dirname( __FILE__ ) ) . 'utils/functions.php';
+	require_once plugin_dir_path( dirname( __FILE__ ) ) . 'utils/class.badge-issuer.php';
 
-/**
- * Creates the submenu page.
- *
- * The capability allows superadmin, admin, editor and author to see this submenu.
- * If you change to change the permissions, use manage_options as capability (for
- * superadmin and admin).
- */
-function settings_submenu_page() {
+	/**
+	 * Adds b4l_send_badges_one_student_submenu_page to the admin menu.
+	 */
+	add_action( 'admin_menu', 'settings_submenu_page' );
 
-    add_submenu_page('edit.php?post_type=badge', 'Settings', 'Settings', 'capability_settings', 'settings', 'settings_callback');
+	/**
+	 * Creates the submenu page.
+	 *
+	 * The capability allows superadmin, admin, editor and author to see this submenu.
+	 * If you change to change the permissions, use manage_options as capability (for
+	 * superadmin and admin).
+	 */
+	function settings_submenu_page() {
 
-}
+		add_submenu_page( 'edit.php?post_type=badge', 'Settings', 'Settings', 'capability_settings', 'settings', 'settings_callback' );
 
-/**
- * Displays the content of the submenu page
- *
- * @author Nicolas TORION
- * @since  0.6.2
- */
-function settings_callback() {
+	}
 
-    $badge_issuer = new BadgeIssuer();
+	/**
+	 * Displays the content of the submenu page
+	 *
+	 * @author Nicolas TORION
+	 * @since  0.6.2
+	 */
+	function settings_callback() {
 
-    if (isset($_POST['badges_issuer_name']) && isset($_POST['badges_issuer_image']) && isset($_POST['badges_issuer_website']) && isset($_POST['badges_issuer_mail'])) {
-        $badge_issuer->change_informations($_POST['badges_issuer_name'], $_POST['badges_issuer_image'], $_POST['badges_issuer_website'], $_POST['badges_issuer_mail']);
-    }
+		$badge_issuer = new BadgeIssuer();
 
-    if (isset($_POST["link_not_academy"]) && isset($_POST["link_create_new_class"])) {
-        set_settings_links(array("link_not_academy" => $_POST["link_not_academy"],
-            "link_create_new_class" => $_POST["link_create_new_class"]
-        ));
-    }
+		if ( isset( $_POST['badges_issuer_name'] ) && isset( $_POST['badges_issuer_image'] ) && isset( $_POST['badges_issuer_website'] ) && isset( $_POST['badges_issuer_mail'] ) ) {
+			$badge_issuer->change_informations( $_POST['badges_issuer_name'], $_POST['badges_issuer_image'], $_POST['badges_issuer_website'], $_POST['badges_issuer_mail'] );
+		}
 
-    if (isset($_POST["link_login"]) && isset($_POST["link_register"])) {
-        set_settings_login_links(array("link_login" => $_POST["link_login"],
-            "link_register" => $_POST["link_register"]
-        ));
-    }
+		if ( isset( $_POST["link_not_academy"] ) && isset( $_POST["link_create_new_class"] ) ) {
+			set_settings_links( array( "link_not_academy"      => $_POST["link_not_academy"],
+			                           "link_create_new_class" => $_POST["link_create_new_class"]
+			) );
+		}
 
-    $settings_id_links = get_settings_links();
-    $settings_id_login_links = get_settings_login_links();
+		if ( isset( $_POST["link_login"] ) && isset( $_POST["link_register"] ) ) {
+			set_settings_login_links( array( "link_login"    => $_POST["link_login"],
+			                                 "link_register" => $_POST["link_register"]
+			) );
+		}
 
-    ?>
-    <h1>Settings</h1>
-    <br/>
+		$settings_id_links       = get_settings_links();
+		$settings_id_login_links = get_settings_login_links();
 
-    <div style="width:400px;">
-        <h2>Change the badges issuer informations</h2>
+		?>
+        <h1>Settings</h1>
         <br/>
 
         <form id="settings_form_badges_issuer" action="" method="post">

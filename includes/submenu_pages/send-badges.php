@@ -7,15 +7,12 @@
  * @subpackage includes/submenu_pages
  * @since      0.3
  */
-
-
-require_once plugin_dir_path(dirname(__FILE__)) . 'utils/functions.php';
-require_once plugin_dir_path(dirname(__FILE__)) . 'utils/class.badge.php';
+require_once plugin_dir_path( dirname( __FILE__ ) ) . 'utils/functions.php';
+require_once plugin_dir_path( dirname( __FILE__ ) ) . 'utils/class.badge.php';
 /**
  * Adds b4l_send_badges_one_student_submenu_page to the admin menu.
  */
-add_action('admin_menu', 'send_badges_submenu_page');
-
+add_action( 'admin_menu', 'send_badges_submenu_page' );
 /**
  * Creates the submenu page.
  *
@@ -24,12 +21,9 @@ add_action('admin_menu', 'send_badges_submenu_page');
  * superadmin and admin).
  */
 function send_badges_submenu_page() {
-
-    add_submenu_page('edit.php?post_type=badge', 'Send Badges', 'Send Badges', 'capability_send_badge', //capability: 'edit_posts' to give automatically the access to author/editor/admin
-        'send-badges', 'send_badges_page_callback');
-
+    add_submenu_page( 'edit.php?post_type=badge', 'Send Badges', 'Send Badges', 'capability_send_badge', //capability: 'edit_posts' to give automatically the access to author/editor/admin
+        'send-badges', 'send_badges_page_callback' );
 }
-
 /**
  * Displays the content of the submenu page
  *
@@ -57,63 +51,71 @@ function send_badges_page_callback() {
         }
     </style>
 
-    <div class="wrap">
-        <br><br>
-        <h1><i><span class="dashicons dashicons-awards"></span><?php _e('Send Badges', 'badges-issuer-for-wp'); ?></i>
-        </h1>
-        <h3>Select the possibility to send the badge.</h3>
-        <div id="tabs">
-            <div id="tabs-elements">
-                <div>
-                    <h2 class="nav-tab-wrapper">
-                        <ul class="tabs-inline">
-                            <li><a href="#tabs-1">
-                                    <div class="nav-tab nav-tab-active"
-                                         id="nav-badge-a"><?php _e('Self', 'badges-issuer-for-wp'); ?></div>
+    <br><br>
+    <h1><i><span class="dashicons dashicons-awards"></span><?php _e( 'Send Badges', 'badges-issuer-for-wp' ); ?></i>
+    </h1>
+    <h3>Select the possibility to send the badge.</h3>
+    <div id="tabs">
+        <div id="tabs-elements">
+            <div>
+                <h2 class="nav-tab-wrapper">
+                    <ul class="tabs-inline">
+                        <li><a href="#tabs-1">
+                                <div class="nav-tab nav-tab-active"><?php _e( 'Self', 'badges-issuer-for-wp' ); ?></div>
+                            </a></li>
+                        <?php
+                        if ( in_array( "teacher", $current_user->roles ) || in_array( "academy", $current_user->roles ) || in_array( "administrator", $current_user->roles ) || in_array( "editor", $current_user->roles ) ) {
+                            ?>
+                            <li><a href="#tabs-2">
+                                    <div class="nav-tab"><?php _e( 'Issue', 'badges-issuer-for-wp' ); ?></div>
                                 </a></li>
                             <?php
-                            if (in_array("teacher", $current_user->roles) || in_array("academy", $current_user->roles) || in_array("administrator", $current_user->roles) || in_array("editor", $current_user->roles)) {
+                            if ( in_array( "academy", $current_user->roles ) || in_array( "administrator", $current_user->roles ) || in_array( "editor", $current_user->roles ) ) {
                                 ?>
-                                <li><a href="#tabs-2">
-                                        <div class="nav-tab"
-                                             id="nav-badge-b"><?php _e('Issue', 'badges-issuer-for-wp'); ?></div>
+                                <li><a href="#tabs-3">
+                                        <div class="nav-tab"><?php _e( 'Multiple issue', 'badges-issuer-for-wp' ); ?></div>
                                     </a></li>
-                                <?php
-                                if (in_array("academy", $current_user->roles) || in_array("administrator", $current_user->roles) || in_array("editor", $current_user->roles)) {
-                                    ?>
-                                    <li><a href="#tabs-3">
-                                            <div class="nav-tab"
-                                                 id="nav-badge-c"><?php _e('Multiple issue', 'badges-issuer-for-wp'); ?></div>
-                                        </a></li>
-                                <?php } ?>
                             <?php } ?>
-                        </ul>
-                    </h2>
-                </div>
+                        <?php } ?>
+                    </ul>
+                </h2>
             </div>
-            <div id="tabs-1">
-                <?php tab_self(); ?>
+        </div>
+        <div id="tabs-1">
+            <?php tab_self(); ?>
+        </div>
+        <?php
+        if ( in_array( "teacher", $current_user->roles ) || in_array( "academy", $current_user->roles ) || in_array( "administrator", $current_user->roles ) || in_array( "editor", $current_user->roles ) ) {
+            ?>
+            <div id="tabs-2">
+                <?php tab_issue(); ?>
             </div>
             <?php
-            if (in_array("teacher", $current_user->roles) || in_array("academy", $current_user->roles) || in_array("administrator", $current_user->roles) || in_array("editor", $current_user->roles)) {
+            if ( in_array( "academy", $current_user->roles ) || in_array( "administrator", $current_user->roles ) || in_array( "editor", $current_user->roles ) ) {
                 ?>
-                <div id="tabs-2">
-                    <?php tab_issue(); ?>
+                <div id="tabs-3">
+                    <?php tab_multiple(); ?>
                 </div>
                 <?php
-                if (in_array("academy", $current_user->roles) || in_array("administrator", $current_user->roles) || in_array("editor", $current_user->roles)) {
-                    ?>
-                    <div id="tabs-3">
-                        <?php tab_multiple(); ?>
-                    </div>
-                    <?php
-                }
-            } ?>
-        </div>
+            }
+        } ?>
     </div>
     <?php
 }
-
+/**
+ * The parent categories default
+ *
+ * @author Muhammad Uzair
+ * @since  0.6.3
+ */
+function show_parent_categories() {
+    $parent_languages = get_parent_categories();
+    foreach ( $parent_languages as $language ) {
+        echo '<a style="margin-left:20px;" href="#" class="display_parent_categories" id="' . $language[2] . '">Display ' . $language[1] . '</a>';
+    }
+    // To display the link to show all the languages
+    echo '<a style="margin-left:20px;" href="#" class="display_parent_categories" id="all_field">Display Field</a>';
+}
 /**
  * The content of the tab for sending a badge to himself.
  *
@@ -125,102 +127,32 @@ function tab_self() {
     ?>
 
     <div class="tab-content">
-        <form id="badge_form_a" action="" method="post">
-            <?php
-            global $current_user;
-            wp_get_current_user();
-            // get all badges that exist
-            $badges = get_all_badges();
-            ?>
-            <div>
-                <h3>Field of Education</h3>
-                <section>
-                    <div class="section-container">
-                        <div class="title-form"><h2>Select your field of education:</h2></div>
-                        <div id="languages_form_a"><?php show_all_the_language(); ?></div>
-                    </div>
-                </section>
-                <h3>Level</h3>
-                <section>
-                    <div class="section-container">
-                        <div class="title-form"><h2>Select the level:</h2></div>
-                        <div id="languages_form_a"><?php display_levels_radio_buttons($badges, "self"); ?></div>
-                    </div>
-                </section>
-
-                <h3>Kind of badge</h3>
-                <section>
-                    <div class="section-container">
-                        <div class="title-form"><h2>Select the level:</h2></div>
-                        <hr class="sep-sendbadge">
-                        <div id="select_badge">
-                            <img src="<?php echo plugins_url('../../assets/default-badge.png', __FILE__); ?>"
-                                 width="72px" height="72px"/>
-                        </div>
-                    </div>
-                </section>
-
-                <h3>Language</h3>
-                <section>
-                    <div class="section-container">
-                        <div class="title-form"><h2>Check the language:</h2></div>
-                        <hr class="sep-sendbadge">
-                        <div id="result_languages_description"></div>
-                        <div id="result_preview_description"></div>
-
-                        <input type="hidden" name="mail" value="<?php echo $current_user->user_email; ?>"/>
-                        <input type="hidden" name="sender" value="SELF"/>
-                    </div>
-                </section>
-
-                <h3>Information:</h3>
-                <section>
-                    <div class="section-container">
-                        <div class="title-form"><h2>Addition information:</h2></div>
-                        <hr class="sep-sendbadge">
-                        <label for="comment"><b><?php _e('Comment : ', 'badges-issuer-for-wp'); ?></b></label><br/>
-                        <textarea name="comment" id="comment" rows="10" cols="80"></textarea><br/><br/>
-
-                        <input type="submit" id="submit_button_a" class="button-primary"
-                               value="<?php _e('Send a badge', 'badges-issuer-for-wp'); ?>"/>
-                    </div>
-                </section>
-            </div>
-        </form>
-    </div>
-
-<!--
-    <div class="tab-content">
         <br/><br/>
-        <h2><?php _e('Send a badge to yourself', 'badges-issuer-for-wp'); ?></h2>
+        <h2><?php _e( 'Send a badge to yourself', 'badges-issuer-for-wp' ); ?></h2>
         <form id="badge_form_a" action="" method="post">
             <?php
             global $current_user;
             wp_get_current_user();
             // get all badges that exist
             $badges = get_all_badges();
+            echo '<br><p>';
+            echo '<h3>STEP 1: </h3>';
+            echo '<div id="languages_form_a">';
+            show_all_the_language();
+            echo '</div>';
+            echo '</p>';
+            echo '<br><p>';
+            echo '<h3>STEP 2: </h3>';
+            display_levels_radio_buttons( $badges, "self" );
+            echo '</p>';
+            echo '<br><p>';
+            echo '<h3>STEP 3: </h3>';
+            echo '<div id="select_badge"><b>Badge*:</b>
+                            </br></br>
+                            <img src="' . plugins_url( '../../assets/default-badge-thumbnail.png', __FILE__ ) . '" 
+                            width="72px" height="72px"/>
+                            </div>';
             ?>
-            <br>
-            <p>
-            <h3>STEP 1: </h3>
-            <?php show_all_the_language(); ?>
-            </p>
-
-            <br>
-            <p>
-            <h3>STEP 2: </h3>
-
-            <?php display_levels_radio_buttons($badges, "self"); ?>
-            </p>
-
-            <br>
-            <p>
-            <h3>STEP 3: </h3>
-            <div id="select_badge"><b>Badge*:</b>
-                </br></br>
-                <img src="<?php echo plugins_url('../../assets/default-badge.png', __FILE__); ?>"
-                     width="72px" height="72px"/>
-            </div>
 
             </br><h3>STEP 4: </h3>
             <div id="result_languages_description"><b>Language of badge description* :</b></div>
@@ -230,18 +162,17 @@ function tab_self() {
             <input type="hidden" name="sender" value="SELF"/>
 
             <h3>STEP 5: </h3>
-            <label for="comment"><b><?php _e('Comment : ', 'badges-issuer-for-wp'); ?></b></label><br/>
+            <label for="comment"><b><?php _e( 'Comment : ', 'badges-issuer-for-wp' ); ?></b></label><br/>
             <textarea name="comment" id="comment" rows="10" cols="80"></textarea><br/><br/>
 
             <input type="submit" id="submit_button_a" class="button-primary"
-                   value="<?php _e('Send a badge', 'badges-issuer-for-wp'); ?>"/>
+                   value="<?php _e( 'Send a badge', 'badges-issuer-for-wp' ); ?>"/>
         </form>
     </div>
-    -->
+
     <?php
     email_engine();
 }
-
 /**
  * The content of the tab for sending a badge to someone.
  *
@@ -249,71 +180,61 @@ function tab_self() {
  * @since  0.6.3
  */
 function tab_issue() {
-
     apply_css_styles();
-
     ?>
 
     <div class="tab-content">
         <br/><br/>
-        <h2><?php _e('Send a badge to one person', 'badges-issuer-for-wp'); ?></h2>
+        <h2><?php _e( 'Send a badge to one person', 'badges-issuer-for-wp' ); ?></h2>
 
         <form id="badge_form_b" action="" method="post">
             <?php
             global $current_user;
-            wp_get_current_user();
             // get all badges that exist
             $badges = get_all_badges();
+            echo '<br /><br />';
+            echo '<h3>STEP 1: </h3>';
+            echo '<div id="languages_form_b">';
+            show_all_the_language();
+            show_parent_categories();
+            echo '</div>';
+            echo '<br />';
+            echo '<h3>STEP 2: </h3>';
+            display_levels_radio_buttons( $badges, "send" );
+            echo '<h3>STEP 3: </h3>';
+            echo '<div id="select_badge"><b>Badge*:</b>
+          </br></br>
+          <img src="' . plugins_url( '../../assets/default-badge-thumbnail.png', __FILE__ ) . '" width="72px" height="72px">
+          </div>';
+            echo '<br />';
             ?>
-            <br>
-            <p>
-            <h3>STEP 1: </h3>
-            <?php show_all_the_language(); ?>
-            </p>
-
-            <br>
-            <p>
-            <h3>STEP 2: </h3>
-
-            <?php display_levels_radio_buttons($badges, "self"); ?>
-            </p>
-            <br>
-            <h3>STEP 3: </h3>
-            <div id="select_badge"><b>Badge*:</b>
-                </br></br>
-                <img src="<?php echo plugins_url('../../assets/default-badge-thumbnail.png', __FILE__); ?>" width="72px"
-                     height="72px">
-            </div>
-            <br>
-
             <h3>STEP 4: </h3>
             <div id="result_languages_description"><b>Language of badge description* :</b></div>
             <div id="result_preview_description"></div>
 
             <h3>STEP 5:</h3>
             <?php
-            if (in_array("academy", $current_user->roles) || in_array("teacher", $current_user->roles)) {
-                $class_zero = get_class_zero_teacher($current_user->user_login);
+            if ( in_array( "academy", $current_user->roles ) || in_array( "teacher", $current_user->roles ) ) {
+                $class_zero = get_class_zero_teacher( $current_user->user_login );
                 echo '<input name="class_zero_teacher" type="hidden" value="' . $class_zero->ID . '"/>';
             }
-
-            if (in_array("teacher", $current_user->roles) || in_array("academy", $current_user->roles) || in_array("administrator", $current_user->roles) || in_array("editor", $current_user->roles)) {
+            if ( in_array( "teacher", $current_user->roles ) || in_array( "academy", $current_user->roles ) || in_array( "administrator", $current_user->roles ) || in_array( "editor", $current_user->roles ) ) {
                 echo '<div id="select_class"><b>Class*:</b></div>';
                 echo '<br />';
             }
             ?>
             <h3>STEP 6: </h3>
-            <label for="mail"><b><?php _e('Receiver\'s mail adress* :', 'badges-issuer-for-wp'); ?> </b></label><br/>
+            <label for="mail"><b><?php _e( 'Receiver\'s mail adress* :', 'badges-issuer-for-wp' ); ?> </b></label><br/>
             <input type="text" name="mail" id="mail" class="mail"/>
             <br/><br/>
 
             <input type="hidden" name="sender" value="<?php echo $current_user->user_email; ?>"/>
             <h3>STEP 7: </h3>
-            <label for="comment"><b><?php _e('Comment : ', 'badges-issuer-for-wp'); ?></b></label><br/>
+            <label for="comment"><b><?php _e( 'Comment : ', 'badges-issuer-for-wp' ); ?></b></label><br/>
             <textarea name="comment" id="comment" rows="10" cols="80"></textarea><br/><br/>
 
             <input type="submit" id="submit_button_b" class="button-primary"
-                   value="<?php _e('Send a badge', 'badges-issuer-for-wp'); ?>"/>
+                   value="<?php _e( 'Send a badge', 'badges-issuer-for-wp' ); ?>"/>
         </form>
 
     </div>
@@ -321,7 +242,6 @@ function tab_issue() {
     <?php
     email_engine();
 }
-
 /**
  * The content of the tab for sending a badge to several persons.
  *
@@ -329,70 +249,64 @@ function tab_issue() {
  * @since  0.6.3
  */
 function tab_multiple() {
-
     apply_css_styles();
     ?>
     <div class="tab-content">
         <br/><br/>
-        <h2><?php _e('Send a badge to several persons', 'badges-issuer-for-wp'); ?></h2>
+        <h2><?php _e( 'Send a badge to several persons', 'badges-issuer-for-wp' ); ?></h2>
 
         <form id="badge_form_c" action="" method="post">
             <?php
             global $current_user;
-            wp_get_current_user();
             // get all badges that exist
             $badges = get_all_badges();
+            echo '<br /><br />';
+            echo '<h3>STEP 1: </h3>';
+            echo '<div id="languages_form_c">';
+            show_all_the_language();
+            show_parent_categories();
+            echo '</div>';
+            echo '<br />';
+            echo '<h3>STEP 2: </h3>';
+            display_levels_radio_buttons( $badges, "send" );
+            echo '<h3>STEP 3: </h3>';
+            echo '<div id="select_badge"><b>Badge*:</b>
+          </br></br>
+          <img src="' . plugins_url( '../../assets/default-badge-thumbnail.png', __FILE__ ) . '" width="72px" height="72px">
+          </div>';
+            echo '<br />';
             ?>
-            <br>
-            <p>
-            <h3>STEP 1: </h3>
-            <?php show_all_the_language(); ?>
-            </p>
-
-            <br>
-            <p>
-            <h3>STEP 2: </h3>
-            <?php display_levels_radio_buttons($badges, "self"); ?>
-            </p>
-            <br>
-            <h3>STEP 3: </h3>
-            <div id="select_badge"><b>Badge*:</b>
-                </br></br>
-                <img src="<?php echo plugins_url('../../assets/default-badge-thumbnail.png', __FILE__); ?>" width="72px"
-                     height="72px">
-            </div>
-            <br>
             <h3>STEP 4: </h3>
             <div id="result_languages_description"><b>Language of badge description* :</b></div>
             <div id="result_preview_description"></div>
 
             <h3>STEP 5: </h3>
             <?php
-            if (in_array("teacher", $current_user->roles) || in_array("academy", $current_user->roles) || in_array("administrator", $current_user->roles) || in_array("editor", $current_user->roles)) {
+            if ( in_array( "teacher", $current_user->roles ) || in_array( "academy", $current_user->roles ) || in_array( "administrator", $current_user->roles ) || in_array( "editor", $current_user->roles ) ) {
                 echo '<div id="select_class"><b>Class*:</b></div>';
                 echo '<br />';
             }
             ?>
 
+
             <h3>STEP 6: </h3>
-            <label for="mail"><b><?php _e('Receivers\' mail adresses* (one mail adress per line) : ', 'badges-issuer-for-wp'); ?></b></label><br/>
+            <label for="mail"><b><?php _e( 'Receivers\' mail adresses* (one mail adress per line) : ', 'badges-issuer-for-wp' ); ?></b></label><br/>
             <textarea name="mail" id="mail" class="mail" rows="10" cols="50"></textarea>
 
             <input type="hidden" name="sender" value="<?php echo $current_user->user_email; ?>"/>
             <br/><br/>
             <h3>STEP 7: </h3>
-            <label for="comment"><b><?php _e('Comment : ', 'badges-issuer-for-wp'); ?></b></label><br/>
+            <label for="comment"><b><?php _e( 'Comment : ', 'badges-issuer-for-wp' ); ?></b></label><br/>
             <textarea name="comment" id="comment" rows="10" cols="80"></textarea><br/><br/>
 
             <input type="submit" id="submit_button_c" class="button-primary"
-                   value="<?php _e('Send a badge', 'badges-issuer-for-wp'); ?>"/>
+                   value="<?php _e( 'Send a badge', 'badges-issuer-for-wp' ); ?>"/>
         </form>
 
     </div>
     <?php
     email_engine();
 }
-
 /**
  * This function rappresent the core of email managment
  *
@@ -401,70 +315,55 @@ function tab_multiple() {
  */
 function email_engine() {
     // Traitement of form, a mail is sent to the student.
-    if (isset($_POST['level']) && isset($_POST['sender']) && isset($_POST['input_badge_name']) && isset($_POST['language']) && isset($_POST['mail']) && isset($_POST['comment']) && isset($_POST['language_description'])) {
-
-        $url_json_files = content_url('uploads/badges-issuer/json/');
-        $path_dir_json_files = plugin_dir_path(dirname(__FILE__)) . '../../../uploads/badges-issuer/json/';
-
-        $badges = get_all_badges();
-        $badge_others_items = get_badge($_POST['input_badge_name'], $badges, $_POST['language_description']);
-        $certification = get_post_meta($badge_others_items['id'], '_certification', true);
-
-        $mails = $_POST['mail'];
-        $mails_list = explode("\n", $mails);
-
+    if ( isset( $_POST['level'] ) && isset( $_POST['sender'] ) && isset( $_POST['input_badge_name'] ) && isset( $_POST['language'] ) && isset( $_POST['mail'] ) && isset( $_POST['comment'] ) && isset( $_POST['language_description'] ) ) {
+        $url_json_files      = content_url( 'uploads/badges-issuer/json/' );
+        $path_dir_json_files = plugin_dir_path( dirname( __FILE__ ) ) . '../../../uploads/badges-issuer/json/';
+        $badges             = get_all_badges();
+        $badge_others_items = get_badge( $_POST['input_badge_name'], $badges, $_POST['language_description'] );
+        $certification      = get_post_meta( $badge_others_items['id'], '_certification', true );
+        $mails      = $_POST['mail'];
+        $mails_list = explode( "\n", $mails );
         global $current_user;
         wp_get_current_user();
-
         $class = null;
-        if (in_array("teacher", $current_user->roles) || in_array("academy", $current_user->roles) || in_array("administrator", $current_user->roles) || in_array("editor", $current_user->roles)) {
-            if (isset($_POST['class_for_student'])) {
+        if ( in_array( "teacher", $current_user->roles ) || in_array( "academy", $current_user->roles ) || in_array( "administrator", $current_user->roles ) || in_array( "editor", $current_user->roles ) ) {
+            if ( isset( $_POST['class_for_student'] ) ) {
                 $class = $_POST['class_for_student'];
-            } elseif ($_POST['class_zero_teacher']) {
+            } elseif ( $_POST['class_zero_teacher'] ) {
                 $class = $_POST['class_zero_teacher'];
             }
         }
-
         $notsent = array();
-
-        $badge = new Badge($badge_others_items['name'], $_POST['level'], $_POST['language'], $certification, $_POST['comment'], $badge_others_items['description'], $_POST['language_description'], $badge_others_items['image'], $url_json_files, $path_dir_json_files);
-
-        foreach ($mails_list as $mail) {
-            $mail = str_replace("\r", "", $mail);
-
-            $badge->create_json_files($mail);
-
-            if (!$badge->send_mail($mail, $class)) {
+        $badge = new Badge( $badge_others_items['name'], $_POST['level'], $_POST['language'], $certification, $_POST['comment'], $badge_others_items['description'], $_POST['language_description'], $badge_others_items['image'], $url_json_files, $path_dir_json_files );
+        foreach ( $mails_list as $mail ) {
+            $mail = str_replace( "\r", "", $mail );
+            $badge->create_json_files( $mail );
+            if ( ! $badge->send_mail( $mail, $class ) ) {
                 $notsent[] = $mail;
             } else {
-                if ($_POST['sender'] != "SELF") {
-                    $badge->add_student_to_class_zero($mail);
+                if ( $_POST['sender'] != "SELF" ) {
+                    $badge->add_student_to_class_zero( $mail );
                 }
-
-                $badge->add_student_to_class($mail, $class);
-                $badge->add_badge_to_user_profile($mail, $_POST['sender'], $class);
+                $badge->add_student_to_class( $mail, $class );
+                $badge->add_badge_to_user_profile( $mail, $_POST['sender'], $class );
             }
         }
-
-        if (sizeof($notsent) > 0) {
+        if ( sizeof( $notsent ) > 0 ) {
             $message = "Badge not sent to these persons : ";
-            foreach ($notsent as $notsent_mail) {
+            foreach ( $notsent as $notsent_mail ) {
                 $message = $message . $notsent_mail . " ";
             }
-            display_error_message($message);
+            display_error_message( $message );
         } else {
-            display_success_message(__("Badge sent to all persons.", 'badges-issuer-for-wp'));
+            display_success_message( __( "Badge sent to all persons.", 'badges-issuer-for-wp' ) );
         }
     }
-
 }
-
-add_shortcode('send_badge', 'send_badges_page_callback');
+add_shortcode( 'send_badge', 'send_badges_page_callback' );
 // Adding the shortcode to send the badge to yourself
-add_shortcode('send-self', 'tab_self');
+add_shortcode( 'send-self', 'tab_self' );
 // Adding the shortcode to send a badge to a single person
-add_shortcode('send-single', 'tab_issue');
+add_shortcode( 'send-single', 'tab_issue' );
 // Adding the shortcode to send the badge to several persons
-add_shortcode('send-multiple', 'tab_multiple');
-
+add_shortcode( 'send-multiple', 'tab_multiple' );
 ?>

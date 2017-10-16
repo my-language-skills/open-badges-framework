@@ -29,9 +29,10 @@ public function __construct() {
 
 /* Adds the metaboxes.*/
 
-public function add_meta_boxes() {
-    global $current_user;
-    wp_get_current_user();
+
+	public function add_meta_boxes() {
+		global $current_user;
+		wp_get_current_user();
 
     add_meta_box('id_meta_box_class_students', 'Class Students', array(
         $this,
@@ -48,8 +49,9 @@ if (get_post_meta($post->ID, '_class_students', true)) {
     $class_students = array();
 }
 
-global $current_user;
-wp_get_current_user();
+
+	global $current_user;
+	wp_get_current_user();
 ?>
 <script type="text/javascript">
     jQuery(document).ready(function ($) {

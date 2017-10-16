@@ -191,163 +191,165 @@ function meta_box_links($post) {
     </tr>
     </thead>
     <tbody>
-    <?php
 
-    foreach ($badge_links as $link_lang => $link_url) {
-        echo '<tr>';
-        echo '<td width="0%">';
-        show_all_the_language($category = "most-important-languages", $language_selected = $link_lang, $multiple = true);
-        echo '</td>';
-        echo '<td width="100%">';
-        echo '<center><input type="text" size="50" name="link_url[]" value="' . $link_url . '" /></center>';
-        echo '</td>';
-        echo '<td width="0%">';
-        echo '<a class="button remove-row" onclick="jQuery(this).RemoveTr();" href="#">Remove</a>';
-        echo '</td>';
-        echo '</tr>';
-    }
-    echo '</tbody></table>';
-    echo '<p><a id="add-row" class="button" href="#">Add another</a></p>';
-    }
+	<?php
 
-    /**
-     * Saves the metaboxes.
-     *
-     * @author Nicolas TORION
-     * @since  0.4.1
-     *
-     * @param $comment_id
-     */
-    add_action('save_post', 'save_metaboxes');
-    function save_metaboxes($post_ID) {
-        if (isset($_POST['certification_input'])) {
-            update_post_meta($post_ID, '_certification', esc_html($_POST['certification_input']));
-        }
-        if (isset($_POST['type_input'])) {
-            update_post_meta($post_ID, '_type', esc_html($_POST['type_input']));
-        }
-        if (isset($_POST['language']) && isset($_POST['link_url'])) {
-            $count = count($_POST['language']);
-            $new = array();
-            for ($i = 0; $i < $count; $i++) {
-                $new[$_POST['language'][$i]] = $_POST['link_url'][$i];
-            }
-            update_post_meta($post_ID, '_badge_links', $new);
-        }
-    }
+		foreach ( $badge_links as $link_lang => $link_url ) {
+			echo '<tr>';
+			echo '<td width="0%">';
+			show_all_the_language( $category = "most-important-languages", $language_selected = $link_lang, $multiple = true );
+			echo '</td>';
+			echo '<td width="100%">';
+			echo '<center><input type="text" size="50" name="link_url[]" value="' . $link_url . '" /></center>';
+			echo '</td>';
+			echo '<td width="0%">';
+			echo '<a class="button remove-row" onclick="jQuery(this).RemoveTr();" href="#">Remove</a>';
+			echo '</td>';
+			echo '</tr>';
+		}
+		echo '</tbody></table>';
+		echo '<p><a id="add-row" class="button" href="#">Add another</a></p>';
+		}
 
-    /**
-     * Creates Field of education.
-     *
-     * @author Nicolas TORION
-     * @since  0.6.3
-     */
-    add_action('init', 'create_field_of_education_tax');
-    function create_field_of_education_tax() {
-        $labels = array(
-            'name' => _x('Fields of education', 'taxonomy general name'),
-            'singular_name' => _x('Field of education', 'taxonomy singular name'),
-            'search_items' => __('Search Fields of education'),
-            'all_items' => __('All Fields of education'),
-            'parent_item' => __('Parent Field'),
-            'parent_item_colon' => __('Parent Field:'),
-            'edit_item' => __('Edit Field'),
-            'update_item' => __('Update Field'),
-            'add_new_item' => __('Add New Field'),
-            'new_item_name' => __('New Field Name'),
-            'menu_name' => __('Field of Education'),
-        );
+		/**
+		 * Saves the metaboxes.
+		 *
+		 * @author Nicolas TORION
+		 * @since  0.4.1
+		 *
+		 * @param $comment_id
+		 */
+		add_action( 'save_post', 'save_metaboxes' );
+		function save_metaboxes( $post_ID ) {
+			if ( isset( $_POST['certification_input'] ) ) {
+				update_post_meta( $post_ID, '_certification', esc_html( $_POST['certification_input'] ) );
+			}
+			if ( isset( $_POST['type_input'] ) ) {
+				update_post_meta( $post_ID, '_type', esc_html( $_POST['type_input'] ) );
+			}
+			if ( isset( $_POST['language'] ) && isset( $_POST['link_url'] ) ) {
+				$count = count( $_POST['language'] );
+				$new   = array();
+				for ( $i = 0; $i < $count; $i ++ ) {
+					$new[ $_POST['language'][ $i ] ] = $_POST['link_url'][ $i ];
+				}
+				update_post_meta( $post_ID, '_badge_links', $new );
+			}
+		}
 
-        register_taxonomy(
-            'field_of_education',
-            'badge',
-            array(
-                'hierarchical' => true,
-                'labels' => $labels,
-                'show_ui' => true,
-                'show_admin_column' => true,
-                'query_var' => true,
-                'rewrite' => array('slug' => 'field_of_education'),
-            )
-        );
-    }
+		/**
+		 * Creates languages taxonomy.
+		 *
+		 * @author Nicolas TORION
+		 * @since  0.6.3
+		 */
+		add_action( 'init', 'create_field_of_education_tax' );
+		function create_field_of_education_tax() {
+
+            $labels = array(
+                'name' => _x( 'Fields of education', 'taxonomy general name' ),
+                'singular_name' => _x( 'Field of education', 'taxonomy singular name' ),
+                'search_items' => __( 'Search Fields of education' ),
+                'all_items' => __( 'All Fields of education' ),
+                'parent_item' => __( 'Parent Field' ),
+                'parent_item_colon' => __( 'Parent Field:' ),
+                'edit_item' => __( 'Edit Field' ),
+                'update_item' => __( 'Update Field' ),
+                'add_new_item' => __( 'Add New Field' ),
+                'new_item_name' => __( 'New Field Name' ),
+                'menu_name' => __( 'Field of Education ' ),
+            );
+
+            register_taxonomy(
+                    'field_of_education',
+                    'badge',
+                    array(
+                        'hierarchical' => true,
+                        'labels' => $labels,
+                        'show_ui' => true,
+                        'show_admin_column' => true,
+                        'query_var' => true,
+                        'rewrite' => array( 'slug' => 'field_of_education' ),
+                    )
+            );
+		}
 
 
-    /**
-     * Adds the taxonomy level into the badge custom post type.
-     *
-     * @author Nicolas TORION
-     * @since  0.5
-     *
-     * @param $comment_id
-     */
-    add_action('init', 'add_badge_levels_tax');
-    function add_badge_levels_tax() {
-        register_taxonomy('level', 'badge', array(
-            'label' => __('Level'),
-            'rewrite' => array('slug' => 'level'),
-            'hierarchical' => true,
-        ));
-    }
+		/**
+		 * Adds the taxonomy level into the badge custom post type.
+		 *
+		 * @author Nicolas TORION
+		 * @since  0.5
+		 *
+		 * @param $comment_id
+		 */
+		add_action( 'init', 'add_badge_levels_tax' );
+		function add_badge_levels_tax() {
+			register_taxonomy( 'level', 'badge', array(
+				'label'        => __( 'Level' ),
+				'rewrite'      => array( 'slug' => 'level' ),
+				'hierarchical' => true,
+			) );
+		}
 
-    /**
-     * Load the custom template for a single badge.
-     *
-     * @author Nicolas TORION
-     * @since  0.5
-     *
-     * @param $template_path The path of the template.
-     *
-     * @return $template_path The path of the template.
-     */
-    add_filter('template_include', 'badge_template', 1);
-    function badge_template($template_path) {
-        if (get_post_type() == 'badge') {
-            if (is_single()) {
-                if ($theme_file = locate_template(array('badge_template.php'))) {
-                    $template_path = $theme_file;
-                } else {
-                    $template_path = plugin_dir_path(dirname(__FILE__)) . 'templates/badge_template.php';
-                }
-            }
-        }
+		/**
+		 * Load the custom template for a single badge.
+		 *
+		 * @author Nicolas TORION
+		 * @since  0.5
+		 *
+		 * @param $template_path The path of the template.
+		 *
+		 * @return $template_path The path of the template.
+		 */
+		add_filter( 'template_include', 'badge_template', 1 );
+		function badge_template( $template_path ) {
+			if ( get_post_type() == 'badge' ) {
+				if ( is_single() ) {
+					if ( $theme_file = locate_template( array( 'badge_template.php' ) ) ) {
+						$template_path = $theme_file;
+					} else {
+						$template_path = plugin_dir_path( dirname( __FILE__ ) ) . 'templates/badge_template.php';
+					}
+				}
+			}
 
-        return $template_path;
-    }
+			return $template_path;
+		}
 
-    /**
-     * ...
-     *
-     * @author Nicolas TORION
-     * @since  0.5
-     *
-     * @param $comment_id
-     */
-    add_action('comment_post', 'save_comment_meta_data');
-    function save_comment_meta_data($comment_id) {
-        echo "<script>console.log('save comment');</script>";
-        if ((isset($_POST['language'])) && ($_POST['language'] != '')) {
-            add_comment_meta($comment_id, '_comment_translation_language', $_POST['language']);
-        }
-    }
+		/**
+		 * ...
+		 *
+		 * @author Nicolas TORION
+		 * @since  0.5
+		 *
+		 * @param $comment_id
+		 */
+		add_action( 'comment_post', 'save_comment_meta_data' );
+		function save_comment_meta_data( $comment_id ) {
+			echo "<script>console.log('save comment');</script>";
+			if ( ( isset( $_POST['language'] ) ) && ( $_POST['language'] != '' ) ) {
+				add_comment_meta( $comment_id, '_comment_translation_language', $_POST['language'] );
+			}
+		}
 
-    /**
-     * ...
-     *
-     * @author Nicolas TORION
-     * @since  0.6
-     *
-     * @param $commentdata
-     *
-     * @return $commentdata
-     */
-    add_filter('preprocess_comment', 'verify_comment_meta_data');
-    function verify_comment_meta_data($commentdata) {
-        if (isset($_POST['badge_translation_comment']) && !isset($_POST['language'])) {
-            wp_die(__('Error: You did not add a language. Hit the Back button on your Web browser and resubmit your comment with a language.'));
-        }
+		/**
+		 * ...
+		 *
+		 * @author Nicolas TORION
+		 * @since  0.6
+		 *
+		 * @param $commentdata
+		 *
+		 * @return $commentdata
+		 */
+		add_filter( 'preprocess_comment', 'verify_comment_meta_data' );
+		function verify_comment_meta_data( $commentdata ) {
+			if ( isset( $_POST['badge_translation_comment'] ) && ! isset( $_POST['language'] ) ) {
+				wp_die( __( 'Error: You did not add a language. Hit the Back button on your Web browser and resubmit your comment with a language.' ) );
+			}
 
-        return $commentdata;
-    }
+			return $commentdata;
+		}
 
-    ?>
+	?>
