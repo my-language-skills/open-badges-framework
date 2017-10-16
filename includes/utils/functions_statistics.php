@@ -1,109 +1,109 @@
 <?php
 
-/**
- * This is the statistic page
- *
- * @author Nicolas TORION
- * @since  0.6.2
- */
+	/**
+	 * This is the statistic page
+	 *
+	 * @author Nicolas TORION
+	 * @since  0.6.2
+	 */
 
-function nb_sended_badges() {
-    $result = 0;
-    $users = get_users();
-    foreach ($users as $user) {
-        $badges = get_the_author_meta('user_badges', $user->ID);
-        if ($badges) {
-            $result = $result + count($badges);
-        }
-    }
+	function nb_sended_badges() {
+		$result = 0;
+		$users  = get_users();
+		foreach ( $users as $user ) {
+			$badges = get_the_author_meta( 'user_badges', $user->ID );
+			if ( $badges ) {
+				$result = $result + count( $badges );
+			}
+		}
 
-    return $result;
-}
+		return $result;
+	}
 
-function sended_badges_by_type() {
-    $types = array();
-    $users = get_users();
-    foreach ($users as $user) {
-        $badges = get_the_author_meta('user_badges', $user->ID);
-        if ($badges) {
-            foreach ($badges as $badge) {
-                $types[] = $badge['name'];
-            }
-        }
-    }
-    sort($types);
+	function sended_badges_by_type() {
+		$types = array();
+		$users = get_users();
+		foreach ( $users as $user ) {
+			$badges = get_the_author_meta( 'user_badges', $user->ID );
+			if ( $badges ) {
+				foreach ( $badges as $badge ) {
+					$types[] = $badge['name'];
+				}
+			}
+		}
+		sort( $types );
 
-    $types_counts = array();
-    foreach ($types as $type) {
-        $nb_badges_type = 0;
-        foreach ($users as $user) {
-            $badges = get_the_author_meta('user_badges', $user->ID);
-            if ($badges) {
-                foreach ($badges as $badge) {
-                    if ($badge['name'] == $type) {
-                        $nb_badges_type++;
-                    }
-                }
-            }
-        }
-        $types_counts[$type] = $nb_badges_type;
-    }
+		$types_counts = array();
+		foreach ( $types as $type ) {
+			$nb_badges_type = 0;
+			foreach ( $users as $user ) {
+				$badges = get_the_author_meta( 'user_badges', $user->ID );
+				if ( $badges ) {
+					foreach ( $badges as $badge ) {
+						if ( $badge['name'] == $type ) {
+							$nb_badges_type ++;
+						}
+					}
+				}
+			}
+			$types_counts[ $type ] = $nb_badges_type;
+		}
 
-    return $types_counts;
-}
+		return $types_counts;
+	}
 
-function nb_badges_until_date($date) {
-    $result = 0;
-    $users = get_users();
-    $date_object = new DateTime($date);
-    foreach ($users as $user) {
-        $badges = get_the_author_meta('user_badges', $user->ID);
-        if ($badges) {
-            foreach ($badges as $badge) {
-                if ($badge['date'] != "") {
-                    $badge_date = new DateTime($badge['date']);
-                    if ($badge_date < $date_object) {
-                        $result++;
-                    }
-                }
-            }
-        }
-    }
+	function nb_badges_until_date( $date ) {
+		$result      = 0;
+		$users       = get_users();
+		$date_object = new DateTime( $date );
+		foreach ( $users as $user ) {
+			$badges = get_the_author_meta( 'user_badges', $user->ID );
+			if ( $badges ) {
+				foreach ( $badges as $badge ) {
+					if ( $badge['date'] != "" ) {
+						$badge_date = new DateTime( $badge['date'] );
+						if ( $badge_date < $date_object ) {
+							$result ++;
+						}
+					}
+				}
+			}
+		}
 
-    return $result;
-}
+		return $result;
+	}
 
-function sended_badges_by_dates() {
-    $all_weeks = array();
-    $date = new DateTime('2017-01-01');
-    $current_date = new DateTime(date("Y-m-d"));
+	function sended_badges_by_dates() {
+		$all_weeks    = array();
+		$date         = new DateTime( '2017-01-01' );
+		$current_date = new DateTime( date( "Y-m-d" ) );
 
-    while ($date < $current_date) {
-        $all_weeks[] = $date->format('Y-m-d');
-        $date->modify('+1 week');
-    }
-    $all_weeks[] = $current_date->format('Y-m-d');
+		while ( $date < $current_date ) {
+			$all_weeks[] = $date->format( 'Y-m-d' );
+			$date->modify( '+1 week' );
+		}
+		$all_weeks[] = $current_date->format( 'Y-m-d' );
 
-    $dates_counts = array();
-    foreach ($all_weeks as $week) {
-        $dates_counts[$week] = nb_badges_until_date($week);
-    }
+		$dates_counts = array();
+		foreach ( $all_weeks as $week ) {
+			$dates_counts[ $week ] = nb_badges_until_date( $week );
+		}
 
-    return $dates_counts;
-}
+		return $dates_counts;
+	}
 
-function display_pie_chart($types_counts, $target) {
-    $values_printed = "[[";
-    $nb_elements = count($types_counts);
-    $i = 0;
-    foreach ($types_counts as $type => $count) {
-        $values_printed = $values_printed . '["' . $type . '", ' . $count . ']';
-        if (++$i != $nb_elements) {
-            $values_printed = $values_printed . ",";
-        }
-    }
-    $values_printed = $values_printed . "]]";
-    echo "
+	function display_pie_chart( $types_counts, $target ) {
+		$values_printed = "[[";
+		$nb_elements    = count( $types_counts );
+		$i              = 0;
+		foreach ( $types_counts as $type => $count ) {
+			$values_printed = $values_printed . '["' . $type . '", ' . $count . ']';
+			if ( ++ $i != $nb_elements ) {
+				$values_printed = $values_printed . ",";
+			}
+		}
+		$values_printed = $values_printed . "]]";
+		echo "
   <script>
   jQuery(document).ready(function(){
       var plot1 = jQuery.jqplot('" . $target . "', " . $values_printed . ", {
@@ -126,24 +126,24 @@ function display_pie_chart($types_counts, $target) {
   });
 </script>
   ";
-}
+	}
 
-function display_bar_chart($types_counts, $target, $targer_infos) {
-    $values = "[";
-    $elements = "[";
-    $nb_elements = count($types_counts);
-    $i = 0;
-    foreach ($types_counts as $type => $count) {
-        $values = $values . $count;
-        $elements = $elements . "'" . $type . "'";
-        if (++$i != $nb_elements) {
-            $values = $values . ",";
-            $elements = $elements . ",";
-        }
-    }
-    $values = $values . "]";
-    $elements = $elements . "]";
-    echo "
+	function display_bar_chart( $types_counts, $target, $targer_infos ) {
+		$values      = "[";
+		$elements    = "[";
+		$nb_elements = count( $types_counts );
+		$i           = 0;
+		foreach ( $types_counts as $type => $count ) {
+			$values   = $values . $count;
+			$elements = $elements . "'" . $type . "'";
+			if ( ++ $i != $nb_elements ) {
+				$values   = $values . ",";
+				$elements = $elements . ",";
+			}
+		}
+		$values   = $values . "]";
+		$elements = $elements . "]";
+		echo "
   <script>
   jQuery(document).ready(function(){
         jQuery.jqplot.config.enablePlugins = true;
@@ -177,20 +177,20 @@ function display_bar_chart($types_counts, $target, $targer_infos) {
     });
 </script>
   ";
-}
+	}
 
-function display_plot_chart($dates_counts, $target) {
-    $values_printed = "[";
-    $nb_elements = count($dates_counts);
-    $i = 0;
-    foreach ($dates_counts as $date => $count) {
-        $values_printed = $values_printed . "['" . $date . "', " . $count . "]";
-        if (++$i != $nb_elements) {
-            $values_printed = $values_printed . ",";
-        }
-    }
-    $values_printed = $values_printed . "]";
-    echo '
+	function display_plot_chart( $dates_counts, $target ) {
+		$values_printed = "[";
+		$nb_elements    = count( $dates_counts );
+		$i              = 0;
+		foreach ( $dates_counts as $date => $count ) {
+			$values_printed = $values_printed . "['" . $date . "', " . $count . "]";
+			if ( ++ $i != $nb_elements ) {
+				$values_printed = $values_printed . ",";
+			}
+		}
+		$values_printed = $values_printed . "]";
+		echo '
   <script>
   jQuery(document).ready(function(){
     // Enable plugins like highlighter and cursor by default.
@@ -234,6 +234,6 @@ function display_plot_chart($dates_counts, $target) {
   });
   </script>
   ';
-}
+	}
 
 ?>

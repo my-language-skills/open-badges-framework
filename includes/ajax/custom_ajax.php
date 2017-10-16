@@ -246,84 +246,66 @@
                 load_description("a");
             });
 
-            content = content + '</select><br>';
-            jQuery("#badge_form_a #result_languages_description").html(content);
+            jQuery("#badge_form_b .input-badge").on("click", function () {
+                var tab_name = "_" + jQuery("#badge_form_b .input-badge:checked").val().replace('-', '_') + "_description_languages";
+                var tab = eval(tab_name);
 
-            load_description("a");
-        });
+                var content = '<label for="language_description"><b><?php _e( "Language of badge description* : ", "badges-issuer-for-wp" ) ?></b></label><br /><select name="language_description" id="language_description">';
 
-        /**
-         *
-         *
-         * @author Nicolas TORION
-         * @since  0.6.2
-         */
-        jQuery("#badge_form_b .input-badge").on("click", function () {
-            var tab_name = "_" + jQuery("#badge_form_b .input-badge:checked").val().replace('-', '_') + "_description_languages";
-            var tab = eval(tab_name);
+                tab.forEach(function (lang) {
+                    content = content + '<option value="' + lang + '">' + lang + '</option>';
+                });
 
-            var content = '<label for="language_description"><b><?php _e("Language of badge description* : ", "badges-issuer-for-wp") ?></b></label><br /><select name="language_description" id="language_description">';
+                content = content + '</select><br>';
+                jQuery("#badge_form_b #result_languages_description").html(content);
 
-            tab.forEach(function (lang) {
-                content = content + '<option value="' + lang + '">' + lang + '</option>';
+                load_description("b");
             });
 
-            content = content + '</select><br>';
-            jQuery("#badge_form_b #result_languages_description").html(content);
+            jQuery("#badge_form_c .input-badge").on("click", function () {
+                var tab_name = "_" + jQuery("#badge_form_c .input-badge:checked").val().replace('-', '_') + "_description_languages";
+                var tab = eval(tab_name);
 
-            load_description("b");
-        });
+                var content = '<label for="language_description"><b><?php _e( "Language of badge description* : ", "badges-issuer-for-wp" ) ?></b></label><br /><select name="language_description" id="language_description">';
 
-        /**
-         *
-         *
-         * @author Nicolas TORION
-         * @since  0.6.2
-         */
-        jQuery("#badge_form_c .input-badge").on("click", function () {
-            var tab_name = "_" + jQuery("#badge_form_c .input-badge:checked").val().replace('-', '_') + "_description_languages";
-            var tab = eval(tab_name);
+                tab.forEach(function (lang) {
+                    content = content + '<option value="' + lang + '">' + lang + '</option>';
+                });
 
-            var content = '<label for="language_description"><b><?php _e("Language of badge description* : ", "badges-issuer-for-wp") ?></b></label><br /><select name="language_description" id="language_description">';
+                content = content + '</select><br>';
+                jQuery("#badge_form_c #result_languages_description").html(content);
 
-            tab.forEach(function (lang) {
-                content = content + '<option value="' + lang + '">' + lang + '</option>';
+                load_description("c");
             });
+        </script>
+		<?php
+	}
 
-            content = content + '</select><br>';
-            jQuery("#badge_form_c #result_languages_description").html(content);
+	/**
+	 * AJAX action to save the modifications made on a comment
+	 *
+	 * @author Nicolas TORION
+	 * @since  0.5.1
+	 */
+	add_action( 'CUSTOMAJAX_action_save_comment', 'action_save_comment' );
 
-            load_description("c");
-        });
-    </script>
-    <?php
-}
+	function action_save_comment() {
+		$comment_id   = $_POST['comment_id'];
+		$comment_text = $_POST['comment_text'];
 
-/**
- * AJAX action to save the modifications made on a comment
- *
- * @author Nicolas TORION
- * @since  0.5.1
- */
-add_action('CUSTOMAJAX_action_save_comment', 'action_save_comment');
+		$comment_arr                    = array();
+		$comment_arr['comment_ID']      = $comment_id;
+		$comment_arr['comment_content'] = $comment_text;
 
-function action_save_comment() {
-    $comment_id = $_POST['comment_id'];
-    $comment_text = $_POST['comment_text'];
+		wp_update_comment( $comment_arr );
+	}
 
-    $comment_arr = array();
-    $comment_arr['comment_ID'] = $comment_id;
-    $comment_arr['comment_content'] = $comment_text;
-
-    wp_update_comment($comment_arr);
-}
-
-if (in_array($action, $allowed_actions)) {
-    if (is_user_logged_in()) {
-        do_action('CUSTOMAJAX_' . $action);
-    }
-} else {
-    die('-1');
-}
+	if ( in_array( $action, $allowed_actions ) ) {
+		if ( is_user_logged_in() ) {
+			do_action( 'CUSTOMAJAX_' . $action );
+		}
+	} else {
+		die( '-1' );
+	}
 
 ?>
