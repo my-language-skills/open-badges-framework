@@ -29,10 +29,14 @@ function display_levels_radio_buttons($badges, $context) {
         }
     }
 
-    _e('<b> Level* : </b></br>', 'badges-issuer-for-wp');
+    echo '<hr class="sep-sendbadge">';
+
     foreach ($levels as $l) {
-        echo '<label for="level_' . $l . '">' . $l . ' </label><input type="radio" class="level" name="level" id="level_' . $l . '" value="' . $l . '"> ';
+        echo '<div class="rdi-tab">';
+        echo '<label class="radio-label" for="level_' . $l . '">' . $l . ' </label><input type="radio" class="radio-input level" name="level" id="level_' . $l . '" value="' . $l . '"> ';
+        echo '</div>';
     }
+
     echo '<br />';
 }
 
@@ -47,20 +51,21 @@ function display_levels_radio_buttons($badges, $context) {
  */
 function show_all_the_language($p_parent = "") {
 
-    _e('<label for="language"><b> Field of Education* : </b></label>', 'badges-issuer-for-wp');
+
+    $selectionContOpen = '<div class="select-language"><select name="language" id="language">';
+    $selectionContClose = '</select></div>';
 
     if (have_no_children()) {
         $languages = get_languages();
 
-        echo '<select name="language';
-        echo '" id="language">';
+        echo $selectionContOpen;
 
         foreach ($languages as $language) {
             echo '<option value="' . $language->term_id . '">';
             echo $language->name . '</option>';
         }
 
-        echo '</select>';
+        echo $selectionContClose;
 
     } else {
         //If there parent with children
@@ -70,8 +75,10 @@ function show_all_the_language($p_parent = "") {
 
             $parents = get_languages();
             $actual_parent = key($parents);
+            display_parents($actual_parent);
 
-            echo '<select name="language" id="language">';
+            echo $selectionContOpen;
+
             foreach ($parents as $parent) {
 
                 foreach ($parent as $language) {
@@ -81,37 +88,38 @@ function show_all_the_language($p_parent = "") {
                 }
                 break;
             }
+            echo $selectionContClose;
 
-            echo '</select>';
-            display_parents($actual_parent);
         } else if ($p_parent === "all_field") {
             // Display all the child
 
             $parents = get_languages();
+            display_parents($p_parent);
 
-            echo '<select name="language" id="language">';
+            echo $selectionContOpen;
+
             foreach ($parents as $parent) {
                 foreach ($parent as $language) {
                     echo '<option value="' . $language->term_id . '">';
                     echo $language->name . '</option>';
                 }
             }
-            echo '</select>';
-            display_parents($p_parent);
+            echo $selectionContClose;
 
         } else {
             // Display the children of the right parent
 
             $parents = get_languages();
+            display_parents($p_parent);
 
-            echo '<select name="language" id="language">';
+            echo $selectionContOpen;
 
             foreach ((array)$parents[$p_parent] as $language) {
                 echo '<option value="' . $language->term_id . '">';
                 echo $language->name . '</option>';
             }
-            echo '</select>';
-            display_parents($p_parent);
+
+            echo $selectionContClose;
 
         }
 
@@ -127,8 +135,10 @@ function show_all_the_language($p_parent = "") {
  * @param string $p_parent permit to understand the active parent
  */
 function display_parents($p_parent = "") {
-    echo "&nbsp&nbsp&nbsp&nbsp&nbsp |";
     $parents = get_parent_categories();
+
+    echo '<div class="btns-parent-field">';
+
     foreach ($parents as $parent) {
         if ($parent[2] == $p_parent) {
             echo '<a href="#" class="btn btn-default btn-xs display_parent_categories active" id="' . $parent[2] . '">Display ' . $parent[1] . '</a>';
@@ -142,7 +152,7 @@ function display_parents($p_parent = "") {
     } else {
         echo '<a class="btn btn-default btn-xs display_parent_categories" id="all_field">Display Field</a>';
     }
-
+    echo '</div> <hr class="sep-sendbadge">';
 }
 
 /**

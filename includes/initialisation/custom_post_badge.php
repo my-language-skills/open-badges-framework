@@ -38,9 +38,9 @@ function register_badge() {
 
         'public' => true,
         'menu_position' => 15,
-        'supports' => array('title', 'editor', 'thumbnail'),
+        'supports' => array('title','editor','thumbnail','comments'),
         'taxonomies' => array(''),
-        'menu_icon' => plugins_url('../../assets/icon.png', __FILE__),
+        'menu_icon' => 'dashicons-shield-alt',
         'has_archive' => true
     ));
 }
@@ -160,11 +160,11 @@ function display_add_link() {
  * @since  0.6.1
  */
 function meta_box_links($post) {
-if (get_post_meta($post->ID, '_badge_links', true)) {
-    $badge_links = get_post_meta($post->ID, '_badge_links', true);
-} else {
-    $badge_links = array();
-}
+    if (get_post_meta($post->ID, '_badge_links', true)) {
+        $badge_links = get_post_meta($post->ID, '_badge_links', true);
+    } else {
+        $badge_links = array();
+    }
 ?>
 <script type="text/javascript">
     jQuery(document).ready(function ($) {
@@ -237,23 +237,13 @@ if (get_post_meta($post->ID, '_badge_links', true)) {
     }
 
     /**
-     * Creates languages taxonomy.
+     * Creates Field of education.
      *
      * @author Nicolas TORION
      * @since  0.6.3
      */
     add_action('init', 'create_field_of_education_tax');
     function create_field_of_education_tax() {
-        /*register_taxonomy(
-                'field_of_education',
-                'badge',
-                array(
-                        'label'        => __( 'Field of education' ),
-                        'rewrite'      => array( 'slug' => 'field_of_education' ),
-
-                    )
-        );*/
-
         $labels = array(
             'name' => _x('Fields of education', 'taxonomy general name'),
             'singular_name' => _x('Field of education', 'taxonomy singular name'),
@@ -265,7 +255,7 @@ if (get_post_meta($post->ID, '_badge_links', true)) {
             'update_item' => __('Update Field'),
             'add_new_item' => __('Add New Field'),
             'new_item_name' => __('New Field Name'),
-            'menu_name' => __('Field'),
+            'menu_name' => __('Field of Education'),
         );
 
         register_taxonomy(

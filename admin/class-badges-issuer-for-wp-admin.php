@@ -71,6 +71,9 @@ class Badges_Issuer_For_Wp_Admin {
      */
     public function enqueue_scripts() {
         wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/badges-issuer-for-wp-admin.js', array('jquery'), $this->version, false);
+        wp_enqueue_script("jQuery-validation", 'http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js', array('jquery'), $this->version, false);
+        wp_enqueue_script("steps-form", plugin_dir_url(__FILE__) . 'js/jquery.steps.min.js', array('jquery'), $this->version, false);
+
         wp_enqueue_script("jquery");
         wp_enqueue_script('jquery-ui');
         wp_enqueue_script('jquery-ui-tabs');

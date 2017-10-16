@@ -173,24 +173,26 @@ function action_select_badge() {
         return strcmp($a->post_title, $b->post_title);
     });
 
-    _e('<br /><b>Badge* : </b><br>', 'badges-issuer-for-wp');
+
     $first_certified_badge = true;
     echo '<div style="display:block; width:100%; overflow:hidden;">';
     foreach ($badges_corresponding as $badge) {
         if (get_post_meta($badge->ID, '_certification', true) == "not_certified") {
-            echo '<div style="float:left;">';
-            echo '<center><input type="radio" name="input_badge_name" class="input-badge input-hidden" id="' . $_POST['form'] . $badge->post_title . '" value="' . $badge->post_name . '"/><label for="' . $_POST['form'] . $badge->post_title . '"><img src="';
+            echo '<center><input type="radio" name="input_badge_name" class="input-badge input-hidden" id="' . $_POST['form'] . $badge->post_title . '" value="' . $badge->post_name . '"/>
+            <label for="' . $_POST['form'] . $badge->post_title . '">
+            <img src="';
             if (get_the_post_thumbnail_url($badge->ID)) {
                 echo get_the_post_thumbnail_url($badge->ID, 'thumbnail');
-                echo '" width="40px" height="40px" /></label>';
+                echo '" /></label>';
                 echo '</br><b>' . $badge->post_title . '</b></center>';
             } else {
                 echo plugins_url('../../assets/default-badge-thumbnail.png', __FILE__);
                 echo '" width="40px" height="40px" /></label></center>';
             }
             echo "</div>";
+
         } elseif (get_post_meta($badge->ID, '_certification', true) == "certified") {
-            echo '<div style="clear:left; float:left;">';
+            echo '<div">';
             echo '<br><b>Certified Badges : </b><br>';
             if ($first_certified_badge) {
                 $first_certified_badge = false;
@@ -205,7 +207,6 @@ function action_select_badge() {
                 echo plugins_url('../../assets/default-badge-thumbnail.png', __FILE__);
                 echo '" width="40px" height="40px" /></label>';
             }
-            echo "</div>";
         }
     }
     echo "</div>";
@@ -247,7 +248,7 @@ function action_select_badge() {
             var tab_name = "_" + jQuery("#badge_form_a .input-badge:checked").val().replace('-', '_') + "_description_languages";
             var tab = eval(tab_name);
 
-            var content = '<label for="language_description"><b><?php _e("Language of badge description1* : ", "badges-issuer-for-wp") ?></b></label><br /><select name="language_description" id="language_description">';
+            var content = '<label for="language_description"></label><br /><select name="language_description" id="language_description">';
             tab.forEach(function (lang) {
                 content = content + '<option value="' + lang + '">' + lang + '</option>';
             });
