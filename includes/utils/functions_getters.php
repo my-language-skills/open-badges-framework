@@ -264,6 +264,7 @@ function get_all_classes() {
  *
  * @author Nicolas TORION
  * @since  0.3
+ * @since  0.6.4 name changed
  * @return $classes Array of all classes zero.
  */
 function get_all_classes_zero() {

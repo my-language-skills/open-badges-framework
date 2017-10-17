@@ -49,7 +49,7 @@ function display_levels_radio_buttons($badges, $context) {
  *
  * @param string $parent permit to display the child taxonomy of the parent taxonomy (category).
  */
-function show_all_the_language($p_parent = "") {
+function show_all_the_language($p_parent = "", $form = "") {
 
 
     $selectionContOpen = '<div class="select-language"><select name="language" id="language">';

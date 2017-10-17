@@ -35,7 +35,8 @@ $allowed_actions = array(
     'action_save_metabox_students',
     'action_languages_form',
     'action_save_comment',
-    'action_select_description_preview'
+    'action_select_description_preview',
+    'send_message_badge'
 );
 
 /**
@@ -105,10 +106,6 @@ function action_select_class() {
         }
     }
 
-    _e('<b>Class* : </b><br />', 'badges-issuer-for-wp');
-    if (count($classes) > 1) {
-        echo '<a href="#" onclick="javascript:reset_input_radio()">Reset class selection</a><br />';
-    }
 
     $settings_id_links = get_settings_links();
 
@@ -129,8 +126,9 @@ function action_select_class() {
             echo '</br><b>Default Class:</b>';
             foreach ($classes as $class) {
                 if ($class->post_type == 'class') {
-                    echo '<span style="margin-left:20px;"></span>';
+                    echo '<div class="rdi-tab">';
                     echo '<label  for="class_' . $class->ID . '">' . $class->post_title . ' </label><input name="class_for_student" id="class_' . $class->ID . '" type="' . $input_type . '" value="' . $class->ID . '"/>';
+                    echo '</div>';
                 }
             }
             echo '</br></br>';
@@ -155,6 +153,7 @@ function action_select_class() {
  *
  * @author Nicolas TORION
  * @since  0.6.2
+ * @since  0.6.4 recoded and made it easy
  */
 add_action('CUSTOMAJAX_action_select_badge', 'action_select_badge');
 function action_select_badge() {
@@ -180,7 +179,7 @@ function action_select_badge() {
         if (get_post_meta($badge->ID, '_certification', true) == "not_certified") {
             echo '<center><input type="radio" name="input_badge_name" class="input-badge input-hidden" id="' . $_POST['form'] . $badge->post_title . '" value="' . $badge->post_name . '"/>
             <label for="' . $_POST['form'] . $badge->post_title . '">
-            <img src="';
+            <img id="" class="img-send-badge" src="';
             if (get_the_post_thumbnail_url($badge->ID)) {
                 echo get_the_post_thumbnail_url($badge->ID, 'thumbnail');
                 echo '" /></label>';
@@ -198,7 +197,9 @@ function action_select_badge() {
                 $first_certified_badge = false;
             }
 
-            echo '<center><input type="radio" name="input_badge_name" class="input-badge input-hidden" id="' . $_POST['form'] . $badge->post_title . '" value="' . $badge->post_name . '"/><label for="' . $_POST['form'] . $badge->post_title . '"><img src="';
+            echo '<center><input type="radio" name="input_badge_name" class="input-badge input-hidden" id="' . $_POST['form'] . $badge->post_title . '" value="' . $badge->post_name . '"/>
+                    <label for="' . $_POST['form'] . $badge->post_title . '">
+                    <img class="img-send-badge" src="';
             if (get_the_post_thumbnail_url($badge->ID)) {
                 echo get_the_post_thumbnail_url($badge->ID, 'thumbnail');
                 echo '" width="40px" height="40px" /></label>';
@@ -238,70 +239,70 @@ function action_select_badge() {
         }
         ?>
 
-        /**
-         *
-         *
-         * @author Nicolas TORION
-         * @since  0.6.2
-         */
-        jQuery("#badge_form_a .input-badge").on("click", function () {
-            var tab_name = "_" + jQuery("#badge_form_a .input-badge:checked").val().replace('-', '_') + "_description_languages";
-            var tab = eval(tab_name);
-
-            var content = '<label for="language_description"></label><br /><select name="language_description" id="language_description">';
-            tab.forEach(function (lang) {
-                content = content + '<option value="' + lang + '">' + lang + '</option>';
-            });
-
-            content = content + '</select><br>';
-            jQuery("#badge_form_a #result_languages_description").html(content);
-
-            load_description("a");
-        });
-
-        /**
-         *
-         *
-         * @author Nicolas TORION
-         * @since  0.6.2
-         */
-        jQuery("#badge_form_b .input-badge").on("click", function () {
-            var tab_name = "_" + jQuery("#badge_form_b .input-badge:checked").val().replace('-', '_') + "_description_languages";
-            var tab = eval(tab_name);
-
-            var content = '<label for="language_description"><b><?php _e("Language of badge description* : ", "badges-issuer-for-wp") ?></b></label><br /><select name="language_description" id="language_description">';
-
-            tab.forEach(function (lang) {
-                content = content + '<option value="' + lang + '">' + lang + '</option>';
-            });
-
-            content = content + '</select><br>';
-            jQuery("#badge_form_b #result_languages_description").html(content);
-
-            load_description("b");
-        });
-
-        /**
-         *
-         *
-         * @author Nicolas TORION
-         * @since  0.6.2
-         */
-        jQuery("#badge_form_c .input-badge").on("click", function () {
-            var tab_name = "_" + jQuery("#badge_form_c .input-badge:checked").val().replace('-', '_') + "_description_languages";
-            var tab = eval(tab_name);
-
-            var content = '<label for="language_description"><b><?php _e("Language of badge description* : ", "badges-issuer-for-wp") ?></b></label><br /><select name="language_description" id="language_description">';
-
-            tab.forEach(function (lang) {
-                content = content + '<option value="' + lang + '">' + lang + '</option>';
-            });
-
-            content = content + '</select><br>';
-            jQuery("#badge_form_c #result_languages_description").html(content);
-
-            load_description("c");
-        });
+//        /**
+//         *
+//         *
+//         * @author Nicolas TORION
+//         * @since  0.6.2
+//         */
+//        jQuery("#badge_form_a .input-badge").on("click", function () {
+//            var tab_name = "_" + jQuery("#badge_form_a .input-badge:checked").val().replace('-', '_') + "_description_languages";
+//            var tab = eval(tab_name);
+//
+//            var content = '<label for="language_description"></label><br /><select name="language_description" id="language_description">';
+//            tab.forEach(function (lang) {
+//                content = content + '<option value="' + lang + '">' + lang + '</option>';
+//            });
+//
+//            content = content + '</select><br>';
+//            jQuery("#badge_form_a #result_languages_description").html(content);
+//
+//            load_description("a");
+//        });
+//
+//        /**
+//         *
+//         *
+//         * @author Nicolas TORION
+//         * @since  0.6.2
+//         */
+//        jQuery("#badge_form_b .input-badge").on("click", function () {
+//            var tab_name = "_" + jQuery("#badge_form_b .input-badge:checked").val().replace('-', '_') + "_description_languages";
+//            var tab = eval(tab_name);
+//
+//            var content = '<label for="language_description"><b><?php //_e("Language of badge description* : ", "badges-issuer-for-wp") ?>//</b></label><br /><select name="language_description" id="language_description">';
+//
+//            tab.forEach(function (lang) {
+//                content = content + '<option value="' + lang + '">' + lang + '</option>';
+//            });
+//
+//            content = content + '</select><br>';
+//            jQuery("#badge_form_b #result_languages_description").html(content);
+//
+//            load_description("b");
+//        });
+//
+//        /**
+//         *
+//         *
+//         * @author Nicolas TORION
+//         * @since  0.6.2
+//         */
+//        jQuery("#badge_form_c .input-badge").on("click", function () {
+//            var tab_name = "_" + jQuery("#badge_form_c .input-badge:checked").val().replace('-', '_') + "_description_languages";
+//            var tab = eval(tab_name);
+//
+//            var content = '<label for="language_description"><b><?php //_e("Language of badge description* : ", "badges-issuer-for-wp") ?>//</b></label><br /><select name="language_description" id="language_description">';
+//
+//            tab.forEach(function (lang) {
+//                content = content + '<option value="' + lang + '">' + lang + '</option>';
+//            });
+//
+//            content = content + '</select><br>';
+//            jQuery("#badge_form_c #result_languages_description").html(content);
+//
+//            load_description("c");
+//        });
     </script>
     <?php
 }
@@ -325,6 +326,80 @@ function action_save_comment() {
     wp_update_comment($comment_arr);
 }
 
+/**
+ * AJAX action to save the modifications made on a comment
+ *
+ * @author Nicolas TORION
+ * @since  0.5.1
+ */
+add_action('CUSTOMAJAX_send_message_badge', 'send_message_badge');
+
+function send_message_badge() {
+    echo isset($_POST['comment']);
+    if (isset($_POST['level']) /*&& isset($_POST['sender'])*/ && isset($_POST['input_badge_name']) && isset($_POST['language']) /*&& isset($_POST['mail'])*/ && isset($_POST['comment']) && isset($_POST['language_description'])) {
+
+        $url_json_files = content_url('uploads/badges-issuer/json/');
+        $path_dir_json_files = plugin_dir_path(dirname(__FILE__)) . '../../../uploads/badges-issuer/json/';
+        echo $path_dir_json_files;
+        $badges = get_all_badges();
+        $badge_others_items = get_badge($_POST['input_badge_name'], $badges, $_POST['language_description']);
+        $certification = get_post_meta($badge_others_items['id'], '_certification', true);
+
+        $mails = $_POST['mail'];
+        $mails_list = explode("\n", $mails);
+
+        global $current_user;
+        wp_get_current_user();
+
+        $class = null;
+        if (in_array("teacher", $current_user->roles) || in_array("academy", $current_user->roles) || in_array("administrator", $current_user->roles) || in_array("editor", $current_user->roles)) {
+            if (isset($_POST['class_for_student'])) {
+                $class = $_POST['class_for_student'];
+            } elseif ($_POST['class_zero_teacher']) {
+                $class = $_POST['class_zero_teacher'];
+            }
+        }
+
+        $notsent = array();
+
+        $badge = new Badge($badge_others_items['name'], $_POST['level'], $_POST['language'], $certification, $_POST['comment'], $badge_others_items['description'], $_POST['language_description'], $badge_others_items['image'], $url_json_files, $path_dir_json_files);
+
+        foreach ($mails_list as $mail) {
+            $mail = str_replace("\r", "", $mail);
+
+            $badge->create_json_files($mail);
+
+
+            if (!$badge->send_mail($mail, $class)) {
+                $notsent[] = $mail;
+            } else {
+                if ($_POST['sender'] != "SELF") {
+                    $badge->add_student_to_class_zero($mail);
+                }
+
+                $badge->add_student_to_class($mail, $class);
+                $badge->add_badge_to_user_profile($mail, $_POST['sender'], $class);
+            }
+        }
+
+        if (sizeof($notsent) > 0) {
+            $message = "Badge not sent to these persons : ";
+            foreach ($notsent as $notsent_mail) {
+                $message = $message . $notsent_mail . " ";
+            }
+            echo "1";
+            display_error_message($message);
+        } else {
+            echo "0";
+            display_success_message(__("Badge sent to all persons.", 'badges-issuer-for-wp'));
+        }
+    } else {
+        echo 2;
+    }
+
+}
+
+
 if (in_array($action, $allowed_actions)) {
     if (is_user_logged_in()) {
         do_action('CUSTOMAJAX_' . $action);
@@ -332,5 +407,64 @@ if (in_array($action, $allowed_actions)) {
 } else {
     die('-1');
 }
+
+
+/*
+// Traitement of form, a mail is sent to the student.
+if (isset($_POST['level']) && isset($_POST['sender']) && isset($_POST['input_badge_name']) && isset($_POST['language']) && isset($_POST['mail']) && isset($_POST['comment']) && isset($_POST['language_description'])) {
+
+    $url_json_files = content_url('uploads/badges-issuer/json/');
+    $path_dir_json_files = plugin_dir_path(dirname(__FILE__)) . '../../../uploads/badges-issuer/json/';
+
+    $badges = get_all_badges();
+    $badge_others_items = get_badge($_POST['input_badge_name'], $badges, $_POST['language_description']);
+    $certification = get_post_meta($badge_others_items['id'], '_certification', true);
+
+    $mails = $_POST['mail'];
+    $mails_list = explode("\n", $mails);
+
+    global $current_user;
+    wp_get_current_user();
+
+    $class = null;
+    if (in_array("teacher", $current_user->roles) || in_array("academy", $current_user->roles) || in_array("administrator", $current_user->roles) || in_array("editor", $current_user->roles)) {
+        if (isset($_POST['class_for_student'])) {
+            $class = $_POST['class_for_student'];
+        } elseif ($_POST['class_zero_teacher']) {
+            $class = $_POST['class_zero_teacher'];
+        }
+    }
+
+    $notsent = array();
+
+    $badge = new Badge($badge_others_items['name'], $_POST['level'], $_POST['language'], $certification, $_POST['comment'], $badge_others_items['description'], $_POST['language_description'], $badge_others_items['image'], $url_json_files, $path_dir_json_files);
+
+    foreach ($mails_list as $mail) {
+        $mail = str_replace("\r", "", $mail);
+
+        $badge->create_json_files($mail);
+
+        if (!$badge->send_mail($mail, $class)) {
+            $notsent[] = $mail;
+        } else {
+            if ($_POST['sender'] != "SELF") {
+                $badge->add_student_to_class_zero($mail);
+            }
+
+            $badge->add_student_to_class($mail, $class);
+            $badge->add_badge_to_user_profile($mail, $_POST['sender'], $class);
+        }
+    }
+
+    if (sizeof($notsent) > 0) {
+        $message = "Badge not sent to these persons : ";
+        foreach ($notsent as $notsent_mail) {
+            $message = $message . $notsent_mail . " ";
+        }
+        display_error_message($message);
+    } else {
+        display_success_message(__("Badge sent to all persons.", 'badges-issuer-for-wp'));
+    }
+}*/
 
 ?>

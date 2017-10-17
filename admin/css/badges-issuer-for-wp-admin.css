@@ -38,7 +38,10 @@
     border-color: #ccc;
 }
 
-
+.try-center{
+    margin-left: auto;
+    margin-right: auto;
+}
 
 /* ===========================
     SEND badge WIZARD
@@ -114,7 +117,7 @@
 .wizard > .steps a:active {
     display: block;
     width: auto;
-    margin: 0 0.5em 0.5em;
+    margin: 0.5em 0.5em;
     padding: 1em 1em;
     text-decoration: none;
 
@@ -149,8 +152,7 @@
 .wizard > .steps .error a,
 .wizard > .steps .error a:hover,
 .wizard > .steps .error a:active {
-    background: #ff3111;
-    color: #fff;
+    background-color: #ea0000;
 }
 
 .wizard > .content {
@@ -342,4 +344,34 @@ section.current {
 
 fieldset {
     text-align: center;
+}
+
+/* ### KIND of BADGE ###
+
+.input-hidden {
+    position: absolute;
+    left: -9999px
+}
+*/
+
+.input-badge:checked + label > .img-send-badge {
+    border: 1px solid #fff;
+    box-shadow: 0 0 0px 4px red;
+}
+
+.input-badge + label > .img-send-badge {
+    border: 1px solid transparent;
+    width: 70px;
+    height: 70px;
+    transition: 500ms all;
+    border-radius: 50%;
+    margin: 5px;
+}
+
+.message {
+    padding: 10px;
+    font-size: 20px;
+    position: absolute;
+    top: 0;
+    color: #FFF;
 }

@@ -153,7 +153,7 @@ class Badge
    * Sends a mail to the person who receive the badge, to give her the link of the page where she can get his badge.
    *
    * @author Nicolas TORION
-   * @since 0.6.3
+   *@since 0.6.3
    * @param $receiver The mail of the person who will receive the Badge.
    * @param $class_id The ID of the class in which the student is.
    * @return A boolean to know if the mail has been sent.
@@ -237,7 +237,7 @@ class Badge
     $headers .= "Content-type: text/html; charset=utf-8"."\n";
     $headers .= "Reply-To: mylanguageskills@hotmail.com\n";
 
-    return mail($receiver, $subject, $message, $headers); //Sending the emails
+    return 1;//mail($receiver, $subject, $message, $headers); //Sending the emails
   }
 
   function console_log($content) {
