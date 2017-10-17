@@ -346,13 +346,13 @@ fieldset {
     text-align: center;
 }
 
-/* ### KIND of BADGE ###
+/* ### KIND of BADGE ### */
 
 .input-hidden {
     position: absolute;
     left: -9999px
 }
-*/
+
 
 .input-badge:checked + label > .img-send-badge {
     border: 1px solid #fff;

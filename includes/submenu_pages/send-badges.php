@@ -133,7 +133,12 @@ function tab_self() {
                 <section>
                     <div class="section-container">
                         <div class="title-form"><h2>Select your field of education:</h2></div>
-                        <div id=""><?php show_all_the_language("", "b"); ?></div>
+                        <?php
+                        $parents = get_languages();
+                        $actual_parent = key($parents);
+                        display_parents($actual_parent);
+                        ?>
+                        <div id="field_edu_a"><?php show_all_the_language("", "a"); ?></div>
                     </div>
                 </section>
                 <h3>Level</h3>
@@ -163,9 +168,6 @@ function tab_self() {
                         <hr class="sep-sendbadge">
                         <div id="result_languages_description"></div>
                         <div id="result_preview_description"></div>
-
-                        <input type="hidden" name="mail" value="<?php echo $current_user->user_email; ?>"/>
-                        <input type="hidden" name="sender" value="SELF"/>
                     </div>
                 </section>
 
@@ -216,7 +218,12 @@ function tab_issue() {
                 <section>
                     <div class="section-container">
                         <div class="title-form"><h2>Select your field of education:</h2></div>
-                        <div id=""><?php show_all_the_language("", "b"); ?></div>
+                        <?php
+                        $parents = get_languages();
+                        $actual_parent = key($parents);
+                        display_parents($actual_parent);
+                        ?>
+                        <div id="field_edu_b"><?php show_all_the_language("", "b"); ?></div>
                     </div>
                 </section>
                 <h3>Level</h3>
@@ -233,8 +240,14 @@ function tab_issue() {
                         <div class="title-form"><h2>Select the level:</h2></div>
                         <hr class="sep-sendbadge">
                         <div id="select_badge">
-                            <img src="<?php echo plugins_url('../../assets/default-badge.png', __FILE__); ?>"
-                                 width="72px" height="72px"/>
+                            <input type="radio" name="input_badge_name" class="input-badge input-hidden" id="form_a_A1"
+                                   value="a1">
+                            <label for="form_a_A1">
+                                <img id="img-send-badge"
+                                     src="<?php echo plugins_url('../../assets/default-badge.png', __FILE__); ?>">
+                            </label>
+                            <br>
+                            <b>A1</b>
                         </div>
                     </div>
                 </section>

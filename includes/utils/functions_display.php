@@ -74,8 +74,6 @@ function show_all_the_language($p_parent = "", $form = "") {
             // Display the default parent
 
             $parents = get_languages();
-            $actual_parent = key($parents);
-            display_parents($actual_parent);
 
             echo $selectionContOpen;
 
@@ -94,7 +92,6 @@ function show_all_the_language($p_parent = "", $form = "") {
             // Display all the child
 
             $parents = get_languages();
-            display_parents($p_parent);
 
             echo $selectionContOpen;
 
@@ -110,7 +107,6 @@ function show_all_the_language($p_parent = "", $form = "") {
             // Display the children of the right parent
 
             $parents = get_languages();
-            display_parents($p_parent);
 
             echo $selectionContOpen;
 
@@ -141,14 +137,14 @@ function display_parents($p_parent = "") {
 
     foreach ($parents as $parent) {
         if ($parent[2] == $p_parent) {
-            echo '<a href="#" class="btn btn-default btn-xs display_parent_categories active" id="' . $parent[2] . '">Display ' . $parent[1] . '</a>';
+            echo '<a class="btn btn-default btn-xs display_parent_categories active" id="' . $parent[2] . '">Display ' . $parent[1] . '</a>';
         } else {
-            echo '<a href="#" class="btn btn-default btn-xs display_parent_categories" id="' . $parent[2] . '">Display ' . $parent[1] . '</a>';
+            echo '<a class="btn btn-default btn-xs display_parent_categories" id="' . $parent[2] . '">Display ' . $parent[1] . '</a>';
         }
     }
     // Display the link to show all the languages
     if ($p_parent === "all_field") {
-        echo '<a href="#" class="btn btn-default btn-xs display_parent_categories active" id="all_field">Display all Fields</a>';
+        echo '<a class="btn btn-default btn-xs display_parent_categories active" id="all_field">Display all Fields</a>';
     } else {
         echo '<a class="btn btn-default btn-xs display_parent_categories" id="all_field">Display Field</a>';
     }

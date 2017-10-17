@@ -174,19 +174,18 @@ function action_select_badge() {
 
 
     $first_certified_badge = true;
-    echo '<div style="display:block; width:100%; overflow:hidden;">';
     foreach ($badges_corresponding as $badge) {
         if (get_post_meta($badge->ID, '_certification', true) == "not_certified") {
-            echo '<center><input type="radio" name="input_badge_name" class="input-badge input-hidden" id="' . $_POST['form'] . $badge->post_title . '" value="' . $badge->post_name . '"/>
-            <label for="' . $_POST['form'] . $badge->post_title . '">
-            <img id="" class="img-send-badge" src="';
+            echo '<input type="radio" name="input_badge_name" class="input-badge input-hidden" id="' . $_POST['form'] . $badge->post_title . '" value="' . $badge->post_name . '"/>';
+            echo '<label for="' . $_POST['form'] . $badge->post_title . '">';
+            echo '<img class="img-send-badge" src="';
             if (get_the_post_thumbnail_url($badge->ID)) {
                 echo get_the_post_thumbnail_url($badge->ID, 'thumbnail');
                 echo '" /></label>';
-                echo '</br><b>' . $badge->post_title . '</b></center>';
+                echo '</br><b>' . $badge->post_title . '</b>';
             } else {
                 echo plugins_url('../../assets/default-badge-thumbnail.png', __FILE__);
-                echo '" width="40px" height="40px" /></label></center>';
+                echo '" width="40px" height="40px" /></label>';
             }
             echo "</div>";
 
@@ -197,20 +196,19 @@ function action_select_badge() {
                 $first_certified_badge = false;
             }
 
-            echo '<center><input type="radio" name="input_badge_name" class="input-badge input-hidden" id="' . $_POST['form'] . $badge->post_title . '" value="' . $badge->post_name . '"/>
+            echo '<input onclick="jQuery(showDesc());"  type="radio" name="input_badge_name" class="input-badge input-hidden" id="' . $_POST['form'] . $badge->post_title . '" value="' . $badge->post_name . '"/>
                     <label for="' . $_POST['form'] . $badge->post_title . '">
                     <img class="img-send-badge" src="';
             if (get_the_post_thumbnail_url($badge->ID)) {
                 echo get_the_post_thumbnail_url($badge->ID, 'thumbnail');
                 echo '" width="40px" height="40px" /></label>';
-                echo '</br><b>' . $badge->post_title . '</b></center>';
+                echo '</br><b>' . $badge->post_title . '</b>';
             } else {
                 echo plugins_url('../../assets/default-badge-thumbnail.png', __FILE__);
                 echo '" width="40px" height="40px" /></label>';
             }
         }
     }
-    echo "</div>";
 
     ?>
     <script>
@@ -239,71 +237,6 @@ function action_select_badge() {
         }
         ?>
 
-//        /**
-//         *
-//         *
-//         * @author Nicolas TORION
-//         * @since  0.6.2
-//         */
-//        jQuery("#badge_form_a .input-badge").on("click", function () {
-//            var tab_name = "_" + jQuery("#badge_form_a .input-badge:checked").val().replace('-', '_') + "_description_languages";
-//            var tab = eval(tab_name);
-//
-//            var content = '<label for="language_description"></label><br /><select name="language_description" id="language_description">';
-//            tab.forEach(function (lang) {
-//                content = content + '<option value="' + lang + '">' + lang + '</option>';
-//            });
-//
-//            content = content + '</select><br>';
-//            jQuery("#badge_form_a #result_languages_description").html(content);
-//
-//            load_description("a");
-//        });
-//
-//        /**
-//         *
-//         *
-//         * @author Nicolas TORION
-//         * @since  0.6.2
-//         */
-//        jQuery("#badge_form_b .input-badge").on("click", function () {
-//            var tab_name = "_" + jQuery("#badge_form_b .input-badge:checked").val().replace('-', '_') + "_description_languages";
-//            var tab = eval(tab_name);
-//
-//            var content = '<label for="language_description"><b><?php //_e("Language of badge description* : ", "badges-issuer-for-wp") ?>//</b></label><br /><select name="language_description" id="language_description">';
-//
-//            tab.forEach(function (lang) {
-//                content = content + '<option value="' + lang + '">' + lang + '</option>';
-//            });
-//
-//            content = content + '</select><br>';
-//            jQuery("#badge_form_b #result_languages_description").html(content);
-//
-//            load_description("b");
-//        });
-//
-//        /**
-//         *
-//         *
-//         * @author Nicolas TORION
-//         * @since  0.6.2
-//         */
-//        jQuery("#badge_form_c .input-badge").on("click", function () {
-//            var tab_name = "_" + jQuery("#badge_form_c .input-badge:checked").val().replace('-', '_') + "_description_languages";
-//            var tab = eval(tab_name);
-//
-//            var content = '<label for="language_description"><b><?php //_e("Language of badge description* : ", "badges-issuer-for-wp") ?>//</b></label><br /><select name="language_description" id="language_description">';
-//
-//            tab.forEach(function (lang) {
-//                content = content + '<option value="' + lang + '">' + lang + '</option>';
-//            });
-//
-//            content = content + '</select><br>';
-//            jQuery("#badge_form_c #result_languages_description").html(content);
-//
-//            load_description("c");
-//        });
-    </script>
     <?php
 }
 

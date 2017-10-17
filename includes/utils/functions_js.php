@@ -29,59 +29,6 @@ function js_form() {
 
     </script>
 
-
-    <script>
-        /**
-         *  (Only in the tab ISSUE of the page send-badge.php) This function is called when the user select the class by
-         *  clicking the class .select_class .
-         *
-         * @author Alessandro RICCARDI
-         * @since 0.6.3
-         *
-         * @param form
-         */
-        function load_classes(form) {
-            jQuery("#badge_form_" + form + " #select_class").html("<br /><img src=' <?php echo plugins_url('../../assets/load.gif', __FILE__); ?>' width='50px' height='50px' />");
-
-            var data = {
-                'action': 'action_select_class',
-                'form': 'form_' + form + '_',
-                'level_selected': jQuery("#badge_form_" + form + " .level:checked").val(),
-                'language_selected': jQuery("#badge_form_" + form + " #language option:selected").text()
-            };
-
-            // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
-            jQuery.post("<?php echo plugins_url('../ajax/custom_ajax.php', __FILE__); ?>", data, function (response) {
-                jQuery("#badge_form_" + form + " #select_class").html(response);
-            });
-        }
-
-        /**
-         *  This function is called when the user select the level of the badge and then is loaded the information about
-         *  its.
-         *
-         * @author Alessandro RICCARDI
-         * @since 0.6.3
-         *
-         * @param form
-         */
-        function load_description(form) {
-            jQuery("#badge_form_" + form + " #result_preview_description").html("<br /><img src='<?php echo plugins_url('../../assets/load.gif', __FILE__); ?>' width='50px' height='50px' />");
-
-            console.log(jQuery("#badge_form_" + form + " #language_description option:selected").text());
-            console.log(jQuery("#badge_form_" + form + " input[name=input_badge_name]").val());
-            var data = {
-                'action': 'action_select_description_preview',
-                'language_description_selected': jQuery("#badge_form_" + form + " #language_description option:selected").text(),
-                'badge_name': jQuery("#badge_form_" + form + " input[name=input_badge_name]").val()
-            };
-
-            // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
-            jQuery.post("<?php echo plugins_url('../ajax/custom_ajax.php', __FILE__); ?>", data, function (response) {
-                jQuery("#badge_form_" + form + " #result_preview_description").html(response);
-            });
-        }
-    </script>
     <?php
 }
 

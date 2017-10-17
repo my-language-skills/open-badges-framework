@@ -139,11 +139,13 @@ window.onload = function () {
             }
 
             switch (currentIndex) {
+
                 /* FIELD OF EDUCATION */
                 case 0:
                     form.validate().settings.ignore = ":disabled,:hidden";
                     return form.valid();
                     break;
+
                 /* LEVEL */
                 case 1:
                     var check1 = false;
@@ -161,6 +163,7 @@ window.onload = function () {
                         return false;
                     }
                     break;
+
                 /* KIND OF BADGE */
                 case 2:
                     var check2 = false;
@@ -171,6 +174,8 @@ window.onload = function () {
                             }
                         });
                     if (check2) {
+                        //Load description of language for the next page
+                        load_description("a");
                         form.validate().settings.ignore = ":disabled,:hidden";
                         return form.valid();
                     } else {
@@ -178,12 +183,13 @@ window.onload = function () {
                     }
 
                     break;
+
                 /* LANGUAGE */
                 case 3:
                     form.validate().settings.ignore = ":disabled,:hidden";
                     return form.valid();
-                    load_description();
                     break;
+
                 /* INFORMATION */
                 case 4:
                     form.validate().settings.ignore = ":disabled,:hidden";
@@ -261,6 +267,8 @@ window.onload = function () {
                             }
                         });
                     if (check2) {
+                        //Load description of language for the next page
+                        load_description("b");
                         form.validate().settings.ignore = ":disabled,:hidden";
                         return form.valid();
                     } else {
@@ -270,6 +278,7 @@ window.onload = function () {
                     break;
                 /* LANGUAGE */
                 case 3:
+                    load_class("b");
                     form.validate().settings.ignore = ":disabled,:hidden";
                     return form.valid();
                     break;
@@ -310,10 +319,14 @@ window.onload = function () {
      * @since 0.6.3
      */
     jQuery(".display_parent_categories").click(function () {
-
         currentForm = checkForm(this);
 
-        jQuery("#languages_form_" + currentForm).html("<br />" +
+        //Remove the class 'active' to the old button of the field of education.
+        jQuery("#badge_form_" + currentForm + " .display_parent_categories.active").removeClass("active");
+        //Add the class 'active' to the actual button.
+        jQuery(this).addClass("active");
+
+        jQuery("#field_edu_" + currentForm ).html("<br />" +
             "<img src='" + loaderGif + "' width='50px' height='50px' />");
 
         var id_lan = jQuery(this).attr('id');
@@ -329,7 +342,7 @@ window.onload = function () {
             ajaxFile,
             data,
             function (response) {
-                jQuery("#languages_form_" + currentForm).html(response);
+                jQuery("#field_edu_" + currentForm).html(response);
             }
         );
     });
@@ -365,64 +378,19 @@ window.onload = function () {
             }
         );
 
-
-
-        /* ========================
-            Load the DESCRIPTION of the badge.
-
-
-        jQuery("#badge_form_" + currentForm + " #result_preview_description").html("<br /><img src='<?php echo plugins_url('../../assets/load.gif', __FILE__); ?>' width='50px' height='50px' />");
-
-        var data = {
-            'action': 'action_select_description_preview',
-            'language_description_selected': jQuery("#badge_form_" + currentForm + " #language_description option:selected").text(),
-            'badge_name': jQuery("#badge_form_" + currentForm + " input[name=input_badge_name]").val()
-        };
-
-        jQuery.post(
-            ajaxFile,
-            data,
-            function (response) {
-                jQuery("#badge_form_" + currentForm + " #result_preview_description").html(response);
-            }
-        );
-
-
-        /* ========================
-            Load the CLASS
-
-        // To load the class if in the tab B or C
-        if (currentForm == "b" || currentForm == "c") {
-            jQuery("#badge_form_" + currentForm + "  #select_class").html("<br /><img src='" + loaderGif + "' width='50px' height='50px' />");
-
-            var data = {
-                'action': 'action_select_class',
-                'form': "form_" + currentForm + "_",
-                'level_selected': jQuery("#badge_form_" + currentForm + "  .level:checked").val(),
-                'language_selected': jQuery("#badge_form_" + currentForm + "  #language option:selected").text()
-            };
-            jQuery.post(
-                ajaxFile,
-                data,
-                function (response) {
-                    jQuery("#badge_form_" + currentForm + "  #select_class").html(response);
-                }
-            );
-        }*/
     });
 
-
     /**
+     * LOAD DESCRIPTION
      *
-     *
-     * @author Nicolas TORION
-     * @since  0.6.2
+     * @author Alessandro RICCARDI
+     * @since 0.6.4
      */
-    jQuery(".input-badge").click(function () {
+    function load_description(curForm) {
 
-        currentForm = checkForm(this);
+        jQuery("#badge_form_" + curForm + " #result_preview_description").html("<br /><img src='" + loaderGif + "' width='50px' height='50px' />");
 
-        var tab_name = "_" + jQuery("#badge_form_"+currentForm+" .input-badge:checked").val().replace('-', '_') + "_description_languages";
+        var tab_name = "_" + jQuery("#badge_form_" + curForm + " .input-badge:checked").val().replace('-', '_') + "_description_languages";
         var tab = eval(tab_name);
 
         var content = '<label for="language_description"></label><br /><select name="language_description" id="language_description">';
@@ -431,38 +399,48 @@ window.onload = function () {
         });
 
         content = content + '</select><br>';
-        jQuery("#badge_form_"+currentForm+" #result_languages_description").html(content);
-
-        load_description(currentForm);
-    });
-
-    /**
-     *  This function is called when the user select the level of the badge and then is loaded the information about
-     *  its.
-     *
-     * @author Alessandro RICCARDI
-     * @since 0.6.3
-     *
-     * @param form
-     */
-    function load_description(currentForm) {
-
-        jQuery("#badge_form_" + currentForm + " #result_preview_description").html("<br /><img src='<?php echo plugins_url('../../assets/load.gif', __FILE__); ?>' width='50px' height='50px' />");
+        jQuery("#badge_form_" + curForm + " #result_languages_description").html(content);
 
         var data = {
             'action': 'action_select_description_preview',
-            'language_description_selected': jQuery("#badge_form_" + currentForm + " #language_description option:selected").text(),
-            'badge_name': jQuery("#badge_form_" + currentForm + " input[name=input_badge_name]").val()
+            'language_description_selected': jQuery("#badge_form_" + curForm + " #language_description option:selected").text(),
+            'badge_name': jQuery("#badge_form_" + curForm + " input[name=input_badge_name]").val()
         };
 
         jQuery.post(
             ajaxFile,
             data,
             function (response) {
-                jQuery("#badge_form_" + currentForm + " #result_preview_description").html(response);
+                jQuery("#badge_form_" + curForm + " #result_preview_description").html(response);
             }
         );
+    }
 
+    /**
+     * LOAD DESCRIPTION
+     *
+     * @author Alessandro RICCARDI
+     * @since 0.6.4
+     */
+    function load_class(curForm){
+        // To load the class if in the tab B or C
+        if (curForm == "b" || curForm == "c") {
+            jQuery("#badge_form_" + curForm + "  #select_class").html("<br /><img src='" + loaderGif + "' width='50px' height='50px' />");
+
+            var data = {
+                'action': 'action_select_class',
+                'form': "form_" + curForm + "_",
+                'level_selected': jQuery("#badge_form_" + curForm + "  .level:checked").val(),
+                'language_selected': jQuery("#badge_form_" + curForm + "  #language option:selected").text()
+            };
+            jQuery.post(
+                ajaxFile,
+                data,
+                function (response) {
+                    jQuery("#badge_form_" + curForm + "  #select_class").html(response);
+                }
+            );
+        }
     }
 
     /**
