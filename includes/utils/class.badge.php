@@ -308,7 +308,7 @@ class Badge
         'date' => date("Y-m-d")
       );
 
-      $class = get_class_zero_teacher($current_user->user_login);
+      $class = get_class_teacher($current_user->user_login);
       if(!get_post_meta($class->ID, '_class_students', true))
         $class_students = array();
       else

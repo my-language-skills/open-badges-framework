@@ -266,8 +266,8 @@ function tab_issue() {
                         <hr class="sep-sendbadge">
                         <?php
                         if (in_array("academy", $current_user->roles) || in_array("teacher", $current_user->roles)) {
-                            $class_zero = get_class_zero_teacher($current_user->user_login);
-                            echo '<input name="class_zero_teacher" type="hidden" value="' . $class_zero->ID . '"/>';
+                            $class_zero = get_class_teacher($current_user->user_login);
+                            echo '<input name="class_teacher" type="hidden" value="' . $class_zero->ID . '"/>';
                         }
 
                         if (in_array("teacher", $current_user->roles) || in_array("academy", $current_user->roles) || in_array("administrator", $current_user->roles) || in_array("editor", $current_user->roles)) {

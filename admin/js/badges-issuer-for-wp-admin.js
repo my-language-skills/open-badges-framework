@@ -1,104 +1,3 @@
-/*
-setInterval(function () {
-    check_badge_form();
-}, 500);
-setInterval(function () {
-    check_settings_badges_issuer_form();
-}, 500);
-
-function check_mails(mails) {
-
-    if (typeof mails !== 'undefined') {
-        var testEmail = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
-
-        for (var i = 0; i < mails.length; i++) {
-            if (!testEmail.test(mails[i])) {
-                return false;
-            }
-        }
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
-function check_urls(urls) {
-    var pattern = /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
-    if (typeof urls !== 'undefined') {
-        for (var i = 0; i < urls.length; i++) {
-            if (!pattern.test(urls[i])) {
-                return false;
-            }
-        }
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
-function check_settings_badges_issuer_form() {
-    var name = jQuery("#settings_form_badges_issuer #badges_issuer_name").val();
-    var image = jQuery("#settings_form_badges_issuer #badges_issuer_image").val();
-    var website = jQuery("#settings_form_badges_issuer #badges_issuer_website").val();
-    var mail = jQuery("#settings_form_badges_issuer #badges_issuer_mail").val();
-
-    if (check_mails([mail]) && name != "" && check_urls([image, website])) {
-        jQuery('#settings_form_badges_issuer #settings_submit_badges_issuer').prop('disabled', false);
-    }
-    else {
-        jQuery('#settings_form_badges_issuer #settings_submit_badges_issuer').prop('disabled', true);
-    }
-}
-
-function check_badge_form() {
-    var tabA = jQuery("#nav-badge-a");
-    var tabB = jQuery("#nav-badge-b");
-    var tabC = jQuery("#nav-badge-c");
-
-    if (tabA.hasClass("nav-tab-active")) {
-        var badge_a = jQuery("#badge_form_a .input-badge");
-        var badge_a_comment = jQuery("#badge_form_a #comment");
-
-        if (badge_a.is(':checked') && badge_a_comment.val()) {
-            jQuery('#submit_button_a').prop('disabled', false);
-        }
-        else {
-            jQuery('#submit_button_a').prop('disabled', true);
-        }
-
-    } else if (tabB.hasClass("nav-tab-active")) {
-        var badge_b = jQuery("#badge_form_b .input-badge");
-        var badge_b_comment = jQuery("#badge_form_b #comment");
-
-        if (typeof jQuery("#badge_form_b .mail").val() !== 'undefined') {
-            var mails_b = jQuery("#badge_form_b .mail").val().split("\n");
-        }
-
-        if (check_mails(mails_b) && badge_b.is(':checked') && badge_b_comment.val()) {
-            jQuery('#submit_button_b').prop('disabled', false);
-        }
-        else {
-            jQuery('#submit_button_b').prop('disabled', true);
-        }
-
-    } else if (tabC.hasClass("nav-tab-active")) {
-        var badge_c = jQuery("#badge_form_c .input-badge");
-        var badge_c_comment = jQuery("#badge_form_c #comment");
-
-        if (typeof jQuery("#badge_form_c .mail").val() !== 'undefined') {
-            var mails_c = jQuery("#badge_form_c .mail").val().split("\n");
-        }
-
-        if (check_mails(mails_c) && badge_c.is(':checked') && badge_c_comment.val()) {
-            jQuery('#submit_button_c').prop('disabled', false);
-        }
-        else {
-            jQuery('#submit_button_c').prop('disabled', true);
-        }
-    }
-}*/
 
 var currentForm;
 
@@ -459,11 +358,12 @@ window.onload = function () {
             badge_name = jQuery("#badge_form_"+curForm+" input[name='input_badge_name']").val(),
             language_description = jQuery("#badge_form_"+curForm+" #language_description").val(),
             class_student = jQuery("#badge_form_"+curForm+" input[name='class_for_student']:checked").val(),
+            class_teacher = jQuery("#badge_form_"+curForm+" input[name='class_teacher']:checked").val(),
             mail = jQuery("#badge_form_"+curForm+" input[name='mail']").val(),
             comment = jQuery("#badge_form_"+curForm+" #comment").val(),
             sender = jQuery("input[name='sender']").val();
 
-        alert(language+", "+level+", "+input_badge_name+", "+language_description+", "+class_student+", "+mail+", "+comment+", "+sender);
+        alert(language+", "+level+", "+badge_name+", "+language_description+", "+class_student+", "+class_teacher+", "+mail+", "+comment+", "+sender);
 
 
         var data = {
@@ -474,6 +374,7 @@ window.onload = function () {
             'badge_name': badge_name,
             'language_description': language_description,
             'class_student': class_student,
+            'class_teacher': class_teacher,
             'mail': mail,
             'comment': comment,
             'sender': sender,

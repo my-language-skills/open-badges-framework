@@ -310,7 +310,7 @@ function get_classes_teacher($teacher_login) {
  *
  * @return $result The class zero corresponding.
  */
-function get_class_zero_teacher($teacher_login) {
+function get_class_teacher($teacher_login) {
     $classes = get_all_classes_zero();
     foreach ($classes as $class) {
         if ($class->post_title == $teacher_login) {

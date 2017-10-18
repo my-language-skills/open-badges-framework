@@ -157,157 +157,241 @@ function action_select_class() {
  */
 add_action('CUSTOMAJAX_action_select_badge', 'action_select_badge');
 function action_select_badge() {
-    $badges = get_all_badges();
+$badges = get_all_badges();
 
-    global $current_user;
-    wp_get_current_user();
+global $current_user;
+wp_get_current_user();
 
-    if (in_array("administrator", $current_user->roles) || in_array("academy", $current_user->roles) || in_array("editor", $current_user->roles)) {
-        $badges_corresponding = get_all_badges_level($badges, $_POST['level_selected'], $certification = true);
-    } else {
-        $badges_corresponding = get_all_badges_level($badges, $_POST['level_selected']);
-    }
+if (in_array("administrator", $current_user->roles) || in_array("academy", $current_user->roles) || in_array("editor", $current_user->roles)) {
+    $badges_corresponding = get_all_badges_level($badges, $_POST['level_selected'], $certification = true);
+} else {
+    $badges_corresponding = get_all_badges_level($badges, $_POST['level_selected']);
+}
 
-    usort($badges_corresponding, function ($a, $b) {
-        return strcmp($a->post_title, $b->post_title);
-    });
+usort($badges_corresponding, function ($a, $b) {
+    return strcmp($a->post_title, $b->post_title);
+});
 
 
-    $first_certified_badge = true;
-    foreach ($badges_corresponding as $badge) {
-        if (get_post_meta($badge->ID, '_certification', true) == "not_certified") {
-            echo '<input type="radio" name="input_badge_name" class="input-badge input-hidden" id="' . $_POST['form'] . $badge->post_title . '" value="' . $badge->post_name . '"/>';
-            echo '<label for="' . $_POST['form'] . $badge->post_title . '">';
-            echo '<img class="img-send-badge" src="';
-            if (get_the_post_thumbnail_url($badge->ID)) {
-                echo get_the_post_thumbnail_url($badge->ID, 'thumbnail');
-                echo '" /></label>';
-                echo '</br><b>' . $badge->post_title . '</b>';
-            } else {
-                echo plugins_url('../../assets/default-badge-thumbnail.png', __FILE__);
-                echo '" width="40px" height="40px" /></label>';
-            }
-            echo "</div>";
+$first_certified_badge = true;
+foreach ($badges_corresponding as $badge) {
+    if (get_post_meta($badge->ID, '_certification', true) == "not_certified") {
+        echo '<input type="radio" name="input_badge_name" class="input-badge input-hidden" id="' . $_POST['form'] . $badge->post_title . '" value="' . $badge->post_name . '"/>';
+        echo '<label for="' . $_POST['form'] . $badge->post_title . '">';
+        echo '<img class="img-send-badge" src="';
+        if (get_the_post_thumbnail_url($badge->ID)) {
+            echo get_the_post_thumbnail_url($badge->ID, 'thumbnail');
+            echo '" /></label>';
+            echo '</br><b>' . $badge->post_title . '</b>';
+        } else {
+            echo plugins_url('../../assets/default-badge-thumbnail.png', __FILE__);
+            echo '" width="40px" height="40px" /></label>';
+        }
+        echo "</div>";
 
-        } elseif (get_post_meta($badge->ID, '_certification', true) == "certified") {
-            echo '<div">';
-            echo '<br><b>Certified Badges : </b><br>';
-            if ($first_certified_badge) {
-                $first_certified_badge = false;
-            }
+    } elseif (get_post_meta($badge->ID, '_certification', true) == "certified") {
+        echo '<div">';
+        echo '<br><b>Certified Badges : </b><br>';
+        if ($first_certified_badge) {
+            $first_certified_badge = false;
+        }
 
-            echo '<input onclick="jQuery(showDesc());"  type="radio" name="input_badge_name" class="input-badge input-hidden" id="' . $_POST['form'] . $badge->post_title . '" value="' . $badge->post_name . '"/>
+        echo '<input onclick="jQuery(showDesc());"  type="radio" name="input_badge_name" class="input-badge input-hidden" id="' . $_POST['form'] . $badge->post_title . '" value="' . $badge->post_name . '"/>
                     <label for="' . $_POST['form'] . $badge->post_title . '">
                     <img class="img-send-badge" src="';
-            if (get_the_post_thumbnail_url($badge->ID)) {
-                echo get_the_post_thumbnail_url($badge->ID, 'thumbnail');
-                echo '" width="40px" height="40px" /></label>';
-                echo '</br><b>' . $badge->post_title . '</b>';
+        if (get_the_post_thumbnail_url($badge->ID)) {
+            echo get_the_post_thumbnail_url($badge->ID, 'thumbnail');
+            echo '" width="40px" height="40px" /></label>';
+            echo '</br><b>' . $badge->post_title . '</b>';
+        } else {
+            echo plugins_url('../../assets/default-badge-thumbnail.png', __FILE__);
+            echo '" width="40px" height="40px" /></label>';
+        }
+    }
+}
+
+?>
+<script>
+    <?php
+
+    /**
+     *
+     *
+     * @author Nicolas TORION
+     * @since  0.6.2
+     */
+    $badges = get_all_badges();
+
+    foreach ($badges as $badge) {
+        $descriptions = get_badge_descriptions($badge);
+        echo 'var _' . str_replace("-", "_", $badge->post_name) . '_description_languages = [';
+        $i = 0;
+        foreach ($descriptions as $lang => $description) {
+            echo "'" . $lang . "'";
+            if ($i != (sizeof($descriptions) - 1)) {
+                echo ', ';
+            }
+            $i++;
+        }
+        echo "]; \n";
+    }
+    ?>
+
+    <?php
+    }
+
+    /**
+     * AJAX action to save the modifications made on a comment
+     *
+     * @author Nicolas TORION
+     * @since  0.5.1
+     */
+    add_action('CUSTOMAJAX_action_save_comment', 'action_save_comment');
+
+    function action_save_comment() {
+        $comment_id = $_POST['comment_id'];
+        $comment_text = $_POST['comment_text'];
+
+        $comment_arr = array();
+        $comment_arr['comment_ID'] = $comment_id;
+        $comment_arr['comment_content'] = $comment_text;
+
+        wp_update_comment($comment_arr);
+    }
+
+    /**
+     * AJAX action to save the modifications made on a comment
+     *
+     * @author Nicolas TORION
+     * @since  0.5.1
+     */
+    add_action('CUSTOMAJAX_send_message_badge', 'send_message_badge');
+
+    /**
+     *
+     */
+    function send_message_badge() {
+
+        /* Variables */
+        $language = $_POST['language'];
+        $level = $_POST['level'];
+        $badge_name = $_POST['$badge_name'];
+        $language_description = $_POST['language_description'];
+        $class_student = $_POST['class_student'];
+        $class_teacher = $_POST['class_teacher'];
+        $mails = $_POST['mail'];
+        $comment = $_POST['comment'];
+        $sender = $_POST['sender'];
+        /* Get user */
+        global $current_user;
+        wp_get_current_user();
+        $class = null;
+        $notsent = array();
+
+        /* JSON file */
+        $url_json_files = content_url('uploads/badges-issuer/json/');
+        $path_dir_json_files = plugin_dir_path(dirname(__FILE__)) . '../../../uploads/badges-issuer/json/';
+        echo $path_dir_json_files;
+
+        /* Check if there are sufficient param */
+        if (!isset($language) || !isset($level) || !isset($badge_name) ||
+            !isset($language_description) || !isset($comment) || !isset($sender)) {
+
+            echo "No enough information.";
+
+        } else {
+
+            /* Get badge CERTIFICATION */
+            $badge_others_items = get_badge($badge_name, $language_description);
+            $certification = get_post_meta($badge_others_items['id'], '_certification', true);
+
+            /* Set the email(s) */
+            if (isset($mails)) {
+                $mails_list = explode("\n", $mails);
             } else {
-                echo plugins_url('../../assets/default-badge-thumbnail.png', __FILE__);
-                echo '" width="40px" height="40px" /></label>';
+                $mails_list[0] = $sender;
+            }
+
+            /* Set the right class */
+            if (check_the_rules($current_user->roles, "academy", "teacher")) {
+                $class = $class_student;
+            } elseif (check_the_rules($current_user->roles, "teacher")) {
+                $class = $class_teacher;
+            }
+
+            /* Creation the badge */
+            $badge = new Badge($badge_others_items['name'], level, $language, $certification, $comment,
+                $badge_others_items['description'], $language_description, $badge_others_items['image'],
+                $url_json_files, $path_dir_json_files);
+
+            /* Creation the badge */
+            foreach ($mails_list as $mail) {
+
+                /* operation for system not unix */
+                $mail = str_replace("\r", "", $mail);
+
+                $badge->create_json_files($mail);
+
+                //SENDING THE EMAIL
+                try {
+                    if (!$badge->send_mail($mail, $class)) {
+                        $notsent[] = $mail;
+                    } else {
+                        if ($_POST['sender'] != "SELF") {
+                            $badge->add_student_to_class_zero($mail);
+                        }
+
+                        $badge->add_student_to_class($mail, $class);
+                        $badge->add_badge_to_user_profile($mail, $_POST['sender'], $class);
+                    }
+                } catch (Exception $e) {
+                    echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+                }
+            }
+
+            if (sizeof($notsent) > 0) {
+                $message = "Badge not sent to these persons : ";
+                foreach ($notsent as $notsent_mail) {
+                    $message = $message . $notsent_mail . " ";
+                }
+                echo "1";
+                display_error_message($message);
+            } else {
+                echo "0";
+                display_success_message("Badge sent to all persons.");
             }
         }
     }
 
-    ?>
-    <script>
-        <?php
 
-        /**
-         *
-         *
-         * @author Nicolas TORION
-         * @since  0.6.2
-         */
-        $badges = get_all_badges();
-
-        foreach ($badges as $badge) {
-            $descriptions = get_badge_descriptions($badge);
-            echo 'var _' . str_replace("-", "_", $badge->post_name) . '_description_languages = [';
-            $i = 0;
-            foreach ($descriptions as $lang => $description) {
-                echo "'" . $lang . "'";
-                if ($i != (sizeof($descriptions) - 1)) {
-                    echo ', ';
-                }
-                $i++;
-            }
-            echo "]; \n";
+    if (in_array($action, $allowed_actions)) {
+        if (is_user_logged_in()) {
+            do_action('CUSTOMAJAX_' . $action);
         }
-        ?>
-
-    <?php
-}
-
-/**
- * AJAX action to save the modifications made on a comment
- *
- * @author Nicolas TORION
- * @since  0.5.1
- */
-add_action('CUSTOMAJAX_action_save_comment', 'action_save_comment');
-
-function action_save_comment() {
-    $comment_id = $_POST['comment_id'];
-    $comment_text = $_POST['comment_text'];
-
-    $comment_arr = array();
-    $comment_arr['comment_ID'] = $comment_id;
-    $comment_arr['comment_content'] = $comment_text;
-
-    wp_update_comment($comment_arr);
-}
-
-/**
- * AJAX action to save the modifications made on a comment
- *
- * @author Nicolas TORION
- * @since  0.5.1
- */
-add_action('CUSTOMAJAX_send_message_badge', 'send_message_badge');
-
-function send_message_badge() {
-
-    /* Variables */
-    $language = $_POST['language'];
-    $level = $_POST['level'];
-    $badge_name = $_POST['$badge_name'];
-    $language_description = $_POST['language_description'];
-    $class_student = $_POST['class_student'];
-    $mail = $_POST['mail'];
-    $comment = $_POST['comment'];
-    $sender = $_POST['sender'];
-
-    /* JSON file */
-    $url_json_files = content_url('uploads/badges-issuer/json/');
-    $path_dir_json_files = plugin_dir_path(dirname(__FILE__)) . '../../../uploads/badges-issuer/json/';
-    echo $path_dir_json_files;
-
-    if (!isset($language) || !isset($level) || !isset($badge_name) ||
-        !isset($language_description) || !isset($comment) || !isset($sender)) {
-
-        echo "No enough information.";
-
     } else {
+        die('-1');
+    }
 
-        /* Get badge CERTIFICATION */
-        $badge_others_items = get_badge($badge_name, $language_description);
+
+    /*
+    // Traitement of form, a mail is sent to the student.
+    if (isset($_POST['level']) && isset($_POST['sender']) && isset($_POST['input_badge_name']) && isset($_POST['language']) && isset($_POST['mail']) && isset($_POST['comment']) && isset($_POST['language_description'])) {
+
+        $url_json_files = content_url('uploads/badges-issuer/json/');
+        $path_dir_json_files = plugin_dir_path(dirname(__FILE__)) . '../../../uploads/badges-issuer/json/';
+
+        $badges = get_all_badges();
+        $badge_others_items = get_badge($_POST['input_badge_name'], $badges, $_POST['language_description']);
         $certification = get_post_meta($badge_others_items['id'], '_certification', true);
 
-        /* Set the email(s) */
-        if(isset($mail)) {
-            $mails_list = explode("\n", $mail);
-        } else {
-            $mail = $sender;
-        }
+        $mails = $_POST['mail'];
+        $mails_list = explode("\n", $mails);
 
-        /* Get user */
         global $current_user;
         wp_get_current_user();
 
         $class = null;
-        if (check_the_rules($current_user->roles, "teacher", "academy", "administrator", "editor")) {
+        if (in_array("teacher", $current_user->roles) || in_array("academy", $current_user->roles) || in_array("administrator", $current_user->roles) || in_array("editor", $current_user->roles)) {
             if (isset($_POST['class_for_student'])) {
                 $class = $_POST['class_for_student'];
             } elseif ($_POST['class_zero_teacher']) {
@@ -323,7 +407,6 @@ function send_message_badge() {
             $mail = str_replace("\r", "", $mail);
 
             $badge->create_json_files($mail);
-
 
             if (!$badge->send_mail($mail, $class)) {
                 $notsent[] = $mail;
@@ -342,81 +425,10 @@ function send_message_badge() {
             foreach ($notsent as $notsent_mail) {
                 $message = $message . $notsent_mail . " ";
             }
-            echo "1";
             display_error_message($message);
         } else {
-            echo "0";
             display_success_message(__("Badge sent to all persons.", 'badges-issuer-for-wp'));
         }
-    }
-}
+    }*/
 
-
-if (in_array($action, $allowed_actions)) {
-    if (is_user_logged_in()) {
-        do_action('CUSTOMAJAX_' . $action);
-    }
-} else {
-    die('-1');
-}
-
-
-/*
-// Traitement of form, a mail is sent to the student.
-if (isset($_POST['level']) && isset($_POST['sender']) && isset($_POST['input_badge_name']) && isset($_POST['language']) && isset($_POST['mail']) && isset($_POST['comment']) && isset($_POST['language_description'])) {
-
-    $url_json_files = content_url('uploads/badges-issuer/json/');
-    $path_dir_json_files = plugin_dir_path(dirname(__FILE__)) . '../../../uploads/badges-issuer/json/';
-
-    $badges = get_all_badges();
-    $badge_others_items = get_badge($_POST['input_badge_name'], $badges, $_POST['language_description']);
-    $certification = get_post_meta($badge_others_items['id'], '_certification', true);
-
-    $mails = $_POST['mail'];
-    $mails_list = explode("\n", $mails);
-
-    global $current_user;
-    wp_get_current_user();
-
-    $class = null;
-    if (in_array("teacher", $current_user->roles) || in_array("academy", $current_user->roles) || in_array("administrator", $current_user->roles) || in_array("editor", $current_user->roles)) {
-        if (isset($_POST['class_for_student'])) {
-            $class = $_POST['class_for_student'];
-        } elseif ($_POST['class_zero_teacher']) {
-            $class = $_POST['class_zero_teacher'];
-        }
-    }
-
-    $notsent = array();
-
-    $badge = new Badge($badge_others_items['name'], $_POST['level'], $_POST['language'], $certification, $_POST['comment'], $badge_others_items['description'], $_POST['language_description'], $badge_others_items['image'], $url_json_files, $path_dir_json_files);
-
-    foreach ($mails_list as $mail) {
-        $mail = str_replace("\r", "", $mail);
-
-        $badge->create_json_files($mail);
-
-        if (!$badge->send_mail($mail, $class)) {
-            $notsent[] = $mail;
-        } else {
-            if ($_POST['sender'] != "SELF") {
-                $badge->add_student_to_class_zero($mail);
-            }
-
-            $badge->add_student_to_class($mail, $class);
-            $badge->add_badge_to_user_profile($mail, $_POST['sender'], $class);
-        }
-    }
-
-    if (sizeof($notsent) > 0) {
-        $message = "Badge not sent to these persons : ";
-        foreach ($notsent as $notsent_mail) {
-            $message = $message . $notsent_mail . " ";
-        }
-        display_error_message($message);
-    } else {
-        display_success_message(__("Badge sent to all persons.", 'badges-issuer-for-wp'));
-    }
-}*/
-
-?>
+    ?>
