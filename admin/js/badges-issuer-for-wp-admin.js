@@ -115,6 +115,7 @@ window.onload = function () {
     /* =====================================
         BADGE FORM # A #
        ===================================== */
+
     var form = jQuery("#badge_form_a");
     form.validate({
         errorPlacement: function errorPlacement(error, element) {
@@ -203,7 +204,7 @@ window.onload = function () {
 
         },
         onFinished: function (event, currentIndex) {
-            sendMessageBadge();
+            sendMessageBadge("a");
         }
     });
 
@@ -211,6 +212,7 @@ window.onload = function () {
     /* =====================================
          BADGE FORM # B #
        ===================================== */
+
     var form2 = jQuery("#badge_form_b");
     form.validate({
         errorPlacement: function errorPlacement(error, element) {
@@ -306,7 +308,7 @@ window.onload = function () {
 
         },
         onFinished: function (event, currentIndex) {
-            alert("Finish");
+            sendMessageBadge("b");
         }
     });
 
@@ -417,7 +419,7 @@ window.onload = function () {
     }
 
     /**
-     * LOAD DESCRIPTION
+     * LOAD CLASS
      *
      * @author Alessandro RICCARDI
      * @since 0.6.4
@@ -450,26 +452,31 @@ window.onload = function () {
      * @author Alessandro RICCARDI
      * @since 0.6.4
      */
-    function sendMessageBadge() {
+    function sendMessageBadge(curForm) {
 
-        var level = jQuery("#badge_form_a input[name='level']").val(),
-            sender = jQuery("#badge_form_a input[name='sender']").val(),
-            input_badge_name = jQuery("#badge_form_a input[name='input_badge_name']").val(),
-            language = jQuery("#badge_form_a #language :selected").text(),
-            mail = jQuery("#badge_form_a input[name='mail']").val(),
-            comment = jQuery("#badge_form_a #comment").val(),
-            language_description = jQuery("#badge_form_a #language_description").val();
+        var language = jQuery("#badge_form_"+curForm+" #language :selected").text(),
+            level = jQuery("#badge_form_"+curForm+" input[name='level']:checked").val(),
+            badge_name = jQuery("#badge_form_"+curForm+" input[name='input_badge_name']").val(),
+            language_description = jQuery("#badge_form_"+curForm+" #language_description").val(),
+            class_student = jQuery("#badge_form_"+curForm+" input[name='class_for_student']:checked").val(),
+            mail = jQuery("#badge_form_"+curForm+" input[name='mail']").val(),
+            comment = jQuery("#badge_form_"+curForm+" #comment").val(),
+            sender = jQuery("input[name='sender']").val();
+
+        alert(language+", "+level+", "+input_badge_name+", "+language_description+", "+class_student+", "+mail+", "+comment+", "+sender);
+
 
         var data = {
             'action': 'send_message_badge',
             'form': 'form_a_',
-            'level': level,
-            'sender': sender,
-            'input_badge_name': input_badge_name,
             'language': language,
+            'level': level,
+            'badge_name': badge_name,
+            'language_description': language_description,
+            'class_student': class_student,
             'mail': mail,
             'comment': comment,
-            'language_description': language_description
+            'sender': sender,
         };
 
         jQuery.post(

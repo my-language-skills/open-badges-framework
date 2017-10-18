@@ -123,12 +123,12 @@ function action_select_class() {
         }
 
         if (in_array("administrator", $current_user->roles) || in_array("editor", $current_user->roles)) {
-            echo '</br><b>Default Class:</b>';
+            echo '</br><b>Default Class:</b><br>';
             foreach ($classes as $class) {
                 if ($class->post_type == 'class') {
                     echo '<div class="rdi-tab">';
                     echo '<label  for="class_' . $class->ID . '">' . $class->post_title . ' </label><input name="class_for_student" id="class_' . $class->ID . '" type="' . $input_type . '" value="' . $class->ID . '"/>';
-                    echo '</div>';
+                    echo '</div> &nbsp;';
                 }
             }
             echo '</br></br>';
@@ -268,24 +268,46 @@ function action_save_comment() {
 add_action('CUSTOMAJAX_send_message_badge', 'send_message_badge');
 
 function send_message_badge() {
-    echo isset($_POST['comment']);
-    if (isset($_POST['level']) /*&& isset($_POST['sender'])*/ && isset($_POST['input_badge_name']) && isset($_POST['language']) /*&& isset($_POST['mail'])*/ && isset($_POST['comment']) && isset($_POST['language_description'])) {
 
-        $url_json_files = content_url('uploads/badges-issuer/json/');
-        $path_dir_json_files = plugin_dir_path(dirname(__FILE__)) . '../../../uploads/badges-issuer/json/';
-        echo $path_dir_json_files;
-        $badges = get_all_badges();
-        $badge_others_items = get_badge($_POST['input_badge_name'], $badges, $_POST['language_description']);
+    /* Variables */
+    $language = $_POST['language'];
+    $level = $_POST['level'];
+    $badge_name = $_POST['$badge_name'];
+    $language_description = $_POST['language_description'];
+    $class_student = $_POST['class_student'];
+    $mail = $_POST['mail'];
+    $comment = $_POST['comment'];
+    $sender = $_POST['sender'];
+
+    /* JSON file */
+    $url_json_files = content_url('uploads/badges-issuer/json/');
+    $path_dir_json_files = plugin_dir_path(dirname(__FILE__)) . '../../../uploads/badges-issuer/json/';
+    echo $path_dir_json_files;
+
+    if (!isset($language) || !isset($level) || !isset($badge_name) ||
+        !isset($language_description) || !isset($comment) || !isset($sender)) {
+
+        echo "No enough information.";
+
+    } else {
+
+        /* Get badge CERTIFICATION */
+        $badge_others_items = get_badge($badge_name, $language_description);
         $certification = get_post_meta($badge_others_items['id'], '_certification', true);
 
-        $mails = $_POST['mail'];
-        $mails_list = explode("\n", $mails);
+        /* Set the email(s) */
+        if(isset($mail)) {
+            $mails_list = explode("\n", $mail);
+        } else {
+            $mail = $sender;
+        }
 
+        /* Get user */
         global $current_user;
         wp_get_current_user();
 
         $class = null;
-        if (in_array("teacher", $current_user->roles) || in_array("academy", $current_user->roles) || in_array("administrator", $current_user->roles) || in_array("editor", $current_user->roles)) {
+        if (check_the_rules($current_user->roles, "teacher", "academy", "administrator", "editor")) {
             if (isset($_POST['class_for_student'])) {
                 $class = $_POST['class_for_student'];
             } elseif ($_POST['class_zero_teacher']) {
@@ -326,10 +348,7 @@ function send_message_badge() {
             echo "0";
             display_success_message(__("Badge sent to all persons.", 'badges-issuer-for-wp'));
         }
-    } else {
-        echo 2;
     }
-
 }
 
 

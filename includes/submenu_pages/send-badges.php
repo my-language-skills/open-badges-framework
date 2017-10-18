@@ -177,10 +177,7 @@ function tab_self() {
                         <div class="title-form"><h2>Addition information:</h2></div>
                         <hr class="sep-sendbadge">
                         <label for="comment"><b><?php _e('Comment : ', 'badges-issuer-for-wp'); ?></b></label><br/>
-                        <textarea name="comment" id="comment" rows="10" cols="80"></textarea><br/><br/>
-
-                        <input type="submit" id="submit_button_a" class="button-primary"
-                               value="<?php _e('Send a badge', 'badges-issuer-for-wp'); ?>"/>
+                        <textarea name="comment" id="comment" rows="10" cols="80"></textarea><br/><br/>4
                     </div>
                 </section>
             </div>
@@ -296,9 +293,6 @@ function tab_issue() {
                         <hr class="sep-sendbadge">
                         <label for="comment"><b><?php _e('Comment : ', 'badges-issuer-for-wp'); ?></b></label><br/>
                         <textarea name="comment" id="comment" rows="10" cols="80"></textarea><br/><br/>
-
-                        <input type="submit" id="submit_button_a" class="button-primary"
-                               value="<?php _e('Send a badge', 'badges-issuer-for-wp'); ?>"/>
                     </div>
                 </section>
             </div>

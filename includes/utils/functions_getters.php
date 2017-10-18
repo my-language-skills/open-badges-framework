@@ -47,6 +47,7 @@ function get_badge_descriptions($badge) {
  *
  * @author Nicolas TORION
  * @since  0.6.2
+ * @since  0.6.4 updated the way to get the badges.
  *
  * @param $badge_name The name of the badge.
  * @param $badges     A list of badges.
@@ -54,7 +55,8 @@ function get_badge_descriptions($badge) {
  *
  * @return Array of badge's informations (name, description, image url).
  */
-function get_badge($badge_name, $badges, $lang) {
+function get_badge($badge_name, $lang) {
+    $badges = get_all_badges();
     foreach ($badges as $badge) {
         if ($badge_name == $badge->post_name) {
             $badge_description = get_badge_descriptions($badge)[$lang];
@@ -552,6 +554,16 @@ function get_student_infos_in_class($student_login, $class_id) {
     }
 
     return $student_infos;
+}
+
+function check_the_rules($roles){
+    $res = false;
+    foreach (func_get_args() as $param) {
+        if(!is_array($param)){
+            $res = in_array($param, $roles)? true: $res ? true: false;
+        }
+    }
+    return $res;
 }
 
 ?>
