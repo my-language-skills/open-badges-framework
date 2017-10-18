@@ -38,7 +38,7 @@
     border-color: #ccc;
 }
 
-.try-center{
+.try-center {
     margin-left: auto;
     margin-right: auto;
 }
@@ -264,8 +264,6 @@
     margin-top: 20px;
 }
 
-
-
 /* ===========================
     SEND badge SECTION
    =========================== */
@@ -283,7 +281,7 @@ section.current {
     font-weight: 100;
 }
 
-.sep-sendbadge{
+.sep-sendbadge {
     margin: 40px auto 20px auto;
     width: 100px;
     background-color: whitesmoke;
@@ -294,7 +292,6 @@ section.current {
 }
 
 /* ### SELECT LANGUAGE ###*/
-
 
 .display_parent_categories {
     margin-left: 20px;
@@ -314,12 +311,11 @@ section.current {
     cursor: default;
 }
 
-
 .select-language {
     padding: 20px;
 }
 
-.select-language select{
+.select-language select {
     height: 35px;
     background-color: white;
     border: 1px solid #777777;
@@ -330,7 +326,7 @@ section.current {
 
 /* ### SELECT LEVEL ###*/
 
-.rdi-tab{
+.rdi-tab {
     display: inline-block;
 }
 
@@ -338,6 +334,7 @@ section.current {
     float: left;
     margin-right: 3%;
 }
+
 .radio-input {
     float: left;
 }
@@ -352,7 +349,6 @@ fieldset {
     position: absolute;
     left: -9999px
 }
-
 
 .input-badge:checked + label > .img-send-badge {
     border: 1px solid #fff;
@@ -370,8 +366,18 @@ fieldset {
 
 .message {
     padding: 10px;
-    font-size: 20px;
-    position: absolute;
-    top: 0;
-    color: #FFF;
+    font-size: 13px;
+    position: absolute !important;
+    top: 5px;
+    width: 95%;
 }
+
+.msg-success {
+    border-left-color: #46b450;
+    background: #fff;
+    border-left: 4px solid #46b450;
+    -webkit-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .1);
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .1);
+    margin-right: 15px;
+}
+

@@ -161,7 +161,7 @@ function display_parents($p_parent = "") {
  */
 function display_success_message($message) {
     ?>
-    <div class="message success">
+    <div class="message msg-success">
         <?php echo $message; ?>
     </div>
     <?php
@@ -223,7 +223,7 @@ function display_classes_input() {
     global $current_user;
     wp_get_current_user();
 
-    if ($in_array("administrator", $current_user->roles) || in_array("editor", $current_user->roles)) {
+    if (in_array("administrator", $current_user->roles) || in_array("editor", $current_user->roles)) {
         $classes = get_all_classes();
     } else {
         $classes = get_classes_teacher($current_user->user_login);

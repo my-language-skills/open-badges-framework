@@ -260,28 +260,29 @@ foreach ($badges_corresponding as $badge) {
     }
 
     /**
-     * AJAX action to save the modifications made on a comment
+     * AJAX action to salve and send the badge.
      *
-     * @author Nicolas TORION
+     * @author Alessandro RICCARDI
      * @since  0.5.1
+     * @since  0.6.4
      */
     add_action('CUSTOMAJAX_send_message_badge', 'send_message_badge');
 
-    /**
-     *
-     */
+
     function send_message_badge() {
 
         /* Variables */
         $language = $_POST['language'];
         $level = $_POST['level'];
-        $badge_name = $_POST['$badge_name'];
+        $badge_name = $_POST['badge_name'];
         $language_description = $_POST['language_description'];
         $class_student = $_POST['class_student'];
         $class_teacher = $_POST['class_teacher'];
         $mails = $_POST['mail'];
         $comment = $_POST['comment'];
         $sender = $_POST['sender'];
+        $curForm = $_POST['curForm'];
+
         /* Get user */
         global $current_user;
         wp_get_current_user();
@@ -291,13 +292,13 @@ foreach ($badges_corresponding as $badge) {
         /* JSON file */
         $url_json_files = content_url('uploads/badges-issuer/json/');
         $path_dir_json_files = plugin_dir_path(dirname(__FILE__)) . '../../../uploads/badges-issuer/json/';
-        echo $path_dir_json_files;
 
         /* Check if there are sufficient param */
         if (!isset($language) || !isset($level) || !isset($badge_name) ||
             !isset($language_description) || !isset($comment) || !isset($sender)) {
 
-            echo "No enough information.";
+            echo "No enough information ($badge_name): ".(!isset($language) || !isset($level) ||/* !isset($badge_name) ||*/
+                    !isset($language_description) || !isset($comment) || !isset($sender));
 
         } else {
 
@@ -333,19 +334,16 @@ foreach ($badges_corresponding as $badge) {
                 $badge->create_json_files($mail);
 
                 //SENDING THE EMAIL
-                try {
-                    if (!$badge->send_mail($mail, $class)) {
-                        $notsent[] = $mail;
-                    } else {
-                        if ($_POST['sender'] != "SELF") {
-                            $badge->add_student_to_class_zero($mail);
-                        }
 
-                        $badge->add_student_to_class($mail, $class);
-                        $badge->add_badge_to_user_profile($mail, $_POST['sender'], $class);
+                if (!$badge->send_mail($mail, $class)) {
+                    $notsent[] = $mail;
+                } else {
+                    if ($curForm == "a") {
+                        $badge->add_student_to_class_zero($mail);
                     }
-                } catch (Exception $e) {
-                    echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+
+                    $badge->add_student_to_class($mail, $class);
+                    $badge->add_badge_to_user_profile($mail, $_POST['sender'], $class);
                 }
             }
 
@@ -354,10 +352,8 @@ foreach ($badges_corresponding as $badge) {
                 foreach ($notsent as $notsent_mail) {
                     $message = $message . $notsent_mail . " ";
                 }
-                echo "1";
                 display_error_message($message);
             } else {
-                echo "0";
                 display_success_message("Badge sent to all persons.");
             }
         }
@@ -371,64 +367,4 @@ foreach ($badges_corresponding as $badge) {
     } else {
         die('-1');
     }
-
-
-    /*
-    // Traitement of form, a mail is sent to the student.
-    if (isset($_POST['level']) && isset($_POST['sender']) && isset($_POST['input_badge_name']) && isset($_POST['language']) && isset($_POST['mail']) && isset($_POST['comment']) && isset($_POST['language_description'])) {
-
-        $url_json_files = content_url('uploads/badges-issuer/json/');
-        $path_dir_json_files = plugin_dir_path(dirname(__FILE__)) . '../../../uploads/badges-issuer/json/';
-
-        $badges = get_all_badges();
-        $badge_others_items = get_badge($_POST['input_badge_name'], $badges, $_POST['language_description']);
-        $certification = get_post_meta($badge_others_items['id'], '_certification', true);
-
-        $mails = $_POST['mail'];
-        $mails_list = explode("\n", $mails);
-
-        global $current_user;
-        wp_get_current_user();
-
-        $class = null;
-        if (in_array("teacher", $current_user->roles) || in_array("academy", $current_user->roles) || in_array("administrator", $current_user->roles) || in_array("editor", $current_user->roles)) {
-            if (isset($_POST['class_for_student'])) {
-                $class = $_POST['class_for_student'];
-            } elseif ($_POST['class_zero_teacher']) {
-                $class = $_POST['class_zero_teacher'];
-            }
-        }
-
-        $notsent = array();
-
-        $badge = new Badge($badge_others_items['name'], $_POST['level'], $_POST['language'], $certification, $_POST['comment'], $badge_others_items['description'], $_POST['language_description'], $badge_others_items['image'], $url_json_files, $path_dir_json_files);
-
-        foreach ($mails_list as $mail) {
-            $mail = str_replace("\r", "", $mail);
-
-            $badge->create_json_files($mail);
-
-            if (!$badge->send_mail($mail, $class)) {
-                $notsent[] = $mail;
-            } else {
-                if ($_POST['sender'] != "SELF") {
-                    $badge->add_student_to_class_zero($mail);
-                }
-
-                $badge->add_student_to_class($mail, $class);
-                $badge->add_badge_to_user_profile($mail, $_POST['sender'], $class);
-            }
-        }
-
-        if (sizeof($notsent) > 0) {
-            $message = "Badge not sent to these persons : ";
-            foreach ($notsent as $notsent_mail) {
-                $message = $message . $notsent_mail . " ";
-            }
-            display_error_message($message);
-        } else {
-            display_success_message(__("Badge sent to all persons.", 'badges-issuer-for-wp'));
-        }
-    }*/
-
     ?>
