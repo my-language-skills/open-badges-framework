@@ -153,7 +153,7 @@ function action_select_class() {
  *
  * @author Nicolas TORION
  * @since  0.6.2
- * @since  0.6.4 recoded and made it easy
+ * @since  X.X.X recoded and made it easy
  */
 add_action('CUSTOMAJAX_action_select_badge', 'action_select_badge');
 function action_select_badge() {
@@ -264,11 +264,10 @@ foreach ($badges_corresponding as $badge) {
      *
      * @author Alessandro RICCARDI
      * @since  0.5.1
-     * @since  0.6.4
+     * @since  X.X.X
      */
     add_action('CUSTOMAJAX_send_message_badge', 'send_message_badge');
-
-
+            
     function send_message_badge() {
 
         /* Variables */
@@ -282,12 +281,13 @@ foreach ($badges_corresponding as $badge) {
         $comment = $_POST['comment'];
         $sender = $_POST['sender'];
         $curForm = $_POST['curForm'];
+        $class = null;
+        $notsent = array();
 
         /* Get user */
         global $current_user;
         wp_get_current_user();
-        $class = null;
-        $notsent = array();
+
 
         /* JSON file */
         $url_json_files = content_url('uploads/badges-issuer/json/');
@@ -297,8 +297,7 @@ foreach ($badges_corresponding as $badge) {
         if (!isset($language) || !isset($level) || !isset($badge_name) ||
             !isset($language_description) || !isset($comment) || !isset($sender)) {
 
-            echo "No enough information ($badge_name): ".(!isset($language) || !isset($level) ||/* !isset($badge_name) ||*/
-                    !isset($language_description) || !isset($comment) || !isset($sender));
+            echo "No enough information";
 
         } else {
 
@@ -320,12 +319,12 @@ foreach ($badges_corresponding as $badge) {
                 $class = $class_teacher;
             }
 
-            /* Creation the badge */
+            /* Creation of the badge */
             $badge = new Badge($badge_others_items['name'], level, $language, $certification, $comment,
                 $badge_others_items['description'], $language_description, $badge_others_items['image'],
                 $url_json_files, $path_dir_json_files);
 
-            /* Creation the badge */
+            /* Sending all the email */
             foreach ($mails_list as $mail) {
 
                 /* operation for system not unix */
@@ -367,4 +366,4 @@ foreach ($badges_corresponding as $badge) {
     } else {
         die('-1');
     }
-    ?>
+?>

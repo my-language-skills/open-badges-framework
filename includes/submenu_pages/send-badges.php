@@ -53,6 +53,7 @@ function send_badges_page_callback() {
 
     <div class="wrap">
         <br><br>
+        <input type="hidden" name="sender" value="<?php echo $current_user->user_email; ?>"/>
         <h1><i><span class="dashicons dashicons-awards"></span><?php _e('Send Badges', 'badges-issuer-for-wp'); ?></i>
         </h1>
         <h3>Select the possibility to send the badge.</h3>
@@ -172,7 +173,6 @@ function tab_self() { ?>
                     <div class="section-container">
                         <div class="title-form"><h2>Addition information:</h2></div>
                         <hr class="sep-sendbadge">
-                        <label for="comment"><b><?php _e('Comment : ', 'badges-issuer-for-wp'); ?></b></label><br/>
                         <textarea name="comment" id="comment" rows="10" cols="80"></textarea><br/><br/>
                     </div>
                 </section>
@@ -280,7 +280,6 @@ function tab_issue() { ?>
                     <div class="section-container">
                         <div class="title-form"><h2>Addition information:</h2></div>
                         <hr class="sep-sendbadge">
-                        <label for="comment"><b><?php _e('Comment : ', 'badges-issuer-for-wp'); ?></b></label><br/>
                         <textarea name="comment" id="comment" rows="10" cols="80"></textarea><br/><br/>
                     </div>
                 </section>
@@ -378,9 +377,8 @@ function tab_multiple() { ?>
                     <div class="section-container">
                         <div class="title-form"><h2>Receiver's mail adress:</h2></div>
                         <hr class="sep-sendbadge">
+                        <p>To send multiple email, write each address per line.</p><br>
                         <textarea name="mail" id="mail" class="mail" rows="10" cols="50"></textarea>
-
-                        <input type="hidden" name="sender" value="<?php echo $current_user->user_email; ?>"/>
                     </div>
                 </section>
 
@@ -389,7 +387,6 @@ function tab_multiple() { ?>
                     <div class="section-container">
                         <div class="title-form"><h2>Addition information:</h2></div>
                         <hr class="sep-sendbadge">
-                        <label for="comment"><b><?php _e('Comment : ', 'badges-issuer-for-wp'); ?></b></label><br/>
                         <textarea name="comment" id="comment" rows="10" cols="80"></textarea><br/><br/>
                     </div>
                 </section>
@@ -398,7 +395,6 @@ function tab_multiple() { ?>
     </div>
     <?php
 }
-
 
 add_shortcode('send_badge', 'send_badges_page_callback');
 // Adding the shortcode to send the badge to yourself

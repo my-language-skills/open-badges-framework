@@ -47,7 +47,7 @@ function get_badge_descriptions($badge) {
  *
  * @author Nicolas TORION
  * @since  0.6.2
- * @since  0.6.4 updated the way to get the badges.
+ * @since  X.X.X updated the way to get the badges.
  *
  * @param $badge_name The name of the badge.
  * @param $badges     A list of badges.
@@ -266,7 +266,7 @@ function get_all_classes() {
  *
  * @author Nicolas TORION
  * @since  0.3
- * @since  0.6.4 name changed
+ * @since  X.X.X name changed
  * @return $classes Array of all classes zero.
  */
 function get_all_classes_zero() {

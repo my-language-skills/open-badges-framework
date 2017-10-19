@@ -1,7 +1,17 @@
 var currentForm;
 
 window.onload = function () {
+    /* Variables */
+    var isLocalhost = false;
 
+
+    if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
+        isLocalhost = true;
+        jQuery(".wrap").append(
+            '<div class="message msg-insuccess">' +
+            '<strong>Sending badge not available</strong> because WordPress is running in localhost!' +
+            '</div>');
+    }
     /**** CODE for the tab in the page send badge ****/
     jQuery('#tabs').tabs();
     jQuery(".nav-tab").click(function () {
@@ -200,7 +210,8 @@ window.onload = function () {
                     break;
                 /******* (5) EMAIL */
                 case 5:
-                    if (jQuery("#badge_form_b input[name='mail']").val()) {
+                    var emails = jQuery("#badge_form_b #mail").val();
+                    if (check_mails(emails)) {
                         form.validate().settings.ignore = ":disabled,:hidden";
                         return form.valid();
                     }
@@ -320,8 +331,7 @@ window.onload = function () {
                     break;
                 /******* (5) EMAIL */
                 case 5:
-
-                    var emails = jQuery("#badge_form_c input[name='mail']").val();
+                    var emails = jQuery("#badge_form_c #mail").val();
                     if (check_mails(emails)) {
                         form.validate().settings.ignore = ":disabled,:hidden";
                         return form.valid();
@@ -421,7 +431,7 @@ window.onload = function () {
      * LOAD DESCRIPTION
      *
      * @author Alessandro RICCARDI
-     * @since 0.6.4
+     * @since X.X.X
      */
     function load_description(curForm) {
 
@@ -457,7 +467,7 @@ window.onload = function () {
      * LOAD CLASS
      *
      * @author Alessandro RICCARDI
-     * @since 0.6.4
+     * @since X.X.X
      */
     function load_class(curForm) {
         // To load the class if in the tab B or C
@@ -485,53 +495,55 @@ window.onload = function () {
      * This function make an ajax call to permit to send the badge to the right person and also to store in the server.
      *
      * @author Alessandro RICCARDI
-     * @since 0.6.4
+     * @since X.X.X
      */
     function sendMessageBadge(curForm) {
+        if(!isLocalhost) {
+            var language = jQuery("#badge_form_" + curForm + " #language :selected").text(),
+                level = jQuery("#badge_form_" + curForm + " input[name='level']:checked").val(),
+                badge_name = jQuery("#badge_form_" + curForm + " input[name='input_badge_name']:checked").val(),
+                language_description = jQuery("#badge_form_" + curForm + " #language_description").val(),
+                class_student = jQuery("#badge_form_" + curForm + " input[name='class_for_student']:checked").val(),
+                class_teacher = jQuery("#badge_form_" + curForm + " input[name='class_teacher']:checked").val(),
+                mail = jQuery("#badge_form_" + curForm + " input[name='mail']").val(),
+                comment = jQuery("#badge_form_" + curForm + " #comment").val(),
+                sender = jQuery("input[name='sender']").val();
 
-        var language = jQuery("#badge_form_" + curForm + " #language :selected").text(),
-            level = jQuery("#badge_form_" + curForm + " input[name='level']:checked").val(),
-            badge_name = jQuery("#badge_form_" + curForm + " input[name='input_badge_name']:checked").val(),
-            language_description = jQuery("#badge_form_" + curForm + " #language_description").val(),
-            class_student = jQuery("#badge_form_" + curForm + " input[name='class_for_student']:checked").val(),
-            class_teacher = jQuery("#badge_form_" + curForm + " input[name='class_teacher']:checked").val(),
-            mail = jQuery("#badge_form_" + curForm + " input[name='mail']").val(),
-            comment = jQuery("#badge_form_" + curForm + " #comment").val(),
-            sender = jQuery("input[name='sender']").val();
-
-        alert(language + ", " + level + ", " + badge_name + ", " + language_description + ", " + class_student + ", " + class_teacher + ", " + mail + ", " + comment + ", " + sender);
+            alert(language + ", " + level + ", " + badge_name + ", " + language_description + ", " + class_student + ", " + class_teacher + ", " + mail + ", " + comment + ", " + sender);
 
 
-        var data = {
-            'action': 'send_message_badge',
-            'curForm': curForm,
-            'language': language,
-            'level': level,
-            'badge_name': badge_name,
-            'language_description': language_description,
-            'class_student': class_student,
-            'class_teacher': class_teacher,
-            'mail': mail,
-            'comment': comment,
-            'sender': sender,
-        };
+            var data = {
+                'action': 'send_message_badge',
+                'curForm': curForm,
+                'language': language,
+                'level': level,
+                'badge_name': badge_name,
+                'language_description': language_description,
+                'class_student': class_student,
+                'class_teacher': class_teacher,
+                'mail': mail,
+                'comment': comment,
+                'sender': sender,
+            };
 
-        jQuery.post(
-            ajaxFile,
-            data,
-            function (response) {
-                jQuery("#badge_form_" + curForm).append(response);
-                jQuery('html, body').animate({scrollTop: 0}, 'fast');
-            }
-        );
+            jQuery.post(
+                ajaxFile,
+                data,
+                function (response) {
+                    jQuery("#badge_form_" + curForm).append(response);
+                    jQuery('html, body').animate({ scrollTop: 0 }, 'fast');
+                }
+            );
+        }
     }
+
 
     /**
      * This function permit to check the current form and save into a variable.
      * @param event of the event about the click
      *
      * @author Alessandro RICCARDI
-     * @since 0.6.4
+     * @since X.X.X
      */
     function checkForm(event) {
         if (jQuery(event).parents('#badge_form_a').length == 1) {
@@ -551,20 +563,20 @@ window.onload = function () {
      * @param mails, contain all the email
      *
      * @author Alessandro RICCARDI
-     * @since 0.6.4
+     * @since X.X.X
      */
     function check_mails(mails) {
+        if (mails) {
+            var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            mails = mails.split("\n");
 
-        if (typeof mails !== 'undefined') {
-            var testEmail = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
-
-            for (var i = 0; i < mails.length; i++) {
-                if (!testEmail.test(mails[i])) {
-                    return false;
-                }
+            for(var i = 0; i < mails.length; i++){
+                if(!re.test(mails[i])) return false;
             }
+            // Everything good
             return true;
         } else {
+            // No text
             return false;
         }
     }

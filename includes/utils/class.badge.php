@@ -237,7 +237,7 @@ class Badge
     $headers .= "Content-type: text/html; charset=utf-8"."\n";
     $headers .= "Reply-To: mylanguageskills@hotmail.com\n";
 
-    return 1;//mail($receiver, $subject, $message, $headers); //Sending the emails
+    return mail($receiver, $subject, $message, $headers); //Sending the emails
   }
 
   function console_log($content) {

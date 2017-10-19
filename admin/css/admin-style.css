@@ -370,10 +370,6 @@ fieldset {
     position: absolute !important;
     top: 5px;
     width: 95%;
-}
-
-.msg-success {
-    border-left-color: #46b450;
     background: #fff;
     border-left: 4px solid #46b450;
     -webkit-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .1);
@@ -381,3 +377,10 @@ fieldset {
     margin-right: 15px;
 }
 
+.msg-success {
+    border-left-color: #46b450;
+}
+
+.msg-insuccess{
+    border-left-color: #b42300;
+}
