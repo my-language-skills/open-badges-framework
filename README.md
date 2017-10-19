@@ -58,7 +58,6 @@ You can see all of the screenshots of the plugin [here](doc/screenshot.md "scree
  * To delete all the information of the plugin option if we wish by deleting the plugin
 
 ## Changelog
-FIRST VERSION WITH STATISTICS???
 
 ### 0.6.3
 * **ENHANCEMENTS**
@@ -70,10 +69,10 @@ FIRST VERSION WITH STATISTICS???
     * New xml and wie (widget) files with dummy content
     * Update version numbers in some files
     * Update the badge's page
+    * Fixed Bug
 
 
 ### 0.6.2
-
 * **ENHANCEMENTS**
     * To save more information in the student profile
     * Criteria section
@@ -82,7 +81,6 @@ FIRST VERSION WITH STATISTICS???
     * Show description in send badges form
 
 ### 0.6.1
-
 * **ADDITIONS**
     * New section in Settings page for changing register and login links.
     * One criteria file for each level.
@@ -99,7 +97,6 @@ FIRST VERSION WITH STATISTICS???
     * Fix pages for get the badge
 
 ### 0.6
-
 * **ADDITIONS**
     * Add messages to get_badge page (if user has already received this badge, inform user that he will be able to review the class after he received the badge).
     * Save name of class in user profile (section badges).
@@ -119,7 +116,6 @@ FIRST VERSION WITH STATISTICS???
     * Fix check of roles.
 
 ### 0.5.3
-
 * **ENHANCEMENTS**
     * The send badges page is organized with tabs (change front-end style of tabs).
     * The form for sending badges is more simple (with steps).
@@ -129,7 +125,6 @@ FIRST VERSION WITH STATISTICS???
     * Fix relative url (for json files directory) in send-badges.php.
 
 ### 0.5.2
-
 * **ADDITIONS**
     * A default image for representing a badge is displayed when the badge don't have an image.
 
@@ -141,7 +136,6 @@ FIRST VERSION WITH STATISTICS???
     * The bug in the send badges form when the badge name is a number is fixed.
 
 ### 0.5.1
-
 * **ENHANCEMENTS**
     * Remove job listing metaboxes level and language.
 
@@ -149,7 +143,6 @@ FIRST VERSION WITH STATISTICS???
     * Add verification on meta values before access.
 
 ### 0.5
-
 * **ADDITIONS**
     * Move descriptions into the content of the badges post. And teachers of academy can add translations of these descriptions directly in the comments of the badges post.
     * Teachers of academy are able to modify their own translations of descriptions.
@@ -159,7 +152,6 @@ FIRST VERSION WITH STATISTICS???
     * Some change of elements' name as written in documentation.md file.
 
 ### 0.4.1
-
 * **ADDITIONS**
     * Add of a section in the settings page for managing the links of the website.
 
@@ -170,7 +162,6 @@ FIRST VERSION WITH STATISTICS???
     * Roles and capabilities.
 
 ### 0.4
-
 * **ADDITIONS**
     * "Can take few seconds to load" message for display all languages link.
 
@@ -180,7 +171,6 @@ FIRST VERSION WITH STATISTICS???
     * Class CPT page into Badge CPT menu.
 
 ### 0.3
-
 * **ADDITIONS**
     * Plugin can work without job manager.
     * One place all data : all students of a teacher stocked in his class zero.
@@ -192,7 +182,6 @@ FIRST VERSION WITH STATISTICS???
     * Possibility to read the information of the badges translated inside of the custom post.
 
 ### 0.2
-
 * **ADDITIONS**
     * Badges issuer in the front-end (works with a shortcode). #5
     * Introduction of WP roles : Student, Teacher and Academy. Possibility to restrict the content for each role. #6
@@ -212,7 +201,6 @@ FIRST VERSION WITH STATISTICS???
     * Undefined variable in javascript code.
 
 ### 0.1
-
 * **INITIAL VERSION**
     * Creation of the Custom Post Type 'Badge School'.
     * Possibility to create the information of the badge inside of the badges custom post type page.
@@ -222,31 +210,24 @@ FIRST VERSION WITH STATISTICS???
 ## Upgrade Notice
 
 ### 0.6
-
 Plugin more stable, more ergonomic and more simple.
 
 ### 0.5
-
 Translations of badges descriptions easier to add.
 
 ### 0.4
-
 Plugin better organized.
 
 ### 0.3
-
 Plugin flexible : can work without WP Job Manager
 
 ### 0.2
-
 Badges functionality
 
 ### 0.1
-
 Starter
 
 ## Credits
-
 Here's a link to [Plugin Boilerplate](http://wppb.io/ "Uses the WordPress Plugin Boilerplate")
 
 Here's a link to [WordPress](http://wordpress.org/ "Your favorite software")

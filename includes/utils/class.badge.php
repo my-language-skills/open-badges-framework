@@ -153,7 +153,7 @@ class Badge
    * Sends a mail to the person who receive the badge, to give her the link of the page where she can get his badge.
    *
    * @author Nicolas TORION
-   * @since 0.6.3
+   *@since 0.6.3
    * @param $receiver The mail of the person who will receive the Badge.
    * @param $class_id The ID of the class in which the student is.
    * @return A boolean to know if the mail has been sent.
@@ -308,7 +308,7 @@ class Badge
         'date' => date("Y-m-d")
       );
 
-      $class = get_class_zero_teacher($current_user->user_login);
+      $class = get_class_teacher($current_user->user_login);
       if(!get_post_meta($class->ID, '_class_students', true))
         $class_students = array();
       else
