@@ -1,4 +1,7 @@
 /.editorconfig export-ignore
 /.gitattributes export-ignore
-/.github export-ignore
+/.doc export-ignore
 /.gitignore export-ignore
+/Doxyfile export-ignore
+/License export-ignore
+/README.md export-ignore
