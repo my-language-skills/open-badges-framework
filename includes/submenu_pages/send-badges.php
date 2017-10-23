@@ -54,7 +54,7 @@ function send_badges_page_callback() {
     <div class="wrap">
         <br><br>
         <input type="hidden" name="sender" value="<?php echo $current_user->user_email; ?>"/>
-        <h1><i><span class="dashicons dashicons-awards"></span><?php _e('Send Badges', 'badges-issuer-for-wp'); ?></i>
+        <h1><i><span class="dashicons dashicons-awards"></span><?php echo get_admin_page_title();?> </i>
         </h1>
         <h3>Select the possibility to send the badge.</h3>
         <div id="tabs">

@@ -7,17 +7,22 @@ window.onload = function () {
 
     if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
         isLocalhost = true;
+        /*
         jQuery(".wrap").append(
             '<div class="message msg-insuccess">' +
             '<strong>Sending badge not available</strong> because WordPress is running in localhost!' +
             '</div>');
+            */
     }
+
     /**** CODE for the tab in the page send badge ****/
-    jQuery('#tabs').tabs();
-    jQuery(".nav-tab").click(function () {
-        jQuery(".nav-tab").removeClass("nav-tab-active");
-        jQuery(this).addClass("nav-tab-active");
-    });
+    if(jQuery('#tabs').length){
+        jQuery('#tabs').tabs();
+        jQuery(".nav-tab").click(function () {
+            jQuery(".nav-tab").removeClass("nav-tab-active");
+            jQuery(this).addClass("nav-tab-active");
+        });
+    }
 
 
     /* =====================================

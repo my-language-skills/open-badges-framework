@@ -131,23 +131,26 @@ function show_all_the_language($p_parent = "", $form = "") {
  * @param string $p_parent permit to understand the active parent
  */
 function display_parents($p_parent = "") {
+    $haveCat = false;
+
     $parents = get_parent_categories();
 
     echo '<div class="btns-parent-field">';
 
     foreach ($parents as $parent) {
+        $haveCat = true;
         if ($parent[2] == $p_parent) {
             echo '<a class="btn btn-default btn-xs display_parent_categories active" id="' . $parent[2] . '">Display ' . $parent[1] . '</a>';
         } else {
             echo '<a class="btn btn-default btn-xs display_parent_categories" id="' . $parent[2] . '">Display ' . $parent[1] . '</a>';
         }
     }
+
     // Display the link to show all the languages
-    if ($p_parent === "all_field") {
-        echo '<a class="btn btn-default btn-xs display_parent_categories active" id="all_field">Display all Fields</a>';
-    } else {
-        echo '<a class="btn btn-default btn-xs display_parent_categories" id="all_field">Display Field</a>';
+    if($haveCat) {
+        echo '<a class="btn btn-default btn-xs display_parent_categories" id="all_field">Display all Fields</a>';
     }
+
     echo '</div> <hr class="sep-sendbadge">';
 }
 

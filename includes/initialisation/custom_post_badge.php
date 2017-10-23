@@ -286,7 +286,7 @@ function meta_box_links($post) {
         register_taxonomy('level', 'badge', array(
             'label' => __('Level'),
             'rewrite' => array('slug' => 'level'),
-            'hierarchical' => true,
+            'hierarchical' => false,
         ));
     }
 

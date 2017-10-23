@@ -177,7 +177,6 @@ function get_languages() {
         $languages = get_terms(array(
             'taxonomy' => $taxanomyName,
             'hide_empty' => false,
-            'parent' => 0,
         ));
 
         return $languages;
