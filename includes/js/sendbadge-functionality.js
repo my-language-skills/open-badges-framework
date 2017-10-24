@@ -7,12 +7,6 @@ window.onload = function () {
 
     if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
         isLocalhost = true;
-        /*
-        jQuery(".wrap").append(
-            '<div class="message msg-insuccess">' +
-            '<strong>Sending badge not available</strong> because WordPress is running in localhost!' +
-            '</div>');
-            */
     }
 
     /**** CODE for the tab in the page send badge ****/
@@ -54,7 +48,6 @@ window.onload = function () {
             }
 
             switch (currentIndex) {
-
                 /******* (0) FIELD OF EDUCATION */
                 case 0:
                     return load_levels(currentForm, form);
@@ -366,7 +359,9 @@ window.onload = function () {
     function load_description(currentForm, form) {
         var check = false;
         var badgeName = "";
+        var langSelected = "Default";
 
+        // Check if we selected a badge to permit to switch the page
         jQuery("#badge_form_" + currentForm + " input[name='input_badge_name']")  // check if one badge is selected
             .each(function () {  // first pass, create name mapping
                 if (jQuery(this).is(':checked')) {
@@ -374,32 +369,22 @@ window.onload = function () {
                     badgeName = jQuery(this).val();
                 }
             });
-
+        // Badge no selected
         if (!check) {
             return false;
-
         }
 
+        // LOAD the GIF
         jQuery("#badge_form_" + currentForm + " #result_preview_description").html("<br /><img src='" + loaderGif + "' width='50px' height='50px' />");
 
-        var tab_name = "_" + jQuery("#badge_form_" + currentForm + " .input-badge:checked").val().replace('-', '_') + "_description_languages";
-        var tab = eval(tab_name);
-
-        var content = '<label for="language_description"></label><br /><select name="language_description" id="language_description">';
-        tab.forEach(function (lang) {
-            content = content + '<option value="' + lang + '">' + lang + '</option>';
-        });
-
-        content = content + '</select><br>';
-        jQuery("#badge_form_" + currentForm + " #result_languages_description").html(content);
-
-        var langSelected = jQuery("#badge_form_" + currentForm + " #language_description option:selected").text();
+        // Data for the AJAX call
         var data = {
             'action': 'action_select_description_preview',
             'language_description': langSelected,
             'badge_name': badgeName
         };
 
+        // AJAX call
         jQuery.post(
             ajaxFile,
             data,
@@ -562,6 +547,12 @@ window.onload = function () {
                     jQuery('html, body').animate({scrollTop: 0}, 'fast');
                 }
             );
+        } else {
+            jQuery(".wrap").append(
+                '<div class="message msg-insuccess">' +
+                '<strong>Sending badge not available</strong> because WordPress is running in localhost!' +
+                '</div>');
+
         }
     }
 

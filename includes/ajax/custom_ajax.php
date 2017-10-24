@@ -77,10 +77,10 @@ function action_languages_form() {
 add_action('CUSTOMAJAX_get_right_levels', 'get_right_levels');
 
 function get_right_levels() {
+    global $current_user;
     $fieldEdu = $_POST['fieldEdu'];
     $levels = get_all_levels($fieldEdu);
     wp_get_current_user();
-
 
     // Display the level ...
     echo '<hr class="sep-sendbadge">';
@@ -105,6 +105,7 @@ add_action('CUSTOMAJAX_action_select_badge', 'action_select_badge');
 function action_select_badge() {
     global $current_user;
     $badges = get_all_badges();
+    $form = $_POST['form'];
     $lang = $_POST['fieldEdu'];
     $level = $_POST['level'];
 
@@ -122,75 +123,30 @@ function action_select_badge() {
         return strcmp($a->post_title, $b->post_title);
     });
 
-    $first_certified_badge = true;
-    foreach ($badges_corresponding as $badge) {
-        $certification = get_post_meta($badge->ID, '_certification', true);
+    foreach ($badges_corresponding as $badge) { ?>
+        <!-- HTML -->
+        <div class="cont-badge-sb">
+        <input type="radio" name="input_badge_name" class="input-badge input-hidden"
+               id="<?php echo $form . $badge->post_title; ?>"
+               value="<?php echo $badge->post_name; ?>"/>
+        <label for="<?php echo $form . $badge->post_title; ?>">
+        <img class="img-send-badge" src="<?php
 
-        if ($certification == "not_certified") {
-            echo '<div class="cont-badge-sb">';
-            echo '<input type="radio" name="input_badge_name" class="input-badge input-hidden" id="' . $_POST['form'] . $badge->post_title . '" value="' . $badge->post_name . '"/>';
-            echo '<label for="' . $_POST['form'] . $badge->post_title . '">';
-            echo '<img class="img-send-badge" src="';
-            if (get_the_post_thumbnail_url($badge->ID)) {
-                echo get_the_post_thumbnail_url($badge->ID, 'thumbnail');
-                echo '" /></label>';
-                echo '</br><b>' . $badge->post_title . '</b>';
-            } else {
-                echo plugins_url('../../assets/default-badge-thumbnail.png', __FILE__);
-                echo '" width="40px" height="40px" /></label>';
-            }
-            echo "</div>";
-            echo '</div>';
+        if (get_the_post_thumbnail_url($badge->ID)) {
+            // Badge WITH image
+            echo get_the_post_thumbnail_url($badge->ID, 'thumbnail');
+            echo '" /> </label>';
+            echo '</br> <b>' . $badge->post_title.'</b>';
+            echo "</b>";
+        } else {
+            // Badge WITHOUT image
+            echo plugins_url('../../assets/default-badge-thumbnail.png', __FILE__);
+            echo '" width="40px" height="40px" /></label>';
+            echo '</br><b>' . $badge->post_title .'</b>';
 
-        } elseif (get_post_meta($badge->ID, '_certification', true) == "certified") {
-            echo '<div">';
-            echo '<br><b>Certified Badges : </b><br>';
-            if ($first_certified_badge) {
-                $first_certified_badge = false;
-            }
-
-            echo '<input onclick="jQuery(showDesc());"  type="radio" name="input_badge_name" class="input-badge input-hidden" id="' . $_POST['form'] . $badge->post_title . '" value="' . $badge->post_name . '"/>
-                        <label for="' . $_POST['form'] . $badge->post_title . '">
-                        <img class="img-send-badge" src="';
-            if (get_the_post_thumbnail_url($badge->ID)) {
-                echo get_the_post_thumbnail_url($badge->ID, 'thumbnail');
-                echo '" width="40px" height="40px" /></label>';
-                echo '</br><b>' . $badge->post_title . '</b>';
-            } else {
-                echo plugins_url('../../assets/default-badge-thumbnail.png', __FILE__);
-                echo '" width="40px" height="40px" /></label>';
-            }
         }
+        echo "</div>";
     }
-
-    ?>
-    <script>
-        <?php
-
-        /**
-         *
-         *
-         * @author Nicolas TORION
-         * @since  0.6.2
-         */
-        $badges = get_all_badges();
-
-        foreach ($badges as $badge) {
-            $descriptions = get_badge_descriptions($badge);
-            echo 'var _' . str_replace("-", "_", $badge->post_name) . '_description_languages = [';
-            $i = 0;
-            foreach ($descriptions as $lang => $description) {
-                echo "'" . $lang . "'";
-                if ($i != (sizeof($descriptions) - 1)) {
-                    echo ', ';
-                }
-                $i++;
-            }
-            echo "]; \n";
-        }
-        ?>
-
-    <?php
 }
 
 /**
@@ -397,7 +353,6 @@ function send_message_badge() {
         }
     }
 }
-
 
 
 if (in_array($action, $allowed_actions)) {

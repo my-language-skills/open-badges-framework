@@ -102,7 +102,13 @@ function get_all_levels($rightFieldEdu = "") {
         // at the first step.
         if (!$fields) {
             if (!in_array($level, $levels)) {
-                $levels[] = $level;
+                if (check_the_rules($current_user->roles, "administrator", "editor")) {
+                    $levels[] = $level;
+                } else {
+                    if ($badge_type == "student") {
+                        $levels[] = $level;
+                    }
+                }
             }
         } else {
             foreach ($fields as $field) {
@@ -152,8 +158,12 @@ function get_all_badges_level($badges, $fieldEdu, $level, $certification = false
         foreach ($fields as $field) {
             if ($field->name == $fieldEdu) $fieldOK = 1;
         }
-
-        if ((!$fields || $fieldOK) && $badgeLevel == $level) {
+        // In this condition the level need to be always right but not for the field
+        // of education, in this condition "(!$fields || $fieldOK)" we want to take
+        // the badge that are of the right Field of Education ($fieldOK) and the badge
+        // that don't have fields of education because they dont have a specific
+        // classification (!$fields)
+        if ((!$fields || $fieldOK) && $badgeLevel == $level && !in_array($badge, $allBadges)) {
             $badgeCert = get_post_meta($badge->ID, '_certification', true);
             if ($badgeCert == "certified") {
                 if ($certification) {

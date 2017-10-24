@@ -72,7 +72,7 @@ class Badges_Issuer_For_Wp_Public {
 	public function enqueue_scripts() {
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/badges-issuer-for-wp-public.js', array( 'jquery' ), $this->version, false );
         wp_enqueue_script("send-badges-public", plugin_dir_url(__FILE__) . '../includes/js/sendbadge-functionality.js', array('jquery'), $this->version, false);
-        wp_enqueue_script("jQuery-validation", 'http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js', array('jquery'), $this->version, false);
+        wp_enqueue_script("jQuery-validation-public", 'http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js', array('jquery'), $this->version, false);
         wp_enqueue_script("steps-form", plugin_dir_url(__FILE__) . '../includes/js/jquery.steps.min.js', array('jquery'), $this->version, false);
     }
 
