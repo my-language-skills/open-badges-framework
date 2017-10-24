@@ -40,17 +40,6 @@ function send_badges_page_callback() {
     global $current_user;
     wp_get_current_user();
     ?>
-    <script>
-
-    </script>
-
-    <style>
-        .tabs-inline li {
-            display: inline;
-            list-style: none;
-        }
-    </style>
-
     <div class="wrap">
         <br><br>
         <input type="hidden" name="sender" value="<?php echo $current_user->user_email; ?>"/>
@@ -67,14 +56,14 @@ function send_badges_page_callback() {
                                          id="nav-badge-a"><?php _e('Self', 'badges-issuer-for-wp'); ?></div>
                                 </a></li>
                             <?php
-                            if (in_array("teacher", $current_user->roles) || in_array("academy", $current_user->roles) || in_array("administrator", $current_user->roles) || in_array("editor", $current_user->roles)) {
+                            if (check_the_rules($current_user->roles, "academy", "teacher", "administrator", "editor")) {
                                 ?>
                                 <li><a href="#tabs-2">
                                         <div class="nav-tab"
                                              id="nav-badge-b"><?php _e('Issue', 'badges-issuer-for-wp'); ?></div>
                                     </a></li>
                                 <?php
-                                if (in_array("academy", $current_user->roles) || in_array("administrator", $current_user->roles) || in_array("editor", $current_user->roles)) {
+                                if (check_the_rules($current_user->roles, "academy", "administrator", "editor")) {
                                     ?>
                                     <li><a href="#tabs-3">
                                             <div class="nav-tab"
@@ -90,13 +79,13 @@ function send_badges_page_callback() {
                 <?php tab_self(); ?>
             </div>
             <?php
-            if (in_array("teacher", $current_user->roles) || in_array("academy", $current_user->roles) || in_array("administrator", $current_user->roles) || in_array("editor", $current_user->roles)) {
+            if (check_the_rules($current_user->roles, "academy", "teacher", "administrator", "editor")) {
                 ?>
                 <div id="tabs-2">
                     <?php tab_issue(); ?>
                 </div>
                 <?php
-                if (in_array("academy", $current_user->roles) || in_array("administrator", $current_user->roles) || in_array("editor", $current_user->roles)) {
+                if (check_the_rules($current_user->roles, "academy", "administrator", "editor")) {
                     ?>
                     <div id="tabs-3">
                         <?php tab_multiple(); ?>
@@ -123,7 +112,6 @@ function tab_self() { ?>
             global $current_user;
             wp_get_current_user();
             // get all badges that exist
-            $badges = get_all_badges();
             ?>
             <div>
                 <h3>Field of Education</h3>
@@ -135,14 +123,20 @@ function tab_self() { ?>
                         $actual_parent = key($parents);
                         display_parents($actual_parent);
                         ?>
-                        <div id="field_edu_a"><?php show_all_the_language("", "a"); ?></div>
+                        <div id="field_edu_a"><?php display_fieldEdu("", "a"); ?></div>
                     </div>
                 </section>
                 <h3>Level</h3>
                 <section>
                     <div class="section-container">
                         <div class="title-form"><h2>Select the level:</h2></div>
-                        <div id="languages_form_a"><?php display_levels_radio_buttons($badges, "self"); ?></div>
+                        <div id="languages_form_a">
+                            <hr class="sep-sendbadge">
+                            <div class="rdi-tab">
+                                <label class="radio-label" for="level_"> </label>
+                                <input type="radio" class="radio-input level" name="level" id="level_Z" value="">
+                            </div>
+                        </div>
                     </div>
                 </section>
 
@@ -189,16 +183,14 @@ function tab_self() { ?>
  * @author Nicolas TORION
  * @since  0.6.3
  */
-function tab_issue() { ?>
+function tab_issue() {
+    global $current_user;
+    wp_get_current_user();
+    // get all badges that exist
+    ?>
 
     <div class="tab-content">
         <form id="badge_form_b" action="" method="post">
-            <?php
-            global $current_user;
-            wp_get_current_user();
-            // get all badges that exist
-            $badges = get_all_badges();
-            ?>
             <div>
                 <h3>Field of Education</h3>
                 <section>
@@ -209,14 +201,14 @@ function tab_issue() { ?>
                         $actual_parent = key($parents);
                         display_parents($actual_parent);
                         ?>
-                        <div id="field_edu_b"><?php show_all_the_language("", "b"); ?></div>
+                        <div id="field_edu_b"><?php display_fieldEdu("", "b"); ?></div>
                     </div>
                 </section>
                 <h3>Level</h3>
                 <section>
                     <div class="section-container">
                         <div class="title-form"><h2>Select the level:</h2></div>
-                        <div id="languages_form_b"><?php display_levels_radio_buttons($badges, "self"); ?></div>
+                        <div id="languages_form_b"><?php display_levels(); ?></div>
                     </div>
                 </section>
 
@@ -226,14 +218,8 @@ function tab_issue() { ?>
                         <div class="title-form"><h2>Select the kind of badge:</h2></div>
                         <hr class="sep-sendbadge">
                         <div id="select_badge">
-                            <input type="radio" name="input_badge_name" class="input-badge input-hidden" id="form_a_A1"
-                                   value="a1">
-                            <label for="form_a_A1">
-                                <img id="img-send-badge"
-                                     src="<?php echo plugins_url('../../assets/default-badge.png', __FILE__); ?>">
-                            </label>
-                            <br>
-                            <b>A1</b>
+                            <img src="<?php echo plugins_url('../../assets/default-badge.png', __FILE__); ?>"
+                                 width="72px" height="72px"/>
                         </div>
                     </div>
                 </section>
@@ -254,12 +240,12 @@ function tab_issue() { ?>
                         <div class="title-form"><h2>Class:</h2></div>
                         <hr class="sep-sendbadge">
                         <?php
-                        if (in_array("academy", $current_user->roles) || in_array("teacher", $current_user->roles)) {
+                        if (check_the_rules($current_user->roles, "academy", "teacher")) {
                             $class_zero = get_class_teacher($current_user->user_login);
                             echo '<input name="class_teacher" type="hidden" value="' . $class_zero->ID . '"/>';
                         }
 
-                        if (in_array("teacher", $current_user->roles) || in_array("academy", $current_user->roles) || in_array("administrator", $current_user->roles) || in_array("editor", $current_user->roles)) {
+                        if (check_the_rules($current_user->roles, "teacher", "academy", "administrator", "editor")) {
                             echo '<div id="select_class"></div>';
                         }
                         ?>
@@ -295,16 +281,14 @@ function tab_issue() { ?>
  * @author Nicolas TORION
  * @since  0.6.3
  */
-function tab_multiple() { ?>
+function tab_multiple() {
+    global $current_user;
+    wp_get_current_user();
+    // get all badges that exist
+    ?>
 
     <div class="tab-content">
         <form id="badge_form_c" action="" method="post">
-            <?php
-            global $current_user;
-            wp_get_current_user();
-            // get all badges that exist
-            $badges = get_all_badges();
-            ?>
             <div>
                 <h3>Field of Education</h3>
                 <section>
@@ -315,14 +299,14 @@ function tab_multiple() { ?>
                         $actual_parent = key($parents);
                         display_parents($actual_parent);
                         ?>
-                        <div id="field_edu_b"><?php show_all_the_language("", "b"); ?></div>
+                        <div id="field_edu_c"><?php display_fieldEdu("", "c"); ?></div>
                     </div>
                 </section>
                 <h3>Level</h3>
                 <section>
                     <div class="section-container">
                         <div class="title-form"><h2>Select the level:</h2></div>
-                        <div id="languages_form_b"><?php display_levels_radio_buttons($badges, "self"); ?></div>
+                        <div id="languages_form_c"><?php display_levels(); ?></div>
                     </div>
                 </section>
 
@@ -332,14 +316,8 @@ function tab_multiple() { ?>
                         <div class="title-form"><h2>Select the kind of badge:</h2></div>
                         <hr class="sep-sendbadge">
                         <div id="select_badge">
-                            <input type="radio" name="input_badge_name" class="input-badge input-hidden" id="form_a_A1"
-                                   value="a1">
-                            <label for="form_a_A1">
-                                <img id="img-send-badge"
-                                     src="<?php echo plugins_url('../../assets/default-badge.png', __FILE__); ?>">
-                            </label>
-                            <br>
-                            <b>A1</b>
+                            <img src="<?php echo plugins_url('../../assets/default-badge.png', __FILE__); ?>"
+                                 width="72px" height="72px"/>
                         </div>
                     </div>
                 </section>
@@ -360,12 +338,12 @@ function tab_multiple() { ?>
                         <div class="title-form"><h2>Class:</h2></div>
                         <hr class="sep-sendbadge">
                         <?php
-                        if (in_array("academy", $current_user->roles) || in_array("teacher", $current_user->roles)) {
+                        if (check_the_rules($current_user->roles, "academy", "teacher")) {
                             $class_zero = get_class_teacher($current_user->user_login);
                             echo '<input name="class_teacher" type="hidden" value="' . $class_zero->ID . '"/>';
                         }
 
-                        if (in_array("teacher", $current_user->roles) || in_array("academy", $current_user->roles) || in_array("administrator", $current_user->roles) || in_array("editor", $current_user->roles)) {
+                        if (check_the_rules($current_user->roles, "teacher", "academy", "administrator", "editor")) {
                             echo '<div id="select_class"></div>';
                         }
                         ?>

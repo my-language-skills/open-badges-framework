@@ -63,6 +63,7 @@
 .tabcontrol ul {
     list-style: none !important;
     padding: 0;
+    margin-left: 0px;
 }
 
 .wizard ul > li,
@@ -321,6 +322,10 @@ section.current {
     display: inline-block;
 }
 
+.rdi-tab * {
+    float: left;
+}
+
 .radio-label {
     float: left;
     margin-right: 3%;
@@ -335,6 +340,11 @@ fieldset {
 }
 
 /* ### KIND of BADGE ### */
+
+.cont-badge-sb{
+    display: inline-block;
+    margin: 10px 20px;
+}
 
 .input-hidden {
     position: absolute;

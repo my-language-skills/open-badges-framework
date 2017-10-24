@@ -142,7 +142,7 @@ function add_meta_box_links() {
 function display_add_link() {
     echo '<tr>';
     echo '<td width="0%">';
-    show_all_the_language($category = "most-important-languages", $language_selected = "", $multiple = true);
+    display_fieldEdu($category = "most-important-languages", $language_selected = "", $multiple = true);
     echo '</td>';
     echo '<td width="100%">';
     echo '<center><input type="text" size="50" name="link_url[]" value="" /></center>';
@@ -196,7 +196,7 @@ function meta_box_links($post) {
     foreach ($badge_links as $link_lang => $link_url) {
         echo '<tr>';
         echo '<td width="0%">';
-        show_all_the_language($category = "most-important-languages", $language_selected = $link_lang, $multiple = true);
+        display_fieldEdu($category = "most-important-languages", $language_selected = $link_lang, $multiple = true);
         echo '</td>';
         echo '<td width="100%">';
         echo '<center><input type="text" size="50" name="link_url[]" value="' . $link_url . '" /></center>';

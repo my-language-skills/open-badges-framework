@@ -16,7 +16,7 @@ window.onload = function () {
     }
 
     /**** CODE for the tab in the page send badge ****/
-    if(jQuery('#tabs').length){
+    if (jQuery('#tabs').length) {
         jQuery('#tabs').tabs();
         jQuery(".nav-tab").click(function () {
             jQuery(".nav-tab").removeClass("nav-tab-active");
@@ -46,6 +46,7 @@ window.onload = function () {
         bodyTag: "section",
         transitionEffect: "slideLeft",
         onStepChanging: function (event, currentIndex, newIndex) {
+            var currentForm = "a";
 
             if (newIndex < currentIndex) {
                 form.validate().settings.ignore = ":disabled,:hidden";
@@ -56,46 +57,16 @@ window.onload = function () {
 
                 /******* (0) FIELD OF EDUCATION */
                 case 0:
-                    form.validate().settings.ignore = ":disabled,:hidden";
-                    return form.valid();
+                    return load_levels(currentForm, form);
                     break;
-
                 /******* (1) LEVEL */
                 case 1:
-                    var check1 = false;
-                    jQuery("#badge_form_a input[name='level']")
-                        .each(function () {
-                            if (jQuery(this).is(':checked')) {
-                                check1 = true;
-                            }
-                        });
-
-                    if (check1) {
-                        form.validate().settings.ignore = ":disabled,:hidden";
-                        return form.valid();
-                    } else {
-                        return false;
-                    }
+                    return load_badges(currentForm, form);
                     break;
 
                 /******* (2) KIND OF BADGE */
                 case 2:
-                    var check2 = false;
-                    jQuery("#badge_form_a input[name='input_badge_name']")  // for all checkboxes
-                        .each(function () {  // first pass, create name mapping
-                            if (jQuery(this).is(':checked')) {
-                                check2 = true;
-                            }
-                        });
-                    if (check2) {
-                        //Load description of language for the next page
-                        load_description("a");
-                        form.validate().settings.ignore = ":disabled,:hidden";
-                        return form.valid();
-                    } else {
-                        return false;
-                    }
-
+                    return load_description(currentForm, form);
                     break;
 
                 /******* (3) LANGUAGE */
@@ -106,15 +77,12 @@ window.onload = function () {
 
                 /******* (4) INFORMATION */
                 case 4:
-                    form.validate().settings.ignore = ":disabled,:hidden";
-                    return form.valid();
+                    return check_information(currentForm, form);
                     break;
             }
         },
         onFinishing: function (event, currentIndex) {
-            form.validate().settings.ignore = ":disabled";
-            return form.valid();
-
+            return check_information("a", form);
         },
         onFinished: function (event, currentIndex) {
             sendMessageBadge("a");
@@ -126,7 +94,7 @@ window.onload = function () {
          BADGE FORM # B #
        ===================================== */
 
-    var form2 = jQuery("#badge_form_b");
+    var form = jQuery("#badge_form_b");
     form.validate({
         errorPlacement: function errorPlacement(error, element) {
             element.before(error);
@@ -138,11 +106,13 @@ window.onload = function () {
         }
     });
 
-    form2.children("div").steps({
+    form.children("div").steps({
         headerTag: "h3",
         bodyTag: "section",
         transitionEffect: "slideLeft",
         onStepChanging: function (event, currentIndex, newIndex) {
+            //Variables
+            var currentForm = "b";
 
             if (newIndex < currentIndex) {
                 form.validate().settings.ignore = ":disabled,:hidden";
@@ -152,88 +122,38 @@ window.onload = function () {
             switch (currentIndex) {
                 /******* (0) FIELD OF EDUCATION */
                 case 0:
-                    form.validate().settings.ignore = ":disabled,:hidden";
-                    return form.valid();
+                    return load_levels(currentForm, form);
                     break;
                 /******* (1) LEVEL */
                 case 1:
-                    var check = false;
-                    jQuery("#badge_form_b input[name='level']")  // for all checkboxes
-                        .each(function () {  // first pass, create name mapping
-                            if (jQuery(this).is(':checked')) {
-                                check = true;
-                            }
-                        });
-
-                    if (check) {
-                        form.validate().settings.ignore = ":disabled,:hidden";
-                        return form.valid();
-                    } else {
-                        return false;
-                    }
+                    return load_badges(currentForm, form);
                     break;
+
                 /******* (2) KIND OF BADGE */
                 case 2:
-                    var check = false;
-                    jQuery("#badge_form_b input[name='input_badge_name']")  // for all checkboxes
-                        .each(function () {  // first pass, create name mapping
-                            if (jQuery(this).is(':checked')) {
-                                check = true;
-                            }
-                        });
-                    if (check) {
-                        //Load description of language for the next page
-                        load_description("b");
-                        form.validate().settings.ignore = ":disabled,:hidden";
-                        return form.valid();
-                    } else {
-                        return false;
-                    }
+                    return load_description(currentForm, form);
                     break;
                 /******* (3) LANGUAGE */
                 case 3:
-                    load_class("b");
-                    form.validate().settings.ignore = ":disabled,:hidden";
-                    return form.valid();
+                    return load_class(currentForm, form);
                     break;
                 /******* (4) CLASS */
                 case 4:
-                    var check = false;
-                    jQuery("#badge_form_b input[name='class_for_student']")  // for all checkboxes
-                        .each(function () {  // first pass, create name mapping
-                            if (jQuery(this).is(':checked')) {
-                                check = true;
-                            }
-                        });
-                    if (check) {
-                        //Load description of language for the next page
-                        form.validate().settings.ignore = ":disabled,:hidden";
-                        return form.valid();
-                    } else {
-                        return false;
-                    }
+                    return check_class(currentForm, form);
                     break;
                 /******* (5) EMAIL */
                 case 5:
-                    var emails = jQuery("#badge_form_b #mail").val();
-                    if (check_mails(emails)) {
-                        form.validate().settings.ignore = ":disabled,:hidden";
-                        return form.valid();
-                    }
-
-                    return false;
+                    return check_mails(currentForm, form);
                     break;
                 /******* (6) INFORMATION */
                 case 6:
-                    form.validate().settings.ignore = ":disabled,:hidden";
-                    return form.valid();
+                    return check_information(currentForm, form);
                     break;
             }
 
         },
         onFinishing: function (event, currentIndex) {
-            form2.validate().settings.ignore = ":disabled";
-            return form2.valid();
+            return check_information("b", form);
 
         },
         onFinished: function (event, currentIndex) {
@@ -263,6 +183,9 @@ window.onload = function () {
         bodyTag: "section",
         transitionEffect: "slideLeft",
         onStepChanging: function (event, currentIndex, newIndex) {
+            //Variables
+            var currentForm = "c";
+
 
             if (newIndex < currentIndex) {
                 form.validate().settings.ignore = ":disabled,:hidden";
@@ -272,89 +195,38 @@ window.onload = function () {
             switch (currentIndex) {
                 /******* (0) FIELD OF EDUCATION */
                 case 0:
-                    form.validate().settings.ignore = ":disabled,:hidden";
-                    return form.valid();
+                    return load_levels(currentForm, form);
                     break;
                 /******* (1) LEVEL */
                 case 1:
-                    var check1 = false;
-                    jQuery("#badge_form_c input[name='level']")  // for all checkboxes
-                        .each(function () {  // first pass, create name mapping
-                            if (jQuery(this).is(':checked')) {
-                                check1 = true;
-                            }
-                        });
-
-                    if (check1) {
-                        form.validate().settings.ignore = ":disabled,:hidden";
-                        return form.valid();
-                    } else {
-                        return false;
-                    }
+                    return load_badges(currentForm, form);
                     break;
+
                 /******* (2) KIND OF BADGE */
                 case 2:
-                    var check2 = false;
-                    jQuery("#badge_form_c input[name='input_badge_name']")  // for all checkboxes
-                        .each(function () {  // first pass, create name mapping
-                            if (jQuery(this).is(':checked')) {
-                                check2 = true;
-                            }
-                        });
-                    if (check2) {
-                        //Load description of language for the next page
-                        load_description("c");
-                        form.validate().settings.ignore = ":disabled,:hidden";
-                        return form.valid();
-                    } else {
-                        return false;
-                    }
-
+                    return load_description(currentForm, form);
                     break;
                 /******* (3) LANGUAGE */
                 case 3:
-                    load_class("c");
-                    form.validate().settings.ignore = ":disabled,:hidden";
-                    return form.valid();
+                    return load_class(currentForm, form);
                     break;
                 /******* (4) CLASS */
                 case 4:
-                    var check = false;
-                    jQuery("#badge_form_c input[name='class_for_student']")  // for all checkboxes
-                        .each(function () {  // first pass, create name mapping
-                            if (jQuery(this).is(':checked')) {
-                                check = true;
-                            }
-                        });
-                    if (check) {
-                        //Load description of language for the next page
-                        form.validate().settings.ignore = ":disabled,:hidden";
-                        return form.valid();
-                    } else {
-                        return false;
-                    }
+                    return check_class(currentForm, form);
                     break;
                 /******* (5) EMAIL */
                 case 5:
-                    var emails = jQuery("#badge_form_c #mail").val();
-                    if (check_mails(emails)) {
-                        form.validate().settings.ignore = ":disabled,:hidden";
-                        return form.valid();
-                    }
-
-                    return false;
+                    return check_mails(currentForm, form);
                     break;
                 /******* (6) INFORMATION */
                 case 6:
-                    form.validate().settings.ignore = ":disabled,:hidden";
-                    return form.valid();
+                    return check_information(currentForm, form);
                     break;
             }
 
         },
         onFinishing: function (event, currentIndex) {
-            form2.validate().settings.ignore = ":disabled";
-            return form2.valid();
+            return check_information("c", form);
 
         },
         onFinished: function (event, currentIndex) {
@@ -363,7 +235,7 @@ window.onload = function () {
     });
 
     /**
-     * TO LOAD THE FIELD OF EDUCATION (PARENT)
+     * To load the FIELD OF EDUCATION (PARENT)
      * When you click on the .display_parent_categories to see the other "Field of Education" category (parent),
      * the function call the "action_languages_form" in the other file.
      *
@@ -400,26 +272,73 @@ window.onload = function () {
     });
 
     /**
-     * TO LOAD THE BADGE, DESCRIPTION and CLASS
+     * To load the LEVEL
+     * When the Field of education is selected, the levels are loaded.
+     *
+     * @param currentForm, contain the letter of the form
+     * @param form, contain the form
+     *
+     * @author Alessandro RICCARDI
+     * @since X.X.X
+     */
+
+    function load_levels(currentForm, form) {
+        var fieldEdu = jQuery("#badge_form_" + currentForm + " #language :selected").text();
+
+        if (fieldEdu == "Select") {
+            return false;
+        }
+
+        jQuery("#badge_form_" + currentForm + "  #languages_form_" + currentForm).html("<br /><img src='" + loaderGif + "' width='50px' height='50px' />");
+
+        var data = {
+            'action': 'get_right_levels',
+            'fieldEdu': fieldEdu
+        };
+
+        jQuery.post(
+            ajaxFile,
+            data,
+            function (response) {
+                jQuery("#badge_form_" + currentForm + "  #languages_form_" + currentForm).html(response);
+
+            }
+        );
+
+        form.validate().settings.ignore = ":disabled,:hidden";
+        return form.valid();
+    }
+
+    /**
+     * To load the BADGE
      * When the Level is selected (<input class="level") do the code below.
      *
      * @author Alessandro RICCARDI
      * @since 0.6.3
      */
-    jQuery(".level").click(function () {
+    function load_badges(currentForm, form) {
+        var check = false;
+        var fieldEdu = jQuery("#badge_form_" + currentForm + " #language :selected").text();
+        var levelValue = "";
 
-        /* ========================
-            Load the IMAGE of the current badge.
-         */
-        currentForm = checkForm(this);
+        jQuery("#badge_form_" + currentForm + " input[name='level']")
+            .each(function () {
+                if (jQuery(this).is(':checked')) {
+                    check = true;
+                    levelValue = jQuery(this).val();
+                }
+            });
+
+        if (!check) {
+            return false;
+        }
 
         jQuery("#badge_form_" + currentForm + "  #select_badge").html("<br /><img src='" + loaderGif + "' width='50px' height='50px' />");
 
         var data = {
             'action': 'action_select_badge',
-            'form': "form_" + currentForm + "_",
-            'level_selected': jQuery("#badge_form_" + currentForm + "  .level:checked").val(),
-            'language_selected': jQuery("#badge_form_" + currentForm + "  #language").val()
+            'fieldEdu': fieldEdu,
+            'level': levelValue,
         };
 
         jQuery.post(
@@ -427,22 +346,43 @@ window.onload = function () {
             data,
             function (response) {
                 jQuery("#badge_form_" + currentForm + "  #select_badge").html(response);
+
             }
         );
 
-    });
+        form.validate().settings.ignore = ":disabled,:hidden";
+        return form.valid();
+    }
 
     /**
-     * LOAD DESCRIPTION
+     * To load the DESCRIPTION
+     *
+     * @param currentForm, contain the letter of the form
+     * @param form, contain the form
      *
      * @author Alessandro RICCARDI
      * @since X.X.X
      */
-    function load_description(curForm) {
+    function load_description(currentForm, form) {
+        var check = false;
+        var badgeName = "";
 
-        jQuery("#badge_form_" + curForm + " #result_preview_description").html("<br /><img src='" + loaderGif + "' width='50px' height='50px' />");
+        jQuery("#badge_form_" + currentForm + " input[name='input_badge_name']")  // check if one badge is selected
+            .each(function () {  // first pass, create name mapping
+                if (jQuery(this).is(':checked')) {
+                    check = true;
+                    badgeName = jQuery(this).val();
+                }
+            });
 
-        var tab_name = "_" + jQuery("#badge_form_" + curForm + " .input-badge:checked").val().replace('-', '_') + "_description_languages";
+        if (!check) {
+            return false;
+
+        }
+
+        jQuery("#badge_form_" + currentForm + " #result_preview_description").html("<br /><img src='" + loaderGif + "' width='50px' height='50px' />");
+
+        var tab_name = "_" + jQuery("#badge_form_" + currentForm + " .input-badge:checked").val().replace('-', '_') + "_description_languages";
         var tab = eval(tab_name);
 
         var content = '<label for="language_description"></label><br /><select name="language_description" id="language_description">';
@@ -451,47 +391,130 @@ window.onload = function () {
         });
 
         content = content + '</select><br>';
-        jQuery("#badge_form_" + curForm + " #result_languages_description").html(content);
+        jQuery("#badge_form_" + currentForm + " #result_languages_description").html(content);
 
+        var langSelected = jQuery("#badge_form_" + currentForm + " #language_description option:selected").text();
         var data = {
             'action': 'action_select_description_preview',
-            'language_description_selected': jQuery("#badge_form_" + curForm + " #language_description option:selected").text(),
-            'badge_name': jQuery("#badge_form_" + curForm + " input[name=input_badge_name]").val()
+            'language_description': langSelected,
+            'badge_name': badgeName
         };
 
         jQuery.post(
             ajaxFile,
             data,
             function (response) {
-                jQuery("#badge_form_" + curForm + " #result_preview_description").html(response);
+                jQuery("#badge_form_" + currentForm + " #result_preview_description").html(response);
             }
         );
+
+        form.validate().settings.ignore = ":disabled,:hidden";
+        return form.valid();
     }
 
     /**
-     * LOAD CLASS
+     * To load the CLASS
+     *
+     * @param currentForm, contain the letter of the form
+     * @param form, contain the form
      *
      * @author Alessandro RICCARDI
      * @since X.X.X
      */
-    function load_class(curForm) {
+    function load_class(currentForm, form) {
         // To load the class if in the tab B or C
-        if (curForm == "b" || curForm == "c") {
-            jQuery("#badge_form_" + curForm + "  #select_class").html("<br /><img src='" + loaderGif + "' width='50px' height='50px' />");
+        if (currentForm == "b" || currentForm == "c") {
+            jQuery("#badge_form_" + currentForm + "  #select_class").html("<br /><img src='" + loaderGif + "' width='50px' height='50px' />");
 
             var data = {
                 'action': 'action_select_class',
-                'form': "form_" + curForm + "_",
-                'level_selected': jQuery("#badge_form_" + curForm + "  .level:checked").val(),
-                'language_selected': jQuery("#badge_form_" + curForm + "  #language option:selected").text()
+                'form': "form_" + currentForm + "_",
+                'level_selected': jQuery("#badge_form_" + currentForm + "  .level:checked").val(),
+                'language_selected': jQuery("#badge_form_" + currentForm + "  #language option:selected").text()
             };
             jQuery.post(
                 ajaxFile,
                 data,
                 function (response) {
-                    jQuery("#badge_form_" + curForm + "  #select_class").html(response);
+                    jQuery("#badge_form_" + currentForm + "  #select_class").html(response);
                 }
             );
+            form.validate().settings.ignore = ":disabled,:hidden";
+            return form.valid();
+        }
+    }
+
+    /**
+     * Check if is selected the class.
+     * @param currentForm, contain the letter of the form
+     * @param form, contain the form
+     *
+     * @author Alessandro RICCARDI
+     * @since X.X.X
+     */
+    function check_class(currentForm, form) {
+        var check = false;
+        jQuery("#badge_form_"+currentForm+" input[name='class_for_student']")  // for all checkboxes
+            .each(function () {  // first pass, create name mapping
+                if (jQuery(this).is(':checked')) {
+                    check = true;
+                }
+            });
+        if (check) {
+            //Load description of language for the next page
+            form.validate().settings.ignore = ":disabled,:hidden";
+            return form.valid();
+        } else {
+            return false;
+        }
+    }
+
+
+    /**
+     * Check if the the email/s contain only email and not garbage.
+     *
+     * @param currentForm, contain the letter of the form
+     * @param form, contain the form
+     *
+     * @author Alessandro RICCARDI
+     * @since X.X.X
+     */
+    function check_mails(currentForm, form) {
+        var mails = jQuery("#badge_form_"+currentForm+" #mail").val();
+        if (mails) {
+            var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            mails = mails.split("\n");
+
+            for (var i = 0; i < mails.length; i++) {
+                if (!re.test(mails[i])) return false;
+            }
+            // Everything good
+            form.validate().settings.ignore = ":disabled,:hidden";
+            return form.valid();
+        } else {
+            // No text
+            return false;
+        }
+    }
+
+    /**
+     * Check if there are information with text more long than 10 letter and less than 1000
+     * @param currentForm, contain the letter of the form
+     * @param form, contain the form
+     *
+     * @author Alessandro RICCARDI
+     * @since X.X.X
+     */
+    function check_information(currentForm, form) {
+        var info = jQuery("#badge_form_" + currentForm + " #comment").val();
+
+        if (info.length > 10 && info.length < 1000) {
+            // Everything good
+            form.validate().settings.ignore = ":disabled,:hidden";
+            return form.valid();
+        } else {
+            // No text
+            return false;
         }
     }
 
@@ -503,7 +526,7 @@ window.onload = function () {
      * @since X.X.X
      */
     function sendMessageBadge(curForm) {
-        if(!isLocalhost) {
+        if (!isLocalhost) {
             var language = jQuery("#badge_form_" + curForm + " #language :selected").text(),
                 level = jQuery("#badge_form_" + curForm + " input[name='level']:checked").val(),
                 badge_name = jQuery("#badge_form_" + curForm + " input[name='input_badge_name']:checked").val(),
@@ -536,7 +559,7 @@ window.onload = function () {
                 data,
                 function (response) {
                     jQuery("#badge_form_" + curForm).append(response);
-                    jQuery('html, body').animate({ scrollTop: 0 }, 'fast');
+                    jQuery('html, body').animate({scrollTop: 0}, 'fast');
                 }
             );
         }
@@ -563,28 +586,6 @@ window.onload = function () {
 
     }
 
-    /**
-     * Check if the the @param contain only email
-     * @param mails, contain all the email
-     *
-     * @author Alessandro RICCARDI
-     * @since X.X.X
-     */
-    function check_mails(mails) {
-        if (mails) {
-            var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-            mails = mails.split("\n");
-
-            for(var i = 0; i < mails.length; i++){
-                if(!re.test(mails[i])) return false;
-            }
-            // Everything good
-            return true;
-        } else {
-            // No text
-            return false;
-        }
-    }
 };
 
 

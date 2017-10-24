@@ -72,33 +72,58 @@ function get_badge($badge_name, $lang) {
 }
 
 /**
- * Returns all levels that exist.
+ * Returns the right levels.
  *
  * @author Nicolas TORION
  * @since  0.4
+ * @since  X.X.X
  *
- * @param $badges     A list of badges.
- * @param $level_type Type wanted of levels.
- *
- * @return $levels Array of all levels found.
+ * @param string | $rightFieldEdu field of education selected in the first step
+ * @return array $levels Array of all levels found.
  */
-function get_all_levels($badges, $only_student = false) {
+function get_all_levels($rightFieldEdu = "") {
+    // Variables
+    global $current_user;
+    $badges = get_all_badges(); // get all badges that exist
     $levels = array();
+
+    wp_get_current_user();
+
     foreach ($badges as $badge) {
+        // Get the type of the badge (student, teacher)
         $badge_type = get_post_meta($badge->ID, "_type", true);
+        // Get the level of the badge
         $level = get_the_terms($badge->ID, 'level')[0]->name;
-        if (!in_array($level, $levels)) {
-            if ($only_student) {
-                if ($badge_type == "student") {
-                    $levels[] = $level;
-                }
-            } else {
+        // Get the field of the badge
+        $fields = get_the_terms($badge->ID, 'field_of_education');
+
+        //If there is no fields of education in the badge, means that is part of
+        // all the fields and you can see in every field of education that you select
+        // at the first step.
+        if (!$fields) {
+            if (!in_array($level, $levels)) {
                 $levels[] = $level;
+            }
+        } else {
+            foreach ($fields as $field) {
+                if (!in_array($level, $levels)) {
+                    // Check if the Field of education selected in the first step
+                    // is content in one of the badge of the level
+                    if ($field->name == $rightFieldEdu) {
+                        if (check_the_rules($current_user->roles, "administrator", "editor")) {
+                            $levels[] = $level;
+                        } else {
+                            if ($badge_type == "student") {
+                                $levels[] = $level;
+                            }
+                        }
+                    }
+                }
             }
         }
     }
-    sort($levels);
 
+    sort($levels);
     return $levels;
 }
 
@@ -110,24 +135,38 @@ function get_all_levels($badges, $only_student = false) {
  *
  * @param $badges A list of badges.
  *
- * @return $level The level of bagdes to find.
+ * @param $level
+ * @param bool $certification
+ * @return array $level The level of bagdes to find.
  */
 
-function get_all_badges_level($badges, $level, $certification = false) {
-    $badges_corresponding = array();
+function get_all_badges_level($badges, $fieldEdu, $level, $certification = false) {
+    // Variable
+    $allBadges = array();
+
     foreach ($badges as $badge) {
-        if (get_the_terms($badge->ID, 'level')[0]->name == $level) {
-            if (get_post_meta($badge->ID, '_certification', true) == "certified") {
+        $fieldOK = 0;
+        $fields = get_the_terms($badge->ID, 'field_of_education');
+        $badgeLevel = get_the_terms($badge->ID, 'level')[0]->name;
+
+        foreach ($fields as $field) {
+            if ($field->name == $fieldEdu) $fieldOK = 1;
+        }
+
+        if ((!$fields || $fieldOK) && $badgeLevel == $level) {
+            $badgeCert = get_post_meta($badge->ID, '_certification', true);
+            if ($badgeCert == "certified") {
                 if ($certification) {
-                    $badges_corresponding[] = $badge;
+                    $allBadges[] = $badge;
                 }
             } else {
-                $badges_corresponding[] = $badge;
+                $allBadges[] = $badge;
+
             }
         }
     }
 
-    return $badges_corresponding;
+    return $allBadges;
 }
 
 
@@ -555,11 +594,22 @@ function get_student_infos_in_class($student_login, $class_id) {
     return $student_infos;
 }
 
-function check_the_rules($roles){
+/**
+ * Check the rules of the user.
+ *
+ * @author Alessandro RICCARDI
+ * @since  0.6.4
+ *
+ * @param $actual_roles, the roles that the user have in this moment.
+ * @param infinity roles that you can pass after the first parameter like this:
+ *            check_the_rules($current_user->roles, "academy", "teacher")
+ * @return bool
+ */
+function check_the_rules($actual_roles){
     $res = false;
     foreach (func_get_args() as $param) {
         if(!is_array($param)){
-            $res = in_array($param, $roles)? true: $res ? true: false;
+            $res = in_array($param, $actual_roles)? true: $res ? true: false;
         }
     }
     return $res;
