@@ -43,57 +43,47 @@ function send_badges_page_callback() {
     <div class="wrap">
         <br><br>
         <input type="hidden" name="sender" value="<?php echo $current_user->user_email; ?>"/>
-        <h1><i><span class="dashicons dashicons-awards"></span><?php echo get_admin_page_title();?> </i>
-        </h1>
-        <h3>Select the possibility to send the badge.</h3>
-        <div id="tabs">
-            <div id="tabs-elements">
-                <div>
-                    <h2 class="nav-tab-wrapper">
-                        <ul class="tabs-inline">
-                            <li><a href="#tabs-1">
-                                    <div class="nav-tab nav-tab-active"
-                                         id="nav-badge-a"><?php _e('Self', 'badges-issuer-for-wp'); ?></div>
-                                </a></li>
-                            <?php
-                            if (check_the_rules($current_user->roles, "academy", "teacher", "administrator", "editor")) {
-                                ?>
-                                <li><a href="#tabs-2">
-                                        <div class="nav-tab"
-                                             id="nav-badge-b"><?php _e('Issue', 'badges-issuer-for-wp'); ?></div>
-                                    </a></li>
-                                <?php
-                                if (check_the_rules($current_user->roles, "academy", "administrator", "editor")) {
-                                    ?>
-                                    <li><a href="#tabs-3">
-                                            <div class="nav-tab"
-                                                 id="nav-badge-c"><?php _e('Multiple issue', 'badges-issuer-for-wp'); ?></div>
-                                        </a></li>
-                                <?php } ?>
-                            <?php } ?>
-                        </ul>
-                    </h2>
-                </div>
-            </div>
-            <div id="tabs-1">
-                <?php tab_self(); ?>
-            </div>
+        <div class="title-page-admin">
+            <h1>
+                <i>
+                    <span class="dashicons dashicons-awards"></span>
+                    <?php echo get_admin_page_title();?>
+                </i>
+            </h1>
+        </div>
+        <br>
+        <div class="tab">
+            <button class="tablinks" onclick="openCity(event, 'London')">Self</button>
             <?php
             if (check_the_rules($current_user->roles, "academy", "teacher", "administrator", "editor")) {
                 ?>
-                <div id="tabs-2">
-                    <?php tab_issue(); ?>
-                </div>
+                <button class="tablinks" onclick="openCity(event, 'Paris')">Issue</button>
                 <?php
                 if (check_the_rules($current_user->roles, "academy", "administrator", "editor")) {
                     ?>
-                    <div id="tabs-3">
-                        <?php tab_multiple(); ?>
-                    </div>
-                    <?php
-                }
-            } ?>
+                    <button class="tablinks" onclick="openCity(event, 'Tokyo')">Multiple issue</button>
+                <?php } ?>
+            <?php } ?>
         </div>
+
+        <div id="London" class="tabcontent">
+            <?php tab_self(); ?>
+        </div>
+        <?php
+        if (check_the_rules($current_user->roles, "academy", "teacher", "administrator", "editor")) {
+            ?>
+            <div id="Paris" class="tabcontent">
+                <?php tab_issue(); ?>
+            </div>
+            <?php
+            if (check_the_rules($current_user->roles, "academy", "administrator", "editor")) {
+                ?>
+                <div id="Tokyo" class="tabcontent">
+                    <?php tab_multiple(); ?>
+                </div>
+                <?php
+            }
+        } ?>
     </div>
     <?php
 }
@@ -118,25 +108,15 @@ function tab_self() { ?>
                 <section>
                     <div class="section-container">
                         <div class="title-form"><h2>Select your field of education:</h2></div>
-                        <?php
-                        $parents = get_languages();
-                        $actual_parent = key($parents);
-                        display_parents($actual_parent);
-                        ?>
-                        <div id="field_edu_a"><?php display_fieldEdu("", "a"); ?></div>
+                        <?php display_parents(); ?>
+                        <div id="field_edu_a"><?php display_fieldEdu(); ?></div>
                     </div>
                 </section>
                 <h3>Level</h3>
                 <section>
                     <div class="section-container">
                         <div class="title-form"><h2>Select the level:</h2></div>
-                        <div id="languages_form_a">
-                            <hr class="sep-sendbadge">
-                            <div class="rdi-tab">
-                                <label class="radio-label" for="level_"> </label>
-                                <input type="radio" class="radio-input level" name="level" id="level_Z" value="">
-                            </div>
-                        </div>
+                        <div id="languages_form_a"></div>
                     </div>
                 </section>
 
@@ -145,10 +125,7 @@ function tab_self() { ?>
                     <div class="section-container">
                         <div class="title-form"><h2>Select the kind of badge:</h2></div>
                         <hr class="sep-sendbadge">
-                        <div id="select_badge">
-                            <img src="<?php echo plugins_url('../../assets/default-badge.png', __FILE__); ?>"
-                                 width="72px" height="72px"/>
-                        </div>
+                        <div id="select_badge"></div>
                     </div>
                 </section>
 
@@ -196,19 +173,15 @@ function tab_issue() {
                 <section>
                     <div class="section-container">
                         <div class="title-form"><h2>Select your field of education:</h2></div>
-                        <?php
-                        $parents = get_languages();
-                        $actual_parent = key($parents);
-                        display_parents($actual_parent);
-                        ?>
-                        <div id="field_edu_b"><?php display_fieldEdu("", "b"); ?></div>
+                        <?php display_parents(); ?>
+                        <div id="field_edu_b"><?php display_fieldEdu(); ?></div>
                     </div>
                 </section>
                 <h3>Level</h3>
                 <section>
                     <div class="section-container">
                         <div class="title-form"><h2>Select the level:</h2></div>
-                        <div id="languages_form_b"><?php display_levels(); ?></div>
+                        <div id="languages_form_b"></div>
                     </div>
                 </section>
 
@@ -217,10 +190,7 @@ function tab_issue() {
                     <div class="section-container">
                         <div class="title-form"><h2>Select the kind of badge:</h2></div>
                         <hr class="sep-sendbadge">
-                        <div id="select_badge">
-                            <img src="<?php echo plugins_url('../../assets/default-badge.png', __FILE__); ?>"
-                                 width="72px" height="72px"/>
-                        </div>
+                        <div id="select_badge"></div>
                     </div>
                 </section>
 
@@ -294,19 +264,15 @@ function tab_multiple() {
                 <section>
                     <div class="section-container">
                         <div class="title-form"><h2>Select your field of education:</h2></div>
-                        <?php
-                        $parents = get_languages();
-                        $actual_parent = key($parents);
-                        display_parents($actual_parent);
-                        ?>
-                        <div id="field_edu_c"><?php display_fieldEdu("", "c"); ?></div>
+                        <?php display_parents(); ?>
+                        <div id="field_edu_c"><?php display_fieldEdu(); ?></div>
                     </div>
                 </section>
                 <h3>Level</h3>
                 <section>
                     <div class="section-container">
                         <div class="title-form"><h2>Select the level:</h2></div>
-                        <div id="languages_form_c"><?php display_levels(); ?></div>
+                        <div id="languages_form_c"></div>
                     </div>
                 </section>
 
@@ -315,10 +281,7 @@ function tab_multiple() {
                     <div class="section-container">
                         <div class="title-form"><h2>Select the kind of badge:</h2></div>
                         <hr class="sep-sendbadge">
-                        <div id="select_badge">
-                            <img src="<?php echo plugins_url('../../assets/default-badge.png', __FILE__); ?>"
-                                 width="72px" height="72px"/>
-                        </div>
+                        <div id="select_badge"></div>
                     </div>
                 </section>
 

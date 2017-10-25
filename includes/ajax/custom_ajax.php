@@ -30,14 +30,14 @@ $action = esc_attr(trim($_POST['action']));
 
 //A bit of security
 $allowed_actions = array(
-    'action_select_class',
-    'action_select_badge',
     'action_save_metabox_students',
     'action_languages_form',
+    'get_right_levels',
+    'action_select_class',
+    'action_select_badge',
     'action_save_comment',
     'action_select_description_preview',
     'send_message_badge',
-    'get_right_levels'
 );
 
 /**
@@ -77,10 +77,8 @@ function action_languages_form() {
 add_action('CUSTOMAJAX_get_right_levels', 'get_right_levels');
 
 function get_right_levels() {
-    global $current_user;
     $fieldEdu = $_POST['fieldEdu'];
     $levels = get_all_levels($fieldEdu);
-    wp_get_current_user();
 
     // Display the level ...
     echo '<hr class="sep-sendbadge">';

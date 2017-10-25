@@ -10,7 +10,7 @@
  *
  * @param string $parent permit to display the child taxonomy of the parent taxonomy (category).
  */
-function display_fieldEdu($p_parent = "", $form = "") {
+function display_fieldEdu($p_parent = "") {
 
 
     $selectionContOpen = '<div class="select-language"> <select name="language" id="language"> <option value="-9999" selected disabled hidden>Select</option>';
@@ -79,59 +79,40 @@ function display_fieldEdu($p_parent = "", $form = "") {
     }
 }
 
-/**
- * Displays available LEVELS in input radio tags. Used in the forms sending badges to students.
- *
- * @author Nicolas TORION
- * @since  0.6
- *
- * @param $badges A list of badges.
- */
-function display_levels() {
-    $levels = get_all_levels();
-
-    // Display the level ...
-    echo '<hr class="sep-sendbadge">';
-
-    foreach ($levels as $l) {
-        echo '<div class="rdi-tab">';
-        echo '<label class="radio-label" for="level_' . $l . '">' . $l . ' </label><input type="radio" class="radio-input level" name="level" id="level_' . $l . '" value="' . $l . '"> ';
-        echo '</div>';
-    }
-
-    echo '<br />';
-}
 
 /**
- * Displays all the parents whit the possibility to change the visualization of the children.
+ * Displays all the parents like a button that permit you
+ * to change the visualization of the Fields of education
  *
  * @author Alessandro RICCARDI
  * @since  0.6.3
  *
- * @param string $p_parent permit to understand the active parent
  */
-function display_parents($p_parent = "") {
+function display_parents() {
+    $parents = get_languages();
+    $actual_parent = key($parents);
     $haveCat = false;
 
-    $parents = get_parent_categories();
+    if($parents = get_parent_categories()) {
 
-    echo '<div class="btns-parent-field">';
+        echo '<div class="btns-parent-field">';
 
-    foreach ($parents as $parent) {
-        $haveCat = true;
-        if ($parent[2] == $p_parent) {
-            echo '<a class="btn btn-default btn-xs display_parent_categories active" id="' . $parent[2] . '">Display ' . $parent[1] . '</a>';
-        } else {
-            echo '<a class="btn btn-default btn-xs display_parent_categories" id="' . $parent[2] . '">Display ' . $parent[1] . '</a>';
+        foreach ($parents as $parent) {
+            $haveCat = true;
+            if ($parent[2] == $actual_parent) {
+                echo '<a class="btn btn-default btn-xs display_parent_categories active" id="' . $parent[2] . '">Display ' . $parent[1] . '</a>';
+            } else {
+                echo '<a class="btn btn-default btn-xs display_parent_categories" id="' . $parent[2] . '">Display ' . $parent[1] . '</a>';
+            }
         }
-    }
 
-    // Display the link to show all the languages
-    if($haveCat) {
-        echo '<a class="btn btn-default btn-xs display_parent_categories" id="all_field">Display all Fields</a>';
-    }
+        // Display the link to show all the languages
+        if ($haveCat) {
+            echo '<a class="btn btn-default btn-xs display_parent_categories" id="all_field">Display all Fields</a>';
+        }
 
-    echo '</div> <hr class="sep-sendbadge">';
+        echo '</div> <hr class="sep-sendbadge">';
+    }
 }
 
 
@@ -141,7 +122,7 @@ function display_parents($p_parent = "") {
  * @author Nicolas TORION
  * @since  0.6
  */
-function display_classes_input() {
+/*function display_classes_input() {
     global $current_user;
     wp_get_current_user();
 
@@ -155,7 +136,7 @@ function display_classes_input() {
     foreach ($classes as $class) {
         echo '<label for="class_' . $class->ID . '">' . $class->post_title . ' </label><input name="class_for_student" id="class_' . $class->ID . '" type="radio" value="' . $class->ID . '"/>';
     }
-}
+}*/
 
 /**
  * Displays a message of success.

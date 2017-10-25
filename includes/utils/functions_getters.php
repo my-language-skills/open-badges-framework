@@ -88,7 +88,6 @@ function get_all_levels($rightFieldEdu = "") {
     $levels = array();
 
     wp_get_current_user();
-
     foreach ($badges as $badge) {
         // Get the type of the badge (student, teacher)
         $badge_type = get_post_meta($badge->ID, "_type", true);
@@ -98,8 +97,7 @@ function get_all_levels($rightFieldEdu = "") {
         $fields = get_the_terms($badge->ID, 'field_of_education');
 
         //If there is no fields of education in the badge, means that is part of
-        // all the fields and you can see in every field of education that you select
-        // at the first step.
+        // all the fields (category).
         if (!$fields) {
             if (!in_array($level, $levels)) {
                 if (check_the_rules($current_user->roles, "administrator", "editor")) {
@@ -114,7 +112,7 @@ function get_all_levels($rightFieldEdu = "") {
             foreach ($fields as $field) {
                 if (!in_array($level, $levels)) {
                     // Check if the Field of education selected in the first step
-                    // is content in one of the badge of the level
+                    // is content in one of the badge of the level.
                     if ($field->name == $rightFieldEdu) {
                         if (check_the_rules($current_user->roles, "administrator", "editor")) {
                             $levels[] = $level;
