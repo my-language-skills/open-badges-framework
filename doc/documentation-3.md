@@ -1,4 +1,5 @@
 # theme structure
+```shell
 Plugins/Badges-Issuer-for-wp/  									# → Plugin root
 ├── admin/                 			 								# → XX
 │   ├── class-badges-issuer-for-wp-admin.php    # → XX
@@ -82,3 +83,4 @@ Plugins/Badges-Issuer-for-wp/  									# → Plugin root
 │   		└── badges-issuer-for-wp-public-display.php # → XX
 ├── README.txt                  								# → XX
 └── unistall.php                  							# → XX
+```
