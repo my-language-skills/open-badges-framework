@@ -35,12 +35,12 @@ class BadgeIssuer {
      */
     function __construct() {
         $content = file_get_contents(plugin_dir_path(dirname(__FILE__)) . '../../../uploads/badges-issuer/json/badge-issuer.json');
-        $badge_issuer_informations = json_decode($content, true);
+        $badge_issuer_information = json_decode($content, true);
 
-        $this->name = $badge_issuer_informations['name'];
-        $this->image = $badge_issuer_informations['image'];
-        $this->url = $badge_issuer_informations['url'];
-        $this->email = $badge_issuer_informations['email'];
+        $this->name = $badge_issuer_information['name'];
+        $this->image = $badge_issuer_information['image'];
+        $this->url = $badge_issuer_information['url'];
+        $this->email = $badge_issuer_information['email'];
     }
 
     /**

@@ -8,13 +8,6 @@
  *
  * @param $settings_links The array of the new id links values.
  */
-function set_settings_links($settings_id_links) {
-    file_put_contents(plugin_dir_path(dirname(__FILE__)) . '../../../uploads/settings/json/links.json', json_encode($settings_id_links, JSON_UNESCAPED_SLASHES));
-}
-
-function set_settings_login_links($settings_id_login_links) {
-    file_put_contents(plugin_dir_path(dirname(__FILE__)) . '../../../uploads/settings/json/login_links.json', json_encode($settings_id_login_links, JSON_UNESCAPED_SLASHES));
-}
 
 function set_badge_as_received($hash) {
     global $current_user;

@@ -228,7 +228,7 @@ if (is_plugin_active("wp-job-manager/wp-job-manager.php")) {
 }
 
 require plugin_dir_path(__FILE__) . 'initialisation/create_badges_issuer_file.php';
-require plugin_dir_path(__FILE__) . 'initialisation/create_settings_json_files.php';
+require plugin_dir_path(__FILE__) . 'utils/SaveSetting.php';
 
 add_action('init', 'remove_post_comment');
 

@@ -526,33 +526,6 @@ function can_user_reply($user_login, $class_id) {
     }
 }
 
-/**
- * Returns the id links written in the corresponding json file.
- *
- * @author Nicolas TORION
- * @since  0.6.1
- * @return $settings_links The array of id links.
- */
-function get_settings_links() {
-    $content = file_get_contents(plugin_dir_path(dirname(__FILE__)) . '../../../uploads/settings/json/links.json');
-    $settings_links = json_decode($content, true);
-
-    return $settings_links;
-}
-
-/**
- * Returns the id links written in the corresponding json file.
- *
- * @author Nicolas TORION
- * @since  0.6.1
- * @return $settings_login_links The array of id links.
- */
-function get_settings_login_links() {
-    $content = file_get_contents(plugin_dir_path(dirname(__FILE__)) . '../../../uploads/settings/json/login_links.json');
-    $settings_login_links = json_decode($content, true);
-
-    return $settings_login_links;
-}
 
 /**
  * Checks if the user has already a badge
