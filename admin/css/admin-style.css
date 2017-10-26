@@ -25,3 +25,13 @@ title-page-admin .dashicons-before:before {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
+.lead {
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+.sb-instruction{
+    margin-bottom: 30px;
+    display: inline-block;
+}

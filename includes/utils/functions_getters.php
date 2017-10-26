@@ -298,7 +298,7 @@ function get_parent_categories() {
  * @since  0.3
  * @return $classes Array of all classes.
  */
-function get_all_classes() {
+function get_classes_job_listing() {
     $classes = get_posts(array(
         'post_type' => 'job_listing',
         'numberposts' => -1
@@ -315,7 +315,7 @@ function get_all_classes() {
  * @since  X.X.X name changed
  * @return $classes Array of all classes zero.
  */
-function get_all_classes_zero() {
+function get_classes_plugin() {
     $classes = get_posts(array(
         'post_type' => 'class',
         'numberposts' => -1
@@ -335,7 +335,7 @@ function get_all_classes_zero() {
  * @return $classes All the classes corresponding.
  */
 function get_classes_teacher($teacher_login) {
-    $all_classes = get_all_classes();
+    $all_classes = get_classes_job_listing();
     $classes = array();
     foreach ($all_classes as $class) {
         if (get_userdata($class->post_author)->user_login == $teacher_login) {
@@ -357,7 +357,7 @@ function get_classes_teacher($teacher_login) {
  * @return $result The class zero corresponding.
  */
 function get_class_teacher($teacher_login) {
-    $classes = get_all_classes_zero();
+    $classes = get_classes_plugin();
     foreach ($classes as $class) {
         if ($class->post_title == $teacher_login) {
             return $class;
@@ -378,7 +378,7 @@ function get_class_teacher($teacher_login) {
  * @return Boolean indicating if the class zero exists or not.
  */
 function class_school_exists($teacher_name) {
-    $classes = get_all_classes_zero();
+    $classes = get_classes_plugin();
     foreach ($classes as $class) {
         if ($class->post_title == $teacher_name) {
             return true;

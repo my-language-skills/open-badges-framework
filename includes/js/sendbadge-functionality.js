@@ -556,16 +556,13 @@ window.onload = function () {
                 ajaxFile,
                 data,
                 function (response) {
-                    jQuery("#badge_form_" + curForm).append(response);
-                    jQuery('html, body').animate({scrollTop: 0}, 'fast');
+                    alert(response);
+                    location.reload();
                 }
             );
         } else {
-            jQuery(".wrap").append(
-                '<div class="message msg-insuccess">' +
-                '<strong>Sending badge not available</strong> because WordPress is running in localhost!' +
-                '</div>');
-
+            alert("Sending badge not available because WordPress is running in localhost!");
+            location.reload();
         }
     }
 

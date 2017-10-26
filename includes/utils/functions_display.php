@@ -111,7 +111,6 @@ function display_parents() {
             echo '<a class="btn btn-default btn-xs display_parent_categories" id="all_field">Display all Fields</a>';
         }
 
-        echo '</div> <hr class="sep-sendbadge">';
     }
 }
 
@@ -168,6 +167,10 @@ function display_error_message($message) {
         <?php echo $message; ?>
     </div>
     <?php
+}
+
+function display_sendBadges_info($message) {
+    echo '<div class="lead">'.$message.'</div> <hr class="hr-sb">';
 }
 
 /**

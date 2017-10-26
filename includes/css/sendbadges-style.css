@@ -151,11 +151,11 @@ div.tab button.active {
 }
 
 .wizard > .steps li:first-child {
-    margin-left: 20px !important;
+    margin-left: 0px !important;
 }
 
 .wizard > .steps li:last-child {
-    margin-right: 20px !important;
+    margin-right: 0px !important;
 }
 
 .wizard > .steps > ul > li,
@@ -351,6 +351,12 @@ section.current {
     background-color: whitesmoke;
 }
 
+.hr-sb{
+    margin: 20px auto 30px auto;
+    width: 50px;
+    background-color: whitesmoke;
+}
+
 .btns-parent-field {
     margin: 30px auto;
 }
@@ -387,6 +393,7 @@ section.current {
 
 .rdi-tab {
     display: inline-block;
+    text-align: center;
 }
 
 .rdi-tab * {

@@ -81,7 +81,7 @@ function get_right_levels() {
     $levels = get_all_levels($fieldEdu);
 
     // Display the level ...
-    echo '<hr class="sep-sendbadge">';
+    display_sendBadges_info("Select one of the below levels");
 
     foreach ($levels as $level) {
 
@@ -109,6 +109,9 @@ function action_select_badge() {
 
     // Get user information
     wp_get_current_user();
+
+    display_sendBadges_info("Select one of the below badges");
+
 
     if (check_the_rules("administrator", "academy", "editor")) {
         $badges_corresponding = get_all_badges_level($badges, $lang, $level, $certification = true);
@@ -158,6 +161,8 @@ function action_select_description_preview() {
     $badgeName = $_POST['badge_name'];
     $langDesc = $_POST['language_description'];
 
+    display_sendBadges_info("Select the language of the badge, if you cannot select it, the below text it will be used.");
+
     $badges = get_all_badges();
     foreach ($badges as $badge) {
         if ($badgeName == $badge->post_name) {
@@ -176,19 +181,19 @@ function action_select_description_preview() {
  */
 add_action('CUSTOMAJAX_action_select_class', 'action_select_class');
 function action_select_class() {
-
     global $current_user;
+    $fieldEducation = $_POST['language_selected'];
     wp_get_current_user();
 
+    display_sendBadges_info("Select one of the below classes");
+
     // Get the class from the Plugin = wp-job-manager
-    if (check_the_rules("administrator", "editor")) {
-        $classes = get_all_classes_zero();
-        if (is_plugin_active("wp-job-manager/wp-job-manager.php")) {
-            $classes_job_listing = get_all_classes();
+    if (is_plugin_active("WP-Job-Manager-master/wp-job-manager.php")) {
+        if (check_the_rules("administrator", "editor")) {
+            $classes = get_classes_plugin();
+            $classes_job_listing = get_classes_job_listing();
             $classes = array_merge($classes, $classes_job_listing);
-        }
-    } elseif (check_the_rules("academy")) {
-        if (is_plugin_active("wp-job-manager/wp-job-manager.php")) {
+        } elseif (check_the_rules("academy")) {
             $classes = get_classes_teacher($current_user->user_login);
         }
     }
@@ -196,33 +201,44 @@ function action_select_class() {
     $settings_id_links = get_settings_links();
 
     if (empty($classes)) {
+        // In the case we don't have classes.
         if (check_the_rules("teacher")) {
-            _e('<a href="' . get_page_link($settings_id_links["link_not_academy"]) . '" target="_blank">You need an academy account in order to create your own classes.</a>', 'badges-issuer-for-wp');
+            echo "You need an academy account in order to create your own classes!";
         } elseif (check_the_rules("academy")) {
-            _e('<a href="' . get_page_link($settings_id_links["link_create_new_class"]) . '" target="_blank">Don\'t you want to create a specific class for that student(s) ?</a>', 'badges-issuer-for-wp');
+            echo "You never created class, with the Academy account you can create other class!";
         }
+
     } else {
 
         if (check_the_rules("administrator", "editor")) {
-            echo '</br><b>Default Class:</b><br>';
+            echo '</br><b>Default Class:</b><br><br>';
             foreach ($classes as $class) {
                 if ($class->post_type == 'class') {
                     echo '<div class="rdi-tab">';
-                    echo '<label  for="class_' . $class->ID . '">' . $class->post_title . ' </label><input name="class_for_student" id="class_' . $class->ID . '" type="radio" value="' . $class->ID . '"/>';
-                    echo '</div> &nbsp;';
+                    echo '<label for="class_' . $class->ID . '">' . $class->post_title . ' </label><input type="radio" name="class_for_student" id="class_' . $class->ID . '" value="' . $class->ID . '"/>';
+                    echo '</div>';
                 }
             }
             echo '</br></br>';
         }
 
         if (check_the_rules("administrator", "academy", "editor")) {
-            echo '</br><b>Specific Class:</b>';
+            $first = true;
             foreach ($classes as $class) {
                 if ($class->post_type == 'job_listing') {
-                    $languages = get_the_terms($class->ID, 'job_listing_category');
-                    if ((in_array("academy", $current_user->roles) && in_array($_POST['language_selected'], $languages)) || in_array("administrator", $current_user->roles) || in_array("editor", $current_user->roles)) {
-                        echo '<span style="margin-left:20px;"></span>';
-                        echo '<label for="class_' . $class->ID . '">' . $class->post_title . ' </label><input name="class_for_student" id="class_' . $class->ID . '" type="radio" value="' . $class->ID . '"/>';
+                    $fields = get_the_terms($class->ID, 'job_listing_category');
+
+                    // Checking if the class of the class is the same of the badge that we want to send.
+                    if ($fieldEducation == $fields[0]->name) {
+                        if ($first){
+                            // The first time it will be printed the title
+                            echo '<br><b>Specific Class:</b><br><br>';
+                            $first = false;
+                        }
+                        // Printing of the Job listing CLASS
+                        echo '<div class="rdi-tab">';
+                        echo '<label for="class_' . $class->ID . '">' . $class->post_title . ' </label><input type="radio" name="class_for_student" id="class_' . $class->ID . '" value="' . $class->ID . '"/>';
+                        echo '</div>';
                     }
                 }
             }
@@ -343,9 +359,9 @@ function send_message_badge() {
             foreach ($notsent as $notsent_mail) {
                 $message = $message . $notsent_mail . " ";
             }
-            display_error_message($message);
+            echo($message);
         } else {
-            display_success_message("Badge sent to all persons.");
+            echo("Badge sent to all persons.");
         }
     }
 }
