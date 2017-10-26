@@ -59,6 +59,14 @@ You can see all of the screenshots of the plugin [here](doc/screenshot.md "scree
 
 ## Changelog
 
+### X.X.X
+* **ENHANCEMENTS**
+    * Send Badges page recreated from scratch
+    * .#25 Inform of the proces to the senders of badges
+    * .#167 to have alert in send badges pages if one section is not selected or filed
+    * .#177 fix the version of the plugin. is wrong
+    * .#178 is neutral the fields of education selector?
+
 ### 0.6.3
 * **ENHANCEMENTS**
     * New images
