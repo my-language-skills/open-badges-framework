@@ -110,7 +110,7 @@ function action_select_badge() {
     // Get user information
     wp_get_current_user();
 
-    if (check_the_rules($current_user->roles, "administrator", "academy", "editor")) {
+    if (check_the_rules("administrator", "academy", "editor")) {
         $badges_corresponding = get_all_badges_level($badges, $lang, $level, $certification = true);
     } else {
         $badges_corresponding = get_all_badges_level($badges, $lang, $level);
@@ -180,58 +180,55 @@ function action_select_class() {
     global $current_user;
     wp_get_current_user();
 
-    if (in_array("administrator", $current_user->roles) || in_array("editor", $current_user->roles)) {
+    // Get the class from the Plugin = wp-job-manager
+    if (check_the_rules("administrator", "editor")) {
         $classes = get_all_classes_zero();
         if (is_plugin_active("wp-job-manager/wp-job-manager.php")) {
             $classes_job_listing = get_all_classes();
             $classes = array_merge($classes, $classes_job_listing);
         }
-    } elseif (in_array("academy", $current_user->roles)) {
+    } elseif (check_the_rules("academy")) {
         if (is_plugin_active("wp-job-manager/wp-job-manager.php")) {
             $classes = get_classes_teacher($current_user->user_login);
         }
     }
 
-
     $settings_id_links = get_settings_links();
 
     if (empty($classes)) {
-        if (in_array("teacher", $current_user->roles)) {
+        if (check_the_rules("teacher")) {
             _e('<a href="' . get_page_link($settings_id_links["link_not_academy"]) . '" target="_blank">You need an academy account in order to create your own classes.</a>', 'badges-issuer-for-wp');
-        } elseif (in_array("academy", $current_user->roles)) {
+        } elseif (check_the_rules("academy")) {
             _e('<a href="' . get_page_link($settings_id_links["link_create_new_class"]) . '" target="_blank">Don\'t you want to create a specific class for that student(s) ?</a>', 'badges-issuer-for-wp');
         }
     } else {
-        if (count($classes) > 1) {
-            $input_type = "radio";
-        } else {
-            $input_type = "checkbox";
-        }
 
-        if (in_array("administrator", $current_user->roles) || in_array("editor", $current_user->roles)) {
+        if (check_the_rules("administrator", "editor")) {
             echo '</br><b>Default Class:</b><br>';
             foreach ($classes as $class) {
                 if ($class->post_type == 'class') {
                     echo '<div class="rdi-tab">';
-                    echo '<label  for="class_' . $class->ID . '">' . $class->post_title . ' </label><input name="class_for_student" id="class_' . $class->ID . '" type="' . $input_type . '" value="' . $class->ID . '"/>';
+                    echo '<label  for="class_' . $class->ID . '">' . $class->post_title . ' </label><input name="class_for_student" id="class_' . $class->ID . '" type="radio" value="' . $class->ID . '"/>';
                     echo '</div> &nbsp;';
                 }
             }
             echo '</br></br>';
         }
-        if (in_array("academy", $current_user->roles) || in_array("administrator", $current_user->roles) || in_array("editor", $current_user->roles)) {
+
+        if (check_the_rules("administrator", "academy", "editor")) {
             echo '</br><b>Specific Class:</b>';
             foreach ($classes as $class) {
                 if ($class->post_type == 'job_listing') {
                     $languages = get_the_terms($class->ID, 'job_listing_category');
                     if ((in_array("academy", $current_user->roles) && in_array($_POST['language_selected'], $languages)) || in_array("administrator", $current_user->roles) || in_array("editor", $current_user->roles)) {
                         echo '<span style="margin-left:20px;"></span>';
-                        echo '<label for="class_' . $class->ID . '">' . $class->post_title . ' </label><input name="class_for_student" id="class_' . $class->ID . '" type="' . $input_type . '" value="' . $class->ID . '"/>';
+                        echo '<label for="class_' . $class->ID . '">' . $class->post_title . ' </label><input name="class_for_student" id="class_' . $class->ID . '" type="radio" value="' . $class->ID . '"/>';
                     }
                 }
             }
         }
     }
+
 }
 
 /**
@@ -306,15 +303,16 @@ function send_message_badge() {
             $mails_list[0] = $sender;
         }
 
+
         /* Set the right class */
-        if (check_the_rules($current_user->roles, "academy", "teacher")) {
+        if (isset($class_student)) {
             $class = $class_student;
-        } elseif (check_the_rules($current_user->roles, "teacher")) {
+        } elseif (isset($class_teacher)) {
             $class = $class_teacher;
         }
 
         /* Creation of the badge */
-        $badge = new Badge($badge_others_items['name'], level, $language, $certification, $comment,
+        $badge = new Badge($badge_others_items['name'], $level, $language, $certification, $comment,
             $badge_others_items['description'], $language_description, $badge_others_items['image'],
             $url_json_files, $path_dir_json_files);
 
@@ -360,6 +358,3 @@ if (in_array($action, $allowed_actions)) {
 } else {
     die('-1');
 }
-
-
-

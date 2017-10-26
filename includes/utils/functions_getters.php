@@ -100,7 +100,7 @@ function get_all_levels($rightFieldEdu = "") {
         // all the fields (category).
         if (!$fields) {
             if (!in_array($level, $levels)) {
-                if (check_the_rules($current_user->roles, "administrator", "editor")) {
+                if (check_the_rules("administrator", "editor")) {
                     $levels[] = $level;
                 } else {
                     if ($badge_type == "student") {
@@ -114,7 +114,7 @@ function get_all_levels($rightFieldEdu = "") {
                     // Check if the Field of education selected in the first step
                     // is content in one of the badge of the level.
                     if ($field->name == $rightFieldEdu) {
-                        if (check_the_rules($current_user->roles, "administrator", "editor")) {
+                        if (check_the_rules("administrator", "editor")) {
                             $levels[] = $level;
                         } else {
                             if ($badge_type == "student") {
@@ -610,14 +610,17 @@ function get_student_infos_in_class($student_login, $class_id) {
  *
  * @param $actual_roles, the roles that the user have in this moment.
  * @param infinity roles that you can pass after the first parameter like this:
- *            check_the_rules($current_user->roles, "academy", "teacher")
+ *            check_the_rules("academy", "teacher")
  * @return bool
  */
-function check_the_rules($actual_roles){
+function check_the_rules(){
+    global $current_user;
     $res = false;
+    wp_get_current_user();
+
     foreach (func_get_args() as $param) {
         if(!is_array($param)){
-            $res = in_array($param, $actual_roles)? true: $res ? true: false;
+            $res = in_array($param, $current_user->roles)? true: $res ? true: false;
         }
     }
     return $res;

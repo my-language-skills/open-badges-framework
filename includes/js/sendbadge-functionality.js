@@ -448,14 +448,19 @@ window.onload = function () {
      * @since X.X.X
      */
     function check_class(currentForm, form) {
+        var existClassS = false;
         var check = false;
+
         jQuery("#badge_form_" + currentForm + " input[name='class_for_student']")  // for all checkboxes
             .each(function () {  // first pass, create name mapping
+                existClassS = true;
                 if (jQuery(this).is(':checked')) {
                     check = true;
                 }
-            });
-        if (check) {
+            }
+        );
+
+        if ( !existClassS || check) {
             //Load description of language for the next page
             form.validate().settings.ignore = ":disabled,:hidden";
             return form.valid();
@@ -526,15 +531,12 @@ window.onload = function () {
             var language = jQuery("#badge_form_" + curForm + " #language :selected").text(),
                 level = jQuery("#badge_form_" + curForm + " input[name='level']:checked").val(),
                 badge_name = jQuery("#badge_form_" + curForm + " input[name='input_badge_name']:checked").val(),
-                language_description = jQuery("#badge_form_" + curForm + " #language_description").val(),
+                language_description = "Default",//jQuery("#badge_form_" + curForm + " #language_description").val(),
                 class_student = jQuery("#badge_form_" + curForm + " input[name='class_for_student']:checked").val(),
-                class_teacher = jQuery("#badge_form_" + curForm + " input[name='class_teacher']:checked").val(),
+                class_teacher = jQuery("#badge_form_" + curForm + " input[name='class_teacher']").val(),
                 mail = jQuery("#badge_form_" + curForm + " input[name='mail']").val(),
                 comment = jQuery("#badge_form_" + curForm + " #comment").val(),
                 sender = jQuery("input[name='sender']").val();
-
-            alert(language + ", " + level + ", " + badge_name + ", " + language_description + ", " + class_student + ", " + class_teacher + ", " + mail + ", " + comment + ", " + sender);
-
 
             var data = {
                 'action': 'send_message_badge',
@@ -589,6 +591,3 @@ window.onload = function () {
     }
 
 };
-
-
-

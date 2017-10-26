@@ -126,7 +126,7 @@ function display_parents() {
     global $current_user;
     wp_get_current_user();
 
-    if (check_the_rules($current_user->roles, "administrator", "editor")) {
+    if (check_the_rules("administrator", "editor")) {
         $classes = get_all_classes();
     } else {
         $classes = get_classes_teacher($current_user->user_login);
