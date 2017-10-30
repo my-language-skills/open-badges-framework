@@ -127,8 +127,6 @@ function settings_callback() {
         <br><br>
 
         <h2>Change issuer badges page links</h2>
-        <br/>
-
         <table class="form-table">
             <tbody>
             <tr>
@@ -160,8 +158,6 @@ function settings_callback() {
         <br><br>
 
         <h2>Change register and login pages links</h2>
-        <br/>
-
         <table class="form-table">
             <tbody>
             <tr>
