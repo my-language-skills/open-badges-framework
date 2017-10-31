@@ -1,0 +1,17 @@
+{
+    "name": "aleric/badges-issuer-for-wp",
+    "description": "Badges-Issuer-for-wp plugin for sending badge and more",
+    "type": "project",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "AleRiccardi",
+            "email": "alericcardi1996@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {"Inc\\": "./inc"}
+    }
+}

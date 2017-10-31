@@ -12,11 +12,11 @@
  * @package           Badges_Issuer_For_Wp
  *
  * @wordpress-plugin
- * Plugin Name:       Badges-Issuer-for-wp
+ * Plugin Name:       Badges Issuer for wp
  * Plugin URI:        www.badges4languages.com
  * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin
  * area.
- * Version:           0.6.3
+ * Version:           X.X.X
  * Author:            My language skills team
  * Author URI:        www.badges4languages.com
  * License:           GPL-2.0+
@@ -24,71 +24,55 @@
  * Text Domain:       badges-issuer-for-wp
  * Domain Path:       /languages
  */
+/*
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
 
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
 
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+// If this file is called directly, abort!
 defined('ABSPATH') or die('Hey, what are you doing here? You silly human!');
 
-
-if (!class_exists('BadgeIssuerForWp')) {
-    class BadgeIssuerForWp {
-
-        public $path_plugin;
-
-        public function __construct() {
-            $this->path_plugin = plugin_dir_path(__FILE__);
-        }
-
-        function register() {
-            add_action('plugins_loaded', array($this, 'init'));
-        }
-
-        function init() {
-            load_plugin_textdomain('badges_issuer_for_wp', false, $this->path_plugin);
-
-        }
-
-        /**
-         * The core plugin class that is used to define internationalization,
-         * admin-specific hooks, and public-facing site hooks.
-         */
-        function start() {
-            require plugin_dir_path(__FILE__) . 'includes/class-badges-issuer-for-wp.php';
-            $plugin = new Badges_Issuer_For_Wp();
-            $plugin->run();
-        }
-
-        function load_script() {
-
-        }
-
-        /**
-         * The code that runs during plugin activation.
-         * This action is documented in includes/class-badges-issuer-for-wp-activator.php
-         */
-        function activate() {
-            require_once $this->path_plugin . 'includes/class-badges-issuer-for-wp-activator.php';
-            Badges_Issuer_For_Wp_Activator::activate();
-        }
-
-        /**
-         * The code that runs during plugin deactivation.
-         * This action is documented in includes/class-badges-issuer-for-wp-deactivator.php
-         */
-        function deactivate() {
-            require_once $this->path_plugin . 'includes/class-badges-issuer-for-wp-deactivator.php';
-            Badges_Issuer_For_Wp_Deactivator::deactivate();
-        }
-    }
-
-    $badge_issuer = new BadgeIssuerForWp();
-    $badge_issuer->register();
-    $badge_issuer->start();
-    $badge_issuer->load_script();
-
-
-    register_activation_hook(__FILE__, array($badge_issuer, 'activate'));
-    register_deactivation_hook(__FILE__, array($badge_issuer, 'deactivate'));
-
-
+// Require once the Composer Autoload
+if (file_exists(dirname(__FILE__) . '/vendor/autoload.php')) {
+    require_once dirname(__FILE__) . '/vendor/autoload.php';
 }
 
+/**
+ * The code that runs during plugin activation
+ *
+ * @since x.x.x
+ */
+function flex_product_activation() {
+    Inc\Base\Activate::activate();
+}
+register_activation_hook(__FILE__, 'badges_issuer_for_wp_activation');
+
+/**
+ * The code that runs during plugin deactivation
+ *
+ * @since x.x.x
+ */
+function flex_product_deactivation() {
+    Inc\Base\Deactivate::deactivate();
+}
+register_deactivation_hook(__FILE__, 'badges_issuer_for_wp_deactivation');
+
+/**
+ * Initialize all the core classes of the plugin
+ *
+ * @since x.x.x
+ */
+if (class_exists('Inc\\Init')) {
+    Inc\Init::register_services();
+
+}

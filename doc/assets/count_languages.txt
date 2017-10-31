@@ -1,2 +1,0 @@
-Number of most important languages : 27
-Number of other languages : 7822

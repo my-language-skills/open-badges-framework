@@ -1,31 +1,19 @@
 <?php
-
-	/**
-	 * Fired when the plugin is uninstalled.
-	 *
-	 * When populating this file, consider the following flow
-	 * of control:
-	 *
-	 * - This method should be static
-	 * - Check if the $_REQUEST content actually is the plugin name
-	 * - Run an admin referrer check to make sure it goes through authentication
-	 * - Verify the output of $_GET makes sense
-	 * - Repeat with other user roles. Best directly by using the links/query string parameters.
-	 * - Repeat things for multisite. Once for a single site in the network, once sitewide.
-	 *
-	 * This file may be updated more in future version of the Boilerplate; however, this is the
-	 * general skeleton and outline for how the file should work.
-	 *
-	 * For more information, see the following discussion:
-	 * https://github.com/tommcfarlin/WordPress-Plugin-Boilerplate/pull/123#issuecomment-28541913
-	 *
-	 * @link       www.badges4languages.com
-	 * @since      0.0.1
-	 *
-	 * @package    Badges_Issuer_For_Wp
-	 */
-
-// If uninstall not called from WordPress, then exit.
-	if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
-		exit;
-	}
+/**
+ * Trigger this file on Plugin uninstall
+ *
+ * @package  FlexProduct
+ */
+if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
+    die;
+}
+// Clear Database stored data
+$products = get_posts( array( 'post_type' => 'product', 'numberposts' => -1 ) );
+foreach($products as $product ) {
+    wp_delete_post( $product->ID, true );
+}
+// Access the database via SQL
+global $wpdb;
+$wpdb->query( "DELETE FROM wp_posts WHERE post_type = 'product'" );
+$wpdb->query( "DELETE FROM wp_postmeta WHERE post_id NOT IN (SELECT id FROM wp_posts)" );
+$wpdb->query( "DELETE FROM wp_term_relationships WHERE object_id NOT IN (SELECT id FROM wp_posts)" );
