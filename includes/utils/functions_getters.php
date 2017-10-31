@@ -47,7 +47,7 @@ function get_badge_descriptions($badge) {
  *
  * @author Nicolas TORION
  * @since  0.6.2
- * @since  X.X.X updated the way to get the badges.
+ * @since  0.6.3 updated the way to get the badges.
  *
  * @param $badge_name The name of the badge.
  * @param $badges     A list of badges.
@@ -76,7 +76,7 @@ function get_badge($badge_name, $lang) {
  *
  * @author Nicolas TORION
  * @since  0.4
- * @since  X.X.X
+ * @since  0.6.3
  *
  * @param string | $rightFieldEdu field of education selected in the first step
  * @return array $levels Array of all levels found.
@@ -312,7 +312,7 @@ function get_classes_job_listing() {
  *
  * @author Nicolas TORION
  * @since  0.3
- * @since  X.X.X name changed
+ * @since  0.6.3 name changed
  * @return $classes Array of all classes zero.
  */
 function get_classes_plugin() {
@@ -320,7 +320,6 @@ function get_classes_plugin() {
         'post_type' => 'class',
         'numberposts' => -1
     ));
-
     return $classes;
 }
 
@@ -342,7 +341,6 @@ function get_classes_teacher($teacher_login) {
             $classes[] = $class;
         }
     }
-
     return $classes;
 }
 
@@ -387,6 +385,30 @@ function class_school_exists($teacher_name) {
 
     return false;
 }
+
+/**
+ * Get the class by the id
+ *
+ * @author Nicolas TORION
+ * @since  0.6.3
+ *
+ * @param int $id Id of the class
+ *
+ * @return The entire class if exist, otherwise null.
+ */
+function get_class_by_id($id){
+    if($id) {
+        $classes = get_classes_plugin();
+        foreach ($classes as $class) {
+            if ($class->ID == $id) {
+                return $class;
+            }
+        }
+    }
+
+    return null;
+}
+
 
 /**
  * Check if a student is in a class school.
@@ -599,4 +621,5 @@ function check_the_rules(){
     return $res;
 }
 
-?>
+
+

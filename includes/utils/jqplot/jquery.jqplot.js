@@ -3017,8 +3017,8 @@
                 if (this.title.show) {
                     gridPadding.top += this.title.getHeight();
                 }
-                if (ax.xaxis.show) {
-                    gridPadding.bottom += ax.xaxis.getHeight();
+                if (a0.6.3is.show) {
+                    gridPadding.bottom += a0.6.3is.getHeight();
                 }
                 
                 // end of gridPadding adjustments.
@@ -3057,7 +3057,7 @@
                     }
                 }
                 
-                ax.xaxis.pack({position:'absolute', bottom:this._gridPadding.bottom - ax.xaxis.getHeight(), left:0, width:this._width}, {min:this._gridPadding.left, max:this._width - this._gridPadding.right});
+                a0.6.3is.pack({position:'absolute', bottom:this._gridPadding.bottom - a0.6.3is.getHeight(), left:0, width:this._width}, {min:this._gridPadding.left, max:this._width - this._gridPadding.right});
                 ax.yaxis.pack({position:'absolute', top:0, left:this._gridPadding.left - ax.yaxis.getWidth(), height:this._height}, {min:this._height - this._gridPadding.bottom, max: this._gridPadding.top});
                 ax.x2axis.pack({position:'absolute', top:this._gridPadding.top - ax.x2axis.getHeight(), left:0, width:this._width}, {min:this._gridPadding.left, max:this._width - this._gridPadding.right});
                 for (i=8; i>0; i--) {

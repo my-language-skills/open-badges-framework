@@ -8,7 +8,7 @@
  * that starts the plugin.
  *
  * @link              www.badges4languages.com
- * @since             X.X.X
+ * @since             0.6.3
  * @package           Badges_Issuer_For_Wp
  *
  * @wordpress-plugin
@@ -16,7 +16,7 @@
  * Plugin URI:        www.badges4languages.com
  * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin
  * area.
- * Version:           X.X.X
+ * Version:           0.6.3
  * Author:            My language skills team
  * Author URI:        www.badges4languages.com
  * License:           GPL-2.0+

@@ -72,7 +72,7 @@ function action_languages_form() {
  * same field selected in the first step of the send badge form.
  *
  * @author Alessandro RICCARDI
- * @since  X.X.X
+ * @since  0.6.3
  */
 add_action('CUSTOMAJAX_get_right_levels', 'get_right_levels');
 
@@ -97,7 +97,7 @@ function get_right_levels() {
  *
  * @author Nicolas TORION
  * @since  0.6.2
- * @since  X.X.X recoded and made it easy
+ * @since  0.6.3 recoded and made it easy
  */
 add_action('CUSTOMAJAX_action_select_badge', 'action_select_badge');
 function action_select_badge() {
@@ -130,8 +130,8 @@ function action_select_badge() {
         <input type="radio" name="input_badge_name" class="input-badge input-hidden"
                id="<?php echo $form . $badge->post_title; ?>"
                value="<?php echo $badge->post_name; ?>"/>
-        <label for="<?php echo $form . $badge->post_title; ?>">
-        <img class="img-send-badge" src="<?php
+    <label for="<?php echo $form . $badge->post_title; ?>">
+            <img class="img-send-badge" src="<?php
 
         if (get_the_post_thumbnail_url($badge->ID)) {
             // Badge WITH image
@@ -182,10 +182,11 @@ function action_select_description_preview() {
 add_action('CUSTOMAJAX_action_select_class', 'action_select_class');
 function action_select_class() {
     global $current_user;
+    $settings = new SaveSetting();
     $fieldEducation = $_POST['language_selected'];
     wp_get_current_user();
 
-    display_sendBadges_info("Select one of the below classes");
+    display_sendBadges_info("Select one of the below classes (by default is selected your default class)");
 
     // Get the class from the Plugin = wp-job-manager
     if (is_plugin_active("WP-Job-Manager-master/wp-job-manager.php")) {
@@ -195,54 +196,57 @@ function action_select_class() {
             $classes = array_merge($classes, $classes_job_listing);
         } elseif (check_the_rules("academy")) {
             $classes = get_classes_teacher($current_user->user_login);
+        } elseif (check_the_rules("teacher")) {
+            $classes = get_class_teacher($current_user->user_login);
         }
     }
 
-    $settings_id_links = get_settings_links();
+    if(empty($classes) && check_the_rules("administrator", "editor")) {
+        echo 'You don\'t have classes, create a new one!';
+    }
 
-    if (empty($classes)) {
-        // In the case we don't have classes.
-        if (check_the_rules("teacher")) {
-            echo "You need an academy account in order to create your own classes!";
-        } elseif (check_the_rules("academy")) {
-            echo "You never created class, with the Academy account you can create other class!";
+    if (check_the_rules("administrator", "editor")) {
+        echo '</br><b>Default Class:</b><br><br>';
+        foreach ($classes as $class) {
+            if ($class->post_type == 'class') {
+                echo '<div class="rdi-tab">';
+                echo '<label for="class_' . $class->ID . '">' . $class->post_title . ' </label>
+                        <input type="radio" name="class_for_student" id="class_' . $class->ID . '" value="' . $class->ID . '"/>';
+                echo '</div>';
+            }
         }
+        echo '</br>';
+    }
 
-    } else {
+    if (check_the_rules("administrator", "academy", "editor")) {
+        $first = true;
+        foreach ($classes as $class) {
+            if ($class->post_type == 'job_listing') {
+                $fields = get_the_terms($class->ID, 'job_listing_category');
 
-        if (check_the_rules("administrator", "editor")) {
-            echo '</br><b>Default Class:</b><br><br>';
-            foreach ($classes as $class) {
-                if ($class->post_type == 'class') {
+                // Checking if the class of the class is the same of the badge that we want to send.
+                if ($fieldEducation == $fields[0]->name) {
+                    if ($first){
+                        // The first time it will be printed the title
+                        echo '<br><b>Specific Class:</b><br><br>';
+                        $first = false;
+                    }
+                    // Printing of the Job listing CLASS
                     echo '<div class="rdi-tab">';
                     echo '<label for="class_' . $class->ID . '">' . $class->post_title . ' </label><input type="radio" name="class_for_student" id="class_' . $class->ID . '" value="' . $class->ID . '"/>';
                     echo '</div>';
                 }
             }
-            echo '</br></br>';
         }
+    }
 
-        if (check_the_rules("administrator", "academy", "editor")) {
-            $first = true;
-            foreach ($classes as $class) {
-                if ($class->post_type == 'job_listing') {
-                    $fields = get_the_terms($class->ID, 'job_listing_category');
+    $settings_id_links = $settings->get_settings_links();
 
-                    // Checking if the class of the class is the same of the badge that we want to send.
-                    if ($fieldEducation == $fields[0]->name) {
-                        if ($first){
-                            // The first time it will be printed the title
-                            echo '<br><b>Specific Class:</b><br><br>';
-                            $first = false;
-                        }
-                        // Printing of the Job listing CLASS
-                        echo '<div class="rdi-tab">';
-                        echo '<label for="class_' . $class->ID . '">' . $class->post_title . ' </label><input type="radio" name="class_for_student" id="class_' . $class->ID . '" value="' . $class->ID . '"/>';
-                        echo '</div>';
-                    }
-                }
-            }
-        }
+    // In the case we don't have classes.
+    if (check_the_rules("teacher")) {
+        echo 'Your teacher plan don\'t allow you to select different class than the default one.<br><a href="'.get_page_link($settings_id_links["link_not_academy"]).'">Click here to update your plan and became Academy!</a>';
+    } elseif (check_the_rules("academy")) {
+        echo '<br></vr><a href="' . get_page_link($settings_id_links["link_create_new_class"]) . '">Create other classes!</a>';
     }
 
 }
@@ -271,7 +275,7 @@ function action_save_comment() {
  *
  * @author Alessandro RICCARDI
  * @since  0.5.1
- * @since  X.X.X
+ * @since  0.6.3
  */
 add_action('CUSTOMAJAX_send_message_badge', 'send_message_badge');
 
@@ -282,24 +286,22 @@ function send_message_badge() {
     $level = $_POST['level'];
     $badge_name = $_POST['badge_name'];
     $language_description = $_POST['language_description'];
-    $class_student = $_POST['class_student'];
-    $class_teacher = $_POST['class_teacher'];
+    $listings_class = $_POST['class_student'];
     $mails = $_POST['mail'];
     $comment = $_POST['comment'];
     $sender = $_POST['sender'];
     $curForm = $_POST['curForm'];
+
     $class = null;
     $notsent = array();
+    $badge = null;
 
-    /* Get user */
-    global $current_user;
-    wp_get_current_user();
-
-
+    //User default class
+    $teacher_information = get_user_by('email', $sender);
+    $default_class = get_class_teacher($teacher_information->user_login);
     /* JSON file */
     $url_json_files = content_url('uploads/badges-issuer/json/');
     $path_dir_json_files = plugin_dir_path(dirname(__FILE__)) . '../../../uploads/badges-issuer/json/';
-
     /* Check if there are sufficient param */
     if (!isset($language) || !isset($level) || !isset($badge_name) ||
         !isset($language_description) || !isset($comment) || !isset($sender)) {
@@ -319,12 +321,11 @@ function send_message_badge() {
             $mails_list[0] = $sender;
         }
 
-
         /* Set the right class */
-        if (isset($class_student)) {
-            $class = $class_student;
-        } elseif (isset($class_teacher)) {
-            $class = $class_teacher;
+        if (isset($listings_class)) {
+            $class = get_class_by_id($listings_class);
+        } elseif (isset($default_class)) {
+            $class = $default_class;
         }
 
         /* Creation of the badge */
@@ -341,16 +342,16 @@ function send_message_badge() {
             $badge->create_json_files($mail);
 
             //SENDING THE EMAIL
-
-            if (!$badge->send_mail($mail, $class)) {
+            if (!$badge->send_mail($mail, $class->ID)) {
                 $notsent[] = $mail;
             } else {
                 if ($curForm == "a") {
                     $badge->add_student_to_class_zero($mail);
+                } else {
+                    $badge->add_student_to_class_zero($mail);
+                    $badge->add_student_to_class($mail, $class->ID);
+                    $badge->add_badge_to_user_profile($mail, $_POST['sender'], $class->ID);
                 }
-
-                $badge->add_student_to_class($mail, $class);
-                $badge->add_badge_to_user_profile($mail, $_POST['sender'], $class);
             }
         }
 
@@ -361,7 +362,7 @@ function send_message_badge() {
             }
             echo($message);
         } else {
-            echo("Badge sent to all persons.");
+            echo("Badge ($badge->name) sent to all the persons and stored in the class $class->post_title.");
         }
     }
 }

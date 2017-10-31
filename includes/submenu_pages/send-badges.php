@@ -42,7 +42,6 @@ function send_badges_page_callback() {
     ?>
     <div class="wrap">
         <br><br>
-        <input type="hidden" name="sender" value="<?php echo $current_user->user_email; ?>"/>
         <div class="title-page-admin">
             <h1>
                 <i>
@@ -94,8 +93,11 @@ function send_badges_page_callback() {
  * @author Nicolas TORION
  * @since  0.6.3
  */
-function tab_self() { ?>
-
+function tab_self() {
+    global $current_user;
+    wp_get_current_user();
+    ?>
+    <input type="hidden" name="sender" value="<?php echo $current_user->user_email; ?>"/>
     <div class="tab-content">
         <form id="badge_form_a" action="" method="post">
             <?php
@@ -165,8 +167,8 @@ function tab_self() { ?>
 function tab_issue() {
     global $current_user;
     wp_get_current_user();
-    // get all badges that exist
     ?>
+    <input type="hidden" name="sender" value="<?php echo $current_user->user_email; ?>"/>
 
     <div class="tab-content">
         <form id="badge_form_b" action="" method="post">
@@ -257,8 +259,8 @@ function tab_issue() {
 function tab_multiple() {
     global $current_user;
     wp_get_current_user();
-    // get all badges that exist
     ?>
+    <input type="hidden" name="sender" value="<?php echo $current_user->user_email; ?>"/>
 
     <div class="tab-content">
         <form id="badge_form_c" action="" method="post">

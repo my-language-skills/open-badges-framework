@@ -5,7 +5,7 @@
  * @author Alessandro RICCARDI
  * @package badges-issuer-for-wp
  * @subpackage includes/utils
- * @since X.X.X
+ * @since 0.6.3
  */
 
 class SaveSetting {
@@ -18,7 +18,7 @@ class SaveSetting {
      * Construct that initialize the class.
      *
      * @author Alessandro RICCARDI
-     * @since X.X.X
+     * @since 0.6.3
      */
     public function __construct() {
         $this->initialization();
@@ -28,7 +28,7 @@ class SaveSetting {
      * Initialization of the setting folder where will be stored the information.
      *
      * @author Alessandro RICCARDI
-     * @since X.X.X
+     * @since 0.6.3
      */
     private function initialization() {
         // Saving the main information.
@@ -68,7 +68,7 @@ class SaveSetting {
      *
      * @author Alessandro RICCARDI
      * @param array $info
-     * @since X.X.X
+     * @since 0.6.3
      */
     public function set_settings_links(array $info) {
         file_put_contents(
@@ -82,7 +82,7 @@ class SaveSetting {
      *
      * @author Alessandro RICCARDI
      * @param array $info
-     * @since X.X.X
+     * @since 0.6.3
      */
     public function set_settings_login_links(array $info) {
         file_put_contents(
@@ -95,7 +95,7 @@ class SaveSetting {
      * Get the information about the links.
      *
      * @author Alessandro RICCARDI
-     * @since X.X.X
+     * @since 0.6.3
      */
     function get_settings_links() {
         $content = file_get_contents($this->linksPath);
@@ -108,7 +108,7 @@ class SaveSetting {
      * Get the information about the login links.
      *
      * @author Alessandro RICCARDI
-     * @since X.X.X
+     * @since 0.6.3
      */
     function get_settings_login_links() {
         $content = file_get_contents($this->loginLinksPath);

@@ -282,7 +282,7 @@ window.onload = function () {
      * @param form, contain the form
      *
      * @author Alessandro RICCARDI
-     * @since X.X.X
+     * @since 0.6.3
      */
 
     function load_levels(currentForm, form) {
@@ -364,7 +364,7 @@ window.onload = function () {
      * @param form, contain the form
      *
      * @author Alessandro RICCARDI
-     * @since X.X.X
+     * @since 0.6.3
      */
     function load_description(currentForm, form) {
         var check = false;
@@ -414,7 +414,7 @@ window.onload = function () {
      * @param form, contain the form
      *
      * @author Alessandro RICCARDI
-     * @since X.X.X
+     * @since 0.6.3
      */
     function load_class(currentForm, form) {
         // To load the class if in the tab B or C
@@ -445,28 +445,29 @@ window.onload = function () {
      * @param form, contain the form
      *
      * @author Alessandro RICCARDI
-     * @since X.X.X
+     * @since 0.6.3
      */
     function check_class(currentForm, form) {
-        var existClassS = false;
-        var check = false;
-
-        jQuery("#badge_form_" + currentForm + " input[name='class_for_student']")  // for all checkboxes
-            .each(function () {  // first pass, create name mapping
-                existClassS = true;
-                if (jQuery(this).is(':checked')) {
-                    check = true;
-                }
-            }
-        );
-
-        if ( !existClassS || check) {
-            //Load description of language for the next page
-            form.validate().settings.ignore = ":disabled,:hidden";
-            return form.valid();
-        } else {
-            return false;
-        }
+        // var existClassS = false;
+        // var check = false;
+        //
+        // jQuery("#badge_form_" + currentForm + " input[name='class_for_student']")  // for all checkboxes
+        //     .each(function () {  // first pass, create name mapping
+        //         existClassS = true;
+        //         if (jQuery(this).is(':checked')) {
+        //             check = true;
+        //         }
+        //     }
+        // );
+        //
+        // if ( !existClassS || check) {
+        //     //Load description of language for the next page
+        //     form.validate().settings.ignore = ":disabled,:hidden";
+        //     return form.valid();
+        // } else {
+        //     return false;
+        // }
+        return true;
     }
 
 
@@ -477,7 +478,7 @@ window.onload = function () {
      * @param form, contain the form
      *
      * @author Alessandro RICCARDI
-     * @since X.X.X
+     * @since 0.6.3
      */
     function check_mails(currentForm, form) {
         var mails = jQuery("#badge_form_" + currentForm + " #mail").val();
@@ -503,7 +504,7 @@ window.onload = function () {
      * @param form, contain the form
      *
      * @author Alessandro RICCARDI
-     * @since X.X.X
+     * @since 0.6.3
      */
     function check_information(currentForm, form) {
         var info = jQuery("#badge_form_" + currentForm + " #comment").val();
@@ -524,23 +525,23 @@ window.onload = function () {
      * badge to the right person and also to store in the server.
      *
      * @author Alessandro RICCARDI
-     * @since X.X.X
+     * @since 0.6.3
      */
     function sendMessageBadge(curForm) {
-        if (!isLocalhost) {
+        //if (!isLocalhost) {
+        if (1) {
             var language = jQuery("#badge_form_" + curForm + " #language :selected").text(),
                 level = jQuery("#badge_form_" + curForm + " input[name='level']:checked").val(),
                 badge_name = jQuery("#badge_form_" + curForm + " input[name='input_badge_name']:checked").val(),
                 language_description = "Default",//jQuery("#badge_form_" + curForm + " #language_description").val(),
                 class_student = jQuery("#badge_form_" + curForm + " input[name='class_for_student']:checked").val(),
                 class_teacher = jQuery("#badge_form_" + curForm + " input[name='class_teacher']").val(),
-                mail = jQuery("#badge_form_" + curForm + " input[name='mail']").val(),
+                mail = jQuery("#badge_form_" + curForm + " #mail").val(),
                 comment = jQuery("#badge_form_" + curForm + " #comment").val(),
                 sender = jQuery("input[name='sender']").val();
 
             var data = {
                 'action': 'send_message_badge',
-                'curForm': curForm,
                 'language': language,
                 'level': level,
                 'badge_name': badge_name,
@@ -550,14 +551,18 @@ window.onload = function () {
                 'mail': mail,
                 'comment': comment,
                 'sender': sender,
+                'curForm': curForm,
             };
+
+            alert(curForm +' '+ language +' '+ level +' '+ badge_name +' '+ language_description +' '+ class_student
+                +' '+ class_teacher +' '+ mail +' '+ comment +' '+ sender);
 
             jQuery.post(
                 ajaxFile,
                 data,
                 function (response) {
                     alert(response);
-                    location.reload();
+                    //location.reload();
                 }
             );
         } else {
@@ -572,7 +577,7 @@ window.onload = function () {
      * @param event of the event about the click
      *
      * @author Alessandro RICCARDI
-     * @since X.X.X
+     * @since 0.6.3
      */
     function checkForm(event) {
         if (jQuery(event).parents('#badge_form_a').length == 1) {
