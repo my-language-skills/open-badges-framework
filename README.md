@@ -61,6 +61,8 @@ You can see all of the screenshots of the plugin [here](doc/screenshot.md "scree
 
 ### 0.6.3
 * **ENHANCEMENTS**
+    * Send Badges page recreated from scratch
+    * Recreated a new setting page
     * New images
     * Images optimization
     * Images redimension in front-end
@@ -70,7 +72,6 @@ You can see all of the screenshots of the plugin [here](doc/screenshot.md "scree
     * Update version numbers in some files
     * Update the badge's page
     * Fixed Bug
-
 
 ### 0.6.2
 * **ENHANCEMENTS**

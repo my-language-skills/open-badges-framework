@@ -8,11 +8,8 @@
  */
 
 // JAVASCRIPT & JQUERY FUNCTIONS
-
 add_action('admin_footer', 'js_form'); // Write our JS below here
 add_action('wp_footer', 'js_form');
-
-
 
 /**
  * This function permit to create the ajax call far the page send-badge.php.
@@ -31,6 +28,7 @@ function js_form() {
 
     <?php
 }
+
 
 add_action('admin_footer', 'js_save_metabox_students'); // Write our JS below here
 add_action('wp_footer', 'js_save_metabox_students');

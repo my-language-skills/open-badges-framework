@@ -60,21 +60,8 @@ class Badges_Issuer_For_Wp_Public {
 	 * @since    0.0.1
 	 */
 	public function enqueue_styles() {
-
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Badges_Issuer_For_Wp_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Badges_Issuer_For_Wp_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/badges-issuer-for-wp-public.css', array(), $this->version, 'all' );
-
+        wp_enqueue_style("send-badges-public", plugin_dir_url(__FILE__) . '../includes/css/sendbadges-style.css', array(), $this->version, 'all');
 	}
 
 	/**
@@ -83,20 +70,10 @@ class Badges_Issuer_For_Wp_Public {
 	 * @since    0.0.1
 	 */
 	public function enqueue_scripts() {
-
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Badges_Issuer_For_Wp_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Badges_Issuer_For_Wp_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/badges-issuer-for-wp-public.js', array( 'jquery' ), $this->version, false );
-	}
+        wp_enqueue_script("send-badges-public", plugin_dir_url(__FILE__) . '../includes/js/sendbadge-functionality.js', array('jquery'), $this->version, false);
+        wp_enqueue_script("jQuery-validation-public", 'http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js', array('jquery'), $this->version, false);
+        wp_enqueue_script("steps-form", plugin_dir_url(__FILE__) . '../includes/js/jquery.steps.min.js', array('jquery'), $this->version, false);
+    }
 
 }

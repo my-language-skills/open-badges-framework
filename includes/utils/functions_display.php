@@ -3,46 +3,7 @@
 // DISPLAY FUNCTIONS
 
 /**
- * Displays available levels in input radio tags. Used in the forms sending badges to students.
- *
- * @author Nicolas TORION
- * @since  0.6
- *
- * @param $badges A list of badges.
- */
-function display_levels_radio_buttons($badges, $context) {
-    global $current_user;
-    wp_get_current_user();
-
-    if (in_array("administrator", $current_user->roles) || in_array("editor", $current_user->roles)) {
-        $levels = get_all_levels($badges);
-    } else {
-        if ($context == "self") {
-            if (in_array("student", $current_user->roles)) {
-                $levels = get_all_levels($badges, true);
-            } elseif (in_array("teacher", $current_user->roles) || in_array("academy", $current_user->roles)) {
-                $levels = get_all_levels($badges);
-            }
-        } elseif ($context == "send") {
-            if (in_array("teacher", $current_user->roles) || in_array("academy", $current_user->roles)) {
-                $levels = get_all_levels($badges, true);
-            }
-        }
-    }
-
-    echo '<hr class="sep-sendbadge">';
-
-    foreach ($levels as $l) {
-        echo '<div class="rdi-tab">';
-        echo '<label class="radio-label" for="level_' . $l . '">' . $l . ' </label><input type="radio" class="radio-input level" name="level" id="level_' . $l . '" value="' . $l . '"> ';
-        echo '</div>';
-    }
-
-    echo '<br />';
-}
-
-/**
- * Displays available languages in a select tag. Used in the forms sending badges to students.
+ * Displays available FIELD in a select tag. Used in the forms sending badges to students.
  *
  * @author Nicolas TORION
  * @since  0.6.1
@@ -50,10 +11,10 @@ function display_levels_radio_buttons($badges, $context) {
  *
  * @param string $parent permit to display the child taxonomy of the parent taxonomy (category).
  */
-function show_all_the_language($p_parent = "", $form = "") {
+function display_fieldEdu($p_parent = "") {
 
 
-    $selectionContOpen = '<div class="select-language"><select name="language" id="language">';
+    $selectionContOpen = '<div class="select-language"> <select name="language" id="language"> <option value="-9999" selected disabled hidden>Select</option>';
     $selectionContClose = '</select></div>';
 
     if (have_no_children()) {
@@ -72,14 +33,12 @@ function show_all_the_language($p_parent = "", $form = "") {
         //If there parent with children
 
         if ($p_parent === "") {
-            // Display the default parent
-
+            // Display the DEFAULT parent
             $parents = get_languages();
 
             echo $selectionContOpen;
 
             foreach ($parents as $parent) {
-
                 foreach ($parent as $language) {
 
                     echo '<option value="' . $language->term_id . '">';
@@ -90,8 +49,7 @@ function show_all_the_language($p_parent = "", $form = "") {
             echo $selectionContClose;
 
         } else if ($p_parent === "all_field") {
-            // Display all the child
-
+            // Display ALL the child
             $parents = get_languages();
 
             echo $selectionContOpen;
@@ -105,8 +63,7 @@ function show_all_the_language($p_parent = "", $form = "") {
             echo $selectionContClose;
 
         } else {
-            // Display the children of the right parent
-
+            // Display the children of the right PARENT
             $parents = get_languages();
 
             echo $selectionContOpen;
@@ -123,34 +80,63 @@ function show_all_the_language($p_parent = "", $form = "") {
     }
 }
 
+
 /**
- * Displays all the parents whit the possibility to change the visualization of the children.
+ * Displays all the parents like a button that permit you
+ * to change the visualization of the Fields of education
  *
  * @author Alessandro RICCARDI
  * @since  0.6.3
  *
- * @param string $p_parent permit to understand the active parent
  */
-function display_parents($p_parent = "") {
-    $parents = get_parent_categories();
+function display_parents() {
+    $parents = get_languages();
+    $actual_parent = key($parents);
+    $haveCat = false;
 
-    echo '<div class="btns-parent-field">';
+    if($parents = get_parent_categories()) {
 
-    foreach ($parents as $parent) {
-        if ($parent[2] == $p_parent) {
-            echo '<a class="btn btn-default btn-xs display_parent_categories active" id="' . $parent[2] . '">Display ' . $parent[1] . '</a>';
-        } else {
-            echo '<a class="btn btn-default btn-xs display_parent_categories" id="' . $parent[2] . '">Display ' . $parent[1] . '</a>';
+        echo '<div class="btns-parent-field">';
+
+        foreach ($parents as $parent) {
+            $haveCat = true;
+            if ($parent[2] == $actual_parent) {
+                echo '<a class="btn btn-default btn-xs display_parent_categories active" id="' . $parent[2] . '">Display ' . $parent[1] . '</a>';
+            } else {
+                echo '<a class="btn btn-default btn-xs display_parent_categories" id="' . $parent[2] . '">Display ' . $parent[1] . '</a>';
+            }
         }
+
+        // Display the link to show all the languages
+        if ($haveCat) {
+            echo '<a class="btn btn-default btn-xs display_parent_categories" id="all_field">Display all Fields</a>';
+        }
+
     }
-    // Display the link to show all the languages
-    if ($p_parent === "all_field") {
-        echo '<a class="btn btn-default btn-xs display_parent_categories active" id="all_field">Display all Fields</a>';
-    } else {
-        echo '<a class="btn btn-default btn-xs display_parent_categories" id="all_field">Display Field</a>';
-    }
-    echo '</div> <hr class="sep-sendbadge">';
 }
+
+
+/**
+ * Displays the classes of the teacher in input tags. Used in the forms sending badges to students.
+ *
+ * @author Nicolas TORION
+ * @since  0.6
+ */
+/*function display_classes_input() {
+    global $current_user;
+    wp_get_current_user();
+
+    if (check_the_rules("administrator", "editor")) {
+        $classes = get_all_classes();
+    } else {
+        $classes = get_classes_teacher($current_user->user_login);
+    }
+
+    printf(esc_html__('<b>Class* : </b><br />', 'badges-issuer-for-wp'));
+    foreach ($classes as $class) {
+        echo '<label for="class_' . $class->ID . '">' . $class->post_title . ' </label><input name="class_for_student" id="class_' . $class->ID . '" type="radio" value="' . $class->ID . '"/>';
+    }
+}*/
 
 /**
  * Displays a message of success.
@@ -184,6 +170,10 @@ function display_error_message($message) {
     <?php
 }
 
+function display_sendBadges_info($message) {
+    echo '<div class="lead">'.$message.'</div> <hr class="hr-sb">';
+}
+
 /**
  * Displays a message indicating that a person is not logged. A link redirecting to the login page is also
  * displayed.
@@ -214,26 +204,5 @@ function display_not_logged_message() {
     <?php
 }
 
-/**
- * Displays the classes of the teacher in input tags. Used in the forms sending badges to students.
- *
- * @author Nicolas TORION
- * @since  0.6
- */
-function display_classes_input() {
-    global $current_user;
-    wp_get_current_user();
-
-    if (in_array("administrator", $current_user->roles) || in_array("editor", $current_user->roles)) {
-        $classes = get_all_classes();
-    } else {
-        $classes = get_classes_teacher($current_user->user_login);
-    }
-
-    printf(esc_html__('<b>Class* : </b><br />', 'badges-issuer-for-wp'));
-    foreach ($classes as $class) {
-        echo '<label for="class_' . $class->ID . '">' . $class->post_title . ' </label><input name="class_for_student" id="class_' . $class->ID . '" type="radio" value="' . $class->ID . '"/>';
-    }
-}
 
 ?>
