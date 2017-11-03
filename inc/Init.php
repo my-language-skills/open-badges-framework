@@ -19,12 +19,13 @@ final class Init {
      * @return array Full list of classes
      */
     public static function get_services() {
-        return [
+        return array(
             Pages\Admin::class,
             Base\Enqueue::class,
             Base\SettingsLinks::class,
-            Base\User::class
-        ];
+            Base\User::class,
+            Utils\Fields::class
+        );
     }
 
     /**

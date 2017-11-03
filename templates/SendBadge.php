@@ -8,13 +8,13 @@
  * @package     BadgeIssuerForWp
  */
 
-namespace Templates;
+namespace templates;
 
 
 use inc\Base\User;
 use inc\Utils\Fields;
 
-class SendBadge {
+final class SendBadge {
 
     public function __construct() {
         self::addShortcode();
@@ -114,8 +114,8 @@ class SendBadge {
                             self::displayLeadInfo("Change the visualization of the fields of education with the
                                                     below buttons an then select the field");
                             ?>
-                            <?php self::displayFields(); ?>
-                            <div id="field_edu_a"><?php display_fieldEdu(); ?></div>
+                            <?php self::displayFieldsButtons(); ?>
+                            <div id="field_edu_a"><?php //display_fieldEdu(); ?></div>
                         </div>
                     </section>
                     <h3>Level</h3>
@@ -346,28 +346,23 @@ class SendBadge {
         echo '<div class="lead">'.$message.'</div> <hr class="hr-sb">';
     }
 
-    private static function displayFields() {
-        $parents = Fields::getAllFields();
-        $actual_parent = key($parents);
-        $haveCat = false;
+    private function displayFieldsButtons() {
+        $fieldsClass = new Fields();
 
-        /*if($parents = get_parent_categories()) {
+        if($fieldsClass->haveChildren()){
+            $parents = $fieldsClass->getAllFields();
+            $actual_parent = key($parents);
 
             echo '<div class="btns-parent-field">';
 
             foreach ($parents as $parent) {
-                $haveCat = true;
                 if ($parent[2] == $actual_parent) {
                     echo '<a class="btn btn-default btn-xs display_parent_categories active" id="' . $parent[2] . '">Display ' . $parent[1] . '</a>';
                 } else {
                     echo '<a class="btn btn-default btn-xs display_parent_categories" id="' . $parent[2] . '">Display ' . $parent[1] . '</a>';
                 }
             }
-
-            // Display the link to show all the languages
-            if ($haveCat) {
-                echo '<a class="btn btn-default btn-xs display_parent_categories" id="all_field">Display all Fields</a>';
-            }
-        }*/
+            echo '<a class="btn btn-default btn-xs display_parent_categories" id="all_field">Display all Fields</a>';
+        }
     }
 }

@@ -10,12 +10,18 @@
 
 namespace inc\Utils;
 
-
 use Inc\Pages\Admin;
 
 class Fields {
 
-    private $tax_name = Admin::TAX_FIELDS;
+    private $tax_name;
+
+    /**
+     * Fields constructor.
+     */
+    public function __construct() {
+        $this->tax_name = Admin::TAX_FIELDS;
+    }
 
     /**
      * This function permit to get the fields of education.
@@ -38,6 +44,7 @@ class Fields {
 
             return $fields;
         } else {
+            $parentsAndChild = array();
             // In case we have subcategory
             $parents = get_terms(array(
                 'taxonomy' => $this->tax_name,
@@ -53,9 +60,10 @@ class Fields {
                     'child_of' => $parent->term_id
                 ));
                 //and punt inside an array
-                $parentsAndChild["$parent->slug"] = $children;
+                //$parentsAndChild["$parent->slug"] = $children;
+                $parentsAndChild .= array($parent, $children);
             }
-
+            print_r($parentsAndChild[0][0]);
             return $parentsAndChild;
         }
     }
@@ -69,15 +77,15 @@ class Fields {
      * @return bool     True if have children,
      *                  False if don't have children
      */
-    function haveChildren() {
+    public function haveChildren() {
         $parents = get_terms(array(
-            'taxonomy' => $this->tax_name,
+            'taxonomy' => Admin::TAX_FIELDS,
             'hide_empty' => false,
             'parent' => 0,
         ));
 
         foreach ($parents as $parent) {
-            if (get_term_children($parent->term_id, $this->tax_name)) {
+            if (get_term_children($parent->term_id, Admin::TAX_FIELDS)) {
                 return true;
             }
         }
