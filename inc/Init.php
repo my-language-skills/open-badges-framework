@@ -2,10 +2,12 @@
 /**
  * The Init Class
  *
- * @since      x.x.x
+ * @author      Alessandro RICCARDI
+ * @since       x.x.x
  *
- * @package    FlexProduct
+ * @package     BadgeIssuerForWp
  */
+
 namespace Inc;
 
 
@@ -20,7 +22,8 @@ final class Init {
         return [
             Pages\Admin::class,
             Base\Enqueue::class,
-            Base\SettingsLinks::class
+            Base\SettingsLinks::class,
+            Base\User::class
         ];
     }
 
@@ -40,7 +43,7 @@ final class Init {
     /**
      * Initialize the class
      *
-     * @param class $class      class form services array
+     * @param class $class class form services array
      *
      * @return class instance   new instance of the class
      */

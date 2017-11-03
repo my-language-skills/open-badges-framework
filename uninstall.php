@@ -2,7 +2,7 @@
 /**
  * Trigger this file on Plugin uninstall
  *
- * @package  FlexProduct
+ * @package  BadgeIssuerForWp
  */
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
     die;

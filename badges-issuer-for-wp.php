@@ -47,12 +47,17 @@ if (file_exists(dirname(__FILE__) . '/vendor/autoload.php')) {
     require_once dirname(__FILE__) . '/vendor/autoload.php';
 }
 
+// Define CONSTANTS
+define( 'PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
+define( 'PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+define( 'PLUGIN', plugin_basename( __FILE__ ) );
+
 /**
  * The code that runs during plugin activation
  *
  * @since x.x.x
  */
-function flex_product_activation() {
+function badges_issuer_for_wp_activation() {
     Inc\Base\Activate::activate();
 }
 register_activation_hook(__FILE__, 'badges_issuer_for_wp_activation');
@@ -62,7 +67,7 @@ register_activation_hook(__FILE__, 'badges_issuer_for_wp_activation');
  *
  * @since x.x.x
  */
-function flex_product_deactivation() {
+function badges_issuer_for_wp_deactivation() {
     Inc\Base\Deactivate::deactivate();
 }
 register_deactivation_hook(__FILE__, 'badges_issuer_for_wp_deactivation');

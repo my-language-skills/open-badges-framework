@@ -4,7 +4,7 @@
  *
  * @since      x.x.x
  *
- * @package    FlexProduct
+ * @package    BadgeIssuerForWp
  */
 namespace Inc\Base;
 

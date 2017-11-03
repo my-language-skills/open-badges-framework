@@ -4,7 +4,7 @@
  *
  * @since      x.x.x
  *
- * @package    FlexProduct
+ * @package    BadgeIssuerForWp
  */
 namespace Inc\Base;
 
@@ -24,8 +24,10 @@ class Enqueue extends BaseController{
      */
     function enqueue() {
         // enqueue all our scripts
-        wp_enqueue_style('mypluginstyle', $this->plugin_url . 'assets/mystyle.css');
-        wp_enqueue_script('mypluginscript', $this->plugin_url . 'assets/myscript.js');
+        wp_enqueue_style('sendbadges-style', $this->plugin_url . 'assets/css/sendbadges-style.css');
+        wp_enqueue_script('sendbadges-functionality', $this->plugin_url . 'assets/js/sendbadge-functionality.js');
+        wp_enqueue_script('steps', $this->plugin_url . 'assets/js/jquery.steps.min.js');
+
     }
 
 }
