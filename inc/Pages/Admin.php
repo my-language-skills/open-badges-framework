@@ -35,6 +35,8 @@ class Admin extends BaseController {
      */
     public function __construct() {
         $this->settingApi = new SettingApi();
+        $sendbadge = new SendBadge();
+        $metabox = new MetaboxApi();
 
         /* #PAGE */
         $this->pages = array(
@@ -51,6 +53,7 @@ class Admin extends BaseController {
 
         /* #SUBPAGE */
         $this->subpages = array(
+            /* ## Badges ## */
             array(
                 'parent_slug' => self::SLUG_PLUGIN,
                 'page_title' => 'Badges',
@@ -59,6 +62,7 @@ class Admin extends BaseController {
                 'menu_slug' => 'edit.php?post_type='.self::POST_TYPE_BADGES,
                 'callback' => ''
             ),
+            /* ## Class ## */
             array(
                 'parent_slug' => self::SLUG_PLUGIN,
                 'page_title' => 'Class',
@@ -67,6 +71,7 @@ class Admin extends BaseController {
                 'menu_slug' => 'edit.php?post_type='.self::POST_TYPE_CLASS,
                 'callback' => ''
             ),
+            /* ## Fields ## */
             array(
                 'parent_slug' => self::SLUG_PLUGIN,
                 'page_title' => 'Fields of education',
@@ -75,6 +80,7 @@ class Admin extends BaseController {
                 'menu_slug' => 'edit-tags.php?taxonomy='.self::TAX_FIELDS.'&post_type='.self::POST_TYPE_BADGES,
                 'callback' => ''
             ),
+            /* ## Levels ## */
             array(
                 'parent_slug' => self::SLUG_PLUGIN,
                 'page_title' => 'Levels',
@@ -83,14 +89,16 @@ class Admin extends BaseController {
                 'menu_slug' => 'edit-tags.php?taxonomy='.self::TAX_LEVELS.'&post_type='.self::POST_TYPE_BADGES,
                 'callback' => ''
             ),
+            /* ## Send Badges ## */
             array(
                 'parent_slug' => self::SLUG_PLUGIN,
                 'page_title' => 'Send Badges',
                 'menu_title' => 'Send Badges',
                 'capability' => 'manage_options',
                 'menu_slug' => 'send_badge_issuer',
-                'callback' => array(SendBadge::class, 'main')
+                'callback' => array($sendbadge, 'main')
             ),
+            /* ## Settings ## */
             array(
                 'parent_slug' => self::SLUG_PLUGIN,
                 'page_title' => 'Settings',
@@ -105,6 +113,7 @@ class Admin extends BaseController {
 
         /* #CUSTOM-POST-TYPE */
         $this->custom_post_types = array(
+            /* ## Badges ## */
             array(
                 'post_type' => self::POST_TYPE_BADGES,
                 'args' => array(
@@ -129,6 +138,7 @@ class Admin extends BaseController {
                     'show_in_menu' => false, // adding to custom menu manually
                 )
             ),
+            /* ## Class ## */
             array(
                 'post_type' => self::POST_TYPE_CLASS,
                 'args' => array(
@@ -155,8 +165,9 @@ class Admin extends BaseController {
             )
         );
 
-        /* #TAXONOMIES */
+        /* ## TAXONOMIES ## */
         $this->taxonomies = array(
+            /* ## Fields ## */
             array(
                 'taxonomy' => self::TAX_FIELDS,
                 'object_type' => self::POST_TYPE_BADGES,
@@ -181,6 +192,7 @@ class Admin extends BaseController {
                     'query_var' => true
                 )
             ),
+            /* ## Levels ## */
             array(
                 'taxonomy' => self::TAX_LEVELS,
                 'object_type' => self::POST_TYPE_BADGES,
@@ -209,34 +221,38 @@ class Admin extends BaseController {
 
         /* #METABOX */
         $this->metaboxes = array(
+            /* ## Certification ## */
             array(
                 'id' => 'id_meta_box_certification',
                 'title' => 'Certification Type',
-                'callback' => array(MetaboxApi::class,'certification'),
+                'callback' => array($metabox,'certification'),
                 'screen' => self::POST_TYPE_BADGES,
                 'context' => 'side',
                 'priority' => 'high',
             ),
+            /* ## Target ## */
             array(
                 'id' => 'id_meta_box_type',
                 'title' => 'Target Type',
-                'callback' => array(MetaboxApi::class,'target'),
+                'callback' => array($metabox,'target'),
                 'screen' => self::POST_TYPE_BADGES,
                 'context' => 'side',
                 'priority' => 'high',
             ),
+            /* ## Links ## */
             array(
                 'id' => 'id_meta_box_links',
                 'title' =>  'Badge Criteria (doesn\'t work, function: display_add_link in class: MetaboxApi)',
-                'callback' => array(MetaboxApi::class,'display_add_link'),
+                'callback' => array($metabox,'display_add_link'),
                 'screen' => self::POST_TYPE_BADGES,
                 'context' => 'normal',
                 'priority' => 'high'
             ),
+            /* ## Badge of class ## */
             array(
                 'id' => 'id_meta_box_class_zero_students',
                 'title' =>  'Class Students',
-                'callback' => array(MetaboxApi::class,'meta_box_class_zero_students'),
+                'callback' => array($metabox,'meta_box_class_zero_students'),
                 'screen' => self::POST_TYPE_CLASS,
                 'context' => 'normal',
                 'priority' => 'high'

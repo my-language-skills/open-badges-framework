@@ -15,44 +15,26 @@ use Inc\Pages\Admin;
 class Fields {
 
     private $tax_name;
+    public $main = array();
+    public $sub = array();
 
     /**
      * Fields constructor.
      */
     public function __construct() {
         $this->tax_name = Admin::TAX_FIELDS;
-    }
 
-    /**
-     * This function permit to get the fields of education.
-     *
-     * @author  Alessandro RICCARDI
-     * @since   x.x.x
-     *
-     * @return  If the taxonomy don't have a father and children
-     *          conformation return a simple list of oll the Fileds,
-     *          else return an array of parents, inside of every
-     *          parent there are children of the specific parent.
-     */
-    public function getAllFields() {
+        // Get Main
+        $this->main = get_terms(array(
+            'taxonomy' => $this->tax_name,
+            'hide_empty' => false,
+            'parent' => 0,
+        ));
 
-        if (!self::haveChildren()) {
-            $fields = get_terms(array(
-                'taxonomy' => $this->tax_name,
-                'hide_empty' => false,
-            ));
-
-            return $fields;
-        } else {
-            $parentsAndChild = array();
-            // In case we have subcategory
-            $parents = get_terms(array(
-                'taxonomy' => $this->tax_name,
-                'hide_empty' => false,
-                'parent' => 0,
-            ));
-
-            foreach ($parents as $parent) {
+        if (is_wp_error($this->main)) {
+            $this->main = array();
+        } elseif (self::haveChildren()) {
+            foreach ($this->main as $parent) {
                 //In this foreach we're getting all the childs of the parents
                 $children = get_terms(array(
                     'taxonomy' => $this->tax_name,
@@ -60,12 +42,10 @@ class Fields {
                     'child_of' => $parent->term_id
                 ));
                 //and punt inside an array
-                //$parentsAndChild["$parent->slug"] = $children;
-                $parentsAndChild .= array($parent, $children);
+                $this->sub["$parent->slug"] = $children;
             }
-            print_r($parentsAndChild[0][0]);
-            return $parentsAndChild;
         }
+
     }
 
     /**

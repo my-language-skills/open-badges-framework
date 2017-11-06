@@ -11,17 +11,20 @@
 namespace templates;
 
 
+use Inc\Base\BaseController;
 use inc\Base\User;
+use inc\Utils\DisplayFunction;
 use inc\Utils\Fields;
 
-final class SendBadge {
+final class SendBadge extends BaseController {
 
     public function __construct() {
-        self::addShortcode();
+        self::initialization();
     }
 
-    public static function addShortcode(){
-        add_shortcode('send_badge', array(SendBadge::class,'main'));
+
+    public function initialization() {
+        add_shortcode('send_badge', array(SendBadge::class, 'main'));
         // Adding the shortcode to send the badge to yourself
         add_shortcode('send-self', array(SendBadge::class, 'getTabSelf'));
         // Adding the shortcode to send a badge to a single person
@@ -95,6 +98,7 @@ final class SendBadge {
      */
     function getTabSelf() {
         global $current_user;
+        $display = new DisplayFunction();
         wp_get_current_user();
         ?>
         <input type="hidden" name="sender" value="<?php echo $current_user->user_email; ?>"/>
@@ -115,13 +119,14 @@ final class SendBadge {
                                                     below buttons an then select the field");
                             ?>
                             <?php self::displayFieldsButtons(); ?>
-                            <div id="field_edu_a"><?php //display_fieldEdu(); ?></div>
+                            <div id="field_edu_a"><?php $display->field(""); ?></div>
                         </div>
                     </section>
                     <h3>Level</h3>
                     <section>
                         <div class="section-container">
                             <div class="title-form"><h2>Select the level:</h2></div>
+                            <?php self::displayLeadInfo("Select one of the below levels"); ?>
                             <div id="languages_form_a"></div>
                         </div>
                     </section>
@@ -347,19 +352,17 @@ final class SendBadge {
     }
 
     private function displayFieldsButtons() {
-        $fieldsClass = new Fields();
+        $fields = new Fields();
+        $i = 0;
 
-        if($fieldsClass->haveChildren()){
-            $parents = $fieldsClass->getAllFields();
-            $actual_parent = key($parents);
-
+        if($fields->haveChildren()){
             echo '<div class="btns-parent-field">';
-
-            foreach ($parents as $parent) {
-                if ($parent[2] == $actual_parent) {
-                    echo '<a class="btn btn-default btn-xs display_parent_categories active" id="' . $parent[2] . '">Display ' . $parent[1] . '</a>';
+            foreach ($fields->main as $parent) {
+                if (!$i) {
+                    $i=1;
+                    echo '<a class="btn btn-default btn-xs display_parent_categories active" id="' . $parent->slug . '">Display ' . $parent->name . '</a>';
                 } else {
-                    echo '<a class="btn btn-default btn-xs display_parent_categories" id="' . $parent[2] . '">Display ' . $parent[1] . '</a>';
+                    echo '<a class="btn btn-default btn-xs display_parent_categories" id="' . $parent->slug . '">Display ' . $parent->name . '</a>';
                 }
             }
             echo '<a class="btn btn-default btn-xs display_parent_categories" id="all_field">Display all Fields</a>';

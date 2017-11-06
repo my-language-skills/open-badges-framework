@@ -95,7 +95,7 @@ class User {
                 'post_title' => $user->user_login,
                 'post_content' => '',
                 'post_status' => 'publish',
-                'post_type' => Admin::POST_TYPE_BADGES,
+                'post_type' => Admin::POST_TYPE_CLASS,
                 'post_author' => $user->ID
             );
 

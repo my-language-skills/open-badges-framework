@@ -10,7 +10,6 @@
 
 namespace Inc;
 
-
 final class Init {
 
     /**
@@ -24,7 +23,9 @@ final class Init {
             Base\Enqueue::class,
             Base\SettingsLinks::class,
             Base\User::class,
-            Utils\Fields::class
+            Utils\Fields::class,
+            Ajax\InitAjax::class,
+            Utils\DisplayFunction::class
         );
     }
 

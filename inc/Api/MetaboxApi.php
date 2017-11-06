@@ -12,6 +12,19 @@ namespace Inc\Api;
 
 class MetaboxApi {
 
+    public function __construct() {
+        add_action('save_post', array($this,'save_metaboxes'));
+    }
+
+    function saveMetaboxes($post_ID) {
+        if (isset($_POST['certification_input'])) {
+            update_post_meta($post_ID, '_certification', esc_html($_POST['certification_input']));
+        }
+        if (isset($_POST['type_input'])) {
+            update_post_meta($post_ID, '_type', esc_html($_POST['type_input']));
+        }
+    }
+
     /**
      * ...
      *

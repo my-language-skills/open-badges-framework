@@ -246,7 +246,9 @@ window.onload = function () {
      * @author Alessandro RICCARDI
      * @since 0.6.3
      */
-    jQuery(".display_parent_categories").click(function () {
+    jQuery(".display_parent_categories").click(function (e) {
+        e.preventDefault();
+
         currentForm = checkForm(this);
 
         //Remove the class 'active' to the old button of the field of education.
@@ -255,24 +257,25 @@ window.onload = function () {
         jQuery(this).addClass("active");
 
         jQuery("#field_edu_" + currentForm).html("<br />" +
-            "<img src='" + loaderGif + "' width='50px' height='50px' />");
+            "<img src='" + globalUrl.loader + "' width='50px' height='50px' />");
 
         var id_lan = jQuery(this).attr('id');
         id_lan = id_lan.replace(/\s/g, '');
         var data = {
-            'action': 'action_languages_form',
+            'action': 'ajaxShowFields',
             'form': currentForm,
-            'slug': id_lan
+            'slug': id_lan,
         };
 
         // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
         jQuery.post(
-            ajaxFile,
+            globalUrl.ajax,
             data,
             function (response) {
                 jQuery("#field_edu_" + currentForm).html(response);
             }
         );
+
     });
 
     /**
@@ -292,16 +295,16 @@ window.onload = function () {
             return false;
         }
 
-        jQuery("#badge_form_" + currentForm + "  #languages_form_" + currentForm).html("<br /><img src='" + loaderGif + "' width='50px' height='50px' />");
+        jQuery("#badge_form_" + currentForm + "  #languages_form_" + currentForm).html("<br /><img src='" + globalUrl.loader + "' width='50px' height='50px' />");
 
         var data = {
-            'action': 'get_right_levels',
+            'action': 'ajaxShowLevels',
             'form': "form_" + currentForm + "_",
             'fieldEdu': fieldEdu
         };
 
         jQuery.post(
-            ajaxFile,
+            globalUrl.ajax,
             data,
             function (response) {
                 jQuery("#badge_form_" + currentForm + "  #languages_form_" + currentForm).html(response);
@@ -336,7 +339,7 @@ window.onload = function () {
             return false;
         }
 
-        jQuery("#badge_form_" + currentForm + "  #select_badge").html("<br /><img src='" + loaderGif + "' width='50px' height='50px' />");
+        jQuery("#badge_form_" + currentForm + "  #select_badge").html("<br /><img src='" + globalUrl.loader + "' width='50px' height='50px' />");
 
         var data = {
             'action': 'action_select_badge',
@@ -345,7 +348,7 @@ window.onload = function () {
         };
 
         jQuery.post(
-            ajaxFile,
+            ajaxurl,
             data,
             function (response) {
                 jQuery("#badge_form_" + currentForm + "  #select_badge").html(response);
@@ -385,7 +388,7 @@ window.onload = function () {
         }
 
         // LOAD the GIF
-        jQuery("#badge_form_" + currentForm + " #result_preview_description").html("<br /><img src='" + loaderGif + "' width='50px' height='50px' />");
+        jQuery("#badge_form_" + currentForm + " #result_preview_description").html("<br /><img src='" + globalUrl.loader + "' width='50px' height='50px' />");
 
         // Data for the AJAX call
         var data = {
@@ -396,7 +399,7 @@ window.onload = function () {
 
         // AJAX call
         jQuery.post(
-            ajaxFile,
+            ajaxurl,
             data,
             function (response) {
                 jQuery("#badge_form_" + currentForm + " #result_preview_description").html(response);
@@ -419,7 +422,7 @@ window.onload = function () {
     function load_class(currentForm, form) {
         // To load the class if in the tab B or C
         if (currentForm == "b" || currentForm == "c") {
-            jQuery("#badge_form_" + currentForm + "  #select_class").html("<br /><img src='" + loaderGif + "' width='50px' height='50px' />");
+            jQuery("#badge_form_" + currentForm + "  #select_class").html("<br /><img src='" + globalUrl.loader + "' width='50px' height='50px' />");
 
             var data = {
                 'action': 'action_select_class',
@@ -428,7 +431,7 @@ window.onload = function () {
                 'language_selected': jQuery("#badge_form_" + currentForm + "  #language option:selected").text()
             };
             jQuery.post(
-                ajaxFile,
+                ajaxurl,
                 data,
                 function (response) {
                     jQuery("#badge_form_" + currentForm + "  #select_class").html(response);
@@ -556,7 +559,7 @@ window.onload = function () {
             //alert(curForm +' '+ language +' '+ level +' '+ badge_name +' '+ language_description +' '+ class_student +' '+ class_teacher +' '+ mail +' '+ comment +' '+ sender);
 
             jQuery.post(
-                ajaxFile,
+                ajaxurl,
                 data,
                 function (response) {
                     alert(response);
