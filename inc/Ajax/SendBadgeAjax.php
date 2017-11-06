@@ -29,6 +29,7 @@ class SendBadgeAjax {
      * @since  0.6.1
      */
     function ajaxShowFields() {
+        echo $_POST['slug'];
         $display = new DisplayFunction();
         $display->field($_POST['slug']);
         wp_die();

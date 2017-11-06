@@ -36,7 +36,6 @@ class DisplayFunction {
 
         } else {
             //If there parent with children
-
             if ($p_parent === "") {
                 // Display the DEFAULT parent
                 $parents = $field->sub;
@@ -71,7 +70,7 @@ class DisplayFunction {
                 $parents = $field->sub;
 
                 echo $selectionContOpen;
-
+                print_r($parents);
                 foreach ((array)$parents[$p_parent] as $language) {
                     echo '<option value="' . $language->term_id . '">';
                     echo $language->name . '</option>';

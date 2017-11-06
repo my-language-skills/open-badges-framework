@@ -22,6 +22,10 @@ class Admin extends BaseController {
     const POST_TYPE_CLASS = "class_issuer_cpt";
     const TAX_FIELDS = "fields_issuer_tax";
     const TAX_LEVELS = "levels_issuer_tax";
+    const MTB_CERT = "certification_mtb";
+    const MTB_TARGET = "type_issuer_mtb";
+    const MTB_LBADGE = "lbadge_issuer_mtb";
+
 
     private $settingApi;
     private $pages;
@@ -223,7 +227,7 @@ class Admin extends BaseController {
         $this->metaboxes = array(
             /* ## Certification ## */
             array(
-                'id' => 'id_meta_box_certification',
+                'id' => self::MTB_CERT,
                 'title' => 'Certification Type',
                 'callback' => array($metabox,'certification'),
                 'screen' => self::POST_TYPE_BADGES,
@@ -232,7 +236,7 @@ class Admin extends BaseController {
             ),
             /* ## Target ## */
             array(
-                'id' => 'id_meta_box_type',
+                'id' => self::MTB_TARGET,
                 'title' => 'Target Type',
                 'callback' => array($metabox,'target'),
                 'screen' => self::POST_TYPE_BADGES,
@@ -250,8 +254,8 @@ class Admin extends BaseController {
             ),
             /* ## Badge of class ## */
             array(
-                'id' => 'id_meta_box_class_zero_students',
-                'title' =>  'Class Students',
+                'id' => self::MTB_LBADGE,
+                'title' =>  'List of Badge',
                 'callback' => array($metabox,'meta_box_class_zero_students'),
                 'screen' => self::POST_TYPE_CLASS,
                 'context' => 'normal',

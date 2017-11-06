@@ -250,7 +250,6 @@ window.onload = function () {
         e.preventDefault();
 
         currentForm = checkForm(this);
-
         //Remove the class 'active' to the old button of the field of education.
         jQuery("#badge_form_" + currentForm + " .display_parent_categories.active").removeClass("active");
         //Add the class 'active' to the actual button.
@@ -260,7 +259,9 @@ window.onload = function () {
             "<img src='" + globalUrl.loader + "' width='50px' height='50px' />");
 
         var id_lan = jQuery(this).attr('id');
+        alert(id_lan);
         id_lan = id_lan.replace(/\s/g, '');
+
         var data = {
             'action': 'ajaxShowFields',
             'form': currentForm,
@@ -275,7 +276,6 @@ window.onload = function () {
                 jQuery("#field_edu_" + currentForm).html(response);
             }
         );
-
     });
 
     /**
