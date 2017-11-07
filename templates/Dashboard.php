@@ -13,12 +13,16 @@
 namespace templates;
 
 
+use Inc\Utils\Statistics;
+
 final class Dashboard {
 
     public static function main() {
         ?>
-            <h1>Badge Issuer</h1>
-
+        <div class="wrap">
+            <h1 class="obf-title">Badge Issuer</h1>
+            <?php echo Statistics::getNumOfBadges(); ?>
+        </div>
         <?php
     }
 }

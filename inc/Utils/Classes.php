@@ -8,6 +8,7 @@
 
 namespace inc\Utils;
 
+use inc\Base\User;
 use Inc\Pages\Admin;
 
 class Classes {
@@ -24,7 +25,12 @@ class Classes {
     }
 
     public function getOwnClass() {
-
-
+        $classes = array();
+        foreach ($this->classes as $class) {
+            if ($class->post_author == User::getCurrentUser()->ID){
+                array_push($classes, $class);
+            }
+        }
+        return $classes;
     }
 }

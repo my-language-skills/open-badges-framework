@@ -78,7 +78,7 @@ final class SendBadge extends BaseController {
                 if (User::check_the_rules("academy", "administrator", "editor")) {
                     ?>
                     <div id="Multiple" class="tabcontent">
-                        <?php //self::getTabMultiple(); ?>
+                        <?php self::getTabMultiple(); ?>
                     </div>
                     <?php
                 }
@@ -212,17 +212,6 @@ final class SendBadge extends BaseController {
                             <div class="title-form"><h2>Class:</h2></div>
                             <?php self::displayLeadInfo("Select one of the below classes (by default is selected your default class)"); ?>
                             <div id="select_class"></div>
-                            <?php
-                            /*
-                        if (User::check_the_rules($current_user->roles, "academy", "teacher")) {
-                            $class_zero = get_class_teacher($current_user->user_login);
-                            echo '<input name="class_teacher" type="hidden" value="' . $class_zero->ID . '"/>';
-                        }
-
-                        if (User::check_the_rules($current_user->roles, "teacher", "academy", "administrator", "editor")) {
-                            echo '<div id="select_class"></div>';
-                        }*/
-                            ?>
                         </div>
                     </section>
 
@@ -231,7 +220,7 @@ final class SendBadge extends BaseController {
                         <div class="section-container">
                             <div class="title-form"><h2>Receiver's mail addresses:</h2></div>
                             <?php self::displayLeadInfo("Write the emails of the receiver badge, to send multiple email, write each address per line"); ?>
-                            <textarea name="mail" id="mail" class="mail" rows="10" cols="50"></textarea>
+                            <input name="mail" id="mail" class="mail" style="width: 300px; text-align: center;">
                         </div>
                     </section>
 
@@ -301,22 +290,12 @@ final class SendBadge extends BaseController {
                         </div>
                     </section>
 
-
                     <h3>Class</h3>
                     <section>
                         <div class="section-container">
                             <div class="title-form"><h2>Class:</h2></div>
                             <?php self::displayLeadInfo("Select one of the below classes (by default is selected your default class)"); ?>
-                            <?php
-                            if (User::check_the_rules("academy", "teacher")) {
-                                $class_zero = get_class_teacher($current_user->user_login);
-                                echo '<input name="class_teacher" type="hidden" value="' . $class_zero->ID . '"/>';
-                            }
-
-                            if (User::check_the_rules($current_user->roles, "teacher", "academy", "administrator", "editor")) {
-                                echo '<div id="select_class"></div>';
-                            }
-                            ?>
+                            <div id="select_class"></div>
                         </div>
                     </section>
 

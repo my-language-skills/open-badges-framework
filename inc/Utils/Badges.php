@@ -27,7 +27,7 @@ class Badges {
         ));
     }
 
-    public function getBadges($field = "", $level = "") {
+    public function getBadgesFilters($field = "", $level = "") {
         if ($field = "" && $level = "") {
             return $this->badges;
         } else {

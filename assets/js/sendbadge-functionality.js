@@ -30,6 +30,14 @@ window.onload = function () {
         isLocalhost = true;
     }
 
+    // Prevent "enter" pressing when filling the text fields
+    jQuery(window).keydown(function(event){
+        if(event.keyCode == 13) {
+            event.preventDefault();
+            return false;
+        }
+    });
+
     /* =====================================
         BADGE FORM # A #
        ===================================== */
@@ -267,7 +275,7 @@ window.onload = function () {
             'slug': id_lan,
         };
 
-        // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
+        // since 2.8 globalUrl.ajax is always defined in the admin header and points to admin-ajax.php
         jQuery.post(
             globalUrl.ajax,
             data,
@@ -347,7 +355,7 @@ window.onload = function () {
         };
 
         jQuery.post(
-            ajaxurl,
+            globalUrl.ajax,
             data,
             function (response) {
                 jQuery("#badge_form_" + currentForm + "  #select_badge").html(response);
@@ -394,7 +402,7 @@ window.onload = function () {
 
         // AJAX call
         jQuery.post(
-            ajaxurl,
+            globalUrl.ajax,
             data,
             function (response) {
                 jQuery("#badge_form_" + currentForm + " #result_preview_description").html(response);
@@ -417,16 +425,17 @@ window.onload = function () {
     function load_class(currentForm, form) {
         // To load the class if in the tab B or C
         if (currentForm == "b" || currentForm == "c") {
+            var field = jQuery("#badge_form_" + currentForm + "  #language option:selected").text();
+            var level = jQuery("#badge_form_" + currentForm + "  .level:checked").val();
             jQuery("#badge_form_" + currentForm + "  #select_class").html("<br /><img src='" + globalUrl.loader + "' width='50px' height='50px' />");
 
             var data = {
                 'action': 'ajaxShowClasses',
-                'form': "form_" + currentForm + "_",
-                'level_selected': jQuery("#badge_form_" + currentForm + "  .level:checked").val(),
-                'language_selected': jQuery("#badge_form_" + currentForm + "  #language option:selected").text()
+                'language': field,
+                'level': level
             };
             jQuery.post(
-                ajaxurl,
+                globalUrl.ajax,
                 data,
                 function (response) {
                     jQuery("#badge_form_" + currentForm + "  #select_class").html(response);
@@ -446,26 +455,24 @@ window.onload = function () {
      * @since 0.6.3
      */
     function check_class(currentForm, form) {
-        // var existClassS = false;
-        // var check = false;
-        //
-        // jQuery("#badge_form_" + currentForm + " input[name='class_for_student']")  // for all checkboxes
-        //     .each(function () {  // first pass, create name mapping
-        //         existClassS = true;
-        //         if (jQuery(this).is(':checked')) {
-        //             check = true;
-        //         }
-        //     }
-        // );
-        //
-        // if ( !existClassS || check) {
-        //     //Load description of language for the next page
-        //     form.validate().settings.ignore = ":disabled,:hidden";
-        //     return form.valid();
-        // } else {
-        //     return false;
-        // }
-        return true;
+        var existClassS = false;
+        var check = false;
+
+        jQuery("#badge_form_" + currentForm + " input[name='class']")  // for all checkboxes
+            .each(function () {  // first pass, create name mapping
+                if (jQuery(this).is(':checked')) {
+                    check = true;
+                }
+            }
+        );
+
+        if (check) {
+            //Load description of language for the next page
+            form.validate().settings.ignore = ":disabled,:hidden";
+            return form.valid();
+        } else {
+            return false;
+        }
     }
 
 
@@ -485,7 +492,7 @@ window.onload = function () {
             mails = mails.split("\n");
 
             for (var i = 0; i < mails.length; i++) {
-                if (!re.test(mails[i])) return false;
+                if (!re.test(mails[i]) || (i > 0 && form == 'b')) return false;
             }
             // Everything good
             form.validate().settings.ignore = ":disabled,:hidden";
@@ -531,7 +538,7 @@ window.onload = function () {
                 level = jQuery("#badge_form_" + curForm + " input[name='level']:checked").val(),
                 badge_name = jQuery("#badge_form_" + curForm + " input[name='input_badge_name']:checked").val(),
                 language_description = "Default",//jQuery("#badge_form_" + curForm + " #language_description").val(),
-                class_student = jQuery("#badge_form_" + curForm + " input[name='class_for_student']:checked").val(),
+                class_student = jQuery("#badge_form_" + curForm + " input[name='class']:checked").val(),
                 class_teacher = jQuery("#badge_form_" + curForm + " input[name='class_teacher']").val(),
                 mail = jQuery("#badge_form_" + curForm + " #mail").val(),
                 comment = jQuery("#badge_form_" + curForm + " #comment").val(),
@@ -554,7 +561,7 @@ window.onload = function () {
             //alert(curForm +' '+ language +' '+ level +' '+ badge_name +' '+ language_description +' '+ class_student +' '+ class_teacher +' '+ mail +' '+ comment +' '+ sender);
 
             jQuery.post(
-                ajaxurl,
+                globalUrl.ajax,
                 data,
                 function (response) {
                     alert(response);

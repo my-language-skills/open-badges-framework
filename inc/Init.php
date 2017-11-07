@@ -25,7 +25,8 @@ final class Init {
             Base\User::class,
             Utils\Fields::class,
             Ajax\InitAjax::class,
-            Utils\DisplayFunction::class
+            Utils\DisplayFunction::class,
+            Utils\Statistics::class
         );
     }
 

@@ -414,27 +414,12 @@ section.current {
     box-shadow: 0 0 0px 4px #007bff;
 }
 
-.message {
-    padding: 10px;
-    font-size: 13px;
-    position: absolute !important;
-    top: 5px;
-    width: 95%;
-    background: #fff;
-    border-left: 4px solid #46b450;
-    -webkit-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .1);
-    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .1);
-    margin-right: 15px;
-}
+/* ### CLASS ### */
 
-.msg-success {
-    border-left-color: #46b450;
+.title-classes {
+    font-weight: 200;
+    margin-bottom: 0px;
 }
-
-.msg-insuccess{
-    border-left-color: #b42300;
-}
-
 
 .radio-input {
     position: absolute;
@@ -474,10 +459,35 @@ section.current {
 }
 
 .radio-input:checked + .radio-label {
-    background-color: #007bff;
+    background-color: #727272;
     border: 3px solid #ffffff;
 }
 
 .radio-input:checked + .radio-label::before {
     background-color: #fff;
+}
+
+
+
+/* ### Message ### */
+
+.message {
+    padding: 10px;
+    font-size: 13px;
+    position: absolute !important;
+    top: 5px;
+    width: 95%;
+    background: #fff;
+    border-left: 4px solid #46b450;
+    -webkit-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .1);
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .1);
+    margin-right: 15px;
+}
+
+.msg-success {
+    border-left-color: #46b450;
+}
+
+.msg-insuccess{
+    border-left-color: #b42300;
 }

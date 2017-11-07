@@ -70,7 +70,7 @@ class SendBadgeAjax extends BaseController {
         $form = $_POST['form'];
         $field = $_POST['fieldEdu'];
         $level = $_POST['level'];
-        $rightBadges = $badges->getBadges($field, $level);
+        $rightBadges = $badges->getBadgesFilters($field, $level);
 
 
         foreach ($rightBadges as $badge) { ?>
@@ -124,9 +124,14 @@ class SendBadgeAjax extends BaseController {
      */
     function ajaxShowClasses() {
         $classes = new Classes();
-        echo '<input id="toggle1" type="checkbox" checked>
-                <label for="toggle1">Toggle me!</label>';
-        wp_close();
+        $ownClasses = $classes->getOwnClass();
+
+        echo '<h3 class="title-classes">Own class</h3>';
+        foreach ($ownClasses as $class) {
+            echo "<input id='class_$class->ID' value='$class->ID' class='radio-input' name='class' type='radio'>
+              <label for='class_$class->ID' class='radio-label'>$class->post_title</label>";
+        }
+        wp_die();
     }
 
     /**
