@@ -259,7 +259,6 @@ window.onload = function () {
             "<img src='" + globalUrl.loader + "' width='50px' height='50px' />");
 
         var id_lan = jQuery(this).attr('id');
-        alert(id_lan);
         id_lan = id_lan.replace(/\s/g, '');
 
         var data = {
@@ -342,7 +341,7 @@ window.onload = function () {
         jQuery("#badge_form_" + currentForm + "  #select_badge").html("<br /><img src='" + globalUrl.loader + "' width='50px' height='50px' />");
 
         var data = {
-            'action': 'action_select_badge',
+            'action': 'ajaxShowBadges',
             'fieldEdu': fieldEdu,
             'level': levelValue,
         };
@@ -370,20 +369,17 @@ window.onload = function () {
      * @since 0.6.3
      */
     function load_description(currentForm, form) {
-        var check = false;
-        var badgeName = "";
-        var langSelected = "Default";
+        var badgeId = "";
 
         // Check if we selected a badge to permit to switch the page
         jQuery("#badge_form_" + currentForm + " input[name='input_badge_name']")  // check if one badge is selected
             .each(function () {  // first pass, create name mapping
                 if (jQuery(this).is(':checked')) {
-                    check = true;
-                    badgeName = jQuery(this).val();
+                    badgeId = jQuery(this).attr('id');
                 }
             });
         // Badge no selected
-        if (!check) {
+        if (!badgeId) {
             return false;
         }
 
@@ -392,9 +388,8 @@ window.onload = function () {
 
         // Data for the AJAX call
         var data = {
-            'action': 'action_select_description_preview',
-            'language_description': langSelected,
-            'badge_name': badgeName
+            'action': 'ajaxShowDescription',
+            'ID': badgeId
         };
 
         // AJAX call
@@ -425,7 +420,7 @@ window.onload = function () {
             jQuery("#badge_form_" + currentForm + "  #select_class").html("<br /><img src='" + globalUrl.loader + "' width='50px' height='50px' />");
 
             var data = {
-                'action': 'action_select_class',
+                'action': 'ajaxShowClasses',
                 'form': "form_" + currentForm + "_",
                 'level_selected': jQuery("#badge_form_" + currentForm + "  .level:checked").val(),
                 'language_selected': jQuery("#badge_form_" + currentForm + "  #language option:selected").text()

@@ -22,16 +22,16 @@ class MetaboxApi {
         $this->cert_mtb = Admin::MTB_CERT;
         $this->target_mtb = Admin::MTB_TARGET;
         $this->lbadge_mtb = Admin::MTB_LBADGE;
-        add_action('save_post', array($this, 'save_metaboxes'));
+        add_action('save_post', array($this, 'saveMetaboxes'));
     }
 
     function saveMetaboxes($post_ID) {
         if (isset($_POST['certification_input'])) {
-            update_post_meta($post_ID, $this->cert_mtb . "certified", esc_html($_POST['is_certified']));
-            update_post_meta($post_ID, $this->cert_mtb . "no_certified", esc_html($_POST['is_not_certified']));
+            update_post_meta($post_ID, '_certification', esc_html($_POST['certification_input']));
         }
-        if (isset($_POST['type_input'])) {
-            update_post_meta($post_ID, $this->target_mtb, esc_html($_POST['type_input']));
+
+        if (isset($_POST['target_input'])) {
+            update_post_meta($post_ID, '_target', esc_html($_POST['target_input']));
         }
     }
 
@@ -44,29 +44,15 @@ class MetaboxApi {
      * @param $post
      */
     public static function certification($post) {
-        ?>
-        <label for="meta-box-checkbox">Check Box</label>
-        <?php
-        $checkbox_value = get_post_meta($object->ID, "meta-box-checkbox", true);
+        $val = get_post_meta($post->ID, '_certification', true);
 
-        if ($checkbox_value == "") {
-            ?>
-            <input name="meta-box-checkbox" type="checkbox" value="true">
-            <?php
-        } else if ($checkbox_value == "true") {
-            ?>
-            <input name="meta-box-checkbox" type="checkbox" value="true" checked>
-            <?php
-        }
-        $val = get_post_meta($post->ID, '_type', true);
+        echo '<input type="radio" value="not_certified" name="certification_input"';
+        self::check($val, 'not_certified');
+        printf(__('> Not certified<br>', 'badges-issuer-for-wp'));
 
-        echo '<input type="radio" value="student" name="type_input"';
-        check($val, 'student');
-        printf(__('> Student<br>', 'badges-issuer-for-wp'));
-
-        echo '<input type="radio" value="teacher" name="type_input"';
-        check($val, 'teacher');
-        printf(__('> Teacher<br>', 'badges-issuer-for-wp'));
+        echo '<input type="radio" value="certified" name="certification_input"';
+        self::check($val, 'certified');
+        printf(__('> Certified<br>', 'badges-issuer-for-wp'));
     }
 
 
@@ -77,14 +63,14 @@ class MetaboxApi {
      * @since  x.x.x
      */
     public static function target($post) {
-        $val = get_post_meta($post->ID, '_type', true);
+        $val = get_post_meta($post->ID, '_target', true);
 
-        echo '<input type="radio" value="student" name="type_input"';
-        check($val, 'student');
+        echo '<input type="radio" value="student" name="target_input"';
+        self::check($val, 'student');
         printf(__('> Student<br>', 'badges-issuer-for-wp'));
 
-        echo '<input type="radio" value="teacher" name="type_input"';
-        check($val, 'teacher');
+        echo '<input type="radio" value="teacher" name="target_input"';
+        self::check($val, 'teacher');
         printf(__('> Teacher<br>', 'badges-issuer-for-wp'));
 
     }
@@ -99,7 +85,7 @@ class MetaboxApi {
     function display_add_link() {
         echo '<tr>';
         echo '<td width="0%">';
-        display_fieldEdu($category = "most-important-languages", $language_selected = "", $multiple = true);
+        //display_fieldEdu($category = "most-important-languages", $language_selected = "", $multiple = true);
         echo '</td>';
         echo '<td width="100%">';
         echo '<center><input type="text" size="50" name="link_url[]" value="" /></center>';
@@ -313,4 +299,19 @@ function meta_box_links($post) {
 
     echo '</table>';
 }
+
+    /**
+     * Check if the $val is equal to the $expected value.
+     *
+     * @author Nicolas TORION
+     * @since  0.4
+     *
+     * @param $val      value to verify
+     * @param $expected value that is confronted with the first param.
+     */
+    function check($val, $expected) {
+        if ($val == $expected) {
+            echo " checked";
+        }
+    }
 }

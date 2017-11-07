@@ -49,6 +49,35 @@ class Fields {
     }
 
     /**
+     * @return array|int|\WP_Error
+     */
+    public static function getFields() {
+        $sub = array();
+        $main = get_terms(array(
+            'taxonomy' => Admin::TAX_FIELDS,
+            'hide_empty' => false,
+            'parent' => 0,
+        ));
+
+        if (self::haveChildren()) {
+
+            foreach ($main as $parent) {
+                //In this foreach we're getting all the childs of the parents
+                $children = get_terms(array(
+                    'taxonomy' => Admin::TAX_FIELDS,
+                    'hide_empty' => false,
+                    'child_of' => $parent->term_id
+                ));
+                //and punt inside an array
+                $sub["$parent->slug"] = $children;
+            }
+            return array($main, $sub);
+        }
+
+        return $main;
+    }
+
+    /**
      * This function permit to understand if the "field of education" have subcategory (children) or not.
      *
      * @author Alessandro RICCARDI
@@ -57,7 +86,8 @@ class Fields {
      * @return bool     True if have children,
      *                  False if don't have children
      */
-    public function haveChildren() {
+    public
+    function haveChildren() {
         $parents = get_terms(array(
             'taxonomy' => Admin::TAX_FIELDS,
             'hide_empty' => false,

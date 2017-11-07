@@ -11,10 +11,13 @@
 
 namespace inc\Ajax;
 
-use inc\Utils\DisplayFunction;
+use Inc\Utils\DisplayFunction;
 use Inc\Utils\Levels;
+use Inc\Utils\Badges;
+use Inc\Utils\Classes;
+use Inc\Base\BaseController;
 
-class SendBadgeAjax {
+class SendBadgeAjax extends BaseController {
 
     function action_save_metabox_students() {
         $post_id = $_POST['post_id'];
@@ -23,115 +26,93 @@ class SendBadgeAjax {
     }
 
     /**
-     * AJAX action to load all languages in a select form
+     * ...
      *
-     * @author Nicolas TORION
-     * @since  0.6.1
+     * @author Alessandro RICCARDI
+     * @since  x.x.x
      */
     function ajaxShowFields() {
-        echo $_POST['slug'];
         $display = new DisplayFunction();
         $display->field($_POST['slug']);
         wp_die();
     }
 
     /**
-     * This function return all the level that contain badges of the
-     * same field selected in the first step of the send badge form.
+     * ...
      *
      * @author Alessandro RICCARDI
-     * @since  0.6.3
+     * @since  x.x.x
      */
     function ajaxShowLevels() {
+        $level = new Levels();
         $fieldEdu = $_POST['fieldEdu'];
-        $levels = Levels::getAllLevels($fieldEdu);
-        /*
-                // Display the level ...
-                foreach ($levels as $level) {
+        $levels = $level->getAllLevels($fieldEdu);
 
-                    echo '<div class="rdi-tab">';
-                    echo '<label class="radio-label" for="level_' . $level . '">' . $level . ' </label><input type="radio" class="radio-input level" name="level" id="level_' . $level . '" value="' . $level . '"> ';
-                    echo '</div>';
-                }*/
+        // Display the level ...
+        foreach ($levels as $level) {
+
+            echo '<div class="rdi-tab">';
+            echo "<input id='level_$level' value='$level' class='radio-input level' name='level' type='radio'>
+                  <label for='level_$level' class='radio-label'>$level</label>";
+            echo '</div>';
+        }
         wp_die();
     }
 
     /**
-     * AJAX action to load the badges of the level given.
+     * ...
      *
-     * @author Nicolas TORION
-     * @since  0.6.2
-     * @since  0.6.3 recoded and made it easy
+     * @author Alessandro RICCARDI
+     * @since  x.x.x
      */
-    function action_select_badge() {
-        global $current_user;
-        $badges = get_all_badges();
+    function ajaxShowBadges() {
+        $badges = new Badges();
         $form = $_POST['form'];
-        $lang = $_POST['fieldEdu'];
+        $field = $_POST['fieldEdu'];
         $level = $_POST['level'];
-
-        // Get user information
-        wp_get_current_user();
-
-        display_sendBadges_info("Select one of the below badges");
+        $rightBadges = $badges->getBadges($field, $level);
 
 
-        if (check_the_rules("administrator", "academy", "editor")) {
-            $badges_corresponding = get_all_badges_level($badges, $lang, $level, $certification = true);
-        } else {
-            $badges_corresponding = get_all_badges_level($badges, $lang, $level);
-        }
-
-        // Sort an array by values using a user-defined comparison function
-        usort($badges_corresponding, function ($a, $b) {
-            return strcmp($a->post_title, $b->post_title);
-        });
-
-        foreach ($badges_corresponding as $badge) { ?>
+        foreach ($rightBadges as $badge) { ?>
             <!-- HTML -->
             <div class="cont-badge-sb">
-            <input type="radio" name="input_badge_name" class="input-badge input-hidden"
-                   id="<?php echo $form . $badge->post_title; ?>"
+            <label class="badge-cont">
+            <input type="radio" name="input_badge_name" class="input-badge"
+                   id="<?php echo $form . $badge->ID; ?>"
                    value="<?php echo $badge->post_name; ?>"/>
-        <label for="<?php echo $form . $badge->post_title; ?>">
-                <img class="img-send-badge" src="<?php
-
+            <img class="img-badge" src="
+                <?php
             if (get_the_post_thumbnail_url($badge->ID)) {
                 // Badge WITH image
                 echo get_the_post_thumbnail_url($badge->ID, 'thumbnail');
-                echo '" /> </label>';
-                echo '</br> <b>' . $badge->post_title . '</b>';
-                echo "</b>";
+                echo '" /> </label> </br> <b>' . $badge->post_title . '</b>';
             } else {
                 // Badge WITHOUT image
-                echo plugins_url('../../assets/default-badge-thumbnail.png', __FILE__);
-                echo '" width="40px" height="40px" /></label>';
-                echo '</br><b>' . $badge->post_title . '</b>';
-
+                echo $this->plugin_url . 'assets/images/default-badge.png';
+                echo '" width="40px" height="40px" /></label> </br> <b>' . $badge->post_title . '</b>';
             }
-            echo "</div>";
+            ?>
+            </label>
+            </div>
+            <?php
         }
+
+        wp_die();
     }
 
     /**
-     * AJAX action to load a preview of the description selected in a select form
+     * ...
      *
-     * @author Nicolas TORION
-     * @since  0.6.2
+     * @author Alessandro RICCARDI
+     * @since  x.x.x
      */
-    function action_select_description_preview() {
-        $badgeName = $_POST['badge_name'];
-        $langDesc = $_POST['language_description'];
+    function ajaxShowDescription() {
+        $badges = new Badges();
+        $Id = $_POST['ID'];
+        $badge = $badges->getBadgeById($Id);
 
-        display_sendBadges_info("Select the language of the badge, if you cannot select it, the below text it will be used.");
-
-        $badges = get_all_badges();
-        foreach ($badges as $badge) {
-            if ($badgeName == $badge->post_name) {
-                $badge_description = get_badge_descriptions($badge)[$langDesc];
-                echo str_replace("\n", "<br>", "<p>" . $badge_description . "</p><br>");
-            }
-        }
+        echo $badge->post_content;
+        wp_die();
     }
 
 
@@ -141,75 +122,11 @@ class SendBadgeAjax {
      * @author Nicolas TORION
      * @since  0.6.3
      */
-    function action_select_class() {
-        global $current_user;
-        $settings = new SaveSetting();
-        $fieldEducation = $_POST['language_selected'];
-        wp_get_current_user();
-
-        display_sendBadges_info("Select one of the below classes (by default is selected your default class)");
-
-        // Get the class from the Plugin = wp-job-manager
-        if (is_plugin_active("WP-Job-Manager-master/wp-job-manager.php")) {
-            if (check_the_rules("administrator", "editor")) {
-                $classes = get_classes_plugin();
-                $classes_job_listing = get_classes_job_listing();
-                $classes = array_merge($classes, $classes_job_listing);
-            } elseif (check_the_rules("academy")) {
-                $classes = get_classes_teacher($current_user->user_login);
-            } elseif (check_the_rules("teacher")) {
-                $classes = get_class_teacher($current_user->user_login);
-            }
-        }
-
-        if (empty($classes) && check_the_rules("administrator", "editor")) {
-            echo 'You don\'t have classes, create a new one!';
-        }
-
-        if (check_the_rules("administrator", "editor")) {
-            echo '</br><b>Default Class:</b><br><br>';
-            foreach ($classes as $class) {
-                if ($class->post_type == 'class') {
-                    echo '<div class="rdi-tab">';
-                    echo '<label for="class_' . $class->ID . '">' . $class->post_title . ' </label>
-                        <input type="radio" name="class_for_student" id="class_' . $class->ID . '" value="' . $class->ID . '"/>';
-                    echo '</div>';
-                }
-            }
-            echo '</br>';
-        }
-
-        if (check_the_rules("administrator", "academy", "editor")) {
-            $first = true;
-            foreach ($classes as $class) {
-                if ($class->post_type == 'job_listing') {
-                    $fields = get_the_terms($class->ID, 'job_listing_category');
-
-                    // Checking if the class of the class is the same of the badge that we want to send.
-                    if ($fieldEducation == $fields[0]->name) {
-                        if ($first) {
-                            // The first time it will be printed the title
-                            echo '<br><b>Specific Class:</b><br><br>';
-                            $first = false;
-                        }
-                        // Printing of the Job listing CLASS
-                        echo '<div class="rdi-tab">';
-                        echo '<label for="class_' . $class->ID . '">' . $class->post_title . ' </label><input type="radio" name="class_for_student" id="class_' . $class->ID . '" value="' . $class->ID . '"/>';
-                        echo '</div>';
-                    }
-                }
-            }
-        }
-
-        $settings_id_links = $settings->get_settings_links();
-
-        // In the case we don't have classes.
-        if (check_the_rules("teacher")) {
-            echo 'Your teacher plan don\'t allow you to select different class than the default one.<br><a href="' . get_page_link($settings_id_links["link_not_academy"]) . '">Click here to update your plan and became Academy!</a>';
-        } elseif (check_the_rules("academy")) {
-            echo '<br></vr><a href="' . get_page_link($settings_id_links["link_create_new_class"]) . '">Create other classes!</a>';
-        }
-
+    function ajaxShowClasses() {
+        $classes = new Classes();
+        echo '<input id="toggle1" type="checkbox" checked>
+                <label for="toggle1">Toggle me!</label>';
+        wp_close();
     }
 
     /**

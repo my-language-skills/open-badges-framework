@@ -16,10 +16,10 @@ class DisplayFunction {
      *
      * @param string $parent permit to display the child taxonomy of the parent taxonomy (category).
      */
-    public function field($p_parent = "") {
+    public static function field($p_parent = "") {
         $field = new Fields();
 
-        $selectionContOpen = '<div class="select-language"> <select name="language" id="language"> <option value="-9999" selected disabled hidden>Select</option>';
+        $selectionContOpen = '<div class="select-language"> <select name="language" id="language"> <option value="" selected disabled hidden>Select</option>';
         $selectionContClose = '</select></div>';
 
         if (!$field->haveChildren()) {
@@ -70,7 +70,6 @@ class DisplayFunction {
                 $parents = $field->sub;
 
                 echo $selectionContOpen;
-                print_r($parents);
                 foreach ((array)$parents[$p_parent] as $language) {
                     echo '<option value="' . $language->term_id . '">';
                     echo $language->name . '</option>';
@@ -92,7 +91,7 @@ class DisplayFunction {
      * @since  0.6.3
      *
      */
-    function display_parents() {
+    public static function display_parents() {
         $parents = get_languages();
         $actual_parent = key($parents);
         $haveCat = false;
@@ -148,7 +147,7 @@ class DisplayFunction {
      *
      * @param $message The message to display.
      */
-    function display_success_message($message) {
+    public static function display_success_message($message) {
         ?>
         <div class="message msg-success">
             <?php echo $message; ?>
@@ -164,7 +163,7 @@ class DisplayFunction {
      *
      * @param $message The message to display.
      */
-    function display_error_message($message) {
+    public static function display_error_message($message) {
         ?>
         <div class="message error">
             <?php echo $message; ?>
@@ -172,7 +171,7 @@ class DisplayFunction {
         <?php
     }
 
-    function display_sendBadges_info($message) {
+    public static function display_sendBadges_info($message) {
         echo '<div class="lead">' . $message . '</div> <hr class="hr-sb">';
     }
 
@@ -183,7 +182,7 @@ class DisplayFunction {
      * @author Nicolas TORION
      * @since  0.6.3
      */
-    function display_not_logged_message() {
+    public static function display_not_logged_message() {
         $settings_id_login_links = get_settings_login_links();
         ?>
 

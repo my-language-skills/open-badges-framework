@@ -26,6 +26,7 @@ class Enqueue extends BaseController {
     function enqueue() {
         // enqueue all our scripts
         wp_enqueue_style('sendbadges-style', $this->plugin_url . 'assets/css/sendbadges-style.css');
+        wp_enqueue_style('my-style', $this->plugin_url . 'assets/css/mystyle.css');
         wp_enqueue_script('form-sendbadges', $this->plugin_url . 'assets/js/jquery.steps.min.js');
         wp_enqueue_script("jQuery-validation", 'http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js', array('jquery'), 0.1, false);
         wp_enqueue_script('sendbadges-functionality', $this->plugin_url . 'assets/js/sendbadge-functionality.js');

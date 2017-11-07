@@ -103,6 +103,14 @@ class User {
         }
     }
 
+
+    public static function getCurrentUser(){
+        global $current_user;
+        wp_get_current_user();
+
+        return $current_user;
+    }
+
     /**
      * Check the rules of the user.
      *
@@ -115,17 +123,13 @@ class User {
      * @return bool
      */
     public static function check_the_rules(){
-        global $current_user;
-        $res = false;
-        wp_get_current_user();
+        $user = self::getCurrentUser();
 
         foreach (func_get_args() as $param) {
             if(!is_array($param)){
-                $res = in_array($param, $current_user->roles)? true: $res ? true: false;
+                $res = in_array($param, $user->roles)? true: $res ? true: false;
             }
         }
         return $res;
     }
-
-
 }

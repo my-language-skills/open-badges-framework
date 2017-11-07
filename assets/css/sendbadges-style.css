@@ -242,11 +242,6 @@ div.tab button.active {
     height: 100%;
 }
 
-.wizard > .content > .body input {
-    display: block;
-    border: 1px solid #ccc;
-}
-
 .wizard > .content > .body input[type="checkbox"] {
     display: inline-block;
 }
@@ -391,27 +386,8 @@ section.current {
 
 /* ### SELECT LEVEL ###*/
 
-.rdi-tab {
-    display: inline-block;
-    text-align: center;
-}
 
-.rdi-tab * {
-    float: left;
-}
 
-.radio-label {
-    float: left;
-    margin-right: 3%;
-}
-
-.radio-input {
-    float: left;
-}
-
-fieldset {
-    text-align: center;
-}
 
 /* ### KIND of BADGE ### */
 
@@ -420,23 +396,22 @@ fieldset {
     margin: 10px 20px;
 }
 
-.input-hidden {
+.badge-cont > input{
+    visibility: hidden;
     position: absolute;
-    left: -9999px
 }
 
-.input-badge:checked + label > .img-send-badge {
-    border: 1px solid #fff;
-    box-shadow: 0 0 0px 4px red;
-}
-
-.input-badge + label > .img-send-badge {
+.badge-cont > input + img {
     border: 1px solid transparent;
     width: 70px;
     height: 70px;
     transition: 500ms all;
     border-radius: 50%;
     margin: 5px;
+}
+
+.badge-cont > input:checked + img { /* IMAGE STYLES */
+    box-shadow: 0 0 0px 4px #007bff;
 }
 
 .message {
@@ -458,4 +433,51 @@ fieldset {
 
 .msg-insuccess{
     border-left-color: #b42300;
+}
+
+
+.radio-input {
+    position: absolute;
+    left: -9999px;
+}
+
+.radio-label {
+    display: block;
+    position: relative;
+    margin: 20px;
+    padding: 8px 20px 8px 42px;
+    border: 3px solid #929292;
+    border-radius: 100px;
+    color: #fff;
+    background-color: #b5b5b5;
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color .2s, box-shadow .2s;
+}
+
+.radio-label::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 7px;
+    bottom: 7px;
+    left: 7px;
+    width: 14px;
+    border: 3px solid #fff;
+    border-radius: 100px;
+    transition: background-color .2s;
+}
+
+.radio-label:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+}
+
+.radio-input:checked + .radio-label {
+    background-color: #007bff;
+    border: 3px solid #ffffff;
+}
+
+.radio-input:checked + .radio-label::before {
+    background-color: #fff;
 }

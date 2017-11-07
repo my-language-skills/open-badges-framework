@@ -15,27 +15,18 @@ use Inc\Base\User;
 
 class Levels {
 
-    private $tax_name;
     public $levels = array();
-    public $badges = array();
-
     /**
      * Fields constructor.
      */
     public function __construct() {
-        $this->tax_name = Admin::TAX_LEVELS;
 
         // Get Main
         $this->levels = get_terms(array(
-            'taxonomy' => $this->tax_name,
+            'taxonomy' => Admin::TAX_LEVELS,
             'hide_empty' => false,
         ));
 
-        $this->badges = get_posts(array(
-            'post_type' => $this->tax_name,
-            'numberposts' => -1
-        ));
-        print_r($this->badges);
     }
 
     /**
@@ -51,14 +42,19 @@ class Levels {
     function getAllLevels($rightFieldEdu = "") {
         // Variables
         $levels = array();
-/*
-        foreach ($this->badges as $badge) {
+
+        $badges = get_posts(array(
+            'post_type' => Admin::POST_TYPE_BADGES,
+            'numberposts' => -1
+        ));
+
+        foreach ($badges as $badge) {
             // Get the type of the badge (student or teacher)
-            $badge_type = get_post_meta($badge->ID, "_type", true);
+            $badge_type = get_post_meta($badge->ID, "_target", true);
             // Get the level of the badge
-            $level = get_the_terms($badge->ID, 'level')[0]->name;
+            $level = get_the_terms($badge->ID, Admin::TAX_LEVELS)[0]->name;
             // Get the field of the badge
-            $fields = get_the_terms($badge->ID, 'field_of_education');
+            $fields = get_the_terms($badge->ID, Admin::TAX_FIELDS);
 
             //If there is no fields of education in the badge, means that is part of
             // all the fields (category).
@@ -92,7 +88,7 @@ class Levels {
         }
 
         sort($levels);
-        return $levels;*/
+        return $levels;
     }
 
 }

@@ -18,6 +18,7 @@ final class Dashboard {
     public static function main() {
         ?>
             <h1>Badge Issuer</h1>
+
         <?php
     }
 }

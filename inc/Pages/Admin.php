@@ -19,7 +19,7 @@ use Templates\SendBadge;
 class Admin extends BaseController {
     const SLUG_PLUGIN = "badge_issuer";
     const POST_TYPE_BADGES = "badges_issuer_cpt";
-    const POST_TYPE_CLASS = "class_issuer_cpt";
+    const POST_TYPE_CLASS = "classes_issuer_cpt";
     const TAX_FIELDS = "fields_issuer_tax";
     const TAX_LEVELS = "levels_issuer_tax";
     const MTB_CERT = "certification_mtb";
@@ -69,8 +69,8 @@ class Admin extends BaseController {
             /* ## Class ## */
             array(
                 'parent_slug' => self::SLUG_PLUGIN,
-                'page_title' => 'Class',
-                'menu_title' => 'Class',
+                'page_title' => 'Classes',
+                'menu_title' => 'Classes',
                 'capability' => 'manage_options',
                 'menu_slug' => 'edit.php?post_type='.self::POST_TYPE_CLASS,
                 'callback' => ''
@@ -142,12 +142,12 @@ class Admin extends BaseController {
                     'show_in_menu' => false, // adding to custom menu manually
                 )
             ),
-            /* ## Class ## */
+            /* ## Classes ## */
             array(
                 'post_type' => self::POST_TYPE_CLASS,
                 'args' => array(
                     'labels' => array(
-                        'name' => 'Class',
+                        'name' => 'Classes',
                         'singular_name' => 'Class',
                         'add_new' => 'Add New',
                         'add_new_item' => 'Add New Class',
@@ -174,7 +174,7 @@ class Admin extends BaseController {
             /* ## Fields ## */
             array(
                 'taxonomy' => self::TAX_FIELDS,
-                'object_type' => self::POST_TYPE_BADGES,
+                'object_type' => array(self::POST_TYPE_BADGES, self::POST_TYPE_CLASS),
                 'args' => array(
                     'labels' => array(
                         'name' => _x('Fields of education', 'taxonomy general name'),
@@ -215,7 +215,7 @@ class Admin extends BaseController {
                         'menu_name' => __('Level of Education'),
                     ),
                     'rewrite' => array('slug' => self::TAX_LEVELS),
-                    'hierarchical' => true,
+                    'hierarchical' => false,
                     'show_ui' => true,
                     'show_admin_column' => true,
                     'query_var' => true
