@@ -31,8 +31,8 @@ window.onload = function () {
     }
 
     // Prevent "enter" pressing when filling the text fields
-    jQuery(window).keydown(function(event){
-        if(event.keyCode == 13) {
+    jQuery(window).keydown(function (event) {
+        if (event.keyCode == 13) {
             event.preventDefault();
             return false;
         }
@@ -42,7 +42,7 @@ window.onload = function () {
         BADGE FORM # A #
        ===================================== */
 
-    var form_a = jQuery("#badge_form_a");
+    var form_a = jQuery("#form_a");
     form_a.validate({
         errorPlacement: function errorPlacement(error, element) {
             element.before(error);
@@ -106,7 +106,7 @@ window.onload = function () {
          BADGE FORM # B #
        ===================================== */
 
-    var form_b = jQuery("#badge_form_b");
+    var form_b = jQuery("#form_b");
     form_b.validate({
         errorPlacement: function errorPlacement(error, element) {
             element.before(error);
@@ -178,7 +178,7 @@ window.onload = function () {
          BADGE FORM # C #
        ===================================== */
 
-    var form_c = jQuery("#badge_form_c");
+    var form_c = jQuery("#form_c");
     form_c.validate({
         errorPlacement: function errorPlacement(error, element) {
             element.before(error);
@@ -254,16 +254,16 @@ window.onload = function () {
      * @author Alessandro RICCARDI
      * @since 0.6.3
      */
-    jQuery(".display_parent_categories").click(function (e) {
+    jQuery(".btn-change-children").click(function (e) {
         e.preventDefault();
 
         currentForm = checkForm(this);
         //Remove the class 'active' to the old button of the field of education.
-        jQuery("#badge_form_" + currentForm + " .display_parent_categories.active").removeClass("active");
+        jQuery("#form_" + currentForm + " .btn-change-children.active").removeClass("active");
         //Add the class 'active' to the actual button.
         jQuery(this).addClass("active");
 
-        jQuery("#field_edu_" + currentForm).html("<br />" +
+        jQuery("#field_" + currentForm).html("<br />" +
             "<img src='" + globalUrl.loader + "' width='50px' height='50px' />");
 
         var id_lan = jQuery(this).attr('id');
@@ -280,7 +280,7 @@ window.onload = function () {
             globalUrl.ajax,
             data,
             function (response) {
-                jQuery("#field_edu_" + currentForm).html(response);
+                jQuery("#field_" + currentForm).html(response);
             }
         );
     });
@@ -296,25 +296,25 @@ window.onload = function () {
      */
 
     function load_levels(currentForm, form) {
-        var fieldEdu = jQuery("#badge_form_" + currentForm + " #language :selected").text();
+        var field = jQuery("#form_" + currentForm + " #field :selected").text();
 
-        if (fieldEdu == "Select") {
+        if (field == "Select") {
             return false;
         }
 
-        jQuery("#badge_form_" + currentForm + "  #languages_form_" + currentForm).html("<br /><img src='" + globalUrl.loader + "' width='50px' height='50px' />");
+        jQuery("#level_" + currentForm).html("<br> <img src='" + globalUrl.loader + "' width='50px' height='50px' />");
 
         var data = {
             'action': 'ajaxShowLevels',
-            'form': "form_" + currentForm + "_",
-            'fieldEdu': fieldEdu
+            'form': currentForm,
+            'field': field
         };
 
         jQuery.post(
             globalUrl.ajax,
             data,
             function (response) {
-                jQuery("#badge_form_" + currentForm + "  #languages_form_" + currentForm).html(response);
+                jQuery("#level_" + currentForm).html(response);
 
             }
         );
@@ -331,10 +331,10 @@ window.onload = function () {
      */
     function load_badges(currentForm, form) {
         var check = false;
-        var fieldEdu = jQuery("#badge_form_" + currentForm + " #language :selected").text();
+        var field = jQuery("#form_" + currentForm + " #field :selected").text();
         var levelValue = "";
 
-        jQuery("#badge_form_" + currentForm + " input[name='level']")
+        jQuery("input[name='level_" + currentForm + "']")
             .each(function () {
                 if (jQuery(this).is(':checked')) {
                     check = true;
@@ -346,19 +346,20 @@ window.onload = function () {
             return false;
         }
 
-        jQuery("#badge_form_" + currentForm + "  #select_badge").html("<br /><img src='" + globalUrl.loader + "' width='50px' height='50px' />");
+        jQuery("#badge_" + currentForm).html("<br /><img src='" + globalUrl.loader + "' width='50px' height='50px' />");
 
         var data = {
             'action': 'ajaxShowBadges',
-            'fieldEdu': fieldEdu,
-            'level': levelValue,
+            'form': currentForm,
+            'field': field,
+            'level': levelValue
         };
 
         jQuery.post(
             globalUrl.ajax,
             data,
             function (response) {
-                jQuery("#badge_form_" + currentForm + "  #select_badge").html(response);
+                jQuery("#badge_" + currentForm).html(response);
 
             }
         );
@@ -380,10 +381,10 @@ window.onload = function () {
         var badgeId = "";
 
         // Check if we selected a badge to permit to switch the page
-        jQuery("#badge_form_" + currentForm + " input[name='input_badge_name']")  // check if one badge is selected
+        jQuery("input[name='badge_" + currentForm + "']")  // check if one badge is selected
             .each(function () {  // first pass, create name mapping
                 if (jQuery(this).is(':checked')) {
-                    badgeId = jQuery(this).attr('id');
+                    badgeId = jQuery(this).val();
                 }
             });
         // Badge no selected
@@ -392,7 +393,7 @@ window.onload = function () {
         }
 
         // LOAD the GIF
-        jQuery("#badge_form_" + currentForm + " #result_preview_description").html("<br /><img src='" + globalUrl.loader + "' width='50px' height='50px' />");
+        jQuery("#desc_" + currentForm).html("<br> <img src='" + globalUrl.loader + "' width='50px' height='50px' />");
 
         // Data for the AJAX call
         var data = {
@@ -405,7 +406,7 @@ window.onload = function () {
             globalUrl.ajax,
             data,
             function (response) {
-                jQuery("#badge_form_" + currentForm + " #result_preview_description").html(response);
+                jQuery("#desc_" + currentForm).html(response);
             }
         );
 
@@ -423,27 +424,24 @@ window.onload = function () {
      * @since 0.6.3
      */
     function load_class(currentForm, form) {
-        // To load the class if in the tab B or C
-        if (currentForm == "b" || currentForm == "c") {
-            var field = jQuery("#badge_form_" + currentForm + "  #language option:selected").text();
-            var level = jQuery("#badge_form_" + currentForm + "  .level:checked").val();
-            jQuery("#badge_form_" + currentForm + "  #select_class").html("<br /><img src='" + globalUrl.loader + "' width='50px' height='50px' />");
+        var field = jQuery("#form_" + currentForm + " #field :selected").text();
+        var level = jQuery("#badge_form_" + currentForm + " .level:checked").val();
+        jQuery("#badge_form_" + currentForm + "  #select_class").html("<br /><img src='" + globalUrl.loader + "' width='50px' height='50px' />");
 
-            var data = {
-                'action': 'ajaxShowClasses',
-                'language': field,
-                'level': level
-            };
-            jQuery.post(
-                globalUrl.ajax,
-                data,
-                function (response) {
-                    jQuery("#badge_form_" + currentForm + "  #select_class").html(response);
-                }
-            );
-            form.validate().settings.ignore = ":disabled,:hidden";
-            return form.valid();
-        }
+        var data = {
+            'action': 'ajaxShowClasses',
+            'language': field,
+            'level': level
+        };
+        jQuery.post(
+            globalUrl.ajax,
+            data,
+            function (response) {
+                jQuery("#class_" + currentForm).html(response);
+            }
+        );
+        form.validate().settings.ignore = ":disabled,:hidden";
+        return form.valid();
     }
 
     /**
@@ -455,16 +453,15 @@ window.onload = function () {
      * @since 0.6.3
      */
     function check_class(currentForm, form) {
-        var existClassS = false;
         var check = false;
 
-        jQuery("#badge_form_" + currentForm + " input[name='class']")  // for all checkboxes
+        jQuery("#form_" + currentForm + " input[name='class']")  // for all checkboxes
             .each(function () {  // first pass, create name mapping
-                if (jQuery(this).is(':checked')) {
-                    check = true;
+                    if (jQuery(this).is(':checked')) {
+                        check = true;
+                    }
                 }
-            }
-        );
+            );
 
         if (check) {
             //Load description of language for the next page
@@ -486,7 +483,7 @@ window.onload = function () {
      * @since 0.6.3
      */
     function check_mails(currentForm, form) {
-        var mails = jQuery("#badge_form_" + currentForm + " #mail").val();
+        var mails = jQuery("#mail_" + currentForm).val();
         if (mails) {
             var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             mails = mails.split("\n");
@@ -512,7 +509,7 @@ window.onload = function () {
      * @since 0.6.3
      */
     function check_information(currentForm, form) {
-        var info = jQuery("#badge_form_" + currentForm + " #comment").val();
+        var info = jQuery("#comment_" + currentForm).val();
 
         if (info.length > 10 && info.length < 1000) {
             // Everything good
@@ -583,11 +580,11 @@ window.onload = function () {
      * @since 0.6.3
      */
     function checkForm(event) {
-        if (jQuery(event).parents('#badge_form_a').length == 1) {
+        if (jQuery(event).parents('#form_a').length == 1) {
             return "a";
-        } else if (jQuery(event).parents('#badge_form_b').length == 1) {
+        } else if (jQuery(event).parents('#form_b').length == 1) {
             return "b";
-        } else if (jQuery(event).parents('#badge_form_c').length == 1) {
+        } else if (jQuery(event).parents('#form_c').length == 1) {
             return "c";
         } else {
             throw "There aren't other Form."

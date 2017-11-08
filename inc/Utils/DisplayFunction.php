@@ -19,7 +19,7 @@ class DisplayFunction {
     public static function field($p_parent = "") {
         $field = new Fields();
 
-        $selectionContOpen = '<div class="select-language"> <select name="language" id="language"> <option value="" selected disabled hidden>Select</option>';
+        $selectionContOpen = '<div class="select-field"> <select name="field" id="field"> <option value="" selected disabled hidden>Select</option>';
         $selectionContClose = '</select></div>';
 
         if (!$field->haveChildren()) {

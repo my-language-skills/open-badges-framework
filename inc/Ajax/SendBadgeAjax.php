@@ -1,12 +1,11 @@
 <?php
-
 /**
- * This is the ajax file.
+ * ...
  *
- * @author     Nicolas TORION
- * @package    custom_ajax.php
- * @subpackage includes/ajax
- * @since      0.6.3
+ * @author      Alessandro RICCARDI
+ * @since       x.x.x
+ *
+ * @package     BadgeIssuerForWp
  */
 
 namespace inc\Ajax;
@@ -44,16 +43,15 @@ class SendBadgeAjax extends BaseController {
      * @since  x.x.x
      */
     function ajaxShowLevels() {
+        $form = $_POST['form'];
+        $field = $_POST['field'];
         $level = new Levels();
-        $fieldEdu = $_POST['fieldEdu'];
-        $levels = $level->getAllLevels($fieldEdu);
-
+        $levels = $level->getAllLevels($field);
         // Display the level ...
         foreach ($levels as $level) {
-
             echo '<div class="rdi-tab">';
-            echo "<input id='level_$level' value='$level' class='radio-input level' name='level' type='radio'>
-                  <label for='level_$level' class='radio-label'>$level</label>";
+            echo "<input id='level-$level-form-$form' value='$level' class='radio-input level' name='level_$form' type='radio'>
+                  <label for='level-$level-form-$form' class='radio-label'>$level</label>";
             echo '</div>';
         }
         wp_die();
@@ -68,29 +66,29 @@ class SendBadgeAjax extends BaseController {
     function ajaxShowBadges() {
         $badges = new Badges();
         $form = $_POST['form'];
-        $field = $_POST['fieldEdu'];
+        $field = $_POST['field'];
         $level = $_POST['level'];
-        $rightBadges = $badges->getBadgesFilters($field, $level);
-
+        $rightBadges = $badges->getBadgesFiltered($field, $level);
 
         foreach ($rightBadges as $badge) { ?>
             <!-- HTML -->
             <div class="cont-badge-sb">
-            <label class="badge-cont">
-            <input type="radio" name="input_badge_name" class="input-badge"
-                   id="<?php echo $form . $badge->ID; ?>"
-                   value="<?php echo $badge->post_name; ?>"/>
-            <img class="img-badge" src="
+        <label for="<?php echo "badge-$badge->ID-form-$form" ?>" class="badge-cont">
+            <input id="<?php echo "badge-$badge->ID-form-$form" ?>" type="radio" name="badge_<?php echo $form; ?>"
+                   class="input-badge" value="<?php echo $badge->ID; ?>"/>
+            <img class="img-badge"
+            src="
                 <?php
             if (get_the_post_thumbnail_url($badge->ID)) {
                 // Badge WITH image
                 echo get_the_post_thumbnail_url($badge->ID, 'thumbnail');
-                echo '" /> </label> </br> <b>' . $badge->post_title . '</b>';
+
             } else {
                 // Badge WITHOUT image
                 echo $this->plugin_url . 'assets/images/default-badge.png';
-                echo '" width="40px" height="40px" /></label> </br> <b>' . $badge->post_title . '</b>';
+                //echo '" width="40px" height="40px" /></label> </br> <b>' . $badge->post_title . '</b>';
             }
+            echo '" /> </label> </br> <b>' . $badge->post_title . '</b>';
             ?>
             </label>
             </div>
@@ -108,8 +106,8 @@ class SendBadgeAjax extends BaseController {
      */
     function ajaxShowDescription() {
         $badges = new Badges();
-        $Id = $_POST['ID'];
-        $badge = $badges->getBadgeById($Id);
+        $id = $_POST['ID'];
+        $badge = $badges->getBadgeById($id);
 
         echo $badge->post_content;
         wp_die();
@@ -117,10 +115,10 @@ class SendBadgeAjax extends BaseController {
 
 
     /**
-     * AJAX action to load the classes corresponding to the level and the language selected
+     * ...
      *
-     * @author Nicolas TORION
-     * @since  0.6.3
+     * @author Alessandro RICCARDI
+     * @since  x.x.x
      */
     function ajaxShowClasses() {
         $classes = new Classes();
@@ -134,29 +132,12 @@ class SendBadgeAjax extends BaseController {
         wp_die();
     }
 
-    /**
-     * AJAX action to save the modifications made on a comment
-     *
-     * @author Nicolas TORION
-     * @since  0.5.1
-     */
-    function action_save_comment() {
-        $comment_id = $_POST['comment_id'];
-        $comment_text = $_POST['comment_text'];
-
-        $comment_arr = array();
-        $comment_arr['comment_ID'] = $comment_id;
-        $comment_arr['comment_content'] = $comment_text;
-
-        wp_update_comment($comment_arr);
-    }
 
     /**
-     * AJAX action to salve and send the badge.
+     * ...
      *
      * @author Alessandro RICCARDI
-     * @since  0.5.1
-     * @since  0.6.3
+     * @since  x.x.x
      */
     function send_message_badge() {
 

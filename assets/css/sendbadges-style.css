@@ -358,17 +358,17 @@ section.current {
 
 /* ### SELECT LANGUAGE ###*/
 
-.display_parent_categories {
+.btn-change-children {
     margin-left: 20px;
     text-decoration: none;
 
 }
 
-.display_parent_categories:first-child {
+.btn-change-children:first-child {
     margin-left: 0px;
 }
 
-.display_parent_categories.active {
+.btn-change-children.active {
     color: black;
     background-color: #f2f2f2;
     border-color: #9d9d9d;
@@ -376,11 +376,11 @@ section.current {
     cursor: default;
 }
 
-.select-language {
+.select-field {
     padding: 20px;
 }
 
-.select-language select {
+.select-field select {
 
 }
 
@@ -415,6 +415,10 @@ section.current {
 }
 
 /* ### CLASS ### */
+
+.rdi-tab {
+    display: inline-block;
+}
 
 .title-classes {
     font-weight: 200;

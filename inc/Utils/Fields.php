@@ -13,7 +13,7 @@ namespace inc\Utils;
 use Inc\Pages\Admin;
 
 class Fields {
-
+    //
     private $tax_name;
     public $main = array();
     public $sub = array();
@@ -45,7 +45,6 @@ class Fields {
                 $this->sub["$parent->slug"] = $children;
             }
         }
-
     }
 
     /**

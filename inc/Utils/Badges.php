@@ -27,8 +27,8 @@ class Badges {
         ));
     }
 
-    public function getBadgesFilters($field = "", $level = "") {
-        if ($field = "" && $level = "") {
+    public function getBadgesFiltered($field = "", $level = "") {
+        if ($field == "" && $level == "") {
             return $this->badges;
         } else {
             // Variable
@@ -38,9 +38,8 @@ class Badges {
                 $fieldOK = 0;
                 $fields = get_the_terms($badge->ID, Admin::TAX_FIELDS);
                 $badgeLevel = get_the_terms($badge->ID, Admin::TAX_LEVELS)[0]->name;
-
-                foreach ($fields as $field) {
-                    if ($field->name == $field) $fieldOK = 1;
+                foreach ($fields as $theField) {
+                    if ($theField->name == $field) $fieldOK = 1;
                 }
 
                 // In this condition the level need to be always right but not for the field
