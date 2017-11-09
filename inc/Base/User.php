@@ -95,7 +95,7 @@ class User {
                 'post_title' => $user->user_login,
                 'post_content' => '',
                 'post_status' => 'publish',
-                'post_type' => Admin::POST_TYPE_CLASS,
+                'post_type' => Admin::POST_TYPE_CLASS_JL,
                 'post_author' => $user->ID
             );
 

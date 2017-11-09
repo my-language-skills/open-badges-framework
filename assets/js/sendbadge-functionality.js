@@ -1,6 +1,6 @@
 var currentForm;
 
-function openCity(evt, cityName) {
+function changeTab(evt, form) {
     // Declare all variables
     var i, tabcontent, tablinks;
 
@@ -17,7 +17,7 @@ function openCity(evt, cityName) {
     }
 
     // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(cityName).style.display = "block";
+    document.getElementById(form).style.display = "block";
     evt.currentTarget.className += " active";
 }
 
@@ -147,7 +147,7 @@ window.onload = function () {
                     break;
                 /******* (3) LANGUAGE */
                 case 3:
-                    return load_class(currentForm, form_b);
+                    return load_classes(currentForm, form_b);
                     break;
                 /******* (4) CLASS */
                 case 4:
@@ -220,7 +220,7 @@ window.onload = function () {
                     break;
                 /******* (3) LANGUAGE */
                 case 3:
-                    return load_class(currentForm, form_c);
+                    return load_classes(currentForm, form_c);
                     break;
                 /******* (4) CLASS */
                 case 4:
@@ -387,6 +387,7 @@ window.onload = function () {
                     badgeId = jQuery(this).val();
                 }
             });
+
         // Badge no selected
         if (!badgeId) {
             return false;
@@ -423,14 +424,22 @@ window.onload = function () {
      * @author Alessandro RICCARDI
      * @since 0.6.3
      */
-    function load_class(currentForm, form) {
+    function load_classes(currentForm, form) {
         var field = jQuery("#form_" + currentForm + " #field :selected").text();
-        var level = jQuery("#badge_form_" + currentForm + " .level:checked").val();
-        jQuery("#badge_form_" + currentForm + "  #select_class").html("<br /><img src='" + globalUrl.loader + "' width='50px' height='50px' />");
+        var level = "";
+
+        jQuery("input[name='level_" + currentForm + "']")
+            .each(function () {
+                if (jQuery(this).is(':checked')) {
+                    level = jQuery(this).val();
+                }
+            });
+
+        jQuery("#class_" + currentForm).html("<br /><img src='" + globalUrl.loader + "' width='50px' height='50px' />");
 
         var data = {
             'action': 'ajaxShowClasses',
-            'language': field,
+            'field': field,
             'level': level
         };
         jQuery.post(
@@ -531,19 +540,18 @@ window.onload = function () {
      */
     function sendMessageBadge(curForm) {
         if (!isLocalhost) {
-            var language = jQuery("#badge_form_" + curForm + " #language :selected").text(),
-                level = jQuery("#badge_form_" + curForm + " input[name='level']:checked").val(),
-                badge_name = jQuery("#badge_form_" + curForm + " input[name='input_badge_name']:checked").val(),
-                language_description = "Default",//jQuery("#badge_form_" + curForm + " #language_description").val(),
-                class_student = jQuery("#badge_form_" + curForm + " input[name='class']:checked").val(),
-                class_teacher = jQuery("#badge_form_" + curForm + " input[name='class_teacher']").val(),
+            var field = jQuery("#form_" + curForm + " #field :selected").text(),
+                level = jQuery("input[name='level_" + currentForm + "':checked").val(),
+                badge_name = jQuery("input[name='badge_" + currentForm + "']:checked").val(),
+                description = "Default",
+                theClass = jQuery("#badge_form_" + curForm + " input[name='class']:checked").val(),
                 mail = jQuery("#badge_form_" + curForm + " #mail").val(),
                 comment = jQuery("#badge_form_" + curForm + " #comment").val(),
                 sender = jQuery("input[name='sender']").val();
 
             var data = {
                 'action': 'send_message_badge',
-                'language': language,
+                'field': field,
                 'level': level,
                 'badge_name': badge_name,
                 'language_description': language_description,

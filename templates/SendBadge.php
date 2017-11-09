@@ -63,15 +63,15 @@ final class SendBadge extends BaseController {
             </div>
             <br>
             <div class="tab">
-                <button class="tablinks" onclick="openCity(event, 'tab-a')">Self</button>
+                <button class="tablinks" onclick="changeTab(event, 'tab-a')">Self</button>
                 <?php
                 if (User::check_the_rules("academy", "teacher", "administrator", "editor")) {
                     ?>
-                    <button class="tablinks" onclick="openCity(event, 'tab-b')">Issue</button>
+                    <button class="tablinks" onclick="changeTab(event, 'tab-b')">Issue</button>
                     <?php
                     if (User::check_the_rules("academy", "administrator", "editor")) {
                         ?>
-                        <button class="tablinks" onclick="openCity(event, 'tab-c')">Multiple issue</button>
+                        <button class="tablinks" onclick="changeTab(event, 'tab-c')">Multiple issue</button>
                     <?php } ?>
                 <?php } ?>
             </div>
@@ -96,7 +96,7 @@ final class SendBadge extends BaseController {
         <?php
     }
 
-    public static function getRightForm($form) {
+    public function getRightForm($form) {
         self::displayEmailInput();
         ?>
         <div class="tab-content">
@@ -140,12 +140,14 @@ final class SendBadge extends BaseController {
                         </div>
                     </section>
 
-                    <?php if ($form == 'b' || $form == 'c') { ?>
+                    <?php if (($form == 'b' || $form == 'c') && is_plugin_active(
+                            $this->plugin_url . "WP-Job-Manager-master/wp-job-manager.php")) {
+                        ?>
                         <h3>Class</h3>
                         <section>
                             <div class="section-container">
                                 <div class="title-form"><h2>Class:</h2></div>
-                                <?php self::displayLeadInfo("Select one of the below classes (by default is selected your default class)"); ?>
+                                <?php self::displayLeadInfo("Select one of yours classes."); ?>
                                 <div id="class_<?php echo $form; ?>"></div>
                             </div>
                         </section>
@@ -188,8 +190,7 @@ final class SendBadge extends BaseController {
      * @author Alessandro RICCARDI
      * @since  x.x.x
      */
-    private
-    static function displayLeadInfo($message) {
+    private static function displayLeadInfo($message) {
         echo '<div class="lead">' . $message . '</div> <hr class="hr-sb">';
     }
 
@@ -199,8 +200,7 @@ final class SendBadge extends BaseController {
      * @author Alessandro RICCARDI
      * @since  x.x.x
      */
-    private
-    function displayFieldsButtons() {
+    private function displayFieldsButtons() {
         $fields = new Fields();
         $i = 0;
 
@@ -224,8 +224,7 @@ final class SendBadge extends BaseController {
      * @author Alessandro RICCARDI
      * @since  x.x.x
      */
-    private
-    function displayEmailInput() {
+    private function displayEmailInput() {
         $user = User::getCurrentUser();
         echo "<input type='hidden' name='sender' value='$user->user_email'/>";
 

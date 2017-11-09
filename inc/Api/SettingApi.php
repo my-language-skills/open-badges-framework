@@ -251,7 +251,7 @@ class SettingApi {
 
             $parent_file = Admin::SLUG_PLUGIN;
 
-        } elseif ($current_screen->post_type == Admin::POST_TYPE_CLASS) {
+        } elseif ($current_screen->post_type == Admin::POST_TYPE_CLASS_JL) {
 
             if ($pagenow == 'post.php') {
                 $submenu_file = 'edit.php?post_type=' . $current_screen->post_type;

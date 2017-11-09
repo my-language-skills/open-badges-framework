@@ -19,7 +19,7 @@ use Templates\SendBadge;
 class Admin extends BaseController {
     const SLUG_PLUGIN = "badge_issuer";
     const POST_TYPE_BADGES = "badges_issuer_cpt";
-    const POST_TYPE_CLASS = "classes_issuer_cpt";
+    const POST_TYPE_CLASS_JL = "job_listing";
     const TAX_FIELDS = "fields_issuer_tax";
     const TAX_LEVELS = "levels_issuer_tax";
     const MTB_CERT = "certification_mtb";
@@ -64,15 +64,6 @@ class Admin extends BaseController {
                 'menu_title' => 'Badges',
                 'capability' => 'manage_options',
                 'menu_slug' => 'edit.php?post_type='.self::POST_TYPE_BADGES,
-                'callback' => ''
-            ),
-            /* ## Class ## */
-            array(
-                'parent_slug' => self::SLUG_PLUGIN,
-                'page_title' => 'Classes',
-                'menu_title' => 'Classes',
-                'capability' => 'manage_options',
-                'menu_slug' => 'edit.php?post_type='.self::POST_TYPE_CLASS,
                 'callback' => ''
             ),
             /* ## Fields ## */
@@ -142,31 +133,6 @@ class Admin extends BaseController {
                     'show_in_menu' => false, // adding to custom menu manually
                 )
             ),
-            /* ## Classes ## */
-            array(
-                'post_type' => self::POST_TYPE_CLASS,
-                'args' => array(
-                    'labels' => array(
-                        'name' => 'Classes',
-                        'singular_name' => 'Class',
-                        'add_new' => 'Add New',
-                        'add_new_item' => 'Add New Class',
-                        'edit' => 'Edit',
-                        'edit_item' => 'Edit Class',
-                        'new_item' => 'New Class',
-                        'view' => 'View',
-                        'view_item' => 'View Class',
-                        'search_items' => 'Search Class',
-                        'not_found' => 'No Class found',
-                        'not_found_in_trash' => 'No Class found in Trash',
-                        'parent' => 'Parent Class'
-                    ),
-                    'public' => true,
-                    'has_archive' => true,
-                    'show_ui' => true,
-                    'show_in_menu' => false, // adding to custom menu manually
-                ),
-            )
         );
 
         /* ## TAXONOMIES ## */
@@ -174,7 +140,7 @@ class Admin extends BaseController {
             /* ## Fields ## */
             array(
                 'taxonomy' => self::TAX_FIELDS,
-                'object_type' => array(self::POST_TYPE_BADGES, self::POST_TYPE_CLASS),
+                'object_type' => array(self::POST_TYPE_BADGES, self::POST_TYPE_CLASS_JL),
                 'args' => array(
                     'labels' => array(
                         'name' => _x('Fields of education', 'taxonomy general name'),
@@ -257,7 +223,7 @@ class Admin extends BaseController {
                 'id' => self::MTB_LBADGE,
                 'title' =>  'List of Badge',
                 'callback' => array($metabox,'meta_box_class_zero_students'),
-                'screen' => self::POST_TYPE_CLASS,
+                'screen' => self::POST_TYPE_CLASS_JL,
                 'context' => 'normal',
                 'priority' => 'high'
             )
