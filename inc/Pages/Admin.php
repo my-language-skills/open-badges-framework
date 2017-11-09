@@ -13,8 +13,9 @@ namespace Inc\Pages;
 use Inc\Api\MetaboxApi;
 use \Inc\Base\BaseController;
 use \Inc\Api\SettingApi;
-use Templates\Dashboard;
-use Templates\SendBadge;
+use Templates\DashboardTemp;
+use Templates\SendBadgeTemp;
+use Templates\SettingsTemp;
 
 class Admin extends BaseController {
     const SLUG_PLUGIN = "badge_issuer";
@@ -39,7 +40,8 @@ class Admin extends BaseController {
      */
     public function __construct() {
         $this->settingApi = new SettingApi();
-        $sendbadge = new SendBadge();
+        $sendbadge = new SendBadgeTemp();
+        $settingTemp = new SettingsTemp();
         $metabox = new MetaboxApi();
 
         /* #PAGE */
@@ -49,7 +51,7 @@ class Admin extends BaseController {
                 'menu_title' => 'Badge Issuer',
                 'capability' => 'manage_options',
                 'menu_slug' => self::SLUG_PLUGIN,
-                'callback' => array(Dashboard::class, 'main'),
+                'callback' => array(DashboardTemp::class, 'main'),
                 'icon_url' => 'dashicons-awards',
                 'position' => '110'
             )
@@ -99,10 +101,8 @@ class Admin extends BaseController {
                 'page_title' => 'Settings',
                 'menu_title' => 'Settings',
                 'capability' => 'manage_options',
-                'menu_slug' => 'Settings_issuer',
-                'callback' => function () {
-                    echo '<h1>Settings </h1>';
-                }
+                'menu_slug' => 'settings_issuer',
+                'callback' => array($settingTemp, 'create_admin_page')
             ),
         );
 

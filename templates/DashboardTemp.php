@@ -15,13 +15,12 @@ namespace templates;
 
 use Inc\Utils\Statistics;
 
-final class Dashboard {
+final class DashboardTemp {
 
     public static function main() {
         ?>
         <div class="wrap">
             <h1 class="obf-title">Badge Issuer</h1>
-            <?php echo Statistics::getNumOfBadges(); ?>
         </div>
         <?php
     }

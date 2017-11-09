@@ -16,7 +16,7 @@ use inc\Base\User;
 use inc\Utils\DisplayFunction;
 use inc\Utils\Fields;
 
-final class SendBadge extends BaseController {
+final class SendBadgeTemp extends BaseController {
 
     /**
      * ...
@@ -35,13 +35,13 @@ final class SendBadge extends BaseController {
      * @since  x.x.x
      */
     public function initialization() {
-        add_shortcode('send_badge', array(SendBadge::class, 'main'));
+        add_shortcode('send_badge', array(SendBadgeTemp::class, 'main'));
         // Adding the shortcode to send the badge to yourself
-        add_shortcode('send-self', array(SendBadge::class, 'getRightForm', 'a'));
+        add_shortcode('send-self', array(SendBadgeTemp::class, 'getRightForm', 'a'));
         // Adding the shortcode to send a badge to a single person
-        add_shortcode('send-single', array(SendBadge::class, 'getRightForm', 'b'));
+        add_shortcode('send-single', array(SendBadgeTemp::class, 'getRightForm', 'b'));
         // Adding the shortcode to send the badge to several persons
-        add_shortcode('send-multiple', array(SendBadge::class, 'getRightForm', 'c'));
+        add_shortcode('send-multiple', array(SendBadgeTemp::class, 'getRightForm', 'c'));
     }
 
     /**

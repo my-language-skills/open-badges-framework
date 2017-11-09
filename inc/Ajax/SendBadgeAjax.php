@@ -122,6 +122,7 @@ class SendBadgeAjax extends BaseController {
      */
     function ajaxShowClasses() {
         $field = $_POST['field'];
+        echo "Field: ".$field;
         $classes = new Classes();
         $ownClasses = $classes->getOwnClass($field);
 

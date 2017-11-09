@@ -62,6 +62,7 @@ window.onload = function () {
             var currentForm = "a";
 
             if (newIndex < currentIndex) {
+                disableTab(form_a, newIndex, currentIndex);
                 form_a.validate().settings.ignore = ":disabled,:hidden";
                 return form_a.valid();
             }
@@ -127,6 +128,7 @@ window.onload = function () {
             var currentForm = "b";
 
             if (newIndex < currentIndex) {
+                disableTab(form_b, newIndex, currentIndex);
                 form_b.validate().settings.ignore = ":disabled,:hidden";
                 return form_b.valid();
             }
@@ -200,6 +202,7 @@ window.onload = function () {
 
 
             if (newIndex < currentIndex) {
+                disableTab(form_c, newIndex, currentIndex);
                 form_c.validate().settings.ignore = ":disabled,:hidden";
                 return form_c.valid();
             }
@@ -598,6 +601,25 @@ window.onload = function () {
             throw "There aren't other Form."
         }
 
+    }
+
+    /**
+     * Disable the selection of the tab from the
+     * new index until the current index
+     *
+     * @author Alessandro RICCARDI
+     * @since x.x.x
+     */
+    function disableTab(form, newIndex, currentIndex) {
+        var doneDiv = form.find(".done");
+        for (var i = newIndex; i < currentIndex; i++) {
+            jQuery(doneDiv[i]).removeClass("done");
+            jQuery(doneDiv[i]).addClass("disabled");
+        }
+        form.find(".current").each(function () {
+            jQuery(this).removeClass("done");
+            jQuery(this).addClass("disabled");
+        });
     }
 
 };
