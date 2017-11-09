@@ -3,3 +3,59 @@
     font-size: 35px !important;
     font-weight: 200 !important;
 }
+
+.container.admin {
+
+}
+
+.intro {
+
+    position: relative;
+    max-width: 1280px;
+    margin: 20px 0 1px;
+    padding: 20px 20px 0;
+    border: 1px solid #e5e5e5;
+    background-color: #fdfdfd;
+    box-shadow: 0 1px 1px rgba(0,0,0,.04);
+}
+
+.cont-title-dash {
+    margin: -20px -20px 0;
+    padding: 1em;
+    border-bottom: 1px solid #ccc;
+    background-color: #fdfdfd;
+}
+
+.cont-title-dash h2 {
+    font-size: 1.4em;
+}
+
+.lead {
+    font-size: 0.95rem;
+    font-weight: 300;
+}
+
+.add-new-dash {
+    padding: 10px 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    border-left: 4px solid #fff;
+    background: #fff;
+    box-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
+
+.col-dash {
+    display: inline-block;
+    padding: 10px 30px 10px 10px;
+    border-right: 1px solid grey;
+}
+
+.col-dash h4 {
+    padding: 0px;
+    margin: 0px;
+}
+.col-dash p {
+    padding: 0px;
+    margin: 0px;
+}
