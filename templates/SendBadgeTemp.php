@@ -140,8 +140,9 @@ final class SendBadgeTemp extends BaseController {
                         </div>
                     </section>
 
-                    <?php if (($form == 'b' || $form == 'c') && is_plugin_active(
-                            $this->plugin_url . "WP-Job-Manager-master/wp-job-manager.php")) {
+                    <?php include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+                    if (($form == 'b' || $form == 'c') && is_plugin_active(
+                            "WP-Job-Manager-master/wp-job-manager.php")) {
                         ?>
                         <h3>Class</h3>
                         <section>

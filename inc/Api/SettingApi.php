@@ -227,7 +227,7 @@ class SettingApi {
      *
      * @return string The $parent_file variable that was passed like an argument
      */
-    PUBLIC function setCurrentMenu($parent_file) {
+    public function setCurrentMenu($parent_file) {
         global $submenu_file, $current_screen, $pagenow;
 
         # Set the submenu as active/current while anywhere in your Custom Post Type (nwcm_news)

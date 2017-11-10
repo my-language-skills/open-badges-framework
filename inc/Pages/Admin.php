@@ -11,8 +11,8 @@
 namespace Inc\Pages;
 
 use Inc\Api\MetaboxApi;
-use \Inc\Base\BaseController;
-use \Inc\Api\SettingApi;
+use Inc\Base\BaseController;
+use Inc\Api\SettingApi;
 use Templates\DashboardTemp;
 use Templates\SendBadgeTemp;
 use Templates\SettingsTemp;

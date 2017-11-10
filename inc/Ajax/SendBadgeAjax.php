@@ -13,6 +13,7 @@ namespace inc\Ajax;
 use Inc\Utils\DisplayFunction;
 use Inc\Utils\Levels;
 use Inc\Utils\Badges;
+use Inc\Utils\Badge;
 use Inc\Utils\Classes;
 use Inc\Base\BaseController;
 
@@ -106,10 +107,11 @@ class SendBadgeAjax extends BaseController {
      */
     function ajaxShowDescription() {
         $badges = new Badges();
+        $form = $_POST['form'];
         $id = $_POST['ID'];
         $badge = $badges->getBadgeById($id);
 
-        echo $badge->post_content;
+        echo "<div name='desc_$form'>$badge->post_content</div>";
         wp_die();
     }
 
@@ -121,19 +123,35 @@ class SendBadgeAjax extends BaseController {
      * @since  x.x.x
      */
     function ajaxShowClasses() {
+        $form = $_POST['form'];
         $field = $_POST['field'];
-        echo "Field: ".$field;
         $classes = new Classes();
         $ownClasses = $classes->getOwnClass($field);
 
         echo '<h3 class="title-classes">Own class</h3>';
         foreach ($ownClasses as $class) {
-            echo "<input id='class_$class->ID' value='$class->ID' class='radio-input' name='class' type='radio'>
+            echo "<input id='class_$class->ID' value='$class->ID' class='radio-input' name='class_$form' type='radio'>
               <label for='class_$class->ID' class='radio-label'>$class->post_title</label>";
         }
         wp_die();
     }
 
+    function ajaxSendBadge() {
+        $form = $_POST['form'];
+        $badge_id = $_POST['badge_id'];
+        $field = $_POST['field'];
+        $level = $_POST['level'];
+        $description = $_POST['description'];
+        $theClass = $_POST['theClass'];
+        $receivers = $_POST['receivers'];
+        $info = $_POST['info'];
+        $sender = $_POST['sender'];
+
+        $badge = new Badge($badge_id, $receivers, $theClass);
+        echo $badge->sendBadge();
+
+        wp_die();
+    }
 
     /**
      * ...

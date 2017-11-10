@@ -29,8 +29,6 @@ class Classes {
         $classes = array();
         foreach ($this->classes as $class) {
             $fieldsPost = wp_get_post_terms( $class->ID, Admin::TAX_FIELDS );
-            print_r($fieldsPost);
-            print_r($field);
             if ($class->post_author == $userId){
                 if (!$fieldsPost){
                     array_push($classes, $class);

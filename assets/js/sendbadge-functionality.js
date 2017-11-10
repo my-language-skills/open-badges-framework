@@ -402,6 +402,7 @@ window.onload = function () {
         // Data for the AJAX call
         var data = {
             'action': 'ajaxShowDescription',
+            'form': currentForm,
             'ID': badgeId
         };
 
@@ -442,6 +443,7 @@ window.onload = function () {
 
         var data = {
             'action': 'ajaxShowClasses',
+            'form': currentForm,
             'field': field,
             'level': level
         };
@@ -467,7 +469,7 @@ window.onload = function () {
     function check_class(currentForm, form) {
         var check = false;
 
-        jQuery("#form_" + currentForm + " input[name='class']")  // for all checkboxes
+        jQuery("input[name='class_" + currentForm + "']")  // for all checkboxes
             .each(function () {  // first pass, create name mapping
                     if (jQuery(this).is(':checked')) {
                         check = true;
@@ -541,39 +543,71 @@ window.onload = function () {
      * @author Alessandro RICCARDI
      * @since 0.6.3
      */
-    function sendMessageBadge(curForm) {
-        if (!isLocalhost) {
-            var field = jQuery("#form_" + curForm + " #field :selected").text(),
-                level = jQuery("input[name='level_" + currentForm + "':checked").val(),
-                badge_name = jQuery("input[name='badge_" + currentForm + "']:checked").val(),
-                description = "Default",
-                theClass = jQuery("#badge_form_" + curForm + " input[name='class']:checked").val(),
-                mail = jQuery("#badge_form_" + curForm + " #mail").val(),
-                comment = jQuery("#badge_form_" + curForm + " #comment").val(),
-                sender = jQuery("input[name='sender']").val();
+    function sendMessageBadge(currentForm) {
+        //if (!isLocalhost) {
+        if (1) {
+            var field;
+            var level;
+            var badge_id;
+            var description;
+            var theClass;
+            var receivers;
+            var info;
+            var sender;
+
+            /* # FIELD # */
+            field = jQuery("#form_" + currentForm + " #field :selected").text();
+            /* # LEVEL # */
+            jQuery("input[name='level_" + currentForm + "']")
+                .each(function () {
+                    if (jQuery(this).is(':checked')) {
+                        level = jQuery(this).val();
+                    }
+                });
+            /* # BADGE NAME # */
+            jQuery("input[name='badge_" + currentForm + "']")
+                .each(function () {
+                    if (jQuery(this).is(':checked')) {
+                        badge_id = jQuery(this).val();
+                    }
+                });
+            /* # DESCRIPTION # */
+            description = jQuery("div[name='desc_" + currentForm + "']").html();
+            /* # CLASS # */
+            jQuery("input[name='class_" + currentForm + "']")
+                .each(function () {
+                    if (jQuery(this).is(':checked')) {
+                        theClass = jQuery(this).val();
+                    }
+                });
+            /* # MAIL # */
+            receivers = jQuery("#mail_" + currentForm).val();
+            /* # INFO # */
+            info = jQuery("#comment_" + currentForm).val();
+            /* # SENDER # */
+            sender = jQuery("input[name='sender']").val();
+
 
             var data = {
-                'action': 'send_message_badge',
+                'action': 'ajaxSendBadge',
+                'form': currentForm,
+                'badge_id': badge_id,
                 'field': field,
                 'level': level,
-                'badge_name': badge_name,
-                'language_description': language_description,
-                'class_student': class_student,
-                'class_teacher': class_teacher,
-                'mail': mail,
-                'comment': comment,
+                'description': description,
+                'theClass': theClass,
+                'receivers': receivers,
+                'info': info,
                 'sender': sender,
-                'curForm': curForm,
-            };
 
-            //alert(curForm +' '+ language +' '+ level +' '+ badge_name +' '+ language_description +' '+ class_student +' '+ class_teacher +' '+ mail +' '+ comment +' '+ sender);
+            };
 
             jQuery.post(
                 globalUrl.ajax,
                 data,
                 function (response) {
                     alert(response);
-                    location.reload();
+                    //location.reload();
                 }
             );
         } else {
@@ -622,4 +656,10 @@ window.onload = function () {
         });
     }
 
-};
+    function getSelectedValue(e) {
+        if (jQuery(e).is(':checked')) {
+            return jQuery(e).val();
+        }
+    }
+}
+;
