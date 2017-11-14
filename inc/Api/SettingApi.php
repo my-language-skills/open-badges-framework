@@ -6,7 +6,7 @@
  * @author     Alessandro RICCARDI
  * @since      x.x.x
  *
- * @package    OpenBadgeFramework
+ * @package    OpenBadgesFramework
  */
 
 namespace Inc\Api;

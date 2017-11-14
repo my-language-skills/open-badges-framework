@@ -9,10 +9,10 @@
  *
  * @link              www.badges4languages.com
  * @since             0.6.3
- * @package           OpenBadgeFramework
+ * @package           OpenBadgesFramework
  *
  * @wordpress-plugin
- * Plugin Name:       Open Badge Framework
+ * Plugin Name:       Open Badges Framework
  * Plugin URI:        www.badges4languages.com
  * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin
  * area.
@@ -21,7 +21,7 @@
  * Author URI:        www.badges4languages.com
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       open-badge-framework
+ * Text Domain:       open-badges-framework
  * Domain Path:       /languages
  */
 /*
@@ -57,20 +57,20 @@ define( 'PLUGIN', plugin_basename( __FILE__ ) );
  *
  * @since x.x.x
  */
-function open_badge_framework_activation() {
+function open_badges_framework_activation() {
     Inc\Base\Activate::activate();
 }
-register_activation_hook(__FILE__, 'open_badge_framework_activation');
+register_activation_hook(__FILE__, 'open_badges_framework_activation');
 
 /**
  * The code that runs during plugin deactivation
  *
  * @since x.x.x
  */
-function open_badge_framework_deactivation() {
+function open_badges_framework_deactivation() {
     Inc\Base\Deactivate::deactivate();
 }
-register_deactivation_hook(__FILE__, 'open_badge_framework_deactivation');
+register_deactivation_hook(__FILE__, 'open_badges_framework_deactivation');
 
 /**
  * Initialize all the core classes of the plugin

@@ -4,7 +4,7 @@
  *
  * @since      x.x.x
  *
- * @package    OpenBadgeFramework
+ * @package    OpenBadgesFramework
  */
 
 namespace Inc\Base;

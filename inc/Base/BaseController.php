@@ -5,7 +5,7 @@
  * @author      Alessandro RICCARDI
  * @since       x.x.x
  *
- * @package     OpenBadgeFramework
+ * @package     OpenBadgesFramework
  */
 
 namespace Inc\Base;
@@ -20,11 +20,11 @@ class BaseController {
     public function __construct() {
         $this->plugin_path = plugin_dir_path(dirname(__FILE__, 2));
         $this->plugin_url = plugin_dir_url(dirname(__FILE__, 2));
-        $this->plugin = plugin_basename(dirname(__FILE__, 3)) . '/open-badge-framework.php';
+        $this->plugin = plugin_basename(dirname(__FILE__, 3)) . '/open-badges-framework.php';
     }
 
     public function getJsonPath() {
-        $path = wp_upload_dir()['basedir'] . '/open-badge-framework/json/';
+        $path = wp_upload_dir()['basedir'] . '/open-badges-framework/json/';
 
         if (!file_exists($path)) {
             mkdir($path, 0777, true);
@@ -35,7 +35,7 @@ class BaseController {
     }
 
     public function getJsonUrl() {
-        $path = wp_upload_dir()['baseurl'] . '/open-badge-framework/json/';
+        $path = wp_upload_dir()['baseurl'] . '/open-badges-framework/json/';
 
         return $path;
     }

@@ -1,4 +1,4 @@
-# Open Badge Framework
+# Open Badges Framework
 A WordPress plugin for open badge 
 
 Contributors: @colomet, @ntorion, @uzair043, @CorentinPerrot, @alevacher

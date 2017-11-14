@@ -2,7 +2,7 @@
 /**
  * Trigger this file on Plugin uninstall
  *
- * @package  OpenBadgeFramework
+ * @package  OpenBadgesFramework
  */
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
     die;

@@ -5,7 +5,7 @@
  * @author     Alessandro RICCARDI
  * @since      x.x.x
  *
- * @package    OpenBadgeFramework
+ * @package    OpenBadgesFramework
  */
 
 namespace Inc\Pages;
@@ -18,7 +18,7 @@ use Templates\SendBadgeTemp;
 use Templates\SettingsTemp;
 
 class Admin extends BaseController {
-    const SLUG_PLUGIN = "open_badge_framework";
+    const SLUG_PLUGIN = "open_badges_framework";
     const POST_TYPE_BADGES = "badges_obf_cpt";
     const POST_TYPE_CLASS_JL = "job_listing";
     const TAX_FIELDS = "fields_obf_tax";
