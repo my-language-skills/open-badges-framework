@@ -5,7 +5,7 @@
  * @author     Alessandro RICCARDI
  * @since      x.x.x
  *
- * @package    BadgeIssuerForWp
+ * @package    OpenBadgeFramework
  */
 
 namespace Inc\Pages;
@@ -18,14 +18,14 @@ use Templates\SendBadgeTemp;
 use Templates\SettingsTemp;
 
 class Admin extends BaseController {
-    const SLUG_PLUGIN = "badge_issuer";
-    const POST_TYPE_BADGES = "badges_issuer_cpt";
+    const SLUG_PLUGIN = "open_badge_framework";
+    const POST_TYPE_BADGES = "badges_obf_cpt";
     const POST_TYPE_CLASS_JL = "job_listing";
-    const TAX_FIELDS = "fields_issuer_tax";
-    const TAX_LEVELS = "levels_issuer_tax";
+    const TAX_FIELDS = "fields_obf_tax";
+    const TAX_LEVELS = "levels_obf_tax";
     const MTB_CERT = "certification_mtb";
-    const MTB_TARGET = "type_issuer_mtb";
-    const MTB_LBADGE = "lbadge_issuer_mtb";
+    const MTB_TARGET = "type_obf_mtb";
+    const MTB_LBADGE = "lbadge_obf_mtb";
 
 
     private $settingApi;
@@ -47,8 +47,8 @@ class Admin extends BaseController {
         /* #PAGE */
         $this->pages = array(
             array(
-                'page_title' => 'Badge Issuer',
-                'menu_title' => 'Badge Issuer',
+                'page_title' => 'Open Badge',
+                'menu_title' => 'Open Badge',
                 'capability' => 'manage_options',
                 'menu_slug' => self::SLUG_PLUGIN,
                 'callback' => array(DashboardTemp::class, 'main'),
@@ -92,7 +92,7 @@ class Admin extends BaseController {
                 'page_title' => 'Send Badges',
                 'menu_title' => 'Send Badges',
                 'capability' => 'manage_options',
-                'menu_slug' => 'send_badge_issuer',
+                'menu_slug' => 'send_badge_obf',
                 'callback' => array($sendbadge, 'main')
             ),
             /* ## Settings ## */
@@ -101,7 +101,7 @@ class Admin extends BaseController {
                 'page_title' => 'Settings',
                 'menu_title' => 'Settings',
                 'capability' => 'manage_options',
-                'menu_slug' => 'settings_issuer',
+                'menu_slug' => 'settings_obf',
                 'callback' => array($settingTemp, 'create_admin_page')
             ),
         );

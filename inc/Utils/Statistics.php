@@ -1,11 +1,12 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: aleric
- * Date: 07/11/2017
- * Time: 17:11
+ * The Statistics Class.
+ *
+ * @author      Alessandro RICCARDI
+ * @since       x.x.x
+ *
+ * @package     OpenBadgeFramework
  */
-
 namespace inc\Utils;
 
 use Inc\Utils\Badges;

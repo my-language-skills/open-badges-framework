@@ -1,9 +1,11 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: aleric
- * Date: 07/11/2017
- * Time: 11:50
+ * The Classes Class.
+ *
+ * @author      Alessandro RICCARDI
+ * @since       x.x.x
+ *
+ * @package     OpenBadgeFramework
  */
 
 namespace inc\Utils;

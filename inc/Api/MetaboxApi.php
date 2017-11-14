@@ -1,11 +1,12 @@
 <?php
 /**
- * The MetaboxApi Class, hear are stored all callback function for the metabox
+ * The MetaboxApi Class, hear are stored
+ * all callback function for the metabox.
  *
  * @author      Alessandro RICCARDI
  * @since       x.x.x
  *
- * @package     BadgeIssuerForWp
+ * @package     OpenBadgeFramework
  */
 
 namespace Inc\Api;
@@ -48,11 +49,11 @@ class MetaboxApi {
 
         echo '<input type="radio" value="not_certified" name="certification_input"';
         self::check($val, 'not_certified');
-        printf(__('> Not certified<br>', 'badges-issuer-for-wp'));
+        printf(__('> Not certified<br>', 'open-badge-framework'));
 
         echo '<input type="radio" value="certified" name="certification_input"';
         self::check($val, 'certified');
-        printf(__('> Certified<br>', 'badges-issuer-for-wp'));
+        printf(__('> Certified<br>', 'open-badge-framework'));
     }
 
 
@@ -67,11 +68,11 @@ class MetaboxApi {
 
         echo '<input type="radio" value="student" name="target_input"';
         self::check($val, 'student');
-        printf(__('> Student<br>', 'badges-issuer-for-wp'));
+        printf(__('> Student<br>', 'open-badge-framework'));
 
         echo '<input type="radio" value="teacher" name="target_input"';
         self::check($val, 'teacher');
-        printf(__('> Teacher<br>', 'badges-issuer-for-wp'));
+        printf(__('> Teacher<br>', 'open-badge-framework'));
 
     }
 
@@ -217,15 +218,15 @@ function meta_box_links($post) {
         <table id="box_students" name="<?php echo $post->ID; ?>" width="100%">
             <thead>
             <tr>
-                <th width="0%"><?php _e('Student\'s login', 'badges-issuer-for-wp'); ?></th>
-                <th width="0%"><?php _e('Student\'s mail', 'badges-issuer-for-wp'); ?></th>
-                <th width="0%"><?php _e('Level', 'badges-issuer-for-wp'); ?></th>
-                <th width="0%"><?php _e('Language', 'badges-issuer-for-wp'); ?></th>
-                <th width="0%"><?php _e('Date', 'badges-issuer-for-wp'); ?></th>
+                <th width="0%"><?php _e('Student\'s login', '"open-badge-framework'); ?></th>
+                <th width="0%"><?php _e('Student\'s mail', '"open-badge-framework'); ?></th>
+                <th width="0%"><?php _e('Level', '"open-badge-framework'); ?></th>
+                <th width="0%"><?php _e('Language', '"open-badge-framework'); ?></th>
+                <th width="0%"><?php _e('Date', '"open-badge-framework'); ?></th>
                 <?php
                 if (in_array("administrator", $current_user->roles) || in_array("editor", $current_user->roles)) {
                     ?>
-                    <th width="0%"><?php _e('Action', 'badges-issuer-for-wp'); ?></th>
+                    <th width="0%"><?php _e('Action', '"open-badge-framework'); ?></th>
                     <?php
                 }
                 ?>
@@ -246,14 +247,14 @@ function meta_box_links($post) {
         echo '<center>' . $student["level"] . '</center>';
         echo '</td>';
         echo '<td width="0%">';
-        printf(__('<center>%s</center>', 'badges-issuer-for-wp'), $student["language"]);
+        printf(__('<center>%s</center>', '"open-badge-framework'), $student["language"]);
         echo '</td>';
         echo '<td width="0%">';
         echo '<center>' . $student["date"] . '</center>';
         echo '</td>';
         if (in_array("administrator", $current_user->roles) || in_array("editor", $current_user->roles)) {
             echo '<td width="0%">';
-            printf(__('<center><a class="button remove-row" onclick="jQuery(this).RemoveTr();" href="#id_meta_box_class_students">Remove</a></center>', 'badges-issuer-for-wp'));
+            printf(__('<center><a class="button remove-row" onclick="jQuery(this).RemoveTr();" href="#id_meta_box_class_students">Remove</a></center>', '"open-badge-framework'));
             echo '</td>';
         }
         echo '</tr>';

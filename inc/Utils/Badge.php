@@ -5,7 +5,7 @@
  * @author      Alessandro RICCARDI
  * @since       x.x.x
  *
- * @package     BadgeIssuerForWp
+ * @package     OpenBadgeFramework
  */
 
 namespace inc\Utils;
@@ -109,7 +109,7 @@ class Badge extends BaseController {
             "field" => $badgeInfo['field'],
             "level" => $badgeInfo['level'],
             "criteria" => "http://" . $_SERVER['SERVER_NAME'] . "/badge/" . strtolower($badgeInfo['level']),
-            "issuer" => $this->getJsonPath() . "badge-issuer.json"
+            "issuer" => ""
         );
 
         return $jsonInfo;

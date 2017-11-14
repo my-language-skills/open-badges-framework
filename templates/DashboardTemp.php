@@ -2,27 +2,26 @@
 /**
  * Provide a admin area view for the plugin
  *
- * This file is used to markup the admin-facing aspects of the plugin.
+ * This file is used to markup the
+ * admin-facing aspects of the plugin.
  *
  * @author      Alessandro RICCARDI
  * @since       x.x.x
  *
- * @package     BadgeIssuerForWp
+ * @package     OpenBadgeFramework
  */
 
 namespace templates;
 
-
 use Inc\Pages\Admin;
 use Inc\Base\BaseController;
-
 
 final class DashboardTemp extends BaseController {
 
     public function main() {
         ?>
         <div class="wrap">
-        <h1 class="obf-title">Badge Issuer</h1>
+        <h1 class="obf-title">Open Badge <small>Framework</small></h1>
         <div class="container admin">
             <div class="intro">
                 <div class="cont-title-dash">

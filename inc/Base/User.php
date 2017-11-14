@@ -1,12 +1,13 @@
 <?php
 /**
- * ...
+ * The User Class.
  *
- * @author     Alessandro RICCARDI
- * @since      x.x.x
+ * @author      Alessandro RICCARDI
+ * @since       x.x.x
  *
- * @package    BadgeIssuerForWp
+ * @package     OpenBadgeFramework
  */
+
 
 namespace inc\Base;
 

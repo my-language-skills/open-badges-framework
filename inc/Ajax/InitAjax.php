@@ -1,9 +1,11 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: aleric
- * Date: 06/11/2017
- * Time: 11:59
+ * The InitAjax Class, permit to load all the ajax class and they're function
+ *
+ * @author      Alessandro RICCARDI
+ * @since       x.x.x
+ *
+ * @package     OpenBadgeFramework
  */
 
 namespace Inc\Ajax;

@@ -1,14 +1,17 @@
 <?php
 /**
- * The SettingsLinks Class
+ * The SettingsLinks Class.
  *
- * @since      x.x.x
+ * @author      Alessandro RICCARDI
+ * @since       x.x.x
  *
- * @package BadgeIssuerForWp
+ * @package     OpenBadgeFramework
  */
+
 namespace Inc\Base;
 
-use \Inc\Base\BaseController;
+use Inc\Base\BaseController;
+use Inc\Pages\Admin;
 
 class SettingsLinks extends BaseController{
 
@@ -27,7 +30,7 @@ class SettingsLinks extends BaseController{
      * @return string $links The right link
      */
     public function settingsLink($links) {
-        $settings_link = '<a href="admin.php?page=badges_issuer_for_wp">Settigns</a>';
+        $settings_link = "<a href='admin.php?page=". Admin::SLUG_PLUGIN ."'>Settigns</a>";
         array_push( $links, $settings_link);
         return $links;
 

@@ -1,11 +1,11 @@
 <?php
 /**
- * ...
+ * The SendBadgeAjax Class, contain all the function about the Send Badge functionality.
  *
  * @author      Alessandro RICCARDI
  * @since       x.x.x
  *
- * @package     BadgeIssuerForWp
+ * @package     OpenBadgeFramework
  */
 
 namespace inc\Ajax;

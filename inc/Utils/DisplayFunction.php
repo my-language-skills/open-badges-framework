@@ -1,6 +1,13 @@
 <?php
-
-// DISPLAY FUNCTIONS
+/**
+ * The DisplayFunction Class, contain all the function to show
+ * information
+ *
+ * @author      Alessandro RICCARDI
+ * @since       x.x.x
+ *
+ * @package     OpenBadgeFramework
+ */
 
 namespace inc\Utils;
 
@@ -116,29 +123,6 @@ class DisplayFunction {
         }
     }
 
-
-    /**
-     * Displays the classes of the teacher in input tags. Used in the forms sending badges to students.
-     *
-     * @author Nicolas TORION
-     * @since  0.6
-     */
-    /*function display_classes_input() {
-        global $current_user;
-        wp_get_current_user();
-
-        if (check_the_rules("administrator", "editor")) {
-            $classes = get_all_classes();
-        } else {
-            $classes = get_classes_teacher($current_user->user_login);
-        }
-
-        printf(esc_html__('<b>Class* : </b><br />', 'badges-issuer-for-wp'));
-        foreach ($classes as $class) {
-            echo '<label for="class_' . $class->ID . '">' . $class->post_title . ' </label><input name="class_for_student" id="class_' . $class->ID . '" type="radio" value="' . $class->ID . '"/>';
-        }
-    }*/
-
     /**
      * Displays a message of success.
      *
@@ -190,15 +174,15 @@ class DisplayFunction {
             <img src="<?php echo plugins_url('../../assets/b4l_logo.png', __FILE__); ?>" width="256px"
                  height="256px"/>
             <br/>
-            <h1><?php _e('To get a badge, you need to be logged on the site.', 'badges-issuer-for-wp'); ?></h1>
+            <h1><?php _e('To get a badge, you need to be logged on the site.', 'open-badge-framework'); ?></h1>
             <br/>
             <a href="<?php echo get_page_link($settings_id_login_links["link_register"]); ?>"
-               title="Register"><?php _e('Register', 'badges-issuer-for-wp'); ?></a> | <a
+               title="Register"><?php _e('Register', 'open-badge-framework'); ?></a> | <a
                     href="<?php echo get_page_link($settings_id_login_links["link_login"]); ?>"
-                    title="Login"><?php _e('Login', 'badges-issuer-for-wp'); ?></a>
+                    title="Login"><?php _e('Login', 'open-badge-framework'); ?></a>
             <p style="color:red;">
                 <?php
-                _e('Once connected to the site, go back to your email and click again on the link for receiving your badge.', 'badges-issuer-for-wp');
+                _e('Once connected to the site, go back to your email and click again on the link for receiving your badge.', 'open-badge-framework');
                 ?>
             </p>
         </center>

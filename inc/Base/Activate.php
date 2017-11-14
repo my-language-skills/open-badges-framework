@@ -1,11 +1,13 @@
 <?php
 /**
- * The Activate Class
+ * The Activate Class.
  *
- * @since      x.x.x
+ * @author      Alessandro RICCARDI
+ * @since       x.x.x
  *
- * @package    BadgeIssuerForWp
+ * @package     OpenBadgeFramework
  */
+
 namespace Inc\Base;
 
 class Activate {

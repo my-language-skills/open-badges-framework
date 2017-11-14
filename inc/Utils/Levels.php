@@ -1,12 +1,13 @@
 <?php
 /**
- * ...
+ * The Levels class
  *
  * @author      Alessandro RICCARDI
  * @since       x.x.x
  *
- * @package     BadgeIssuerForWp
+ * @package     OpenBadgeFramework
  */
+
 
 namespace inc\Utils;
 

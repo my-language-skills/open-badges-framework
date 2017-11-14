@@ -1,5 +1,5 @@
-# Badges-Issuer
-A WordPress plugin for issuer language badges
+# Open Badge Framework
+A WordPress plugin for open badge 
 
 Contributors: @colomet, @ntorion, @uzair043, @CorentinPerrot, @alevacher
 
@@ -7,8 +7,8 @@ Tags: badges
 
 ## Description
 
-Open Badges allows you to distribute and receive certifications of nivel language skills.
-Badges-Issuer extends this possibility by giving the proof that your certification corresponds to your nivel.
+Open Badges allows you to distribute and receive certifications of level language skills.
+Open-Badge-Framework extends this possibility by giving the proof that your certification corresponds to your level.
 
 ## Installation
 
@@ -25,7 +25,7 @@ Plugin/Template Name works with:
 
 ## Disclaimers
 
-The Badges-Issuer plugin is supplied "as is" and all use is at your own risk.
+The Open-Badge-Framework plugin is supplied "as is" and all use is at your own risk.
 
 ## Screenshots
 

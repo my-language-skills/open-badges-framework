@@ -1,15 +1,14 @@
 <?php
 /**
- * ...
+ * The SendBadgeTemp class
  *
  * @author      Alessandro RICCARDI
  * @since       x.x.x
  *
- * @package     BadgeIssuerForWp
+ * @package     OpenBadgeFramework
  */
 
 namespace templates;
-
 
 use Inc\Base\BaseController;
 use inc\Base\User;
