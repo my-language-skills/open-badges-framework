@@ -11,44 +11,51 @@
 namespace inc\Utils;
 
 
-class Badge {
-    private $receivers = array();
+use Inc\Base\BaseController;
+use Inc\Pages\Admin;
+use Inc\Utils\Badges;
+use templates\SettingsTemp;
+
+class Badge extends BaseController {
     private $id = null;
-    private $certified = null;
-    private $fields = null;
+    private $field = null;
     private $level = null;
-    private $description = null;
-    private $image = null;
-    private $information = null;
+    private $info = null;
+    private $receivers = null;
     private $class = null;
 
     /**
      * The constructor of the Badge object.
      *
      * @author   Alessandro RICCARDI
-     *
-     * @param        $id
-     * @param array  $receivers
-     * @param string $class
+     * @since    x.x.x
      *
      */
-    function __construct($id, $receivers, $class = "") {
+    function __construct($id, $field, $level, $info, $receivers, $class = "") {
+        parent::__construct();
         $this->id = $id;
+        $this->field = $field;
+        $this->level = $level;
+        $this->info = $info;
         $this->receivers = $receivers;
         $this->class = $class != "" ? $class : null;
     }
 
     public function sendBadge() {
         $subject = "Badge: $this->id";
-        $body = "$this->id" . ($this->class != "" ? $this->class : null);
+        $body = $this->getBodyEmail();
         //Setting headers so it"s a MIME mail and a html
         $headers = "From: badges4languages <mylanguageskills@hotmail.com>\n";
         $headers .= "MIME-Version: 1.0\n";
         $headers .= "Content-type: text/html; charset=utf-8\n";
         $headers .= "Reply-To: mylanguageskills@hotmail.com\n";
 
-        if( is_array($this->receivers)) {
+
+        if (is_array($this->receivers)) {
             foreach ($this->receivers as $receiver) {
+                if (!$this->createJsonFile($receiver)) {
+                    return "error";
+                }
                 if (!wp_mail($receiver, $subject, $body, $headers)) {
                     return "error";
                 }
@@ -57,10 +64,91 @@ class Badge {
             if (!wp_mail($this->receivers, $subject, $body, $headers)) {
                 return "error";
             }
+            if (!$this->createJsonFile($this->receivers)) {
+                return "error";
+            }
         }
-        return "success";
 
+        return "success";
     }
+
+    public function createJsonFile($receiver) {
+        $salt = uniqid();
+        $date = date('Y-m-d');
+        $hash_name = hash("sha256", $receiver . $this->id);
+        $hash_file = "assertion_" . $hash_name . ".json";
+        $file_name_path = $this->getJsonPath() . $hash_file;
+        $file_name_url = $this->getJsonUrl() . $hash_file;
+        $info = $this->getJsonBadgeInfo($hash_file);
+
+        $assertion = array(
+            "uid" => $salt,
+            "recipient" => array("type" => "email", "identity" => $receiver, "hashed" => false),
+            "issuedOn" => $date,
+            "badge" => $info,
+            "verify" => array("type" => "hosted", "url" => $file_name_url)
+        );
+
+        return file_put_contents($file_name_path, json_encode($assertion, JSON_UNESCAPED_SLASHES));
+    }
+
+    private function getJsonBadgeInfo() {
+        $badgeInfo = $this->getBadgeInfo($this->id);
+
+        $desc =
+            "Field: " . $badgeInfo['field'] .
+            ", Level: " . $badgeInfo['level'] .
+            ", Description: " . $badgeInfo['description'] .
+            ", Info: " . $badgeInfo['info'];
+
+        $jsonInfo = array(
+            '@context' => 'https://w3id.org/openbadges/v1',
+            "name" => $badgeInfo['name'] . " " . $badgeInfo['field'],
+            "description" => $desc,
+            "image" => $badgeInfo['image'],
+            "field" => $badgeInfo['field'],
+            "level" => $badgeInfo['level'],
+            "criteria" => "http://" . $_SERVER['SERVER_NAME'] . "/badge/" . strtolower($badgeInfo['level']),
+            "issuer" => $this->getJsonPath() . "badge-issuer.json"
+        );
+
+        return $jsonInfo;
+    }
+
+    private function getBodyEmail($hash_file) {
+        $badgeInfo = $this->getBadgeInfo($this->id);
+        $options = get_option(SettingsTemp::OPTION_NAME);
+
+        $badgeLink = get_page_link($options['get_badge_page']) . "?json=$hash_file&class=$this->class]";
+        return "<html>
+                        <head>
+                                <meta http-equiv='Content-Type' content='text/html'; charset='utf-8' />
+                        </head>
+                        <body>
+                            <div class='container'>
+                            <a href='$badgeLink'>Get the badge</a>
+                            </div>
+                        </body>
+                    </html>";
+    }
+
+    private function getBadgeInfo($id) {
+        $badges = new Badges();
+        $badge = $badges->getBadgeById($id);
+
+        $badgeInfo = array(
+            'id' => $badge->ID,
+            'name' => $badge->post_name,
+            'field' => $this->field,
+            'level' => $this->level,
+            'description' => $badge->post_content,
+            'info' => $this->info,
+            'image' => get_the_post_thumbnail_url($badge->ID),
+        );
+
+        return $badgeInfo;
+    }
+
 
     function oldSendEmail() {
         $hash_name = hash("sha256", $this->receiver . $this->name . $this->language);

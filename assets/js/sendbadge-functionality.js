@@ -471,16 +471,20 @@ window.onload = function () {
 
         jQuery("input[name='class_" + currentForm + "']")  // for all checkboxes
             .each(function () {  // first pass, create name mapping
+                    // I'm setting this var to understand if the class section is
+                    // activated (WP Job Listing)
                     if (jQuery(this).is(':checked')) {
                         check = true;
                     }
                 }
             );
 
-        if (check) {
+        if (check || !check_class) {
             //Load description of language for the next page
             form.validate().settings.ignore = ":disabled,:hidden";
             return form.valid();
+        } else if (!jQuery("#class-section").length) {
+            return check_mails(currentForm, form);
         } else {
             return false;
         }

@@ -146,7 +146,7 @@ final class SendBadgeTemp extends BaseController {
                         ?>
                         <h3>Class</h3>
                         <section>
-                            <div class="section-container">
+                            <div id="class-section" class="section-container">
                                 <div class="title-form"><h2>Class:</h2></div>
                                 <?php self::displayLeadInfo("Select one of yours classes."); ?>
                                 <div id="class_<?php echo $form; ?>"></div>

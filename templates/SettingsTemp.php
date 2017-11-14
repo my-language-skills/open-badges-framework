@@ -147,6 +147,15 @@ class SettingsTemp {
             self::SECTION_NAME,
             $settings_section_id
         );
+
+        /* --> Register Page__________ */
+        add_settings_field(
+            'get_badge_page',
+            'Get Badge Page',
+            array($this, 'getBadgePageCallback'),
+            self::SECTION_NAME,
+            $settings_section_id
+        );
     }
 
     /**
@@ -182,6 +191,9 @@ class SettingsTemp {
 
         if (isset($input['register_page']))
             $new_input['register_page'] = sanitize_text_field($input['register_page']);
+
+        if (isset($input['get_badge_page']))
+            $new_input['get_badge_page'] = sanitize_text_field($input['get_badge_page']);
 
         return $new_input;
     }
@@ -285,6 +297,17 @@ class SettingsTemp {
             'id' => 'register_page',
             'name' => self::OPTION_NAME . '[register_page]',
             'selected' => isset($this->options['register_page']) ? esc_attr($this->options['register_page']) : ''
+        ));
+    }
+
+    /**
+     * Get the settings option array and print one of its values
+     */
+    public function getBadgePageCallback() {
+        wp_dropdown_pages(array(
+            'id' => 'get_badge_page',
+            'name' => self::OPTION_NAME . '[get_badge_page]',
+            'selected' => isset($this->options['get_badge_page']) ? esc_attr($this->options['get_badge_page']) : ''
         ));
     }
 }

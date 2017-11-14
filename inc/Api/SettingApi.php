@@ -42,8 +42,6 @@ class SettingApi {
         if (!empty($this->metaboxes)) {
             add_action('add_meta_boxes', array($this, 'addMetaBoxes'));
         }
-
-
     }
 
     /**
