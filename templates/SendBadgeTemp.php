@@ -96,7 +96,6 @@ final class SendBadgeTemp extends BaseController {
     }
 
     public function getRightForm($form) {
-        self::displayEmailInput();
         ?>
         <div class="tab-content">
             <form id="form_<?php echo $form; ?>" action="" method="post">
@@ -218,15 +217,4 @@ final class SendBadgeTemp extends BaseController {
         }
     }
 
-    /**
-     * ...
-     *
-     * @author Alessandro RICCARDI
-     * @since  x.x.x
-     */
-    private function displayEmailInput() {
-        $user = User::getCurrentUser();
-        echo "<input type='hidden' name='sender' value='$user->user_email'/>";
-
-    }
 }

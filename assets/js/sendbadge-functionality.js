@@ -299,7 +299,7 @@ window.onload = function () {
      */
 
     function load_levels(currentForm, form) {
-        var field = jQuery("#form_" + currentForm + " #field :selected").text();
+        var field = jQuery("#form_" + currentForm + " #field :selected").val();
 
         if (field == "Select") {
             return false;
@@ -334,7 +334,7 @@ window.onload = function () {
      */
     function load_badges(currentForm, form) {
         var check = false;
-        var field = jQuery("#form_" + currentForm + " #field :selected").text();
+        var field = jQuery("#form_" + currentForm + " #field :selected").val();
         var levelValue = "";
 
         jQuery("input[name='level_" + currentForm + "']")
@@ -429,7 +429,7 @@ window.onload = function () {
      * @since 0.6.3
      */
     function load_classes(currentForm, form) {
-        var field = jQuery("#form_" + currentForm + " #field :selected").text();
+        var field = jQuery("#form_" + currentForm + " #field :selected").val();
         var level = "";
 
         jQuery("input[name='level_" + currentForm + "']")
@@ -550,60 +550,50 @@ window.onload = function () {
     function sendMessageBadge(currentForm) {
         //if (!isLocalhost) {
         if (1) {
-            var field;
-            var level;
-            var badge_id;
-            var description;
-            var theClass;
+            var fieldId;
+            var levelId;
+            var badgeId;
+            var theClassId;
             var receivers;
             var info;
-            var sender;
 
-            /* # FIELD # */
-            field = jQuery("#form_" + currentForm + " #field :selected").text();
-            /* # LEVEL # */
+            /* # FIELD ID # */
+            fieldId = jQuery("#form_" + currentForm + " #field :selected").val();
+            /* # LEVEL ID # */
             jQuery("input[name='level_" + currentForm + "']")
                 .each(function () {
                     if (jQuery(this).is(':checked')) {
-                        level = jQuery(this).val();
+                        levelId = jQuery(this).val();
                     }
                 });
-            /* # BADGE NAME # */
+            /* # BADGE ID # */
             jQuery("input[name='badge_" + currentForm + "']")
                 .each(function () {
                     if (jQuery(this).is(':checked')) {
-                        badge_id = jQuery(this).val();
+                        badgeId = jQuery(this).val();
                     }
                 });
-            /* # DESCRIPTION # */
-            description = jQuery("div[name='desc_" + currentForm + "']").html();
-            /* # CLASS # */
+            /* # CLASS ID # */
             jQuery("input[name='class_" + currentForm + "']")
                 .each(function () {
                     if (jQuery(this).is(':checked')) {
-                        theClass = jQuery(this).val();
+                        theClassId = jQuery(this).val();
                     }
                 });
             /* # MAIL # */
             receivers = jQuery("#mail_" + currentForm).val();
             /* # INFO # */
             info = jQuery("#comment_" + currentForm).val();
-            /* # SENDER # */
-            sender = jQuery("input[name='sender']").val();
-
 
             var data = {
                 'action': 'ajaxSendBadge',
                 'form': currentForm,
-                'badge_id': badge_id,
-                'field': field,
-                'level': level,
-                'description': description,
-                'theClass': theClass,
-                'receivers': receivers,
+                'badgeId': badgeId,
+                'fieldId': fieldId,
+                'levelId': levelId,
+                'theClassId': theClassId,
                 'info': info,
-                'sender': sender,
-
+                'receivers': receivers,
             };
 
             jQuery.post(

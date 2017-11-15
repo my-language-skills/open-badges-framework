@@ -53,7 +53,7 @@ class Levels {
             // Get the type of the badge (student or teacher)
             $badge_type = get_post_meta($badge->ID, "_target", true);
             // Get the level of the badge
-            $level = get_the_terms($badge->ID, Admin::TAX_LEVELS)[0]->name;
+            $level = get_the_terms($badge->ID, Admin::TAX_LEVELS)[0];
             // Get the field of the badge
             $fields = get_the_terms($badge->ID, Admin::TAX_FIELDS);
 
@@ -74,7 +74,7 @@ class Levels {
                     if (!in_array($level, $levels)) {
                         // Check if the Field of education selected in the first step
                         // is content in one of the badge of the level.
-                        if ($field->name == $rightFieldEdu) {
+                        if ($field->term_id == $rightFieldEdu) {
                             if (User::check_the_rules("administrator", "editor")) {
                                 $levels[] = $level;
                             } else {

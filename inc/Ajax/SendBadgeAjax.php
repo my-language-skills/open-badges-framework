@@ -13,7 +13,7 @@ namespace inc\Ajax;
 use Inc\Utils\DisplayFunction;
 use Inc\Utils\Levels;
 use Inc\Utils\Badges;
-use Inc\Utils\Badge;
+use Inc\Utils\SendBadge;
 use Inc\Utils\Classes;
 use Inc\Base\BaseController;
 
@@ -45,14 +45,14 @@ class SendBadgeAjax extends BaseController {
      */
     function ajaxShowLevels() {
         $form = $_POST['form'];
-        $field = $_POST['field'];
+        $fieldId = $_POST['field'];
         $level = new Levels();
-        $levels = $level->getAllLevels($field);
+        $levels = $level->getAllLevels($fieldId);
         // Display the level ...
         foreach ($levels as $level) {
             echo '<div class="rdi-tab">';
-            echo "<input id='level-$level-form-$form' value='$level' class='radio-input level' name='level_$form' type='radio'>
-                  <label for='level-$level-form-$form' class='radio-label'>$level</label>";
+            echo "<input id='level-$level->name-form-$form' value='$level->term_id' class='radio-input level' name='level_$form' type='radio'>
+                  <label for='level-$level->name-form-$form' class='radio-label'>$level->name</label>";
             echo '</div>';
         }
         wp_die();
@@ -69,6 +69,7 @@ class SendBadgeAjax extends BaseController {
         $form = $_POST['form'];
         $field = $_POST['field'];
         $level = $_POST['level'];
+
         $rightBadges = $badges->getBadgesFiltered($field, $level);
 
         foreach ($rightBadges as $badge) { ?>
@@ -137,18 +138,15 @@ class SendBadgeAjax extends BaseController {
     }
 
     function ajaxSendBadge() {
-        $form = $_POST['form'];
-        $badge_id = $_POST['badge_id'];
-        $field = $_POST['field'];
-        $level = $_POST['level'];
-        $theClass = $_POST['theClass'];
+        $badgeId = $_POST['badgeId'];
+        $fieldId = $_POST['fieldId'];
+        $levelId = $_POST['levelId'];
+        $theClassId = $_POST['theClassId'];
         $receivers = $_POST['receivers'];
         $info = $_POST['info'];
-        $sender = $_POST['sender'];
 
-        $badge = new Badge($badge_id, $field, $level, $info, $receivers, $theClass);
+        $badge = new SendBadge($badgeId, $fieldId, $levelId, $info, $receivers, $theClassId);
         echo $badge->sendBadge();
-
         wp_die();
     }
 
@@ -208,7 +206,7 @@ class SendBadgeAjax extends BaseController {
             }
 
             /* Creation of the badge */
-            $badge = new Badge($badge_others_items['name'], $level, $language, $certification, $comment,
+            $badge = new SendBadge($badge_others_items['name'], $level, $language, $certification, $comment,
                 $badge_others_items['description'], $language_description, $badge_others_items['image'],
                 $url_json_files, $path_dir_json_files);
 

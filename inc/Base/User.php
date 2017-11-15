@@ -125,7 +125,7 @@ class User {
      */
     public static function check_the_rules(){
         $user = self::getCurrentUser();
-
+        $res = array();
         foreach (func_get_args() as $param) {
             if(!is_array($param)){
                 $res = in_array($param, $user->roles)? true: $res ? true: false;

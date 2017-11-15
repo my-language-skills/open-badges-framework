@@ -50,7 +50,6 @@ class DisplayFunction {
 
                 foreach ($parents as $parent) {
                     foreach ($parent as $language) {
-
                         echo '<option value="' . $language->term_id . '">';
                         echo $language->name . '</option>';
                     }

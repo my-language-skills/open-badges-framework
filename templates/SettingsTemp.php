@@ -10,9 +10,7 @@
 
 namespace templates;
 
-
 class SettingsTemp {
-
     const OPTION_GROUP = "option_group";
     const OPTION_NAME = "option_name";
     const SECTION_NAME = "setting_admin";

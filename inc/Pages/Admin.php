@@ -14,6 +14,7 @@ use Inc\Api\MetaboxApi;
 use Inc\Base\BaseController;
 use Inc\Api\SettingApi;
 use Templates\DashboardTemp;
+use Templates\GetBadgeTemp;
 use Templates\SendBadgeTemp;
 use Templates\SettingsTemp;
 
@@ -26,6 +27,7 @@ class Admin extends BaseController {
     const MTB_CERT = "certification_mtb";
     const MTB_TARGET = "type_obf_mtb";
     const MTB_LBADGE = "lbadge_obf_mtb";
+    const SLUG_GETBADGE = "get_badge_obf";
 
 
     private $settingApi;
@@ -34,15 +36,16 @@ class Admin extends BaseController {
     private $custom_post_types = array();
     private $taxonomies = array();
     private $metaboxes = array();
+    private $frontEndPages = array();
 
     /**
      * Admin constructor.
      */
     public function __construct() {
         $this->settingApi = new SettingApi();
-        $sendbadge = new SendBadgeTemp();
+        $sendbadgeTemp = new SendBadgeTemp();
         $settingTemp = new SettingsTemp();
-        $metabox = new MetaboxApi();
+        $metaboxTemp = new MetaboxApi();
 
         /* #PAGE */
         $this->pages = array(
@@ -93,7 +96,7 @@ class Admin extends BaseController {
                 'menu_title' => 'Send Badges',
                 'capability' => 'manage_options',
                 'menu_slug' => 'send_badge_obf',
-                'callback' => array($sendbadge, 'main')
+                'callback' => array($sendbadgeTemp, 'main')
             ),
             /* ## Settings ## */
             array(
@@ -196,7 +199,7 @@ class Admin extends BaseController {
             array(
                 'id' => self::MTB_CERT,
                 'title' => 'Certification Type',
-                'callback' => array($metabox, 'certification'),
+                'callback' => array($metaboxTemp, 'certification'),
                 'screen' => self::POST_TYPE_BADGES,
                 'context' => 'side',
                 'priority' => 'high',
@@ -205,7 +208,7 @@ class Admin extends BaseController {
             array(
                 'id' => self::MTB_TARGET,
                 'title' => 'Target Type',
-                'callback' => array($metabox, 'target'),
+                'callback' => array($metaboxTemp, 'target'),
                 'screen' => self::POST_TYPE_BADGES,
                 'context' => 'side',
                 'priority' => 'high',
@@ -214,7 +217,7 @@ class Admin extends BaseController {
             array(
                 'id' => 'id_meta_box_links',
                 'title' => 'Badge Criteria (doesn\'t work, function: display_add_link in class: MetaboxApi)',
-                'callback' => array($metabox, 'display_add_link'),
+                'callback' => array($metaboxTemp, 'display_add_link'),
                 'screen' => self::POST_TYPE_BADGES,
                 'context' => 'normal',
                 'priority' => 'high'
@@ -223,11 +226,18 @@ class Admin extends BaseController {
             array(
                 'id' => self::MTB_LBADGE,
                 'title' => 'List of Badge',
-                'callback' => array($metabox, 'meta_box_class_zero_students'),
+                'callback' => array($metaboxTemp, 'meta_box_class_zero_students'),
                 'screen' => self::POST_TYPE_CLASS_JL,
                 'context' => 'normal',
                 'priority' => 'high'
             )
+        );
+
+        $this->frontEndPages = array(
+            array(
+                'slug' => self::SLUG_GETBADGE,
+                'class' => GetBadgeTemp::class,
+            ),
         );
 
     }
@@ -238,7 +248,7 @@ class Admin extends BaseController {
     public function register() {
         $this->settingApi->loadPages($this->pages)->withSubPage('Dashboard')->loadSubPages($this->subpages)
             ->loadCustomPostTypes($this->custom_post_types)->loadTaxonomies($this->taxonomies)
-            ->loadMetaBoxes($this->metaboxes)->register();
+            ->loadMetaBoxes($this->metaboxes)->loadFrontEndPages($this->frontEndPages)->register();
 
     }
 }

@@ -12,6 +12,7 @@
 namespace Inc\Api;
 
 use Inc\Pages\Admin;
+use Templates\GetBadgeTemp;
 
 class SettingApi {
 
@@ -20,6 +21,7 @@ class SettingApi {
     public $cpts = array();
     public $taxonomies = array();
     public $metaboxes = array();
+    public $frontEndPages = array();
 
     /**
      * When called the function add extra submenus and
@@ -42,6 +44,13 @@ class SettingApi {
         if (!empty($this->metaboxes)) {
             add_action('add_meta_boxes', array($this, 'addMetaBoxes'));
         }
+        /* FRONT-END-PAGES */
+        if (!empty($this->frontEndPages)) {
+            add_action('add_meta_boxes', array($this, 'addMetaBoxes'));
+            add_action('wp', array($this, 'addFrontEndPages'));
+        }
+        /* LOAD GetBadgeTemp.php */
+
     }
 
     /**
@@ -160,6 +169,12 @@ class SettingApi {
         return $this;
     }
 
+    public function loadFrontEndPages(array $frontEndPages) {
+        $this->frontEndPages = $frontEndPages;
+
+        return $this;
+    }
+
     /**
      * Loops all the $admin_pages adding at the
      * "add_menu_page" function all the menus
@@ -218,6 +233,40 @@ class SettingApi {
     }
 
     /**
+     *
+     * Loop through the classes, initialize them,
+     * and call the main() method if it exists
+     *
+     *
+     * @author Alessandro RICCARDI
+     * @since  x.x.x
+     */
+    public function addFrontEndPages() {
+        foreach ($this->frontEndPages as $frontEndPage) {
+            if (is_page($frontEndPage['slug'])) {
+                $service = self::instantiate($frontEndPage['class']);
+                if (method_exists($service, 'main')) {
+                    $service->main();
+                }
+                die();
+            }
+        }
+
+    }
+
+
+    /**
+     * Initialize the class
+     *
+     * @param class $class class form services array
+     *
+     * @return class instance   new instance of the class
+     */
+    private static function instantiate($class) {
+        return new $class();
+    }
+
+    /**
      * This function permit to set the current menu
      * for each post type and taxonomy.
      *
@@ -241,9 +290,9 @@ class SettingApi {
 
             if ($pagenow == 'edit-tags.php') {
                 if ($current_screen->taxonomy == Admin::TAX_FIELDS) {
-                    $submenu_file = 'edit-tags.php?taxonomy='.Admin::TAX_FIELDS.'&post_type=' . $current_screen->post_type;
+                    $submenu_file = 'edit-tags.php?taxonomy=' . Admin::TAX_FIELDS . '&post_type=' . $current_screen->post_type;
                 } elseif ($current_screen->taxonomy == Admin::TAX_LEVELS) {
-                    $submenu_file = 'edit-tags.php?taxonomy='.Admin::TAX_LEVELS.'&post_type=' . $current_screen->post_type;
+                    $submenu_file = 'edit-tags.php?taxonomy=' . Admin::TAX_LEVELS . '&post_type=' . $current_screen->post_type;
                 }
             }
 

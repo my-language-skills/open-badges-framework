@@ -16,14 +16,15 @@ class Enqueue extends BaseController {
     /**
      * Enqueue all the admin style and script throw the "add_action" function
      */
-    function register() {
+    public function register() {
         add_action('admin_enqueue_scripts', array($this, 'enqueue'));
+        add_action('enqueue_scripts', array($this, 'enququeFrontEnd'));
     }
 
     /**
      * All the admin style and script
      */
-    function enqueue() {
+    public function enqueue() {
         // enqueue all our scripts
         wp_enqueue_style('sendbadges-style', $this->plugin_url . 'assets/css/sendbadges-style.css');
         wp_enqueue_style('my-style', $this->plugin_url . 'assets/css/mystyle.css');
@@ -38,6 +39,10 @@ class Enqueue extends BaseController {
                 'loader' => $this->plugin_url."assets/gif/load.gif",
             )
         );
+    }
+
+    public function enququeFrontEnd() {
+        wp_enqueue_style('frontend-obf-style', $this->plugin_url . 'assets/css/fe-obf.css');
     }
 
 }

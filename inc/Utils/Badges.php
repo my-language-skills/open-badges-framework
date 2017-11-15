@@ -36,9 +36,9 @@ class Badges {
             foreach ($this->badges as $badge) {
                 $fieldOK = 0;
                 $fields = get_the_terms($badge->ID, Admin::TAX_FIELDS);
-                $badgeLevel = get_the_terms($badge->ID, Admin::TAX_LEVELS)[0]->name;
+                $badgeLevel = get_the_terms($badge->ID, Admin::TAX_LEVELS)[0]->term_id;
                 foreach ($fields as $theField) {
-                    if ($theField->name == $field) $fieldOK = 1;
+                    if ($theField->term_id == $field) $fieldOK = 1;
                 }
 
                 // In this condition the level need to be always right but not for the field

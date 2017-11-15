@@ -18,7 +18,7 @@ use Inc\Base\BaseController;
 
 final class DashboardTemp extends BaseController {
 
-    public function main() {
+    public static function main() {
         ?>
         <div class="wrap">
         <h1 class="obf-title">Open Badge <small>Framework</small></h1>
