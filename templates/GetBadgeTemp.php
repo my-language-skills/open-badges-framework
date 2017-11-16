@@ -86,12 +86,11 @@ class GetBadgeTemp extends BaseController {
                 <header class="masthead clearfix">
                     <div class="inner">
                         <div class="cont-title">New badge</div>
-                        <?php echo JsonManagement::getJsonUrl($this->json); ?>
                     </div>
                 </header>
 
                 <main role="main" class="inner cover">
-                    <h1 class="badge-title cover-heading"><strong><?php echo $this->badge->post_title; ?></strong></h1>
+                    <h1 class="badge-title-obf cover-heading"><strong><?php echo $this->badge->post_title; ?></strong></h1>
                     <h5 class="badge-field">Field: <strong><?php echo $this->field->name; ?></strong> - Level:
                         <strong><?php echo $this->level->name; ?></strong></h5>
                     <p class="lead">
@@ -228,6 +227,8 @@ class GetBadgeTemp extends BaseController {
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
             <title>My WordPress Plugin Front-end Page</title>
+            <script src="https://backpack.openbadges.org/issuer.js"></script>
+
             <?php wp_head(); ?>
         </head>
         <body>

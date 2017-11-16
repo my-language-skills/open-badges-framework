@@ -1,3 +1,10 @@
+function obConnection(){
+    OpenBadges.connect({
+        callback: "https://issuer.org/callback",
+        scope: ['issue']
+    });
+}
+
 $(function () {
     var urlParam = function (name) {
         var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
@@ -83,6 +90,7 @@ $(function () {
             globalUrl.ajax,
             data,
             function (response) {
+                obConnection();
                 /*OpenBadges.issue([response], function (errors, successes) {
                     alert("Errors:" + errors + " Successes:" + successes)
                 });*/
