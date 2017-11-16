@@ -24,7 +24,7 @@ class Admin extends BaseController {
     const POST_TYPE_CLASS_JL = "job_listing";
     const TAX_FIELDS = "fields_obf_tax";
     const TAX_LEVELS = "levels_obf_tax";
-    const MTB_CERT = "certification_mtb";
+    const MTB_CERT = "certification_obf_mtb";
     const MTB_TARGET = "type_obf_mtb";
     const MTB_LBADGE = "lbadge_obf_mtb";
     const SLUG_GETBADGE = "get_badge_obf";

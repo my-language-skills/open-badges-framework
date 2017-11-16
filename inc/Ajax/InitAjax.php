@@ -21,7 +21,9 @@ class InitAjax extends BaseController {
 
     public static function get_services() {
         return array(
-            SendBadgeAjax::class
+            SendBadgeAjax::class,
+            GetBadgeAjax::class
+
         );
     }
 

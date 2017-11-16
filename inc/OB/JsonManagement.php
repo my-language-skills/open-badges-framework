@@ -16,12 +16,13 @@ class JsonManagement extends BaseController {
     private $badgeInfo;
 
     public function __construct($badgeInfo) {
+        parent::__construct();
         $this->badgeInfo = $badgeInfo;
     }
 
     public function createJsonFile($receiver) {
         $hashName = hash("sha256", $receiver . $this->badgeInfo);
-        $hashFile =  $hashName . ".json";
+        $hashFile = $hashName . ".json";
         $fileNamePath = parent::getJsonPath() . $hashFile;
         $fileNameUrl = parent::getJsonUrl() . $hashFile;
         $info = $this->getJsonBadgeInfo($hashFile);
@@ -56,6 +57,11 @@ class JsonManagement extends BaseController {
         );
 
         return $jsonInfo;
+    }
+
+    public static function getJsonInfo($jsonName) {
+        $json = file_get_contents(parent::getJsonPath().$jsonName.'.json');
+        return json_decode($json, true);
     }
 
 }
