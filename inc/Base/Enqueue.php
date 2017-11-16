@@ -57,6 +57,7 @@ class Enqueue extends BaseController {
 
     public function jsFooter() {
         if (is_page(Admin::SLUG_GETBADGE)) {
+            wp_enqueue_script('open-badges-js', 'https://backpack.openbadges.org/issuer.js');
             wp_enqueue_script('jquery-js', 'https://code.jquery.com/jquery-1.10.2.js');
             wp_enqueue_script('get-badge-js', $this->plugin_url . 'assets/js/get-badge.js');
             wp_localize_script(

@@ -23,7 +23,7 @@ class BaseController {
         $this->plugin = plugin_basename(dirname(__FILE__, 3)) . '/open-badges-framework.php';
     }
 
-    public function getJsonPath() {
+    public function getJsonFolderPath() {
         $path = wp_upload_dir()['basedir'] . '/open-badges-framework/json/';
 
         if (!file_exists($path)) {
@@ -34,7 +34,7 @@ class BaseController {
         return $path;
     }
 
-    public function getJsonUrl() {
+    public function getJsonFolderUrl() {
         $path = wp_upload_dir()['baseurl'] . '/open-badges-framework/json/';
 
         return $path;

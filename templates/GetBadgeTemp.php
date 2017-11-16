@@ -11,7 +11,7 @@
 namespace templates;
 
 use Inc\Base\BaseController;
-use Inc\Pages\Admin;
+use Inc\OB\JsonManagement;use Inc\Pages\Admin;
 use Inc\Utils\Badges;
 
 class GetBadgeTemp extends BaseController {
@@ -86,7 +86,7 @@ class GetBadgeTemp extends BaseController {
                 <header class="masthead clearfix">
                     <div class="inner">
                         <div class="cont-title">New badge</div>
-                        <?php echo $this->getJson(); ?>
+                        <?php echo JsonManagement::getJsonUrl($this->json); ?>
                     </div>
                 </header>
 
@@ -97,14 +97,15 @@ class GetBadgeTemp extends BaseController {
                     <p class="lead">
                         <?php echo $this->badge->post_content; ?>
                     </p>
-                    <div class="logo-badge-cont"><img src="<?php echo get_the_post_thumbnail_url($this->badge->ID) ?>">
+                    <div class="logo-badge-cont">
+                        <img src="<?php echo get_the_post_thumbnail_url($this->badge->ID) ?>">
                     </div>
                 </main>
 
                 <footer class="mastfoot">
                     <div class="inner">
                         <p class="lead">
-                            <a id="getBadge" href="#" class="btn btn-lg btn-secondary" role="button">Get the badge</a>
+                            <a id="getBadge" class="btn btn-lg btn-secondary" role="button">Get the badge</a>
                         </p>
                     </div>
                 </footer>
@@ -140,7 +141,7 @@ class GetBadgeTemp extends BaseController {
                                 <input id="inputRemember" type="checkbox" value="remember-me"> Remember me
                             </label>
                         </div>
-                        <button id="gb-btn-login" class="btn btn-lg btn-primary btn-block" type="submit">Sign in
+                        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in
                         </button>
                     </form>
 
@@ -157,6 +158,51 @@ class GetBadgeTemp extends BaseController {
         </div>
 
         <?php
+    }
+
+    public function showOpenBadgesLogin($email) { ?>
+
+        <div id="wrap-login" class="site-wrapper-inner">
+
+            <div class="cover-container">
+
+                <header class="masthead clearfix">
+                    <div class="inner">
+                        <div class="cont-title">Open Badges identification</div>
+                    </div>
+                </header>
+
+                <main role="main" class="inner cover">
+                    <p class="lead">To receive the badge we need to validate your open badge account, that is the place were all your badge are stored and showed to all the community.
+                        <br><br>
+                        If you don’t have an Open Badge account, please click the below link and create a new account with the same email address of the registration of this website.
+                        <br><a href="https://backpack.openbadges.org/backpack/signup">https://backpack.openbadges.org/backpack/signup</a>
+                    </p>
+                    <form method="post" id="gb-form-open-badges-login">
+                        <label for="inputEmail" class="sr-only">Email address / Username</label>
+                        <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                               value="<?php echo $email; ?>">
+
+                        <button class="btn btn-lg btn-primary btn-block" type="submit">Confirm the email</button>
+                    </form>
+                    <div class="logo-open-badges">
+                        <img src="<?php echo $this->plugin_url; ?>/assets/images/open-badges-mz-logo.png" >
+                    </div>
+
+                </main>
+
+                <footer class="mastfoot">
+                    <div class="inner">
+
+                    </div>
+                </footer>
+
+            </div>
+
+        </div>
+
+        <?php
+
     }
 
     private function getErrorPage() {

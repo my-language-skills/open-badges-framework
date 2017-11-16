@@ -131,7 +131,7 @@ body {
 #wrap-login {
 }
 
-#wrap-login .cover {
+#wrap-login form {
     max-width: 330px;
     padding: 15px;
     margin: 0 auto;
@@ -139,6 +139,14 @@ body {
 
 .mastfoot {
     color: rgba(255,255,255,.5);
+}
+
+.logo-open-badges {
+    margin-top: 30px;
+}
+
+.logo-open-badges img{
+    width: 200px;
 }
 
 
@@ -183,6 +191,6 @@ body {
     .masthead,
     .mastfoot,
     .cover-container {
-        width: 42rem;
+        width: 50rem;
     }
 }

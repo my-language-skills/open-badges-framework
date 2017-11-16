@@ -1,5 +1,5 @@
 $(function () {
-    var urlParam = function(name){
+    var urlParam = function (name) {
         var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
         return results[1] || 0;
     }
@@ -25,7 +25,7 @@ $(function () {
     });
 
 
-    $(document).on("submit", "#gb-form-login", function() {
+    $(document).on("submit", "#gb-form-login", function () {
         event.preventDefault();
 
         var email = $("#staticEmail").val();
@@ -43,9 +43,53 @@ $(function () {
             globalUrl.ajax,
             data,
             function (response) {
-                $("#gb-resp-login").html(response);
+                if (response != true) {
+                    $("#gb-resp-login").html(response);
+                } else {
+                    loginApproved();
+                }
+
             }
         );
     });
 
-});
+    function loginApproved() {
+        $("#gb-wrap").fadeOut(400, function () {
+
+            var data = {
+                'action': 'ajaxGbShowOpenBadgesLogin',
+                'json': urlParam('json'),
+            };
+
+            jQuery.post(
+                globalUrl.ajax,
+                data,
+                function (response) {
+                    $("#gb-wrap").html(response);
+                }
+            );
+        }).delay(400).fadeIn(400);
+    }
+
+    $(document).on("submit", "#gb-form-open-badges-login", function () {
+        event.preventDefault();
+
+        var data = {
+            'action': 'ajaxGbGetJsonUrl',
+            'json': urlParam('json'),
+        };
+
+        jQuery.post(
+            globalUrl.ajax,
+            data,
+            function (response) {
+                /*OpenBadges.issue([response], function (errors, successes) {
+                    alert("Errors:" + errors + " Successes:" + successes)
+                });*/
+                OpenBadges.issue_no_modal(response);
+            }
+        );
+    });
+
+})
+;
