@@ -11,10 +11,17 @@
 namespace templates;
 
 use Inc\Base\BaseController;
-use Inc\OB\JsonManagement;use Inc\Pages\Admin;
+use inc\Base\User;
+use Inc\OB\JsonManagement;
+use Inc\Pages\Admin;
 use Inc\Utils\Badges;
 
 class GetBadgeTemp extends BaseController {
+    const START = 0;
+    const OB_CONF = 1;
+    const OB_DENY = 2;
+    const ERROR = 3;
+
     public $json = null;
     private $badge = null;
     private $field = null;
@@ -28,7 +35,29 @@ class GetBadgeTemp extends BaseController {
         return $inst;
     }
 
-    public function loadParm() {
+    public function main() {
+
+        $res = $this->loadParm();
+
+        switch ($res) {
+            case self::START:
+                $this->getStartingPage();
+                break;
+            case self::OB_CONF:
+                $this->getOpenBadgesPage(false);
+                break;
+            case self::OB_DENY:
+                $this->getOpenBadgesPage(true);
+                break;
+            case self::ERROR:
+                $this->getErrorPage();
+                break;
+        }
+
+    }
+
+
+    private function loadParm() {
         if (isset($_GET['json']) && isset($_GET['badge']) && isset($_GET['field']) && isset($_GET['level'])) {
             $badgeId = $_GET['badge'];
             $fieldId = $_GET['field'];
@@ -39,37 +68,84 @@ class GetBadgeTemp extends BaseController {
             $this->badge = $badges->getBadgeById($badgeId);
             $this->field = get_term($fieldId, Admin::TAX_FIELDS);
             $this->level = get_term($levelId, Admin::TAX_LEVELS);
+
+            if (!($this->badge && $this->field && $this->level)) {
+                return self::ERROR;
+            } else if ($this->checkOpenBadgesParam()) {
+                return self::OB_CONF;
+            } else if ($this->checkOpenBadgesDeny()) {
+                return self::OB_DENY;
+            } else if ($this->badge && $this->field && $this->level) {
+                return self::START;
+            } else {
+                return self::ERROR;
+            }
+
+
+        } else {
+            return false;
+        }
+    }
+
+    private function checkOpenBadgesParam() {
+        if (isset($_GET['access_token']) && isset($_GET['refresh_token']) && isset($_GET['expires']) &&
+            isset($_GET['api_root'])) {
             return true;
         } else {
             return false;
         }
     }
 
-    public function getJson() {
-        return $_GET['json'];
-    }
-
-    public function main() {
-
-        if ($this->loadParm()) {
-            $this->getMainPage();
+    private function checkOpenBadgesDeny() {
+        if (isset($_REQUEST['error'])) {
+            return true;
         } else {
-            $this->getErrorPage();
+            return false;
         }
-
     }
 
-
-    private function getMainPage() {
+    public function getStartingPage() {
         $this->obf_header()
 
         ?>
         <div id="gb-wrap" class="site-wrapper">
 
-            <?php
-            $this->showTheBadge();
+            <div id="wrap-the-badge" class="site-wrapper-inner">
 
-            ?>
+                <div class="cover-container">
+
+                    <header class="masthead clearfix">
+                        <div class="inner">
+                            <div class="cont-title">New badge</div>
+                        </div>
+                    </header>
+
+                    <main role="main" class="inner cover">
+                        <h1 class="badge-title-obf cover-heading">
+                            <strong><?php echo $this->badge->post_title; ?></strong>
+                        </h1>
+                        <h5 class="badge-field">Field: <strong><?php echo $this->field->name; ?></strong> - Level:
+                            <strong><?php echo $this->level->name; ?></strong></h5>
+                        <p class="lead">
+                            <?php echo $this->badge->post_content; ?>
+                        </p>
+                        <div class="logo-badge-cont">
+                            <img src="<?php echo get_the_post_thumbnail_url($this->badge->ID) ?>">
+                        </div>
+                    </main>
+
+                    <footer class="mastfoot">
+                        <!--<p><?php echo JsonManagement::getJsonUrl($this->json); ?></p>-->
+                        <div class="inner">
+                            <p class="lead">
+                                <a id="getBadge" class="btn btn-lg btn-secondary" role="button">Get the badge</a>
+                            </p>
+                        </div>
+                    </footer>
+
+                </div>
+
+            </div>
 
         </div>
 
@@ -77,46 +153,7 @@ class GetBadgeTemp extends BaseController {
         $this->obf_footer();
     }
 
-    public function showTheBadge() { ?>
-
-        <div id="wrap-the-badge" class="site-wrapper-inner">
-
-            <div class="cover-container">
-
-                <header class="masthead clearfix">
-                    <div class="inner">
-                        <div class="cont-title">New badge</div>
-                    </div>
-                </header>
-
-                <main role="main" class="inner cover">
-                    <h1 class="badge-title-obf cover-heading"><strong><?php echo $this->badge->post_title; ?></strong></h1>
-                    <h5 class="badge-field">Field: <strong><?php echo $this->field->name; ?></strong> - Level:
-                        <strong><?php echo $this->level->name; ?></strong></h5>
-                    <p class="lead">
-                        <?php echo $this->badge->post_content; ?>
-                    </p>
-                    <div class="logo-badge-cont">
-                        <img src="<?php echo get_the_post_thumbnail_url($this->badge->ID) ?>">
-                    </div>
-                </main>
-
-                <footer class="mastfoot">
-                    <div class="inner">
-                        <p class="lead">
-                            <a id="getBadge" class="btn btn-lg btn-secondary" role="button">Get the badge</a>
-                        </p>
-                    </div>
-                </footer>
-
-            </div>
-
-        </div>
-
-        <?php
-    }
-
-    public function showTheLogin($email) { ?>
+    public function showTheLoginContent($email) { ?>
 
         <div id="wrap-login" class="site-wrapper-inner">
 
@@ -159,7 +196,7 @@ class GetBadgeTemp extends BaseController {
         <?php
     }
 
-    public function showOpenBadgesLogin($email) { ?>
+    public function showOpenBadgesLoginContent($email) { ?>
 
         <div id="wrap-login" class="site-wrapper-inner">
 
@@ -167,14 +204,22 @@ class GetBadgeTemp extends BaseController {
 
                 <header class="masthead clearfix">
                     <div class="inner">
-                        <div class="cont-title">Open Badges identification</div>
+                        <div class="ob-menu">
+                            <span class="ob-cont-title">Open Badges identification</span>
+                            <span class="ob-user-info">
+                                <?php echo get_avatar(User::getCurrentUser()->ID); ?>
+                                <?php echo User::getCurrentUser()->user_login; ?>
+                            </span>
+                        </div>
                     </div>
                 </header>
 
                 <main role="main" class="inner cover">
-                    <p class="lead">To receive the badge we need to validate your open badge account, that is the place were all your badge are stored and showed to all the community.
+                    <p class="lead">To receive the badge we need to validate your open badge account, that is the place
+                        were all your badge are stored and showed to all the community.
                         <br><br>
-                        If you don’t have an Open Badge account, please click the below link and create a new account with the same email address of the registration of this website.
+                        If you don’t have an Open Badge account, please click the below link and create a new account
+                        with the same email address of the registration of this website.
                         <br><a href="https://backpack.openbadges.org/backpack/signup">https://backpack.openbadges.org/backpack/signup</a>
                     </p>
                     <form method="post" id="gb-form-open-badges-login">
@@ -184,15 +229,15 @@ class GetBadgeTemp extends BaseController {
 
                         <button class="btn btn-lg btn-primary btn-block" type="submit">Confirm the email</button>
                     </form>
-                    <div class="logo-open-badges">
-                        <img src="<?php echo $this->plugin_url; ?>/assets/images/open-badges-mz-logo.png" >
-                    </div>
+
 
                 </main>
 
                 <footer class="mastfoot">
                     <div class="inner">
-
+                        <div class="logo-open-badges">
+                            <img src="<?php echo $this->plugin_url; ?>/assets/images/open-badges-mz-logo.png">
+                        </div>
                     </div>
                 </footer>
 
@@ -204,16 +249,90 @@ class GetBadgeTemp extends BaseController {
 
     }
 
-    private function getErrorPage() {
+    private function getOpenBadgesPage($error = false) {
         $this->obf_header()
 
         ?>
-        <div class="container obf-cont">
-            <div class="cont-title">
-                <h1>Url error</h1>
-            </div>
-            <h2></h2>
+        <div id="gb-wrap" class="site-wrapper">
+            <div id="wrap-login" class="site-wrapper-inner">
 
+                <div class="cover-container">
+
+                    <header class="masthead clearfix">
+                    </header>
+
+                    <main role="main" class="inner cover">
+                        <?php
+                        if ($error) {
+                            // ##### ERROR SECTION
+                            ?>
+
+                            <h1>Access denied</h1>
+                            <p class="lead">Restart the process to get the badge </p>
+                            <a class="btn btn-lg btn-secondary" href="<?php
+                            $baseUrl = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
+                            $baseUrl = substr($baseUrl, 0, strrpos($baseUrl, '/') + 1);
+
+                            $baseUrl .= Admin::SLUG_GETBADGE .
+                                "/?json=" . $this->json .
+                                "&badge=" . $this->badge->ID .
+                                "&field=" . $this->field->term_id .
+                                "&level=" . $this->level->term_id;
+                            echo $baseUrl;
+                            ?>">Restart</a>
+                            <?php
+                        } else {
+                            // ##### RIGHT SECTION
+                            ?>
+                            <h1>Just the last step</h1>
+                            <br>
+                            <button id="gb-button" class="btn btn-lg btn-primary">GET THE BADGE</button>
+
+                            <?php
+                        }
+                        ?>
+                    </main>
+
+                    <footer class="mastfoot">
+                        <div class="inner">
+                            <div id="gb-resp-login"></div>
+                        </div>
+                    </footer>
+
+                </div>
+
+            </div>
+        </div>
+        <?php
+        $this->obf_footer();
+    }
+
+    private function getErrorPage() {
+        $this->obf_header()
+        ?>
+        <div id="gb-wrap" class="site-wrapper">
+            <div id="wrap-login" class="site-wrapper-inner">
+
+                <div class="cover-container">
+
+                    <header class="masthead clearfix">
+                    </header>
+
+                    <main role="main" class="inner cover">
+                        <h1>URL ERROR <?php echo User::getCurrentUser()->user_login; ?></h1>
+                        <p class="lead">There's something wrong with the link,<br> ask to the help desk to fix the
+                            problem!</p>
+                    </main>
+
+                    <footer class="mastfoot">
+                        <div class="inner">
+                            <div id="gb-resp-login"></div>
+                        </div>
+                    </footer>
+
+                </div>
+
+            </div>
         </div>
         <?php
         $this->obf_footer();

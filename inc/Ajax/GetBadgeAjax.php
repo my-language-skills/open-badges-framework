@@ -29,7 +29,7 @@ class GetBadgeAjax extends BaseController {
         $getBadgeTemp = GetBadgeTemp::getInstance();
         $jsonFile = JsonManagement::getJsonObject($json);
         $email = $jsonFile["recipient"]['identity'];
-        echo $getBadgeTemp->showTheLogin($email);
+        echo $getBadgeTemp->showTheLoginContent($email);
 
         wp_die();
     }
@@ -69,7 +69,7 @@ class GetBadgeAjax extends BaseController {
         $getBadgeTemp = GetBadgeTemp::getInstance();
         $jsonFile = JsonManagement::getJsonObject($json);
         $email = $jsonFile["recipient"]['identity'];
-        echo $getBadgeTemp->showOpenBadgesLogin($email);
+        echo $getBadgeTemp->showOpenBadgesLoginContent($email);
 
         wp_die();
     }
