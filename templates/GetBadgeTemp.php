@@ -44,10 +44,10 @@ class GetBadgeTemp extends BaseController {
                 $this->getStartingPage();
                 break;
             case self::OB_CONF:
-                $this->getOpenBadgesPage(false);
+                $this->getOpenBadgesPage(true);
                 break;
             case self::OB_DENY:
-                $this->getOpenBadgesPage(true);
+                $this->getOpenBadgesPage(false);
                 break;
             case self::ERROR:
                 $this->getErrorPage();
@@ -80,7 +80,6 @@ class GetBadgeTemp extends BaseController {
             } else {
                 return self::ERROR;
             }
-
 
         } else {
             return false;
@@ -164,7 +163,7 @@ class GetBadgeTemp extends BaseController {
                 </header>
 
                 <main role="main" class="inner cover">
-                    <form method="post" id="gb-form-login">
+                    <form method="post" id="gb-form-login" class="gb-form">
                         <h2 class="form-signin-heading">Please sign in</h2>
                         <label for="inputEmail" class="sr-only">Email address / Username</label>
                         <input type="text" readonly class="form-control-plaintext" id="staticEmail"
@@ -196,7 +195,7 @@ class GetBadgeTemp extends BaseController {
         <?php
     }
 
-    public function showOpenBadgesLoginContent($email) { ?>
+    public function showOpenBadgesSendIssuer() { ?>
 
         <div id="wrap-login" class="site-wrapper-inner">
 
@@ -205,7 +204,7 @@ class GetBadgeTemp extends BaseController {
                 <header class="masthead clearfix">
                     <div class="inner">
                         <div class="ob-menu">
-                            <span class="ob-cont-title">Open Badges identification</span>
+                            <span class="ob-cont-title">Open Badges Mozilla</span>
                             <span class="ob-user-info">
                                 <?php echo get_avatar(User::getCurrentUser()->ID); ?>
                                 <?php echo User::getCurrentUser()->user_login; ?>
@@ -215,22 +214,13 @@ class GetBadgeTemp extends BaseController {
                 </header>
 
                 <main role="main" class="inner cover">
-                    <p class="lead">To receive the badge we need to validate your open badge account, that is the place
-                        were all your badge are stored and showed to all the community.
-                        <br><br>
-                        If you don’t have an Open Badge account, please click the below link and create a new account
-                        with the same email address of the registration of this website.
-                        <br><a href="https://backpack.openbadges.org/backpack/signup">https://backpack.openbadges.org/backpack/signup</a>
+                    <p class="lead">
+                        Open Badges Mozilla give you the opportunity to store your badge in its platform to permit to
+                        show your progress with all the community.
                     </p>
-                    <form method="post" id="gb-form-open-badges-login">
-                        <label for="inputEmail" class="sr-only">Email address / Username</label>
-                        <input type="text" readonly class="form-control-plaintext" id="staticEmail"
-                               value="<?php echo $email; ?>">
-
-                        <button class="btn btn-lg btn-primary btn-block" type="submit">Confirm the email</button>
-                    </form>
-
-
+                    <div class="gb-form">
+                        <button id="gb-ob-get-badge" class="btn btn-lg btn-primary btn-block" type="submit">Get the badge</button>
+                    </div>
                 </main>
 
                 <footer class="mastfoot">
@@ -249,7 +239,7 @@ class GetBadgeTemp extends BaseController {
 
     }
 
-    private function getOpenBadgesPage($error = false) {
+    private function getOpenBadgesPage($allowed = true) {
         $this->obf_header()
 
         ?>
@@ -263,8 +253,16 @@ class GetBadgeTemp extends BaseController {
 
                     <main role="main" class="inner cover">
                         <?php
-                        if ($error) {
-                            // ##### ERROR SECTION
+                        if ($allowed) {
+                            // ##### ALLOWED SECTION
+                            ?>
+                            <h1>Just the last step</h1>
+                            <br>
+                            <button id="gb-button" class="btn btn-lg btn-primary">GET THE BADGE</button>
+
+                            <?php
+                        } else {
+                            // ##### DENY SECTION
                             ?>
 
                             <h1>Access denied</h1>
@@ -280,14 +278,6 @@ class GetBadgeTemp extends BaseController {
                                 "&level=" . $this->level->term_id;
                             echo $baseUrl;
                             ?>">Restart</a>
-                            <?php
-                        } else {
-                            // ##### RIGHT SECTION
-                            ?>
-                            <h1>Just the last step</h1>
-                            <br>
-                            <button id="gb-button" class="btn btn-lg btn-primary">GET THE BADGE</button>
-
                             <?php
                         }
                         ?>

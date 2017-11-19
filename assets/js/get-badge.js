@@ -96,23 +96,7 @@ $(function () {
         }).delay(400).fadeIn(400);
     }
 
-    $(document).on("submit", "#gb-form-open-badges-login", function () {
-        event.preventDefault();
-
-        OpenBadges.connect({
-            callback: window.location.href,
-            scope: ['issue']
-        });
-    });
-
-
-    $(document).on("click", "#gb-button", function () {
-        var error = "";
-        var access = urlParam('access_token');//use this to push to the earner Backpack
-        var refresh = urlParam('refresh_token');
-        var expiry = urlParam('expires');
-        var api = urlParam('api_root');
-        var json = urlParam('json');
+    $(document).on("click", "#gb-ob-get-badge", function () {
 
         var data = {
             'action': 'ajaxGbGetJsonUrl',
@@ -123,46 +107,15 @@ $(function () {
             globalUrl.ajax,
             data,
             function (response) {
-                json = response;
+                OpenBadges.issue([response], function (errors, successes) {
+                    console.log("Successes" + successes + " \n Errors" + errors);
+                });
             }
         );
 
-        if (json) {
-            var requestOptions = {
-                host: 'backpack.openbadges.org',//adjust for your api root
-                path: '/api/issue',
-                method: 'POST',
-                headers: {
-                    'Authorization': 'Bearer ' + b64enc(access),
-                    'Content-Type': 'application/json',
-                    'Content-Length': Buffer.byteLength(json)
-                }
-            };
 
-            var postRequest = http.request(requestOptions, function (pushResponse) {
-                var response = [];
-                pushResponse.setEncoding('utf8');
-
-                //store data
-                pushResponse.on('data', function (responseData) {
-                    response.push(responseData);
-                });
-
-                pushResponse.on('end', function () {
-                    var pushData = JSON.parse(response.join(''));
-                    //...
-                });
-            });
-
-            postRequest.on('error', function (e) {
-                console.error(e);
-            });
-
-            // post the data
-            postRequest.write(assertionData);
-            postRequest.end();
-        }
     });
+
 
 });
 

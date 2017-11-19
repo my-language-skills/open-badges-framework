@@ -31,7 +31,7 @@ class JsonManagement extends BaseController {
             "uid" => uniqid(),
             "recipient" => array("type" => "email", "identity" => $receiver, "hashed" => false),
             "badge" => $infoUrl,
-            "verify" => array("url" => "http://issuersite.org/public-key.pem", "type" => "signed"),
+            "verify" => array("url" => $urlFile, "type" => "hosted"),
             "issuedOn" => date('Y-m-d'),
         );
 

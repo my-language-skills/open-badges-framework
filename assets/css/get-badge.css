@@ -152,11 +152,12 @@ body {
 #wrap-login {
 }
 
-#wrap-login form {
+#wrap-login .gb-form {
     max-width: 330px;
     padding: 15px;
     margin: 0 auto;
 }
+
 
 .mastfoot {
     color: rgba(255,255,255,.5);
