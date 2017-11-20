@@ -556,6 +556,7 @@ window.onload = function () {
             var theClassId;
             var receivers;
             var info;
+            var evidence;
 
             /* # FIELD ID # */
             fieldId = jQuery("#form_" + currentForm + " #field :selected").val();
@@ -584,6 +585,8 @@ window.onload = function () {
             receivers = jQuery("#mail_" + currentForm).val();
             /* # INFO # */
             info = jQuery("#comment_" + currentForm).val();
+            // EVIDENCE
+            evidence = jQuery("#evidence_" + currentForm).val();
 
             var data = {
                 'action': 'ajaxSendBadge',
@@ -593,6 +596,7 @@ window.onload = function () {
                 'levelId': levelId,
                 'theClassId': theClassId,
                 'info': info,
+                'evidence' : evidence,
                 'receivers': receivers,
             };
 

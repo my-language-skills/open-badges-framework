@@ -18,9 +18,7 @@ use Inc\Utils\Badges;
 
 class GetBadgeTemp extends BaseController {
     const START = 0;
-    const OB_CONF = 1;
-    const OB_DENY = 2;
-    const ERROR = 3;
+    const ERROR = 1;
 
     public $json = null;
     private $badge = null;
@@ -43,12 +41,6 @@ class GetBadgeTemp extends BaseController {
             case self::START:
                 $this->getStartingPage();
                 break;
-            case self::OB_CONF:
-                $this->getOpenBadgesPage(true);
-                break;
-            case self::OB_DENY:
-                $this->getOpenBadgesPage(false);
-                break;
             case self::ERROR:
                 $this->getErrorPage();
                 break;
@@ -69,35 +61,12 @@ class GetBadgeTemp extends BaseController {
             $this->field = get_term($fieldId, Admin::TAX_FIELDS);
             $this->level = get_term($levelId, Admin::TAX_LEVELS);
 
-            if (!($this->badge && $this->field && $this->level)) {
+            if ($this->badge && $this->field && $this->level) {
                 return self::ERROR;
-            } else if ($this->checkOpenBadgesParam()) {
-                return self::OB_CONF;
-            } else if ($this->checkOpenBadgesDeny()) {
-                return self::OB_DENY;
-            } else if ($this->badge && $this->field && $this->level) {
-                return self::START;
             } else {
                 return self::ERROR;
             }
 
-        } else {
-            return false;
-        }
-    }
-
-    private function checkOpenBadgesParam() {
-        if (isset($_GET['access_token']) && isset($_GET['refresh_token']) && isset($_GET['expires']) &&
-            isset($_GET['api_root'])) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    private function checkOpenBadgesDeny() {
-        if (isset($_REQUEST['error'])) {
-            return true;
         } else {
             return false;
         }
@@ -237,95 +206,6 @@ class GetBadgeTemp extends BaseController {
 
         <?php
 
-    }
-
-    private function getOpenBadgesPage($allowed = true) {
-        $this->obf_header()
-
-        ?>
-        <div id="gb-wrap" class="site-wrapper">
-            <div id="wrap-login" class="site-wrapper-inner">
-
-                <div class="cover-container">
-
-                    <header class="masthead clearfix">
-                    </header>
-
-                    <main role="main" class="inner cover">
-                        <?php
-                        if ($allowed) {
-                            // ##### ALLOWED SECTION
-                            ?>
-                            <h1>Just the last step</h1>
-                            <br>
-                            <button id="gb-button" class="btn btn-lg btn-primary">GET THE BADGE</button>
-
-                            <?php
-                        } else {
-                            // ##### DENY SECTION
-                            ?>
-
-                            <h1>Access denied</h1>
-                            <p class="lead">Restart the process to get the badge </p>
-                            <a class="btn btn-lg btn-secondary" href="<?php
-                            $baseUrl = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
-                            $baseUrl = substr($baseUrl, 0, strrpos($baseUrl, '/') + 1);
-
-                            $baseUrl .= Admin::SLUG_GETBADGE .
-                                "/?json=" . $this->json .
-                                "&badge=" . $this->badge->ID .
-                                "&field=" . $this->field->term_id .
-                                "&level=" . $this->level->term_id;
-                            echo $baseUrl;
-                            ?>">Restart</a>
-                            <?php
-                        }
-                        ?>
-                    </main>
-
-                    <footer class="mastfoot">
-                        <div class="inner">
-                            <div id="gb-resp-login"></div>
-                        </div>
-                    </footer>
-
-                </div>
-
-            </div>
-        </div>
-        <?php
-        $this->obf_footer();
-    }
-
-    private function getErrorPage() {
-        $this->obf_header()
-        ?>
-        <div id="gb-wrap" class="site-wrapper">
-            <div id="wrap-login" class="site-wrapper-inner">
-
-                <div class="cover-container">
-
-                    <header class="masthead clearfix">
-                    </header>
-
-                    <main role="main" class="inner cover">
-                        <h1>URL ERROR <?php echo User::getCurrentUser()->user_login; ?></h1>
-                        <p class="lead">There's something wrong with the link,<br> ask to the help desk to fix the
-                            problem!</p>
-                    </main>
-
-                    <footer class="mastfoot">
-                        <div class="inner">
-                            <div id="gb-resp-login"></div>
-                        </div>
-                    </footer>
-
-                </div>
-
-            </div>
-        </div>
-        <?php
-        $this->obf_footer();
     }
 
     private function obf_header() {

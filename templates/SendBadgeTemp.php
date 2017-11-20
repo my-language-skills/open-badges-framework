@@ -92,6 +92,7 @@ final class SendBadgeTemp extends BaseController {
                 }
             } ?>
         </div>
+
         <?php
     }
 
@@ -134,7 +135,7 @@ final class SendBadgeTemp extends BaseController {
                         <div class="section-container">
                             <div class="title-form"><h2>Check the description:</h2></div>
                             <?php self::displayLeadInfo("This is the text of the badge."); ?>
-                            <div id="desc_<?php echo $form; ?>"></div>
+                            <div id="desc_<?php echo $form; ?>" class="desc-badge"></div>
                         </div>
                     </section>
 
@@ -173,7 +174,10 @@ final class SendBadgeTemp extends BaseController {
                             <div class="title-form"><h2>Addition information:</h2></div>
                             <?php self::displayLeadInfo("Write some information that will be showed in the description of badge"); ?>
                             <textarea id="comment_<?php echo $form; ?>" placeholder="More than 10 letters ..."
-                                      name="comment" rows="10" cols="80"></textarea>
+                                      name="comment" rows="5" cols="80"></textarea>
+                            <br><br>
+                            <?php self::displayLeadInfo("Link of the document describing the work that the recipient did to earn the badge"); ?>
+                            <input id='evidence_<?php echo $form; ?>' name='mail' class='mail' style='width: 400px; text-align: center;'>
                         </div>
                     </section>
                 </div>
@@ -190,7 +194,7 @@ final class SendBadgeTemp extends BaseController {
      * @since  x.x.x
      */
     private static function displayLeadInfo($message) {
-        echo '<div class="lead">' . $message . '</div> <hr class="hr-sb">';
+        echo '<div class="info-field"> <div class="lead">' . $message . '</div> <hr class="hr-sb"> </div>';
     }
 
     /**

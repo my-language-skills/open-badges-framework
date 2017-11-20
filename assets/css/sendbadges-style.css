@@ -39,7 +39,6 @@
     margin-right: auto;
 }
 
-
 /* ==================================
     Style the TAB
    ================================== */
@@ -165,10 +164,10 @@ div.tab button.active {
 
 .wizard > .steps a {
     cursor: pointer !important;
-    outline:none;
-    outline-style:none;
-    box-shadow:none;
-    border-color:transparent;
+    outline: none;
+    outline-style: none;
+    box-shadow: none;
+    border-color: transparent;
     display: block;
     width: auto;
     border: 1px solid #b4b9be;
@@ -179,8 +178,6 @@ div.tab button.active {
     -moz-border-radius: 5px;
     border-radius: 5px;
 }
-
-
 
 .wizard > .steps .disabled a,
 .wizard > .steps .disabled a:hover,
@@ -333,7 +330,7 @@ section.current {
     border-radius: 10px;
 }
 
-.title-form h2{
+.title-form h2 {
     font-size: 25px;
     font-weight: 300;
     color: #474747;
@@ -346,8 +343,13 @@ section.current {
     background-color: whitesmoke;
 }
 
-.hr-sb{
-    margin: 20px auto 30px auto;
+.info-field {
+    width: 80%;
+    margin: auto;
+}
+
+.hr-sb {
+    margin: 10px auto 10px auto;
     width: 50px;
     background-color: whitesmoke;
 }
@@ -386,17 +388,14 @@ section.current {
 
 /* ### SELECT LEVEL ###*/
 
-
-
-
 /* ### KIND of BADGE ### */
 
-.cont-badge-sb{
+.cont-badge-sb {
     display: inline-block;
     margin: 10px 20px;
 }
 
-.badge-cont > input{
+.badge-cont > input {
     visibility: hidden;
     position: absolute;
 }
@@ -412,6 +411,11 @@ section.current {
 
 .badge-cont > input:checked + img { /* IMAGE STYLES */
     box-shadow: 0 0 0px 4px #007bff;
+}
+
+.desc-badge {
+    width: 80%;
+    margin: auto;
 }
 
 /* ### CLASS ### */
@@ -471,8 +475,6 @@ section.current {
     background-color: #fff;
 }
 
-
-
 /* ### Message ### */
 
 .message {
@@ -492,6 +494,6 @@ section.current {
     border-left-color: #46b450;
 }
 
-.msg-insuccess{
+.msg-insuccess {
     border-left-color: #b42300;
 }

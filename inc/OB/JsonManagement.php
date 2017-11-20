@@ -33,6 +33,7 @@ class JsonManagement extends BaseController {
             "badge" => $infoUrl,
             "verify" => array("url" => $urlFile, "type" => "hosted"),
             "issuedOn" => date('Y-m-d'),
+            "evidence" => $this->badgeInfo['evidence']
         );
 
         return file_put_contents($pathFile, json_encode($assertion, JSON_UNESCAPED_SLASHES)) != false ? $hashName : null;
@@ -44,24 +45,22 @@ class JsonManagement extends BaseController {
         $urlFile = parent::getJsonFolderUrl() . $hashFile;
         $issuerUrl = $this->createIssuerInfo($hashName);
 
-        /*
-        $desc =
-            "Field: " . $this->badgeInfo['field'] .
-            ", Level: " . $this->badgeInfo['level'] .
-            ", Description: " . $this->badgeInfo['description'] .
-            ", Info: " . $this->badgeInfo['info'];
-        */
+        $endash = html_entity_decode('&#x2013;', ENT_COMPAT, 'UTF-8');
 
-        $desc = $this->badgeInfo['description'];
+        $description =
+            "FIELD: " . $this->badgeInfo['field'] . "  $endash  " .
+            "LEVEL: " . $this->badgeInfo['level'] . "  $endash  " .
+            "DESCRIPTION: " . $this->badgeInfo['description'] . "  $endash  " .
+            "Additional information: " . $this->badgeInfo['info'];
+
 
         $jsonInfo = array(
             "name" => $this->badgeInfo['name'] . " " . $this->badgeInfo['field'],
-            "description" => $desc,
+            "description" => $description,
             "image" => $this->badgeInfo['image'],
-            "field" => $this->badgeInfo['field'],
-            "level" => $this->badgeInfo['level'],
-            "criteria" => "http://www.linkOfTheBadgeInfo.ex",
-            "issuer" => $issuerUrl
+            "criteria" => $this->badgeInfo['link'],
+            "tags" => $this->badgeInfo['tags'],
+            "issuer" => $issuerUrl,
         );
 
         return file_put_contents($pathFile, json_encode($jsonInfo, JSON_UNESCAPED_SLASHES)) != false ? $urlFile : null;
@@ -72,9 +71,8 @@ class JsonManagement extends BaseController {
         $pathFile = parent::getJsonFolderPath() . $hashFile;
         $urlFile = parent::getJsonFolderUrl() . $hashFile;
 
-
         $jsonInfo = array(
-            "name" =>  "Excellent Badge Issuer",
+            "name" => "Excellent Badge Issuer",
             "image" => "http://student.lvps84-39-103-248.mammuts-servidor.es/wp-content/uploads/2017/10/badges_for_Languages-badge-white.png",
             "url" => "https://issuersite.org"
         );
@@ -84,13 +82,13 @@ class JsonManagement extends BaseController {
 
     public static function getJsonObject($jsonName) {
         $baseController = new BaseController();
-        $json = file_get_contents($baseController->getJsonFolderPath().$jsonName.'.json');
+        $json = file_get_contents($baseController->getJsonFolderPath() . $jsonName . '.json');
         return json_decode($json, true);
     }
 
     public static function getJsonUrl($jsonName) {
         $baseController = new BaseController();
-        return $baseController->getJsonFolderUrl().$jsonName.'.json';
+        return $baseController->getJsonFolderUrl() . $jsonName . '.json';
     }
 
 }

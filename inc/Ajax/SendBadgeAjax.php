@@ -145,104 +145,12 @@ class SendBadgeAjax extends BaseController {
         $theClassId = $_POST['theClassId'];
         $receivers = $_POST['receivers'];
         $info = $_POST['info'];
+        $evidence = $_POST['evidence'];
 
-        $badge = new SendBadge($badgeId, $fieldId, $levelId, $info, $receivers, $theClassId);
+        $badge = new SendBadge($badgeId, $fieldId, $levelId, $info, $receivers, $theClassId, $evidence);
+
         echo $badge->sendBadge();
         wp_die();
-    }
-
-    /**
-     * ...
-     *
-     * @author Alessandro RICCARDI
-     * @since  x.x.x
-     */
-    function send_message_badge() {
-
-        /* Variables */
-        $language = $_POST['language'];
-        $level = $_POST['level'];
-        $badge_name = $_POST['badge_name'];
-        $language_description = $_POST['language_description'];
-        $listings_class = $_POST['class_student'];
-        $mails = $_POST['mail'];
-        $comment = $_POST['comment'];
-        $sender = $_POST['sender'];
-        $curForm = $_POST['curForm'];
-
-        $class = null;
-        $notsent = array();
-        $badge = null;
-
-        //User default class
-        $teacher_information = get_user_by('email', $sender);
-        $default_class = get_class_teacher($teacher_information->user_login);
-        /* JSON file */
-        $url_json_files = content_url('uploads/badges-issuer/json/');
-        $path_dir_json_files = plugin_dir_path(dirname(__FILE__)) . '../../../uploads/badges-issuer/json/';
-        /* Check if there are sufficient param */
-        if (!isset($language) || !isset($level) || !isset($badge_name) ||
-            !isset($language_description) || !isset($comment) || !isset($sender)) {
-
-            echo "No enough information";
-
-        } else {
-
-            /* Get badge CERTIFICATION */
-            $badge_others_items = get_badge($badge_name, $language_description);
-            $certification = get_post_meta($badge_others_items['id'], '_certification', true);
-
-            /* Set the email(s) */
-            if (isset($mails)) {
-                $mails_list = explode("\n", $mails);
-            } else {
-                $mails_list[0] = $sender;
-            }
-
-            /* Set the right class */
-            if (isset($listings_class)) {
-                $class = get_class_by_id($listings_class);
-            } elseif (isset($default_class)) {
-                $class = $default_class;
-            }
-
-            /* Creation of the badge */
-            $badge = new SendBadge($badge_others_items['name'], $level, $language, $certification, $comment,
-                $badge_others_items['description'], $language_description, $badge_others_items['image'],
-                $url_json_files, $path_dir_json_files);
-
-            /* Sending all the email */
-            foreach ($mails_list as $mail) {
-
-                /* operation for system not unix */
-                $mail = str_replace("\r", "", $mail);
-
-                $badge->create_json_files($mail);
-
-                //SENDING THE EMAIL
-                if (!$badge->send_mail($mail, $class->ID)) {
-                    $notsent[] = $mail;
-                } else {
-                    if ($curForm == "a") {
-                        $badge->add_student_to_class_zero($mail);
-                    } else {
-                        $badge->add_student_to_class_zero($mail);
-                        $badge->add_student_to_class($mail, $class->ID);
-                        $badge->add_badge_to_user_profile($mail, $_POST['sender'], $class->ID);
-                    }
-                }
-            }
-
-            if (sizeof($notsent) > 0) {
-                $message = "Badge not sent to these persons : ";
-                foreach ($notsent as $notsent_mail) {
-                    $message = $message . $notsent_mail . " ";
-                }
-                echo($message);
-            } else {
-                echo("Badge ($badge->name) sent to all the persons and stored in the class $class->post_title.");
-            }
-        }
     }
 
 }

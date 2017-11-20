@@ -20,30 +20,38 @@ class SendBadge extends BaseController {
     private $jsonMg = null;
     private $receivers = null;
     private $class = null;
+    private $evidence = null;
 
     /**
      * The constructor of the Badge object.
      *
      * @author   Alessandro RICCARDI
      * @since    x.x.x
-     *
      */
-    function __construct($id, $fieldId, $levelId, $info, $receivers, $class = null) {
+    function __construct($id, $fieldId, $levelId, $info, $receivers, $class = '', $evidence = '') {
         parent::__construct();
         $badges = new Badges();
         $badge = $badges->getBadgeById($id);
+
+        $field = get_term($fieldId, Admin::TAX_FIELDS);
+        $level = get_term($levelId, Admin::TAX_LEVELS);
+
         $this->badgeInfo = array(
             'id' => $badge->ID,
             'name' => $badge->post_name,
-            'fieldId' => $fieldId,
-            'levelId' => $levelId,
+            'field' => $field->name,
+            'level' => $level->name,
             'description' => $badge->post_content,
-            'info' => $info,
+            'link' => get_permalink($badge),
             'image' => get_the_post_thumbnail_url($badge->ID),
+            'tags' => array($field->name, $level->name),
+            'info' => $info,
+            'evidence' => $evidence
         );
 
         $this->receivers = $receivers;
         $this->class = $class;
+        $this->evidence = $evidence;
 
         $this->jsonMg = new JsonManagement($this->badgeInfo);
     }
@@ -86,7 +94,6 @@ class SendBadge extends BaseController {
         return "success";
     }
 
-
     private function getBodyEmail($hash_file) {
         $urlGetBadge = home_url('/' . Admin::SLUG_GETBADGE . '/');
 
@@ -111,5 +118,4 @@ class SendBadge extends BaseController {
                     ";
         return $body;
     }
-
 }

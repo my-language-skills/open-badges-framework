@@ -13,7 +13,18 @@ namespace templates;
 class SettingsTemp {
     const OPTION_GROUP = "option_group";
     const OPTION_NAME = "option_name";
-    const SECTION_NAME = "setting_admin";
+    // SETTINGS PAGE
+    const NAME_SETTINGS_PAGE = "setting_page";
+    //SECTIONS
+    CONST COMPANY_PROFILE_SECT = 'company_profile_sect';
+    CONST PAGE_REF_SECT = 'page_link_sect';
+    // FIELDS
+    const SITE_NAME_FIELD = "site_name";
+    const IMAGE_URL_FIELD = 'image_url';
+    const WEBSITE_URL_FIELD = 'website_url';
+    const TELEPHONE_FIELD = 'telephone';
+    const DESCRIPTION_FIELD = 'information';
+
 
     /**
      * Holds the values to be used in the fields callbacks
@@ -25,6 +36,12 @@ class SettingsTemp {
      */
     public function __construct() {
         add_action('admin_init', array($this, 'page_init'));
+
+        $defaults = array(
+            self::SITE_NAME_FIELD => get_bloginfo('name'),
+            self::WEBSITE_URL_FIELD => get_bloginfo('url'),
+        );
+        $options = wp_parse_args(get_option(self::OPTION_NAME), $defaults);
     }
 
     /**
@@ -38,9 +55,10 @@ class SettingsTemp {
             <h1>Settings</h1>
             <form method="post" action="options.php">
                 <?php
+                wp_enqueue_media();
                 // This prints out all hidden setting fields
                 settings_fields(self::OPTION_GROUP);
-                do_settings_sections(self::SECTION_NAME);
+                do_settings_sections(self::NAME_SETTINGS_PAGE);
                 submit_button();
                 ?>
             </form>
@@ -58,76 +76,82 @@ class SettingsTemp {
             array($this, 'sanitize') // Sanitize
         );
 
-        $settings_section_id = 'general_information_id';
         /* #GENERAL INFORMATION________________________________ */
         add_settings_section(
-            $settings_section_id, // ID
-            'General information', // Title
+            self::COMPANY_PROFILE_SECT, // ID
+            'Company Profile', // Title
             array($this, 'print_section_info'), // Callback
-            self::SECTION_NAME // Page
+            self::NAME_SETTINGS_PAGE // Page
         );
         /* --> Site Name______________ */
         add_settings_field(
-            'site_name', // ID
+            '' . self::SITE_NAME_FIELD . '', // ID
             'Site Name', // Title
             array($this, 'siteNameCallback'), // Callback
-            self::SECTION_NAME, // Page
-            $settings_section_id // Section
+            self::NAME_SETTINGS_PAGE, // Page
+            self::COMPANY_PROFILE_SECT // Section
         );
 
         /* --> Image URL______________ */
         add_settings_field(
-            'image_url',
-            'Image URL',
+            '' . self::IMAGE_URL_FIELD . '',
+            'Image of the Entity',
             array($this, 'imageUrlCallback'),
-            self::SECTION_NAME,
-            $settings_section_id
+            self::NAME_SETTINGS_PAGE,
+            self::COMPANY_PROFILE_SECT
         );
 
         /* --> WebSite URL______________ */
         add_settings_field(
-            'website_url',
+            self::WEBSITE_URL_FIELD,
             'Website URL',
             array($this, 'websiteUrlCallback'),
-            self::SECTION_NAME,
-            $settings_section_id
+            self::NAME_SETTINGS_PAGE,
+            self::COMPANY_PROFILE_SECT
         );
 
-        /* --> Backpack Email Account____ */
+        /* --> Telephone______________ */
         add_settings_field(
-            'backpack_email_account',
-            'Backpack Email Account',
-            array($this, 'backpackEmailAccountCallback'),
-            self::SECTION_NAME,
-            $settings_section_id
+            self::TELEPHONE_FIELD,
+            'Telephone',
+            array($this, 'telephoneCallback'),
+            self::NAME_SETTINGS_PAGE,
+            self::COMPANY_PROFILE_SECT
         );
 
+        /* --> Description______________ */
+        add_settings_field(
+            self::DESCRIPTION_FIELD,
+            'Description',
+            array($this, 'descriptionCallback'),
+            self::NAME_SETTINGS_PAGE,
+            self::COMPANY_PROFILE_SECT
+        );
 
         /* #PAGES LINKS_________________________________________ */
-        $settings_section_id = 'pages_links_id';
         add_settings_section(
-            $settings_section_id, // ID
+            self::PAGE_REF_SECT, // ID
             'Pages Links', // Title
             array($this, 'printPageLinksInfo'), // Callback
-            self::SECTION_NAME // Page
+            self::NAME_SETTINGS_PAGE // Page
         );
 
         /* --> Became Premium Page____*/
         add_settings_field(
             'became_premium_page', // ID
-            'Became Premium Page', // Title
+            'Became Premium', // Title
             array($this, 'becamePremiumPageCallback'), // Callback
-            self::SECTION_NAME, // Page
-            $settings_section_id
+            self::NAME_SETTINGS_PAGE, // Page
+            self::PAGE_REF_SECT
         );
 
         /* --> Add Class Page________ */
         add_settings_field(
             'add_class_page',
-            'Add Class Page',
+            'Add Class',
             array($this, 'addClassPageCallback'),
-            self::SECTION_NAME,
-            $settings_section_id
+            self::NAME_SETTINGS_PAGE,
+            self::PAGE_REF_SECT
         );
 
         /* --> Login Page____________ */
@@ -135,26 +159,26 @@ class SettingsTemp {
             'login_page',
             'Login page',
             array($this, 'loginPageCallback'),
-            self::SECTION_NAME,
-            $settings_section_id
+            self::NAME_SETTINGS_PAGE,
+            self::PAGE_REF_SECT
         );
 
         /* --> Register Page__________ */
         add_settings_field(
             'register_page',
-            'Register Page',
+            'Register',
             array($this, 'registerPageCallback'),
-            self::SECTION_NAME,
-            $settings_section_id
+            self::NAME_SETTINGS_PAGE,
+            self::PAGE_REF_SECT
         );
 
         /* --> Register Page__________ */
         add_settings_field(
             'get_badge_page',
-            'Get Badge Page',
+            'Get Badge',
             array($this, 'getBadgePageCallback'),
-            self::SECTION_NAME,
-            $settings_section_id
+            self::NAME_SETTINGS_PAGE,
+            self::PAGE_REF_SECT
         );
     }
 
@@ -167,17 +191,29 @@ class SettingsTemp {
      */
     public function sanitize($input) {
         $new_input = array();
-        if (isset($input['site_name']))
-            $new_input['site_name'] = sanitize_text_field($input['site_name']);
+        if (isset($input[self::SITE_NAME_FIELD]))
+            $new_input[self::SITE_NAME_FIELD] =
+                sanitize_text_field(
+                    $input[self::SITE_NAME_FIELD] && $input[self::SITE_NAME_FIELD] != '' ?
+                        $input[self::SITE_NAME_FIELD] : get_bloginfo('name')
+                );
 
-        if (isset($input['image_url']))
-            $new_input['image_url'] = sanitize_text_field($input['image_url']);
 
-        if (isset($input['website_url']))
-            $new_input['website_url'] = sanitize_text_field($input['website_url']);
+        if (isset($input[self::IMAGE_URL_FIELD]))
+            $new_input[self::IMAGE_URL_FIELD] = sanitize_text_field($input[self::IMAGE_URL_FIELD]);
 
-        if (isset($input['backpack_email_account']))
-            $new_input['backpack_email_account'] = sanitize_text_field($input['backpack_email_account']);
+        if (isset($input[self::WEBSITE_URL_FIELD]))
+            $new_input[self::WEBSITE_URL_FIELD] =
+                sanitize_text_field(
+                    $input[self::WEBSITE_URL_FIELD] && $input[self::WEBSITE_URL_FIELD] != '' ?
+                        $input[self::WEBSITE_URL_FIELD] : get_bloginfo('url')
+                );
+
+        if (isset($input[self::TELEPHONE_FIELD]))
+            $new_input[self::TELEPHONE_FIELD] = sanitize_text_field($input[self::TELEPHONE_FIELD]);
+
+        if (isset($input[self::DESCRIPTION_FIELD]))
+            $new_input[self::DESCRIPTION_FIELD] = sanitize_text_field($input[self::DESCRIPTION_FIELD]);
 
 
         if (isset($input['became_premium_page']))
@@ -202,7 +238,7 @@ class SettingsTemp {
      * Print the Section text
      */
     public function print_section_info() {
-        print 'Explanation of this fields:';
+        print 'A Profile is a collection of information that describes the entity or organization using Open Badges.';
     }
 
     /**
@@ -217,9 +253,11 @@ class SettingsTemp {
      */
     public function siteNameCallback() {
         printf(
-            '<input type="text" id="site_name" name="%s[site_name]" value="%s" />',
+            '<input id="%s" class="regular-text" type="text" name="%s[%s]" value="%s" />',
+            self::SITE_NAME_FIELD,
             self::OPTION_NAME,
-            isset($this->options['site_name']) ? esc_attr($this->options['site_name']) : ''
+            self::SITE_NAME_FIELD,
+            isset($this->options[self::SITE_NAME_FIELD]) && $this->options[self::SITE_NAME_FIELD] != '' ? esc_attr($this->options[self::SITE_NAME_FIELD]) : ''
         );
     }
 
@@ -227,11 +265,34 @@ class SettingsTemp {
      * Get the settings option array and print one of its values
      */
     public function imageUrlCallback() {
-        printf(
-            '<input type="text" id="id_number" name="%s[image_url]" value="%s" />',
-            self::OPTION_NAME,
-            isset($this->options['image_url']) ? esc_attr($this->options['image_url']) : ''
-        );
+
+        $name = self::OPTION_NAME . "[" . self::IMAGE_URL_FIELD . "]";
+        $value = isset($this->options[self::IMAGE_URL_FIELD]) ? esc_attr($this->options[self::IMAGE_URL_FIELD]) : '';
+        $core = '';
+        $image_size = 'full'; // it would be better to use thumbnail size here (150x150 or so)
+        $display = 'none'; // display state ot the "Remove image" button
+
+        if ($image_attributes = wp_get_attachment_image_src($value, $image_size)) {
+            // $image_attributes[0] - image URL
+            // $image_attributes[1] - image width
+            // $image_attributes[2] - image height
+
+            $core = '<a href="#" class="upload-image-obf-settings">
+                        <img class="image-setting-prev" src="' . $image_attributes[0] . '" />
+                     </a>';
+            $display = 'inline-block';
+        } else {
+            $core = '<a href="#" class="upload-image-obf-settings button">Upload image</a>';
+        }
+
+        echo '<div>
+                ' . $core . '
+                <input type="hidden" name="' . $name . '" id="' . $name . '" value="' . $value . '" />
+                <a href="#" class="remove-image-obf-settings" style="display: inline-block; display:' . $display . '">Remove image</a>
+              </div>';
+        echo '<p class="description" id="tagline-description">In a few words, explain what this site is about.</p>';
+
+
     }
 
     /**
@@ -239,20 +300,37 @@ class SettingsTemp {
      */
     public function websiteUrlCallback() {
         printf(
-            '<input type="text" id="id_number" name="%s[website_url]" value="%s" />',
+            '<input id="%s" class="regular-text" type="text" name="%s[%s]" value="%s"/>',
+            self::WEBSITE_URL_FIELD,
             self::OPTION_NAME,
-            isset($this->options['website_url']) ? esc_attr($this->options['website_url']) : ''
+            self::WEBSITE_URL_FIELD,
+            isset($this->options[self::WEBSITE_URL_FIELD]) && $this->options[self::WEBSITE_URL_FIELD] != '' ? esc_attr($this->options[self::WEBSITE_URL_FIELD]) : ''
         );
     }
 
     /**
      * Get the settings option array and print one of its values
      */
-    public function backpackEmailAccountCallback() {
+    public function telephoneCallback() {
         printf(
-            '<input type="text" id="id_number" name="%s[backpack_email_account]" value="%s" />',
+            '<input id="%s" class="" type="text" name="%s[%s]" value="%s"/>',
+            self::TELEPHONE_FIELD,
             self::OPTION_NAME,
-            isset($this->options['backpack_email_account']) ? esc_attr($this->options['backpack_email_account']) : ''
+            self::TELEPHONE_FIELD,
+            isset($this->options[self::TELEPHONE_FIELD]) && $this->options[self::TELEPHONE_FIELD] != '' ? esc_attr($this->options[self::TELEPHONE_FIELD]) : ''
+        );
+    }
+
+    /**
+     * Get the settings option array and print one of its values
+     */
+    public function descriptionCallback() {
+        printf(
+            '<textarea id="%s" class="regular-text" type="text" name="%s[%s]" rows="10" cols="50"> %s </textarea>',
+            self::DESCRIPTION_FIELD,
+            self::OPTION_NAME,
+            self::DESCRIPTION_FIELD,
+            isset($this->options[self::DESCRIPTION_FIELD]) && $this->options[self::DESCRIPTION_FIELD] != '' ? esc_attr($this->options[self::DESCRIPTION_FIELD]) : ''
         );
     }
 
