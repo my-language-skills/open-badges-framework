@@ -62,7 +62,7 @@ class GetBadgeTemp extends BaseController {
             $this->level = get_term($levelId, Admin::TAX_LEVELS);
 
             if ($this->badge && $this->field && $this->level) {
-                return self::ERROR;
+                return self::START;
             } else {
                 return self::ERROR;
             }
@@ -206,6 +206,37 @@ class GetBadgeTemp extends BaseController {
 
         <?php
 
+    }
+
+    private function getErrorPage() {
+        $this->obf_header()
+        ?>
+        <div id="gb-wrap" class="site-wrapper">
+            <div id="wrap-login" class="site-wrapper-inner">
+
+                <div class="cover-container">
+
+                    <header class="masthead clearfix">
+                    </header>
+
+                    <main role="main" class="inner cover">
+                        <h1>URL ERROR <?php echo User::getCurrentUser()->user_login; ?></h1>
+                        <p class="lead">There's something wrong with the link,<br> ask to the help desk to fix the
+                            problem!</p>
+                    </main>
+
+                    <footer class="mastfoot">
+                        <div class="inner">
+                            <div id="gb-resp-login"></div>
+                        </div>
+                    </footer>
+
+                </div>
+
+            </div>
+        </div>
+        <?php
+        $this->obf_footer();
     }
 
     private function obf_header() {

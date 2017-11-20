@@ -11,6 +11,8 @@
 namespace inc\OB;
 
 use Inc\Base\BaseController;
+use Inc\Pages\Admin;
+use templates\SettingsTemp;
 
 class JsonManagement extends BaseController {
     private $badgeInfo;
@@ -71,10 +73,13 @@ class JsonManagement extends BaseController {
         $pathFile = parent::getJsonFolderPath() . $hashFile;
         $urlFile = parent::getJsonFolderUrl() . $hashFile;
 
+        $options = get_option(SettingsTemp::OPTION_NAME);
         $jsonInfo = array(
-            "name" => "Excellent Badge Issuer",
-            "image" => "http://student.lvps84-39-103-248.mammuts-servidor.es/wp-content/uploads/2017/10/badges_for_Languages-badge-white.png",
-            "url" => "https://issuersite.org"
+            "name" => isset($options[SettingsTemp::SITE_NAME_FIELD]) ? $options[SettingsTemp::SITE_NAME_FIELD] : '',
+            "url" => isset($options[SettingsTemp::WEBSITE_URL_FIELD]) ? $options[SettingsTemp::WEBSITE_URL_FIELD] : '',
+            "description" => isset($options[SettingsTemp::DESCRIPTION_FIELD]) ? $options[SettingsTemp::DESCRIPTION_FIELD] : '',
+            "email" => isset($options[SettingsTemp::EMAIL_FIELD]) ? $options[SettingsTemp::EMAIL_FIELD] : '',
+            "image" => isset($options[SettingsTemp::IMAGE_URL_FIELD]) ? $options[SettingsTemp::IMAGE_URL_FIELD] : '',
         );
 
         return file_put_contents($pathFile, json_encode($jsonInfo, JSON_UNESCAPED_SLASHES)) != false ? $urlFile : null;

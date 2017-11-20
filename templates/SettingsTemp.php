@@ -19,11 +19,12 @@ class SettingsTemp {
     CONST COMPANY_PROFILE_SECT = 'company_profile_sect';
     CONST PAGE_REF_SECT = 'page_link_sect';
     // FIELDS
-    const SITE_NAME_FIELD = "site_name";
-    const IMAGE_URL_FIELD = 'image_url';
-    const WEBSITE_URL_FIELD = 'website_url';
-    const TELEPHONE_FIELD = 'telephone';
-    const DESCRIPTION_FIELD = 'information';
+    const SITE_NAME_FIELD = "site_name_field";
+    const WEBSITE_URL_FIELD = 'website_url_field';
+    const IMAGE_URL_FIELD = 'image_url_field';
+    const TELEPHONE_FIELD = 'telephone_field';
+    const DESCRIPTION_FIELD = 'information_field';
+    const EMAIL_FIELD = 'email_field';
 
 
     /**
@@ -41,7 +42,8 @@ class SettingsTemp {
             self::SITE_NAME_FIELD => get_bloginfo('name'),
             self::WEBSITE_URL_FIELD => get_bloginfo('url'),
         );
-        $options = wp_parse_args(get_option(self::OPTION_NAME), $defaults);
+        
+        //update_option(self::OPTION_NAME, $defaults);
     }
 
     /**
@@ -92,15 +94,6 @@ class SettingsTemp {
             self::COMPANY_PROFILE_SECT // Section
         );
 
-        /* --> Image URL______________ */
-        add_settings_field(
-            '' . self::IMAGE_URL_FIELD . '',
-            'Image of the Entity',
-            array($this, 'imageUrlCallback'),
-            self::NAME_SETTINGS_PAGE,
-            self::COMPANY_PROFILE_SECT
-        );
-
         /* --> WebSite URL______________ */
         add_settings_field(
             self::WEBSITE_URL_FIELD,
@@ -127,6 +120,28 @@ class SettingsTemp {
             self::NAME_SETTINGS_PAGE,
             self::COMPANY_PROFILE_SECT
         );
+
+        /* --> Image URL______________ */
+        add_settings_field(
+            '' . self::IMAGE_URL_FIELD . '',
+            'Image of the Entity',
+            array($this, 'imageUrlCallback'),
+            self::NAME_SETTINGS_PAGE,
+            self::COMPANY_PROFILE_SECT
+        );
+
+        /* --> Email______________ */
+        add_settings_field(
+            self::EMAIL_FIELD,
+            'Email',
+            array($this, 'emailCallback'),
+            self::NAME_SETTINGS_PAGE,
+            self::COMPANY_PROFILE_SECT
+        );
+
+
+
+
 
         /* #PAGES LINKS_________________________________________ */
         add_settings_section(
@@ -214,6 +229,9 @@ class SettingsTemp {
 
         if (isset($input[self::DESCRIPTION_FIELD]))
             $new_input[self::DESCRIPTION_FIELD] = sanitize_text_field($input[self::DESCRIPTION_FIELD]);
+
+        if (isset($input[self::EMAIL_FIELD]))
+            $new_input[self::EMAIL_FIELD] = sanitize_text_field($input[self::EMAIL_FIELD]);
 
 
         if (isset($input['became_premium_page']))
@@ -331,6 +349,19 @@ class SettingsTemp {
             self::OPTION_NAME,
             self::DESCRIPTION_FIELD,
             isset($this->options[self::DESCRIPTION_FIELD]) && $this->options[self::DESCRIPTION_FIELD] != '' ? esc_attr($this->options[self::DESCRIPTION_FIELD]) : ''
+        );
+    }
+
+    /**
+     * Get the settings option array and print one of its values
+     */
+    public function emailCallback() {
+        printf(
+            '<input id="%s" class="regular-text" type="text" name="%s[%s]" value="%s"/>',
+            self::EMAIL_FIELD,
+            self::OPTION_NAME,
+            self::EMAIL_FIELD,
+            isset($this->options[self::EMAIL_FIELD]) && $this->options[self::EMAIL_FIELD] != '' ? esc_attr($this->options[self::EMAIL_FIELD]) : ''
         );
     }
 

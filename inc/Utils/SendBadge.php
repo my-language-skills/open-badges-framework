@@ -18,6 +18,9 @@ use Inc\Utils\Badges;
 class SendBadge extends BaseController {
     private $badgeInfo = null;
     private $jsonMg = null;
+    private $badge = null;
+    private $field = null;
+    private $level = null;
     private $receivers = null;
     private $class = null;
     private $evidence = null;
@@ -31,20 +34,20 @@ class SendBadge extends BaseController {
     function __construct($id, $fieldId, $levelId, $info, $receivers, $class = '', $evidence = '') {
         parent::__construct();
         $badges = new Badges();
-        $badge = $badges->getBadgeById($id);
+        $this->badge = $badges->getBadgeById($id);
 
-        $field = get_term($fieldId, Admin::TAX_FIELDS);
-        $level = get_term($levelId, Admin::TAX_LEVELS);
+        $this->field = get_term($fieldId, Admin::TAX_FIELDS);
+        $this->level = get_term($levelId, Admin::TAX_LEVELS);
 
         $this->badgeInfo = array(
-            'id' => $badge->ID,
-            'name' => $badge->post_name,
-            'field' => $field->name,
-            'level' => $level->name,
-            'description' => $badge->post_content,
-            'link' => get_permalink($badge),
-            'image' => get_the_post_thumbnail_url($badge->ID),
-            'tags' => array($field->name, $level->name),
+            'id' => $this->badge->ID,
+            'name' => $this->badge->post_name,
+            'field' => $this->field->name,
+            'level' => $this->level->name,
+            'description' => $this->badge->post_content,
+            'link' => get_permalink($this->badge),
+            'image' => get_the_post_thumbnail_url($this->badge->ID),
+            'tags' => array($this->field->name, $this->level->name),
             'info' => $info,
             'evidence' => $evidence
         );
@@ -58,7 +61,7 @@ class SendBadge extends BaseController {
 
     public function sendBadge() {
 
-        $subject = "Badge: $this->badgeId";
+        $subject = "Badge: " . $this->badge->post_name . " Field: " . $this->field->name;
         //Setting headers so it"s a MIME mail and a html
         $headers = "From: badges4languages <mylanguageskills@hotmail.com>\n";
         $headers .= "MIME-Version: 1.0\n";
@@ -100,9 +103,9 @@ class SendBadge extends BaseController {
         $badgeLink =
             $urlGetBadge .
             "?json=$hash_file" .
-            "&badge=" . $this->badgeInfo['id'] .
-            "&field=" . $this->badgeInfo['fieldId'] .
-            "&level=" . $this->badgeInfo['levelId'];
+            "&badge=" . $this->badge->ID .
+            "&field=" . $this->field->term_id .
+            "&level=" . $this->level->term_id;
 
         $body = "
                 <html>
