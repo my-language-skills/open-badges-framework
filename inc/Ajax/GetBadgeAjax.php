@@ -27,8 +27,10 @@ class GetBadgeAjax extends BaseController {
     function ajaxGbShowLogin() {
         $json = $_POST['json'];
         $getBadgeTemp = GetBadgeTemp::getInstance();
+        $jsonFile = JsonManagement::getJsonObject($json);
+        $email = $jsonFile["recipient"]['identity'];
 
-        if(wp_get_current_user()->ID){
+        if(wp_get_current_user()->user_email === $email){
             $getBadgeTemp = GetBadgeTemp::getInstance();
             echo $getBadgeTemp->showOpenBadgesSendIssuer();
         } else {
@@ -36,6 +38,15 @@ class GetBadgeAjax extends BaseController {
             $email = $jsonFile["recipient"]['identity'];
             echo $getBadgeTemp->showTheLoginContent($email);
         }
+
+        wp_die();
+    }
+
+    function ajaxGbShowRegister() {
+        $email = $_POST['user_email' ];
+        $getBadgeTemp = GetBadgeTemp::getInstance();
+
+        echo $getBadgeTemp->showRegisterPage($email);
 
         wp_die();
     }
@@ -48,7 +59,7 @@ class GetBadgeAjax extends BaseController {
      */
     function ajaxGbLogin() {
         $creds = array(
-            'user_login'    => $_POST['user_login' ],
+            'user_login'    => $_POST['user_email' ],
             'user_password' => $_POST['user_password' ],
             'remember'      => $_POST['remember' ]
         );

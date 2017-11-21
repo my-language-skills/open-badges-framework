@@ -3,6 +3,10 @@ body:after, body:before {
     all: unset !important;
 }
 
+html{
+    background-color: rgb(193, 193, 193);
+}
+
 html,
 body {
     height: 100%;
@@ -149,6 +153,11 @@ body {
 }
 
 
+/*
+ * Login
+ */
+
+
 #wrap-login {
 }
 
@@ -157,6 +166,14 @@ body {
     padding: 15px;
     margin: 0 auto;
 }
+
+.register-cont-link {
+    margin-top:5px;
+}
+
+/*
+ * Register
+ */
 
 
 .mastfoot {
@@ -171,6 +188,9 @@ body {
     width: 200px;
 }
 
+#wrap-login .cover.registration {
+    text-align: left;
+}
 
 /*
  * Footer
@@ -215,4 +235,18 @@ body {
     .cover-container {
         width: 50rem;
     }
+}
+
+
+
+/*
+ * VALIDATION fields
+ */
+
+.is-invalid {
+    border-color: #dc3545 !important;
+}
+
+.is-valid {
+    border-color: #28a745 !important;
 }

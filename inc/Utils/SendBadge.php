@@ -41,7 +41,7 @@ class SendBadge extends BaseController {
 
         $this->badgeInfo = array(
             'id' => $this->badge->ID,
-            'name' => $this->badge->post_name,
+            'name' => $this->badge->post_title,
             'field' => $this->field->name,
             'level' => $this->level->name,
             'description' => $this->badge->post_content,
@@ -61,7 +61,7 @@ class SendBadge extends BaseController {
 
     public function sendBadge() {
 
-        $subject = "Badge: " . $this->badge->post_name . " Field: " . $this->field->name;
+        $subject = "Badge: " . $this->badge->post_title . " Field: " . $this->field->name;
         //Setting headers so it"s a MIME mail and a html
         $headers = "From: badges4languages <mylanguageskills@hotmail.com>\n";
         $headers .= "MIME-Version: 1.0\n";

@@ -139,7 +139,7 @@ final class SendBadgeTemp extends BaseController {
                         </div>
                     </section>
 
-                    <?php include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+                    <?php include_once(ABSPATH . 'wp-admin/includes/plugin.php');
                     if (($form == 'b' || $form == 'c') && is_plugin_active(
                             "WP-Job-Manager-master/wp-job-manager.php")) {
                         ?>
@@ -157,11 +157,13 @@ final class SendBadgeTemp extends BaseController {
                         <section>
                             <div class="section-container">
                                 <div class="title-form"><h2>Receiver's mail addresses:</h2></div>
-                                <?php self::displayLeadInfo("Write the emails of the receiver badge, to send multiple email, write each address per line"); ?>
                                 <?php
+
                                 if ($form == 'b') {
+                                    self::displayLeadInfo("Write the emails of the receiver badge");
                                     echo "<input id='mail_$form' name='mail' class='mail' style='width: 300px; text-align: center;'>";
                                 } elseif ($form == 'c') {
+                                    self::displayLeadInfo("Write the emails of the receiver badge (to send multiple email, write each address separeted by \",\")");
                                     echo "<textarea id='mail_$form' name='mail' class='mail' rows='10' cols='50' style='width: 300px; text-align: center;'></textarea>";
                                 }
                                 ?>
@@ -172,12 +174,13 @@ final class SendBadgeTemp extends BaseController {
                     <section>
                         <div class="section-container">
                             <div class="title-form"><h2>Addition information:</h2></div>
-                            <?php self::displayLeadInfo("Write some information that will be showed in the description of badge"); ?>
+                            <?php self::displayLeadInfo("Write some information that will be showed in the description of badge *"); ?>
                             <textarea id="comment_<?php echo $form; ?>" placeholder="More than 10 letters ..."
                                       name="comment" rows="5" cols="80"></textarea>
                             <br><br>
-                            <?php self::displayLeadInfo("Link of the document describing the work that the recipient did to earn the badge"); ?>
-                            <input id='evidence_<?php echo $form; ?>' name='mail' class='mail' style='width: 400px; text-align: center;'>
+                            <?php self::displayLeadInfo("Url of the work or of the document that the recipient did to earn the badge"); ?>
+                            <input id='evidence_<?php echo $form; ?>' name='mail' class='mail'
+                                   style='width: 400px; text-align: center;'>
                         </div>
                     </section>
                 </div>

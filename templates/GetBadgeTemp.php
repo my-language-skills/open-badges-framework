@@ -42,7 +42,7 @@ class GetBadgeTemp extends BaseController {
                 $this->getStartingPage();
                 break;
             case self::ERROR:
-                $this->getErrorPage();
+                $this->showErrorPage();
                 break;
         }
 
@@ -148,12 +148,17 @@ class GetBadgeTemp extends BaseController {
                         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in
                         </button>
                     </form>
+                    <div id="gb-register-link" class="register-cont-link">
+                        or <a href="#">register</a>
+                    </div>
 
                 </main>
 
                 <footer class="mastfoot">
                     <div class="inner">
-                        <div id="gb-resp-login"></div>
+                        <div id="gb-resp-login">
+
+                        </div>
                     </div>
                 </footer>
 
@@ -188,7 +193,9 @@ class GetBadgeTemp extends BaseController {
                         show your progress with all the community.
                     </p>
                     <div class="gb-form">
-                        <button id="gb-ob-get-badge" class="btn btn-lg btn-primary btn-block" type="submit">Get the badge</button>
+                        <button id="gb-ob-get-badge" class="btn btn-lg btn-primary btn-block" type="submit">Get the
+                            badge
+                        </button>
                     </div>
                 </main>
 
@@ -208,7 +215,80 @@ class GetBadgeTemp extends BaseController {
 
     }
 
-    private function getErrorPage() {
+    public function showRegisterPage($email) { ?>
+
+        <div id="gb-wrap" class="site-wrapper">
+            <div id="wrap-login" class="site-wrapper-inner">
+
+                <div class="cover-container">
+
+                    <header class="masthead clearfix">
+                        <div class="inner">
+                            <div class="cont-title">Registration</div>
+                        </div>
+                    </header>
+
+                    <main role="main" class="inner cover registration">
+                        <form id="gb-form-registration" id="needs-validation" novalidate>
+                            <div class="form-group row">
+                                <label for="staticEmail" class="col-sm-3 col-form-label">Email</label>
+                                <div class="col-sm-9">
+                                    <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                           value="<?php echo $email; ?>" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="username" class="col-sm-3 col-form-label">Username</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control-plaintext" id="username" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="firstName" class="col-sm-3 col-form-label">First name</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control-plaintext" id="firstName" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="lastName" class="col-sm-3 col-form-label">Last name</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control-plaintext" id="lastName" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputPassword" class="col-sm-3 col-form-label">Password</label>
+                                <div class="col-sm-9">
+                                    <input type="password" class="form-control" id="inputPassword" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputRepeatPassword" class="col-sm-3 col-form-label">Repeat password</label>
+                                <div class="col-sm-9">
+                                    <input type="password" class="form-control" id="inputRepeatPassword">
+                                </div>
+                            </div>
+                            <button class="btn btn-primary" type="submit">Register</button>
+                        </form>
+                        <script>
+                            // Example starter JavaScript for disabling form submissions if there are invalid fields
+
+                        </script>
+                    </main>
+
+                    <footer class="mastfoot">
+                        <div class="inner">
+
+                        </div>
+                    </footer>
+
+                </div>
+
+            </div>
+        </div>
+        <?php
+    }
+
+    private function showErrorPage() {
         $this->obf_header()
         ?>
         <div id="gb-wrap" class="site-wrapper">
@@ -220,7 +300,7 @@ class GetBadgeTemp extends BaseController {
                     </header>
 
                     <main role="main" class="inner cover">
-                        <h1>URL ERROR <?php echo User::getCurrentUser()->user_login; ?></h1>
+                        <h1>URL ERROR</h1>
                         <p class="lead">There's something wrong with the link,<br> ask to the help desk to fix the
                             problem!</p>
                     </main>

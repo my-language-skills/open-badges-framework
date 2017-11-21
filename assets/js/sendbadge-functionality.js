@@ -501,14 +501,24 @@ window.onload = function () {
      * @since 0.6.3
      */
     function check_mails(currentForm, form) {
-        var mails = jQuery("#mail_" + currentForm).val();
+        var res = false;
+        var mails = [jQuery("#mail_" + currentForm).val()];
+
         if (mails) {
-            var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-            mails = mails.split("\n");
+            var patEmail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+            if (currentForm == 'c') {
+                mails = mails[0].split(",");
+                for (var i = 0; i < mails.length; i++) {
+                    mails[i] = mails[i].replace(/ /g,'')
+                }
+            }
 
             for (var i = 0; i < mails.length; i++) {
-                if (!re.test(mails[i]) || (i > 0 && form == 'b')) return false;
+                res = patEmail.test(mails[i]);
+                if (!res) return false;
             }
+
             // Everything good
             form.validate().settings.ignore = ":disabled,:hidden";
             return form.valid();
@@ -528,8 +538,11 @@ window.onload = function () {
      */
     function check_information(currentForm, form) {
         var info = jQuery("#comment_" + currentForm).val();
+        var evidence = jQuery("#evidence_" + currentForm).val();
 
-        if (info.length > 10 && info.length < 1000) {
+        var patLink = /(http|https):\/\/(\w+:{0,1}\w*)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
+
+        if ((info.length > 10 && info.length < 1000) && (!evidence || patLink.test(evidence))) {
             // Everything good
             form.validate().settings.ignore = ":disabled,:hidden";
             return form.valid();
@@ -582,7 +595,13 @@ window.onload = function () {
                     }
                 });
             /* # MAIL # */
-            receivers = jQuery("#mail_" + currentForm).val();
+            receivers = [jQuery("#mail_" + currentForm).val()];
+            if (currentForm == 'c') {
+                receivers = receivers[0].split(",");
+                for (var i = 0; i < receivers.length; i++) {
+                    receivers[i] = receivers[i].replace(/ /g,'')
+                }
+            }
             /* # INFO # */
             info = jQuery("#comment_" + currentForm).val();
             // EVIDENCE
@@ -596,7 +615,7 @@ window.onload = function () {
                 'levelId': levelId,
                 'theClassId': theClassId,
                 'info': info,
-                'evidence' : evidence,
+                'evidence': evidence,
                 'receivers': receivers,
             };
 

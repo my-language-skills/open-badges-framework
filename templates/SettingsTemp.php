@@ -42,7 +42,7 @@ class SettingsTemp {
             self::SITE_NAME_FIELD => get_bloginfo('name'),
             self::WEBSITE_URL_FIELD => get_bloginfo('url'),
         );
-        
+
         //update_option(self::OPTION_NAME, $defaults);
     }
 

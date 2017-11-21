@@ -78,8 +78,8 @@ class JsonManagement extends BaseController {
             "name" => isset($options[SettingsTemp::SITE_NAME_FIELD]) ? $options[SettingsTemp::SITE_NAME_FIELD] : '',
             "url" => isset($options[SettingsTemp::WEBSITE_URL_FIELD]) ? $options[SettingsTemp::WEBSITE_URL_FIELD] : '',
             "description" => isset($options[SettingsTemp::DESCRIPTION_FIELD]) ? $options[SettingsTemp::DESCRIPTION_FIELD] : '',
+            "image" => isset($options[SettingsTemp::IMAGE_URL_FIELD]) ? wp_get_attachment_url($options[SettingsTemp::IMAGE_URL_FIELD]) : '',
             "email" => isset($options[SettingsTemp::EMAIL_FIELD]) ? $options[SettingsTemp::EMAIL_FIELD] : '',
-            "image" => isset($options[SettingsTemp::IMAGE_URL_FIELD]) ? $options[SettingsTemp::IMAGE_URL_FIELD] : '',
         );
 
         return file_put_contents($pathFile, json_encode($jsonInfo, JSON_UNESCAPED_SLASHES)) != false ? $urlFile : null;

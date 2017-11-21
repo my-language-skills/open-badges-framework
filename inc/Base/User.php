@@ -14,6 +14,39 @@ namespace inc\Base;
 use Inc\Pages\Admin;
 
 class User {
+    const STUDENT_ROLE = "student";
+    const TEACHER_ROLE = "teacher";
+    const ACADEMY_ROLE = "academy";
+
+    public static $listRoles = array(
+        array(
+            'role' => self::STUDENT_ROLE,
+            'display_name' => 'Student',
+            'capabilities' => array(
+                'read' => true,
+                'edit_posts' => false,
+                'delete_posts' => false
+            ),
+        ),
+        array(
+            'role' => self::TEACHER_ROLE,
+            'display_name' => 'Teacher',
+            'capabilities' => array(
+                'read' => true,
+                'edit_posts' => false,
+                'delete_posts' => false
+            ),
+        ),
+        array(
+            'role' => self::ACADEMY_ROLE,
+            'display_name' => 'Academy',
+            'capabilities' => array(
+                'read' => true,
+                'edit_posts' => false,
+                'delete_posts' => false
+            ),
+        )
+    );
 
     public $roles = array();
 
@@ -35,7 +68,6 @@ class User {
      * @since  x.x.x
      */
     private function initialize() {
-        $this->fillRoles();
         foreach ($this->roles as $role) {
             // Resetting of the role
             if (get_role($role['role'])) {
@@ -46,37 +78,6 @@ class User {
         }
     }
 
-    public function fillRoles() {
-        $this->roles = array(
-            array(
-                'role' => 'student',
-                'display_name' => 'Student',
-                'capabilities' => array(
-                    'read' => true,
-                    'edit_posts' => false,
-                    'delete_posts' => false
-                ),
-            ),
-            array(
-                'role' => 'teacher',
-                'display_name' => 'Teacher',
-                'capabilities' => array(
-                    'read' => true,
-                    'edit_posts' => false,
-                    'delete_posts' => false
-                ),
-            ),
-            array(
-                'role' => 'academy',
-                'display_name' => 'Academy',
-                'capabilities' => array(
-                    'read' => true,
-                    'edit_posts' => false,
-                    'delete_posts' => false
-                ),
-            )
-        );
-    }
 
     /**
      * ...
