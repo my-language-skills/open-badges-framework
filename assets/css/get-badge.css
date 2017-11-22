@@ -188,8 +188,19 @@ body {
     width: 200px;
 }
 
-#wrap-login .cover.registration {
-    text-align: left;
+.cover #gb-form-registration {
+    max-width: 500px;
+    margin: auto;
+    text-align: center;
+}
+
+.col-form-label {
+    text-align: right;
+    font-weight: 400;
+}
+
+.cont-btn-form-reg {
+    margin-top: 40px;
 }
 
 /*

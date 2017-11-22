@@ -93,7 +93,9 @@ class JsonManagement extends BaseController {
 
     public static function getJsonUrl($jsonName) {
         $baseController = new BaseController();
-        return $baseController->getJsonFolderUrl() . $jsonName . '.json';
+        $jsonName = $jsonName . '.json';
+        return file_exists($baseController->getJsonFolderPath() . $jsonName) ?
+            $baseController->getJsonFolderUrl() . $jsonName : false;
     }
 
 }

@@ -14,11 +14,15 @@ namespace inc\Base;
 use Inc\Pages\Admin;
 
 class User {
-    const STUDENT_ROLE = "student";
-    const TEACHER_ROLE = "teacher";
-    const ACADEMY_ROLE = "academy";
+    const STUDENT_ROLE = "obf_student";
+    const TEACHER_ROLE = "obf_teacher";
+    const ACADEMY_ROLE = "obf_academy";
 
-    public static $listRoles = array(
+    const RET_LOGIN_SUCCESS = 0;
+    const RET_USER_EXIST = "The <strong>username</strong> already exist, please chose another!";
+    const RET_REGISTRATION_ERROR = "<strong>Registration error<strong>, please ask to the help desk";
+
+    public $listRoles = array(
         array(
             'role' => self::STUDENT_ROLE,
             'display_name' => 'Student',
@@ -48,7 +52,6 @@ class User {
         )
     );
 
-    public $roles = array();
 
     /**
      * ...
@@ -68,13 +71,14 @@ class User {
      * @since  x.x.x
      */
     private function initialize() {
-        foreach ($this->roles as $role) {
+        foreach ($this->listRoles as $role) {
             // Resetting of the role
             if (get_role($role['role'])) {
                 remove_role($role['role']);
             }
             // Creation of the role
             add_role($role['role'], $role['display_name'], $role['capabilities']);
+
         }
     }
 

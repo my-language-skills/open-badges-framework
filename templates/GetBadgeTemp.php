@@ -20,7 +20,8 @@ class GetBadgeTemp extends BaseController {
     const START = 0;
     const ERROR = 1;
 
-    public $json = null;
+    private $json = null;
+    private $jsonUrl = null;
     private $badge = null;
     private $field = null;
     private $level = null;
@@ -54,14 +55,14 @@ class GetBadgeTemp extends BaseController {
             $badgeId = $_GET['badge'];
             $fieldId = $_GET['field'];
             $levelId = $_GET['level'];
-
             $this->json = $_GET['json'];
+            $this->jsonUrl = JsonManagement::getJsonUrl($this->json);
+
             $badges = new Badges();
             $this->badge = $badges->getBadgeById($badgeId);
             $this->field = get_term($fieldId, Admin::TAX_FIELDS);
             $this->level = get_term($levelId, Admin::TAX_LEVELS);
-
-            if ($this->badge && $this->field && $this->level) {
+            if ($this->badge && $this->field && $this->level && $this->jsonUrl) {
                 return self::START;
             } else {
                 return self::ERROR;
@@ -151,7 +152,6 @@ class GetBadgeTemp extends BaseController {
                     <div id="gb-register-link" class="register-cont-link">
                         or <a href="#">register</a>
                     </div>
-
                 </main>
 
                 <footer class="mastfoot">
@@ -231,53 +231,51 @@ class GetBadgeTemp extends BaseController {
                     <main role="main" class="inner cover registration">
                         <form id="gb-form-registration" id="needs-validation" novalidate>
                             <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-3 col-form-label">Email</label>
-                                <div class="col-sm-9">
-                                    <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                <label for="staticEmail" class="col-sm-4 col-form-label">Email</label>
+                                <div class="col-sm-8">
+                                    <input type="text" readonly class="form-control-plaintext" id="reg-email"
                                            value="<?php echo $email; ?>" required>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="username" class="col-sm-3 col-form-label">Username</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control-plaintext" id="username" required>
+                                <label for="username" class="col-sm-4 col-form-label">Username</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control-plaintext" id="reg-user-name" required>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="firstName" class="col-sm-3 col-form-label">First name</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control-plaintext" id="firstName" required>
+                                <label for="firstName" class="col-sm-4 col-form-label">First name</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control-plaintext" id="reg-first-name" required>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="lastName" class="col-sm-3 col-form-label">Last name</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control-plaintext" id="lastName" required>
+                                <label for="lastName" class="col-sm-4 col-form-label">Last name</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control-plaintext" id="reg-last-name" required>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="inputPassword" class="col-sm-3 col-form-label">Password</label>
-                                <div class="col-sm-9">
-                                    <input type="password" class="form-control" id="inputPassword" required>
+                                <label for="inputPassword" class="col-sm-4 col-form-label">Password</label>
+                                <div class="col-sm-8">
+                                    <input type="password" class="form-control" id="reg-pass" required>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="inputRepeatPassword" class="col-sm-3 col-form-label">Repeat password</label>
-                                <div class="col-sm-9">
-                                    <input type="password" class="form-control" id="inputRepeatPassword">
+                                <label for="inputRepeatPassword" class="col-sm-4 col-form-label">Repeat password</label>
+                                <div class="col-sm-8">
+                                    <input type="password" class="form-control" id="reg-repeat-pass" required>
                                 </div>
                             </div>
-                            <button class="btn btn-primary" type="submit">Register</button>
+                            <div class="cont-btn-form-reg">
+                                <button class="btn btn-primary btn-lg" type="submit">Register</button>
+                            </div>
                         </form>
-                        <script>
-                            // Example starter JavaScript for disabling form submissions if there are invalid fields
-
-                        </script>
                     </main>
 
                     <footer class="mastfoot">
                         <div class="inner">
-
+                            <div id="gb-resp-register"></div>
                         </div>
                     </footer>
 
@@ -300,9 +298,23 @@ class GetBadgeTemp extends BaseController {
                     </header>
 
                     <main role="main" class="inner cover">
-                        <h1>URL ERROR</h1>
-                        <p class="lead">There's something wrong with the link,<br> ask to the help desk to fix the
-                            problem!</p>
+                        <?php
+                        if (!$this->jsonUrl) { ?>
+                            <h1>BADGE ERROR</h1>
+                            <p class="lead">
+                                Your're badge is not anymore stored in our server.
+                            </p>
+                            <?php
+                        } else {
+                            ?>
+                            <h1>URL ERROR</h1>
+                            <p class="lead">
+                                There's something wrong with the link,<br> ask to the help desk to fix the
+                                problem!
+                            </p>
+                            <?php
+                        }
+                        ?>
                     </main>
 
                     <footer class="mastfoot">
@@ -326,7 +338,7 @@ class GetBadgeTemp extends BaseController {
         <html xmlns="http://www.w3.org/1999/xhtml">
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-            <title>My WordPress Plugin Front-end Page</title>
+            <title>Get the Badge</title>
             <script src="https://backpack.openbadges.org/issuer.js"></script>
 
             <?php wp_head(); ?>

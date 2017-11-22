@@ -132,8 +132,8 @@ class SendBadgeAjax extends BaseController {
 
         echo '<h3 class="title-classes">Own class</h3>';
         foreach ($ownClasses as $class) {
-            echo "<input id='class_$class->ID' value='$class->ID' class='radio-input' name='class_$form' type='radio'>
-              <label for='class_$class->ID' class='radio-label'>$class->post_title</label>";
+            echo "<input id='class-$class->ID-form-$form' value='$class->ID' class='radio-input' name='class_$form' type='radio'>
+              <label for='class-$class->ID-form-$form' class='radio-label'>$class->post_title</label>";
         }
         wp_die();
     }

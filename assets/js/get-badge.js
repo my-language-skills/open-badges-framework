@@ -54,20 +54,40 @@ $(function () {
     }
 
     var checkPasswords = function (arrayOfFields) {
-        if (arrayOfFields[0].val() != "") {
-            if (arrayOfFields[0].val() != arrayOfFields[1].val()) {
-                arrayOfFields[1].addClass("is-invalid");
-                arrayOfFields[1].on("input", function () {
-                    if (arrayOfFields[0].val() != "" && arrayOfFields[0] != arrayOfFields[1]) {
-                        input.removeClass("is-invalid");
-                        input.addClass("is-valid");
-                    } else {
-                        input.removeClass("is-valid");
-                        input.addClass("is-invalid");
-                    }
-                });
-            }
+        if (arrayOfFields[0].val() != arrayOfFields[1].val()) {
+            arrayOfFields[1].removeClass("is-valid");
+            arrayOfFields[1].addClass("is-invalid");
+            arrayOfFields[1].on("input", function () {
+                if (arrayOfFields[1].val()) {
+                    arrayOfFields[1].removeClass("is-invalid");
+                    arrayOfFields[1].addClass("is-valid");
+                } else {
+                    arrayOfFields[1].removeClass("is-valid");
+                    arrayOfFields[1].addClass("is-invalid");
+                }
+            });
+            return false;
+        } else {
+            return true;
         }
+    }
+
+    var loginShowGetOpenBadges = function() {
+        $("#gb-wrap").fadeOut(400, function () {
+            $("#gb-wrap").html(loadingPage());
+            var data = {
+                'action': 'ajaxGbShowGetOpenBadges',
+                'json': urlParam('json'),
+            };
+
+            jQuery.post(
+                globalUrl.ajax,
+                data,
+                function (response) {
+                    $("#gb-wrap").html(response);
+                }
+            );
+        }).delay(400).fadeIn(400);
     }
 
     $(document).on("click", "#getBadge", function () {
@@ -114,30 +134,13 @@ $(function () {
                 if (response != true) {
                     $("#gb-resp-login").html(response);
                 } else {
-                    loginApproved();
+                    loginShowGetOpenBadges();
                 }
 
             }
         );
     });
 
-    function loginApproved() {
-        $("#gb-wrap").fadeOut(400, function () {
-            $("#gb-wrap").html(loadingPage());
-            var data = {
-                'action': 'ajaxGbShowOpenBadgesLogin',
-                'json': urlParam('json'),
-            };
-
-            jQuery.post(
-                globalUrl.ajax,
-                data,
-                function (response) {
-                    $("#gb-wrap").html(response);
-                }
-            );
-        }).delay(400).fadeIn(400);
-    }
 
     $(document).on("click", "#gb-register-link", function () {
         var email = $("#staticEmail").val();
@@ -162,79 +165,51 @@ $(function () {
     $(document).on("submit", "#gb-form-registration", function () {
         event.preventDefault();
 
-        console.log(event);
+        var inputFields = [
+            $(this).find("#reg-email"),
+            $(this).find("#reg-user-name"),
+            $(this).find("#reg-first-name"),
+            $(this).find("#reg-last-name"),
+        ];
 
-        if (this.checkValidity() === false) {
+
+        var passwFields = [
+            $(this).find("#reg-pass"),
+            $(this).find("#reg-repeat-pass"),
+        ];
+
+        if (checkPasswords(passwFields) == false || this.checkValidity() === false) {
             event.stopPropagation();
 
-            var inputFields = [
-                $(this).find("#firstName"),
-                $(this).find("#lastName"),
-                $(this).find("#username"),
-            ];
-
-            var passwFields = [
-                $(this).find("#inputPassword"),
-                $(this).find("#inputRepeatPassword"),
-            ];
-
-            inputFields.forEach(function (input) {
-                checkValue(input);
+            inputFields.forEach(function(field) {
+                checkValue(field);
             });
 
             checkValue(passwFields[0]);
-            checkPasswords(passwFields);
-
-            /*
-            if (!$(this).find("#firstName").val()) {
-                $(this).find("#firstName").addClass( "is-invalid" );
-            } else {
-                $(this).find("#firstName").removeClass("is-invalid");
-            }
-
-            if (!$(this).find("#lastName").val()) {
-                $(this).find("#lastName").addClass( "is-invalid" );
-            } else {
-                $(this).find("#lastName").removeClass("is-invalid");
-            }
-
-            if (!$(this).find("#username").val()) {
-                $(this).find("#username").addClass( "is-invalid" );
-            } else {
-                $(this).find("#username").removeClass("is-invalid");
-            }
-            */
-
 
         } else {
+            var data = {
+                'action': 'ajaxGbRegistration',
+                'user_email': inputFields[0].val(),
+                'user_name': inputFields[1].val(),
+                'user_pass': passwFields[0].val(),
+                'first_name': inputFields[2].val(),
+                'last_name': inputFields[3].val(),
+            };
 
+            jQuery.post(
+                globalUrl.ajax,
+                data,
+                function (response) {
+                    if(response == 0){
+                        loginShowGetOpenBadges();
+                    } else if (response ) {
+                        $("#gb-resp-register").html(response);
+                    }
+                }
+            );
         }
         this.classList.add('was-validated');
-
-        /*
-        var email = $("#staticEmail").val();
-        var password = $("#inputPassword").val();
-        var remember = $("#inputRemember").is(':checked');
-
-        var data = {
-            'action': 'ajaxGbLogin',
-            'user_email': email,
-            'user_password': password,
-            'remember': remember,
-        };
-
-        jQuery.post(
-            globalUrl.ajax,
-            data,
-            function (response) {
-                if (response != true) {
-                    $("#gb-resp-login").html(response);
-                } else {
-                    registrationApproved();
-                }
-
-            }
-        );*/
     });
 
     function registrationApproved() {
