@@ -38,7 +38,8 @@ class SendBadge extends BaseController {
 
         $this->field = get_term($fieldId, Admin::TAX_FIELDS);
         $this->level = get_term($levelId, Admin::TAX_LEVELS);
-
+        print_r($this->field);
+        print_r($this->level);
         $this->badgeInfo = array(
             'id' => $this->badge->ID,
             'name' => $this->badge->post_title,
@@ -47,7 +48,7 @@ class SendBadge extends BaseController {
             'description' => $this->badge->post_content,
             'link' => get_permalink($this->badge),
             'image' => get_the_post_thumbnail_url($this->badge->ID),
-            'tags' => array($this->field->name, $this->level->name),
+            'tags' => array($this->field->name."", $this->level->name.""),
             'info' => $info,
             'evidence' => $evidence
         );

@@ -107,7 +107,7 @@ class GetBadgeTemp extends BaseController {
                         <!--<p><?php echo JsonManagement::getJsonUrl($this->json); ?></p>-->
                         <div class="inner">
                             <p class="lead">
-                                <a id="getBadge" class="btn btn-lg btn-secondary" role="button">Get the badge</a>
+                                <a id="getBadge" class="btn btn-lg btn-secondary" role="button">Continue</a>
                             </p>
                         </div>
                     </footer>
@@ -136,7 +136,7 @@ class GetBadgeTemp extends BaseController {
                     <form method="post" id="gb-form-login" class="gb-form">
                         <h2 class="form-signin-heading">Please sign in</h2>
                         <label for="inputEmail" class="sr-only">Email address / Username</label>
-                        <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                        <input type="text" readonly class="form-control" id="staticEmail"
                                value="<?php echo $email; ?>">
                         <label for="inputPassword" class="sr-only">Password</label>
                         <input type="password" id="inputPassword" class="form-control" placeholder="Password"
@@ -233,26 +233,26 @@ class GetBadgeTemp extends BaseController {
                             <div class="form-group row">
                                 <label for="staticEmail" class="col-sm-4 col-form-label">Email</label>
                                 <div class="col-sm-8">
-                                    <input type="text" readonly class="form-control-plaintext" id="reg-email"
+                                    <input type="text" readonly class="form-control" id="reg-email"
                                            value="<?php echo $email; ?>" required>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="username" class="col-sm-4 col-form-label">Username</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control-plaintext" id="reg-user-name" required>
+                                    <input type="text" class="form-control" id="reg-user-name" required>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="firstName" class="col-sm-4 col-form-label">First name</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control-plaintext" id="reg-first-name" required>
+                                    <input type="text" class="form-control" id="reg-first-name" required>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="lastName" class="col-sm-4 col-form-label">Last name</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control-plaintext" id="reg-last-name" required>
+                                    <input type="text" class="form-control" id="reg-last-name" required>
                                 </div>
                             </div>
                             <div class="form-group row">

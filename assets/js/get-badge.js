@@ -23,13 +23,13 @@ class Rectangle {
 /* =========================
     jQuery
    ========================= */
-$(function () {
+$(function (event) {
     var urlParam = function (name) {
         var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
         return results[1] || 0;
     }
 
-    var loadingPage = function () {
+    var loadingPage = function (event) {
         return ("<div id='wrap-login' class='site-wrapper-inner'>" +
             "<div class='cover-container'><header class='masthead clearfix'>" +
             "</header><main role='main' class='inner cover'>" +
@@ -41,7 +41,7 @@ $(function () {
     var checkValue = function (input) {
         if (input.val() == "") {
             input.addClass("is-invalid");
-            input.on("input", function () {
+            input.on("input", function (event) {
                 if (input.val() != "") {
                     input.removeClass("is-invalid");
                     input.addClass("is-valid");
@@ -57,7 +57,7 @@ $(function () {
         if (arrayOfFields[0].val() != arrayOfFields[1].val()) {
             arrayOfFields[1].removeClass("is-valid");
             arrayOfFields[1].addClass("is-invalid");
-            arrayOfFields[1].on("input", function () {
+            arrayOfFields[1].on("input", function (event) {
                 if (arrayOfFields[1].val()) {
                     arrayOfFields[1].removeClass("is-invalid");
                     arrayOfFields[1].addClass("is-valid");
@@ -73,7 +73,7 @@ $(function () {
     }
 
     var loginShowGetOpenBadges = function() {
-        $("#gb-wrap").fadeOut(400, function () {
+        $("#gb-wrap").fadeOut(400, function (event) {
             $("#gb-wrap").html(loadingPage());
             var data = {
                 'action': 'ajaxGbShowGetOpenBadges',
@@ -90,8 +90,8 @@ $(function () {
         }).delay(400).fadeIn(400);
     }
 
-    $(document).on("click", "#getBadge", function () {
-        $("#gb-wrap").fadeOut(400, function () {
+    $(document).on("click", "#getBadge", function (event) {
+        $("#gb-wrap").fadeOut(400, function (event) {
             $("#gb-wrap").html(loadingPage());
 
             var data = {
@@ -113,7 +113,7 @@ $(function () {
      * LOGIN page
      */
 
-    $(document).on("submit", "#gb-form-login", function () {
+    $(document).on("submit", "#gb-form-login", function (event) {
         event.preventDefault();
 
         var email = $("#staticEmail").val();
@@ -142,7 +142,7 @@ $(function () {
     });
 
 
-    $(document).on("click", "#gb-register-link", function () {
+    $(document).on("click", "#gb-register-link", function (event) {
         var email = $("#staticEmail").val();
 
         var data = {
@@ -162,7 +162,7 @@ $(function () {
     /*
      * REGISTER page
      */
-    $(document).on("submit", "#gb-form-registration", function () {
+    $(document).on("submit", "#gb-form-registration", function (event) {
         event.preventDefault();
 
         var inputFields = [
@@ -213,7 +213,7 @@ $(function () {
     });
 
     function registrationApproved() {
-        $("#gb-wrap").fadeOut(400, function () {
+        $("#gb-wrap").fadeOut(400, function (event) {
             /*$("#gb-wrap").html(loadingPage());
             var data = {
                 'action': 'ajaxGbShowOpenBadgesLogin',
@@ -234,7 +234,7 @@ $(function () {
      * GET BADGE page
      */
 
-    $(document).on("click", "#gb-ob-get-badge", function () {
+    $(document).on("click", "#gb-ob-get-badge", function (event) {
 
         var data = {
             'action': 'ajaxGbGetJsonUrl',
