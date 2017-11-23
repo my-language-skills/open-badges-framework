@@ -19,7 +19,8 @@ class User {
     const ACADEMY_ROLE = "obf_academy";
 
     const RET_LOGIN_SUCCESS = 0;
-    const RET_USER_EXIST = "The <strong>username</strong> already exist, please chose another!";
+    const RET_NO_MATCH_PASS = "The <strong>passwords</strong> doesn't match, please write correctly. <br>";
+    const RET_USER_EXIST = "The <strong>username</strong> already exist, please chose another.";
     const RET_REGISTRATION_ERROR = "<strong>Registration error<strong>, please ask to the help desk";
 
     public $listRoles = array(

@@ -38,8 +38,7 @@ class SendBadge extends BaseController {
 
         $this->field = get_term($fieldId, Admin::TAX_FIELDS);
         $this->level = get_term($levelId, Admin::TAX_LEVELS);
-        print_r($this->field);
-        print_r($this->level);
+
         $this->badgeInfo = array(
             'id' => $this->badge->ID,
             'name' => $this->badge->post_title,

@@ -94,23 +94,29 @@ class GetBadgeAjax extends BaseController {
             'user_email' => $_POST['user_email'],
             'user_name' => $_POST['user_name'],
             'user_pass' => $_POST['user_pass'],
+            'user_rep_pass' => $_POST['user_rep_pass'],
             'first_name' => $_POST['first_name'],
             'last_name' => $_POST['last_name']
         );
 
+        if ($user['user_pass'] !== $user['user_rep_pass']) {
+            echo User::RET_NO_MATCH_PASS;
+        }
+
         $usernameRet = username_exists($user['user_name']);
         $emailRet = email_exists($user['user_email']);
         if ($usernameRet || $emailRet) {
-            //USER EXIST
+            //user exist
             echo User::RET_USER_EXIST;
         } else {
-            // Creation of the user
+            // 1 -- CREATION of the user
             $user_id = wp_create_user($user['user_name'], $user['user_pass'], $user['user_email']);
+
             if (is_wp_error($user_id)) {
-                //CREATION ERROR
+                // error creation
                 echo User::RET_REGISTRATION_ERROR;
             } else {
-                // Update of the first name, last name and the role of the user
+                // 2 -- UPDATING of the first, last name and role.
                 $update = wp_update_user(
                     array(
                         'ID' => $user_id,
@@ -118,19 +124,22 @@ class GetBadgeAjax extends BaseController {
                         'last_name' => $user['last_name'],
                         'role' => User::STUDENT_ROLE,
                     ));
+
                 if (is_wp_error($update)) {
-                    //UPDATE ERROR
+                    // error updating
                     echo User::RET_REGISTRATION_ERROR;
                 } else {
-
+                    // 3 -- SING-ON of the user
                     $login = wp_signon(array(
                         'user_login' => $user['user_email'],
                         'user_password' => $user['user_pass'],
                     ), false);
 
                     if (is_wp_error($login)) {
+                        // error sing-on
                         echo User::RET_REGISTRATION_ERROR;
                     } else {
+                        // SUCCESS
                         echo User::RET_LOGIN_SUCCESS;
                     }
                 }
@@ -139,7 +148,6 @@ class GetBadgeAjax extends BaseController {
 
         wp_die();
     }
-
 
     /**
      * ...
@@ -166,4 +174,10 @@ class GetBadgeAjax extends BaseController {
         wp_die();
     }
 
+    function ajaxGbShowConclusion() {
+        $getBadgeTemp = GetBadgeTemp::getInstance();
+        echo $getBadgeTemp->showConclusionPage();
+
+        wp_die();
+    }
 }

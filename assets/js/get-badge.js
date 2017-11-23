@@ -30,12 +30,11 @@ $(function (event) {
     }
 
     var loadingPage = function (event) {
-        return ("<div id='wrap-login' class='site-wrapper-inner'>" +
-            "<div class='cover-container'><header class='masthead clearfix'>" +
+        return ("<div class='cover-container'><header class='masthead clearfix'>" +
             "</header><main role='main' class='inner cover'>" +
             "<img src='" + globalUrl.loader + "' width='200px' />" +
             "</main>" +
-            "<footer class='mastfoot'></footer></div></div>");
+            "<footer class='mastfoot'></footer></div>");
     }
 
     var checkValue = function (input) {
@@ -72,7 +71,7 @@ $(function (event) {
         }
     }
 
-    var loginShowGetOpenBadges = function() {
+    var showGetOpenBadges = function () {
         $("#gb-wrap").fadeOut(400, function (event) {
             $("#gb-wrap").html(loadingPage());
             var data = {
@@ -89,6 +88,29 @@ $(function (event) {
             );
         }).delay(400).fadeIn(400);
     }
+
+    var showConslusion = function () {
+        $("#gb-wrap").fadeOut(400, function (event) {
+            $("#gb-wrap").html(loadingPage());
+            var data = {
+                'action': 'ajaxGbShowConclusion',
+            };
+
+            jQuery.post(
+                globalUrl.ajax,
+                data,
+                function (response) {
+                    $("#gb-wrap").html(response);
+                }
+            );
+        }).delay(400).fadeIn(400);
+    }
+
+    var executeAsync = function(func) {
+        setTimeout(func, 0);
+    }
+
+
 
     $(document).on("click", "#getBadge", function (event) {
         $("#gb-wrap").fadeOut(400, function (event) {
@@ -134,27 +156,9 @@ $(function (event) {
                 if (response != true) {
                     $("#gb-resp-login").html(response);
                 } else {
-                    loginShowGetOpenBadges();
+                    showGetOpenBadges();
                 }
 
-            }
-        );
-    });
-
-
-    $(document).on("click", "#gb-register-link", function (event) {
-        var email = $("#staticEmail").val();
-
-        var data = {
-            'action': 'ajaxGbShowRegister',
-            'user_email': email,
-        };
-
-        jQuery.post(
-            globalUrl.ajax,
-            data,
-            function (response) {
-                $("#gb-wrap").html(response);
             }
         );
     });
@@ -164,46 +168,45 @@ $(function (event) {
      */
     $(document).on("submit", "#gb-form-registration", function (event) {
         event.preventDefault();
+        $("#gb-resp-register").html("");
 
         var inputFields = [
             $(this).find("#reg-email"),
             $(this).find("#reg-user-name"),
             $(this).find("#reg-first-name"),
             $(this).find("#reg-last-name"),
-        ];
-
-
-        var passwFields = [
             $(this).find("#reg-pass"),
             $(this).find("#reg-repeat-pass"),
         ];
 
-        if (checkPasswords(passwFields) == false || this.checkValidity() === false) {
+
+        if (/*checkPasswords(passwFields) == false || */this.checkValidity() === false) {
+
             event.stopPropagation();
 
-            inputFields.forEach(function(field) {
+            inputFields.forEach(function (field) {
                 checkValue(field);
             });
 
-            checkValue(passwFields[0]);
-
         } else {
+
             var data = {
                 'action': 'ajaxGbRegistration',
                 'user_email': inputFields[0].val(),
                 'user_name': inputFields[1].val(),
-                'user_pass': passwFields[0].val(),
                 'first_name': inputFields[2].val(),
                 'last_name': inputFields[3].val(),
+                'user_pass': inputFields[4].val(),
+                'user_rep_pass': inputFields[5].val(),
             };
 
             jQuery.post(
                 globalUrl.ajax,
                 data,
                 function (response) {
-                    if(response == 0){
-                        loginShowGetOpenBadges();
-                    } else if (response ) {
+                    if (response == 0) {
+                        showGetOpenBadges();
+                    } else if (response) {
                         $("#gb-resp-register").html(response);
                     }
                 }
@@ -212,29 +215,25 @@ $(function (event) {
         this.classList.add('was-validated');
     });
 
-    function registrationApproved() {
-        $("#gb-wrap").fadeOut(400, function (event) {
-            /*$("#gb-wrap").html(loadingPage());
-            var data = {
-                'action': 'ajaxGbShowOpenBadgesLogin',
-                'json': urlParam('json'),
-            };
-
-            jQuery.post(
-                globalUrl.ajax,
-                data,
-                function (response) {
-                    $("#gb-wrap").html(response);
-                }
-            );*/
-        }).delay(400).fadeIn(400);
-    }
 
     /*
      * GET BADGE page
      */
 
     $(document).on("click", "#gb-ob-get-badge", function (event) {
+        // BAD function, don't keep out from the comment
+        /*
+        executeAsync(function() {
+            for(;;) {
+                $(this).html("•");
+                setTimeout(function(){
+                    $(this).html("• •");
+                }, 500);
+                setTimeout(function(){
+                    $(this).html("• • •");
+                }, 500);
+            }
+        });*/
 
         var data = {
             'action': 'ajaxGbGetJsonUrl',
@@ -246,11 +245,16 @@ $(function (event) {
             data,
             function (response) {
                 OpenBadges.issue([response], function (errors, successes) {
-                    console.log("Successes" + successes + " \n Errors" + errors);
+
+                    if (successes.length) {
+                        showConslusion();
+                    } else if (errors.length) {
+                        showConslusion();
+                        //$("#gb-ob-response").html("Badge not sent!")
+                    }
                 });
             }
         );
-
 
     });
 
