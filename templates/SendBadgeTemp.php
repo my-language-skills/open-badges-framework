@@ -180,7 +180,7 @@ final class SendBadgeTemp extends BaseController {
                             <br><br>
                             <?php self::displayLeadInfo("Url of the work or of the document that the recipient did to earn the badge"); ?>
                             <input id='evidence_<?php echo $form; ?>' name='mail' class='mail'
-                                   style='width: 400px; text-align: center;'>
+                                   placeholder="www.example.com/work" style='width: 400px; text-align: center;'>
                         </div>
                     </section>
                 </div>

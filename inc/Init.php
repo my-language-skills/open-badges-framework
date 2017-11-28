@@ -26,7 +26,9 @@ final class Init {
             Utils\Fields::class,
             Ajax\InitAjax::class,
             Utils\DisplayFunction::class,
-            Utils\Statistics::class
+            Utils\Statistics::class,
+            Database\DbBadge::class,
+
         );
     }
 

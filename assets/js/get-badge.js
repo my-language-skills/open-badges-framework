@@ -24,6 +24,7 @@ class Rectangle {
     jQuery
    ========================= */
 $(function (event) {
+    var clickedGetBadge = false;
     var urlParam = function (name) {
         var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
         return results[1] || 0;
@@ -52,28 +53,12 @@ $(function (event) {
         }
     }
 
-    var checkPasswords = function (arrayOfFields) {
-        if (arrayOfFields[0].val() != arrayOfFields[1].val()) {
-            arrayOfFields[1].removeClass("is-valid");
-            arrayOfFields[1].addClass("is-invalid");
-            arrayOfFields[1].on("input", function (event) {
-                if (arrayOfFields[1].val()) {
-                    arrayOfFields[1].removeClass("is-invalid");
-                    arrayOfFields[1].addClass("is-valid");
-                } else {
-                    arrayOfFields[1].removeClass("is-valid");
-                    arrayOfFields[1].addClass("is-invalid");
-                }
-            });
-            return false;
-        } else {
-            return true;
-        }
-    }
-
     var showGetOpenBadges = function () {
         $("#gb-wrap").fadeOut(400, function (event) {
             $("#gb-wrap").html(loadingPage());
+
+            // If the user have an account in Open Badge BackPack,
+            // have also the permission to get the badge.
             var data = {
                 'action': 'ajaxGbShowGetOpenBadges',
                 'json': urlParam('json'),
@@ -89,7 +74,7 @@ $(function (event) {
         }).delay(400).fadeIn(400);
     }
 
-    var showConslusion = function () {
+    var showConclusion = function () {
         $("#gb-wrap").fadeOut(400, function (event) {
             $("#gb-wrap").html(loadingPage());
             var data = {
@@ -106,15 +91,15 @@ $(function (event) {
         }).delay(400).fadeIn(400);
     }
 
-    var executeAsync = function(func) {
+    var executeAsync = function (func) {
         setTimeout(func, 0);
     }
 
 
-
-    $(document).on("click", "#getBadge", function (event) {
+    $(document).on("click", "#gb-continue", function (event) {
         $("#gb-wrap").fadeOut(400, function (event) {
             $("#gb-wrap").html(loadingPage());
+
 
             var data = {
                 'action': 'ajaxGbShowLogin',
@@ -217,46 +202,52 @@ $(function (event) {
 
 
     /*
-     * GET BADGE page
+     * GET OPEN BADGE - badge
      */
 
     $(document).on("click", "#gb-ob-get-badge", function (event) {
-        // BAD function, don't keep out from the comment
-        /*
-        executeAsync(function() {
-            for(;;) {
-                $(this).html("•");
-                setTimeout(function(){
-                    $(this).html("• •");
-                }, 500);
-                setTimeout(function(){
-                    $(this).html("• • •");
-                }, 500);
-            }
-        });*/
+        if (!clickedGetBadge) {
+            clickedGetBadge = true;
+            var thisBtn = $(this);
+            thisBtn.html("<img src='" + globalUrl.loaderPoint + "' width='150px' />");
 
-        var data = {
-            'action': 'ajaxGbGetJsonUrl',
-            'json': urlParam('json'),
-        };
 
-        jQuery.post(
-            globalUrl.ajax,
-            data,
-            function (response) {
-                OpenBadges.issue([response], function (errors, successes) {
+            var data = {
+                'action': 'ajaxGbGetJsonUrl',
+                'json': urlParam('json'),
+            };
 
-                    if (successes.length) {
-                        showConslusion();
-                    } else if (errors.length) {
-                        showConslusion();
-                        //$("#gb-ob-response").html("Badge not sent!")
-                    }
-                });
-            }
-        );
+
+            jQuery.post(
+                globalUrl.ajax,
+                data,
+                function (response) {
+                    OpenBadges.issue([response], function (errors, successes) {
+
+                        if (successes.length) {
+                            showConclusion();
+                        } else if (errors.length) {
+                            $("#gb-ob-response").html("Badge not sent!")
+                            thisBtn.html("Get the badge");
+                        }
+                        clickedGetBadge = false;
+                    });
+                }
+            );
+        }
+
 
     });
+
+
+    /*
+     * GET OPEN BADGE - badge
+     */
+
+    $(document).on("click", "#gb-get-standard", function (event) {
+        showConclusion();
+    });
+
 
 
 });

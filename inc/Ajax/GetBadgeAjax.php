@@ -156,6 +156,8 @@ class GetBadgeAjax extends BaseController {
      * @since  x.x.x
      */
     function ajaxGbShowGetOpenBadges() {
+
+
         $getBadgeTemp = GetBadgeTemp::getInstance();
         echo $getBadgeTemp->showOpenBadgesSendIssuer();
 

@@ -516,7 +516,7 @@ window.onload = function () {
 
             for (var i = 0; i < mails.length; i++) {
                 res = patEmail.test(mails[i]);
-                if (!res) return false;
+                if (!res && mails[i] <= 220) return false;
             }
 
             // Everything good

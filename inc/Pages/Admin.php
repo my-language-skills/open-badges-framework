@@ -213,24 +213,6 @@ class Admin extends BaseController {
                 'context' => 'side',
                 'priority' => 'high',
             ),
-            /* ## Links ## */
-            array(
-                'id' => 'id_meta_box_links',
-                'title' => 'Badge Criteria (doesn\'t work, function: display_add_link in class: MetaboxApi)',
-                'callback' => array($metaboxTemp, 'display_add_link'),
-                'screen' => self::POST_TYPE_BADGES,
-                'context' => 'normal',
-                'priority' => 'high'
-            ),
-            /* ## Badge of class ## */
-            array(
-                'id' => self::MTB_LBADGE,
-                'title' => 'List of Badge',
-                'callback' => array($metaboxTemp, 'meta_box_class_zero_students'),
-                'screen' => self::POST_TYPE_CLASS_JL,
-                'context' => 'normal',
-                'priority' => 'high'
-            )
         );
 
         $this->frontEndPages = array(

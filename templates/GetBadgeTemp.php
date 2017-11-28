@@ -107,7 +107,7 @@ class GetBadgeTemp extends BaseController {
                 <!--<p><?php echo JsonManagement::getJsonUrl($this->json); ?></p>-->
                 <div class="inner">
                     <p class="lead">
-                        <a id="getBadge" class="btn btn-lg btn-secondary" role="button">Continue</a>
+                        <a id="gb-continue" class="btn btn-lg btn-secondary" role="button">Continue</a>
                     </p>
                 </div>
             </footer>
@@ -242,7 +242,7 @@ class GetBadgeTemp extends BaseController {
                 <?php echo $this->getInfoHeader(); ?>
                 <div class="inner container">
                     <div class="ob-menu">
-                        <span class="ob-cont-title">Open Badges Mozilla</span>
+                        <span class="ob-cont-title">Mozilla Open Badges</span>
                         <span class="ob-user-info">
                                 <?php echo get_avatar(User::getCurrentUser()->ID); ?>
                                 <?php echo User::getCurrentUser()->user_login; ?>
@@ -253,22 +253,28 @@ class GetBadgeTemp extends BaseController {
 
             <main role="main" class="inner cover">
                 <div class="container">
-                    <p class="lead">
-                        Open Badges Mozilla give you the opportunity to store your badge in its platform to permit to
-                        show your progress with all the community.
-                        <br><br>
-                        If you don’t have an Open Badge account, please click <a
-                                href="https://backpack.openbadges.org/backpack/signup">here</a>
-                        and create a new account with the same email address of the registration of this website and
-                        then <strong>get the badge</strong>.
+                    <div class="jumbotron jumbotron-fluid">
+                        <p class="lead">
+                            Mozilla Open Badges give you the opportunity to store your badge in its platform to permit
+                            to
+                            show your progress with all the community.
+                            <br><br>
+                            If you don’t have an Open Badge account, please click
+                            <a href="https://backpack.openbadges.org/backpack/signup" target="_blank" style="font-size: 25px;">here</a>
+                            and create a new account with the same email address of the registration of this website and
+                            then <strong>get the badge</strong>.
 
-                    </p>
-                    <div class="cont-btn-standar">
-                        <button id="gb-ob-get-badge" class="btn btn-lg btn-primary" type="submit">Get the badge</button>
+                        </p>
+                        <div class="cont-btn-standar">
+                            <button id="gb-ob-get-badge" class="btn btn-lg btn-primary" type="submit">Get the badge
+                            </button>
+                        </div>
+                        <div id="gb-ob-response">
+                        </div>
                     </div>
-                    <div id="gb-ob-response">
-
-                    </div>
+                        <button id="gb-get-standard" class="btn btn-link" type="submit">
+                            Skip the process
+                        </button>
                 </div>
             </main>
 

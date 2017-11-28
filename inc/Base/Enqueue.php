@@ -67,6 +67,7 @@ class Enqueue extends BaseController {
                 array(
                     'ajax' => admin_url('admin-ajax.php'),
                     'loader' => $this->plugin_url . "assets/gif/loading-circle.gif",
+                    'loaderPoint' => $this->plugin_url . "assets/gif/3-point.gif",
                 )
             );
         }
