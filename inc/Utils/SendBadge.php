@@ -11,6 +11,8 @@
 namespace inc\Utils;
 
 use Inc\Base\BaseController;
+use inc\Base\User;
+use Inc\Database\DbBadge;
 use Inc\OB\JsonManagement;
 use Inc\Pages\Admin;
 use Inc\Utils\Badges;
@@ -47,7 +49,7 @@ class SendBadge extends BaseController {
             'description' => $this->badge->post_content,
             'link' => get_permalink($this->badge),
             'image' => get_the_post_thumbnail_url($this->badge->ID),
-            'tags' => array($this->field->name."", $this->level->name.""),
+            'tags' => array($this->field->name . "", $this->level->name . ""),
             'info' => $info,
             'evidence' => $evidence
         );
@@ -70,6 +72,7 @@ class SendBadge extends BaseController {
 
         if (is_array($this->receivers)) {
             foreach ($this->receivers as $receiver) {
+                echo $receiver;
                 $hashName = $this->jsonMg->createJsonFile($receiver);
                 if ($hashName != null) {
                     $body = $this->getBodyEmail($hashName);
@@ -80,17 +83,24 @@ class SendBadge extends BaseController {
                 if (!wp_mail($receiver, $subject, $body, $headers)) {
                     return "error email";
                 }
-            }
-        } else {
-            $hashName = $this->jsonMg->createJsonFile($this->receivers);
-            if ($hashName != null) {
-                $body = $this->getBodyEmail($hashName);
-            } else {
-                return "error json file";
-            }
 
-            if (!wp_mail($this->receivers, $subject, $body, $headers)) {
-                return "error email";
+                $data = array(
+                    'userEmail' => $receiver,
+                    'badgeId' => $this->badgeInfo['id'],
+                    'fieldId' => $this->field->term_id,
+                    'levelId' => $this->level->term_id,
+                    'classId' => $this->class,
+                    'teacherId' => User::getCurrentUser()->ID,
+                    'roleSlug' => User::getCurrentUser()->roles[0],
+                    'dateCreation' => DbBadge::now(),
+                    'json' => $hashName,
+                    'info' => $this->badgeInfo['info']
+                );
+
+                $res = DbBadge::insert($data);
+                if ($res == DbBadge::ER_DUPLICATE_ROW) {
+                    return "duplicate";
+                }
             }
         }
 

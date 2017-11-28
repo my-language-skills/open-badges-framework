@@ -9,6 +9,7 @@
 namespace Inc\Database;
 
 class DbBadge extends DbModel {
+    const ER_DUPLICATE_ROW = 1;
     static $tableName = 'obf_badge';
 
     public function register() {
@@ -16,7 +17,6 @@ class DbBadge extends DbModel {
 
         $charset_collate = $wpdb->get_charset_collate();
         $installed_version = get_option(self::DB_NAME_VERSION);
-
 
 
         if ($installed_version !== self::DB_VERSION) {
@@ -44,8 +44,35 @@ class DbBadge extends DbModel {
         }
     }
 
-    public static function get(array $data = null) {
-        return parent::get($data);
+    /**
+     * Get a badge by the ids
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
+     *
+     * @param array $data {
+     *                    Optional. Array or query string of arguments for delete a badge
+     *
+     * @type string        userEmail        Text.
+     * @type string        badgeId          Text.
+     * @type string        fieldId          Text.
+     * @type string        levelId          Text.
+     *
+     * @return the badge sent|false, if errors.
+     */
+    public static function getByIds(array $data) {
+        $rightKeys = array(
+            'userEmail',
+            'badgeId',
+            'fieldId',
+            'levelId',
+        );
+        if (!self::checkKeys($rightKeys, $data)) {
+            return false;
+        } else {
+            return parent::get($data);
+        }
+
     }
 
     public static function getAll() {
@@ -58,19 +85,19 @@ class DbBadge extends DbModel {
      * @author      Alessandro RICCARDI
      * @since       x.x.x
      *
-     * @param array $data           {
-     *     Optional. Array or query string of arguments for insert a badge.
+     * @param array $data {
+     *                    Optional. Array or query string of arguments for insert a badge.
      *
-     *     @type string        userEmail        Text.
-     *     @type string        badgeId          Text.
-     *     @type string        fieldId          Text.
-     *     @type string        levelId          Text.
-     *     @type string        classId          Text.
-     *     @type string        teacherId        Text.
-     *     @type string        roleSlug         Text.
-     *     @type string        dateCreation     Text.
-     *     @type string        json             Text.
-     *     @type string        info             Text.
+     *      @type string        userEmail        Text.
+     *      @type string        badgeId          Text.
+     *      @type string        fieldId          Text.
+     *      @type string        levelId          Text.
+     *      @type string        classId          Text.
+     *      @type string        teacherId        Text.
+     *      @type string        roleSlug         Text.
+     *      @type string        dateCreation     Text.
+     *      @type string        json             Text.
+     *      @type string        info             Text.
      *
      * @return true|false, if errors.
      */
@@ -88,11 +115,24 @@ class DbBadge extends DbModel {
             'info'
         );
 
-        if(!self::checkKeys($rightKeys, $data)) {
+        //Check if the $data array contain the right information (keys)
+        if (!self::checkKeys($rightKeys, $data)) {
             return false;
-        } else {
-            return parent::insert($data) === false ? false : true;
         }
+
+        $res = self::getByIds(array(
+            'userEmail' => $data['userEmail'],
+            'badgeId' => $data['badgeId'],
+            'fieldId' => $data['fieldId'],
+            'levelId' => $data['levelId']
+        ));
+        
+        if (!$res) {
+            return parent::insert($data) === false ? false : true;
+        } else {
+            return self::ER_DUPLICATE_ROW;
+        }
+
     }
 
     /**
@@ -101,13 +141,13 @@ class DbBadge extends DbModel {
      * @author      Alessandro RICCARDI
      * @since       x.x.x
      *
-     * @param array $data           {
-     *     Optional. Array or query string of arguments for delete a badge
+     * @param array $data {
+     *                    Optional. Array or query string of arguments for delete a badge
      *
-     *     @type string        userEmail        Text.
-     *     @type string        badgeId          Text.
-     *     @type string        fieldId          Text.
-     *     @type string        levelId          Text.
+     * @type string        userEmail        Text.
+     * @type string        badgeId          Text.
+     * @type string        fieldId          Text.
+     * @type string        levelId          Text.
      *
      * @return true|false, if errors.
      */
@@ -118,7 +158,7 @@ class DbBadge extends DbModel {
             'fieldId',
             'levelId',
         );
-        if(!self::checkKeys($rightKeys, $data)) {
+        if (!self::checkKeys($rightKeys, $data)) {
             return false;
         } else {
             return parent::delete($data);
@@ -137,15 +177,15 @@ class DbBadge extends DbModel {
      *
      * @return true|false, if errors.
      */
-    private static function checkKeys(array $rightKeys, array $data){
+    private static function checkKeys(array $rightKeys, array $data) {
         $rightDim = count($rightKeys);
         $count = 0;
 
-        foreach($data as $key => $value) {
-            if(!array_key_exists($key, $rightKeys)){
+        foreach ($data as $key => $value) {
+            if (!in_array($key, $rightKeys)) {
                 return null;
             }
-            $count ++;
+            $count++;
         }
 
         if ($rightDim !== $count) {
