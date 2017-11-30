@@ -72,7 +72,7 @@ class SendBadge extends BaseController {
 
         if (is_array($this->receivers)) {
             foreach ($this->receivers as $receiver) {
-                echo $receiver;
+
                 $hashName = $this->jsonMg->createJsonFile($receiver);
                 if ($hashName != null) {
                     $body = $this->getBodyEmail($hashName);
@@ -92,19 +92,22 @@ class SendBadge extends BaseController {
                     'classId' => $this->class,
                     'teacherId' => User::getCurrentUser()->ID,
                     'roleSlug' => User::getCurrentUser()->roles[0],
-                    'dateCreation' => DbBadge::now(),
+                    'dateCreation' => DbBadge::now().'',
                     'json' => $hashName,
                     'info' => $this->badgeInfo['info']
                 );
 
                 $res = DbBadge::insert($data);
-                if ($res == DbBadge::ER_DUPLICATE_ROW) {
-                    return "duplicate";
+                if ($res === DbBadge::ER_DUPLICATE) {
+                    echo $receiver . " : " . DbBadge::ER_DUPLICATE;
+                } else if (!$res) {
+                    return "Db insert error.\n";
                 }
             }
+            return "Email success.\n";
+        } else {
+            return "not array";
         }
-
-        return "success";
     }
 
     private function getBodyEmail($hash_file) {

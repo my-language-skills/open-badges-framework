@@ -12,6 +12,7 @@ namespace templates;
 
 use Inc\Base\BaseController;
 use inc\Base\User;
+use Inc\Database\DbBadge;
 use Inc\OB\JsonManagement;
 use Inc\Pages\Admin;
 use Inc\Utils\Badges;
@@ -19,6 +20,7 @@ use Inc\Utils\Badges;
 class GetBadgeTemp extends BaseController {
     const START = 0;
     const ERROR = 1;
+    const GOT = 2;
 
     private $json = null;
     private $jsonUrl = null;
@@ -45,25 +47,36 @@ class GetBadgeTemp extends BaseController {
             case self::ERROR:
                 $this->showErrorPage();
                 break;
+            case self::GOT:
+                $this->showBadgeGot();
+                break;
         }
 
     }
 
 
     private function loadParm() {
+
         if (isset($_GET['json']) && isset($_GET['badge']) && isset($_GET['field']) && isset($_GET['level'])) {
-            $badgeId = $_GET['badge'];
-            $fieldId = $_GET['field'];
-            $levelId = $_GET['level'];
+            $data = array(
+                'userEmail' => User::getCurrentUser()->user_email,
+                'badgeId' => $_GET['badge'],
+                'fieldId' => $_GET['field'],
+                'levelId' => $_GET['level'],
+            );
             $this->json = $_GET['json'];
             $this->jsonUrl = JsonManagement::getJsonUrl($this->json);
 
             $badges = new Badges();
-            $this->badge = $badges->getBadgeById($badgeId);
-            $this->field = get_term($fieldId, Admin::TAX_FIELDS);
-            $this->level = get_term($levelId, Admin::TAX_LEVELS);
+            $this->badge = $badges->getBadgeById($data['badgeId']);
+            $this->field = get_term($data['fieldId'], Admin::TAX_FIELDS);
+            $this->level = get_term($data['levelId'], Admin::TAX_LEVELS);
             if ($this->badge && $this->field && $this->level && $this->jsonUrl) {
-                return self::START;
+                if (!DbBadge::isGotMOB($data)) {
+                    return self::START;
+                } else {
+                    return self::GOT;
+                }
             } else {
                 return self::ERROR;
             }
@@ -98,7 +111,7 @@ class GetBadgeTemp extends BaseController {
                         <?php echo $this->badge->post_content; ?>
                     </p>
                     <div class="logo-badge-cont">
-                        <img src="<?php echo get_the_post_thumbnail_url($this->badge->ID) ?>">
+                        <img src="<?php echo get_the_post_thumbnail_url($this->badge->ID) ?>" height="100px" width="100px">
                     </div>
                 </div>
             </main>
@@ -127,7 +140,7 @@ class GetBadgeTemp extends BaseController {
             </header>
 
             <main role="main" class="inner cover">
-                <div class="container">
+                <div class="container cont-form">
                     <form method="post" id="gb-form-login" class="gb-form">
                         <h2 class="form-signin-heading">Please sign in</h2>
                         <label for="inputEmail" class="sr-only">Email address / Username</label>
@@ -174,7 +187,19 @@ class GetBadgeTemp extends BaseController {
             <main role="main" class="inner cover registration">
                 <div class="container">
                     <form id="gb-form-registration" id="needs-validation" novalidate>
-                        <div class="form-group row">
+        <div class="form-group row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-10">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+            </div>
+        </div>
+                        <!--<div class="form-group row">
                             <label for="firstName" class="col-sm-4 col-form-label">First name</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="reg-first-name" required>
@@ -216,7 +241,7 @@ class GetBadgeTemp extends BaseController {
 
                             </div>
                             <input type="submit" id="submit-form" style="display: none;"/>
-                        </div>
+                        </div>->>
                     </form>
                 </div>
             </main>
@@ -234,7 +259,7 @@ class GetBadgeTemp extends BaseController {
         <?php
     }
 
-    public function showOpenBadgesSendIssuer() { ?>
+    public function showMozillaOpenBadges($got = false) { ?>
 
         <div id="gb-wrap" class="cover-container">
 
@@ -253,28 +278,36 @@ class GetBadgeTemp extends BaseController {
 
             <main role="main" class="inner cover">
                 <div class="container">
-                    <div class="jumbotron jumbotron-fluid">
+                    <div class="jumbotron jumbotron-fluid jumb-obm">
                         <p class="lead">
                             Mozilla Open Badges give you the opportunity to store your badge in its platform to permit
                             to
                             show your progress with all the community.
                             <br><br>
                             If you don’t have an Open Badge account, please click
-                            <a href="https://backpack.openbadges.org/backpack/signup" target="_blank" style="font-size: 25px;">here</a>
+                            <a href="https://backpack.openbadges.org/backpack/signup" target="_blank"
+                               style="font-size: 25px;">here</a>
                             and create a new account with the same email address of the registration of this website and
                             then <strong>get the badge</strong>.
 
                         </p>
                         <div class="cont-btn-standar">
-                            <button id="gb-ob-get-badge" class="btn btn-lg btn-primary" type="submit">Get the badge
+                            <button id="gb-ob-get-badge" class="btn btn-lg btn-primary" type="submit">Get the Badge
                             </button>
                         </div>
                         <div id="gb-ob-response">
                         </div>
                     </div>
+                    <?php
+                    if (!$got) {
+                        echo $got;
+                        ?>
                         <button id="gb-get-standard" class="btn btn-link" type="submit">
-                            Skip the process
+                            Skip the process and get anyway the Badge
                         </button>
+                        <?php
+                    }
+                    ?>
                 </div>
             </main>
 
@@ -328,6 +361,46 @@ class GetBadgeTemp extends BaseController {
         </div>
         <?php
 
+    }
+
+    private function showBadgeGot() {
+        $this->obf_header()
+        ?>
+        <div class="site-wrapper">
+            <div class="site-wrapper-inner">
+                <div id="gb-wrap" class="cover-container">
+
+                    <header class="masthead clearfix">
+                        <div class="info-header-obf">
+                            <div class="container">
+                                <div><?php echo get_bloginfo('name'); ?></div>
+                            </div>
+                        </div>
+                    </header>
+
+                    <main role="main" class="inner cover">
+                        <div class="container">
+
+                            <h1>BADGE ALREADY GOT</h1>
+                            <p class="lead">
+                                Your're already got your badge.
+                            </p>
+
+                        </div>
+                    </main>
+
+                    <footer class="mastfoot">
+                        <div class="inner">
+                            <div id="gb-resp-login"></div>
+                        </div>
+                    </footer>
+
+                </div>
+
+            </div>
+        </div>
+        <?php
+        $this->obf_footer();
     }
 
     private function showErrorPage() {

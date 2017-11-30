@@ -21,9 +21,11 @@ class DbModel {
         return $wpdb->prefix . $tableName;
     }
 
-    public static function fetchSql($type = "UPDATE", array $data) {
-        if ($type == "UPDATE") {
+    public static function fetchSql($type, array $data) {
+        if ($type == "SELECT") {
             $sql = "SELECT * FROM " . self::getTableName();
+        } else if ($type == "UPDATE") {
+            $sql = "UPDATE * FROM " . self::getTableName();
         } else if ($type == "DELETE") {
             $sql = "DELETE FROM " . self::getTableName();
         }
@@ -53,12 +55,13 @@ class DbModel {
 
     public static function get(array $data = null) {
         global $wpdb;
-        return $wpdb->get_results(self::fetchSql($data));
+        return $wpdb->get_results(self::fetchSql("SELECT", $data));;
     }
 
     public static function insert(array $data) {
         global $wpdb;
-        return $wpdb->insert(self::getTableName(), $data);
+        $res = $wpdb->insert(self::getTableName(), $data);
+        return $res;
     }
 
     public static function update(array $data, array $where) {
@@ -72,15 +75,8 @@ class DbModel {
         return $wpdb->query($ret);
     }
 
-    public static function timeToDate($time) {
-        return gmdate('Y-m-d H:i:s', $time);
-    }
-
     public static function now() {
-        return self::timeToDate(time());
+        return date('Y-m-d H:i:s');
     }
 
-    public static function dateToTime($date) {
-        return strtotime($date . ' GMT');
-    }
 }

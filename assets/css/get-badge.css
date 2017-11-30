@@ -195,7 +195,8 @@ body {
  * Login
  */
 
-#wrap-login {
+.cont-form {
+    max-width: 350px;
 }
 
 #wrap-login .gb-form {
@@ -206,6 +207,10 @@ body {
 
 .register-cont-link {
     margin-top: 5px;
+}
+
+.checkbox {
+    padding-top: 8px;
 }
 
 /*
@@ -236,15 +241,16 @@ body {
 }
 
 .cont-btn-form-reg {
-    height: 100px;
+    height: 10px;
 }
 
 /*
  * Open Badges Mozilla
  */
 
-.jumbotron {
+.jumb-obm {
     padding: 40px 20px 20px 20px;
+    border-bottom: 7px solid #cccccc;
 }
 
 .cont-btn-standar {

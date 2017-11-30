@@ -510,7 +510,7 @@ window.onload = function () {
             if (currentForm == 'c') {
                 mails = mails[0].split(",");
                 for (var i = 0; i < mails.length; i++) {
-                    mails[i] = mails[i].replace(/ /g,'')
+                    mails[i] = mails[i].replace(/ /g, '')
                 }
             }
 
@@ -599,7 +599,7 @@ window.onload = function () {
             if (currentForm == 'c') {
                 receivers = receivers[0].split(",");
                 for (var i = 0; i < receivers.length; i++) {
-                    receivers[i] = receivers[i].replace(/ /g,'')
+                    receivers[i] = receivers[i].replace(/ /g, '')
                 }
             }
             /* # INFO # */
@@ -621,12 +621,19 @@ window.onload = function () {
 
             jQuery.post(
                 globalUrl.ajax,
-                data,
-                function (response) {
-                    alert(response);
-                    //location.reload();
-                }
-            );
+                data)
+                .done(
+                    function (response) {
+                        alert(response);
+                    }
+                )
+                .fail(
+                    function (xhr, textStatus, errorThrown) {
+                        console.log(xhr.statusText);
+                        console.log(textStatus);
+                        console.log(errorThrown);
+                    }
+                );
         } else {
             alert("Sending badge not available because WordPress is running in localhost!");
             location.reload();
