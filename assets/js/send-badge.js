@@ -43,64 +43,67 @@ window.onload = function () {
        ===================================== */
 
     var form_a = jQuery("#form_a");
-    form_a.validate({
-        errorPlacement: function errorPlacement(error, element) {
-            element.before(error);
-        },
-        rules: {
-            confirm: {
-                equalTo: "#password"
+    if(form_a.length) {
+        form_a.validate({
+            errorPlacement: function errorPlacement(error, element) {
+                element.before(error);
+            },
+            rules: {
+                confirm: {
+                    equalTo: "#password"
+                }
             }
-        }
-    });
+        });
 
-    form_a.children("div").steps({
-        headerTag: "h3",
-        bodyTag: "section",
-        transitionEffect: "slideLeft",
-        onStepChanging: function (event, currentIndex, newIndex) {
-            var currentForm = "a";
+        form_a.children("div").steps({
+            headerTag: "h3",
+            bodyTag: "section",
+            transitionEffect: "slideLeft",
+            onStepChanging: function (event, currentIndex, newIndex) {
+                var currentForm = "a";
 
-            if (newIndex < currentIndex) {
-                disableTab(form_a, newIndex, currentIndex);
-                form_a.validate().settings.ignore = ":disabled,:hidden";
-                return form_a.valid();
-            }
-
-            switch (currentIndex) {
-                /******* (0) FIELD OF EDUCATION */
-                case 0:
-                    return load_levels(currentForm, form_a);
-                    break;
-                /******* (1) LEVEL */
-                case 1:
-                    return load_badges(currentForm, form_a);
-                    break;
-
-                /******* (2) KIND OF BADGE */
-                case 2:
-                    return load_description(currentForm, form_a);
-                    break;
-
-                /******* (3) LANGUAGE */
-                case 3:
+                if (newIndex < currentIndex) {
+                    disableTab(form_a, newIndex, currentIndex);
                     form_a.validate().settings.ignore = ":disabled,:hidden";
                     return form_a.valid();
-                    break;
+                }
 
-                /******* (4) INFORMATION */
-                case 4:
-                    return check_information(currentForm, form_a);
-                    break;
+                switch (currentIndex) {
+                    /******* (0) FIELD OF EDUCATION */
+                    case 0:
+                        return load_levels(currentForm, form_a);
+                        break;
+                    /******* (1) LEVEL */
+                    case 1:
+                        return load_badges(currentForm, form_a);
+                        break;
+
+                    /******* (2) KIND OF BADGE */
+                    case 2:
+                        return load_description(currentForm, form_a);
+                        break;
+
+                    /******* (3) LANGUAGE */
+                    case 3:
+                        form_a.validate().settings.ignore = ":disabled,:hidden";
+                        return form_a.valid();
+                        break;
+
+                    /******* (4) INFORMATION */
+                    case 4:
+                        return check_information(currentForm, form_a);
+                        break;
+                }
+            },
+            onFinishing: function (event, currentIndex) {
+                return check_information("a", form_a);
+            },
+            onFinished: function (event, currentIndex) {
+                sendMessageBadge("a");
             }
-        },
-        onFinishing: function (event, currentIndex) {
-            return check_information("a", form_a);
-        },
-        onFinished: function (event, currentIndex) {
-            sendMessageBadge("a");
-        }
-    });
+        });
+    }
+
 
 
     /* =====================================
@@ -108,72 +111,74 @@ window.onload = function () {
        ===================================== */
 
     var form_b = jQuery("#form_b");
-    form_b.validate({
-        errorPlacement: function errorPlacement(error, element) {
-            element.before(error);
-        },
-        rules: {
-            confirm: {
-                equalTo: "#password"
+    if(form_b.length) {
+        form_b.validate({
+            errorPlacement: function errorPlacement(error, element) {
+                element.before(error);
+            },
+            rules: {
+                confirm: {
+                    equalTo: "#password"
+                }
             }
-        }
-    });
+        });
 
-    form_b.children("div").steps({
-        headerTag: "h3",
-        bodyTag: "section",
-        transitionEffect: "slideLeft",
-        onStepChanging: function (event, currentIndex, newIndex) {
-            //Variables
-            var currentForm = "b";
+        form_b.children("div").steps({
+            headerTag: "h3",
+            bodyTag: "section",
+            transitionEffect: "slideLeft",
+            onStepChanging: function (event, currentIndex, newIndex) {
+                //Variables
+                var currentForm = "b";
 
-            if (newIndex < currentIndex) {
-                disableTab(form_b, newIndex, currentIndex);
-                form_b.validate().settings.ignore = ":disabled,:hidden";
-                return form_b.valid();
+                if (newIndex < currentIndex) {
+                    disableTab(form_b, newIndex, currentIndex);
+                    form_b.validate().settings.ignore = ":disabled,:hidden";
+                    return form_b.valid();
+                }
+
+                switch (currentIndex) {
+                    /******* (0) FIELD OF EDUCATION */
+                    case 0:
+                        return load_levels(currentForm, form_b);
+                        break;
+                    /******* (1) LEVEL */
+                    case 1:
+                        return load_badges(currentForm, form_b);
+                        break;
+
+                    /******* (2) KIND OF BADGE */
+                    case 2:
+                        return load_description(currentForm, form_b);
+                        break;
+                    /******* (3) LANGUAGE */
+                    case 3:
+                        return load_classes(currentForm, form_b);
+                        break;
+                    /******* (4) CLASS */
+                    case 4:
+                        return check_class(currentForm, form_b);
+                        break;
+                    /******* (5) EMAIL */
+                    case 5:
+                        return check_mails(currentForm, form_b);
+                        break;
+                    /******* (6) INFORMATION */
+                    case 6:
+                        return check_information(currentForm, form_b);
+                        break;
+                }
+
+            },
+            onFinishing: function (event, currentIndex) {
+                return check_information("b", form_b);
+
+            },
+            onFinished: function (event, currentIndex) {
+                sendMessageBadge("b");
             }
-
-            switch (currentIndex) {
-                /******* (0) FIELD OF EDUCATION */
-                case 0:
-                    return load_levels(currentForm, form_b);
-                    break;
-                /******* (1) LEVEL */
-                case 1:
-                    return load_badges(currentForm, form_b);
-                    break;
-
-                /******* (2) KIND OF BADGE */
-                case 2:
-                    return load_description(currentForm, form_b);
-                    break;
-                /******* (3) LANGUAGE */
-                case 3:
-                    return load_classes(currentForm, form_b);
-                    break;
-                /******* (4) CLASS */
-                case 4:
-                    return check_class(currentForm, form_b);
-                    break;
-                /******* (5) EMAIL */
-                case 5:
-                    return check_mails(currentForm, form_b);
-                    break;
-                /******* (6) INFORMATION */
-                case 6:
-                    return check_information(currentForm, form_b);
-                    break;
-            }
-
-        },
-        onFinishing: function (event, currentIndex) {
-            return check_information("b", form_b);
-
-        },
-        onFinished: function (event, currentIndex) {
-            sendMessageBadge("b");
-        }
-    });
+        });
+    }
 
 
     /* =====================================
@@ -181,73 +186,75 @@ window.onload = function () {
        ===================================== */
 
     var form_c = jQuery("#form_c");
-    form_c.validate({
-        errorPlacement: function errorPlacement(error, element) {
-            element.before(error);
-        },
-        rules: {
-            confirm: {
-                equalTo: "#password"
+    if(form_c.length) {
+        form_c.validate({
+            errorPlacement: function errorPlacement(error, element) {
+                element.before(error);
+            },
+            rules: {
+                confirm: {
+                    equalTo: "#password"
+                }
             }
-        }
-    });
+        });
 
-    form_c.children("div").steps({
-        headerTag: "h3",
-        bodyTag: "section",
-        transitionEffect: "slideLeft",
-        onStepChanging: function (event, currentIndex, newIndex) {
-            //Variables
-            var currentForm = "c";
+        form_c.children("div").steps({
+            headerTag: "h3",
+            bodyTag: "section",
+            transitionEffect: "slideLeft",
+            onStepChanging: function (event, currentIndex, newIndex) {
+                //Variables
+                var currentForm = "c";
 
 
-            if (newIndex < currentIndex) {
-                disableTab(form_c, newIndex, currentIndex);
-                form_c.validate().settings.ignore = ":disabled,:hidden";
-                return form_c.valid();
+                if (newIndex < currentIndex) {
+                    disableTab(form_c, newIndex, currentIndex);
+                    form_c.validate().settings.ignore = ":disabled,:hidden";
+                    return form_c.valid();
+                }
+
+                switch (currentIndex) {
+                    /******* (0) FIELD OF EDUCATION */
+                    case 0:
+                        return load_levels(currentForm, form_c);
+                        break;
+                    /******* (1) LEVEL */
+                    case 1:
+                        return load_badges(currentForm, form_c);
+                        break;
+
+                    /******* (2) KIND OF BADGE */
+                    case 2:
+                        return load_description(currentForm, form_c);
+                        break;
+                    /******* (3) LANGUAGE */
+                    case 3:
+                        return load_classes(currentForm, form_c);
+                        break;
+                    /******* (4) CLASS */
+                    case 4:
+                        return check_class(currentForm, form_c);
+                        break;
+                    /******* (5) EMAIL */
+                    case 5:
+                        return check_mails(currentForm, form_c);
+                        break;
+                    /******* (6) INFORMATION */
+                    case 6:
+                        return check_information(currentForm, form_c);
+                        break;
+                }
+
+            },
+            onFinishing: function (event, currentIndex) {
+                return check_information("c", form_c);
+
+            },
+            onFinished: function (event, currentIndex) {
+                sendMessageBadge("c");
             }
-
-            switch (currentIndex) {
-                /******* (0) FIELD OF EDUCATION */
-                case 0:
-                    return load_levels(currentForm, form_c);
-                    break;
-                /******* (1) LEVEL */
-                case 1:
-                    return load_badges(currentForm, form_c);
-                    break;
-
-                /******* (2) KIND OF BADGE */
-                case 2:
-                    return load_description(currentForm, form_c);
-                    break;
-                /******* (3) LANGUAGE */
-                case 3:
-                    return load_classes(currentForm, form_c);
-                    break;
-                /******* (4) CLASS */
-                case 4:
-                    return check_class(currentForm, form_c);
-                    break;
-                /******* (5) EMAIL */
-                case 5:
-                    return check_mails(currentForm, form_c);
-                    break;
-                /******* (6) INFORMATION */
-                case 6:
-                    return check_information(currentForm, form_c);
-                    break;
-            }
-
-        },
-        onFinishing: function (event, currentIndex) {
-            return check_information("c", form_c);
-
-        },
-        onFinished: function (event, currentIndex) {
-            sendMessageBadge("c");
-        }
-    });
+        });
+    }
 
     /**
      * To load the FIELD OF EDUCATION (PARENT)
@@ -299,9 +306,9 @@ window.onload = function () {
      */
 
     function load_levels(currentForm, form) {
-        var field = jQuery("#form_" + currentForm + " #field :selected").val();
+        var fieldId = jQuery("#form_" + currentForm + " #field :selected").val();
 
-        if (field == "Select") {
+        if (fieldId == "Select") {
             return false;
         }
 
@@ -310,7 +317,7 @@ window.onload = function () {
         var data = {
             'action': 'ajaxShowLevels',
             'form': currentForm,
-            'field': field
+            'fieldId': fieldId
         };
 
         jQuery.post(
@@ -334,7 +341,7 @@ window.onload = function () {
      */
     function load_badges(currentForm, form) {
         var check = false;
-        var field = jQuery("#form_" + currentForm + " #field :selected").val();
+        var fieldId = jQuery("#form_" + currentForm + " #field :selected").val();
         var levelValue = "";
 
         jQuery("input[name='level_" + currentForm + "']")
@@ -354,7 +361,7 @@ window.onload = function () {
         var data = {
             'action': 'ajaxShowBadges',
             'form': currentForm,
-            'field': field,
+            'fieldId': fieldId,
             'level': levelValue
         };
 
@@ -403,7 +410,7 @@ window.onload = function () {
         var data = {
             'action': 'ajaxShowDescription',
             'form': currentForm,
-            'ID': badgeId
+            'badgeId': badgeId
         };
 
         // AJAX call
@@ -429,7 +436,7 @@ window.onload = function () {
      * @since 0.6.3
      */
     function load_classes(currentForm, form) {
-        var field = jQuery("#form_" + currentForm + " #field :selected").val();
+        var fieldId = jQuery("#form_" + currentForm + " #field :selected").val();
         var level = "";
 
         jQuery("input[name='level_" + currentForm + "']")
@@ -444,7 +451,7 @@ window.onload = function () {
         var data = {
             'action': 'ajaxShowClasses',
             'form': currentForm,
-            'field': field,
+            'fieldId': fieldId,
             'level': level
         };
         jQuery.post(

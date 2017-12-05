@@ -1,6 +1,8 @@
 <?php
 /**
- * ...
+ * The SendBadge Class. In this class are stored
+ * the most important function that permit us to
+ * send a badge.
  *
  * @author      Alessandro RICCARDI
  * @since       x.x.x
@@ -8,14 +10,15 @@
  * @package     OpenBadgesFramework
  */
 
-namespace inc\Utils;
+namespace Inc\Utils;
 
 use Inc\Base\BaseController;
 use inc\Base\User;
 use Inc\Database\DbBadge;
 use Inc\OB\JsonManagement;
-use Inc\Pages\Admin;
 use Inc\Utils\Badges;
+use Inc\Pages\Admin;
+
 
 class SendBadge extends BaseController {
     private $badgeInfo = null;
@@ -28,15 +31,22 @@ class SendBadge extends BaseController {
     private $evidence = null;
 
     /**
-     * The constructor of the Badge object.
+     * The constructor that initialize all the variable
      *
-     * @author   Alessandro RICCARDI
-     * @since    x.x.x
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
+     *
+     * @param int    $badgeId   the id of the badge
+     * @param int    $fieldId   the id of the field
+     * @param int    $levelId   the id of the level
+     * @param string $info      the additional from the teacher
+     * @param array  $receivers the people that will receive the email
+     * @param string $class     the eventual class
+     * @param string $evidence  the work of the student in url format
      */
-    function __construct($id, $fieldId, $levelId, $info, $receivers, $class = '', $evidence = '') {
-        parent::__construct();
+    function __construct($badgeId, $fieldId, $levelId, $info, $receivers, $class = '', $evidence = '') {
         $badges = new Badges();
-        $this->badge = $badges->getBadgeById($id);
+        $this->badge = $badges->getBadgeById($badgeId);
 
         $this->field = get_term($fieldId, Admin::TAX_FIELDS);
         $this->level = get_term($levelId, Admin::TAX_LEVELS);
@@ -61,6 +71,14 @@ class SendBadge extends BaseController {
         $this->jsonMg = new JsonManagement($this->badgeInfo);
     }
 
+    /**
+     * This class do three principal things, crate
+     * the json file, crate the body, send the email
+     * and store all of that information in the database
+     *
+     * @author   Alessandro RICCARDI
+     * @since    x.x.x
+     */
     public function sendBadge() {
 
         $subject = "Badge: " . $this->badge->post_title . " Field: " . $this->field->name;
@@ -73,15 +91,19 @@ class SendBadge extends BaseController {
         if (is_array($this->receivers)) {
             foreach ($this->receivers as $receiver) {
 
+                // Creation of json file
                 $hashName = $this->jsonMg->createJsonFile($receiver);
+
                 if ($hashName != null) {
+                    // Creating the body of the email
                     $body = $this->getBodyEmail($hashName);
                 } else {
-                    return "error json file";
+                    return "Error json file\n";
                 }
 
+                // Sending the email -->-->
                 if (!wp_mail($receiver, $subject, $body, $headers)) {
-                    return "error email";
+                    return "Error email\n";
                 }
 
                 $data = array(
@@ -92,11 +114,12 @@ class SendBadge extends BaseController {
                     'classId' => $this->class,
                     'teacherId' => User::getCurrentUser()->ID,
                     'roleSlug' => User::getCurrentUser()->roles[0],
-                    'dateCreation' => DbBadge::now().'',
+                    'dateCreation' => DbBadge::now() . '',
                     'json' => $hashName,
                     'info' => $this->badgeInfo['info']
                 );
 
+                // Insertion of the email in the database
                 $res = DbBadge::insert($data);
                 if ($res === DbBadge::ER_DUPLICATE) {
                     echo $receiver . " : " . DbBadge::ER_DUPLICATE;
@@ -106,10 +129,16 @@ class SendBadge extends BaseController {
             }
             return "Email success.\n";
         } else {
-            return "not array";
+            return "Not array\n";
         }
     }
 
+    /**
+     * The body of the email
+     *
+     * @author   Alessandro RICCARDI
+     * @since    x.x.x
+     */
     private function getBodyEmail($hash_file) {
         $urlGetBadge = home_url('/' . Admin::SLUG_GETBADGE . '/');
 

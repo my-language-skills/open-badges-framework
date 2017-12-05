@@ -15,10 +15,14 @@ use Inc\Pages\Admin;
 use Inc\Base\User;
 
 class Levels {
-
     public $levels = array();
+
     /**
-     * Fields constructor.
+     * This constructor load all the level stored
+     * in the db.
+     *
+     * @author   Alessandro RICCARDI
+     * @since    x.x.x
      */
     public function __construct() {
 
@@ -40,7 +44,7 @@ class Levels {
      * @param string | $rightFieldEdu field of education selected in the first step
      * @return array $levels Array of all levels found.
      */
-    function getAllLevels($rightFieldEdu = "") {
+    public static function getAllLevels($rightFieldEdu = "") {
         // Variables
         $levels = array();
 

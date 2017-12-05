@@ -13,20 +13,21 @@ namespace inc\Utils;
 use Inc\Pages\Admin;
 
 class Fields {
-    //
-    private $tax_name;
     public $main = array();
     public $sub = array();
 
     /**
-     * Fields constructor.
+     * This constructor load the main fields and
+     * also the sub field if they exist.
+     *
+     * @author   Alessandro RICCARDI
+     * @since    x.x.x
      */
     public function __construct() {
-        $this->tax_name = Admin::TAX_FIELDS;
 
         // Get Main
         $this->main = get_terms(array(
-            'taxonomy' => $this->tax_name,
+            'taxonomy' => Admin::TAX_FIELDS,
             'hide_empty' => false,
             'parent' => 0,
         ));
@@ -37,7 +38,7 @@ class Fields {
             foreach ($this->main as $parent) {
                 //In this foreach we're getting all the childs of the parents
                 $children = get_terms(array(
-                    'taxonomy' => $this->tax_name,
+                    'taxonomy' => Admin::TAX_FIELDS,
                     'hide_empty' => false,
                     'child_of' => $parent->term_id
                 ));
@@ -48,6 +49,12 @@ class Fields {
     }
 
     /**
+     * This constructor load the main fields and
+     * also the sub field if they exist.
+     *
+     * @author   Alessandro RICCARDI
+     * @since    x.x.x
+     *
      * @return array|int|\WP_Error
      */
     public static function getFields() {
@@ -77,7 +84,8 @@ class Fields {
     }
 
     /**
-     * This function permit to understand if the "field of education" have subcategory (children) or not.
+     * This function permit to understand if the "field of education"
+     * have subcategory (children) or not.
      *
      * @author Alessandro RICCARDI
      * @since  x.x.x
@@ -85,8 +93,7 @@ class Fields {
      * @return bool     True if have children,
      *                  False if don't have children
      */
-    public
-    function haveChildren() {
+    public static function haveChildren() {
         $parents = get_terms(array(
             'taxonomy' => Admin::TAX_FIELDS,
             'hide_empty' => false,

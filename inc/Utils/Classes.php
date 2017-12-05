@@ -15,32 +15,41 @@ use Inc\Pages\Admin;
 
 class Classes {
 
-    public $classes = null;
-
-    public function __construct() {
-        $this->classes = get_posts(array(
+    /**
+     * This function permit to understand if the "field of education"
+     * have subcategory (children) or not.
+     *
+     * @author Alessandro RICCARDI
+     * @since  x.x.x
+     *
+     * @param string $field the id of the field
+     *
+     * @return bool     True if have children,
+     *                  False if don't have children
+     */
+    public static function getOwnClass($field = "") {
+        $allClasses = get_posts(array(
             'post_type' => Admin::POST_TYPE_CLASS_JL,
             'orderby' => 'name',
             'order' => 'DESC',
             'numberposts' => -1
         ));
-    }
 
-    public function getOwnClass($field = "") {
         $userId = User::getCurrentUser()->ID;
         $classes = array();
-        foreach ($this->classes as $class) {
-            $fieldsPost = wp_get_post_terms( $class->ID, Admin::TAX_FIELDS );
-            if ($class->post_author == $userId){
-                if (!$fieldsPost){
+        foreach ($allClasses as $class) {
+            $fieldsPost = wp_get_post_terms($class->ID, Admin::TAX_FIELDS);
+            if ($class->post_author == $userId) {
+                if (!$fieldsPost) {
                     array_push($classes, $class);
                 } else {
                     foreach ($fieldsPost as $fieldPost) {
-                        $fieldPost->name == $field ? array_push($classes, $class) : 0 ;
+                        $fieldPost->name == $field ? array_push($classes, $class) : 0;
                     }
                 }
             }
         }
+
         return $classes;
     }
 }

@@ -11,6 +11,7 @@
 
 namespace inc\Ajax;
 
+use inc\Base\User;
 use Inc\Utils\DisplayFunction;
 use Inc\Utils\Levels;
 use Inc\Utils\Badges;
@@ -46,7 +47,7 @@ class SendBadgeAjax extends BaseController {
      */
     function ajaxShowLevels() {
         $form = $_POST['form'];
-        $fieldId = $_POST['field'];
+        $fieldId = $_POST['fieldId'];
         $level = new Levels();
         $levels = $level->getAllLevels($fieldId);
         // Display the level ...
@@ -68,7 +69,7 @@ class SendBadgeAjax extends BaseController {
     function ajaxShowBadges() {
         $badges = new Badges();
         $form = $_POST['form'];
-        $field = $_POST['field'];
+        $field = $_POST['fieldId'];
         $level = $_POST['level'];
 
         $rightBadges = $badges->getBadgesFiltered($field, $level);
@@ -110,8 +111,8 @@ class SendBadgeAjax extends BaseController {
     function ajaxShowDescription() {
         $badges = new Badges();
         $form = $_POST['form'];
-        $id = $_POST['ID'];
-        $badge = $badges->getBadgeById($id);
+        $badgeId = $_POST['badgeId'];
+        $badge = $badges->getBadgeById($badgeId);
 
         echo "<div name='desc_$form'>$badge->post_content</div>";
         wp_die();
@@ -126,7 +127,7 @@ class SendBadgeAjax extends BaseController {
      */
     function ajaxShowClasses() {
         $form = $_POST['form'];
-        $field = $_POST['field'];
+        $field = $_POST['fieldId'];
         $classes = new Classes();
         $ownClasses = $classes->getOwnClass($field);
 
@@ -139,6 +140,7 @@ class SendBadgeAjax extends BaseController {
     }
 
     function ajaxSendBadge() {
+        $form = $_POST['form'];
         $badgeId = $_POST['badgeId'];
         $fieldId = $_POST['fieldId'];
         $levelId = $_POST['levelId'];
@@ -147,8 +149,17 @@ class SendBadgeAjax extends BaseController {
         $info = $_POST['info'];
         $evidence = $_POST['evidence'];
 
-        $badge = new SendBadge($badgeId, $fieldId, $levelId, $info, $receivers, $theClassId, $evidence);
+        /*echo($form . " _ " . $badgeId . " _ " . $fieldId . " _ " . $levelId . " _ " .
+            $theClassId . " _ " . $receivers . " _ " . $info . " _ " . $evidence);*/
 
+        // For the A form the receiver is the user (Self)
+        if($form === 'a') {
+            $receivers = array(
+                    User::getCurrentUser()->user_email
+            );
+        }
+
+        $badge = new SendBadge($badgeId, $fieldId, $levelId, $info, $receivers, $theClassId, $evidence);
         echo $badge->sendBadge();
         wp_die();
     }

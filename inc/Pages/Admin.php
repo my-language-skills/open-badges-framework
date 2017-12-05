@@ -1,6 +1,7 @@
 <?php
 /**
- * The Admin Class.
+ * This function allow us to create array that will be pass
+ * to the SettingApi class that will then create them.
  *
  * @author     Alessandro RICCARDI
  * @since      x.x.x
@@ -29,7 +30,6 @@ class Admin extends BaseController {
     const MTB_LBADGE = "lbadge_obf_mtb";
     const SLUG_GETBADGE = "get_badge_obf";
 
-
     private $settingApi;
     private $pages;
     private $subpages = array();
@@ -39,7 +39,11 @@ class Admin extends BaseController {
     private $frontEndPages = array();
 
     /**
-     * Admin constructor.
+     * This function allow us to create array of pages, sub-pages, custom posts type,
+     * taxonomies and meta-boxes.
+     *
+     * @author   Alessandro RICCARDI
+     * @since    x.x.x
      */
     public function __construct() {
         $this->settingApi = new SettingApi();
@@ -225,7 +229,10 @@ class Admin extends BaseController {
     }
 
     /**
-     * Register the admin menu page
+     * This function
+     *
+     * @author   Alessandro RICCARDI
+     * @since    x.x.x
      */
     public function register() {
         $this->settingApi->loadPages($this->pages)->withSubPage('Dashboard')->loadSubPages($this->subpages)

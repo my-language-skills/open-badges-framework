@@ -15,25 +15,34 @@ use Inc\Pages\Admin;
 
 class Badges {
 
-    public $badges = array();
-
-    public function __construct() {
-        $this->badges = get_posts(array(
+    /**
+     * This function permit to filter with the field
+     * and level and get the right badges that we want.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
+     *
+     * @param string $field the id of the field
+     * @param string $level the id of the level
+     *
+     * @return bool     True if have children,
+     *                  False if don't have children
+     */
+    public static function getBadgesFiltered($field = "", $level = "") {
+        $standBadges = get_posts(array(
             'post_type' => Admin::POST_TYPE_BADGES,
             'orderby' => 'name',
             'order' => 'DESC',
             'numberposts' => -1
         ));
-    }
 
-    public function getBadgesFiltered($field = "", $level = "") {
         if ($field == "" && $level == "") {
-            return $this->badges;
+            return $standBadges;
         } else {
             // Variable
             $allBadges = array();
 
-            foreach ($this->badges as $badge) {
+            foreach ($standBadges as $badge) {
                 $fieldOK = 0;
                 $fields = get_the_terms($badge->ID, Admin::TAX_FIELDS);
                 $badgeLevel = get_the_terms($badge->ID, Admin::TAX_LEVELS)[0]->term_id;
@@ -60,12 +69,31 @@ class Badges {
         }
     }
 
-    public function getBadgeById($ID) {
-        if (!$ID) {
+    /**
+     * This function permit get the badge, giving the
+     * id of the badge.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
+     *
+     * @param int $id the id of the field
+     *
+     * @return array The badge information.
+     */
+    public static function getBadgeById($id) {
+        $standBadges = get_posts(array(
+            'post_type' => Admin::POST_TYPE_BADGES,
+            'orderby' => 'name',
+            'order' => 'DESC',
+            'numberposts' => -1
+        ));
+
+        if (!$id) {
             return null;
         } else {
-            foreach ($this->badges as $badge) {
-                if($badge->ID == $ID) return $badge;
+            foreach ($standBadges as $badge) {
+                if ($badge->ID == $id)
+                    return $badge;
             }
             return null;
         }

@@ -187,19 +187,7 @@ class GetBadgeTemp extends BaseController {
             <main role="main" class="inner cover registration">
                 <div class="container">
                     <form id="gb-form-registration" id="needs-validation" novalidate>
-        <div class="form-group row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
-            <div class="col-sm-10">
-                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com">
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-            <div class="col-sm-10">
-                <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-            </div>
-        </div>
-                        <!--<div class="form-group row">
+                        <div class="form-group row">
                             <label for="firstName" class="col-sm-4 col-form-label">First name</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="reg-first-name" required>
@@ -241,7 +229,7 @@ class GetBadgeTemp extends BaseController {
 
                             </div>
                             <input type="submit" id="submit-form" style="display: none;"/>
-                        </div>->>
+                        </div>
                     </form>
                 </div>
             </main>

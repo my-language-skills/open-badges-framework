@@ -28,7 +28,6 @@ final class Init {
             Utils\DisplayFunction::class,
             Utils\Statistics::class,
             Database\DbBadge::class,
-
         );
     }
 
