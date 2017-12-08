@@ -107,6 +107,7 @@ class DbBadge extends DbModel {
      * @type string        dateCreation     Text.
      * @type string        json             Text.
      * @type string        info             Text.
+     * }
      *
      * @return true | @const ER_DUPLICATE duplicate row | false, if errors.
      */
@@ -249,6 +250,7 @@ class DbBadge extends DbModel {
      * @type string        badgeId          Text.
      * @type string        fieldId          Text.
      * @type string        levelId          Text.
+     * }
      *
      * @return the badge | false, if don't exist. | @const ER_DONT_EXIST if the badge doesn't exist |
      *         ER_WRONG_FIELDS if there are wrong field

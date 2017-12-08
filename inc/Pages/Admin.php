@@ -28,30 +28,42 @@ class Admin extends BaseController {
     const MTB_CERT = "certification_obf_mtb";
     const MTB_TARGET = "type_obf_mtb";
     const MTB_LBADGE = "lbadge_obf_mtb";
-    const SLUG_GETBADGE = "get_badge_obf";
 
-    private $settingApi;
+    private $settings;
     private $pages;
     private $subpages = array();
-    private $custom_post_types = array();
-    private $taxonomies = array();
-    private $metaboxes = array();
-    private $frontEndPages = array();
 
     /**
-     * This function allow us to create array of pages, sub-pages, custom posts type,
-     * taxonomies and meta-boxes.
+     * This function permit to load all the array in the instance
+     * of SettingApi and execute the final "register()" function.
      *
      * @author   Alessandro RICCARDI
      * @since    x.x.x
      */
-    public function __construct() {
-        $this->settingApi = new SettingApi();
-        $sendbadgeTemp = new SendBadgeTemp();
-        $settingTemp = new SettingsTemp();
-        $metaboxTemp = new MetaboxApi();
+    function register() {
 
-        /* #PAGE */
+        $this->settings = new SettingApi();
+
+        $this->setPages();
+        $this->setSubpages();
+
+        $this->setCustomPostTypes();
+        $this->setTaxonomies();
+        $this->setMetaboxes();
+        $this->setFrontEndPages();
+
+        $this->settings->loadPages($this->pages)->withSubPage('Dashboard')->loadSubPages($this->subpages)->register();
+
+    }
+
+
+    /**
+     * This function permit store in a variable the principal page.
+     *
+     * @author   Alessandro RICCARDI
+     * @since    x.x.x
+     */
+    public function setPages() {
         $this->pages = array(
             array(
                 'page_title' => 'Open Badge',
@@ -63,10 +75,20 @@ class Admin extends BaseController {
                 'position' => '110'
             )
         );
+    }
 
-        /* #SUBPAGE */
+    /**
+     * This function permit store in an array all the sub-pages.
+     *
+     * @author   Alessandro RICCARDI
+     * @since    x.x.x
+     */
+    public function setSubpages() {
+        $sendbadgeTemp = new SendBadgeTemp();
+        $settingTemp = new SettingsTemp();
+
         $this->subpages = array(
-            /* ## Badges ## */
+            // ## Badges ##
             array(
                 'parent_slug' => self::SLUG_PLUGIN,
                 'page_title' => 'Badges',
@@ -75,7 +97,7 @@ class Admin extends BaseController {
                 'menu_slug' => 'edit.php?post_type=' . self::POST_TYPE_BADGES,
                 'callback' => ''
             ),
-            /* ## Fields ## */
+            // ## Fields ##
             array(
                 'parent_slug' => self::SLUG_PLUGIN,
                 'page_title' => 'Fields of education',
@@ -84,7 +106,7 @@ class Admin extends BaseController {
                 'menu_slug' => 'edit-tags.php?taxonomy=' . self::TAX_FIELDS . '&post_type=' . self::POST_TYPE_BADGES,
                 'callback' => ''
             ),
-            /* ## Levels ## */
+            // ## Levels ##
             array(
                 'parent_slug' => self::SLUG_PLUGIN,
                 'page_title' => 'Levels',
@@ -93,7 +115,7 @@ class Admin extends BaseController {
                 'menu_slug' => 'edit-tags.php?taxonomy=' . self::TAX_LEVELS . '&post_type=' . self::POST_TYPE_BADGES,
                 'callback' => ''
             ),
-            /* ## Send Badges ## */
+            // ## Send Badges ##
             array(
                 'parent_slug' => self::SLUG_PLUGIN,
                 'page_title' => 'Send Badges',
@@ -102,7 +124,7 @@ class Admin extends BaseController {
                 'menu_slug' => 'send_badge_obf',
                 'callback' => array($sendbadgeTemp, 'main')
             ),
-            /* ## Settings ## */
+            // ## Settings ##
             array(
                 'parent_slug' => self::SLUG_PLUGIN,
                 'page_title' => 'Settings',
@@ -112,9 +134,17 @@ class Admin extends BaseController {
                 'callback' => array($settingTemp, 'create_admin_page')
             ),
         );
+    }
 
-        /* #CUSTOM-POST-TYPE */
-        $this->custom_post_types = array(
+
+    /**
+     * This function permit load in the SettingApi the Custom Post Type.
+     *
+     * @author   Alessandro RICCARDI
+     * @since    x.x.x
+     */
+    public function setCustomPostTypes() {
+        $args = array(
             /* ## Badges ## */
             array(
                 'post_type' => self::POST_TYPE_BADGES,
@@ -143,8 +173,18 @@ class Admin extends BaseController {
             ),
         );
 
+        $this->settings->loadCustomPostTypes($args);
+    }
+
+    /**
+     * This function permit load in the SettingApi the Taxonomies.
+     *
+     * @author   Alessandro RICCARDI
+     * @since    x.x.x
+     */
+    public function setTaxonomies() {
         /* ## TAXONOMIES ## */
-        $this->taxonomies = array(
+        $args = array(
             /* ## Fields ## */
             array(
                 'taxonomy' => self::TAX_FIELDS,
@@ -197,8 +237,19 @@ class Admin extends BaseController {
             ),
         );
 
-        /* #METABOX */
-        $this->metaboxes = array(
+        $this->settings->loadTaxonomies($args);
+    }
+
+    /**
+     * This function permit load in the SettingApi the Metaboxes.
+     *
+     * @author   Alessandro RICCARDI
+     * @since    x.x.x
+     */
+    public function setMetaboxes() {
+        $metaboxTemp = new MetaboxApi();
+
+        $args = array(
             /* ## Certification ## */
             array(
                 'id' => self::MTB_CERT,
@@ -219,25 +270,29 @@ class Admin extends BaseController {
             ),
         );
 
-        $this->frontEndPages = array(
-            array(
-                'slug' => self::SLUG_GETBADGE,
-                'class' => GetBadgeTemp::class,
-            ),
-        );
-
+        $this->settings->loadMetaBoxes($args);
     }
 
     /**
-     * This function
+     * This function permit to load al the front-end page managed from the setting page
      *
      * @author   Alessandro RICCARDI
      * @since    x.x.x
      */
-    public function register() {
-        $this->settingApi->loadPages($this->pages)->withSubPage('Dashboard')->loadSubPages($this->subpages)
-            ->loadCustomPostTypes($this->custom_post_types)->loadTaxonomies($this->taxonomies)
-            ->loadMetaBoxes($this->metaboxes)->loadFrontEndPages($this->frontEndPages)->register();
+    public function setFrontEndPages() {
+        $options = get_option(SettingsTemp::OPTION_NAME);
 
+        $args = array(
+            // # GET BADGE PAGE
+            array(
+                'slug' => get_post($options[SettingsTemp::FI_GET_BADGE])->post_name,
+                'class' => GetBadgeTemp::class,
+            ),
+        );
+
+        $this->settings->loadFrontEndPages($args);
     }
+
+
 }
+

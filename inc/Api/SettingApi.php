@@ -13,6 +13,7 @@ namespace Inc\Api;
 
 use Inc\Pages\Admin;
 use Templates\GetBadgeTemp;
+use templates\SettingsTemp;
 
 class SettingApi {
 
@@ -46,10 +47,8 @@ class SettingApi {
         }
         /* FRONT-END-PAGES */
         if (!empty($this->frontEndPages)) {
-            add_action('add_meta_boxes', array($this, 'addMetaBoxes'));
             add_action('wp', array($this, 'addFrontEndPages'));
         }
-        /* LOAD GetBadgeTemp.php */
 
     }
 
@@ -233,10 +232,8 @@ class SettingApi {
     }
 
     /**
-     *
      * Loop through the classes, initialize them,
      * and call the main() method if it exists
-     *
      *
      * @author Alessandro RICCARDI
      * @since  x.x.x

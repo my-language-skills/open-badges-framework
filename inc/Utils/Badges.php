@@ -1,6 +1,7 @@
 <?php
 /**
- * The Badges Class.
+ * The Badges Class contain all
+ * the function for the management of the badges.
  *
  * @author      Alessandro RICCARDI
  * @since       x.x.x

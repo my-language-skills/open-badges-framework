@@ -1,6 +1,7 @@
 <?php
 /**
- * The Classes Class.
+ * The Classes Class contain all
+ * the function for the management of the classes.
  *
  * @author      Alessandro RICCARDI
  * @since       x.x.x

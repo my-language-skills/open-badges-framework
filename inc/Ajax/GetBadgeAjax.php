@@ -228,7 +228,7 @@ class GetBadgeAjax extends BaseController {
         }
 
         $getBadgeTemp = GetBadgeTemp::getInstance();
-        echo $getBadgeTemp->showConclusionPage();
+        echo $getBadgeTemp->showConclusionStep();
 
         wp_die();
     }

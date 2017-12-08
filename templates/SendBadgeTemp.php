@@ -17,15 +17,21 @@ use inc\Utils\Fields;
 
 final class SendBadgeTemp extends BaseController {
 
+    /**
+     * Add the short code [send-badge] to permit to show the right section of the sending badge.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
+     */
     public function __construct() {
         add_shortcode('send-badge', array(SendBadgeTemp::class, 'getShortCodeForm'));
     }
 
     /**
-     * ...
+     * The first thing that will show when you load this page.
      *
-     * @author Alessandro RICCARDI
-     * @since  x.x.x
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
      */
     public static function main() {
         ?>
@@ -65,7 +71,7 @@ final class SendBadgeTemp extends BaseController {
     }
 
     /**
-     * ...
+     * It will show the right form.
      *
      * @author Alessandro RICCARDI
      * @since  x.x.x
@@ -214,5 +220,4 @@ final class SendBadgeTemp extends BaseController {
             echo '<a class="btn btn-default btn-xs btn-change-children" id="all_field">Display all Fields</a>';
         }
     }
-
 }

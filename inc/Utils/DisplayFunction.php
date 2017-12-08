@@ -1,7 +1,12 @@
 <?php
 /**
  * The DisplayFunction Class, contain all the function to show
- * information
+ * some information. I created that class because in the last
+ * version of the plugin there was a php file with all function
+ * like this, so this still survive right now because I didn't
+ * have time to fix that but the purpose for the future is to
+ * delete that and create it better.
+ *
  *
  * @author      Alessandro RICCARDI
  * @since       x.x.x
@@ -21,7 +26,7 @@ class DisplayFunction {
      * @since  0.6.3 recreated the function more simply
      * @since  x.x.x
      *
-     * @param string $parent permit to display the child taxonomy of the parent taxonomy (category).
+     * @param string $p_parent permit to display the child taxonomy of the parent taxonomy (category).
      */
     public static function field($p_parent = "") {
         $field = new Fields();
@@ -88,105 +93,4 @@ class DisplayFunction {
         }
     }
 
-
-    /**
-     * Displays all the parents like a button that permit you
-     * to change the visualization of the Fields of education
-     *
-     * @author Alessandro RICCARDI
-     * @since  0.6.3
-     *
-     */
-    public static function display_parents() {
-        $parents = get_languages();
-        $actual_parent = key($parents);
-        $haveCat = false;
-
-        if ($parents = get_parent_categories()) {
-
-            echo '<div class="btns-parent-field">';
-
-            foreach ($parents as $parent) {
-                $haveCat = true;
-                if ($parent[2] == $actual_parent) {
-                    echo '<a class="btn btn-default btn-xs display_parent_categories active" id="' . $parent[2] . '">Display ' . $parent[1] . '</a>';
-                } else {
-                    echo '<a class="btn btn-default btn-xs display_parent_categories" id="' . $parent[2] . '">Display ' . $parent[1] . '</a>';
-                }
-            }
-
-            // Display the link to show all the languages
-            if ($haveCat) {
-                echo '<a class="btn btn-default btn-xs display_parent_categories" id="all_field">Display all Fields</a>';
-            }
-        }
-    }
-
-    /**
-     * Displays a message of success.
-     *
-     * @author Nicolas TORION
-     * @since  0.3
-     *
-     * @param $message The message to display.
-     */
-    public static function display_success_message($message) {
-        ?>
-        <div class="message msg-success">
-            <?php echo $message; ?>
-        </div>
-        <?php
-    }
-
-    /**
-     * Displays a message of error.
-     *
-     * @author Nicolas TORION
-     * @since  0.3
-     *
-     * @param $message The message to display.
-     */
-    public static function display_error_message($message) {
-        ?>
-        <div class="message error">
-            <?php echo $message; ?>
-        </div>
-        <?php
-    }
-
-    public static function display_sendBadges_info($message) {
-        echo '<div class="lead">' . $message . '</div> <hr class="hr-sb">';
-    }
-
-    /**
-     * Displays a message indicating that a person is not logged. A link redirecting to the login page is also
-     * displayed.
-     *
-     * @author Nicolas TORION
-     * @since  0.6.3
-     */
-    public static function display_not_logged_message() {
-        $settings_id_login_links = get_settings_login_links();
-        ?>
-
-        <center>
-            <img src="<?php echo plugins_url('../../assets/b4l_logo.png', __FILE__); ?>" width="256px"
-                 height="256px"/>
-            <br/>
-            <h1><?php _e('To get a badge, you need to be logged on the site.', 'open-badge-framework'); ?></h1>
-            <br/>
-            <a href="<?php echo get_page_link($settings_id_login_links["link_register"]); ?>"
-               title="Register"><?php _e('Register', 'open-badge-framework'); ?></a> | <a
-                    href="<?php echo get_page_link($settings_id_login_links["link_login"]); ?>"
-                    title="Login"><?php _e('Login', 'open-badge-framework'); ?></a>
-            <p style="color:red;">
-                <?php
-                _e('Once connected to the site, go back to your email and click again on the link for receiving your badge.', 'open-badge-framework');
-                ?>
-            </p>
-        </center>
-        <?php
-    }
 }
-
-?>

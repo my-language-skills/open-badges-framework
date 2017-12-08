@@ -11,6 +11,7 @@ namespace Inc\Base;
 
 use \Inc\Base\BaseController;
 use Inc\Pages\Admin;
+use templates\SettingsTemp;
 
 class Enqueue extends BaseController {
 
@@ -51,7 +52,9 @@ class Enqueue extends BaseController {
     }
 
     public function cssHead() {
-        if (is_page(Admin::SLUG_GETBADGE)) {
+        $options = get_option(SettingsTemp::OPTION_NAME);
+        $post = get_post($options[SettingsTemp::FI_GET_BADGE]);
+        if (is_page($post->post_name)) {
             wp_enqueue_style('bootstrapp-css', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css');
             wp_enqueue_style('get-badge-css', $this->plugin_url . 'assets/css/get-badge.css');
         } else {
@@ -61,7 +64,9 @@ class Enqueue extends BaseController {
     }
 
     public function jsFooter() {
-        if (is_page(Admin::SLUG_GETBADGE)) {
+        $options = get_option(SettingsTemp::OPTION_NAME);
+        $post = get_post($options[SettingsTemp::FI_GET_BADGE]);
+        if (is_page($post->post_name)) {
             wp_enqueue_script('jquery-js', 'https://code.jquery.com/jquery-1.10.2.js');
             wp_enqueue_script('get-badge-js', $this->plugin_url . 'assets/js/get-badge.js');
             wp_localize_script(

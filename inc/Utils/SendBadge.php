@@ -16,11 +16,17 @@ use Inc\Base\BaseController;
 use inc\Base\User;
 use Inc\Database\DbBadge;
 use Inc\OB\JsonManagement;
-use Inc\Utils\Badges;
 use Inc\Pages\Admin;
+use templates\SettingsTemp;
 
 
 class SendBadge extends BaseController {
+    const ER_JSON_FILE = "Error json file\n";
+    const ER_SEND_EMAIL = "Error email\n";
+    const ER_DB_INSERT = "Db insert error.\n";
+    const SUCCESS = "Email success.\n";
+    const ER_GENERAL = 10;
+
     private $badgeInfo = null;
     private $jsonMg = null;
     private $badge = null;
@@ -31,7 +37,7 @@ class SendBadge extends BaseController {
     private $evidence = null;
 
     /**
-     * The constructor that initialize all the variable
+     * The constructor that initialize all the variable.
      *
      * @author      Alessandro RICCARDI
      * @since       x.x.x
@@ -64,6 +70,7 @@ class SendBadge extends BaseController {
             'evidence' => $evidence
         );
 
+
         $this->receivers = $receivers;
         $this->class = $class;
         $this->evidence = $evidence;
@@ -74,10 +81,12 @@ class SendBadge extends BaseController {
     /**
      * This class do three principal things, crate
      * the json file, crate the body, send the email
-     * and store all of that information in the database
+     * and store all of that information in the database.
      *
      * @author   Alessandro RICCARDI
      * @since    x.x.x
+     *
+     * @return const to determinate the status of the process.
      */
     public function sendBadge() {
 
@@ -98,12 +107,12 @@ class SendBadge extends BaseController {
                     // Creating the body of the email
                     $body = $this->getBodyEmail($hashName);
                 } else {
-                    return "Error json file\n";
+                    return self::ER_JSON_FILE;
                 }
 
                 // Sending the email -->-->
                 if (!wp_mail($receiver, $subject, $body, $headers)) {
-                    return "Error email\n";
+                    return self::ER_SEND_EMAIL;
                 }
 
                 $data = array(
@@ -124,23 +133,26 @@ class SendBadge extends BaseController {
                 if ($res === DbBadge::ER_DUPLICATE) {
                     echo $receiver . " : " . DbBadge::ER_DUPLICATE;
                 } else if (!$res) {
-                    return "Db insert error.\n";
+                    return self::ER_DB_INSERT;
                 }
             }
-            return "Email success.\n";
+            return self::SUCCESS;
         } else {
-            return "Not array\n";
+            return self::ER_GENERAL;
         }
     }
 
     /**
-     * The body of the email
+     * Function that permit to create the body of the email.
      *
      * @author   Alessandro RICCARDI
      * @since    x.x.x
+     *
+     * @param $hash_file name of the hash file
+     * @return the body of the email in html format
      */
     private function getBodyEmail($hash_file) {
-        $urlGetBadge = home_url('/' . Admin::SLUG_GETBADGE . '/');
+        $urlGetBadge = home_url('/' . SettingsTemp::getSlugGetBadgePage() . '/');
 
         $badgeLink =
             $urlGetBadge .

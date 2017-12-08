@@ -19,8 +19,9 @@ use Inc\Utils\Badges;
 
 class GetBadgeTemp extends BaseController {
     const START = 0;
-    const ERROR = 1;
-    const GOT = 2;
+    const ERROR_JSON = 1;
+    const ERROR_LINK = 2;
+    const GOT = 3;
 
     private $json = null;
     private $jsonUrl = null;
@@ -36,25 +37,48 @@ class GetBadgeTemp extends BaseController {
         return $inst;
     }
 
+    /**
+     * In this function, for the first thing are check the parameters in
+     * the url string and then based on the kind of return it will show
+     * the right view.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
+     */
     public function main() {
 
         $res = $this->loadParm();
 
         switch ($res) {
             case self::START:
-                $this->getStartingPage();
-                break;
-            case self::ERROR:
-                $this->showErrorPage();
+                $this->getStartingStep();
                 break;
             case self::GOT:
                 $this->showBadgeGot();
                 break;
+            case self::ERROR_JSON:
+                $this->showError(self::ERROR_JSON);
+                break;
+            case self::ERROR_LINK:
+                $this->showError(self::ERROR_LINK);
+                break;
+
         }
 
     }
 
-
+    /**
+     * Check the parameters if they're right and then load the
+     * information in variables.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
+     *
+     * @return const    START when we can start with the procedure;
+     *                  GOT if is already got the badge;
+     *                  ERROR_JSON if the json is not stored in the server;
+     *                  ERROR_LINK if the link have problems.
+     */
     private function loadParm() {
 
         if (isset($_GET['json']) && isset($_GET['badge']) && isset($_GET['field']) && isset($_GET['level'])) {
@@ -77,16 +101,23 @@ class GetBadgeTemp extends BaseController {
                 } else {
                     return self::GOT;
                 }
+            } else if ($this->badge && $this->field && $this->level && !($this->jsonUrl)) {
+                return self::ERROR_JSON;
             } else {
-                return self::ERROR;
+                return self::ERROR_LINK;
             }
-
         } else {
-            return false;
+            return self::ERROR_LINK;
         }
     }
 
-    public function getStartingPage() {
+    /**
+     * Show the starting step to get the badge.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
+     */
+    public function getStartingStep() {
         $this->obf_header();
         ?>
 
@@ -111,7 +142,8 @@ class GetBadgeTemp extends BaseController {
                         <?php echo $this->badge->post_content; ?>
                     </p>
                     <div class="logo-badge-cont">
-                        <img src="<?php echo get_the_post_thumbnail_url($this->badge->ID) ?>" height="100px" width="100px">
+                        <img src="<?php echo get_the_post_thumbnail_url($this->badge->ID) ?>" height="100px"
+                             width="100px">
                     </div>
                 </div>
             </main>
@@ -131,6 +163,12 @@ class GetBadgeTemp extends BaseController {
         $this->obf_footer();
     }
 
+    /**
+     * Show login step.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
+     */
     public function showTheLoginContent($email) { ?>
 
         <div id="gb-wrap" class="cover-container">
@@ -173,6 +211,12 @@ class GetBadgeTemp extends BaseController {
         <?php
     }
 
+    /**
+     * Show register page step.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
+     */
     public function showRegisterPage($email) { ?>
 
         <div id="gb-wrap" class="cover-container">
@@ -247,6 +291,12 @@ class GetBadgeTemp extends BaseController {
         <?php
     }
 
+    /**
+     * Show Mozilla Open Badge step.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
+     */
     public function showMozillaOpenBadges($got = false) { ?>
 
         <div id="gb-wrap" class="cover-container">
@@ -312,8 +362,13 @@ class GetBadgeTemp extends BaseController {
         <?php
     }
 
-
-    public function showConclusionPage() {
+    /**
+     * Show Conclusion step.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
+     */
+    public function showConclusionStep() {
         ?>
 
         <div id="gb-wrap" class="cover-container">
@@ -351,6 +406,12 @@ class GetBadgeTemp extends BaseController {
 
     }
 
+    /**
+     * Show Badge Got step to inform that you're already took the badge.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
+     */
     private function showBadgeGot() {
         $this->obf_header()
         ?>
@@ -391,7 +452,15 @@ class GetBadgeTemp extends BaseController {
         $this->obf_footer();
     }
 
-    private function showErrorPage() {
+    /**
+     * Show the error that we discovered in the loadParm function.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
+     *
+     * @param const $error contain the kind of error
+     */
+    private function showError($error) {
         $this->obf_header()
         ?>
         <div class="site-wrapper">
@@ -409,17 +478,17 @@ class GetBadgeTemp extends BaseController {
                     <main role="main" class="inner cover">
                         <div class="container">
                             <?php
-                            if (!$this->jsonUrl) { ?>
+                            if ($error == self::ERROR_JSON) { ?>
                                 <h1>BADGE ERROR</h1>
                                 <p class="lead">
                                     Your're badge is not anymore stored in our server.
                                 </p>
                                 <?php
-                            } else {
+                            } else if ($error == self::ERROR_LINK) {
                                 ?>
                                 <h1>URL ERROR</h1>
                                 <p class="lead">
-                                    There's something wrong with the link,<br> ask to the help desk to fix the
+                                    There's something wrong with the link, ask to the help desk to fix the
                                     problem!
                                 </p>
                                 <?php
@@ -442,6 +511,12 @@ class GetBadgeTemp extends BaseController {
         $this->obf_footer();
     }
 
+    /**
+     * Contain the header of the page.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
+     */
     private function obf_header() {
         ?>
         <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
@@ -462,6 +537,12 @@ class GetBadgeTemp extends BaseController {
         <?php
     }
 
+    /**
+     * Contain the footer of the page.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
+     */
     private function obf_footer() { ?>
         </div>
         </div>
@@ -473,7 +554,12 @@ class GetBadgeTemp extends BaseController {
         <?php
     }
 
-
+    /**
+     * Contain the info of the website that are show in the top of the page.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
+     */
     function getInfoHeader() {
         ?>
         <div class="info-header-obf">

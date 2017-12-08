@@ -18,6 +18,12 @@ use Inc\Base\BaseController;
 
 final class DashboardTemp extends BaseController {
 
+    /**
+     * The first thing that will show when you load this page.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
+     */
     public static function main() {
         ?>
         <div class="wrap">
