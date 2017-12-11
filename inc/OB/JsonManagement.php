@@ -146,6 +146,12 @@ class JsonManagement extends BaseController {
         return json_decode($json, true);
     }
 
+    public static function getEmailFromJson($json) {
+        $jsonFile = self::getJsonObject($json);
+        $email = $jsonFile["recipient"]['identity'];
+        return $email;
+    }
+
     /**
      * This function permit to load all the array in the
      * instance of SettingApi and execute the final "register()" function!

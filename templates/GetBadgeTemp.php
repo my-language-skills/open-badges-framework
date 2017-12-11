@@ -1,8 +1,6 @@
 <?php
 /**
- * The GetBadgeTemp Class.
- * In this class are defined all the function that permit
- * to follow all the step to get a badge.
+ * Template for the Get Badge page.
  *
  * @author      Alessandro RICCARDI
  * @since       x.x.x
@@ -19,6 +17,14 @@ use Inc\OB\JsonManagement;
 use Inc\Pages\Admin;
 use Inc\Utils\Badges;
 
+/**
+ * The GetBadgeTemp Class.
+ * In this class are defined all the function that permit
+ * to follow all the step to get a badge.
+ *
+ * @author      Alessandro RICCARDI
+ * @since       x.x.x
+ */
 class GetBadgeTemp extends BaseController {
     const START = 0;
     const ERROR_JSON = 1;
@@ -84,15 +90,16 @@ class GetBadgeTemp extends BaseController {
     private function loadParm() {
 
         if (isset($_GET['json']) && isset($_GET['badge']) && isset($_GET['field']) && isset($_GET['level'])) {
+            $this->json = $_GET['json'];
+
             $data = array(
-                'userEmail' => User::getCurrentUser()->user_email,
+                'userEmail' => JsonManagement::getEmailFromJson($this->json),
                 'badgeId' => $_GET['badge'],
                 'fieldId' => $_GET['field'],
                 'levelId' => $_GET['level'],
             );
-            $this->json = $_GET['json'];
-            $this->jsonUrl = JsonManagement::getJsonUrl($this->json);
 
+            $this->jsonUrl = JsonManagement::getJsonUrl($this->json);
             $badges = new Badges();
             $this->badge = $badges->getBadgeById($data['badgeId']);
             $this->field = get_term($data['fieldId'], Admin::TAX_FIELDS);
@@ -285,7 +292,6 @@ class GetBadgeTemp extends BaseController {
                     <label class="btn btn-primary btn-lg" for="submit-form" tabindex="0">Register</label>
                 </div>
             </footer>
-
         </div>
 
         <?php
@@ -429,11 +435,20 @@ class GetBadgeTemp extends BaseController {
 
                     <main role="main" class="inner cover">
                         <div class="container">
+                            <div class="logo-badge-got-cont">
+                                <img src="<?php echo get_the_post_thumbnail_url($this->badge->ID) ?>" height="100px"
+                                     width="100px">
+                            </div>
 
-                            <h1>BADGE ALREADY GOT</h1>
-                            <p class="lead">
-                                Your're already got your badge.
-                            </p>
+                            <h4 class="">
+                                <strong><?php echo $this->badge->post_title; ?></strong>
+                            </h4>
+                            <h5 class="badge-field">Field: <strong><?php echo $this->field->name; ?></strong> -
+                                Level:
+                                <strong><?php echo $this->level->name; ?></strong></h5>
+                            <h2 class="badge-got-title">
+                                Badge already got!
+                            </h2>
 
                         </div>
                     </main>

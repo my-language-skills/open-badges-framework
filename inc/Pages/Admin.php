@@ -131,7 +131,7 @@ class Admin extends BaseController {
                 'menu_title' => 'Settings',
                 'capability' => 'manage_options',
                 'menu_slug' => 'settings_obf',
-                'callback' => array($settingTemp, 'create_admin_page')
+                'callback' => array($settingTemp, 'main')
             ),
         );
     }
@@ -280,12 +280,10 @@ class Admin extends BaseController {
      * @since    x.x.x
      */
     public function setFrontEndPages() {
-        $options = get_option(SettingsTemp::OPTION_NAME);
-
         $args = array(
             // # GET BADGE PAGE
             array(
-                'slug' => get_post($options[SettingsTemp::FI_GET_BADGE])->post_name,
+                'slug' => SettingsTemp::getSlugGetBadgePage(),
                 'class' => GetBadgeTemp::class,
             ),
         );

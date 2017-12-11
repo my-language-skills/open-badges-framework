@@ -1,6 +1,6 @@
 <?php
 /**
- * The Classes Class.
+ * Template for the Settings page.
  *
  * @author      Alessandro RICCARDI
  * @since       x.x.x
@@ -10,11 +10,20 @@
 
 namespace templates;
 
+/**
+ * This class create and manage the settings page.
+ * It's look little bit complicated but it can be fix watching
+ * this tutorial: https://www.youtube.com/watch?v=QYt5Ry3os88
+ *
+ * @author      Alessandro RICCARDI
+ * @since       x.x.x
+ */
 class SettingsTemp {
     const OPTION_GROUP = "option_group";
     const OPTION_NAME = "option_name";
     // SETTINGS PAGE
-    const NAME_SETTINGS_PAGE = "setting_page";
+    const NAME_PROFILE_PAGE = "setting_page";
+    const NAME_LINKS_PAGE = "links_page";
     //SECTIONS
     CONST COMPANY_PROFILE_SECT = 'company_profile_sect';
     CONST PAGE_REF_SECT = 'page_link_sect';
@@ -29,52 +38,76 @@ class SettingsTemp {
     const FI_REGISTER_PAGE = 'register_page';
     const FI_LOGIN_PAGE = 'login_page';
 
-
-    /**
-     * Holds the values to be used in the fields callbacks
-     */
     private $options;
 
     /**
-     * Start up
+     * The construct allow to call th admin_init hook initializing the
+     * settings and set the default information retrieved form the default
+     * info of WordPress.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
      */
     public function __construct() {
-        add_action('admin_init', array($this, 'page_init'));
+        add_action('admin_init', array($this, 'pageInit'));
 
         $defaults = array(
             self::FI_SITE_NAME_FIELD => get_bloginfo('name'),
             self::FI_WEBSITE_URL_FIELD => get_bloginfo('url'),
         );
 
-        //update_option(self::OPTION_NAME, $defaults);
+        update_option(self::OPTION_NAME, $defaults);
     }
 
     /**
-     * Options page callback
+     * This is the function that is typically loaded at
+     * the beginning.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
      */
-    public function create_admin_page() {
+    public function main() {
         // Set class property
         $this->options = get_option(self::OPTION_NAME);
         ?>
         <div class="wrap">
             <h1>Settings</h1>
-            <form method="post" action="options.php">
-                <?php
-                wp_enqueue_media();
-                // This prints out all hidden setting fields
-                settings_fields(self::OPTION_GROUP);
-                do_settings_sections(self::NAME_SETTINGS_PAGE);
-                submit_button();
-                ?>
-            </form>
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#tab-1">Profile</a></li>
+                <li class=""><a href="#tab-2">Links</a></li>
+            </ul>
+
+            <div class="tab-content">
+                <div id="tab-1" class="tab-pane active">
+                    <?php
+                    wp_enqueue_media();
+                    // This prints out all hidden setting fields
+                    settings_fields(self::OPTION_GROUP);
+                    do_settings_sections(self::NAME_PROFILE_PAGE);
+                    submit_button();
+                    ?>
+                </div>
+                <div id="tab-2" class="tab-pane">
+                    <?php
+                    wp_enqueue_media();
+                    // This prints out all hidden setting fields
+                    settings_fields(self::OPTION_GROUP);
+                    do_settings_sections(self::NAME_LINKS_PAGE);
+                    submit_button();
+                    ?>
+                </div>
+            </div>
         </div>
         <?php
     }
 
     /**
-     * Register and add settings
+     * Initializing of all the settings information
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
      */
-    public function page_init() {
+    public function pageInit() {
         register_setting(
             self::OPTION_GROUP, // Option group
             self::OPTION_NAME, // Option name
@@ -85,15 +118,15 @@ class SettingsTemp {
         add_settings_section(
             self::COMPANY_PROFILE_SECT, // ID
             'Company Profile', // Title
-            array($this, 'print_section_info'), // Callback
-            self::NAME_SETTINGS_PAGE // Page
+            array($this, 'printSectionInfo'), // Callback
+            self::NAME_PROFILE_PAGE // Page
         );
         /* --> Site Name______________ */
         add_settings_field(
             '' . self::FI_SITE_NAME_FIELD . '', // ID
             'Site Name', // Title
             array($this, 'siteNameCallback'), // Callback
-            self::NAME_SETTINGS_PAGE, // Page
+            self::NAME_PROFILE_PAGE, // Page
             self::COMPANY_PROFILE_SECT // Section
         );
 
@@ -102,7 +135,7 @@ class SettingsTemp {
             self::FI_WEBSITE_URL_FIELD,
             'Website URL',
             array($this, 'websiteUrlCallback'),
-            self::NAME_SETTINGS_PAGE,
+            self::NAME_PROFILE_PAGE,
             self::COMPANY_PROFILE_SECT
         );
 
@@ -111,7 +144,7 @@ class SettingsTemp {
             self::FI_TELEPHONE_FIELD,
             'Telephone',
             array($this, 'telephoneCallback'),
-            self::NAME_SETTINGS_PAGE,
+            self::NAME_PROFILE_PAGE,
             self::COMPANY_PROFILE_SECT
         );
 
@@ -120,7 +153,7 @@ class SettingsTemp {
             self::FI_DESCRIPTION_FIELD,
             'Description',
             array($this, 'descriptionCallback'),
-            self::NAME_SETTINGS_PAGE,
+            self::NAME_PROFILE_PAGE,
             self::COMPANY_PROFILE_SECT
         );
 
@@ -129,7 +162,7 @@ class SettingsTemp {
             '' . self::FI_IMAGE_URL_FIELD . '',
             'Image of the Entity',
             array($this, 'imageUrlCallback'),
-            self::NAME_SETTINGS_PAGE,
+            self::NAME_PROFILE_PAGE,
             self::COMPANY_PROFILE_SECT
         );
 
@@ -138,7 +171,7 @@ class SettingsTemp {
             self::FI_EMAIL_FIELD,
             'Email',
             array($this, 'emailCallback'),
-            self::NAME_SETTINGS_PAGE,
+            self::NAME_PROFILE_PAGE,
             self::COMPANY_PROFILE_SECT
         );
 
@@ -148,7 +181,7 @@ class SettingsTemp {
             self::PAGE_REF_SECT, // ID
             'Pages Links', // Title
             array($this, 'printPageLinksInfo'), // Callback
-            self::NAME_SETTINGS_PAGE // Page
+            self::NAME_LINKS_PAGE // Page
         );
 
         /* --> Became Premium Page____*/
@@ -156,7 +189,7 @@ class SettingsTemp {
             'became_premium_page', // ID
             'Became Premium', // Title
             array($this, 'becamePremiumPageCallback'), // Callback
-            self::NAME_SETTINGS_PAGE, // Page
+            self::NAME_LINKS_PAGE, // Page
             self::PAGE_REF_SECT
         );
 
@@ -165,7 +198,7 @@ class SettingsTemp {
             'add_class_page',
             'Add Class',
             array($this, 'addClassPageCallback'),
-            self::NAME_SETTINGS_PAGE,
+            self::NAME_LINKS_PAGE,
             self::PAGE_REF_SECT
         );
 
@@ -174,17 +207,19 @@ class SettingsTemp {
             self::FI_GET_BADGE,
             'Get Badge',
             array($this, 'getBadgePageCallback'),
-            self::NAME_SETTINGS_PAGE,
+            self::NAME_LINKS_PAGE,
             self::PAGE_REF_SECT
         );
     }
 
     /**
-     * Sanitize each setting field as needed
+     * Sanitize each setting field as needed.
      *
-     * @param array $input Contains all settings fields as array keys
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
      *
-     * @return array .
+     * @param array $input Contains all settings fields as array keys.
+     * @return array Contains all settings fields as array keys but sanitized.
      */
     public function sanitize($input) {
         $new_input = array();
@@ -229,21 +264,30 @@ class SettingsTemp {
     }
 
     /**
-     * Print the Section text
+     * Print the Section text.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
      */
-    public function print_section_info() {
+    public function printSectionInfo() {
         print 'A Profile is a collection of information that describes the entity or organization using Open Badges.';
     }
 
     /**
-     * Print the Section text
+     * Print the Link text.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
      */
     public function printPageLinksInfo() {
         print 'Create and select the page that you will use for these options:';
     }
 
     /**
-     * Get the settings option array and print one of its values
+     * Get the settings option array and print the Site Name value.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
      */
     public function siteNameCallback() {
         printf(
@@ -256,7 +300,10 @@ class SettingsTemp {
     }
 
     /**
-     * Get the settings option array and print one of its values
+     * Get the settings option array and print the url of the image of the website.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
      */
     public function imageUrlCallback() {
 
@@ -290,7 +337,10 @@ class SettingsTemp {
     }
 
     /**
-     * Get the settings option array and print one of its values
+     * Get the settings option array and print the url of the website.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
      */
     public function websiteUrlCallback() {
         printf(
@@ -303,7 +353,10 @@ class SettingsTemp {
     }
 
     /**
-     * Get the settings option array and print one of its values
+     * Get the settings option array and print the telephone of the website.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
      */
     public function telephoneCallback() {
         printf(
@@ -316,7 +369,10 @@ class SettingsTemp {
     }
 
     /**
-     * Get the settings option array and print one of its values
+     * Get the settings option array and print the description of the website.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
      */
     public function descriptionCallback() {
         printf(
@@ -329,7 +385,10 @@ class SettingsTemp {
     }
 
     /**
-     * Get the settings option array and print one of its values
+     * Get the settings option array and print the email of the website.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
      */
     public function emailCallback() {
         printf(
@@ -342,28 +401,34 @@ class SettingsTemp {
     }
 
     /**
-     * Get the settings option array and print one of its values
+     * Get the settings option array and print the become premium page.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
      */
     public function becamePremiumPageCallback() {
         $val =
 
-        wp_dropdown_pages(array(
-            'id' => 'became_premium_page',
-            'name' => self::OPTION_NAME . '['.self::FI_GET_BADGE.']',
-            'selected' => isset($this->options['became_premium_page']) ? esc_attr($this->options['became_premium_page']) : '',
-            'show_option_none' => 'None', // string
-        ));
+            wp_dropdown_pages(array(
+                'id' => 'became_premium_page',
+                'name' => self::OPTION_NAME . '[' . self::FI_GET_BADGE . ']',
+                'selected' => isset($this->options['became_premium_page']) ? esc_attr($this->options['became_premium_page']) : '',
+                'show_option_none' => 'None', // string
+            ));
 
         echo self::showPreviewLink($this->options['became_premium_page']);
     }
 
     /**
-     * Get the settings option array and print one of its values
+     * Get the settings option array and print the add class page.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
      */
     public function addClassPageCallback() {
         wp_dropdown_pages(array(
             'id' => 'add_class_page',
-            'name' => self::OPTION_NAME . '['.self::FI_GET_BADGE.']',
+            'name' => self::OPTION_NAME . '[' . self::FI_GET_BADGE . ']',
             'selected' => isset($this->options['add_class_page']) ? esc_attr($this->options['add_class_page']) : '',
             'show_option_none' => 'None', // string
         ));
@@ -373,12 +438,15 @@ class SettingsTemp {
 
 
     /**
-     * Get the settings option array and print one of its values
+     * Get the settings option array and print the get badge page.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
      */
     public function getBadgePageCallback() {
         wp_dropdown_pages(array(
             'id' => self::FI_GET_BADGE,
-            'name' => self::OPTION_NAME . '['.self::FI_GET_BADGE.']',
+            'name' => self::OPTION_NAME . '[' . self::FI_GET_BADGE . ']',
             'selected' => isset($this->options[self::FI_GET_BADGE]) ? esc_attr($this->options[self::FI_GET_BADGE]) : '',
             'show_option_none' => 'None', // string
         ));
@@ -387,15 +455,32 @@ class SettingsTemp {
 
     }
 
+    /**
+     * Create a link from an id of a page.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
+     *
+     * @param int $idPage id of the page.
+     * @return string of the html <a> link.
+     */
     public function showPreviewLink($idPage) {
         $value = $idPage ?
-            "<a href='".get_page_link($idPage)."' target='_blank' style='margin-left:3em;'>Preview</a>" : '';
+            "<a href='" . get_page_link($idPage) . "' target='_blank' style='margin-left:3em;'>Preview</a>" : '';
         return $value;
 
     }
 
+    /**
+     * Retrieve the slug of the Get Badge page that we connected in
+     * the link section.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
+     */
     public static function getSlugGetBadgePage() {
         $options = get_option(SettingsTemp::OPTION_NAME);
         return get_post($options[SettingsTemp::FI_GET_BADGE])->post_name;
     }
+
 }

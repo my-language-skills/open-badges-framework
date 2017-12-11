@@ -192,6 +192,21 @@ input{box-sizing:border-box}
     width: 80px;
 }
 
+.logo-badge-got-cont {
+    margin-bottom: 30px;
+}
+
+.logo-badge-got-cont img {
+    height: 100px;
+    width: 100px;
+}
+
+.badge-got-title{
+    font-weight: 400;
+    margin-top: 20px;
+    text-transform: uppercase;
+}
+
 /*
  * Login
  */

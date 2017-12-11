@@ -78,6 +78,9 @@ $(function (event) {
             var data = {
                 'action': 'ajaxGbShowGetOpenBadges',
                 'json': urlParam('json'),
+                'badgeId': urlParam('badge'),
+                'fieldId': urlParam('field'),
+                'levelId': urlParam('level'),
             };
 
             var func = function (response) {

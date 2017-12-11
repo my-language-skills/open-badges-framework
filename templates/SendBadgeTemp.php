@@ -1,6 +1,6 @@
 <?php
 /**
- * The SendBadgeTemp class
+ * Template for the Send Badge page.
  *
  * @author      Alessandro RICCARDI
  * @since       x.x.x
@@ -15,6 +15,13 @@ use inc\Base\User;
 use inc\Utils\DisplayFunction;
 use inc\Utils\Fields;
 
+/**
+ * This class permit to show the steps to send the
+ * badge to the student.
+ *
+ * @author      Alessandro RICCARDI
+ * @since       x.x.x
+ */
 final class SendBadgeTemp extends BaseController {
 
     /**

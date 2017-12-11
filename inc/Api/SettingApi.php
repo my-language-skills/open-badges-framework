@@ -1,7 +1,6 @@
 <?php
 /**
- * The SettingApi Class, this class permit to load
- * all the $pages that we want to create
+ * ...
  *
  * @author     Alessandro RICCARDI
  * @since      x.x.x
@@ -15,6 +14,13 @@ use Inc\Pages\Admin;
 use Templates\GetBadgeTemp;
 use templates\SettingsTemp;
 
+/**
+ * The SettingApi Class, this class permit to load
+ * all the $pages that we want to create
+ *
+ * @author     Alessandro RICCARDI
+ * @since      x.x.x
+ */
 class SettingApi {
 
     public $admin_pages = array();
@@ -232,8 +238,11 @@ class SettingApi {
     }
 
     /**
-     * Loop through the classes, initialize them,
-     * and call the main() method if it exists
+     * Loop through the classes, initialize them, and call the main()
+     * method if it exists.
+     * Throw the 'slug' we can understand when the page is loaded
+     * and then when that specific page is active we load the 'main'
+     * function of the class that refer in the param $this->frontEndPages.
      *
      * @author Alessandro RICCARDI
      * @since  x.x.x

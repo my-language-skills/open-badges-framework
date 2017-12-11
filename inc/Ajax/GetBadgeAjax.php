@@ -32,25 +32,27 @@ class GetBadgeAjax extends BaseController {
      */
     function ajaxGbShowLogin() {
         $json = $_POST['json'];
-        $data = array(
-            'userEmail' => User::getCurrentUser()->user_email,
-            'badgeId' => $_POST['badgeId'],
-            'fieldId' => $_POST['fieldId'],
-            'levelId' => $_POST['levelId'],
-        );
-
         $getBadgeTemp = GetBadgeTemp::getInstance();
         $jsonFile = JsonManagement::getJsonObject($json);
         $email = $jsonFile["recipient"]['identity'];
 
         if (wp_get_current_user()->user_email === $email) {
+            // User already logged in
+            $data = array(
+                'userEmail' => $email,
+                'badgeId' => $_POST['badgeId'],
+                'fieldId' => $_POST['fieldId'],
+                'levelId' => $_POST['levelId'],
+            );
             $getBadgeTemp = GetBadgeTemp::getInstance();
             echo $getBadgeTemp->showMozillaOpenBadges(DbBadge::isGot($data));
         } else if (email_exists($email)) {
+            // User registrated but not logged in
             $jsonFile = JsonManagement::getJsonObject($json);
             $email = $jsonFile["recipient"]['identity'];
             echo $getBadgeTemp->showTheLoginContent($email);
         } else {
+            // User need to register
             echo $getBadgeTemp->showRegisterPage($email);
         }
 
@@ -146,7 +148,7 @@ class GetBadgeAjax extends BaseController {
                             // error sing-on
                             echo User::RET_REGISTRATION_ERROR;
                         } else {
-                            // SUCCESS
+                            // !¡!¡!¡ SUCCESS !¡!¡!¡
                             echo User::RET_LOGIN_SUCCESS;
                         }
                     }
@@ -165,7 +167,7 @@ class GetBadgeAjax extends BaseController {
      */
     function ajaxGbShowGetOpenBadges() {
         $data = array(
-            'userEmail' => User::getCurrentUser()->user_email,
+            'userEmail' => JsonManagement::getEmailFromJson($_POST['json']),
             'badgeId' => $_POST['badgeId'],
             'fieldId' => $_POST['fieldId'],
             'levelId' => $_POST['levelId'],
@@ -189,6 +191,12 @@ class GetBadgeAjax extends BaseController {
         wp_die();
     }
 
+    /**
+     * ...
+     *
+     * @author Alessandro RICCARDI
+     * @since  x.x.x
+     */
     function ajaxGbShowConclusion() {
         $mob = $_POST['MOB'];
 
@@ -231,5 +239,28 @@ class GetBadgeAjax extends BaseController {
         echo $getBadgeTemp->showConclusionStep();
 
         wp_die();
+    }
+
+    /**
+     * ...
+     *
+     * @author Alessandro RICCARDI
+     * @since  x.x.x
+     *
+     * @return array {
+     *
+     * @type string     userEmail           Email got from the json file.
+     * @type int        badgeId             Badge ID.
+     * @type int        fieldId             Field ID.
+     * @type int        levelId             Level ID.
+     * }
+     */
+    public function getUserInfoPost() {
+        return array(
+            'userEmail' => JsonManagement::getEmailFromJson($_POST['json']),
+            'badgeId' => $_POST['badgeId'],
+            'fieldId' => $_POST['fieldId'],
+            'levelId' => $_POST['levelId'],
+        );
     }
 }

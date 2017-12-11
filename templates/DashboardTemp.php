@@ -1,9 +1,6 @@
 <?php
 /**
- * Provide an admin area view.
- *
- * This file is used to markup the
- * admin-facing aspects of the plugin.
+ * Template for the Dashboard page.
  *
  * @author      Alessandro RICCARDI
  * @since       x.x.x
@@ -16,10 +13,17 @@ namespace templates;
 use Inc\Pages\Admin;
 use Inc\Base\BaseController;
 
+/**
+ * Provide an admin area view. This file is used to
+ * markup the admin-facing aspects of the plugin.
+ *
+ * @author      Alessandro RICCARDI
+ * @since       x.x.x
+ */
 final class DashboardTemp extends BaseController {
 
     /**
-     * The first thing that will show when you load this page.
+     * This is the function that is typically loaded at the beginning.
      *
      * @author      Alessandro RICCARDI
      * @since       x.x.x
@@ -37,7 +41,7 @@ final class DashboardTemp extends BaseController {
 
             <div class="tab-content">
                 <div id="tab-1" class="tab-pane active">
-                    <?php self::statisticTab(); ?>
+                    <?php self::actionTab(); ?>
                 </div>
                 <div id="tab-2" class="tab-pane">
                     <?php self::badgesTab(); ?>
@@ -51,9 +55,14 @@ final class DashboardTemp extends BaseController {
         <?php
     }
 
-    public static function statisticTab() {
+    /**
+     * The action tab, loaded as a first tab.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
+     */
+    public static function actionTab() {
         ?>
-
         <div class="container admin">
             <div class="intro">
                 <div class="cont-title-dash">
@@ -64,7 +73,7 @@ final class DashboardTemp extends BaseController {
                     </p>
                 </div>
 
-                <div class="statistics-cont">
+                <div class="action-cont">
                     <div class="row-dash">
                         <div class="col-dash">
                             <h4>Badges</h4>
@@ -140,9 +149,14 @@ final class DashboardTemp extends BaseController {
         <?php
     }
 
+    /**
+     * The badges tab.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
+     */
     public static function badgesTab() {
         ?>
-
         <div class="container admin">
             <div class="intro">
                 <div class="cont-title-dash">
@@ -159,9 +173,14 @@ final class DashboardTemp extends BaseController {
         <?php
     }
 
+    /**
+     * The about tab.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
+     */
     public static function aboutTab() {
         ?>
-
         <div class="container admin">
             <div class="intro">
                 <div class="cont-title-dash">
