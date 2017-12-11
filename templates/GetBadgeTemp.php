@@ -1,6 +1,8 @@
 <?php
 /**
- * The Classes Class.
+ * The GetBadgeTemp Class.
+ * In this class are defined all the function that permit
+ * to follow all the step to get a badge.
  *
  * @author      Alessandro RICCARDI
  * @since       x.x.x
@@ -280,9 +282,7 @@ class GetBadgeTemp extends BaseController {
 
             <footer class="mastfoot">
                 <div class="inner">
-                    <label class="btn btn-primary btn-lg" type="submit" for="submit-form"
-                           tabindex="0">Register</label>
-
+                    <label class="btn btn-primary btn-lg" for="submit-form" tabindex="0">Register</label>
                 </div>
             </footer>
 

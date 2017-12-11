@@ -1,8 +1,8 @@
 <?php
 /**
- * The Statistics Class. This is a very initial class,
- * created to be developed in the future and to increase
- * functionality.
+ * The Statistics Class.
+ * This is a very initial class, created to be developed
+ * in the future and to increase functionality.
  *
  * @author      Alessandro RICCARDI
  * @since       x.x.x

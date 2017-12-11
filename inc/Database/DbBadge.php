@@ -1,9 +1,11 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: aleric
- * Date: 27/11/2017
- * Time: 11:52
+ * The DbBadge Class.
+ *
+ * @author      Alessandro RICCARDI
+ * @since       x.x.x
+ *
+ * @package     OpenBadgesFramework
  */
 
 namespace Inc\Database;
@@ -14,6 +16,10 @@ class DbBadge extends DbModel {
     const ER_WRONG_FIELDS = "Wrong fields passed in the array.\n";
     static $tableName = 'obf_badge';
 
+
+    /**
+     *
+     */
     public function register() {
         global $wpdb;
         $wpdb->hide_errors();

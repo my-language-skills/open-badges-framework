@@ -1,7 +1,64 @@
+/* **********************
+    DASHBOARD
+   ====================== */
+
+
+/* Tabs selector */
+
+.nav-tabs {
+    float:left;
+    width: 100%;
+    margin: 0;
+    list-style-type: none;
+    border-bottom: 1px solid #ddd;
+}
+
+.nav-tabs > li{
+    float: left;
+    margin-bottom: -1px;
+}
+
+.nav-tabs > li > a {
+    margin-right: 2px;
+    line-height: 1.5;
+    padding: 10px;
+    border: 1px solid transparent;
+    border-radius: 4px 4px 0 0;
+    float: left;
+    text-decoration: none;
+}
+
+.nav-tabs > li > a:hover {
+    border-color: #eee #eee #ddd;
+}
+
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a.hover,
+.nav-tabs > li.active > a:focus {
+    color: #555;
+    cursor: default;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-bottom-color: transparent;
+}
+
+.tab-content .tab-pane {
+    float: left;
+    width: 100%;
+    display: none;
+    clear: both;
+}
+
+.tab-content > .tab-pane.active {
+    display: block;
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 0 5px 4px -2px rgba(0,0,0,0.15);
+}
 
 .obf-title {
-    font-size: 35px !important;
-    font-weight: 200 !important;
+    font-size: 29px !important;
+    margin-bottom: 20px !important;
 }
 
 .container.admin {
@@ -9,19 +66,12 @@
 }
 
 .intro {
-
-    position: relative;
-    max-width: 1280px;
-    margin: 20px 0 1px;
+    display: block;
     padding: 20px 20px 0;
-    border: 1px solid #e5e5e5;
-    background-color: #fdfdfd;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, .04);
 }
 
 .cont-title-dash {
     padding-bottom: 1em;
-    border-bottom: 1px solid #ccc;
     background-color: #fdfdfd;
 }
 
@@ -32,6 +82,10 @@
 .lead {
     font-size: 0.95rem;
     font-weight: 300;
+}
+
+.statistics-cont {
+    border-top: 1px solid #ccc;
 }
 
 .row-dash {
