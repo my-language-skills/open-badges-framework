@@ -25,7 +25,7 @@ use Inc\Utils\Badges;
  * @author      Alessandro RICCARDI
  * @since       x.x.x
  */
-class GetBadgeTemp extends BaseController {
+final class GetBadgeTemp extends BaseController {
     const START = 0;
     const ERROR_JSON = 1;
     const ERROR_LINK = 2;

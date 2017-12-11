@@ -32,7 +32,7 @@ class Classes {
         $allClasses = get_posts(array(
             'post_type' => Admin::POST_TYPE_CLASS_JL,
             'orderby' => 'name',
-            'order' => 'DESC',
+            'order' => 'ASC',
             'numberposts' => -1
         ));
 

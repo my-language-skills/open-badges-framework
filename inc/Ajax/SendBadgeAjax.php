@@ -50,13 +50,21 @@ class SendBadgeAjax extends BaseController {
         $fieldId = $_POST['fieldId'];
         $level = new Levels();
         $levels = $level->getAllLevels($fieldId);
-        // Display the level ...
-        foreach ($levels as $level) {
-            echo '<div class="rdi-tab">';
-            echo "<input id='level-$level->name-form-$form' value='$level->term_id' class='radio-input level' name='level_$form' type='radio'>
+
+        if($levels) {
+            // Display the level ...
+            foreach ($levels as $level) {
+                if ($level) {
+                    echo '<div class="rdi-tab">';
+                    echo "<input id='level-$level->name-form-$form' value='$level->term_id' class='radio-input level' name='level_$form' type='radio'>
                   <label for='level-$level->name-form-$form' class='radio-label'>$level->name</label>";
-            echo '</div>';
+                    echo '</div>';
+                }
+            }
+        } else {
+            echo "There aren't badges with this field of education!";
         }
+
         wp_die();
     }
 
@@ -153,9 +161,9 @@ class SendBadgeAjax extends BaseController {
             $theClassId . " _ " . $receivers . " _ " . $info . " _ " . $evidence);*/
 
         // For the A form the receiver is the user (Self)
-        if($form === 'a') {
+        if ($form === 'a') {
             $receivers = array(
-                    User::getCurrentUser()->user_email
+                User::getCurrentUser()->user_email
             );
         }
 

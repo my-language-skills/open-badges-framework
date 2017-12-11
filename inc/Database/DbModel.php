@@ -21,7 +21,7 @@ class DbModel {
         return $wpdb->prefix . $tableName;
     }
 
-    public static function fetchSql($type, array $data) {
+    public static function fetchSql($type, $data) {
         if ($type == "SELECT") {
             $sql = "SELECT * FROM " . self::getTableName();
         } else if ($type == "UPDATE") {

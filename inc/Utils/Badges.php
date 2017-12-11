@@ -16,6 +16,15 @@ use Inc\Pages\Admin;
 
 class Badges {
 
+    public static function getAllBadges() {
+        return get_posts(array(
+            'post_type' => Admin::POST_TYPE_BADGES,
+            'orderby' => 'name',
+            'order' => 'ASC',
+            'numberposts' => -1
+        ));
+    }
+
     /**
      * This function permit to filter with the field
      * and level and get the right badges that we want.
@@ -33,7 +42,7 @@ class Badges {
         $standBadges = get_posts(array(
             'post_type' => Admin::POST_TYPE_BADGES,
             'orderby' => 'name',
-            'order' => 'DESC',
+            'order' => 'ASC',
             'numberposts' => -1
         ));
 
@@ -85,7 +94,7 @@ class Badges {
         $standBadges = get_posts(array(
             'post_type' => Admin::POST_TYPE_BADGES,
             'orderby' => 'name',
-            'order' => 'DESC',
+            'order' => 'ASC',
             'numberposts' => -1
         ));
 

@@ -10,6 +10,7 @@
 
 namespace templates;
 
+use Inc\Database\DbBadge;
 use Inc\Pages\Admin;
 use Inc\Base\BaseController;
 
@@ -39,7 +40,7 @@ final class DashboardTemp extends BaseController {
                 <li class=""><a href="#tab-3">About</a></li>
             </ul>
 
-            <div class="tab-content">
+            <div class="tab-content-dash">
                 <div id="tab-1" class="tab-pane active">
                     <?php self::actionTab(); ?>
                 </div>
@@ -68,8 +69,8 @@ final class DashboardTemp extends BaseController {
                 <div class="cont-title-dash">
                     <h2>Action control</h2>
                     <p class="lead">
-                        This is a simple hero unit, a simple jumbotron-style component for calling extra attention
-                        to featured content or information.
+                        Here you can have the possibility to see all the custom post type and taxonomies that permit you
+                        to manage the badges information.
                     </p>
                 </div>
 
@@ -162,12 +163,43 @@ final class DashboardTemp extends BaseController {
                 <div class="cont-title-dash">
                     <h2>Badges list</h2>
                     <p class="lead">
-                        This is a simple hero unit, a simple jumbotron-style component for calling extra attention
-                        to featured content or information.
+                        In this section we have the possibility to see all the badges that are sent.
                     </p>
                 </div>
+                <div class="cont-badges-table">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <?php
+                            $table = DbBadge::getAll();
 
+                            foreach ($table[0] as $key => $value) { ?>
+                                <th scope="col"><?php echo $key; ?></th>
+                                <?php
+                            }
+                            ?>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        $i = 1;
+                        $table = DbBadge::getAll();
+                        foreach ($table as $row) {
+                            echo "<tr>";
+                            echo "<th scope='row'>" . $i++ . "</th>";
 
+                            foreach ($row as $item) { ?>
+                                <td><?php echo $item; ?></td>
+                                <?php
+                            }
+                            echo "</tr>";
+                        }
+                        ?>
+                        </tbody>
+                    </table>
+
+                </div>
             </div>
         </div>
         <?php
@@ -186,8 +218,7 @@ final class DashboardTemp extends BaseController {
                 <div class="cont-title-dash">
                     <h2>About us</h2>
                     <p class="lead">
-                        This is a simple hero unit, a simple jumbotron-style component for calling extra attention
-                        to featured content or information.
+                        Fill information about the plugin.
                     </p>
                 </div>
             </div>

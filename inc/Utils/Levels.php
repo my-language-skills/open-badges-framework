@@ -41,17 +41,21 @@ class Levels {
      * @since  0.4
      * @since  0.6.3
      *
-     * @param string | $rightFieldEdu field of education selected in the first step
+     * @param string | $ourField field of education selected in the first step
+     *
      * @return array $levels Array of all levels found.
      */
-    public static function getAllLevels($rightFieldEdu = "") {
+    public static function getAllLevels($ourField = "") {
         // Variables
-        $levels = array();
+        $levelsContainer = array();
 
         $badges = get_posts(array(
             'post_type' => Admin::POST_TYPE_BADGES,
+            'orderby' => 'name',
+            'order' => 'ASC',
             'numberposts' => -1
         ));
+
 
         foreach ($badges as $badge) {
             // Get the type of the badge (student or teacher)
@@ -61,30 +65,36 @@ class Levels {
             // Get the field of the badge
             $fields = get_the_terms($badge->ID, Admin::TAX_FIELDS);
 
-            //If there is no fields of education in the badge, means that is part of
+            // NO FIELD OF EDUCATION FOR THAT BADGE
+            // If there is no fields of education in the badge, means that is part of
             // all the fields (category).
             if (!$fields) {
-                if (!in_array($level, $levels)) {
+                if (!in_array($level, $levelsContainer)) {
                     if (User::check_the_rules("administrator", "editor")) {
-                        $levels[] = $level;
+                        $levelsContainer[] = $level;
                     } else {
                         if ($badge_type == "student") {
-                            $levels[] = $level;
+                            $levelsContainer[] = $level;
                         }
                     }
                 }
+
+                // FIELD\S OF EDUCATION EXISTING
             } else {
                 foreach ($fields as $field) {
-                    if (!in_array($level, $levels)) {
-                        // Check if the Field of education selected in the first step
-                        // is content in one of the badge of the level.
-                        if ($field->term_id == $rightFieldEdu) {
-                            if (User::check_the_rules("administrator", "editor")) {
-                                $levels[] = $level;
-                            } else {
-                                if ($badge_type == "student") {
-                                    $levels[] = $level;
-                                }
+                    //Check if the field of education of the badge is the same of the $ourField,
+                    // that mean we want to show only the levels of a specific field
+                    if ($field->term_id == $ourField && !in_array($level, $levelsContainer)) {
+
+                        if (User::check_the_rules("administrator", "editor")) {
+                            $levelsContainer[] = $level;
+                        } else if (User::check_the_rules("teacher")) {
+                            if ($badge_type == "student" || $badge_type == "teacher") {
+                                $levelsContainer[] = $level;
+                            }
+                        } else if (User::check_the_rules("student")) {
+                            if ($badge_type == "student") {
+                                $levelsContainer[] = $level;
                             }
                         }
                     }
@@ -92,8 +102,7 @@ class Levels {
             }
         }
 
-        sort($levels);
-        return $levels;
+        return $levelsContainer;
     }
 
 }

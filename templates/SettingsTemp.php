@@ -12,21 +12,27 @@ namespace templates;
 
 /**
  * This class create and manage the settings page.
- * It's look little bit complicated but it can be fix watching
- * this tutorial: https://www.youtube.com/watch?v=QYt5Ry3os88
+ * It's look little bit complicated but with calm and patient you can understand
+ * everything. The 'pageInit' function is the core of this class because permit to
+ * instantiate all the sections and the relative fields (SECTION: company_profile_sect,
+ * page_link_sect; FIELDS: site_name_field, website_url_field ...).
+ * it can be fix watching this tutorial: https://www.youtube.com/watch?v=QYt5Ry3os88
  *
  * @author      Alessandro RICCARDI
  * @since       x.x.x
  */
-class SettingsTemp {
+final class SettingsTemp {
     const OPTION_GROUP = "option_group";
     const OPTION_NAME = "option_name";
+
     // SETTINGS PAGE
-    const NAME_PROFILE_PAGE = "setting_page";
-    const NAME_LINKS_PAGE = "links_page";
+    const PAGE_PROFILE = "setting_page";
+    const PAGE_LINKS = "links_page";
+
     //SECTIONS
-    CONST COMPANY_PROFILE_SECT = 'company_profile_sect';
-    CONST PAGE_REF_SECT = 'page_link_sect';
+    CONST SECT_COMPANY_PROFILE = 'company_profile_sect';
+    CONST SECT_PAGE_REF = 'page_link_sect';
+
     // FIELDS
     const FI_SITE_NAME_FIELD = "site_name_field";
     const FI_WEBSITE_URL_FIELD = 'website_url_field';
@@ -34,11 +40,13 @@ class SettingsTemp {
     const FI_TELEPHONE_FIELD = 'telephone_field';
     const FI_DESCRIPTION_FIELD = 'information_field';
     const FI_EMAIL_FIELD = 'email_field';
+
+    const FI_ADD_CLASS = 'add_class_page';
+    const FI_BECAME_PREMIUM = 'became_premium_page';
     const FI_GET_BADGE = 'get_badge_page';
-    const FI_REGISTER_PAGE = 'register_page';
-    const FI_LOGIN_PAGE = 'login_page';
 
     private $options;
+
 
     /**
      * The construct allow to call th admin_init hook initializing the
@@ -56,7 +64,7 @@ class SettingsTemp {
             self::FI_WEBSITE_URL_FIELD => get_bloginfo('url'),
         );
 
-        update_option(self::OPTION_NAME, $defaults);
+        //update_option(self::OPTION_NAME, $defaults);
     }
 
     /**
@@ -72,31 +80,35 @@ class SettingsTemp {
         ?>
         <div class="wrap">
             <h1>Settings</h1>
+            <br>
             <ul class="nav nav-tabs">
                 <li class="active"><a href="#tab-1">Profile</a></li>
                 <li class=""><a href="#tab-2">Links</a></li>
             </ul>
-
-            <div class="tab-content">
-                <div id="tab-1" class="tab-pane active">
-                    <?php
-                    wp_enqueue_media();
-                    // This prints out all hidden setting fields
-                    settings_fields(self::OPTION_GROUP);
-                    do_settings_sections(self::NAME_PROFILE_PAGE);
-                    submit_button();
-                    ?>
+            <form method="post" action="options.php">
+                <?php
+                wp_enqueue_media();
+                ?>
+                <div class="tab-content-page">
+                    <div id="tab-1" class="tab-pane active">
+                        <?php
+                        // This prints out all hidden setting fields
+                        settings_fields(self::OPTION_GROUP);
+                        do_settings_sections(self::PAGE_PROFILE);
+                        ?>
+                    </div>
+                    <div id="tab-2" class="tab-pane">
+                        <?php
+                        // This prints out all hidden setting fields
+                        settings_fields(self::OPTION_GROUP);
+                        do_settings_sections(self::PAGE_LINKS);
+                        ?>
+                    </div>
                 </div>
-                <div id="tab-2" class="tab-pane">
-                    <?php
-                    wp_enqueue_media();
-                    // This prints out all hidden setting fields
-                    settings_fields(self::OPTION_GROUP);
-                    do_settings_sections(self::NAME_LINKS_PAGE);
-                    submit_button();
-                    ?>
-                </div>
-            </div>
+                <?php
+                submit_button( 'Save Settings', 'primary', 'wpdocs-save-settings' );
+                ?>
+            </form>
         </div>
         <?php
     }
@@ -116,18 +128,18 @@ class SettingsTemp {
 
         /* #GENERAL INFORMATION________________________________ */
         add_settings_section(
-            self::COMPANY_PROFILE_SECT, // ID
+            self::SECT_COMPANY_PROFILE, // ID
             'Company Profile', // Title
             array($this, 'printSectionInfo'), // Callback
-            self::NAME_PROFILE_PAGE // Page
+            self::PAGE_PROFILE // Page
         );
         /* --> Site Name______________ */
         add_settings_field(
             '' . self::FI_SITE_NAME_FIELD . '', // ID
             'Site Name', // Title
             array($this, 'siteNameCallback'), // Callback
-            self::NAME_PROFILE_PAGE, // Page
-            self::COMPANY_PROFILE_SECT // Section
+            self::PAGE_PROFILE, // Page
+            self::SECT_COMPANY_PROFILE // Section
         );
 
         /* --> WebSite URL______________ */
@@ -135,8 +147,8 @@ class SettingsTemp {
             self::FI_WEBSITE_URL_FIELD,
             'Website URL',
             array($this, 'websiteUrlCallback'),
-            self::NAME_PROFILE_PAGE,
-            self::COMPANY_PROFILE_SECT
+            self::PAGE_PROFILE,
+            self::SECT_COMPANY_PROFILE
         );
 
         /* --> Telephone______________ */
@@ -144,8 +156,8 @@ class SettingsTemp {
             self::FI_TELEPHONE_FIELD,
             'Telephone',
             array($this, 'telephoneCallback'),
-            self::NAME_PROFILE_PAGE,
-            self::COMPANY_PROFILE_SECT
+            self::PAGE_PROFILE,
+            self::SECT_COMPANY_PROFILE
         );
 
         /* --> Description______________ */
@@ -153,17 +165,17 @@ class SettingsTemp {
             self::FI_DESCRIPTION_FIELD,
             'Description',
             array($this, 'descriptionCallback'),
-            self::NAME_PROFILE_PAGE,
-            self::COMPANY_PROFILE_SECT
+            self::PAGE_PROFILE,
+            self::SECT_COMPANY_PROFILE
         );
 
         /* --> Image URL______________ */
         add_settings_field(
-            '' . self::FI_IMAGE_URL_FIELD . '',
+            self::FI_IMAGE_URL_FIELD,
             'Image of the Entity',
             array($this, 'imageUrlCallback'),
-            self::NAME_PROFILE_PAGE,
-            self::COMPANY_PROFILE_SECT
+            self::PAGE_PROFILE,
+            self::SECT_COMPANY_PROFILE
         );
 
         /* --> Email______________ */
@@ -171,35 +183,35 @@ class SettingsTemp {
             self::FI_EMAIL_FIELD,
             'Email',
             array($this, 'emailCallback'),
-            self::NAME_PROFILE_PAGE,
-            self::COMPANY_PROFILE_SECT
+            self::PAGE_PROFILE,
+            self::SECT_COMPANY_PROFILE
         );
 
 
         /* #PAGES LINKS_________________________________________ */
         add_settings_section(
-            self::PAGE_REF_SECT, // ID
+            self::SECT_PAGE_REF, // ID
             'Pages Links', // Title
             array($this, 'printPageLinksInfo'), // Callback
-            self::NAME_LINKS_PAGE // Page
+            self::PAGE_LINKS // Page
         );
 
         /* --> Became Premium Page____*/
         add_settings_field(
-            'became_premium_page', // ID
+            self::FI_BECAME_PREMIUM, // ID
             'Became Premium', // Title
             array($this, 'becamePremiumPageCallback'), // Callback
-            self::NAME_LINKS_PAGE, // Page
-            self::PAGE_REF_SECT
+            self::PAGE_LINKS, // Page
+            self::SECT_PAGE_REF
         );
 
         /* --> Add Class Page________ */
         add_settings_field(
-            'add_class_page',
+            self::FI_ADD_CLASS,
             'Add Class',
             array($this, 'addClassPageCallback'),
-            self::NAME_LINKS_PAGE,
-            self::PAGE_REF_SECT
+            self::PAGE_LINKS,
+            self::SECT_PAGE_REF
         );
 
         /* --> Register Page__________ */
@@ -207,8 +219,8 @@ class SettingsTemp {
             self::FI_GET_BADGE,
             'Get Badge',
             array($this, 'getBadgePageCallback'),
-            self::NAME_LINKS_PAGE,
-            self::PAGE_REF_SECT
+            self::PAGE_LINKS,
+            self::SECT_PAGE_REF
         );
     }
 
@@ -219,6 +231,7 @@ class SettingsTemp {
      * @since       x.x.x
      *
      * @param array $input Contains all settings fields as array keys.
+     *
      * @return array Contains all settings fields as array keys but sanitized.
      */
     public function sanitize($input) {
@@ -229,7 +242,6 @@ class SettingsTemp {
                     $input[self::FI_SITE_NAME_FIELD] && $input[self::FI_SITE_NAME_FIELD] != '' ?
                         $input[self::FI_SITE_NAME_FIELD] : get_bloginfo('name')
                 );
-
 
         if (isset($input[self::FI_IMAGE_URL_FIELD]))
             $new_input[self::FI_IMAGE_URL_FIELD] = sanitize_text_field($input[self::FI_IMAGE_URL_FIELD]);
@@ -250,15 +262,15 @@ class SettingsTemp {
         if (isset($input[self::FI_EMAIL_FIELD]))
             $new_input[self::FI_EMAIL_FIELD] = sanitize_text_field($input[self::FI_EMAIL_FIELD]);
 
+        if (isset($input[self::FI_BECAME_PREMIUM]))
+            $new_input[self::FI_BECAME_PREMIUM] = sanitize_text_field($input[self::FI_BECAME_PREMIUM]);
 
-        if (isset($input['became_premium_page']))
-            $new_input['became_premium_page'] = sanitize_text_field($input['became_premium_page']);
+        if (isset($input[self::FI_ADD_CLASS]))
+            $new_input[self::FI_ADD_CLASS] = sanitize_text_field($input[self::FI_ADD_CLASS]);
 
-        if (isset($input['add_class_page']))
-            $new_input['add_class_page'] = sanitize_text_field($input['add_class_page']);
-
-        if (isset($input[self::FI_GET_BADGE]))
+        if (isset($input[self::FI_GET_BADGE])) {
             $new_input[self::FI_GET_BADGE] = sanitize_text_field($input[self::FI_GET_BADGE]);
+        }
 
         return $new_input;
     }
@@ -295,7 +307,7 @@ class SettingsTemp {
             self::FI_SITE_NAME_FIELD,
             self::OPTION_NAME,
             self::FI_SITE_NAME_FIELD,
-            isset($this->options[self::FI_SITE_NAME_FIELD]) && $this->options[self::FI_SITE_NAME_FIELD] != '' ? esc_attr($this->options[self::FI_SITE_NAME_FIELD]) : ''
+            isset($this->options[self::FI_SITE_NAME_FIELD]) ? esc_attr($this->options[self::FI_SITE_NAME_FIELD]) : ''
         );
     }
 
@@ -348,7 +360,7 @@ class SettingsTemp {
             self::FI_WEBSITE_URL_FIELD,
             self::OPTION_NAME,
             self::FI_WEBSITE_URL_FIELD,
-            isset($this->options[self::FI_WEBSITE_URL_FIELD]) && $this->options[self::FI_WEBSITE_URL_FIELD] != '' ? esc_attr($this->options[self::FI_WEBSITE_URL_FIELD]) : ''
+            isset($this->options[self::FI_WEBSITE_URL_FIELD]) ? esc_attr($this->options[self::FI_WEBSITE_URL_FIELD]) : ''
         );
     }
 
@@ -364,7 +376,7 @@ class SettingsTemp {
             self::FI_TELEPHONE_FIELD,
             self::OPTION_NAME,
             self::FI_TELEPHONE_FIELD,
-            isset($this->options[self::FI_TELEPHONE_FIELD]) && $this->options[self::FI_TELEPHONE_FIELD] != '' ? esc_attr($this->options[self::FI_TELEPHONE_FIELD]) : ''
+            isset($this->options[self::FI_TELEPHONE_FIELD]) ? esc_attr($this->options[self::FI_TELEPHONE_FIELD]) : ''
         );
     }
 
@@ -380,7 +392,7 @@ class SettingsTemp {
             self::FI_DESCRIPTION_FIELD,
             self::OPTION_NAME,
             self::FI_DESCRIPTION_FIELD,
-            isset($this->options[self::FI_DESCRIPTION_FIELD]) && $this->options[self::FI_DESCRIPTION_FIELD] != '' ? esc_attr($this->options[self::FI_DESCRIPTION_FIELD]) : ''
+            isset($this->options[self::FI_DESCRIPTION_FIELD]) ? esc_attr($this->options[self::FI_DESCRIPTION_FIELD]) : ''
         );
     }
 
@@ -396,7 +408,7 @@ class SettingsTemp {
             self::FI_EMAIL_FIELD,
             self::OPTION_NAME,
             self::FI_EMAIL_FIELD,
-            isset($this->options[self::FI_EMAIL_FIELD]) && $this->options[self::FI_EMAIL_FIELD] != '' ? esc_attr($this->options[self::FI_EMAIL_FIELD]) : ''
+            isset($this->options[self::FI_EMAIL_FIELD]) ? esc_attr($this->options[self::FI_EMAIL_FIELD]) : ''
         );
     }
 
@@ -407,16 +419,15 @@ class SettingsTemp {
      * @since       x.x.x
      */
     public function becamePremiumPageCallback() {
-        $val =
+        $val = isset($this->options[self::FI_BECAME_PREMIUM]) ? esc_attr($this->options[self::FI_BECAME_PREMIUM]) : '';
+        wp_dropdown_pages(array(
+            'id' => self::FI_BECAME_PREMIUM,
+            'name' => self::OPTION_NAME . '[' . self::FI_BECAME_PREMIUM . ']',
+            'selected' => $val,
+            'show_option_none' => 'None', // string
+        ));
 
-            wp_dropdown_pages(array(
-                'id' => 'became_premium_page',
-                'name' => self::OPTION_NAME . '[' . self::FI_GET_BADGE . ']',
-                'selected' => isset($this->options['became_premium_page']) ? esc_attr($this->options['became_premium_page']) : '',
-                'show_option_none' => 'None', // string
-            ));
-
-        echo self::showPreviewLink($this->options['became_premium_page']);
+        echo self::showPreviewLink($val);
     }
 
     /**
@@ -426,13 +437,15 @@ class SettingsTemp {
      * @since       x.x.x
      */
     public function addClassPageCallback() {
+        $val = isset($this->options[self::FI_ADD_CLASS]) ? esc_attr($this->options[self::FI_ADD_CLASS]) : '';
+
         wp_dropdown_pages(array(
-            'id' => 'add_class_page',
-            'name' => self::OPTION_NAME . '[' . self::FI_GET_BADGE . ']',
-            'selected' => isset($this->options['add_class_page']) ? esc_attr($this->options['add_class_page']) : '',
+            'id' => self::FI_ADD_CLASS,
+            'name' => self::OPTION_NAME . '[' . self::FI_ADD_CLASS . ']',
+            'selected' => $val,
             'show_option_none' => 'None', // string
         ));
-        echo self::showPreviewLink($this->options['add_class_page']);
+        echo self::showPreviewLink($val);
 
     }
 
@@ -444,14 +457,16 @@ class SettingsTemp {
      * @since       x.x.x
      */
     public function getBadgePageCallback() {
+        $val = isset($this->options[self::FI_GET_BADGE]) ? esc_attr($this->options[self::FI_GET_BADGE]) : '';
+
         wp_dropdown_pages(array(
             'id' => self::FI_GET_BADGE,
             'name' => self::OPTION_NAME . '[' . self::FI_GET_BADGE . ']',
-            'selected' => isset($this->options[self::FI_GET_BADGE]) ? esc_attr($this->options[self::FI_GET_BADGE]) : '',
+            'selected' => $val,
             'show_option_none' => 'None', // string
         ));
 
-        echo self::showPreviewLink($this->options[self::FI_GET_BADGE]);
+        echo self::showPreviewLink($val);
 
     }
 
@@ -462,6 +477,7 @@ class SettingsTemp {
      * @since       x.x.x
      *
      * @param int $idPage id of the page.
+     *
      * @return string of the html <a> link.
      */
     public function showPreviewLink($idPage) {
@@ -479,8 +495,9 @@ class SettingsTemp {
      * @since       x.x.x
      */
     public static function getSlugGetBadgePage() {
-        $options = get_option(SettingsTemp::OPTION_NAME);
-        return get_post($options[SettingsTemp::FI_GET_BADGE])->post_name;
+        $options = get_option(self::OPTION_NAME);
+        $id = isset($options[SettingsTemp::FI_GET_BADGE]) ? $options[SettingsTemp::FI_GET_BADGE] : '';
+        return get_post($id)->post_name;
     }
 
 }
