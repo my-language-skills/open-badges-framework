@@ -1,10 +1,12 @@
 <?php
+
 namespace inc\Utils;
 
 use Inc\Pages\Admin;
 
 /**
- * The Fields Class.
+ * That class permit to mange the fields from the taxonomies
+ * "fields_obf_tax".
  *
  * @author      Alessandro RICCARDI
  * @since       x.x.x

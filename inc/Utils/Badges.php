@@ -1,12 +1,4 @@
 <?php
-/**
- * Contain all the function for the management of the badges.
- *
- * @author      Alessandro RICCARDI
- * @since       x.x.x
- *
- * @package     OpenBadgesFramework
- */
 
 namespace inc\Utils;
 
@@ -14,10 +6,12 @@ use inc\Base\User;
 use Inc\Pages\Admin;
 
 /**
- * The Badges Class.
+ * Contain all the function for the management of the badges.
  *
  * @author      Alessandro RICCARDI
  * @since       x.x.x
+ *
+ * @package     OpenBadgesFramework
  */
 class Badges {
 
@@ -69,14 +63,14 @@ class Badges {
                 foreach ($badgeFields as $badgeField) {
 
                     // Get the term array of the @param $fieldId
-                    $selectedField = get_term($fieldId,Admin::TAX_FIELDS);
+                    $selectedField = get_term($fieldId, Admin::TAX_FIELDS);
 
                     // In case the @param $fieldId match with one of the badges.
                     if ($badgeField->term_id == $selectedField->term_id) {
                         $fieldOK = 1;
 
-                    // In case the parent of the @param $fieldId match with one of the badges.
-                    } else if ($badgeField->term_id ==  $selectedField->parent) {
+                        // In case the parent of the @param $fieldId match with one of the badges.
+                    } else if ($badgeField->term_id == $selectedField->parent) {
                         $fieldOK = 1;
                     }
                 }

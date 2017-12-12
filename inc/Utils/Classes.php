@@ -1,11 +1,12 @@
 <?php
+
 namespace inc\Utils;
 
 use inc\Base\User;
 use Inc\Pages\Admin;
 
 /**
- * Contain all the function for the management of the classes.
+ * That class permit to mange the classes from the c.p.t "job_listing".
  *
  * @author      Alessandro RICCARDI
  * @since       x.x.x

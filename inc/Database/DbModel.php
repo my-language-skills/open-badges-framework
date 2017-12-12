@@ -1,4 +1,5 @@
 <?php
+
 namespace Inc\Database;
 
 /**
@@ -70,7 +71,7 @@ class DbModel {
 
     public static function delete(array $data) {
         global $wpdb;
-        echo $ret = self::fetchSql('DELETE',$data);
+        echo $ret = self::fetchSql('DELETE', $data);
         return $wpdb->query($ret);
     }
 

@@ -1,4 +1,27 @@
 /* **********************
+    GENERAL
+   ====================== */
+
+.center-text {
+    text-align: center;
+}
+
+.lead {
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+.sb-instruction{
+    margin-bottom: 30px;
+    display: inline-block;
+}
+
+.text-large {
+    font-weight: 300;
+    font-size: large;
+}
+
+/* **********************
     DASHBOARD
    ====================== */
 

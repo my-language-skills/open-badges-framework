@@ -1,4 +1,5 @@
 <?php
+
 namespace inc\OB;
 
 use Inc\Base\BaseController;

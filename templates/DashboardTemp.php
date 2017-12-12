@@ -1,25 +1,22 @@
 <?php
-/**
- * Template for the Dashboard page.
- *
- * @author      Alessandro RICCARDI
- * @since       x.x.x
- *
- * @package     OpenBadgesFramework
- */
 
 namespace templates;
 
 use Inc\Database\DbBadge;
 use Inc\Pages\Admin;
 use Inc\Base\BaseController;
+use inc\Utils\Statistics;
 
 /**
+ * Template for the Dashboard page.
+ *
  * Provide an admin area view. This file is used to
  * markup the admin-facing aspects of the plugin.
  *
  * @author      Alessandro RICCARDI
  * @since       x.x.x
+ *
+ * @package     OpenBadgesFramework
  */
 final class DashboardTemp extends BaseController {
 
@@ -84,7 +81,7 @@ final class DashboardTemp extends BaseController {
                         </div>
                         <div class="col-dash">
                             Number of badge:
-                            <span class="number-stc"><?php echo wp_count_posts(Admin::POST_TYPE_BADGES)->publish; ?></span>
+                            <span class="number-stc"><?php echo Statistics::getNumberPostOrTerm(Admin::POST_TYPE_BADGES); ?></span>
                         </div>
                         <div class="col-dash">
                             <a href="<?php echo admin_url("edit.php?post_type=" . Admin::POST_TYPE_BADGES); ?>"
@@ -100,7 +97,7 @@ final class DashboardTemp extends BaseController {
                         </div>
                         <div class="col-dash">
                             Number of Fields:
-                            <span class="number-stc"><?php echo wp_count_terms(Admin::TAX_FIELDS); ?></span>
+                            <span class="number-stc"><?php echo Statistics::getNumberPostOrTerm(Admin::TAX_FIELDS); ?></span>
                         </div>
                         <div class="col-dash">
                             <a href="<?php echo admin_url("edit-tags.php?taxonomy=" . Admin::TAX_FIELDS . "&post_type=" . Admin::POST_TYPE_BADGES); ?>"
@@ -116,7 +113,7 @@ final class DashboardTemp extends BaseController {
                         </div>
                         <div class="col-dash">
                             Number of Levels:
-                            <span class="number-stc"><?php echo wp_count_terms(Admin::TAX_LEVELS); ?></span>
+                            <span class="number-stc"><?php echo Statistics::getNumberPostOrTerm(Admin::TAX_LEVELS); ?></span>
                         </div>
                         <div class="col-dash">
                             <a href="<?php echo admin_url("edit-tags.php?taxonomy=" . Admin::TAX_LEVELS . "&post_type=" . Admin::POST_TYPE_BADGES); ?>"
@@ -135,7 +132,7 @@ final class DashboardTemp extends BaseController {
                             </div>
                             <div class="col-dash">
                                 Number of Classes:
-                                <span class="number-stc"><?php echo wp_count_posts(Admin::POST_TYPE_CLASS_JL)->publish; ?></span>
+                                <span class="number-stc"><?php echo Statistics::getNumberPostOrTerm(Admin::POST_TYPE_CLASS_JL); ?></span>
                             </div>
                             <div class="col-dash">
                                 <a href="<?php echo admin_url("edit.php?post_type=" . Admin::POST_TYPE_CLASS_JL); ?>"

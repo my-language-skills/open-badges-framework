@@ -1,4 +1,5 @@
 <?php
+
 namespace inc\Utils;
 
 /**
@@ -8,7 +9,6 @@ namespace inc\Utils;
  * so this still survive right now because I didn't have
  * time to fix that but the purpose for the future is to
  * delete that and create it better.
- *
  *
  * @author      Alessandro RICCARDI
  * @since       x.x.x

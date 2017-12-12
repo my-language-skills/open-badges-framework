@@ -1,4 +1,5 @@
 <?php
+
 namespace inc\Ajax;
 
 use inc\Base\User;
@@ -49,7 +50,7 @@ class SendBadgeAjax extends BaseController {
         $level = new Levels();
         $levels = $level->getAllLevels($fieldId);
 
-        if($levels) {
+        if ($levels) {
             // Display the level ...
             foreach ($levels as $level) {
                 if ($level) {

@@ -1,4 +1,5 @@
 <?php
+
 namespace Inc\Base;
 
 use Inc\Pages\Admin;
@@ -11,7 +12,7 @@ use Inc\Pages\Admin;
  *
  * @package     OpenBadgesFramework
  */
-class SettingsLinks extends BaseController{
+class SettingsLinks extends BaseController {
 
     /**
      * Add the setting link in the plugin page of WordPress.
@@ -28,8 +29,8 @@ class SettingsLinks extends BaseController{
      * @return string $links The right link
      */
     public function settingsLink($links) {
-        $settings_link = "<a href='admin.php?page=". Admin::SLUG_PLUGIN ."'>Settigns</a>";
-        array_push( $links, $settings_link);
+        $settings_link = "<a href='admin.php?page=" . Admin::SLUG_PLUGIN . "'>Settigns</a>";
+        array_push($links, $settings_link);
         return $links;
 
     }

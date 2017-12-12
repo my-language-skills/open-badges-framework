@@ -1,4 +1,5 @@
 <?php
+
 namespace inc\Base;
 
 use Inc\Pages\Admin;
@@ -60,7 +61,7 @@ class User {
      */
     public function register() {
         $this->initialize();
-        add_action('user_register', array($this,'registerUserClass'));
+        add_action('user_register', array($this, 'registerUserClass'));
     }
 
     /**
@@ -109,7 +110,7 @@ class User {
     }
 
 
-    public static function getCurrentUser(){
+    public static function getCurrentUser() {
         global $current_user;
         wp_get_current_user();
 
@@ -122,17 +123,18 @@ class User {
      * @author Alessandro RICCARDI
      * @since  0.6.4
      *
-     * @param $actual_roles, the roles that the user have in this moment.
-     * @param infinity roles that you can pass after the first parameter like this:
-     *            check_the_rules("academy", "teacher")
+     * @param $actual_roles , the roles that the user have in this moment.
+     * @param infinity      roles that you can pass after the first parameter like this:
+     *                      check_the_rules("academy", "teacher")
+     *
      * @return bool
      */
-    public static function checkTheRules(){
+    public static function checkTheRules() {
         $user = self::getCurrentUser();
         $res = array();
         foreach (func_get_args() as $param) {
-            if(!is_array($param)){
-                $res = in_array($param, $user->roles)? true: $res ? true: false;
+            if (!is_array($param)) {
+                $res = in_array($param, $user->roles) ? true : $res ? true : false;
             }
         }
         return $res;

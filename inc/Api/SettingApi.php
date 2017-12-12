@@ -1,4 +1,5 @@
 <?php
+
 namespace Inc\Api;
 
 use Inc\Pages\Admin;

@@ -1,11 +1,13 @@
 <?php
+
 namespace inc\Utils;
 
 use Inc\Pages\Admin;
 use Inc\Base\User;
 
 /**
- * The Levels class
+ * That class permit to mange the levels from the taxonomies
+ * "levels_obf_tax".
  *
  * @author      Alessandro RICCARDI
  * @since       x.x.x
@@ -81,11 +83,11 @@ class Levels {
             } else {
                 foreach ($badgeFields as $badgeField) {
                     // Get the term array of the @param $fieldId
-                    $selectedField = get_term($fieldId,Admin::TAX_FIELDS);
+                    $selectedField = get_term($fieldId, Admin::TAX_FIELDS);
 
                     // Check if the field of education of the badge is the same of the $ourField,
                     // that mean we want to show only the levels of a specific field
-                    if (($badgeField->term_id == $fieldId || $badgeField->term_id ==  $selectedField->parent)
+                    if (($badgeField->term_id == $fieldId || $badgeField->term_id == $selectedField->parent)
                         && !in_array($badgeLevel, $retLevels)) {
 
                         if (User::checkTheRules("administrator", "editor")) {

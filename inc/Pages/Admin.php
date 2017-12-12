@@ -1,4 +1,5 @@
 <?php
+
 namespace Inc\Pages;
 
 use Inc\Api\MetaboxApi;
@@ -10,7 +11,9 @@ use Templates\SendBadgeTemp;
 use Templates\SettingsTemp;
 
 /**
- * This function allow us to create array that will be pass
+ * The WordPress Admin generator.
+ *
+ * This class allow us to create array that will be pass
  * to the SettingApi class that will then create them.
  *
  * @author     Alessandro RICCARDI

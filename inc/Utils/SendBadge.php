@@ -11,11 +11,15 @@ use templates\SettingsTemp;
 
 
 /**
- * In this class are stored the most important
- * function that permit us to send a badge.
+ * This class permit to send the badge.
+ *
+ * Here are stored the most important function that permit
+ * us to send a badge.
  *
  * @author      Alessandro RICCARDI
  * @since       x.x.x
+ *
+ * @package     OpenBadgesFramework
  */
 class SendBadge extends BaseController {
     const ER_JSON_FILE = "Error json file\n";
@@ -146,6 +150,7 @@ class SendBadge extends BaseController {
      * @since    x.x.x
      *
      * @param $hash_file name of the hash file
+     *
      * @return the body of the email in html format
      */
     private function getBodyEmail($hash_file) {
@@ -158,15 +163,30 @@ class SendBadge extends BaseController {
             "&field=" . $this->field->term_id .
             "&level=" . $this->level->term_id;
 
+        $img = get_the_post_thumbnail_url($this->badge->ID);
+
         $body = "
-                <html>
+                <!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+                <html xmlns='http://www.w3.org/1999/xhtml'>
                     <head>
-                        <meta http-equiv='Content-Type' content='text/html'; charset='utf-8' />
+                        <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+                        <title>A Simple Responsive HTML Email</title>
                     </head>
                     <body>
-                        <div class='container'>
-                            <a href='$badgeLink'>Get the badge</a>
-                        </div>
+                        <table border='1' cellpadding='0' cellspacing='0' width='100%'>
+                            <tr>
+                                <td width='80' valign='top' style='text-align: left'>
+                                <img src='$img' width='100%'>
+                                    <a href='$badgeLink'>Get Badge</a>
+                                </td>
+                                <td style='font-size: 0; line-height: 0;' width='20'>
+                                    &nbsp;
+                                </td>
+                                <td width='260' valign='top'>
+                                    Column 2
+                                </td>
+                            </tr>
+                        </table>
                     </body>
                 </html>
                     ";

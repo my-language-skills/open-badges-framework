@@ -1,12 +1,4 @@
 <?php
-/**
- * Template for the Get Badge page.
- *
- * @author      Alessandro RICCARDI
- * @since       x.x.x
- *
- * @package     OpenBadgesFramework
- */
 
 namespace templates;
 
@@ -18,12 +10,15 @@ use Inc\Pages\Admin;
 use Inc\Utils\Badges;
 
 /**
- * The GetBadgeTemp Class.
+ * Template for the Get Badge page.
+ *
  * In this class are defined all the function that permit
  * to follow all the step to get a badge.
  *
  * @author      Alessandro RICCARDI
  * @since       x.x.x
+ *
+ * @package     OpenBadgesFramework
  */
 final class GetBadgeTemp extends BaseController {
     const START = 0;
@@ -468,7 +463,7 @@ final class GetBadgeTemp extends BaseController {
     }
 
     /**
-     * Show the error that we discovered in the loadParm function.
+     * Show the error that we discovered in the loadParm() function.
      *
      * @author      Alessandro RICCARDI
      * @since       x.x.x

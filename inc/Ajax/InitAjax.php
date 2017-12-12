@@ -1,4 +1,5 @@
 <?php
+
 namespace Inc\Ajax;
 
 use Inc\Base\BaseController;

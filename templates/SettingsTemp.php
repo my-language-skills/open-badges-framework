@@ -1,16 +1,10 @@
 <?php
-/**
- * Template for the Settings page.
- *
- * @author      Alessandro RICCARDI
- * @since       x.x.x
- *
- * @package     OpenBadgesFramework
- */
 
 namespace templates;
 
 /**
+ * Template for the Settings page.
+ *
  * This class create and manage the settings page.
  * It's look little bit complicated but with calm and patient you can understand
  * everything. The 'pageInit' function is the core of this class because permit to
@@ -20,6 +14,8 @@ namespace templates;
  *
  * @author      Alessandro RICCARDI
  * @since       x.x.x
+ *
+ * @package     OpenBadgesFramework
  */
 final class SettingsTemp {
     const OPTION_GROUP = "option_group";
@@ -106,7 +102,7 @@ final class SettingsTemp {
                     </div>
                 </div>
                 <?php
-                submit_button( 'Save Settings', 'primary', 'wpdocs-save-settings' );
+                submit_button('Save Settings', 'primary', 'wpdocs-save-settings');
                 ?>
             </form>
         </div>
