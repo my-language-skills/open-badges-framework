@@ -1,6 +1,7 @@
 <?php
+namespace inc\Utils;
+
 /**
- * The Statistics Class.
  * This is a very initial class, created to be developed
  * in the future and to increase functionality.
  *
@@ -9,9 +10,6 @@
  *
  * @package     OpenBadgesFramework
  */
-
-namespace inc\Utils;
-
 class Statistics {
 
     /**

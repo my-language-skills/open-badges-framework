@@ -1,10 +1,12 @@
 <?php
+namespace inc\Utils;
+
 /**
- * The DisplayFunction Class, contain all the function to show
- * some information. I created that class because in the last
- * version of the plugin there was a php file with all function
- * like this, so this still survive right now because I didn't
- * have time to fix that but the purpose for the future is to
+ * Contain all the function to show some information.
+ * I created that class because in the last version of the
+ * plugin there was a php file with all function like this,
+ * so this still survive right now because I didn't have
+ * time to fix that but the purpose for the future is to
  * delete that and create it better.
  *
  *
@@ -13,9 +15,6 @@
  *
  * @package     OpenBadgesFramework
  */
-
-namespace inc\Utils;
-
 class DisplayFunction {
 
     /**
@@ -29,13 +28,13 @@ class DisplayFunction {
      * @param string $p_parent permit to display the child taxonomy of the parent taxonomy (category).
      */
     public static function field($p_parent = "") {
-        $field = new Fields();
+        $fieldsInstance = new Fields();
 
         $selectionContOpen = '<div class="select-field"> <select name="field" id="field"> <option value="Select" selected disabled hidden>Select</option>';
         $selectionContClose = '</select></div>';
 
-        if (!$field->haveChildren()) {
-            $languages = $field->main;
+        if (!$fieldsInstance->haveChildren()) {
+            $languages = $fieldsInstance->main;
 
             echo $selectionContOpen;
 
@@ -50,7 +49,7 @@ class DisplayFunction {
             //If there parent with children
             if ($p_parent === "") {
                 // Display the DEFAULT parent
-                $parents = $field->sub;
+                $parents = $fieldsInstance->sub;
                 echo $selectionContOpen;
 
                 foreach ($parents as $parent) {
@@ -64,7 +63,7 @@ class DisplayFunction {
 
             } else if ($p_parent === "all_field") {
                 // Display ALL the child
-                $parents = $field->sub;
+                $parents = $fieldsInstance->sub;
 
                 echo $selectionContOpen;
 
@@ -78,7 +77,7 @@ class DisplayFunction {
 
             } else {
                 // Display the children of the right PARENT
-                $parents = $field->sub;
+                $parents = $fieldsInstance->sub;
 
                 echo $selectionContOpen;
                 foreach ((array)$parents[$p_parent] as $language) {

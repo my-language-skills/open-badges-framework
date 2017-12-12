@@ -1,18 +1,16 @@
 <?php
+namespace Inc\Ajax;
+
+use Inc\Base\BaseController;
+
 /**
- * The InitAjax Class, permit to load all the ajax class and they're function
+ * Permit to load all the ajax class and they're function
  *
  * @author      Alessandro RICCARDI
  * @since       x.x.x
  *
  * @package     OpenBadgesFramework
  */
-
-namespace Inc\Ajax;
-
-
-use Inc\Base\BaseController;
-
 class InitAjax extends BaseController {
 
     public function __construct() {

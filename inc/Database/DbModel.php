@@ -1,4 +1,6 @@
 <?php
+namespace Inc\Database;
+
 /**
  * The DbModel Class.
  *
@@ -7,9 +9,6 @@
  *
  * @package     OpenBadgesFramework
  */
-
-namespace Inc\Database;
-
 class DbModel {
     const DB_VERSION = '1.0.0';
     const DB_NAME_VERSION = 'OBF_db_version';

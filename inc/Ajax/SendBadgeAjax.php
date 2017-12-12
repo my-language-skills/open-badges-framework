@@ -1,14 +1,4 @@
 <?php
-/**
- * The SendBadgeAjax Class, contain all the
- * function about the Send Badge functionality.
- *
- * @author      Alessandro RICCARDI
- * @since       x.x.x
- *
- * @package     OpenBadgesFramework
- */
-
 namespace inc\Ajax;
 
 use inc\Base\User;
@@ -19,6 +9,14 @@ use Inc\Utils\SendBadge;
 use Inc\Utils\Classes;
 use Inc\Base\BaseController;
 
+/**
+ * Contain all the function about the Send Badge functionality.
+ *
+ * @author      Alessandro RICCARDI
+ * @since       x.x.x
+ *
+ * @package     OpenBadgesFramework
+ */
 class SendBadgeAjax extends BaseController {
 
     function action_save_metabox_students() {

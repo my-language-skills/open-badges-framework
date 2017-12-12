@@ -1,14 +1,4 @@
 <?php
-/**
- * This function allow us to create array that will be pass
- * to the SettingApi class that will then create them.
- *
- * @author     Alessandro RICCARDI
- * @since      x.x.x
- *
- * @package    OpenBadgesFramework
- */
-
 namespace Inc\Pages;
 
 use Inc\Api\MetaboxApi;
@@ -19,6 +9,15 @@ use Templates\GetBadgeTemp;
 use Templates\SendBadgeTemp;
 use Templates\SettingsTemp;
 
+/**
+ * This function allow us to create array that will be pass
+ * to the SettingApi class that will then create them.
+ *
+ * @author     Alessandro RICCARDI
+ * @since      x.x.x
+ *
+ * @package    OpenBadgesFramework
+ */
 class Admin extends BaseController {
     const SLUG_PLUGIN = "open_badges_framework";
     const POST_TYPE_BADGES = "badges_obf_cpt";

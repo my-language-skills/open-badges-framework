@@ -1,4 +1,8 @@
 <?php
+namespace inc\Base;
+
+use Inc\Pages\Admin;
+
 /**
  * The User Class.
  *
@@ -7,12 +11,6 @@
  *
  * @package     OpenBadgesFramework
  */
-
-
-namespace inc\Base;
-
-use Inc\Pages\Admin;
-
 class User {
     const STUDENT_ROLE = "obf_student";
     const TEACHER_ROLE = "obf_teacher";
@@ -129,7 +127,7 @@ class User {
      *            check_the_rules("academy", "teacher")
      * @return bool
      */
-    public static function check_the_rules(){
+    public static function checkTheRules(){
         $user = self::getCurrentUser();
         $res = array();
         foreach (func_get_args() as $param) {

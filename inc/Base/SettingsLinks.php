@@ -1,4 +1,8 @@
 <?php
+namespace Inc\Base;
+
+use Inc\Pages\Admin;
+
 /**
  * The SettingsLinks Class.
  *
@@ -7,12 +11,6 @@
  *
  * @package     OpenBadgesFramework
  */
-
-namespace Inc\Base;
-
-use Inc\Base\BaseController;
-use Inc\Pages\Admin;
-
 class SettingsLinks extends BaseController{
 
     /**

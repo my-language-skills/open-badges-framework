@@ -1,14 +1,4 @@
 <?php
-/**
- * The SendBadge Class. In this class are stored
- * the most important function that permit us to
- * send a badge.
- *
- * @author      Alessandro RICCARDI
- * @since       x.x.x
- *
- * @package     OpenBadgesFramework
- */
 
 namespace Inc\Utils;
 
@@ -20,6 +10,13 @@ use Inc\Pages\Admin;
 use templates\SettingsTemp;
 
 
+/**
+ * In this class are stored the most important
+ * function that permit us to send a badge.
+ *
+ * @author      Alessandro RICCARDI
+ * @since       x.x.x
+ */
 class SendBadge extends BaseController {
     const ER_JSON_FILE = "Error json file\n";
     const ER_SEND_EMAIL = "Error email\n";

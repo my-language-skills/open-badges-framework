@@ -1,4 +1,10 @@
 <?php
+namespace Inc\Base;
+
+use \Inc\Base\BaseController;
+use Inc\Pages\Admin;
+use templates\SettingsTemp;
+
 /**
  * The Enqueue Class
  *
@@ -6,13 +12,6 @@
  *
  * @package    OpenBadgesFramework
  */
-
-namespace Inc\Base;
-
-use \Inc\Base\BaseController;
-use Inc\Pages\Admin;
-use templates\SettingsTemp;
-
 class Enqueue extends BaseController {
 
     /**

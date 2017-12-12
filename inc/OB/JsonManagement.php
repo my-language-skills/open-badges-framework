@@ -1,19 +1,18 @@
 <?php
-/**
- * The JsonManagement Class.
- *
- * @author      Alessandro RICCARDI
- * @since       x.x.x
- *
- * @package     OpenBadgesFramework
- */
-
 namespace inc\OB;
 
 use Inc\Base\BaseController;
 use Inc\Pages\Admin;
 use templates\SettingsTemp;
 
+/**
+ * Permit to manage the Json files about the badges.
+ *
+ * @author      Alessandro RICCARDI
+ * @since       x.x.x
+ *
+ * @package     OpenBadgesFramework
+ */
 class JsonManagement extends BaseController {
     private $badgeInfo;
     const ISSUER_INFO_FILE = "issuer-info.json";

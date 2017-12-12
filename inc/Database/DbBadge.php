@@ -1,4 +1,6 @@
 <?php
+namespace Inc\Database;
+
 /**
  * The DbBadge Class.
  *
@@ -7,9 +9,6 @@
  *
  * @package     OpenBadgesFramework
  */
-
-namespace Inc\Database;
-
 class DbBadge extends DbModel {
     const ER_DONT_EXIST = "The badge don't exist.\n";
     const ER_DUPLICATE = "The badge is duplicate.\n";

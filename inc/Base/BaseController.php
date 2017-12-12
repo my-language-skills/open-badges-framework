@@ -1,4 +1,6 @@
 <?php
+namespace Inc\Base;
+
 /**
  * The BaseController Class.
  *
@@ -7,9 +9,6 @@
  *
  * @package     OpenBadgesFramework
  */
-
-namespace Inc\Base;
-
 class BaseController {
     public $plugin_path;
     public $plugin_url;

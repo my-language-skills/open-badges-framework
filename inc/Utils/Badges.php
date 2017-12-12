@@ -1,7 +1,6 @@
 <?php
 /**
- * The Badges Class contain all
- * the function for the management of the badges.
+ * Contain all the function for the management of the badges.
  *
  * @author      Alessandro RICCARDI
  * @since       x.x.x
@@ -14,6 +13,12 @@ namespace inc\Utils;
 use inc\Base\User;
 use Inc\Pages\Admin;
 
+/**
+ * The Badges Class.
+ *
+ * @author      Alessandro RICCARDI
+ * @since       x.x.x
+ */
 class Badges {
 
     public static function getAllBadges() {
@@ -32,50 +37,70 @@ class Badges {
      * @author      Alessandro RICCARDI
      * @since       x.x.x
      *
-     * @param string $field the id of the field
-     * @param string $level the id of the level
+     * @param string $fieldId the id of the field
+     * @param string $levelId the id of the level
      *
      * @return bool     True if have children,
      *                  False if don't have children
      */
-    public static function getBadgesFiltered($field = "", $level = "") {
-        $standBadges = get_posts(array(
+    public static function getBadgesFiltered($fieldId = "", $levelId = "") {
+
+        $allBadges = get_posts(array(
             'post_type' => Admin::POST_TYPE_BADGES,
             'orderby' => 'name',
             'order' => 'ASC',
             'numberposts' => -1
         ));
 
-        if ($field == "" && $level == "") {
-            return $standBadges;
+        if ($fieldId == "" && $levelId == "") {
+            return $allBadges;
         } else {
             // Variable
-            $allBadges = array();
+            $retBadges = array();
 
-            foreach ($standBadges as $badge) {
-                $fieldOK = 0;
-                $fields = get_the_terms($badge->ID, Admin::TAX_FIELDS);
-                $badgeLevel = get_the_terms($badge->ID, Admin::TAX_LEVELS)[0]->term_id;
-                foreach ($fields as $theField) {
-                    if ($theField->term_id == $field) $fieldOK = 1;
+            foreach ($allBadges as $badge) {
+
+                $fieldOK = 0; // Var that determinate if the field match with the badge
+
+                $badgeFields = get_the_terms($badge->ID, Admin::TAX_FIELDS);
+                $badgeLevel = get_the_terms($badge->ID, Admin::TAX_LEVELS)[0];
+
+                // Here is checked if the badge MATCH with the $fieldId
+                foreach ($badgeFields as $badgeField) {
+
+                    // Get the term array of the @param $fieldId
+                    $selectedField = get_term($fieldId,Admin::TAX_FIELDS);
+
+                    // In case the @param $fieldId match with one of the badges.
+                    if ($badgeField->term_id == $selectedField->term_id) {
+                        $fieldOK = 1;
+
+                    // In case the parent of the @param $fieldId match with one of the badges.
+                    } else if ($badgeField->term_id ==  $selectedField->parent) {
+                        $fieldOK = 1;
+                    }
                 }
 
-                // In this condition the level need to be always right but not for the field
-                // of education, in this condition "(!$fields || $fieldOK)" we want to take
-                // the badge that are of the right Field of Education ($fieldOK) and the badge
-                // that don't have fields of education because they dont have a specific
-                // classification (!$fields)
-                if ((!$fields || $fieldOK) && $badgeLevel == $level && !in_array($badge, $allBadges)) {
+                // (!$badgeFields || $fieldOK)      --> if $badgeFields is empty and that means there's no
+                // field of education for the badge return 1, if $fieldOK is 1 and that means the badge have
+                // the same field of the @param $fieldId return 1.
+                //
+                // $badgeLevel->term_id == $levelId --> return 1 if the level of the badge is the same of
+                // the @param $fieldId.
+                //
+                // !in_array($badge, $retBadges)    --> return 1 if is not already stored the badge in the
+                // $retBadges array.
+                if ((!$badgeFields || $fieldOK) && $badgeLevel->term_id == $levelId && !in_array($badge, $retBadges)) {
                     $badgeCert = get_post_meta($badge->ID, '_certification', true);
-                    if ($badgeCert == "certified" && User::check_the_rules("administrator", "academy", "editor")) {
-                        $allBadges[] = $badge;
+                    if ($badgeCert == "certified" && User::checkTheRules("administrator", "academy", "editor")) {
+                        $retBadges[] = $badge;
                     } elseif ($badgeCert != "certified") {
-                        $allBadges[] = $badge;
+                        $retBadges[] = $badge;
                     }
                 }
             }
 
-            return $allBadges;
+            return $retBadges;
         }
     }
 

@@ -1,19 +1,17 @@
 <?php
+namespace inc\Utils;
+
+use inc\Base\User;
+use Inc\Pages\Admin;
+
 /**
- * The Classes Class contain all
- * the function for the management of the classes.
+ * Contain all the function for the management of the classes.
  *
  * @author      Alessandro RICCARDI
  * @since       x.x.x
  *
  * @package     OpenBadgesFramework
  */
-
-namespace inc\Utils;
-
-use inc\Base\User;
-use Inc\Pages\Admin;
-
 class Classes {
 
     /**

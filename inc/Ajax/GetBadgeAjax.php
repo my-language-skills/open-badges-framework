@@ -1,16 +1,5 @@
 <?php
-/**
- * The SendBadgeAjax Class, contain all the
- * function about the Send Badge functionality.
- *
- * @author      Alessandro RICCARDI
- * @since       x.x.x
- *
- * @package     OpenBadgesFramework
- */
-
 namespace inc\Ajax;
-
 
 use Inc\Base\BaseController;
 use Inc\Base\User;
@@ -18,6 +7,14 @@ use Inc\Database\DbBadge;
 use Inc\OB\JsonManagement;
 use Templates\GetBadgeTemp;
 
+/**
+ * Contain all the function about the Send Badge functionality.
+ *
+ * @author      Alessandro RICCARDI
+ * @since       x.x.x
+ *
+ * @package     OpenBadgesFramework
+ */
 class GetBadgeAjax extends BaseController {
 
     const LOGIN_SUCCESS = 0;

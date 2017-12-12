@@ -56,11 +56,11 @@ final class SendBadgeTemp extends BaseController {
             <div class="tab">
                 <button class="tablinks" onclick="changeTab(event, 'tab-a')">Self</button>
                 <?php
-                if (User::check_the_rules("academy", "teacher", "administrator", "editor")) {
+                if (User::checkTheRules("academy", "teacher", "administrator", "editor")) {
                     ?>
                     <button class="tablinks" onclick="changeTab(event, 'tab-b')">Issue</button>
                     <?php
-                    if (User::check_the_rules("academy", "administrator", "editor")) {
+                    if (User::checkTheRules("academy", "administrator", "editor")) {
                         ?>
                         <button class="tablinks" onclick="changeTab(event, 'tab-c')">Multiple issue</button>
                     <?php } ?>
@@ -69,9 +69,9 @@ final class SendBadgeTemp extends BaseController {
 
         <?php
         self::getRightForm('a');
-        if (User::check_the_rules("academy", "teacher", "administrator", "editor")) {
+        if (User::checkTheRules("academy", "teacher", "administrator", "editor")) {
                 self::getRightForm('b');
-            if (User::check_the_rules("academy", "administrator", "editor")) {
+            if (User::checkTheRules("academy", "administrator", "editor")) {
                     self::getRightForm('c');
             }
         }

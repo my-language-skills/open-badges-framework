@@ -1,18 +1,7 @@
 <?php
-/**
- * ...
- *
- * @author     Alessandro RICCARDI
- * @since      x.x.x
- *
- * @package    OpenBadgesFramework
- */
-
 namespace Inc\Api;
 
 use Inc\Pages\Admin;
-use Templates\GetBadgeTemp;
-use templates\SettingsTemp;
 
 /**
  * The SettingApi Class, this class permit to load

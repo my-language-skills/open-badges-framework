@@ -1,4 +1,8 @@
 <?php
+namespace inc\Utils;
+
+use Inc\Pages\Admin;
+
 /**
  * The Fields Class.
  *
@@ -7,11 +11,6 @@
  *
  * @package     OpenBadgesFramework
  */
-
-namespace inc\Utils;
-
-use Inc\Pages\Admin;
-
 class Fields {
     public $main = array();
     public $sub = array();

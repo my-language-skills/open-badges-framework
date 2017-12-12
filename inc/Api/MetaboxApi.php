@@ -1,18 +1,16 @@
 <?php
+namespace Inc\Api;
+
+use Inc\Pages\Admin;
+
 /**
- * The MetaboxApi Class, hear are stored
- * all callback function for the metabox.
+ * Hear are stored all callback function for the meta-box.
  *
  * @author      Alessandro RICCARDI
  * @since       x.x.x
  *
  * @package     OpenBadgesFramework
  */
-
-namespace Inc\Api;
-
-use Inc\Pages\Admin;
-
 class MetaboxApi {
 
     public $cert_mtb;

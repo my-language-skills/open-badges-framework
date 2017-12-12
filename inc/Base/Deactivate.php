@@ -1,4 +1,6 @@
 <?php
+namespace Inc\Base;
+
 /**
  * The Deactivate Class.
  *
@@ -7,9 +9,6 @@
  *
  * @package     OpenBadgesFramework
  */
-
-namespace Inc\Base;
-
 class Deactivate {
     /**
      * deactivate function
