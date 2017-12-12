@@ -40,7 +40,7 @@ final class DashboardTemp extends BaseController {
                 <li class=""><a href="#tab-3">About</a></li>
             </ul>
 
-            <div class="tab-content-dash">
+            <div class="tab-content-page">
                 <div id="tab-1" class="tab-pane active">
                     <?php self::actionTab(); ?>
                 </div>
@@ -66,7 +66,7 @@ final class DashboardTemp extends BaseController {
         ?>
         <div class="container admin">
             <div class="intro">
-                <div class="cont-title-dash">
+                <div class="cont-title-page">
                     <h2>Action control</h2>
                     <p class="lead">
                         Here you can have the possibility to see all the custom post type and taxonomies that permit you
@@ -160,7 +160,7 @@ final class DashboardTemp extends BaseController {
         ?>
         <div class="container admin">
             <div class="intro">
-                <div class="cont-title-dash">
+                <div class="cont-title-page">
                     <h2>Badges list</h2>
                     <p class="lead">
                         In this section we have the possibility to see all the badges that are sent.

@@ -58,7 +58,7 @@ class JsonManagement extends BaseController {
      *                  if there's error return false.
      */
     public function createJsonFile($receiver) {
-        $hashName = hash("sha256", $receiver . $this->badgeInfo);
+        $hashName = hash("sha256", $receiver . $this->badgeInfo['id'] . $this->badgeInfo['field'] . $this->badgeInfo['level']);
         $hashFile = $hashName . ".json";
         $pathFile = parent::getJsonFolderPath() . $hashFile;
         $urlFile = parent::getJsonFolderUrl() . $hashFile;
