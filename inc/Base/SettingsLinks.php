@@ -5,7 +5,8 @@ namespace Inc\Base;
 use Inc\Pages\Admin;
 
 /**
- * The SettingsLinks Class.
+ * That class create the link for the setting and
+ * make it visible in the plugin admin page.
  *
  * @author      Alessandro RICCARDI
  * @since       x.x.x
@@ -15,16 +16,23 @@ use Inc\Pages\Admin;
 class SettingsLinks extends BaseController {
 
     /**
-     * Add the setting link in the plugin page of WordPress.
+     * Add the setting link in the plugin preview of
+     * the plugin admin page.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
      */
     public function register() {
         add_filter("plugin_action_links_$this->plugin", array($this, 'settingsLink'));
     }
 
     /**
-     * Create the link to the main page of the plugin
+     * Create the link to the setting page .
      *
-     * @param $links
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
+     *
+     * @param string $links
      *
      * @return string $links The right link
      */

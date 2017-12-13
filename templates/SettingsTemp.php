@@ -60,7 +60,7 @@ final class SettingsTemp {
             self::FI_WEBSITE_URL_FIELD => get_bloginfo('url'),
         );
 
-        //update_option(self::OPTION_NAME, $defaults);
+        update_option(self::OPTION_NAME, $defaults);
     }
 
     /**
@@ -461,9 +461,9 @@ final class SettingsTemp {
             'selected' => $val,
             'show_option_none' => 'None', // string
         ));
-
         echo self::showPreviewLink($val);
 
+        echo '<p class="description" id="tagline-description">Select a page that will be used as a container for the Get Badge process.</p>';
     }
 
     /**
@@ -493,7 +493,7 @@ final class SettingsTemp {
     public static function getSlugGetBadgePage() {
         $options = get_option(self::OPTION_NAME);
         $id = isset($options[SettingsTemp::FI_GET_BADGE]) ? $options[SettingsTemp::FI_GET_BADGE] : '';
-        return get_post($id)->post_name;
+        return isset(get_post($id)->post_name) ? get_post($id)->post_name : '';
     }
 
 }

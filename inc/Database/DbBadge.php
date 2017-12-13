@@ -3,7 +3,8 @@
 namespace Inc\Database;
 
 /**
- * The DbBadge Class.
+ * That class manage the database table about
+ * the badge that are sent.
  *
  * @author      Alessandro RICCARDI
  * @since       x.x.x
@@ -14,11 +15,15 @@ class DbBadge extends DbModel {
     const ER_DONT_EXIST = "The badge don't exist.\n";
     const ER_DUPLICATE = "The badge is duplicate.\n";
     const ER_WRONG_FIELDS = "Wrong fields passed in the array.\n";
+    // database name
     static $tableName = 'obf_badge';
 
-
     /**
+     * In that function, called from the Init class,
+     * permit to create the database.
      *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
      */
     public function register() {
         global $wpdb;
@@ -52,13 +57,13 @@ class DbBadge extends DbModel {
     }
 
     /**
-     * Get a badge by the ids
+     * Get a badge by the ids.
      *
      * @author      Alessandro RICCARDI
      * @since       x.x.x
      *
      * @param array $data {
-     *                    Optional. Array or query string of arguments for delete a badge
+     *                    Array of information about a specific badge.
      *
      * @type string        userEmail        Text.
      * @type string        badgeId          Text.
@@ -83,25 +88,38 @@ class DbBadge extends DbModel {
     }
 
     /**
-     * Get all the badge (Warning: never tested)
+     * Get all the badge.
      *
      * @author      Alessandro RICCARDI
      * @since       x.x.x
      *
-     * @return the badges
+     * @return array of badges
      */
     public static function getAll() {
         return parent::get();
     }
 
     /**
-     * Insert a badge
+     * Get all the badge.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
+     *
+     * @return array of badges
+     */
+    public static function getKeys() {
+        $data = parent::get();
+        return $data ? $data[0] : array();
+    }
+
+    /**
+     * Insert a badge.
      *
      * @author        Alessandro RICCARDI
      * @since         x.x.x
      *
      * @param array $data {
-     *                    Optional. Array or query string of arguments for insert a badge.
+     *                    Array of information about a specific badge.
      *
      * @type string        userEmail        Text.
      * @type string        badgeId          Text.
@@ -151,18 +169,25 @@ class DbBadge extends DbModel {
     }
 
     /**
-     * Update a badge
+     * Update a badge.
      *
      * @author      Alessandro RICCARDI
      * @since       x.x.x
      *
      * @param array $data  {
-     *                     Optional. Array or query string of arguments for insert a badge.
+     *                     Data that we want to update.
+     * example:
+     * @type string        getDate        Time.
+     *                     }
+     *
+     * @param array $where  {
+     *                     Array of information about a specific badge.
      *
      * @type string        userEmail        Text.
      * @type string        badgeId          Text.
      * @type string        fieldId          Text.
      * @type string        levelId          Text.
+     *                     }
      *
      * @param array $where , the field that you want to update
      *
@@ -185,20 +210,20 @@ class DbBadge extends DbModel {
     }
 
     /**
-     * Delete a badge
+     * Delete a badge.
      *
      * @author      Alessandro RICCARDI
      * @since       x.x.x
      *
      * @param array $data {
-     *                    Optional. Array or query string of arguments for delete a badge
+     *                    Array of information about a specific badge.
      *
      * @type string        userEmail        Text.
      * @type string        badgeId          Text.
      * @type string        fieldId          Text.
      * @type string        levelId          Text.
      *
-     * @return true|false, if errors.
+     * @return true | false, if errors.
      */
     public static function delete(array $data) {
         $rightKeys = array(
@@ -250,7 +275,7 @@ class DbBadge extends DbModel {
      * @since       x.x.x
      *
      * @param array $data {
-     *                    Optional. Array or query string of arguments for delete a badge
+     *                    Array of information about a specific badge.
      *
      * @type string        userEmail        Text.
      * @type string        badgeId          Text.
@@ -283,13 +308,13 @@ class DbBadge extends DbModel {
     }
 
     /**
-     * Permit to understand if the badge is got.
+     * Permit to understand if the badge is got in the Mozilla Open Badge.
      *
      * @author      Alessandro RICCARDI
      * @since       x.x.x
      *
      * @param array $data {
-     *                    Optional. Array or query string of arguments for delete a badge
+     *                    Array of information about a specific badge.
      *
      * @type string        userEmail        Text.
      * @type string        badgeId          Text.

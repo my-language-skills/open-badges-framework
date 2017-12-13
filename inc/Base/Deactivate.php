@@ -3,7 +3,8 @@
 namespace Inc\Base;
 
 /**
- * The Deactivate Class.
+ * That class is called only when you deactivate
+ * the plugin.
  *
  * @author      Alessandro RICCARDI
  * @since       x.x.x
@@ -11,8 +12,13 @@ namespace Inc\Base;
  * @package     OpenBadgesFramework
  */
 class Deactivate {
+
     /**
-     * deactivate function
+     * Function that permit to execute code only
+     * wen you deactivate the plugin.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
      */
     public static function deactivate() {
         flush_rewrite_rules();

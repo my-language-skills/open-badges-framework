@@ -10,6 +10,8 @@ use Inc\Pages\Admin;
  *
  * @author     Alessandro RICCARDI
  * @since      x.x.x
+ *
+ * @package     OpenBadgesFramework
  */
 class SettingApi {
 
@@ -254,6 +256,9 @@ class SettingApi {
     /**
      * Initialize the class
      *
+     * @author Alessandro RICCARDI
+     * @since  x.x.x
+     *
      * @param class $class class form services array
      *
      * @return class instance   new instance of the class
@@ -265,6 +270,9 @@ class SettingApi {
     /**
      * This function permit to set the current menu
      * for each post type and taxonomy.
+     *
+     * @author Alessandro RICCARDI
+     * @since  x.x.x
      *
      * @param $parent_file Of the plugin
      *

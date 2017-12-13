@@ -1,7 +1,7 @@
 # Open Badges Framework
 A WordPress plugin for open badge 
 
-Contributors: @colomet, @ntorion, @uzair043, @CorentinPerrot, @alevacher
+Contributors: @colomet, @AleRiccardi, @ntorion, @uzair043, @CorentinPerrot, @alevacher
 
 Tags: badges
 

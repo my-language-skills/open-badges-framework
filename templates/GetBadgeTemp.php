@@ -99,6 +99,7 @@ final class GetBadgeTemp extends BaseController {
             $this->badge = $badges->getBadgeById($data['badgeId']);
             $this->field = get_term($data['fieldId'], Admin::TAX_FIELDS);
             $this->level = get_term($data['levelId'], Admin::TAX_LEVELS);
+
             if ($this->badge && $this->field && $this->level && $this->jsonUrl) {
                 if (!DbBadge::isGotMOB($data)) {
                     return self::START;
@@ -110,6 +111,7 @@ final class GetBadgeTemp extends BaseController {
             } else {
                 return self::ERROR_LINK;
             }
+
         } else {
             return self::ERROR_LINK;
         }

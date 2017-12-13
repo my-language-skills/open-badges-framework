@@ -1,26 +1,4 @@
 /* =========================
-    Classes
-   ========================= */
-
-class Rectangle {
-    constructor(height, width) {
-        this.height = height;
-        this.width = width;
-    }
-
-    // Getter
-    get area() {
-        return this.calcArea();
-    }
-
-    // Method
-    calcArea() {
-        return this.height * this.width;
-    }
-}
-
-
-/* =========================
     jQuery
    ========================= */
 $(function (event) {
@@ -30,6 +8,14 @@ $(function (event) {
         return results[1] || 0;
     }
 
+    /**
+     * @description Here's wrap all the code to make an ajax and
+     *              we need to worry about only 2 variable.
+     *
+     * @param {array} data, that will send with the ajax call
+     * @param {function} func, that will be execute after the
+     *                         success of the ajax call
+     */
     var ajaxCall = function (data, func) {
         jQuery.post(
             globalUrl.ajax,
@@ -41,11 +27,19 @@ $(function (event) {
             )
             .fail(
                 function(xhr, textStatus, errorThrown) {
-                    alert(xhr.responseText);
+                    console.log(xhr.responseText);
+                    console.log(textStatus);
+                    console.log(errorThrown);
                 }
             );
     }
 
+    /**
+     * @description It's building the html structure to show the loading gif.
+     *
+     * @param {array} event, of the click
+     * @return string html format
+     */
     var loadingPage = function (event) {
         return ("<div class='cover-container'><header class='masthead clearfix'>" +
             "</header><main role='main' class='inner cover'>" +
@@ -54,6 +48,14 @@ $(function (event) {
             "<footer class='mastfoot'></footer></div>");
     }
 
+    /**
+     * @description Permit to check if inside an <input> exist a value, if
+     *              exist add the class "is-valid", if not add "is-invalid".
+     *
+     *
+     * @param {$} input <input> tag with a 'value'
+     * @return
+     */
     var checkValue = function (input) {
         if (input.val() == "") {
             input.addClass("is-invalid");
@@ -69,14 +71,20 @@ $(function (event) {
         }
     }
 
-    var showGetOpenBadges = function () {
+    /**
+     * @description Show the Mozilla Open Badge
+     *
+     * @param {array} event
+     * @return
+     */
+    var showGetMOBOpenBadges = function () {
         $("#gb-wrap").fadeOut(400, function (event) {
             $("#gb-wrap").html(loadingPage());
 
             // If the user have an account in Open Badge BackPack,
             // have also the permission to get the badge.
             var data = {
-                'action': 'ajaxGbShowGetOpenBadges',
+                'action': 'ajaxGbShowMozillaOpenBadges',
                 'json': urlParam('json'),
                 'badgeId': urlParam('badge'),
                 'fieldId': urlParam('field'),
@@ -92,6 +100,12 @@ $(function (event) {
         }).delay(400).fadeIn(400);
     }
 
+    /**
+     * @description Show the conclusion step
+     *
+     * @param {array} event
+     * @return
+     */
     var showConclusion = function (mozOpenBadge = false) {
         $("#gb-wrap").fadeOut(400, function (event) {
             $("#gb-wrap").html(loadingPage());
@@ -113,7 +127,12 @@ $(function (event) {
         }).delay(400).fadeIn(400);
     }
 
-
+    /**
+     * @description Click event of the button continue
+     *
+     * @param {array} event of the click
+     * @return
+     */
     $(document).on("click", "#gb-continue", function (event) {
         $("#gb-wrap").fadeOut(400, function (event) {
             $("#gb-wrap").html(loadingPage());
@@ -135,10 +154,11 @@ $(function (event) {
         }).delay(400).fadeIn(400);
     });
 
-    /*
-     * LOGIN page
+    /**
+     * @description Click event of the button login
+     *
+     * @param {array} event of the click
      */
-
     $(document).on("submit", "#gb-form-login", function (event) {
         event.preventDefault();
 
@@ -162,15 +182,17 @@ $(function (event) {
             if (response != true) {
                 $("#gb-resp-login").html(response);
             } else {
-                showGetOpenBadges();
+                showGetMOBOpenBadges();
             }
         }
 
         ajaxCall(data, func);
     });
 
-    /*
-     * REGISTER page
+    /**
+     * @description Click event of the button registration
+     *
+     * @param {array} event of the click
      */
     $(document).on("submit", "#gb-form-registration", function (event) {
         event.preventDefault();
@@ -212,7 +234,7 @@ $(function (event) {
 
             var func = function (response) {
                 if (response == 0) {
-                    showGetOpenBadges();
+                    showGetMOBOpenBadges();
                 } else if (response) {
                     $("#gb-resp-register").html(response);
                 }
@@ -223,17 +245,16 @@ $(function (event) {
         this.classList.add('was-validated');
     });
 
-
-    /*
-     * GET (• MOB •) OPEN BADGE - badge
+    /**
+     * @description Click event of get badge button in Mozilla Open badge Step
+     *
+     * @param {array} event of the click
      */
-
     $(document).on("click", "#gb-ob-get-badge", function (event) {
         if (!clickedGetBadge) {
             clickedGetBadge = true;
             var thisBtn = $(this);
             thisBtn.html("<img src='" + globalUrl.loaderPoint + "' width='150px' />");
-
 
             var data = {
                 'action': 'ajaxGbGetJsonUrl',
@@ -244,7 +265,6 @@ $(function (event) {
             };
 
             var func = function (response) {
-
                 OpenBadges.issue([response], function (errors, successes) {
                     if (successes.length) {
                         showConclusion(true);
@@ -254,22 +274,18 @@ $(function (event) {
                     }
                     clickedGetBadge = false;
                 });
-
             }
-
             ajaxCall(data, func);
         }
-
-
     });
 
-    /*
-     * GET OPEN BADGE - badge
+    /**
+     * @description Click event of skip get Mozilla Open Badge.
+     *
+     * @param {array} event  of the click
      */
-
     $(document).on("click", "#gb-get-standard", function (event) {
         showConclusion(false);
-
     });
 
 

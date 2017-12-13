@@ -5,7 +5,8 @@ namespace inc\Base;
 use Inc\Pages\Admin;
 
 /**
- * The User Class.
+ * The User Class that take care of the managing
+ * of the users.
  *
  * @author      Alessandro RICCARDI
  * @since       x.x.x
@@ -22,6 +23,7 @@ class User {
     const RET_USER_EXIST = "The <strong>username</strong> already exist, please chose another.";
     const RET_REGISTRATION_ERROR = "<strong>Registration error<strong>, please ask to the help desk";
 
+    // List of roles that we need for our plugin.
     public $listRoles = array(
         array(
             'role' => self::STUDENT_ROLE,
@@ -54,7 +56,9 @@ class User {
 
 
     /**
-     * ...
+     * Call the principal function (initialize) and call the
+     * WordPress hook that create the own class for every
+     * registration of user.
      *
      * @author Alessandro RICCARDI
      * @since  x.x.x
@@ -65,7 +69,7 @@ class User {
     }
 
     /**
-     * ...
+     * Register all the roles that we need for the plugin.
      *
      * @author Alessandro RICCARDI
      * @since  x.x.x
@@ -84,12 +88,13 @@ class User {
 
 
     /**
-     * ...
+     * Create the own class for every registration
+     * of user.
      *
      * @author Alessandro RICCARDI
      * @since  x.x.x
      *
-     * @param $user_id
+     * @param int $user_id id of the user
      */
     public function registerUserClass($user_id) {
         if (!$user_id > 0) {
@@ -109,7 +114,14 @@ class User {
         }
     }
 
-
+    /**
+     * Get the current user that is logged in.
+     *
+     * @author Alessandro RICCARDI
+     * @since  x.x.x
+     *
+     * @return the user
+     */
     public static function getCurrentUser() {
         global $current_user;
         wp_get_current_user();
@@ -118,16 +130,16 @@ class User {
     }
 
     /**
-     * Check the rules of the user.
+     * Check if the user have one of the roles
+     * that we pass as a param.
      *
      * @author Alessandro RICCARDI
      * @since  0.6.4
      *
-     * @param $actual_roles , the roles that the user have in this moment.
      * @param infinity      roles that you can pass after the first parameter like this:
      *                      check_the_rules("academy", "teacher")
      *
-     * @return bool
+     * @return bool         true if have the privilege, false otherwise
      */
     public static function checkTheRules() {
         $user = self::getCurrentUser();
