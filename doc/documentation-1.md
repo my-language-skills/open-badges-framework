@@ -1,11 +1,11 @@
-# Badges-Issuer-for-wp
+# OpenBadgesFramework
 
 Badges for Languages is a on-line certification issuer with OpenBadges technology. Badges for Languages issue non official certifications for all the languages that exist for the C.E.F.R for Languages levels, and certifications for the level of the teachers.
 
 Badges for languages is created for second languages education but out of the box works for any type of education by just creating different badges.
 
 ## About Badges4Languages plugin
-The aim of Badges-Issuer-for-wp is to accomplish:
+The aim of OpenBadgesFramework is to accomplish:
 * One common worldwide standard
 All the certified teachers follow the same CEFR recommendations
 * Lower price
@@ -15,8 +15,8 @@ Rating and Reviews for teachers and classes
 * System of Trust
 Data logger recording online to see all of the information about teachers, students and their classes.
 
-### Badges-Issuer-for-wp key features
-[Badges-Issuer-for-wp](https://github.com/Badges4Languages/Badges-Issuer-for-wp/releases) can:
+### OpenBadgesFramework key features
+[OpenBadgesFramework](https://github.com/Badges4Languages/OpenBadgesFramework/releases) can:
 * Send digital certifications to students or teacher
 * Save the information (Student name/email, Level, Lesson name, Date)
 * Write a comment by the student to the teacher classes and the teacher an answer.
@@ -24,7 +24,7 @@ Data logger recording online to see all of the information about teachers, stude
 
 Books for languages integrate in one place several digital tools for Language Examinators.
 
-### Badges-Issuer-for-wp all the features
+### OpenBadgesFramework all the features
 
 * Easy registration
 By default, any user is a student and can start saving information on their profile.
@@ -85,7 +85,7 @@ In all of the 7.306 languages, if we are missing one, let us to know.
 
 To be clear, the theme doesn’t come bundled with these plugins. You’ll have to download them yourself (and some may require a purchase). What we’ve done, however, is code the theme to support and style the integration with those plugins so that you can add all the functionality you like, while still looking great!
 
-Badges-Issuer-for-wp works  with any theme. But we did integrate with several plugins and Listify in order to be able to enhance the power of the plugin. Thanks to those complements, Badges4Languages can offer a listing/directory for teachers and their classes, charge for the classes, and much more. With Listify, Badges-Issuer-for-wp can:
+OpenBadgesFramework works  with any theme. But we did integrate with several plugins and Listify in order to be able to enhance the power of the plugin. Thanks to those complements, Badges4Languages can offer a listing/directory for teachers and their classes, charge for the classes, and much more. With Listify, OpenBadgesFramework can:
 * To offer a directory of classes (for Language Academies, Language Schools, Teachers,)
 * To organize the students by classes
 * To offer a profile for the Teachers and their Academies

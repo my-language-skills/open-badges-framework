@@ -1,11 +1,16 @@
 # Table of Contents
-  * [Dashboard section](#Dashboard section)
-  * [Badges](#Badges)
-  * [Fiels of education](#Fiels of education)
-  * [Levels](#Levels)
-  * [Send Badges](#Send Badges)
-  * [Settings](#Settings)
 
+<!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
+
+- [Table of Contents](#table-of-contents)
+- [Dashboard section](#dashboard-section)
+- [Badges](#badges)
+- [Fiels of education](#fiels-of-education)
+- [Levels](#levels)
+- [Send Badges](#send-badges)
+- [Settings](#settings)
+
+<!-- /TOC -->
 
 # Dashboard section
 

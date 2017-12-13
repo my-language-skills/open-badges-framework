@@ -1,4 +1,4 @@
-# Badges-Issuer-for-wp purposes
+# Badges4Languages purposes
 
 * One common worldwide standard
 All the certified teachers follow the same CEFR recommendations
@@ -9,7 +9,7 @@ Rating and Reviews for teachers and classes
 * System of Trust
 Data logger recording online to see all of the information about teachers, students and their classes.
 
-# Badges-Issuer-for-wp all the features
+# Badges4Languages all the features
 
 * Easy registration
 By default, any user is a student and can start saving information on their profile
