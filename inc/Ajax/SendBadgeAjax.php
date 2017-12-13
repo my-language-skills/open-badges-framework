@@ -11,7 +11,10 @@ use Inc\Utils\Classes;
 use Inc\Base\BaseController;
 
 /**
- * Contain all the function about the Send Badge functionality.
+ * This class is a wrap for all the public function that are
+ * called as a ajax call, they are all concentrated in
+ * the send badge field and this function is initialized
+ * from the InitAjax Class.
  *
  * @author      Alessandro RICCARDI
  * @since       x.x.x
@@ -20,31 +23,27 @@ use Inc\Base\BaseController;
  */
 class SendBadgeAjax extends BaseController {
 
-    function action_save_metabox_students() {
-        $post_id = $_POST['post_id'];
-        update_post_meta($post_id, '_class_students', $_POST['class_students']);
-        echo $_POST['class_students'];
-    }
-
     /**
-     * ...
+     * Show the fields about the parent that we
+     * selected as a button in the first step.
      *
      * @author Alessandro RICCARDI
      * @since  x.x.x
      */
-    function ajaxShowFields() {
+    public function ajaxShowFields() {
         $display = new DisplayFunction();
         $display->field($_POST['slug']);
         wp_die();
     }
 
     /**
-     * ...
+     * Show the levels in base a specific field
+     * of education.
      *
      * @author Alessandro RICCARDI
      * @since  x.x.x
      */
-    function ajaxShowLevels() {
+    public function ajaxShowLevels() {
         $form = $_POST['form'];
         $fieldId = $_POST['fieldId'];
         $level = new Levels();
@@ -68,12 +67,14 @@ class SendBadgeAjax extends BaseController {
     }
 
     /**
-     * ...
+     * Show the badges in base of the field of education
+     * that we selected in the first step and in base of
+     * the level of the second step.
      *
      * @author Alessandro RICCARDI
      * @since  x.x.x
      */
-    function ajaxShowBadges() {
+    public function ajaxShowBadges() {
         $badges = new Badges();
         $form = $_POST['form'];
         $field = $_POST['fieldId'];
@@ -110,12 +111,12 @@ class SendBadgeAjax extends BaseController {
     }
 
     /**
-     * ...
+     * Show the description fo the badge.
      *
      * @author Alessandro RICCARDI
      * @since  x.x.x
      */
-    function ajaxShowDescription() {
+    public function ajaxShowDescription() {
         $badges = new Badges();
         $form = $_POST['form'];
         $badgeId = $_POST['badgeId'];
@@ -125,14 +126,13 @@ class SendBadgeAjax extends BaseController {
         wp_die();
     }
 
-
     /**
-     * ...
+     * Show the class of the user.
      *
      * @author Alessandro RICCARDI
      * @since  x.x.x
      */
-    function ajaxShowClasses() {
+    public function ajaxShowClasses() {
         $form = $_POST['form'];
         $field = $_POST['fieldId'];
         $classes = new Classes();
@@ -146,7 +146,16 @@ class SendBadgeAjax extends BaseController {
         wp_die();
     }
 
-    function ajaxSendBadge() {
+    /**
+     * When called that function means that we're arrive at the
+     * end of the steps, here is instanced the SendBadge class
+     * with all the information and called the function sendBadge
+     * that make start the process.
+     *
+     * @author Alessandro RICCARDI
+     * @since  x.x.x
+     */
+    public function ajaxSendBadge() {
         $form = $_POST['form'];
         $badgeId = $_POST['badgeId'];
         $fieldId = $_POST['fieldId'];
@@ -155,9 +164,6 @@ class SendBadgeAjax extends BaseController {
         $receivers = $_POST['receivers'];
         $info = $_POST['info'];
         $evidence = $_POST['evidence'];
-
-        /*echo($form . " _ " . $badgeId . " _ " . $fieldId . " _ " . $levelId . " _ " .
-            $theClassId . " _ " . $receivers . " _ " . $info . " _ " . $evidence);*/
 
         // For the A form the receiver is the user (Self)
         if ($form === 'a') {

@@ -23,12 +23,19 @@ use Templates\SettingsTemp;
  */
 class Admin extends BaseController {
     const SLUG_PLUGIN = "open_badges_framework";
-    const POST_TYPE_BADGES = "badges_obf_cpt";
+//    const POST_TYPE_BADGES = "badges_obf_cpt";
+//    const POST_TYPE_CLASS_JL = "job_listing";
+//    const TAX_FIELDS = "fields_obf_tax";
+//    const TAX_LEVELS = "levels_obf_tax";
+//    const MTB_CERT = "certification_obf_mtb";
+//    const MTB_TARGET = "type_obf_mtb";
+//    const MTB_LBADGE = "lbadge_obf_mtb";
+    const POST_TYPE_BADGES = "badge";
     const POST_TYPE_CLASS_JL = "job_listing";
-    const TAX_FIELDS = "fields_obf_tax";
-    const TAX_LEVELS = "levels_obf_tax";
-    const MTB_CERT = "certification_obf_mtb";
-    const MTB_TARGET = "type_obf_mtb";
+    const TAX_FIELDS = "field_of_education";
+    const TAX_LEVELS = "level";
+    const MTB_CERT = "id_meta_box_certification";
+    const MTB_TARGET = "id_meta_box_type";
     const MTB_LBADGE = "lbadge_obf_mtb";
 
     private $settings;

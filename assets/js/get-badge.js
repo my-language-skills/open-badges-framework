@@ -76,7 +76,7 @@ $(function (event) {
             // If the user have an account in Open Badge BackPack,
             // have also the permission to get the badge.
             var data = {
-                'action': 'ajaxGbShowGetOpenBadges',
+                'action': 'ajaxGbShowMozillaOpenBadges',
                 'json': urlParam('json'),
                 'badgeId': urlParam('badge'),
                 'fieldId': urlParam('field'),

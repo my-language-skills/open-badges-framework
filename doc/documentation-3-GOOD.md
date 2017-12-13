@@ -1,25 +1,25 @@
 # theme structure
 ```shell
-Plugins/OpenBadgesFramework/  									# → Plugin root
+Plugins/OpenBadgesFramework/  					# → Plugin root
 ├── assets/                                     # → XX
-│   │── css/   																  # → XX
+│   │── css/   									# → XX
 │   │   │── get-badge.css                       # → XX
 │   │   │── mystyle.css                         # → XX
 │   │   └── send-badge.css                      # → XX
-│   │── gif/   																  # → XX
+│   │── gif/   									# → XX
 │   │   │── 3-point.gif                         # → XX
 │   │   │── load.gif                            # → XX
 │   │   └── loading-circle.gif                  # → XX
-│   │── images/   															# → XX
+│   │── images/   								# → XX
 │   │   │── default-badge.png                   # → XX
 │   │   │── logo.png                            # → XX
 │   │   └── open-badges-mz-logo.png             # → XX
-│   │── javascript/   													# → XX
+│   │── javascript/   							# → XX
 │   │   │── general.js                          # → XX
 │   │   │── get-badge.js                        # → XX
 │   │   │── jquery.steps.min.js                 # → XX
 │   │   └── send-badge.js                       # → XX
-│   │── inc/   													        # → XX
+│   │── inc/   									# → XX
 │   │   │── Ajax/                               # → XX
 │   │   │   │── GetBadgeAjax.php                # → XX
 │   │   │   │── InitAjax.php                    # → XX
@@ -51,7 +51,7 @@ Plugins/OpenBadgesFramework/  									# → Plugin root
 │   │   │   └── Statistics.php                  # → The Statistics Class.
 │   │   └── Init.php                            # → The Init Class
 ├── templates/                                  # → XX
-│   │── DashboardTemp.php   										# → Provide an admin area view.
+│   │── DashboardTemp.php   					# → Provide an admin area view.
 │   │── GetBadgeTemp.php   											# → The Classes Class.
 │   │── SendBadgeTemp.php   										# → The SendBadgeTemp class.
 │   └── SettingsTemp.php   											# → The Classes Class.

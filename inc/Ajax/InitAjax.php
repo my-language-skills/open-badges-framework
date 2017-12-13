@@ -5,7 +5,7 @@ namespace Inc\Ajax;
 use Inc\Base\BaseController;
 
 /**
- * Permit to load all the ajax class and they're function
+ * Permit to load all the ajax class and they're functions.
  *
  * @author      Alessandro RICCARDI
  * @since       x.x.x
@@ -14,11 +14,27 @@ use Inc\Base\BaseController;
  */
 class InitAjax extends BaseController {
 
+    /**
+     * The construct call the principal function that
+     * initialize all the ajax files.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
+     */
     public function __construct() {
-        self::register_services();
+        self::registerServices();
     }
 
-    public static function get_services() {
+    /**
+     * That function give all the ajax function that
+     * we want to initialize.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
+     *
+     * @return array of ajax class
+     */
+    public static function getServices() {
         return array(
             SendBadgeAjax::class,
             GetBadgeAjax::class
@@ -26,8 +42,18 @@ class InitAjax extends BaseController {
         );
     }
 
-    public static function register_services() {
-        foreach (self::get_services() as $class) {
+    /**
+     * Here we're looping a list of classes, initializing
+     * them and retrieving all them function for declare
+     * it as ajax function.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
+     *
+     * @return array of ajax class
+     */
+    public static function registerServices() {
+        foreach (self::getServices() as $class) {
             $service = self::instantiate($class);
             $class_methods = get_class_methods($service);
             foreach ($class_methods as $method_name) {
@@ -38,7 +64,10 @@ class InitAjax extends BaseController {
     }
 
     /**
-     * Initialize the class
+     * Initialize the class.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
      *
      * @param class $class class form services array
      *

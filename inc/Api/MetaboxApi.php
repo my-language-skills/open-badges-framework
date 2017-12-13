@@ -5,7 +5,8 @@ namespace Inc\Api;
 use Inc\Pages\Admin;
 
 /**
- * Hear are stored all callback function for the meta-box.
+ * Hear are stored all callback function for
+ * the meta-box.
  *
  * @author      Alessandro RICCARDI
  * @since       x.x.x
@@ -36,7 +37,7 @@ class MetaboxApi {
     }
 
     /**
-     * ...
+     * Certification meta-box.
      *
      * @author Alessandro RICCARDI
      * @since  x.x.x
@@ -57,7 +58,7 @@ class MetaboxApi {
 
 
     /**
-     * ...
+     * Certification meta-box.
      *
      * @author Alessandro RICCARDI
      * @since  x.x.x

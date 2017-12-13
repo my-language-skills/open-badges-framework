@@ -3,7 +3,9 @@
 namespace Inc\Database;
 
 /**
- * The DbModel Class.
+ * The default class that manage the database in the
+ * most basic way, without control and with the only
+ * intention to inject the queries.
  *
  * @author      Alessandro RICCARDI
  * @since       x.x.x
@@ -13,14 +15,38 @@ namespace Inc\Database;
 class DbModel {
     const DB_VERSION = '1.0.0';
     const DB_NAME_VERSION = 'OBF_db_version';
+    // default database name
     static $tableName = "obf_model";
 
+    /**
+     * Retrieve the name of the database with included
+     * also the prefix.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
+     *
+     * @return string the name.
+     */
     protected static function getTableName() {
         global $wpdb;
         $tableName = static::$tableName;
         return $wpdb->prefix . $tableName;
     }
 
+    /**
+     * Retrieve the name of the database with included
+     * also the prefix.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
+     *
+     * @param string $type of query that we want to inject
+     *
+     * @param array  $data list of information that will be
+     *                     placed after the expression WHERE
+     *
+     * @return string the name.
+     */
     public static function fetchSql($type, $data) {
         if ($type == "SELECT") {
             $sql = "SELECT * FROM " . self::getTableName();
@@ -53,28 +79,87 @@ class DbModel {
         }
     }
 
+    /**
+     * Retrieve the name of the database with included
+     * also the prefix.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
+     *
+     * @param array $data  list of information that will be
+     *                     placed after the expression WHERE
+     *
+     * @return string the name.
+     */
     public static function get(array $data = null) {
         global $wpdb;
         return $wpdb->get_results(self::fetchSql("SELECT", $data));;
     }
 
+    /**
+     * Retrieve the name of the database with included
+     * also the prefix.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
+     *
+     * @param array $data  list of information that will be
+     *                     placed after the expression WHERE
+     *
+     * @return string the name.
+     */
     public static function insert(array $data) {
         global $wpdb;
         $res = $wpdb->insert(self::getTableName(), $data);
         return $res;
     }
 
+    /**
+     * Retrieve the name of the database with included
+     * also the prefix.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
+     *
+     * @param array $data  list of information that will be
+     *                     placed after the expression WHERE
+     *
+     * @param array $where list of information that will be
+     *                     placed after the expression WHERE
+     *
+     * @return string the name.
+     */
     public static function update(array $data, array $where) {
         global $wpdb;
         $wpdb->update(self::getTableName(), $data, $where);
     }
 
+    /**
+     * Delete the rows that match with the information tha we
+     * passed throw param.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
+     *
+     * @param array $data  list of information that will be
+     *                     placed after the expression WHERE
+     *
+     * @return string the name.
+     */
     public static function delete(array $data) {
         global $wpdb;
         echo $ret = self::fetchSql('DELETE', $data);
         return $wpdb->query($ret);
     }
 
+    /**
+     * Get the time now.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
+     *
+     * @return string the name.
+     */
     public static function now() {
         return date('Y-m-d H:i:s');
     }

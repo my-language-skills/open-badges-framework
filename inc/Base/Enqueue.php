@@ -7,28 +7,34 @@ use Inc\Pages\Admin;
 use templates\SettingsTemp;
 
 /**
- * The Enqueue Class
+ * The Enqueue Class load all the files that we need.
  *
- * @since      x.x.x
+ * @author      Alessandro RICCARDI
+ * @since       x.x.x
  *
  * @package    OpenBadgesFramework
  */
 class Enqueue extends BaseController {
 
     /**
-     * Enqueue all the admin style and script throw the "add_action" function
+     * Call the various WordPress hook to make enqueue the files.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
      */
     public function register() {
-        add_action('admin_enqueue_scripts', array($this, 'enqueue'));
-        add_action('enqueue_scripts', array($this, 'enququeFrontEnd'));
+        add_action('admin_enqueue_scripts', array($this, 'enqueueAdmin'));
         add_action('wp_head', array($this, 'cssHead'));
         add_action('wp_footer', array($this, 'jsFooter'));
     }
 
     /**
-     * All the admin style and script
+     * All the admin style and script.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
      */
-    public function enqueue() {
+    public function enqueueAdmin() {
         // CSS
         wp_enqueue_style('send-badges-style', $this->plugin_url . 'assets/css/send-badge.css');
         wp_enqueue_style('my-style', $this->plugin_url . 'assets/css/mystyle.css');
@@ -47,10 +53,12 @@ class Enqueue extends BaseController {
         );
     }
 
-    public function enququeFrontEnd() {
-        wp_enqueue_style('frontend-obf-style', $this->plugin_url . 'assets/css/fe-obf.css');
-    }
-
+    /**
+     * All the Head style.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
+     */
     public function cssHead() {
         $options = get_option(SettingsTemp::OPTION_NAME);
         $post = get_post($options[SettingsTemp::FI_GET_BADGE]);
@@ -63,6 +71,12 @@ class Enqueue extends BaseController {
         }
     }
 
+    /**
+     * All the Footer script.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
+     */
     public function jsFooter() {
         $options = get_option(SettingsTemp::OPTION_NAME);
         $post = get_post($options[SettingsTemp::FI_GET_BADGE]);

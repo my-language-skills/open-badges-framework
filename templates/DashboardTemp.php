@@ -186,8 +186,24 @@ final class DashboardTemp extends BaseController {
                             echo "<tr>";
                             echo "<th scope='row'>" . $i++ . "</th>";
 
-                            foreach ($row as $item) { ?>
-                                <td><?php echo $item; ?></td>
+                            foreach ($row as $key => $value) { ?>
+                                <td>
+                                    <?php
+                                    if ($key == "badgeId") {
+                                        echo "<a href='" . get_edit_post_link($value) . "'>$value</a>";
+                                    } else if ($key == "fieldId") {
+                                        echo "<a href='" . get_edit_term_link($value) . "'>$value</a>";
+                                    } else if ($key == "levelId") {
+                                        echo "<a href='" . get_edit_term_link($value) . "'>$value</a>";
+                                    } else if ($key == "classId") {
+                                        echo "<a href='" . get_edit_post_link($value) . "'>$value</a>";
+                                    } else if ($key == "teacherId") {
+                                        echo "<a href='" . get_edit_user_link($value) . "'>$value</a>";
+                                    } else {
+                                        echo $value;
+                                    }
+                                    ?>
+                                </td>
                                 <?php
                             }
                             echo "</tr>";

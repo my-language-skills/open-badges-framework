@@ -3,7 +3,8 @@
 namespace Inc\Base;
 
 /**
- * The Activate Class.
+ * That class is called only when you activate
+ * the plugin.
  *
  * @author      Alessandro RICCARDI
  * @since       x.x.x
@@ -11,8 +12,13 @@ namespace Inc\Base;
  * @package     OpenBadgesFramework
  */
 class Activate {
+
     /**
-     * activate function
+     * Function that permit to execute code only
+     * wen you active the plugin.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
      */
     public static function activate() {
         flush_rewrite_rules();
