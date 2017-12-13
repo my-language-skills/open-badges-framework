@@ -1,6 +1,6 @@
 #Dashboard section
 
-![here](readme-assets/dashboard_statistics.png screenshots)
+![here](../readme-assets/dashboard_statistics.png screenshots)
 
 ![here](readme-assets/dashboard_badges-empty.png   "screenshots")
 
