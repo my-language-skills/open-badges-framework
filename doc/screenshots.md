@@ -7,7 +7,7 @@
   * [Settings](#Settings)
 
 
-#Dashboard section
+# Dashboard section
 
 ![dashboard_statistics](../readme-assets/dashboard_statistics.png "Dashboard statistics")
 
@@ -19,19 +19,19 @@
 
 ![dashboard_about](../readme-assets/dashboard_about.png "Dashboard: about")
 
-#Badges
+# Badges
 
 ![badges](../readme-assets/badges.png "Badges")
 
-#Fiels of education
+# Fiels of education
 
 ![fields-of-education](readme-assets/fields-of-education.png "Fields of education")
 
-#Levels
+# Levels
 
 ![levels](readme-assets/levels.png "levels")
 
-#Send Badges
+# Send Badges
 
 ![send-badges_self-foe](../readme-assets/send-badges_self-foe.png "Send Badges: FOE")
 
@@ -56,7 +56,7 @@
 ![send-badges_self-information](../readme-assets/send-badges_self-information.png "Send Badges: information")
 
 
-#Settings
+# Settings
 ![settings_profile](../readme-assets/settings_profile.png "Settings: profile")
 
 ![settings_links](../readme-assets/settings_links.png "Settings: links")
