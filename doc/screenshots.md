@@ -25,11 +25,11 @@
 
 # Fiels of education
 
-![fields-of-education](readme-assets/fields-of-education.png "Fields of education")
+![fields-of-education](../readme-assets/fields-of-education.png "Fields of education")
 
 # Levels
 
-![levels](readme-assets/levels.png "levels")
+![levels](../readme-assets/levels.png "levels")
 
 # Send Badges
 
