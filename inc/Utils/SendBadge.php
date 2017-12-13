@@ -189,7 +189,7 @@ class SendBadge extends BaseController {
                         </table>
                     </body>
                 </html>
-                    ";
+                ";
         return $body;
     }
 }
