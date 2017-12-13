@@ -1,34 +1,7 @@
-var currentForm;
-
-function changeTab(evt, form) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(form).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-
 window.onload = function () {
     /* Variables */
-    var isLocalhost = false;
-
-
-    if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
-        isLocalhost = true;
-    }
+    var currentForm;
+    var clickedSendBadge = false;
 
     // Prevent "enter" pressing when filling the text fields
     jQuery(window).keydown(function (event) {
@@ -41,9 +14,8 @@ window.onload = function () {
     /* =====================================
         BADGE FORM # A #
        ===================================== */
-
     var form_a = jQuery("#form_a");
-    if(form_a.length) {
+    if (form_a.length) {
         form_a.validate({
             errorPlacement: function errorPlacement(error, element) {
                 element.before(error);
@@ -105,13 +77,11 @@ window.onload = function () {
     }
 
 
-
     /* =====================================
          BADGE FORM # B #
        ===================================== */
-
     var form_b = jQuery("#form_b");
-    if(form_b.length) {
+    if (form_b.length) {
         form_b.validate({
             errorPlacement: function errorPlacement(error, element) {
                 element.before(error);
@@ -184,9 +154,8 @@ window.onload = function () {
     /* =====================================
          BADGE FORM # C #
        ===================================== */
-
     var form_c = jQuery("#form_c");
-    if(form_c.length) {
+    if (form_c.length) {
         form_c.validate({
             errorPlacement: function errorPlacement(error, element) {
                 element.before(error);
@@ -256,13 +225,14 @@ window.onload = function () {
         });
     }
 
+
     /**
-     * To load the FIELD OF EDUCATION (PARENT)
-     * When you click on the .display_parent_categories to see the other "Field of Education" category (parent),
-     * the function call the "action_languages_form" in the other file.
+     * @description To load the FIELD OF EDUCATION (PARENT)
      *
-     * @author Alessandro RICCARDI
-     * @since 0.6.3
+     *              When you click on the .display_parent_categories to see the other "Field of Education" category (parent),
+     *              the function call the "action_languages_form" in the other file.
+     *
+     * @param {event} e of the event about the click
      */
     jQuery(".btn-change-children").click(function (e) {
         e.preventDefault();
@@ -296,15 +266,11 @@ window.onload = function () {
     });
 
     /**
-     * To load the LEVEL
+     * @description To load the LEVEL
      *
-     * @param currentForm, contain the letter of the form
-     * @param form, contain the form
-     *
-     * @author Alessandro RICCARDI
-     * @since 0.6.3
+     * @param {char} currentForm , contain the letter of the form
+     * @return {array} form the current form
      */
-
     function load_levels(currentForm, form) {
         var fieldId = jQuery("#form_" + currentForm + " #field :selected").val();
 
@@ -334,10 +300,10 @@ window.onload = function () {
     }
 
     /**
-     * To load the BADGE
+     * @description To load the BADGE
      *
-     * @author Alessandro RICCARDI
-     * @since 0.6.3
+     * @param {char} currentForm , contain the letter of the form
+     * @return {array} form the current form
      */
     function load_badges(currentForm, form) {
         var check = false;
@@ -379,13 +345,10 @@ window.onload = function () {
     }
 
     /**
-     * To load the DESCRIPTION
+     * @description To load the DESCRIPTION
      *
-     * @param currentForm, contain the letter of the form
-     * @param form, contain the form
-     *
-     * @author Alessandro RICCARDI
-     * @since 0.6.3
+     * @param {char} currentForm , contain the letter of the form
+     * @return {array} form the current form
      */
     function load_description(currentForm, form) {
         var badgeId = "";
@@ -427,13 +390,10 @@ window.onload = function () {
     }
 
     /**
-     * To load the CLASS
+     * @description To load the CLASS
      *
-     * @param currentForm, contain the letter of the form
-     * @param form, contain the form
-     *
-     * @author Alessandro RICCARDI
-     * @since 0.6.3
+     * @param {char} currentForm , contain the letter of the form
+     * @return {array} form the current form
      */
     function load_classes(currentForm, form) {
         var fieldId = jQuery("#form_" + currentForm + " #field :selected").val();
@@ -466,12 +426,10 @@ window.onload = function () {
     }
 
     /**
-     * Check if is selected the class.
-     * @param currentForm, contain the letter of the form
-     * @param form, contain the form
+     * @description Check if is selected the class.
      *
-     * @author Alessandro RICCARDI
-     * @since 0.6.3
+     * @param {char} currentForm , contain the letter of the form
+     * @return {array} form the current form
      */
     function check_class(currentForm, form) {
         var check = false;
@@ -497,15 +455,11 @@ window.onload = function () {
         }
     }
 
-
     /**
-     * Check if the the email/s contain only email and not garbage.
+     * @description Check if the the email/s contain only email and not garbage.
      *
-     * @param currentForm, contain the letter of the form
-     * @param form, contain the form
-     *
-     * @author Alessandro RICCARDI
-     * @since 0.6.3
+     * @param {char} currentForm , contain the letter of the form
+     * @return {array} form the current form
      */
     function check_mails(currentForm, form) {
         var res = false;
@@ -536,12 +490,11 @@ window.onload = function () {
     }
 
     /**
-     * Check if there are information with text more long than 10 letter and less than 1000
-     * @param currentForm,
-     * @param form, contain the form
+     * @description Check if there are information with text more long
+     *              than 10 letter and less than 1000.
      *
-     * @author Alessandro RICCARDI
-     * @since 0.6.3
+     * @param {char} currentForm , contain the letter of the form
+     * @return {array} form the current form
      */
     function check_information(currentForm, form) {
         var info = jQuery("#comment_" + currentForm).val();
@@ -560,16 +513,16 @@ window.onload = function () {
     }
 
     /**
-     * TO SEND THE BADGE
-     * This function make an ajax call to permit to send the
-     * badge to the right person and also to store in the server.
+     * @description TO SEND THE BADGE
+     *              This function make an ajax call to permit to send the
+     *              badge to the right person and also to store in the server.
      *
-     * @author Alessandro RICCARDI
-     * @since 0.6.3
+     * @param {char} currentForm , contain the letter of the form
+     * @return {array} form the current form
      */
     function sendMessageBadge(currentForm) {
-        //if (!isLocalhost) {
-        if (1) {
+        if (!clickedSendBadge) {
+            clickedSendBadge = true;
             var fieldId;
             var levelId;
             var badgeId;
@@ -632,6 +585,7 @@ window.onload = function () {
                 .done(
                     function (response) {
                         alert(response);
+                        location.reload();
                     }
                 )
                 .fail(
@@ -641,19 +595,13 @@ window.onload = function () {
                         console.log(errorThrown);
                     }
                 );
-        } else {
-            alert("Sending badge not available because WordPress is running in localhost!");
-            location.reload();
         }
     }
 
-
     /**
-     * This function permit to check the current form and save into a variable.
-     * @param event of the event about the click
+     * @description This function permit to check the current form and save into a variable.
      *
-     * @author Alessandro RICCARDI
-     * @since 0.6.3
+     * @param {event} event of the event about the click
      */
     function checkForm(event) {
         if (jQuery(event).parents('#form_a').length == 1) {
@@ -669,11 +617,12 @@ window.onload = function () {
     }
 
     /**
-     * Disable the selection of the tab from the
-     * new index until the current index
+     * @description Disable the selection of the tab from the
+     *              new index until the current index
      *
-     * @author Alessandro RICCARDI
-     * @since x.x.x
+     * @param {array} form the current
+     * @param {int} newIndex, contain the letter of the form
+     * @param {int} currentIndex, contain the letter of the form
      */
     function disableTab(form, newIndex, currentIndex) {
         var doneDiv = form.find(".done");
@@ -686,11 +635,5 @@ window.onload = function () {
             jQuery(this).addClass("disabled");
         });
     }
-
-    function getSelectedValue(e) {
-        if (jQuery(e).is(':checked')) {
-            return jQuery(e).val();
-        }
-    }
 }
-;
+

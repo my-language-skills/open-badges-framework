@@ -34,8 +34,7 @@ class DbModel {
     }
 
     /**
-     * Retrieve the name of the database with included
-     * also the prefix.
+     * Creation of the query and injection.
      *
      * @author      Alessandro RICCARDI
      * @since       x.x.x
@@ -80,8 +79,7 @@ class DbModel {
     }
 
     /**
-     * Retrieve the name of the database with included
-     * also the prefix.
+     * Get a badges.
      *
      * @author      Alessandro RICCARDI
      * @since       x.x.x
@@ -97,8 +95,7 @@ class DbModel {
     }
 
     /**
-     * Retrieve the name of the database with included
-     * also the prefix.
+     * Insert a badge.
      *
      * @author      Alessandro RICCARDI
      * @since       x.x.x
@@ -115,17 +112,15 @@ class DbModel {
     }
 
     /**
-     * Retrieve the name of the database with included
-     * also the prefix.
+     * Update a badge.
      *
      * @author      Alessandro RICCARDI
      * @since       x.x.x
      *
-     * @param array $data  list of information that will be
-     *                     placed after the expression WHERE
+     * @param array $data list of information contain the fields as a key and
+     *                    the values as a value that we want to update
      *
-     * @param array $where list of information that will be
-     *                     placed after the expression WHERE
+     * @param array $where list of information that identify the specific badge
      *
      * @return string the name.
      */

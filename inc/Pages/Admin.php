@@ -23,6 +23,7 @@ use Templates\SettingsTemp;
  */
 class Admin extends BaseController {
     const SLUG_PLUGIN = "open_badges_framework";
+
 //    const POST_TYPE_BADGES = "badges_obf_cpt";
 //    const POST_TYPE_CLASS_JL = "job_listing";
 //    const TAX_FIELDS = "fields_obf_tax";
@@ -30,17 +31,19 @@ class Admin extends BaseController {
 //    const MTB_CERT = "certification_obf_mtb";
 //    const MTB_TARGET = "type_obf_mtb";
 //    const MTB_LBADGE = "lbadge_obf_mtb";
-    const POST_TYPE_BADGES = "badge";
+
+    const POST_TYPE_BADGES = "open-badge";
     const POST_TYPE_CLASS_JL = "job_listing";
     const TAX_FIELDS = "field_of_education";
     const TAX_LEVELS = "level";
-    const MTB_CERT = "id_meta_box_certification";
-    const MTB_TARGET = "id_meta_box_type";
+    const MTB_CERT = "certification_obf_mtb";
+    const MTB_TARGET = "target_obf_mtb";
     const MTB_LBADGE = "lbadge_obf_mtb";
 
     private $settings;
     private $pages;
     private $subpages = array();
+    const PAGE_SEND_BADGE = 'send_badge_obf';
 
     /**
      * This function permit to load all the array in the instance
@@ -50,7 +53,6 @@ class Admin extends BaseController {
      * @since    x.x.x
      */
     function register() {
-
         $this->settings = new SettingApi();
 
         $this->setPages();
@@ -61,10 +63,8 @@ class Admin extends BaseController {
         $this->setMetaboxes();
         $this->setFrontEndPages();
 
-        $this->settings->loadPages($this->pages)->withSubPage('Dashboard')->loadSubPages($this->subpages)->register();
-
+        $this->settings->loadPages($this->pages)->withSubPage('Action control')->loadSubPages($this->subpages)->register();
     }
-
 
     /**
      * This function permit store in a variable the principal page.
@@ -130,7 +130,7 @@ class Admin extends BaseController {
                 'page_title' => 'Send Badges',
                 'menu_title' => 'Send Badges',
                 'capability' => 'manage_options',
-                'menu_slug' => 'send_badge_obf',
+                'menu_slug' => self::PAGE_SEND_BADGE,
                 'callback' => array($sendbadgeTemp, 'main')
             ),
             // ## Settings ##
@@ -145,7 +145,6 @@ class Admin extends BaseController {
         );
     }
 
-
     /**
      * This function permit load in the SettingApi the Custom Post Type.
      *
@@ -154,7 +153,7 @@ class Admin extends BaseController {
      */
     public function setCustomPostTypes() {
         $args = array(
-            /* ## Badges ## */
+            // ## Badges ##
             array(
                 'post_type' => self::POST_TYPE_BADGES,
                 'args' => array(
@@ -192,9 +191,9 @@ class Admin extends BaseController {
      * @since    x.x.x
      */
     public function setTaxonomies() {
-        /* ## TAXONOMIES ## */
+        // ## TAXONOMIES ##
         $args = array(
-            /* ## Fields ## */
+            // ## Fields ##
             array(
                 'taxonomy' => self::TAX_FIELDS,
                 'object_type' => array(self::POST_TYPE_BADGES, self::POST_TYPE_CLASS_JL),
@@ -219,7 +218,7 @@ class Admin extends BaseController {
                     'query_var' => true
                 )
             ),
-            /* ## Levels ## */
+            // ## Levels ##
             array(
                 'taxonomy' => self::TAX_LEVELS,
                 'object_type' => self::POST_TYPE_BADGES,
@@ -259,7 +258,7 @@ class Admin extends BaseController {
         $metaboxTemp = new MetaboxApi();
 
         $args = array(
-            /* ## Certification ## */
+            // ## Certification ##
             array(
                 'id' => self::MTB_CERT,
                 'title' => 'Certification Type',
@@ -268,7 +267,7 @@ class Admin extends BaseController {
                 'context' => 'side',
                 'priority' => 'high',
             ),
-            /* ## Target ## */
+            // ## Target ##
             array(
                 'id' => self::MTB_TARGET,
                 'title' => 'Target Type',

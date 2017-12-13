@@ -1,3 +1,6 @@
+/* =========================
+    Tab switcher
+   ========================= */
 window.addEventListener("load", function () {
     var tabs = document.querySelectorAll("ul.nav-tabs > li");
 
@@ -21,6 +24,9 @@ window.addEventListener("load", function () {
     }
 });
 
+/* =========================
+    Image uploader
+   ========================= */
 jQuery(function ($) {
     /*
      * Select/Upload image(s) event
@@ -54,8 +60,7 @@ jQuery(function ($) {
                     i++;
                 });
                 */
-            })
-                .open();
+            }).open();
     });
 
     /*

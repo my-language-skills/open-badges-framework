@@ -12,7 +12,8 @@ use inc\Utils\Fields;
  *
  * This class permit to show the steps to send the
  * badge to the student and create also a short-code
- * ([send-badge form="a/b/c"])
+ * ([send-badge form="a/b/c"]).
+ *
  *
  * @author      Alessandro RICCARDI
  * @since       x.x.x

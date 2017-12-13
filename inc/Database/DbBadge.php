@@ -63,7 +63,7 @@ class DbBadge extends DbModel {
      * @since       x.x.x
      *
      * @param array $data {
-     *                    Optional. Array or query string of arguments for delete a badge
+     *                    Array of information about a specific badge.
      *
      * @type string        userEmail        Text.
      * @type string        badgeId          Text.
@@ -88,15 +88,28 @@ class DbBadge extends DbModel {
     }
 
     /**
-     * Get all the badge (Warning: never tested).
+     * Get all the badge.
      *
      * @author      Alessandro RICCARDI
      * @since       x.x.x
      *
-     * @return the badges
+     * @return array of badges
      */
     public static function getAll() {
         return parent::get();
+    }
+
+    /**
+     * Get all the badge.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
+     *
+     * @return array of badges
+     */
+    public static function getKeys() {
+        $data = parent::get();
+        return $data ? $data[0] : array();
     }
 
     /**
@@ -106,7 +119,7 @@ class DbBadge extends DbModel {
      * @since         x.x.x
      *
      * @param array $data {
-     *                    Optional. Array or query string of arguments for insert a badge.
+     *                    Array of information about a specific badge.
      *
      * @type string        userEmail        Text.
      * @type string        badgeId          Text.
@@ -162,16 +175,13 @@ class DbBadge extends DbModel {
      * @since       x.x.x
      *
      * @param array $data  {
-     *                     Optional. Array or query string of arguments for insert a badge.
-     *
-     * @type string        userEmail        Text.
-     * @type string        badgeId          Text.
-     * @type string        fieldId          Text.
-     * @type string        levelId          Text.
+     *                     Data that we want to update.
+     * example:
+     * @type string        getDate        Time.
      *                     }
      *
      * @param array $where  {
-     *                     Optional. Array or query string of arguments for insert a badge.
+     *                     Array of information about a specific badge.
      *
      * @type string        userEmail        Text.
      * @type string        badgeId          Text.
@@ -206,14 +216,14 @@ class DbBadge extends DbModel {
      * @since       x.x.x
      *
      * @param array $data {
-     *                    Optional. Array or query string of arguments for delete a badge
+     *                    Array of information about a specific badge.
      *
      * @type string        userEmail        Text.
      * @type string        badgeId          Text.
      * @type string        fieldId          Text.
      * @type string        levelId          Text.
      *
-     * @return true|false, if errors.
+     * @return true | false, if errors.
      */
     public static function delete(array $data) {
         $rightKeys = array(
@@ -265,7 +275,7 @@ class DbBadge extends DbModel {
      * @since       x.x.x
      *
      * @param array $data {
-     *                    Optional. Array or query string of arguments for delete a badge
+     *                    Array of information about a specific badge.
      *
      * @type string        userEmail        Text.
      * @type string        badgeId          Text.
@@ -304,7 +314,7 @@ class DbBadge extends DbModel {
      * @since       x.x.x
      *
      * @param array $data {
-     *                    Optional. Array or query string of arguments for delete a badge
+     *                    Array of information about a specific badge.
      *
      * @type string        userEmail        Text.
      * @type string        badgeId          Text.
