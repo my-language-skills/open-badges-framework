@@ -7,7 +7,7 @@ Tags: badges
 
 ## Description
 
-Open Badges allows you to distribute and receive certifications of level language skills.
+Open Badges Framework allows you to distribute and receive certifications of level language skills.
 Open-Badge-Framework extends this possibility by giving the proof that your certification corresponds to your level.
 
 ## Installation

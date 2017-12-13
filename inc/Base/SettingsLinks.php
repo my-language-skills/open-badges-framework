@@ -37,7 +37,7 @@ class SettingsLinks extends BaseController {
      * @return string $links The right link
      */
     public function settingsLink($links) {
-        $settings_link = "<a href='admin.php?page=" . Admin::SLUG_PLUGIN . "'>Settigns</a>";
+        $settings_link = "<a href='admin.php?page=" . Admin::PAGE_SETTINGS . "'>Settings</a>";
         array_push($links, $settings_link);
         return $links;
 

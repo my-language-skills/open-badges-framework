@@ -14,9 +14,9 @@
  * @wordpress-plugin
  * Plugin Name:       Open Badges Framework
  * Plugin URI:        www.badges4languages.com
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin
+ * Description:       Open Badges Framework allows you to distribute and receive certifications of level language skills.
  * area.
- * Version:           X.X.X
+ * Version:           x.x.x
  * Author:            My language skills team
  * Author URI:        www.badges4languages.com
  * License:           GPL-2.0+

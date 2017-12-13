@@ -39,11 +39,14 @@ class Admin extends BaseController {
     const MTB_CERT = "certification_obf_mtb";
     const MTB_TARGET = "target_obf_mtb";
     const MTB_LBADGE = "lbadge_obf_mtb";
+    const PAGE_SEND_BADGE = 'send_badge_obf';
+    const PAGE_SETTINGS = 'settings_obf';
 
     private $settings;
     private $pages;
     private $subpages = array();
-    const PAGE_SEND_BADGE = 'send_badge_obf';
+
+
 
     /**
      * This function permit to load all the array in the instance
@@ -139,7 +142,7 @@ class Admin extends BaseController {
                 'page_title' => 'Settings',
                 'menu_title' => 'Settings',
                 'capability' => 'manage_options',
-                'menu_slug' => 'settings_obf',
+                'menu_slug' => self::PAGE_SETTINGS,
                 'callback' => array($settingTemp, 'main')
             ),
         );
