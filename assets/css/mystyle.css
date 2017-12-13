@@ -1,0 +1,245 @@
+/* **********************
+    GENERAL
+   ====================== */
+
+.center-text {
+    text-align: center;
+}
+
+.lead {
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+.sb-instruction{
+    margin-bottom: 30px;
+    display: inline-block;
+}
+
+.text-large {
+    font-weight: 300;
+    font-size: large;
+}
+
+/* **********************
+    DASHBOARD
+   ====================== */
+
+/* Tabs selector */
+.nav-tabs {
+    float: left;
+    width: 100%;
+    margin: 0;
+    list-style-type: none;
+    border-bottom: 1px solid #ddd;
+}
+
+.nav-tabs > li {
+    float: left;
+    margin-bottom: -1px;
+}
+
+.nav-tabs > li > a {
+    margin-right: 2px;
+    line-height: 1.5;
+    padding: 10px;
+    border: 1px solid transparent;
+    border-radius: 4px 4px 0 0;
+    float: left;
+    text-decoration: none;
+    box-shadow: none;
+}
+
+.nav-tabs > li > a:hover {
+    border-color: #eee #eee #ddd;
+}
+
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a.hover,
+.nav-tabs > li.active > a:focus {
+    color: #555;
+    cursor: default;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-bottom-color: transparent;
+}
+
+.tab-content-page {
+    float: left;
+    width: 100%;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+.tab-content-page .tab-pane {
+    float: left;
+    width: 100%;
+    display: none;
+    box-sizing: border-box;
+    padding: 10px 20px;
+}
+
+.tab-content-page > .tab-pane.active {
+    display: block;
+    background-color: #fff;
+    box-shadow: 0 5px 4px -2px rgba(0, 0, 0, 0.15);
+}
+
+.obf-title {
+    font-size: 29px !important;
+    margin-bottom: 20px !important;
+}
+
+.container.admin {
+
+}
+
+.intro {
+    display: block;
+}
+
+.cont-title-dash {
+    padding-bottom: 1em;
+    background-color: #fdfdfd;
+}
+
+.cont-title-dash h2 {
+    font-size: 1.4em;
+}
+
+.lead {
+    font-size: 0.95rem;
+    font-weight: 300;
+}
+
+.action-cont {
+    border-top: 1px solid #ccc;
+}
+
+.row-dash {
+    padding: 10px 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-left: 4px solid #fff;
+    background: #fff;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+}
+
+.col-dash {
+    display: inline-block;
+    margin: 0px 20px;
+    font-size: 15px;
+}
+
+.col-dash:first-child {
+    width: 90px;
+    margin: 0px 0px;
+    padding-left: 15px;
+}
+
+.col-dash:last-child {
+    float: right;
+    padding: 30px 0px;
+}
+
+.vert-hr {
+    border-left: 1px solid #9d9d9d;
+    height: 30px;
+    position: relative;
+    top: 50%;
+    transform: translateY(25%);
+}
+
+.col-dash h4 {
+    font-size: 23px;
+    font-weight: 400;
+}
+
+.col-dash p {
+    padding: 0px;
+    margin: 0px;
+    float: left;
+}
+
+.manage-link {
+    font-weight: 300;
+    font-size: 15px;
+    text-decoration: none;
+}
+
+.manage-link:hover {
+    text-decoration: underline;
+}
+
+.number-stc {
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 300;
+    margin: 0px 10px;
+    border-radius: 50%;
+    padding: 7px;
+    width: 20px;
+    border-radius: 50%;
+    background-color: #eee;
+    text-align: center;
+}
+
+/* Table Badges */
+
+.cont-badges-table {
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    background-color: transparent;
+    border-collapse: collapse;
+}
+
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #e9ecef;
+}
+
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #e9ecef;
+}
+
+.table td, .table th {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 1px solid #e9ecef;
+}
+
+th {
+    text-align: inherit;
+}
+
+/* ======================
+    SETTINGS
+   ====================== */
+
+.image-setting-prev {
+    max-width: 150px;
+    display: block;
+    height: auto;
+    width: auto;
+    vertical-align: top;
+    background-image: linear-gradient(45deg, #c4c4c4 25%, transparent 25%, transparent 75%, #c4c4c4 75%, #c4c4c4), linear-gradient(45deg, #c4c4c4 25%, transparent 25%, transparent 75%, #c4c4c4 75%, #c4c4c4);
+    background-position: 0 0, 10px 10px;
+    background-size: 20px 20px;
+}
+
+.remove-image-obf-settings {
+    display: inline-block;
+}
+
+.submit {
+    display: inline-block;
+}
