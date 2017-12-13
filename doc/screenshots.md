@@ -9,7 +9,11 @@
 
 #Dashboard section
 
+<<<<<<< HEAD
 ![dashboard: statistics](../readme-assets/dashboard_statistics.png "screenshots")
+=======
+![here](../readme-assets/dashboard_statistics.png screenshots)
+>>>>>>> 27823bafb4414169c0ebd560302c4a9e9cbcb76b
 
 ![dashboard: badges-empty](../readme-assets/dashboard_badges-empty.png "screenshots")
 
