@@ -169,7 +169,7 @@ Each Open Badge is associated with an image and information about the badge, its
 ### Developers Guide
 Badges for Languages use OpenBadges API for the delivery of the credentials (Badges).
 
-The badges go from the plugin to the 
+The badges go from the plugin to the
 [Backpack](https://backpack.openbadges.org/backpack/welcome).
 
 This section provides a set of technical resources to guide you through the processes of creating, issuing and displaying Open Badges. The Specification provides technical documentation and code examples. These guides will build on those examples.

@@ -1,7 +1,7 @@
 # OpenBadgesFramework Documentation 2
 
 ## Installation and Upgrades
-1. Clone (or copy) this repository to the /wp-content/plugins/ directory
+1. Clone (or copy) this [repository](https://github.com/Badges4Languages/OpenBadgesFramework/releases) to the /wp-content/plugins/ directory
 1. Activate the plugin through the 'Plugins' screen in WordPress
 
 For upgrades, download the las stable version from github, delete from FTP the old plugin and install the new one.
@@ -15,13 +15,20 @@ If we were to try to create our plugin without the use of existing plugin soluti
 ### Installing Recomended Plugins for the Site
 Not all the plugins are 100% integrated with OpenBadgesFramework, some of them works in the site for an enhancement of the features of the site.
 * [Restrict Content Pro or RCP (paid)](https://restrictcontentpro.com/) here the free download alternative from [GitHub](https://github.com/restrictcontentpro/restrict-content-pro)
+  - [Restric Content](https://es.wordpress.org/plugins/restrict-content/) can it be a simple option.
 * [The Seo Framework OR TSF (free)](https://theseoframework.com/) here the download alternative from [GitHub](https://github.com/sybrew/the-seo-framework)
 * [WordFence or WF (free)](https://www.wordfence.com/) here the download alternative from [WordPress.org](https://es.wordpress.org/plugins/wordfence/ )
+* [BackupWordpress](https://es.wordpress.org/plugins/backupwordpress/)
+* [Easy wp smtp](https://es.wordpress.org/plugins/easy-wp-smtp/)
+* [Members](https://es.wordpress.org/plugins/members/)
+* [wp-sweep](https://es.wordpress.org/plugins/wp-sweep/)
+* [wp-dbmanager](https://es.wordpress.org/plugins/wp-dbmanager/)
+* Social Media Feather 1.7.12 (Newer version have bad performance)
 
 ### Integrated Theme
 Any theme can work with OpenBadgesFramework, but just themes that are integrated with Job Manager can use al the features of the plugin as both plugins are integrated.
 
-At Books for Languages we use [Listify](https://themeforest.net/item/listify-wordpress-directory-theme/9602611] as the theme for the platform. Here is the link to the (documentation)[http://listify.astoundify.com/).
+At Books for Languages we use [Listify](https://themeforest.net/item/listify-wordpress-directory-theme/9602611?ref=colomet] as the theme for the platform. Here is the link to the (documentation)[http://listify.astoundify.com/).
 
 Listify also use several plugins for an enhancement of the features of the theme.
 
@@ -70,10 +77,17 @@ OpenBadges need some key information for the delivery of the badge. Without that
 * WebSite URL
 * Backpack account (mail)
 
+![settings_profile](../readme-assets/settings_profile.png "Settings: profile")
+
 #### Change issuer badges page links
 The users have some shortcuts to make easy the process. Here are the place where the links to those shoutcuts are created:
-* Change the role. From issues badges page to change the role page
-* New class. Redirection page to creating a new class page
+* Change the role. From issues badges page to change the role page.
+* Add class. Redirection page to creating a new class page.
+* Get Badge. Redirection page for users after opening the email.
+
+![settings_links](../readme-assets/settings_links.png "Settings: links")
+
+![settings_links-get-badge](../readme-assets/settings_links-get-badge.png "Settings: selected page")
 
 ### Manage Roles
 OpenBadgesFramework offer 3 types of roles:
@@ -81,7 +95,11 @@ OpenBadgesFramework offer 3 types of roles:
 * Teacher
 * Academy
 
-Out of the box, a new user can be (after the login) one of those roles (upon the configuration of the site) and later the administrator can change the role to a more related one. If an automatization of the distribution of the roles are need it, RCP (or an alternative) must be activated and settup. A select the role page is need it (can be free or paid upon the configuration). Remember to Asign a match to each [subscription level](http://docs.restrictcontentpro.com/article/1558-creating-subscription-levels) with the user role.
+Out of the box, a new user can be (after the login) one of those roles (upon the configuration of the site) and later the administrator can change the role to a more related one. 
+
+[wp-settings_new-user-default-role](../readme-assets/wp-settings_new-user-default-role.png "New user default role")
+
+If an automatization of the distribution of the roles are need it, RCP (or an alternative) must be activated and settup. A select the role page is need it (can be free or paid upon the configuration). Remember to Asign a match to each [subscription level](http://docs.restrictcontentpro.com/article/1558-creating-subscription-levels) with the user role.
 
 The B4L Settings page allow in **Change issuer badges page links** to select the page where the [Register Form](http://docs.restrictcontentpro.com/article/1597-registerform) is created.
 
