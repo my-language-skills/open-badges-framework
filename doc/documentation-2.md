@@ -95,11 +95,19 @@ OpenBadgesFramework offer 3 types of roles:
 * Teacher
 * Academy
 
-Out of the box, a new user can be (after the login) one of those roles (upon the configuration of the site) and later the administrator can change the role to a more related one. 
+Out of the box, a new user can be (after the login) one of those roles (upon the configuration of the site) and later the administrator can change the role to a more related one.
 
 [wp-settings_new-user-default-role](../readme-assets/wp-settings_new-user-default-role.png "New user default role")
 
-If an automatization of the distribution of the roles are need it, RCP (or an alternative) must be activated and settup. A select the role page is need it (can be free or paid upon the configuration). Remember to Asign a match to each [subscription level](http://docs.restrictcontentpro.com/article/1558-creating-subscription-levels) with the user role.
+If an automatization of the distribution of the roles are need it, RCP (or an alternative) must be activated and settup.
+
+[rcp_subscription-levels-creation](../readme-assets/rcp_subscription-levels-creation.png "Subscription levels creation")
+
+Remember to Asign a match to each [subscription level](http://docs.restrictcontentpro.com/article/1558-creating-subscription-levels) with the user role.
+
+[rcp_subscription-levels](../readme-assets/rcp_subscription-levels.png "Subscription levels creation")
+
+A select the role page is need it (can be free or paid upon the configuration). 
 
 The B4L Settings page allow in **Change issuer badges page links** to select the page where the [Register Form](http://docs.restrictcontentpro.com/article/1597-registerform) is created.
 
