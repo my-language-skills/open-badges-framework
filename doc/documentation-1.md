@@ -2,79 +2,131 @@
 
 Badges for Languages is a on-line certification issuer with OpenBadges technology. Badges for Languages issue non official certifications for all the languages that exist for the C.E.F.R for Languages levels, and certifications for the level of the teachers.
 
-Badges for languages is created for second languages education but out of the box works for any type of education by just creating different badges.
+OpenBadgesFramework is created by Badges for languages for second languages education but out of the box works for any type of education by just creating different badges.
 
-## About Badges4Languages plugin
+## About OpenBadgesFramework plugin
 The aim of OpenBadgesFramework is to accomplish:
-* One common worldwide standard
-All the certified teachers follow the same CEFR recommendations
+* One common worldwide standard for each field of education
+
+  All the certified teachers follow the same educational recommendations
+
 * Lower price
-Due to the estandarisation, Students no longer need to pay more for Official language exams.
+
+  Due to the estandarisation, Students no longer need to pay more for Official exams.
+
 * Profile of the Reputation
-Rating and Reviews for teachers and classes
+
+  Rating and Reviews for teachers and classes
+
 * System of Trust
-Data logger recording online to see all of the information about teachers, students and their classes.
+
+  Data logger recording online to see all of the information about teachers, students and their classes.
 
 ### OpenBadgesFramework key features
-[OpenBadgesFramework](https://github.com/Badges4Languages/OpenBadgesFramework/releases) can:
-* Send digital certifications to students or teacher
-* Save the information (Student name/email, Level, Lesson name, Date)
-* Write a comment by the student to the teacher classes and the teacher an answer.
-* Collect the student certifications in the student profile
 
-Books for languages integrate in one place several digital tools for Language Examinators.
+[OpenBadgesFramework](https://github.com/Badges4Languages/OpenBadgesFramework/releases) can:
+* Teachers can to send digital certifications to students or teacher
+* To save the information (Student name/email, Level, Lesson name, Date, etc)
+* Students can to write a comment to the teacher classes and receive an answer.
+* Users can collect the certifications in their profile
+
+OpenBadgesFramework integrate in one place several digital tools for Language Examinators.
 
 ### OpenBadgesFramework all the features
 
 * Easy registration
-By default, any user is a student and can start saving information on their profile.
+
+  By default, any user is a student and can start saving information on their profile.
+
 * Administrator updates
-Just Administrator can make changes in classes or profiles.
+
+  Just Administrator can make changes in classes or profiles.
+
 * Students' Log
-Save the information of your classes and badges forever.
+
+  Save the information of your classes and badges forever.
+
 * Different Roles
-Students, Teachers and Academies teachers role have different tools for each situation.
+
+  Students, Teachers and Academies teachers role have different tools for each situation.
+
 * Badges for students
-Use badges alienated with official educational standards.
+
+  Use badges alienated with official educational standards.
+
 * Badges for teachers
-Use badges for profesional life long learning.
+
+  Use badges for profesional life long learning.
+
 * Unlimited type of badges
-Academy teachers role can create unlimited number of badges for specified purposes.
+
+  Academy teachers role can create unlimited number of badges for specified purposes.
+
 * Self baddge issue
-Teachers or Students can give to themselves a badge for their skills
+
+  Teachers or Students can give to themselves a badge for their skills
+
 * Single badge issue
-Teachers send badges to the students (one student at a time).
+
+  Teachers send badges to the students (one student at a time).
+
 * Multiple badges issue
-Academy Role teachers send badges to the class (multiple students at once).
+
+  Academy Role teachers send badges to the class (multiple students at once).
+
 * Class Review
-Students can write feedbacks for the classes.
+
+  Students can write feedbacks for the classes.
+
 * Answer the Review
-Teacher can answer students' reviews.
+
+  Teacher can answer students' reviews.
+
 * Teachers' Rating
-Students can rate teacher's knowledge of the language, and their teaching skills.
+
+  Students can rate teacher's knowledge of the language, and their teaching skills.
+
 * Class Rating
-Students can rate classes (methodology, installations, price..)
+
+  Students can rate classes (methodology, installations, price..)
+
 * Manual Academies Role approval
-Only real teachers can receive the Academy Role teacher and unlock the extended features.
+
+  Only real teachers can receive the Academy Role teacher and unlock the extended features.
+
 * Certified badges
-Academy Role teacher can offer certified badges with the endorsement of B4L.
+
+  Academy Role teacher can offer certified badges with the endorsement of B4L.
+
 * Official examinations
-Following MCER recommendations, the Academics can offer an international examination.
+
+  Following MCER recommendations, the Academics can offer an international examination.
 
 * Student Profile
-Show badges and classes in the profile.
+
+  Show badges and classes in the profile.
+
 * Teacher profile
-Show badges, classes and rating in the profile.
+
+  Show badges, classes and rating in the profile.
+
 * Self badges issue
-Receive badges for different levels of the language.
+
+  Receive badges for different levels of the language.
+
 --
 
 * CEFR Badges
-Use badges alienated with CEFR for languages (A1, A2, B1, B2, C1 and C2).
+
+  Use badges alienated with CEFR for languages (A1, A2, B1, B2, C1 and C2).
+
 * Badges for teachers
-Show your level of expertise for the language you teach (T1, T2, T3, T4, T5 and T6).
+
+  Show your level of expertise for the language you teach (T1, T2, T3, T4, T5 and T6).
+
 * All of the languages
-In all of the 7.306 languages, if we are missing one, let us to know.
+
+  In all of the 7.306 languages, if we are missing one, let us to know.
 
 ## Complements
 
