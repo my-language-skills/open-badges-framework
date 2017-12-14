@@ -53,7 +53,7 @@ class SendBadge extends BaseController {
      */
     function __construct($badgeId, $fieldId, $levelId, $info, $receivers, $class = '', $evidence = '') {
         $badges = new Badges();
-        $this->badge = $badges->getBadgeById($badgeId);
+        $this->badge = $badges->getPost($badgeId);
 
         $this->field = get_term($fieldId, Admin::TAX_FIELDS);
         $this->level = get_term($levelId, Admin::TAX_LEVELS);

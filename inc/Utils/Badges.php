@@ -2,6 +2,7 @@
 
 namespace inc\Utils;
 
+use Inc\Base\BaseController;
 use inc\Base\User;
 use Inc\Pages\Admin;
 
@@ -13,7 +14,7 @@ use Inc\Pages\Admin;
  *
  * @package     OpenBadgesFramework
  */
-class Badges {
+class Badges{
 
     public static function getAllBadges() {
         return get_posts(array(
@@ -99,33 +100,39 @@ class Badges {
     }
 
     /**
-     * This function permit get the badge, giving the
-     * id of the badge.
+     * This function permit to get a specific badge.
      *
      * @author      Alessandro RICCARDI
      * @since       x.x.x
      *
-     * @param int $id the id of the field
+     * @param int $id the id of the badge
      *
      * @return array The badge information.
      */
-    public static function getBadgeById($id) {
-        $standBadges = get_posts(array(
-            'post_type' => Admin::POST_TYPE_BADGES,
-            'orderby' => 'name',
-            'order' => 'ASC',
-            'numberposts' => -1
-        ));
-
-        if (!$id) {
-            return null;
-        } else {
-            foreach ($standBadges as $badge) {
-                if ($badge->ID == $id)
-                    return $badge;
-            }
-            return null;
-        }
+    public static function getPost($id) {
+        return get_post($id);
     }
+
+    /**
+     * This function permit to get the image url of a badge.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
+     *
+     * @param int $id the id of the badge
+     *
+     * @return string url
+     */
+    public static function getImage($id) {
+
+        if (!$img = get_the_post_thumbnail_url($id)) {
+            $url = BaseController::getPluginUrl();
+            $img = $url . 'assets/images/default-badge.png';
+        }
+
+        return $img;
+    }
+
+
 
 }

@@ -62,7 +62,7 @@ final class DashboardTemp extends BaseController {
     public static function actionTab() {
         ?>
         <div class="container admin">
-            <div class="intro">
+            <div class="intro-dash">
                 <div class="cont-title-dash">
                     <h2>Action control</h2>
                     <p class="lead">
@@ -71,7 +71,7 @@ final class DashboardTemp extends BaseController {
                     </p>
                 </div>
 
-                <div class="dash-tab-cont">
+                <div class="content-dash">
                     <div class="row-dash">
                         <div class="col-dash">
                             <h4>Badges</h4>
@@ -157,14 +157,14 @@ final class DashboardTemp extends BaseController {
         $table = DbBadge::getKeys();
         ?>
         <div class="container admin">
-            <div class="intro">
+            <div class="intro-dash">
                 <div class="cont-title-dash">
                     <h2>Badges list</h2>
                     <p class="lead">
                         In this section we have the possibility to see all the badges that are sent.
                     </p>
                 </div>
-                <div class="dash-tab-cont">
+                <div class="content-dash badges-list-dash">
                     <?php
                     if ($table) {
 
@@ -235,14 +235,14 @@ final class DashboardTemp extends BaseController {
     public static function aboutTab() {
         ?>
         <div class="container admin">
-            <div class="intro">
+            <div class="intro-dash">
                 <div class="cont-title-dash">
                     <h2>About us</h2>
                     <p class="lead">
                         Fill information about the plugin.
                     </p>
                 </div>
-                <div class="dash-tab-cont">
+                <div class="content-dash">
                     <p>Random text.</p>
                 </div>
             </div>

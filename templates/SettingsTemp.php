@@ -32,9 +32,9 @@ final class SettingsTemp {
     // FIELDS
     const FI_SITE_NAME_FIELD = "site_name_field";
     const FI_WEBSITE_URL_FIELD = 'website_url_field';
-    const FI_IMAGE_URL_FIELD = 'image_url_field';
     const FI_TELEPHONE_FIELD = 'telephone_field';
     const FI_DESCRIPTION_FIELD = 'information_field';
+    const FI_IMAGE_URL_FIELD = 'image_url_field';
     const FI_EMAIL_FIELD = 'email_field';
 
     const FI_ADD_CLASS = 'add_class_page';
@@ -46,18 +46,67 @@ final class SettingsTemp {
 
     /**
      * The construct allow to call th admin_init hook initializing the
-     * settings and set the default information retrieved form the default
-     * info of WordPress.
+     * settings.
      *
      * @author      Alessandro RICCARDI
      * @since       x.x.x
      */
     public function __construct() {
         add_action('admin_init', array($this, 'pageInit'));
+    }
+
+    /**
+     * Setting of the default information with also the creation of the
+     * get_badge_page that will be used as a container for the GetBadgeTemp
+     * Class.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
+     */
+    public static function init() {
+        $options = get_option(self::OPTION_NAME);
+        $fiName = $options[self::FI_SITE_NAME_FIELD];
+        $fiWebUrl = $options[self::FI_WEBSITE_URL_FIELD];
+        $fiTel = $options[self::FI_TELEPHONE_FIELD];
+        $fiDesc = $options[self::FI_DESCRIPTION_FIELD];
+        $fiImageUrl = $options[self::FI_IMAGE_URL_FIELD];
+        $fiEmail = $options[self::FI_EMAIL_FIELD];
+        $fiClass = $options[self::FI_ADD_CLASS];
+        $fiPremium = $options[self::FI_BECAME_PREMIUM];
+        $fiBadge = $options[self::FI_GET_BADGE];
+
+        if (!$fiBadge && current_user_can( 'activate_plugins' )) {
+            // Verify if the page doesn't exist
+            if (!get_page_by_title(self::FI_GET_BADGE)) {
+
+                $current_user = wp_get_current_user();
+
+                $page = array(
+                    'post_title' => self::FI_GET_BADGE,
+                    'post_name' => self::FI_GET_BADGE,
+                    'post_status' => 'publish',
+                    'post_author' => $current_user->ID,
+                    'post_type' => 'page',
+                );
+
+                // insert the get_badge_page into the database
+                wp_insert_post($page);
+            }
+
+            // insert the id of the get_badge_page into variable
+            $fiBadge = get_page_by_title(self::FI_GET_BADGE)->ID;
+        }
 
         $defaults = array(
-            self::FI_SITE_NAME_FIELD => get_bloginfo('name'),
-            self::FI_WEBSITE_URL_FIELD => get_bloginfo('url'),
+            self::FI_SITE_NAME_FIELD => $fiName ? $fiName : get_bloginfo('name'),
+            self::FI_WEBSITE_URL_FIELD => $fiWebUrl ? $fiWebUrl : get_bloginfo('url'),
+            self::FI_TELEPHONE_FIELD => $fiTel ? $fiTel : '',
+            self::FI_DESCRIPTION_FIELD => $fiDesc ? $fiDesc : '',
+            self::FI_IMAGE_URL_FIELD => $fiImageUrl ? $fiImageUrl : '',
+            self::FI_EMAIL_FIELD => $fiEmail ? $fiEmail : '',
+            self::FI_ADD_CLASS => $fiClass ? $fiClass : '',
+            self::FI_BECAME_PREMIUM => $fiPremium ? $fiPremium : '',
+            self::FI_GET_BADGE => $fiBadge ? $fiBadge : '',
         );
 
         update_option(self::OPTION_NAME, $defaults);

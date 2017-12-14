@@ -85,24 +85,15 @@ class SendBadgeAjax extends BaseController {
         foreach ($rightBadges as $badge) { ?>
             <!-- HTML -->
             <div class="cont-badge-sb">
-        <label for="<?php echo "badge-$badge->ID-form-$form" ?>" class="badge-cont">
-            <input id="<?php echo "badge-$badge->ID-form-$form" ?>" type="radio" name="badge_<?php echo $form; ?>"
-                   class="input-badge" value="<?php echo $badge->ID; ?>"/>
-            <img class="img-badge"
-            src="
-                <?php
-            if (get_the_post_thumbnail_url($badge->ID)) {
-                // Badge WITH image
-                echo get_the_post_thumbnail_url($badge->ID, 'thumbnail');
-
-            } else {
-                // Badge WITHOUT image
-                echo $this->plugin_url . 'assets/images/default-badge.png';
-                //echo '" width="40px" height="40px" /></label> </br> <b>' . $badge->post_title . '</b>';
-            }
-            echo '" /> </label> </br> <b>' . $badge->post_title . '</b>';
-            ?>
-            </label>
+                <label for="<?php echo "badge-$badge->ID-form-$form" ?>" class="badge-cont">
+                    <input id="<?php echo "badge-$badge->ID-form-$form" ?>" type="radio"
+                           name="badge_<?php echo $form; ?>"
+                           class="input-badge" value="<?php echo $badge->ID; ?>"/>
+                    <img class="img-badge" src=" <?php echo Badges::getImage($badge->ID); ?>"/>
+                </label>
+                <br>
+                <b><?php echo $badge->post_title; ?></b>
+                </label>
             </div>
             <?php
         }
@@ -120,7 +111,7 @@ class SendBadgeAjax extends BaseController {
         $badges = new Badges();
         $form = $_POST['form'];
         $badgeId = $_POST['badgeId'];
-        $badge = $badges->getBadgeById($badgeId);
+        $badge = $badges->getPost($badgeId);
 
         echo "<div name='desc_$form'>$badge->post_content</div>";
         wp_die();

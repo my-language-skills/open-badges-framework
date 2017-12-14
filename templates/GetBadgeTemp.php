@@ -96,7 +96,7 @@ final class GetBadgeTemp extends BaseController {
 
             $this->jsonUrl = JsonManagement::getJsonUrl($this->json);
             $badges = new Badges();
-            $this->badge = $badges->getBadgeById($data['badgeId']);
+            $this->badge = $badges->getPost($data['badgeId']);
             $this->field = get_term($data['fieldId'], Admin::TAX_FIELDS);
             $this->level = get_term($data['levelId'], Admin::TAX_LEVELS);
 
@@ -148,7 +148,7 @@ final class GetBadgeTemp extends BaseController {
                         <?php echo $this->badge->post_content; ?>
                     </p>
                     <div class="logo-badge-cont">
-                        <img src="<?php echo get_the_post_thumbnail_url($this->badge->ID) ?>" height="100px"
+                        <img src="<?php echo Badges::getImage($this->badge->ID); ?>" height="100px"
                              width="100px">
                     </div>
                 </div>

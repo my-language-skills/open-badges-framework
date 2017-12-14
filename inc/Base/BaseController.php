@@ -31,6 +31,30 @@ class BaseController {
     }
 
     /**
+     * Get the path of the url.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
+     *
+     * @return string the path
+     */
+    public static function getPluginPath() {
+        return plugin_dir_path(dirname(__FILE__, 2));
+    }
+
+    /**
+     * Get the url of the plugin.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
+     *
+     * @return string the url
+     */
+    public static function getPluginUrl() {
+        return plugin_dir_url(dirname(__FILE__, 2));
+    }
+
+    /**
      * Retrieve the path of the folder that we will
      * save the json file, if is not existing we will
      * create it.

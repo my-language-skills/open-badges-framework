@@ -62,8 +62,9 @@ class Enqueue extends BaseController {
     public function cssHead() {
         $options = get_option(SettingsTemp::OPTION_NAME);
         $post = get_post($options[SettingsTemp::FI_GET_BADGE]);
+
         if (is_page($post->post_name)) {
-            wp_enqueue_style('bootstrapp-css', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css');
+            wp_enqueue_style('bootstrap-css', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css');
             wp_enqueue_style('get-badge-css', $this->plugin_url . 'assets/css/get-badge.css');
         } else {
             //send badge files

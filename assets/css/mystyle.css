@@ -21,11 +21,7 @@
     font-size: large;
 }
 
-/* **********************
-    DASHBOARD
-   ====================== */
-
-/* Tabs selector */
+/* Tabs selector ****/
 .nav-tabs {
     float: left;
     width: 100%;
@@ -86,6 +82,10 @@
     box-shadow: 0 5px 4px -2px rgba(0, 0, 0, 0.15);
 }
 
+/* **********************
+    DASHBOARD
+   ====================== */
+
 .obf-title {
     font-size: 29px !important;
     margin-bottom: 20px !important;
@@ -95,7 +95,7 @@
 
 }
 
-.intro {
+.intro-dash {
     display: block;
 }
 
@@ -113,10 +113,11 @@
     font-weight: 300;
 }
 
-.dash-tab-cont {
+.content-dash {
     border-top: 1px solid #ccc;
 }
 
+/* Action Control ****/
 .row-dash {
     padding: 10px 10px;
     margin-top: 10px;
@@ -183,9 +184,8 @@
     text-align: center;
 }
 
-/* Table Badges */
-
-.cont-badges-table {
+/* Badges list ****/
+.badges-list-dash {
     width: 100%;
     overflow-x: auto;
     white-space: nowrap;
