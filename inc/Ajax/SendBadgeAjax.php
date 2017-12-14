@@ -80,7 +80,7 @@ class SendBadgeAjax extends BaseController {
         $field = $_POST['fieldId'];
         $level = $_POST['level'];
 
-        $rightBadges = $badges->getBadgesFiltered($field, $level);
+        $rightBadges = $badges->getFiltered($field, $level);
 
         foreach ($rightBadges as $badge) { ?>
             <!-- HTML -->
@@ -111,7 +111,7 @@ class SendBadgeAjax extends BaseController {
         $badges = new Badges();
         $form = $_POST['form'];
         $badgeId = $_POST['badgeId'];
-        $badge = $badges->getPost($badgeId);
+        $badge = $badges->get($badgeId);
 
         echo "<div name='desc_$form'>$badge->post_content</div>";
         wp_die();

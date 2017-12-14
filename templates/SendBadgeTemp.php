@@ -123,7 +123,9 @@ final class SendBadgeTemp extends BaseController {
                             self::displayLeadInfo("Change the visualization of the fields of education with the
                                                     below buttons an then select the field");
                             self::displayFieldsButtons(); ?>
-                            <div id="field_<?php echo $form; ?>"><?php DisplayFunction::field(""); ?></div>
+                            <div id="field_<?php echo $form; ?>"><?php DisplayFunction::field(""); ?>
+                                <p><small>Some browser can delay the opening of the field of education.</small></p>
+                            </div>
                         </div>
                     </section>
                     <h3>Level</h3>

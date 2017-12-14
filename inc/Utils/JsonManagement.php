@@ -1,6 +1,6 @@
 <?php
 
-namespace inc\OB;
+namespace inc\Utils;
 
 use Inc\Base\BaseController;
 use Inc\Pages\Admin;

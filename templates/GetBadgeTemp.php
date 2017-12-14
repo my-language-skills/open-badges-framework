@@ -5,7 +5,7 @@ namespace templates;
 use Inc\Base\BaseController;
 use inc\Base\User;
 use Inc\Database\DbBadge;
-use Inc\OB\JsonManagement;
+use Inc\Utils\JsonManagement;
 use Inc\Pages\Admin;
 use Inc\Utils\Badges;
 
@@ -96,7 +96,7 @@ final class GetBadgeTemp extends BaseController {
 
             $this->jsonUrl = JsonManagement::getJsonUrl($this->json);
             $badges = new Badges();
-            $this->badge = $badges->getPost($data['badgeId']);
+            $this->badge = $badges->get($data['badgeId']);
             $this->field = get_term($data['fieldId'], Admin::TAX_FIELDS);
             $this->level = get_term($data['levelId'], Admin::TAX_LEVELS);
 
@@ -141,7 +141,7 @@ final class GetBadgeTemp extends BaseController {
                     <h1 class="badge-title-obf cover-heading">
                         <strong><?php echo $this->badge->post_title; ?></strong>
                     </h1>
-                    <h5 class="badge-field">Field: <strong><?php echo $this->field->name; ?></strong> -
+                    <h5 class="badge-field">Field of education: <strong><?php echo $this->field->name; ?></strong> -
                         Level:
                         <strong><?php echo $this->level->name; ?></strong></h5>
                     <p class="lead">
@@ -576,7 +576,11 @@ final class GetBadgeTemp extends BaseController {
         ?>
         <div class="info-header-obf">
             <div class="container">
-                <a href="<?php echo get_bloginfo('url'); ?>"><?php echo get_bloginfo('name'); ?></a>
+                <a href="<?php echo get_bloginfo('url'); ?>"><?php
+                    $options = get_option(SettingsTemp::OPTION_NAME);
+                    echo $options[SettingsTemp::FI_SITE_NAME_FIELD];
+                    ?>
+                </a>
             </div>
         </div>
         <?php

@@ -5,7 +5,7 @@ namespace Inc\Utils;
 use Inc\Base\BaseController;
 use inc\Base\User;
 use Inc\Database\DbBadge;
-use Inc\OB\JsonManagement;
+use Inc\Utils\JsonManagement;
 use Inc\Pages\Admin;
 use templates\SettingsTemp;
 
@@ -53,7 +53,7 @@ class SendBadge extends BaseController {
      */
     function __construct($badgeId, $fieldId, $levelId, $info, $receivers, $class = '', $evidence = '') {
         $badges = new Badges();
-        $this->badge = $badges->getPost($badgeId);
+        $this->badge = $badges->get($badgeId);
 
         $this->field = get_term($fieldId, Admin::TAX_FIELDS);
         $this->level = get_term($levelId, Admin::TAX_LEVELS);
@@ -176,9 +176,13 @@ class SendBadge extends BaseController {
                                 <h1>BADGES FOR LANGUAGES</h1>
                                 <h1><b>Congratulations you have just earned a badge!</b></h1>
                                 <h2>Learn languages and get official certifications</h2>
-                                <img src='" . Badges::getImage($this->badge->ID) . "' width='150' height='150'/>
-                                Open the link, and get the badge.
+                                <center>
+                                    <a href='" . $badgeLink . "'>
+                                        <img src='" . Badges::getImage($this->badge->ID) . "' width='150' height='150'/>
+                                    </a>
+                                </center>
                                 <h2>" . $this->badge->post_title . " - " . $this->field->name . "</h2>
+                                <p>Open the link, and get the badge.</p>
                                 <a href='" . $badgeLink . "'>$badgeLink</a>
                                 <br><br><hr>
                                 <p style='font-size:9px; color:grey '>Badges for Languages by My Language Skills, based in Valencia, Spain.

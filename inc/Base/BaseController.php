@@ -3,10 +3,9 @@
 namespace Inc\Base;
 
 /**
- * The BaseController class is a very useful because
- * principally permit to retrieve information about
- * the plugin path, plugin url and plugin initial
- * function.
+ * The BaseController class permit to retrieve
+ * information about the plugin path, plugin url
+ * and plugin initial function.
  *
  * @author      Alessandro RICCARDI
  * @since       x.x.x

@@ -48,7 +48,7 @@ class Enqueue extends BaseController {
             'globalUrl',
             array(
                 'ajax' => admin_url('admin-ajax.php'),
-                'loader' => $this->plugin_url . "assets/gif/load.gif",
+                'loader' => $this->plugin_url . "assets/gif/mixed-loading.gif",
             )
         );
     }
@@ -69,6 +69,7 @@ class Enqueue extends BaseController {
         } else {
             //send badge files
             wp_enqueue_style('my-style', $this->plugin_url . 'assets/css/mystyle.css');
+
             wp_enqueue_style('send-badges-style', $this->plugin_url . 'assets/css/send-badge.css');
         }
     }
@@ -90,27 +91,25 @@ class Enqueue extends BaseController {
                 'globalUrl',
                 array(
                     'ajax' => admin_url('admin-ajax.php'),
-                    'loader' => $this->plugin_url . "assets/gif/loading-circle.gif",
-                    'loaderPoint' => $this->plugin_url . "assets/gif/3-point.gif",
+                    'loader' => $this->plugin_url . "assets/gif/circle-loading.gif",
+                    'loaderPoint' => $this->plugin_url . "assets/gif/horizontal-loading.gif",
                 )
             );
         } else {
             //send badge files
+            wp_enqueue_script('general-js', $this->plugin_url . 'assets/js/general.js');
+            wp_enqueue_script('form-send-badges', $this->plugin_url . 'assets/js/jquery.steps.min.js');
+            wp_enqueue_script("jQuery-validation", 'http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js', array('jquery'), 0.1, false);
+            wp_enqueue_script('send-badge-js', $this->plugin_url . 'assets/js/send-badge.js');
             wp_localize_script(
                 'send-badge-js',
                 'globalUrl',
                 array(
                     'ajax' => admin_url('admin-ajax.php'),
-                    'loader' => $this->plugin_url . "assets/gif/load.gif",
+                    'loader' => $this->plugin_url . "assets/gif/mixed-loading.gif",
                 )
             );
         }
-
-        //Basic
-        wp_enqueue_script('general-js', $this->plugin_url . 'assets/js/general.js');
-        wp_enqueue_script('form-send-badges', $this->plugin_url . 'assets/js/jquery.steps.min.js');
-        wp_enqueue_script("jQuery-validation", 'http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js', array('jquery'), 0.1, false);
-        wp_enqueue_script('send-badges', $this->plugin_url . 'assets/js/send-badge.js');
     }
 
 }

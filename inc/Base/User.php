@@ -5,8 +5,7 @@ namespace inc\Base;
 use Inc\Pages\Admin;
 
 /**
- * The User Class that take care of the managing
- * of the users.
+ * The User Class for the management of the users.
  *
  * @author      Alessandro RICCARDI
  * @since       x.x.x
