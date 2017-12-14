@@ -163,32 +163,32 @@ class SendBadge extends BaseController {
             "&field=" . $this->field->term_id .
             "&level=" . $this->level->term_id;
 
-        $img = get_the_post_thumbnail_url($this->badge->ID);
 
         $body = "
                 <!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
                 <html xmlns='http://www.w3.org/1999/xhtml'>
                     <head>
-                        <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
-                        <title>A Simple Responsive HTML Email</title>
+                            <meta http-equiv='Content-Type' content='text/html'; charset='utf-8' />
                     </head>
                     <body>
-                        <table border='1' cellpadding='0' cellspacing='0' width='100%'>
-                            <tr>
-                                <td width='80' valign='top' style='text-align: left'>
-                                <img src='$img' width='100%'>
-                                    <a href='$badgeLink'>Get Badge</a>
-                                </td>
-                                <td style='font-size: 0; line-height: 0;' width='20'>
-                                    &nbsp;
-                                </td>
-                                <td width='260' valign='top'>
-                                    Column 2
-                                </td>
-                            </tr>
-                        </table>
+                        <div id='b4l-award-actions-wrap'>
+                            <div align='center'>
+                                <h1>BADGES FOR LANGUAGES</h1>
+                                <h1><b>Congratulations you have just earned a badge!</b></h1>
+                                <h2>Learn languages and get official certifications</h2>
+                                <img src='" . Badges::getImage($this->badge->ID) . "' width='150' height='150'/>
+                                Open the link, and get the badge.
+                                <h2>" . $this->badge->post_title . " - " . $this->field->name . "</h2>
+                                <a href='" . $badgeLink . "'>$badgeLink</a>
+                                <br><br><hr>
+                                <p style='font-size:9px; color:grey '>Badges for Languages by My Language Skills, based in Valencia, Spain.
+                                More information <a href='https://mylanguageskills.wordpress.com/'>here</a>.
+                                Legal information <a href='https://mylanguageskillslegal.wordpress.com/category/english/badges-for-languages-english/'>here</a>.
+                                </p>
+                            </div>
+                        </div>
                     </body>
-                </html>
+            </html>
                 ";
         return $body;
     }
