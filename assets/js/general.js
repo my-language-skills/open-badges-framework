@@ -1,6 +1,8 @@
+
 /* =========================
     Tab switcher
    ========================= */
+
 window.addEventListener("load", function () {
     var tabs = document.querySelectorAll("ul.nav-tabs > li");
 

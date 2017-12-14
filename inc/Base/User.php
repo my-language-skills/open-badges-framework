@@ -14,9 +14,9 @@ use Inc\Pages\Admin;
  * @package     OpenBadgesFramework
  */
 class User {
-    const STUDENT_ROLE = "obf_student";
-    const TEACHER_ROLE = "obf_teacher";
-    const ACADEMY_ROLE = "obf_academy";
+    const STUDENT_ROLE = "student";
+    const TEACHER_ROLE = "teacher";
+    const ACADEMY_ROLE = "academy";
 
     const RET_LOGIN_SUCCESS = 0;
     const RET_NO_MATCH_PASS = "The <strong>passwords</strong> doesn't match, please write correctly. <br>";
