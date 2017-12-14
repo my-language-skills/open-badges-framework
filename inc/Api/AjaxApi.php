@@ -1,7 +1,9 @@
 <?php
 
-namespace Inc\Ajax;
+namespace Inc\Api;
 
+use Inc\Ajax\SendBadgeAjax;
+use Inc\Ajax\GetBadgeAjax;
 use Inc\Base\BaseController;
 
 /**
@@ -12,7 +14,7 @@ use Inc\Base\BaseController;
  *
  * @package     OpenBadgesFramework
  */
-class InitAjax extends BaseController {
+class AjaxApi extends BaseController {
 
     /**
      * The construct call the principal function that
@@ -37,7 +39,7 @@ class InitAjax extends BaseController {
     public static function getServices() {
         return array(
             SendBadgeAjax::class,
-            GetBadgeAjax::class
+            GetBadgeAjax::class,
 
         );
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Inc\Api;
+namespace Inc\Base;
 
 use Inc\Pages\Admin;
 
@@ -13,7 +13,7 @@ use Inc\Pages\Admin;
  *
  * @package     OpenBadgesFramework
  */
-class MetaboxApi {
+class Metabox {
 
     public $cert_mtb;
     public $target_mtb;

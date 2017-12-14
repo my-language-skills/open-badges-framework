@@ -5,7 +5,7 @@ namespace Inc\Utils;
 use Inc\Base\BaseController;
 use inc\Base\User;
 use Inc\Database\DbBadge;
-use Inc\OB\JsonManagement;
+use Inc\Utils\JsonManagement;
 use Inc\Pages\Admin;
 use templates\SettingsTemp;
 
@@ -53,7 +53,7 @@ class SendBadge extends BaseController {
      */
     function __construct($badgeId, $fieldId, $levelId, $info, $receivers, $class = '', $evidence = '') {
         $badges = new Badges();
-        $this->badge = $badges->getPost($badgeId);
+        $this->badge = $badges->get($badgeId);
 
         $this->field = get_term($fieldId, Admin::TAX_FIELDS);
         $this->level = get_term($levelId, Admin::TAX_LEVELS);

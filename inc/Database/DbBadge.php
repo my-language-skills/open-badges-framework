@@ -3,8 +3,8 @@
 namespace Inc\Database;
 
 /**
- * That class manage the database table about
- * the badge that are sent.
+ * That class manage the database table for
+ * the badges that are sent.
  *
  * @author      Alessandro RICCARDI
  * @since       x.x.x

@@ -5,7 +5,7 @@ namespace inc\Ajax;
 use Inc\Base\BaseController;
 use Inc\Base\User;
 use Inc\Database\DbBadge;
-use Inc\OB\JsonManagement;
+use Inc\Utils\JsonManagement;
 use Templates\GetBadgeTemp;
 
 /**

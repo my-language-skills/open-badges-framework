@@ -5,8 +5,8 @@ namespace Inc\Base;
 use Inc\Pages\Admin;
 
 /**
- * That class create the link for the setting and
- * make it visible in the plugin admin page.
+ * That class create the setting link for
+ * the plugin admin page.
  *
  * @author      Alessandro RICCARDI
  * @since       x.x.x

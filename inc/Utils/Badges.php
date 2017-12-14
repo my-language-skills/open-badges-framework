@@ -16,7 +16,7 @@ use Inc\Pages\Admin;
  */
 class Badges{
 
-    public static function getAllBadges() {
+    public static function getAll() {
         return get_posts(array(
             'post_type' => Admin::POST_TYPE_BADGES,
             'orderby' => 'name',
@@ -38,7 +38,7 @@ class Badges{
      * @return bool     True if have children,
      *                  False if don't have children
      */
-    public static function getBadgesFiltered($fieldId = "", $levelId = "") {
+    public static function getFiltered($fieldId = "", $levelId = "") {
 
         $allBadges = get_posts(array(
             'post_type' => Admin::POST_TYPE_BADGES,
@@ -109,12 +109,12 @@ class Badges{
      *
      * @return array The badge information.
      */
-    public static function getPost($id) {
+    public static function get($id) {
         return get_post($id);
     }
 
     /**
-     * This function permit to get the image url of a badge.
+     * This function permit to get the thumbnail image url of a badge.
      *
      * @author      Alessandro RICCARDI
      * @since       x.x.x
@@ -124,8 +124,7 @@ class Badges{
      * @return string url
      */
     public static function getImage($id) {
-
-        if (!$img = get_the_post_thumbnail_url($id)) {
+        if (!$img = get_the_post_thumbnail_url($id, 'thumbnail')) {
             $url = BaseController::getPluginUrl();
             $img = $url . 'assets/images/default-badge.png';
         }

@@ -34,7 +34,7 @@ final class Init {
             Base\SettingsLinks::class,
             Base\User::class,
             Utils\Fields::class,
-            Ajax\InitAjax::class,
+            Api\AjaxApi::class,
             Utils\DisplayFunction::class,
             Utils\Statistics::class,
             Database\DbBadge::class,

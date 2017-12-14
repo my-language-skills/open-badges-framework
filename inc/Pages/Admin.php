@@ -2,7 +2,7 @@
 
 namespace Inc\Pages;
 
-use Inc\Api\MetaboxApi;
+use Inc\Base\Metabox;
 use Inc\Base\BaseController;
 use Inc\Api\SettingApi;
 use Templates\DashboardTemp;
@@ -258,7 +258,7 @@ class Admin extends BaseController {
      * @since    x.x.x
      */
     public function setMetaboxes() {
-        $metaboxTemp = new MetaboxApi();
+        $metaboxTemp = new Metabox();
 
         $args = array(
             // ## Certification ##
