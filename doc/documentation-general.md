@@ -34,21 +34,21 @@ OpenBadgesFramework integrate in one place several digital tools for Language Ex
 
 ### OpenBadgesFramework all the features
 
+* Aceptation badge email
+
+  By default, any user receive an email with the badge from the teacher.
+
 * Easy registration
 
-  By default, any user is a student
+  By default, any user is a student by receiving the aceptation badge email.
 
-* Student Profile
+* Open Badges API integration
 
-  Show badges and classes in the profile.
-
-* Teacher profile
-
-  Show badges, classes and rating in the profile.
+  Backpack integration with the aceptation badge email
 
 * Students' and Teachers' Log
 
-  Save the information of your badges and classes in your profile forever.
+  Save the information of your badges, classes and rating in the profile, forever.
 
 * Different Roles
 
@@ -58,11 +58,11 @@ OpenBadgesFramework integrate in one place several digital tools for Language Ex
 
   Only real teachers can receive the Academy Role teacher and unlock the extended features.
 
-* Administrator updates
+* Update of information not allow.
 
-  Just Administrator can make changes in profiles or classes.
+  Neither teachers of students can delete information.
 
-* Unlimited type of badges
+* Unlimited creation of badges
 
   Academy teachers role can create unlimited number of badges for specified purposes.
 
@@ -78,6 +78,10 @@ OpenBadgesFramework integrate in one place several digital tools for Language Ex
 
   Academy Role teacher can offer certified badges with the endorsement of B4L.
 
+* Taxonomy for the badges
+
+  Fiels of education and level taxonomies.
+
 * Different possibilities for sending the badges
 
   - Self baddge issue
@@ -91,6 +95,8 @@ OpenBadgesFramework integrate in one place several digital tools for Language Ex
   - Multiple badges issue
 
     Academy Role teachers send badges to the class (multiple students at once).
+
+#### Soon
 
 * Ratings and Review of the teachers and classes
 
@@ -114,20 +120,20 @@ OpenBadgesFramework integrate in one place several digital tools for Language Ex
 
   Following MCER recommendations, the Academics can offer an international examination.
 
+#### Badges4Languages specifical settings
 
-Badges4Languages specifical settings
+ * CEFR Badges
 
-* CEFR Badges
+ Use badges alienated with CEFR for languages (A1, A2, B1, B2, C1 and C2).
 
-  Use badges alienated with CEFR for languages (A1, A2, B1, B2, C1 and C2).
+ * Badges for teachers
 
-* Badges for teachers
+ Show your level of expertise for the language you teach (T1, T2, T3, T4, T5 and T6).
 
-  Show your level of expertise for the language you teach (T1, T2, T3, T4, T5 and T6).
+ * All of the languages
 
-* All of the languages
+ In all of the 7.306 languages, if we are missing one, let us to know.
 
-  In all of the 7.306 languages, if we are missing one, let us to know.
 
 ## Complements
 

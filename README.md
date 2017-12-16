@@ -17,10 +17,10 @@ Open-Badge-Framework extends this possibility by giving the proof that your cert
 
 ## Frequently Asked Questions
 
-* [Badges4Languages](badges-for-languages.md)
-* [General documentation](documentation-general.md)
-* [Technical documentation](documentation-technical.md)
-* [The folder structure](folder-structure.md)
+* [Badges4Languages](doc/badges-for-languages.md)
+* [General documentation](doc/documentation-general.md)
+* [Technical documentation](doc/documentation-technical.md)
+* [The folder structure](doc/folder-structure.md)
 
 ## Requirements
 
@@ -66,7 +66,19 @@ You can see all of the screenshots of the plugin [here](doc/screenshot.md "scree
 
 ### 1.0
 
-Completely overhauled design, from top to bottom. The plugin has been completely rewritten.
+Completely overhauled design, from top to bottom. The plugin has been completely rewritten. Version 1.0 just basic functionalities.
+* Aceptation badge email
+* Automatic registration to new students by receiving an aceptation badge email.
+* OpenBadges API integration with Backpack integration from the aceptation badge email.
+* Users profile save badges, classes and rating logs.
+* Different Roles: Student, Teacher and Academy.
+* Update of information not allow to users.
+* Unlimited creation of badges.
+* Badges for Teachers or Students.
+* Certified badges just available for Academy role teachers.
+* Taxonomy for the badges: Fiels of education and level.
+* Send badges to Self, Single student or Multiple students.
+* Settings pages
 
 ### Older Changelog
 
