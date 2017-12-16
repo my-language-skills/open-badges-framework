@@ -1,4 +1,4 @@
-# OpenBadgesFramework
+# OpenBadgesFramework General Documentation
 
 Badges for Languages is a on-line certification issuer with OpenBadges technology. Badges for Languages issue non official certifications for all the languages that exist for the C.E.F.R for Languages levels, and certifications for the level of the teachers.
 
