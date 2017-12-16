@@ -324,4 +324,4 @@ OpenBadgesFramework-Languages-Portfolio allow to create a portfolio for teacher 
 
 Once activated, the portfolio will use the OpenBadges API for delivery of specific type of badges. Also the portfolio is used for the comprobation of the level of the teachers.
 
-Back to [Readme](../documentation.technical.md).
+Back to [Readme](../README.md).
