@@ -67,3 +67,7 @@
 ![settings_links](../readme-assets/settings_links.png "Settings: links")
 
 ![settings_links-get-badge](../readme-assets/settings_links-get-badge.png "Settings: selected page")
+
+
+---
+Back to [Readme](../README.md).

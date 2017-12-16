@@ -62,4 +62,5 @@ Show badges, classes and rating in the profile.
 Receive badges for different levels of the language.
 
 
-Back to [Readme](../documentation.technical.md).
+---
+Back to [Readme](../README.md).

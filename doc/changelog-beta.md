@@ -198,3 +198,7 @@ Badges functionality
 
 ### 0.1
 Starter
+
+
+---
+Back to [Readme](../README.md).

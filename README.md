@@ -17,6 +17,11 @@ Open-Badge-Framework extends this possibility by giving the proof that your cert
 
 ## Frequently Asked Questions
 
+* [Badges4Languages](badges-for-languages.md)
+* [General documentation](documentation-general.md)
+* [Technical documentation](documentation-technical.md)
+* [The folder structure](folder-structure.md)
+
 ## Requirements
 
 Plugin/Template Name works with:
@@ -63,12 +68,18 @@ You can see all of the screenshots of the plugin [here](doc/screenshot.md "scree
 
 Completely overhauled design, from top to bottom. The plugin has been completely rewritten.
 
+### Older Changelog
+
+[Alpha and Beta changelog](doc/changelog-beta.md)
+
 ## Upgrade Notice
 
 ### 1.0 Completely overhauled design, from top to bottom. The plugin has been completely rewritten.
 
 
 ## Credits
+Here's a link to [Alecaddd](http://www.alecaddd.com/) [WordPressPlugin101](https://github.com/Alecaddd/WordPressPlugin101) on [YouTube](https://www.youtube.com/playlist?list=PLriKzYyLb28kR_CPMz8uierDWC2y3znI2)
+
 Here's a link to [Plugin Boilerplate](http://wppb.io/ "Uses the WordPress Plugin Boilerplate")
 
 Here's a link to [WordPress](http://wordpress.org/ "Your favorite software")

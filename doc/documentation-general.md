@@ -188,3 +188,6 @@ With the Issuer API, the user must grant permission every time you attempt to pu
 To manage your interaction with the earner Backpack, the Connect API uses access tokens.
 
  [Using the Backpack Connect API](https://github.com/mozilla/openbadges-backpack/wiki/using-the-backpack-connect-api)
+
+---
+Back to [Readme](../README.md).
