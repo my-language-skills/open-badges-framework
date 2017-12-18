@@ -1,5 +1,5 @@
 # theme structure
-```shell
+```
 Plugins/OpenBadgesFramework/                    # → Plugin root
 ├── assets/                                     # → Resources folder
 │   │── css/                                    # → Css folder

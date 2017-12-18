@@ -20,6 +20,7 @@ Open-Badge-Framework extends this possibility by giving the proof that your cert
 * [Badges4Languages](doc/badges-for-languages.md)
 * [General documentation](doc/documentation-general.md)
 * [Technical documentation](doc/documentation-technical.md)
+* [Integrations](doc/documentation-integrations.md)
 * [The folder structure](doc/folder-structure.md)
 
 ## Requirements
