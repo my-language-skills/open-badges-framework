@@ -118,11 +118,11 @@ A file with the information about the website (just one file each installation):
 issuer-info.json
 ```
 {
-  "name": "Badges4Languages",
-  "url": "http://badges4languages.com",
+  "name": "Site Name",
+  "url": "http://site-name.com.com",
   "description": "Issue and Earn Badges.",
-  "image": "http://badges4languages.com/wp-content/uploads/2017/08/badges_for_Languages-badge.png",
-  "email": "webmaster@Badges4Languages.com"
+  "image": "http://site-name.com/wp-content/uploads/2017/05/badge-image.png",
+  "email": "webmaster@site-name.com.com"
 }
 ```
 One Json file is the technical information about the badges
@@ -130,12 +130,12 @@ One Json file is the technical information about the badges
 Example fo file name: badge-cc8197a1a66bd28d240934e16a895183f7a59e2285eb5e8b408ebba515ff
 ```
 {
-  "name": "A1 Valencian",
-  "description": "FIELD: Valencian  \u2013  LEVEL: A1  \u2013  DESCRIPTION: Can understand and use familiar everyday expressions and very basic phrases aimed at the satisfaction of needs of a concrete type.\r\nCan introduce themselves and others and can ask and answer questions about personal details such as where he/she lives, people they know and things they have.\r\nCan interact in a simple way provided the other person talks slowly and clearly and is prepared to help.  \u2013  Additional information: Example of badge.",
-  "image": "http://badges4languages.com/wp-content/uploads/2017/05/Badges4Languages-A1.0.png",
-  "criteria": "http://badges4languages.com/open-badge/a1/",
-  "tags": ["Valencian", "A1"],
-  "issuer": "http://badges4languages.com/wp-content/uploads/open-badges-framework/json/issuer-info.json"
+  "name": "Badge Name",
+  "description": "FIELD: Field of education Name  \u2013  LEVEL: Level Name  \u2013  DESCRIPTION: Can understand and use familiar everyday expressions and very basic phrases aimed at the satisfaction of needs of a concrete type.\r\nCan introduce themselves and others and can ask and answer questions about personal details such as where he/she lives, people they know and things they have.\r\nCan interact in a simple way provided the other person talks slowly and clearly and is prepared to help.  \u2013  Additional information: That is an example of information.",
+  "image": "http://site-name.com/wp-content/uploads/2017/05/badge.png",
+  "criteria": "http://site-name.com/open-badge/badge-name/",
+  "tags": ["Field Of Education Name", "Level Name"],
+  "issuer": "http://site-name.com/wp-content/uploads/open-badges-framework/json/issuer-info.json"
 }
 
 ```
@@ -155,8 +155,8 @@ Example of the file name: cc8197a1a66bd28d240934e16a895183f7a59e2285eb5e8b408ebb
     "url": "http://badges4languages.com/wp-content/uploads/open-badges-framework/json/cc8197a1a66bd28d240934e16a895183f7a59e2285eb5e8b408ebba515ffa5dd.json",
     "type": "hosted"
   },
-  "issuedOn": "2017-12-14",
-  "evidence": ""
+  "issuedOn": "2018-01-01",
+  "evidence": "https://www.uni.edu/student-list.php"
 }
 
 ```
@@ -279,8 +279,8 @@ Change Text and Words
 Open Badges Framework save all the badges information related to teachers and students in a [custom Database Table](https://codex.wordpress.org/Creating_Tables_with_Plugins)
 
 ```
-id  userEmail                     badgeId   fieldId   levelId   classId   teacherId    roleSlug         dateCreation          getDate               getMobDate    json                                                                 info                                  evidence
-1   mylanguageskills@hotmail.com  140       1712      7                    1            administrator   2018-01-01 08:00:00   2017-12-18 09:00:00                 161499a421c21ea585cc025d04f0e3d439d6220451b22c820c62d4478fc6aaf0 	That is an example of information.    https://www.uni.edu/student-list.php
+id  userEmail              badgeId   fieldId   levelId   classId   teacherId    roleSlug         dateCreation          getDate               getMobDate    json                                                                 info                                  evidence
+1   student@student.com  140       1712      7                    1            administrator   2018-01-01 08:00:00   2017-12-18 09:00:00                 161499a421c21ea585cc025d04f0e3d439d6220451b22c820c62d4478fc6aaf0 	That is an example of information.    https://www.uni.edu/student-list.php
 ```
 
 ### userEmail
