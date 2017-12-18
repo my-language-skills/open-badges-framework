@@ -10,10 +10,10 @@ For upgrades, download the las stable version from github, delete from FTP the o
 ### Plugin settings
 #### Change the badges issuer informations
 OpenBadges need some key information for the delivery of the badge. Without that information, the plugin will not work:
-* Site Name (by defaul, take the site name from '''get_bloginfo ('name')''')
-* WebSite URL (by default, take the url from '''get_bloginfo ('url')''')
+* Site Name (by defaul, take the site name from ```get_bloginfo ('name')```)
+* WebSite URL (by default, take the url from ```get_bloginfo ('url')```)
 * Image URL
-* Backpack account (by defaul, take the mail administrator frrom ) '''get_bloginfo ('admin_email')''')
+* Backpack account (by defaul, take the mail administrator frrom ) ```get_bloginfo ('admin_email')```)
 
 ![settings_profile](../readme-assets/settings_profile.png "Settings: profile")
 
@@ -209,7 +209,13 @@ The save information in the profile is:
 * Comment
 
 ## Shortcodes
-The frond-end fuctionality can be use in any page with the shortcode [send_badges]
+The frond-end fuctionality can be use in any page with the shortcode [send_badges].
+
+If we need to show just one of the 3 types of the send badges subpages, we can use the following shortcodes:
+
+* ```[send-badge form="a"]```: for self send of the badge.
+* ```[send-badge form="b"]```: for send the badge to one user at a time.
+* ```[send-badge form="c"]```: for send the badge to multiple users at a time.
 
 
 
@@ -272,8 +278,10 @@ Change Text and Words
 
 Open Badges Framework save all the badges information related to teachers and students in a [custom Database Table](https://codex.wordpress.org/Creating_Tables_with_Plugins)
 
+```
 userEmail 	badgeId 	fieldId 	levelId 	classId 	teacherId 	roleSlug 	dateCreation 	getDate 	getMobDate 	json 	info 	evidence
 1 	mylanguageskills@hotmail.com 	140 	1712 	7 		1 	administrator 	2017-12-18 08:28:57 			161499a421c21ea585cc025d04f0e3d439d6220451b22c820c62d4478fc6aaf0 	1234567890\'
+```
 
 ### userEmail
 The Earn user email
