@@ -10,7 +10,7 @@ use templates\SettingsTemp;
  * Permit to manage the Json files about the badges.
  *
  * @author      Alessandro RICCARDI
- * @since       x.x.x
+ * @since       1.0.0
  *
  * @package     OpenBadgesFramework
  */
@@ -39,7 +39,7 @@ class JsonManagement extends BaseController {
      * }
      *
      * @author   Alessandro RICCARDI
-     * @since    x.x.x
+     * @since    1.0.0
      */
     public function __construct(array $badgeInfo) {
         parent::__construct();
@@ -50,7 +50,7 @@ class JsonManagement extends BaseController {
      * Creation of the json file.
      *
      * @author   Alessandro RICCARDI
-     * @since    x.x.x
+     * @since    1.0.0
      *
      * @param   string $receiver the email address of the person that is getting the badge.
      *
@@ -80,7 +80,7 @@ class JsonManagement extends BaseController {
      * Creation of the other json file where are stored the information about the badge.
      *
      * @author   Alessandro RICCARDI
-     * @since    x.x.x
+     * @since    1.0.0
      */
     private function createBadgeInfo($hashName) {
         $hashFile = "badge-" . $hashName . ".json";
@@ -114,7 +114,7 @@ class JsonManagement extends BaseController {
      * instance of SettingApi and execute the final "register()" function!
      *
      * @author   Alessandro RICCARDI
-     * @since    x.x.x
+     * @since    1.0.0
      */
     private function createIssuerInfo() {
         $hashFile = self::ISSUER_INFO_FILE;
@@ -138,7 +138,7 @@ class JsonManagement extends BaseController {
      * instance of SettingApi and execute the final "register()" function!
      *
      * @author   Alessandro RICCARDI
-     * @since    x.x.x
+     * @since    1.0.0
      */
     public static function getJsonObject($jsonName) {
         $baseController = new BaseController();
@@ -157,7 +157,7 @@ class JsonManagement extends BaseController {
      * instance of SettingApi and execute the final "register()" function!
      *
      * @author   Alessandro RICCARDI
-     * @since    x.x.x
+     * @since    1.0.0
      */
     public static function getJsonUrl($jsonName) {
         $baseController = new BaseController();

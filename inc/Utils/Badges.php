@@ -10,7 +10,7 @@ use Inc\Pages\Admin;
  * Contain all the function for the management of the badges.
  *
  * @author      Alessandro RICCARDI
- * @since       x.x.x
+ * @since       1.0.0
  *
  * @package     OpenBadgesFramework
  */
@@ -30,7 +30,7 @@ class Badges{
      * and level and get the right badges that we want.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @param string $fieldId the id of the field
      * @param string $levelId the id of the level
@@ -66,11 +66,11 @@ class Badges{
                     // Get the term array of the @param $fieldId
                     $selectedField = get_term($fieldId, Admin::TAX_FIELDS);
 
-                    // In case the @param $fieldId match with one of the badges.
+                    // In case the $fieldId match with one of the badges.
                     if ($badgeField->term_id == $selectedField->term_id) {
                         $fieldOK = 1;
 
-                        // In case the parent of the @param $fieldId match with one of the badges.
+                        // In case the parent of the $fieldId match with one of the badges.
                     } else if ($badgeField->term_id == $selectedField->parent) {
                         $fieldOK = 1;
                     }
@@ -87,7 +87,7 @@ class Badges{
                 // $retBadges array.
                 if ((!$badgeFields || $fieldOK) && $badgeLevel->term_id == $levelId && !in_array($badge, $retBadges)) {
                     $badgeCert = get_post_meta($badge->ID, '_certification', true);
-                    if ($badgeCert == "certified" && User::checkTheRules("administrator", "academy", "editor")) {
+                    if ($badgeCert == "certified" && User::checkTheRules("administrator", "academy")) {
                         $retBadges[] = $badge;
                     } elseif ($badgeCert != "certified") {
                         $retBadges[] = $badge;
@@ -103,7 +103,7 @@ class Badges{
      * This function permit to get a specific badge.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @param int $id the id of the badge
      *
@@ -117,7 +117,7 @@ class Badges{
      * This function permit to get the thumbnail image url of a badge.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @param int $id the id of the badge
      *

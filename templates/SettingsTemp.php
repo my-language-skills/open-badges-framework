@@ -13,7 +13,7 @@ namespace templates;
  * it can be fix watching this tutorial: https://www.youtube.com/watch?v=QYt5Ry3os88
  *
  * @author      Alessandro RICCARDI
- * @since       x.x.x
+ * @since       1.0.0
  *
  * @package     OpenBadgesFramework
  */
@@ -39,7 +39,7 @@ final class SettingsTemp {
 
     const FI_ADD_CLASS = 'add_class_page';
     const FI_BECAME_PREMIUM = 'became_premium_page';
-    const FI_GET_BADGE = 'get_badge_page';
+    const FI_GET_BADGE = 'get-badge-page';
 
     private $options;
 
@@ -49,7 +49,7 @@ final class SettingsTemp {
      * settings.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      */
     public function __construct() {
         add_action('admin_init', array($this, 'pageInit'));
@@ -61,7 +61,7 @@ final class SettingsTemp {
      * Class.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      */
     public static function init() {
         $options = get_option(self::OPTION_NAME);
@@ -103,7 +103,7 @@ final class SettingsTemp {
             self::FI_TELEPHONE_FIELD => $fiTel ? $fiTel : '',
             self::FI_DESCRIPTION_FIELD => $fiDesc ? $fiDesc : '',
             self::FI_IMAGE_URL_FIELD => $fiImageUrl ? $fiImageUrl : '',
-            self::FI_EMAIL_FIELD => $fiEmail ? $fiEmail : '',
+            self::FI_EMAIL_FIELD => $fiEmail ? $fiEmail : get_bloginfo('admin_email'),
             self::FI_ADD_CLASS => $fiClass ? $fiClass : '',
             self::FI_BECAME_PREMIUM => $fiPremium ? $fiPremium : '',
             self::FI_GET_BADGE => $fiBadge ? $fiBadge : '',
@@ -117,7 +117,7 @@ final class SettingsTemp {
      * the beginning.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      */
     public function main() {
         // Set class property
@@ -162,7 +162,7 @@ final class SettingsTemp {
      * Initializing of all the settings information
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      */
     public function pageInit() {
         register_setting(
@@ -273,7 +273,7 @@ final class SettingsTemp {
      * Sanitize each setting field as needed.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @param array $input Contains all settings fields as array keys.
      *
@@ -305,7 +305,8 @@ final class SettingsTemp {
             $new_input[self::FI_DESCRIPTION_FIELD] = sanitize_text_field($input[self::FI_DESCRIPTION_FIELD]);
 
         if (isset($input[self::FI_EMAIL_FIELD]))
-            $new_input[self::FI_EMAIL_FIELD] = sanitize_text_field($input[self::FI_EMAIL_FIELD]);
+            $new_input[self::FI_EMAIL_FIELD] = sanitize_text_field(
+                    $input[self::FI_EMAIL_FIELD] ? $input[self::FI_EMAIL_FIELD] : get_bloginfo('admin_email'));
 
         if (isset($input[self::FI_BECAME_PREMIUM]))
             $new_input[self::FI_BECAME_PREMIUM] = sanitize_text_field($input[self::FI_BECAME_PREMIUM]);
@@ -324,7 +325,7 @@ final class SettingsTemp {
      * Print the Section text.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      */
     public function printSectionInfo() {
         print 'A Profile is a collection of information that describes the entity or organization using Open Badges.';
@@ -334,7 +335,7 @@ final class SettingsTemp {
      * Print the Link text.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      */
     public function printPageLinksInfo() {
         print 'Create and select the page that you will use for these options:';
@@ -344,7 +345,7 @@ final class SettingsTemp {
      * Get the settings option array and print the Site Name value.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      */
     public function siteNameCallback() {
         printf(
@@ -360,7 +361,7 @@ final class SettingsTemp {
      * Get the settings option array and print the url of the image of the website.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      */
     public function imageUrlCallback() {
 
@@ -397,7 +398,7 @@ final class SettingsTemp {
      * Get the settings option array and print the url of the website.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      */
     public function websiteUrlCallback() {
         printf(
@@ -413,7 +414,7 @@ final class SettingsTemp {
      * Get the settings option array and print the telephone of the website.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      */
     public function telephoneCallback() {
         printf(
@@ -429,7 +430,7 @@ final class SettingsTemp {
      * Get the settings option array and print the description of the website.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      */
     public function descriptionCallback() {
         printf(
@@ -445,7 +446,7 @@ final class SettingsTemp {
      * Get the settings option array and print the email of the website.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      */
     public function emailCallback() {
         printf(
@@ -461,7 +462,7 @@ final class SettingsTemp {
      * Get the settings option array and print the become premium page.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      */
     public function becamePremiumPageCallback() {
         $val = isset($this->options[self::FI_BECAME_PREMIUM]) ? esc_attr($this->options[self::FI_BECAME_PREMIUM]) : '';
@@ -479,7 +480,7 @@ final class SettingsTemp {
      * Get the settings option array and print the add class page.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      */
     public function addClassPageCallback() {
         $val = isset($this->options[self::FI_ADD_CLASS]) ? esc_attr($this->options[self::FI_ADD_CLASS]) : '';
@@ -499,7 +500,7 @@ final class SettingsTemp {
      * Get the settings option array and print the get badge page.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      */
     public function getBadgePageCallback() {
         $val = isset($this->options[self::FI_GET_BADGE]) ? esc_attr($this->options[self::FI_GET_BADGE]) : '';
@@ -519,7 +520,7 @@ final class SettingsTemp {
      * Create a link from an id of a page.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @param int $idPage id of the page.
      *
@@ -527,7 +528,7 @@ final class SettingsTemp {
      */
     public function showPreviewLink($idPage) {
         $value = $idPage ?
-            "<a href='" . get_page_link($idPage) . "' target='_blank' style='margin-left:3em;'>Preview</a>" : '';
+            "<a href='" . get_page_link($idPage) . "?preview=1' target='_blank' style='margin-left:3em;'>Preview</a>" : '';
         return $value;
 
     }
@@ -537,7 +538,7 @@ final class SettingsTemp {
      * inside the information of the setting page
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @param const $field_option a constant of this class that
      *                            refer to a field in setting page
@@ -548,5 +549,4 @@ final class SettingsTemp {
         $options = get_option(SettingsTemp::OPTION_NAME);
         return $options[$field_option] ? $options[$field_option] : null;
     }
-
 }

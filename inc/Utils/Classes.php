@@ -9,7 +9,7 @@ use Inc\Pages\Admin;
  * That class permit to mange the classes from the c.p.t "job_listing".
  *
  * @author      Alessandro RICCARDI
- * @since       x.x.x
+ * @since       1.0.0
  *
  * @package     OpenBadgesFramework
  */
@@ -20,7 +20,7 @@ class Classes {
      * have subcategory (children) or not.
      *
      * @author Alessandro RICCARDI
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @param string $field the id of the field
      *

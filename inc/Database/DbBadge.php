@@ -7,7 +7,7 @@ namespace Inc\Database;
  * the badges that are sent.
  *
  * @author      Alessandro RICCARDI
- * @since       x.x.x
+ * @since       1.0.0
  *
  * @package     OpenBadgesFramework
  */
@@ -15,6 +15,7 @@ class DbBadge extends DbModel {
     const ER_DONT_EXIST = "The badge don't exist.\n";
     const ER_DUPLICATE = "The badge is duplicate.\n";
     const ER_WRONG_FIELDS = "Wrong fields passed in the array.\n";
+    const ER_ERROR = "There's an error in the database.\n";
     // database name
     static $tableName = 'obf_badge';
 
@@ -23,7 +24,7 @@ class DbBadge extends DbModel {
      * permit to create the database.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      */
     public function register() {
         global $wpdb;
@@ -60,15 +61,15 @@ class DbBadge extends DbModel {
      * Get a badge by the ids.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @param array $data {
      *                    Array of information about a specific badge.
      *
-     * @type string        userEmail        Text.
-     * @type string        badgeId          Text.
-     * @type string        fieldId          Text.
-     * @type string        levelId          Text.
+     * @type string        userEmail        Email.
+     * @type string        badgeId          Badge Id.
+     * @type string        fieldId          Field Id.
+     * @type string        levelId          Level Id.
      *
      * @return the badge | false, if don't exist. | @const ER_WRONG_FIELDS if there are wrong field
      */
@@ -91,9 +92,9 @@ class DbBadge extends DbModel {
      * Get all the badge.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      *
-     * @return array of badges
+     * @return get function from the parent class
      */
     public static function getAll() {
         return parent::get();
@@ -103,7 +104,7 @@ class DbBadge extends DbModel {
      * Get all the badge.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @return array of badges
      */
@@ -116,21 +117,21 @@ class DbBadge extends DbModel {
      * Insert a badge.
      *
      * @author        Alessandro RICCARDI
-     * @since         x.x.x
+     * @since         1.0.0
      *
      * @param array $data {
      *                    Array of information about a specific badge.
      *
-     * @type string        userEmail        Text.
-     * @type string        badgeId          Text.
-     * @type string        fieldId          Text.
-     * @type string        levelId          Text.
-     * @type string        classId          Text.
-     * @type string        teacherId        Text.
-     * @type string        roleSlug         Text.
-     * @type string        dateCreation     Text.
-     * @type string        json             Text.
-     * @type string        info             Text.
+     * @type string        userEmail        Email.
+     * @type string        badgeId          Badge Id.
+     * @type string        fieldId          Field Id.
+     * @type string        levelId          Level Id.
+     * @type string        classId          Class Id.
+     * @type string        teacherId        Teacher Id.
+     * @type string        roleSlug         Role of the teacher.
+     * @type string        dateCreation     Date of the creation of the badge.
+     * @type string        json             Json file name.
+     * @type string        info             Information wrote from the teacher.
      * }
      *
      * @return true | @const ER_DUPLICATE duplicate row | false, if errors.
@@ -172,22 +173,23 @@ class DbBadge extends DbModel {
      * Update a badge.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @param array $data  {
      *                     Data that we want to update.
-     * example:
+     *                     example:
+     *
      * @type string        getDate        Time.
      *                     }
      *
-     * @param array $where  {
+     * @param array $where {
      *                     Array of information about a specific badge.
      *
-     * @type string        userEmail        Text.
-     * @type string        badgeId          Text.
-     * @type string        fieldId          Text.
-     * @type string        levelId          Text.
-     *                     }
+     * @type string        userEmail        Email.
+     * @type string        badgeId          Badge Id.
+     * @type string        fieldId          Field Id.
+     * @type string        levelId          Level Id.
+     * }
      *
      * @param array $where , the field that you want to update
      *
@@ -213,15 +215,15 @@ class DbBadge extends DbModel {
      * Delete a badge.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @param array $data {
      *                    Array of information about a specific badge.
      *
-     * @type string        userEmail        Text.
-     * @type string        badgeId          Text.
-     * @type string        fieldId          Text.
-     * @type string        levelId          Text.
+     * @type string        userEmail        Email.
+     * @type string        badgeId          Badge Id.
+     * @type string        fieldId          Field Id.
+     * @type string        levelId          Level Id.
      *
      * @return true | false, if errors.
      */
@@ -244,7 +246,7 @@ class DbBadge extends DbModel {
      * that are inside the array $rightKeys.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @param array $rightKeys
      * @param array $data
@@ -272,15 +274,15 @@ class DbBadge extends DbModel {
      * Permit to understand if the badge is got.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @param array $data {
      *                    Array of information about a specific badge.
      *
-     * @type string        userEmail        Text.
-     * @type string        badgeId          Text.
-     * @type string        fieldId          Text.
-     * @type string        levelId          Text.
+     * @type string        userEmail        Email.
+     * @type string        badgeId          Badge Id.
+     * @type string        fieldId          Field Id.
+     * @type string        levelId          Level Id.
      * }
      *
      * @return the badge | false, if don't exist. | @const ER_DONT_EXIST if the badge doesn't exist |
@@ -311,15 +313,16 @@ class DbBadge extends DbModel {
      * Permit to understand if the badge is got in the Mozilla Open Badge.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @param array $data {
      *                    Array of information about a specific badge.
      *
-     * @type string        userEmail        Text.
-     * @type string        badgeId          Text.
-     * @type string        fieldId          Text.
-     * @type string        levelId          Text.
+     * @type string        userEmail        Email.
+     * @type string        badgeId          Badge Id.
+     * @type string        fieldId          Field Id.
+     * @type string        levelId          Level Id.
+     * }
      *
      * @return the badge | false, if don't exist. | @const ER_DONT_EXIST if the badge doesn't exist |
      *         ER_WRONG_FIELDS if there are wrong field
@@ -345,4 +348,69 @@ class DbBadge extends DbModel {
         }
     }
 
+    /**
+     * Permit to understand if the badge is got in the Mozilla Open Badge.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       1.0.0
+     *
+     * @param array $where information about the badge that we want to update.
+     * @param bool  $mob true if I want to set the badge for MOB and for the current site as "taken";
+     *                  false if we want to set as "taken" only for the current website.
+     *
+     * @return true if everything is ok;
+     *         ER_DONT_EXIST if the row doesn't exist;
+     *         ER_ERROR if there's other kind of error.
+     */
+    public static function setBadgeGot($where, $mob = false) {
+        //
+        $data = $mob === 'true' ?
+            array(
+                'getDate' => self::now(),
+                'getMobDate' => self::now()
+            )
+            :
+            array(
+                'getDate' => self::now(),
+            );
+
+        if ($res = self::update($data, $where)) {
+            return true;
+        } else if ($res == self::ER_DONT_EXIST) {
+            return self::ER_DONT_EXIST;
+        } else if (!$res) {
+            return self::ER_ERROR;
+        }
+    }
+
+    /**
+     * Permit retrieve the number of badges got in the past.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       1.0.0
+     *
+     * @return return the number of badges that are got
+     */
+    public static function getNumGot(){
+        global $wpdb;
+        $query = "SELECT COUNT(*) AS num FROM " . self::getTableName() . " WHERE getDate IS NOT NULL";
+
+        return $wpdb->get_results($query)[0]->num;
+    }
+
+    /**
+     * Permit retrieve the number of badges got as a Mozilla
+     * Open Badge in the past.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       1.0.0
+     *
+     * @return return the number of badges that are got.
+     */
+    public static function getNumGotMob(){
+        global $wpdb;
+        $query = "SELECT COUNT(*) AS num FROM " . self::getTableName() . " WHERE getMobDate IS NOT NULL";
+
+        return $wpdb->get_results($query)[0]->num;
+    }
 }

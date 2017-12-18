@@ -9,7 +9,7 @@ use Inc\Pages\Admin;
  * all the $pages that we want to create
  *
  * @author     Alessandro RICCARDI
- * @since      x.x.x
+ * @since      1.0.0
  *
  * @package     OpenBadgesFramework
  */
@@ -27,7 +27,7 @@ class SettingApi {
      * menu options to the admin panel's menu structure.
      *
      * @author Alessandro RICCARDI
-     * @since  x.x.x
+     * @since  1.0.0
      */
     public function register() {
         /* PAGES */
@@ -55,7 +55,7 @@ class SettingApi {
      * then is possible to call the class register().
      *
      * @author Alessandro RICCARDI
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @param array $pages Array content the menus
      *
@@ -103,7 +103,7 @@ class SettingApi {
      * the class.
      *
      * @author Alessandro RICCARDI
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @param array $pages Array of pages
      *
@@ -120,7 +120,7 @@ class SettingApi {
      * of the class.
      *
      * @author Alessandro RICCARDI
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @param array $cpts Array of custom post type
      *
@@ -137,7 +137,7 @@ class SettingApi {
      * the class.
      *
      * @author Alessandro RICCARDI
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @param array $taxonomies Array of taxonomies
      *
@@ -154,7 +154,7 @@ class SettingApi {
      * the class.
      *
      * @author Alessandro RICCARDI
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @param array $metaboxes Array of metaboxes
      *
@@ -177,7 +177,7 @@ class SettingApi {
      * "add_menu_page" function all the menus
      *
      * @author Alessandro RICCARDI
-     * @since  x.x.x
+     * @since  1.0.0
      */
     public function addAdminMenu() {
         foreach ($this->admin_pages as $page) {
@@ -197,7 +197,7 @@ class SettingApi {
      * post type and taxonomy
      *
      * @author Alessandro RICCARDI
-     * @since  x.x.x
+     * @since  1.0.0
      */
     public function addInit() {
         foreach ($this->cpts as $cpt) {
@@ -214,7 +214,7 @@ class SettingApi {
      * "add_meta_box" function all the menus
      *
      * @author Alessandro RICCARDI
-     * @since  x.x.x
+     * @since  1.0.0
      */
     public function addMetaBoxes() {
         foreach ($this->metaboxes as $metabox) {
@@ -237,7 +237,7 @@ class SettingApi {
      * function of the class that refer in the param $this->frontEndPages.
      *
      * @author Alessandro RICCARDI
-     * @since  x.x.x
+     * @since  1.0.0
      */
     public function addFrontEndPages() {
         foreach ($this->frontEndPages as $frontEndPage) {
@@ -257,7 +257,7 @@ class SettingApi {
      * Initialize the class
      *
      * @author Alessandro RICCARDI
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @param class $class class form services array
      *
@@ -272,7 +272,7 @@ class SettingApi {
      * for each post type and taxonomy.
      *
      * @author Alessandro RICCARDI
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @param $parent_file Of the plugin
      *

@@ -3,7 +3,7 @@
  *
  *
  * @author      Alessandro RICCARDI
- * @since       x.x.x
+ * @since       1.0.0
  *
  */
 
@@ -16,7 +16,7 @@ namespace inc\Utils;
  * in the future and to increase functionality.
  *
  * @author      Alessandro RICCARDI
- * @since       x.x.x
+ * @since       1.0.0
  *
  * @package     OpenBadgesFramework
  */
@@ -26,7 +26,7 @@ class Statistics {
      * This function permit to retrieve the number c.p.t. or taxonomy.
      *
      * @author Nicolas TORION
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @param const $slug name of the c.p.t. or taxonomy
      *
@@ -44,5 +44,7 @@ class Statistics {
             return 0;
         }
     }
+
+
 
 }

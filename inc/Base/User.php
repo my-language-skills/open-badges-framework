@@ -8,7 +8,7 @@ use Inc\Pages\Admin;
  * The User Class for the management of the users.
  *
  * @author      Alessandro RICCARDI
- * @since       x.x.x
+ * @since       1.0.0
  *
  * @package     OpenBadgesFramework
  */
@@ -17,7 +17,7 @@ class User {
     const TEACHER_ROLE = "teacher";
     const ACADEMY_ROLE = "academy";
 
-    const RET_LOGIN_SUCCESS = 0;
+    const RET_SUCCESS = 0;
     const RET_NO_MATCH_PASS = "The <strong>passwords</strong> doesn't match, please write correctly. <br>";
     const RET_USER_EXIST = "The <strong>username</strong> already exist, please chose another.";
     const RET_REGISTRATION_ERROR = "<strong>Registration error<strong>, please ask to the help desk";
@@ -54,7 +54,7 @@ class User {
      * registration of user.
      *
      * @author Alessandro RICCARDI
-     * @since  x.x.x
+     * @since  1.0.0
      */
     public function register() {
         $this->initialize();
@@ -65,7 +65,7 @@ class User {
      * Register all the roles that we need for the plugin.
      *
      * @author Alessandro RICCARDI
-     * @since  x.x.x
+     * @since  1.0.0
      */
     private function initialize() {
         foreach ($this->listRoles as $role) {
@@ -85,7 +85,7 @@ class User {
      * of user.
      *
      * @author Alessandro RICCARDI
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @param int $user_id id of the user
      */
@@ -111,7 +111,7 @@ class User {
      * Get the current user that is logged in.
      *
      * @author Alessandro RICCARDI
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @return the user
      */
@@ -143,5 +143,87 @@ class User {
             }
         }
         return $res;
+    }
+
+    /**
+     * Get a badge by the ids.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       1.0.0
+     *
+     * @param array $user {
+     *                    Array with the information about the new user.
+     *
+     * @type string        userEmail        Email.
+     * @type string        user_name        Username.
+     * @type string        user_pass        Password.
+     * @type string        user_rep_pass    Repeated Password.
+     * @type string        first_name       First Name.
+     * @type string        last_name        Last Name.
+     * }
+     *
+     * @return Const error.
+     */
+    public static function registerUser($user){
+        // Check if the passwords are the same
+        if ($user['user_pass'] !== $user['user_rep_pass']) {
+            return User::RET_NO_MATCH_PASS;
+        }
+
+        // Check if there are users with the same name and email
+        if (username_exists($user['user_name']) || email_exists($user['user_email'])) {
+            // User already exist
+            return User::RET_USER_EXIST;
+        } else {
+            // 1 !¡ CREATION of the user
+            $user_id = wp_create_user($user['user_name'], $user['user_pass'], $user['user_email']);
+
+            if (is_wp_error($user_id)) {
+                // Error creation
+                return User::RET_REGISTRATION_ERROR;
+            } else {
+                // 2 !¡ UPDATING of the first name, last name and role.
+                $update = wp_update_user(
+                    array(
+                        'ID' => $user_id,
+                        'first_name' => $user['first_name'],
+                        'last_name' => $user['last_name'],
+                        'role' => User::STUDENT_ROLE,
+                    ));
+
+                if (is_wp_error($update)) {
+                    // Error updating
+                    return User::RET_REGISTRATION_ERROR;
+                } else {
+                    return self::RET_SUCCESS;
+                }
+            }
+        }
+    }
+
+    /**
+     * @param array $user {
+     *                    Array with the information about the new user.
+     *
+     * @type string        userEmail        Email.
+     * @type string        user_pass        Password.
+     * }
+     *
+     * @return int|string
+     */
+    public function loginUser($user){
+        // 3 !¡ SING-ON of the user
+        $login = wp_signon(array(
+            'user_login' => $user['user_email'],
+            'user_password' => $user['user_pass'],
+        ), false);
+
+        if (is_wp_error($login)) {
+            // Error sing-on
+            return User::RET_REGISTRATION_ERROR;
+        } else {
+            // !¡!¡!¡ SUCCESS !¡!¡!¡
+            return User::RET_SUCCESS;
+        }
     }
 }

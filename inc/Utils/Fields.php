@@ -5,11 +5,10 @@ namespace inc\Utils;
 use Inc\Pages\Admin;
 
 /**
- * That class permit to mange the fields from the taxonomies
- * "fields_obf_tax".
+ * That class permit to mange the Fields taxonomies.
  *
  * @author      Alessandro RICCARDI
- * @since       x.x.x
+ * @since       1.0.0
  *
  * @package     OpenBadgesFramework
  */
@@ -22,7 +21,7 @@ class Fields {
      * also the sub field if they exist.
      *
      * @author   Alessandro RICCARDI
-     * @since    x.x.x
+     * @since    1.0.0
      */
     public function __construct() {
 
@@ -54,7 +53,7 @@ class Fields {
      * also the sub field if they exist.
      *
      * @author   Alessandro RICCARDI
-     * @since    x.x.x
+     * @since    1.0.0
      *
      * @return array|int|\WP_Error
      */
@@ -89,7 +88,7 @@ class Fields {
      * have subcategory (children) or not.
      *
      * @author Alessandro RICCARDI
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @return bool     True if have children,
      *                  False if don't have children

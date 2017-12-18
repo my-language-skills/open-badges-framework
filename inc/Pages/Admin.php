@@ -17,7 +17,7 @@ use Templates\SettingsTemp;
  * to the SettingApi class that will then create them.
  *
  * @author     Alessandro RICCARDI
- * @since      x.x.x
+ * @since      1.0.0
  *
  * @package    OpenBadgesFramework
  */
@@ -35,13 +35,13 @@ class Admin extends BaseController {
     const PAGE_SETTINGS = 'settings_obf';
 
     // Old names, changed because of the compatibility with the last version.
-    //    const POST_TYPE_BADGES = "badges_obf_cpt";
+    //    const POST_TYPE_BADGES = "obf_badges_cpt";
     //    const POST_TYPE_CLASS_JL = "job_listing";
-    //    const TAX_FIELDS = "fields_obf_tax";
-    //    const TAX_LEVELS = "levels_obf_tax";
-    //    const MTB_CERT = "certification_obf_mtb";
-    //    const MTB_TARGET = "type_obf_mtb";
-    //    const MTB_LBADGE = "lbadge_obf_mtb";
+    //    const TAX_FIELDS = "obf_fields_tax";
+    //    const TAX_LEVELS = "obf_levels_tax";
+    //    const MTB_CERT = "obf_certification_mtb";
+    //    const MTB_TARGET = "obf_type_mtb";
+    //    const MTB_LBADGE = "obf_lbadge_mtb";
 
     private $settings;
     private $pages;
@@ -52,7 +52,7 @@ class Admin extends BaseController {
      * of SettingApi and execute the final "register()" function.
      *
      * @author   Alessandro RICCARDI
-     * @since    x.x.x
+     * @since    1.0.0
      */
     function register() {
         $this->settings = new SettingApi();
@@ -72,7 +72,7 @@ class Admin extends BaseController {
      * This function permit store in a variable the principal page.
      *
      * @author   Alessandro RICCARDI
-     * @since    x.x.x
+     * @since    1.0.0
      */
     public function setPages() {
         $this->pages = array(
@@ -92,7 +92,7 @@ class Admin extends BaseController {
      * This function permit store in an array all the sub-pages.
      *
      * @author   Alessandro RICCARDI
-     * @since    x.x.x
+     * @since    1.0.0
      */
     public function setSubpages() {
         $sendbadgeTemp = new SendBadgeTemp();
@@ -151,7 +151,7 @@ class Admin extends BaseController {
      * This function permit load in the SettingApi the Custom Post Type.
      *
      * @author   Alessandro RICCARDI
-     * @since    x.x.x
+     * @since    1.0.0
      */
     public function setCustomPostTypes() {
         $args = array(
@@ -190,7 +190,7 @@ class Admin extends BaseController {
      * This function permit load in the SettingApi the Taxonomies.
      *
      * @author   Alessandro RICCARDI
-     * @since    x.x.x
+     * @since    1.0.0
      */
     public function setTaxonomies() {
         // ## TAXONOMIES ##
@@ -254,7 +254,7 @@ class Admin extends BaseController {
      * This function permit load in the SettingApi the Metaboxes.
      *
      * @author   Alessandro RICCARDI
-     * @since    x.x.x
+     * @since    1.0.0
      */
     public function setMetaboxes() {
         $metaboxTemp = new Metabox();
@@ -284,10 +284,11 @@ class Admin extends BaseController {
     }
 
     /**
-     * This function permit to load al the front-end page managed from the setting page
+     * This function permit to load al the front-end page
+     * that is set in the setting page.
      *
      * @author   Alessandro RICCARDI
-     * @since    x.x.x
+     * @since    1.0.0
      */
     public function setFrontEndPages() {
         // Get badge page retrieved from the plugin setting

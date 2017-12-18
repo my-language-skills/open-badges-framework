@@ -10,7 +10,7 @@ use Inc\Base\BaseController;
  * Permit to load all the ajax class and they're functions.
  *
  * @author      Alessandro RICCARDI
- * @since       x.x.x
+ * @since       1.0.0
  *
  * @package     OpenBadgesFramework
  */
@@ -21,7 +21,7 @@ class AjaxApi extends BaseController {
      * initialize all the ajax files.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      */
     public function __construct() {
         self::registerServices();
@@ -32,7 +32,7 @@ class AjaxApi extends BaseController {
      * we want to initialize.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @return array of ajax class
      */
@@ -50,7 +50,7 @@ class AjaxApi extends BaseController {
      * it as ajax function.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @return array of ajax class
      */
@@ -69,7 +69,7 @@ class AjaxApi extends BaseController {
      * Initialize the class.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @param class $class class form services array
      *

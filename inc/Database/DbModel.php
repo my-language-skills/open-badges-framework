@@ -8,7 +8,7 @@ namespace Inc\Database;
  * intention to inject the queries.
  *
  * @author      Alessandro RICCARDI
- * @since       x.x.x
+ * @since       1.0.0
  *
  * @package     OpenBadgesFramework
  */
@@ -23,7 +23,7 @@ class DbModel {
      * also the prefix.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @return string the name.
      */
@@ -37,7 +37,7 @@ class DbModel {
      * Creation of the query and injection.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @param string $type of query that we want to inject
      *
@@ -82,7 +82,7 @@ class DbModel {
      * Get a badges.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @param array $data  list of information that will be
      *                     placed after the expression WHERE
@@ -98,7 +98,7 @@ class DbModel {
      * Insert a badge.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @param array $data  list of information that will be
      *                     placed after the expression WHERE
@@ -115,7 +115,7 @@ class DbModel {
      * Update a badge.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @param array $data list of information contain the fields as a key and
      *                    the values as a value that we want to update
@@ -134,7 +134,7 @@ class DbModel {
      * passed throw param.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @param array $data  list of information that will be
      *                     placed after the expression WHERE
@@ -151,7 +151,7 @@ class DbModel {
      * Get the time now.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @return string the name.
      */

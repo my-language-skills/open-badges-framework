@@ -9,6 +9,7 @@ use Inc\Utils\Badges;
 use Inc\Utils\SendBadge;
 use Inc\Utils\Classes;
 use Inc\Base\BaseController;
+use templates\SettingsTemp;
 
 /**
  * This class is a wrap for all the public function that are
@@ -17,7 +18,7 @@ use Inc\Base\BaseController;
  * from the InitAjax Class.
  *
  * @author      Alessandro RICCARDI
- * @since       x.x.x
+ * @since       1.0.0
  *
  * @package     OpenBadgesFramework
  */
@@ -28,7 +29,7 @@ class SendBadgeAjax extends BaseController {
      * selected as a button in the first step.
      *
      * @author Alessandro RICCARDI
-     * @since  x.x.x
+     * @since  1.0.0
      */
     public function ajaxShowFields() {
         $display = new DisplayFunction();
@@ -41,7 +42,7 @@ class SendBadgeAjax extends BaseController {
      * of education.
      *
      * @author Alessandro RICCARDI
-     * @since  x.x.x
+     * @since  1.0.0
      */
     public function ajaxShowLevels() {
         $form = $_POST['form'];
@@ -72,7 +73,7 @@ class SendBadgeAjax extends BaseController {
      * the level of the second step.
      *
      * @author Alessandro RICCARDI
-     * @since  x.x.x
+     * @since  1.0.0
      */
     public function ajaxShowBadges() {
         $badges = new Badges();
@@ -105,7 +106,7 @@ class SendBadgeAjax extends BaseController {
      * Show the description fo the badge.
      *
      * @author Alessandro RICCARDI
-     * @since  x.x.x
+     * @since  1.0.0
      */
     public function ajaxShowDescription() {
         $badges = new Badges();
@@ -121,7 +122,7 @@ class SendBadgeAjax extends BaseController {
      * Show the class of the user.
      *
      * @author Alessandro RICCARDI
-     * @since  x.x.x
+     * @since  1.0.0
      */
     public function ajaxShowClasses() {
         $form = $_POST['form'];
@@ -129,11 +130,27 @@ class SendBadgeAjax extends BaseController {
         $classes = new Classes();
         $ownClasses = $classes->getOwnClass($field);
 
-        echo '<h3 class="title-classes">Own class</h3>';
-        foreach ($ownClasses as $class) {
-            echo "<input id='class-$class->ID-form-$form' value='$class->ID' class='radio-input' name='class_$form' type='radio'>
+        if (count($ownClasses)) {
+            echo '<h3 class="title-classes">Own class</h3>';
+            foreach ($ownClasses as $class) {
+                echo "<input id='class-$class->ID-form-$form' value='$class->ID' class='radio-input' name='class_$form' type='radio'>
               <label for='class-$class->ID-form-$form' class='radio-label'>$class->post_title</label>";
+            }
         }
+
+        echo "<br><br>";
+        if(!User::checkTheRules("academy")) {
+            $addClassPage = get_post(
+                SettingsTemp::getOption(SettingsTemp::FI_ADD_CLASS)
+            );
+            echo "<a href='". get_page_link($addClassPage->ID)."'>Add Class</a>";
+        } else {
+            $becamePremiumPage = get_post(
+                SettingsTemp::getOption(SettingsTemp::FI_BECAME_PREMIUM)
+            );
+            echo "<a href='". get_page_link($becamePremiumPage->ID)."'>Became Premium</a>";
+        }
+
         wp_die();
     }
 
@@ -144,7 +161,7 @@ class SendBadgeAjax extends BaseController {
      * that make start the process.
      *
      * @author Alessandro RICCARDI
-     * @since  x.x.x
+     * @since  1.0.0
      */
     public function ajaxSendBadge() {
         $form = $_POST['form'];

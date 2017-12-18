@@ -6,11 +6,10 @@ use Inc\Pages\Admin;
 use Inc\Base\User;
 
 /**
- * That class permit to mange the levels from the taxonomies
- * "levels_obf_tax".
+ * That class permit to mange the Level taxonomies.
  *
  * @author      Alessandro RICCARDI
- * @since       x.x.x
+ * @since       1.0.0
  *
  * @package     OpenBadgesFramework
  */
@@ -22,7 +21,7 @@ class Levels {
      * in the db.
      *
      * @author   Alessandro RICCARDI
-     * @since    x.x.x
+     * @since    1.0.0
      */
     public function __construct() {
 

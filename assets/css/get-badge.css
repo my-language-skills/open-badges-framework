@@ -64,6 +64,10 @@ input{box-sizing:border-box}
     padding: 2rem;
 }
 
+.btn:focus {
+    background: #808080;
+}
+
 /*
  * Header
  */

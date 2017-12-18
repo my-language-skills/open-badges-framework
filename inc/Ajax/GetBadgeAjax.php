@@ -15,7 +15,7 @@ use Templates\GetBadgeTemp;
  * from the InitAjax Class.
  *
  * @author      Alessandro RICCARDI
- * @since       x.x.x
+ * @since       1.0.0
  *
  * @package     OpenBadgesFramework
  */
@@ -32,7 +32,7 @@ class GetBadgeAjax extends BaseController {
      * login step) or is already logged in (show MOB step).
      *
      * @author Alessandro RICCARDI
-     * @since  x.x.x
+     * @since  1.0.0
      */
     public function ajaxGbShowLogin() {
         $json = $_POST['json'];
@@ -45,24 +45,21 @@ class GetBadgeAjax extends BaseController {
             echo $getBadgeTemp->showMozillaOpenBadges(DbBadge::isGot($data));
         } else if (email_exists($data['userEmail'])) {
             // User registrated but not logged in
-            $jsonFile = JsonManagement::getJsonObject($json);
-            $email = $jsonFile["recipient"]['identity'];
             echo $getBadgeTemp->showTheLoginContent($data['userEmail']);
         } else {
-            // User need to register
+            // User is not registered
             echo $getBadgeTemp->showRegisterPage($data['userEmail']);
         }
 
         wp_die();
     }
 
-
     /**
      * When we trigger the login button this
      * is the public function that is called.
      *
      * @author Alessandro RICCARDI
-     * @since  x.x.x
+     * @since  1.0.0
      */
     public function ajaxGbLogin() {
         $creds = array(
@@ -86,7 +83,7 @@ class GetBadgeAjax extends BaseController {
      * Show the Register step.
      *
      * @author Alessandro RICCARDI
-     * @since  x.x.x
+     * @since  1.0.0
      */
     public function ajaxGbShowRegister() {
         $email = $_POST['user_email'];
@@ -104,67 +101,28 @@ class GetBadgeAjax extends BaseController {
      * have a specific message.
      *
      * @author Alessandro RICCARDI
-     * @since  x.x.x
+     * @since  1.0.0
      *
-     * @return const RET_LOGIN_SUCCESS          registration success.
-     *               RET_NO_MATCH_PASS          the passwords do not match.
-     *               RET_REGISTRATION_ERROR     random message.
+     * @return string RET_LOGIN_SUCCESS          registration success.
+     *                RET_NO_MATCH_PASS          the passwords do not match.
+     *                RET_REGISTRATION_ERROR     random message.
      */
     public function ajaxGbRegistration() {
         $user = array(
-            'user_email' => $_POST['user_email'],
-            'user_name' => $_POST['user_name'],
-            'user_pass' => $_POST['user_pass'],
+            'user_email'    => $_POST['user_email'],
+            'user_name'     => $_POST['user_name'],
+            'user_pass'     => $_POST['user_pass'],
             'user_rep_pass' => $_POST['user_rep_pass'],
-            'first_name' => $_POST['first_name'],
-            'last_name' => $_POST['last_name']
+            'first_name'    => $_POST['first_name'],
+            'last_name'     => $_POST['last_name']
         );
 
-        if ($user['user_pass'] !== $user['user_rep_pass']) {
-            echo User::RET_NO_MATCH_PASS;
+        $regRet = User::registerUser($user);
+        if(!$regRet) {
+            $loginRet = User::loginUser($user);
+            echo $loginRet;
         } else {
-            $usernameRet = username_exists($user['user_name']);
-            $emailRet = email_exists($user['user_email']);
-            if ($usernameRet || $emailRet) {
-                //user exist
-                echo User::RET_USER_EXIST;
-            } else {
-                // 1 -- CREATION of the user
-                $user_id = wp_create_user($user['user_name'], $user['user_pass'], $user['user_email']);
-
-                if (is_wp_error($user_id)) {
-                    // error creation
-                    echo User::RET_REGISTRATION_ERROR;
-                } else {
-                    // 2 -- UPDATING of the first, last name and role.
-                    $update = wp_update_user(
-                        array(
-                            'ID' => $user_id,
-                            'first_name' => $user['first_name'],
-                            'last_name' => $user['last_name'],
-                            'role' => User::STUDENT_ROLE,
-                        ));
-
-                    if (is_wp_error($update)) {
-                        // error updating
-                        echo User::RET_REGISTRATION_ERROR;
-                    } else {
-                        // 3 -- SING-ON of the user
-                        $login = wp_signon(array(
-                            'user_login' => $user['user_email'],
-                            'user_password' => $user['user_pass'],
-                        ), false);
-
-                        if (is_wp_error($login)) {
-                            // error sing-on
-                            echo User::RET_REGISTRATION_ERROR;
-                        } else {
-                            // !¡!¡!¡ SUCCESS !¡!¡!¡
-                            echo User::RET_LOGIN_SUCCESS;
-                        }
-                    }
-                }
-            }
+            echo $regRet;
         }
 
         wp_die();
@@ -174,7 +132,7 @@ class GetBadgeAjax extends BaseController {
      * Show the Mozilla Open Badges step.
      *
      * @author Alessandro RICCARDI
-     * @since  x.x.x
+     * @since  1.0.0
      */
     public function ajaxGbShowMozillaOpenBadges() {
         $data = self::getUserInfoPost();
@@ -186,10 +144,10 @@ class GetBadgeAjax extends BaseController {
     }
 
     /**
-     * .Permit to retrieve the url of the json file.
+     * Permit to retrieve the url of the json file.
      *
      * @author Alessandro RICCARDI
-     * @since  x.x.x
+     * @since  1.0.0
      */
     public function ajaxGbGetJsonUrl() {
         $json = $_POST['json'];
@@ -201,59 +159,30 @@ class GetBadgeAjax extends BaseController {
      * Show the Conclusion step.
      *
      * @author Alessandro RICCARDI
-     * @since  x.x.x
+     * @since  1.0.0
      */
     public function ajaxGbShowConclusion() {
         $mob = $_POST['MOB'];
 
-//        $where = array(
-//            'userEmail' => User::getCurrentUser()->user_email,
-//            'badgeId' => $_POST['badgeId'],
-//            'fieldId' => $_POST['fieldId'],
-//            'levelId' => $_POST['levelId'],
-//        );
-
         $where = self::getUserInfoPost();
+        $res = DbBadge::setBadgeGot($where, $mob);
 
-        if ($mob === 'true') {
-            $data = array(
-                'getDate' => DbBadge::now(),
-                'getMobDate' => DbBadge::now()
-            );
-
-            $res = DbBadge::update($data, $where);
-
-            if ($res == DbBadge::ER_DONT_EXIST) {
-                DbBadge::ER_DONT_EXIST;
-            } else if (!$res) {
-                echo "update problem";
-            }
-
+        if($res) {
+            $getBadgeTemp = GetBadgeTemp::getInstance();
+            echo $getBadgeTemp->showConclusionStep();
         } else {
-            $data = array(
-                'getDate' => DbBadge::now(),
-            );
-
-            $res = DbBadge::update($data, $where);
-
-            if ($res == DbBadge::ER_DONT_EXIST) {
-                DbBadge::ER_DONT_EXIST;
-            } else if (!$res) {
-                echo "update problem";
-            }
+            // Error
+            echo $res;
         }
-
-        $getBadgeTemp = GetBadgeTemp::getInstance();
-        echo $getBadgeTemp->showConclusionStep();
 
         wp_die();
     }
 
     /**
-     * ...
+     * Get param about the user that are passed from ajax.
      *
      * @author Alessandro RICCARDI
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @return array {
      *

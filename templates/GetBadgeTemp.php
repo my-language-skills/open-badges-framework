@@ -16,7 +16,7 @@ use Inc\Utils\Badges;
  * to follow all the step to get a badge.
  *
  * @author      Alessandro RICCARDI
- * @since       x.x.x
+ * @since       1.0.0
  *
  * @package     OpenBadgesFramework
  */
@@ -25,6 +25,7 @@ final class GetBadgeTemp extends BaseController {
     const ERROR_JSON = 1;
     const ERROR_LINK = 2;
     const GOT = 3;
+    const PREVIEW = 4;
 
     private $json = null;
     private $jsonUrl = null;
@@ -46,7 +47,7 @@ final class GetBadgeTemp extends BaseController {
      * the right view.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      */
     public function main() {
 
@@ -59,11 +60,14 @@ final class GetBadgeTemp extends BaseController {
             case self::GOT:
                 $this->showBadgeGot();
                 break;
+            case self::PREVIEW:
+                $this->showMessage(self::PREVIEW);
+                break;
             case self::ERROR_JSON:
-                $this->showError(self::ERROR_JSON);
+                $this->showMessage(self::ERROR_JSON);
                 break;
             case self::ERROR_LINK:
-                $this->showError(self::ERROR_LINK);
+                $this->showMessage(self::ERROR_LINK);
                 break;
 
         }
@@ -75,7 +79,7 @@ final class GetBadgeTemp extends BaseController {
      * information in variables.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @return const    START when we can start with the procedure;
      *                  GOT if is already got the badge;
@@ -113,7 +117,11 @@ final class GetBadgeTemp extends BaseController {
             }
 
         } else {
-            return self::ERROR_LINK;
+            if (isset($_GET['preview']) && $_GET['preview'] == 1) {
+                return self::PREVIEW;
+            } else {
+                return self::ERROR_LINK;
+            }
         }
     }
 
@@ -121,7 +129,7 @@ final class GetBadgeTemp extends BaseController {
      * Show the starting step to get the badge.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      */
     public function getStartingStep() {
         $this->obf_header();
@@ -173,7 +181,7 @@ final class GetBadgeTemp extends BaseController {
      * Show login step.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      */
     public function showTheLoginContent($email) { ?>
 
@@ -221,7 +229,7 @@ final class GetBadgeTemp extends BaseController {
      * Show register page step.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      */
     public function showRegisterPage($email) { ?>
 
@@ -298,7 +306,7 @@ final class GetBadgeTemp extends BaseController {
      * Show Mozilla Open Badge step.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @param $gotPartial true if he got the badge but without certification from Mozilla Open Badge |
      *                    False if he need to take also the partial.
@@ -344,14 +352,13 @@ final class GetBadgeTemp extends BaseController {
                     </div>
                     <?php
                     if (!$gotPartial) {
-                        echo $gotPartial;
                         ?>
-                        <button id="gb-get-standard" class="btn btn-link" type="submit">
+                        <button id="gb-get-standard" class="btn-link" type="submit">
                             or skip the process and get anyway the Badge
                         </button>
                         <?php
                     } else { ?>
-                        <a class="btn btn-link" href="<?php echo get_bloginfo('url'); ?>"
+                        <a class="btn-link" href="<?php echo get_bloginfo('url'); ?>"
                            role="button">or go to the home page</a>
 
                         <?php
@@ -377,7 +384,7 @@ final class GetBadgeTemp extends BaseController {
      * Show Conclusion step.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      */
     public function showConclusionStep() {
         ?>
@@ -421,7 +428,7 @@ final class GetBadgeTemp extends BaseController {
      * Show Badge Got step to inform that you're already took the badge.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      */
     private function showBadgeGot() {
         $this->obf_header()
@@ -476,11 +483,11 @@ final class GetBadgeTemp extends BaseController {
      * Show the error that we discovered in the loadParm() function.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @param const $error contain the kind of error
      */
-    private function showError($error) {
+    private function showMessage($error) {
         $this->obf_header()
         ?>
         <div class="site-wrapper">
@@ -498,7 +505,13 @@ final class GetBadgeTemp extends BaseController {
                     <main role="main" class="inner cover">
                         <div class="container">
                             <?php
-                            if ($error == self::ERROR_JSON) { ?>
+                            if ($error == self::PREVIEW) { ?>
+                                <h1>GET BADGE PAGE PREVIEW</h1>
+                                <p class="lead">
+                                    This page is set as a default page that permit to get the badge.
+                                </p>
+                                <?php
+                            } elseif ($error == self::ERROR_JSON) { ?>
                                 <h1>BADGE ERROR</h1>
                                 <p class="lead">
                                     Your're badge is not anymore stored in our server.
@@ -535,7 +548,7 @@ final class GetBadgeTemp extends BaseController {
      * Contain the header of the page.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      */
     private function obf_header() {
         ?>
@@ -561,7 +574,7 @@ final class GetBadgeTemp extends BaseController {
      * Contain the footer of the page.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      */
     private function obf_footer() { ?>
         </div>
@@ -578,7 +591,7 @@ final class GetBadgeTemp extends BaseController {
      * Contain the info of the website that are show in the top of the page.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      */
     function getInfoHeader() {
         ?>

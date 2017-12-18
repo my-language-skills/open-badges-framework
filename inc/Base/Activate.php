@@ -8,7 +8,7 @@ use Templates\SettingsTemp;
  * the plugin.
  *
  * @author      Alessandro RICCARDI
- * @since       x.x.x
+ * @since       1.0.0
  *
  * @package     OpenBadgesFramework
  */
@@ -19,7 +19,7 @@ class Activate {
      * wen you active the plugin.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      */
     public static function activate() {
         SettingsTemp::init();

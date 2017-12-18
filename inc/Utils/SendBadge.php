@@ -17,7 +17,7 @@ use templates\SettingsTemp;
  * us to send a badge.
  *
  * @author      Alessandro RICCARDI
- * @since       x.x.x
+ * @since       1.0.0
  *
  * @package     OpenBadgesFramework
  */
@@ -41,7 +41,7 @@ class SendBadge extends BaseController {
      * The constructor that initialize all the variable.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @param int    $badgeId   the id of the badge
      * @param int    $fieldId   the id of the field
@@ -85,7 +85,7 @@ class SendBadge extends BaseController {
      * and store all of that information in the database.
      *
      * @author   Alessandro RICCARDI
-     * @since    x.x.x
+     * @since    1.0.0
      *
      * @return const to determinate the status of the process.
      */
@@ -147,7 +147,7 @@ class SendBadge extends BaseController {
      * Function that permit to create the body of the email.
      *
      * @author   Alessandro RICCARDI
-     * @since    x.x.x
+     * @since    1.0.0
      *
      * @param $hash_file name of the hash file
      *

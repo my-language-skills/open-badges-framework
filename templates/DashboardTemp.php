@@ -14,7 +14,7 @@ use inc\Utils\Statistics;
  * markup the admin-facing aspects of the plugin.
  *
  * @author      Alessandro RICCARDI
- * @since       x.x.x
+ * @since       1.0.0
  *
  * @package     OpenBadgesFramework
  */
@@ -24,7 +24,7 @@ final class DashboardTemp extends BaseController {
      * This is the function that is typically loaded at the beginning.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      */
     public static function main() {
         ?>
@@ -57,7 +57,7 @@ final class DashboardTemp extends BaseController {
      * The action tab, loaded as a first tab.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      */
     public static function actionTab() {
         ?>
@@ -151,7 +151,7 @@ final class DashboardTemp extends BaseController {
      * The badges tab.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      */
     public static function badgesTab() {
         $table = DbBadge::getKeys();
@@ -162,6 +162,11 @@ final class DashboardTemp extends BaseController {
                     <h2>Badges list</h2>
                     <p class="lead">
                         In this section we have the possibility to see all the badges that are sent.
+                        <?php
+                        $all = DbBadge::getAll();
+                        $numBadges = count($all);
+                        ?>
+                    <p>SENT: <?php echo $numBadges ?> –  GOT: <?php echo DbBadge::getNumGot();?> – GOT MOB: <?php echo DbBadge::getNumGotMob();?>
                     </p>
                 </div>
                 <div class="content-dash badges-list-dash">
@@ -230,7 +235,7 @@ final class DashboardTemp extends BaseController {
      * The about tab.
      *
      * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     * @since       1.0.0
      */
     public static function aboutTab() {
         ?>

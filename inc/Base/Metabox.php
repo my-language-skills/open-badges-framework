@@ -9,7 +9,7 @@ use Inc\Pages\Admin;
  * the meta-box.
  *
  * @author      Alessandro RICCARDI
- * @since       x.x.x
+ * @since       1.0.0
  *
  * @package     OpenBadgesFramework
  */
@@ -40,7 +40,7 @@ class Metabox {
      * Certification meta-box.
      *
      * @author Alessandro RICCARDI
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @param $post
      */
@@ -61,7 +61,7 @@ class Metabox {
      * Certification meta-box.
      *
      * @author Alessandro RICCARDI
-     * @since  x.x.x
+     * @since  1.0.0
      */
     public static function target($post) {
         $val = get_post_meta($post->ID, '_target', true);
