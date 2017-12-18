@@ -296,15 +296,17 @@ class Admin extends BaseController {
             SettingsTemp::getOption(SettingsTemp::FI_GET_BADGE)
         );
 
-        $args = array(
-            // # GET BADGE PAGE
-            array(
-                'slug' => $getBadgePage->post_name,
-                'class' => GetBadgeTemp::class,
-            ),
-        );
+        if ($getBadgePage) {
+            $args = array(
+                // # GET BADGE PAGE
+                array(
+                    'slug' => $getBadgePage->post_name,
+                    'class' => GetBadgeTemp::class,
+                ),
+            );
 
-        $this->settings->loadFrontEndPages($args);
+            $this->settings->loadFrontEndPages($args);
+        }
     }
 
 
