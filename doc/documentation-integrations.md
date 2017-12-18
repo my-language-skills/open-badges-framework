@@ -64,6 +64,10 @@ Show Your Love for Listings
 
 
 ## Other Integrations
+
+
+### Creation of Classes with [WP Job Manager (free)](https://wordpress.org/plugins/wp-job-manager/)
+
 ### Porfolio Integration
 OpenBadgesFramework-Languages-Portfolio allow to create a portfolio for teacher and students of second languages.
 
