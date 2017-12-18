@@ -1,5 +1,5 @@
 # theme structure
-```shell
+```
 Plugins/OpenBadgesFramework/                    # → Plugin root
 ├── assets/                                     # → Resources folder
 │   │── css/                                    # → Css folder
@@ -19,7 +19,7 @@ Plugins/OpenBadgesFramework/                    # → Plugin root
 │   │   │── get-badge.js                        # → Contain Get Badge page code
 │   │   │── jquery.steps.min.js                 # → Contain Send Badge steps code
 │   │   └── send-badge.js                       # → Contain Send Badge page code
-│   │── inc/                                    # → Plugin core folder 
+│   │── inc/                                    # → Plugin core folder
 │   │   │── Ajax/                               # → Ajax functions folder
 │   │   │   │── GetBadgeAjax.php                # → Ajax class for the Get Badge page
 │   │   │   └── SendBadgeAjax.php               # → Ajax class for the Send Badge page
@@ -42,7 +42,7 @@ Plugins/OpenBadgesFramework/                    # → Plugin root
 │   │   │── Utils/                              # → Utils folder
 │   │   │   │── Badges.php                      # → Contain code for the management of the badges
 │   │   │   │── Classes.php                     # → Contain code for the management of the classes
-│   │   │   │── DisplayFunction.php             # → Class for display something of generic 
+│   │   │   │── DisplayFunction.php             # → Class for display something of generic
 │   │   │   │── Fields.php                      # → Contain code for the management of the fields
 │   │   │   │── Levels.php                      # → Contain code for the management of the levels
 │   │   │   └── JsonManagement.php              # → Contain code for the management of json files
@@ -60,5 +60,9 @@ Plugins/OpenBadgesFramework/                    # → Plugin root
 ├── Readme.txt                                  # → Read-me file .txt
 ├── composer.json                               # → Composer file for the autoloading of the files
 ├── index.php/                                  # → Silly page for wordpress
-├── open-badges-framework.php                   # → First php file called from WordPress 
+├── open-badges-framework.php                   # → First php file called from WordPress
 └── unistall.php                                # → Contain code that's execute at the uninstallation
+```
+
+---
+Back to [Readme](../README.md).

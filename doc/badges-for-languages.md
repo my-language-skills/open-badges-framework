@@ -60,3 +60,7 @@ Show badges and classes in the profile.
 Show badges, classes and rating in the profile.
 * Self badges issue
 Receive badges for different levels of the language.
+
+
+---
+Back to [Readme](../README.md).
