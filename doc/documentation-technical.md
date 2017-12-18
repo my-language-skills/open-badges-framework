@@ -279,7 +279,7 @@ Change Text and Words
 Open Badges Framework save all the badges information related to teachers and students in a [custom Database Table](https://codex.wordpress.org/Creating_Tables_with_Plugins)
 
 ```
-id  userEmail              badgeId   fieldId   levelId   classId   teacherId    roleSlug         dateCreation          getDate               getMobDate    json                                                                 info                                  evidence
+id  userEmail            badgeId   fieldId   levelId   classId   teacherId    roleSlug         dateCreation          getDate               getMobDate    json                                                                 info                                  evidence
 1   student@student.com  140       1712      7                    1            administrator   2018-01-01 08:00:00   2017-12-18 09:00:00                 161499a421c21ea585cc025d04f0e3d439d6220451b22c820c62d4478fc6aaf0 	That is an example of information.    https://www.uni.edu/student-list.php
 ```
 
