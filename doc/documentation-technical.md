@@ -7,21 +7,23 @@
 For upgrades, download the las stable version from github, delete from FTP the old plugin and install the new one.
 
 ## Setup the plugin
+
 ### Plugin settings
+
 #### Change the badges issuer informations
 OpenBadges need some key information for the delivery of the badge. Without that information, the plugin will not work:
-* Site Name
+* Site Name (by defaul, take the site name from ```get_bloginfo ('name')```)
+* WebSite URL (by default, take the url from ```get_bloginfo ('url')```)
 * Image URL
-* WebSite URL
-* Backpack account (mail)
+* Backpack account (by defaul, take the mail administrator frrom ) ```get_bloginfo ('admin_email')```)
 
 ![settings_profile](../readme-assets/settings_profile.png "Settings: profile")
 
 #### Change issuer badges page links
 The users have some shortcuts to make easy the process. Here are the place where the links to those shoutcuts are created:
-* Change the role. From issues badges page to change the role page.
-* Add class. Redirection page to creating a new class page.
-* Get Badge. Redirection page for users after opening the email.
+* Change the role. Teachers can change the role from send badge page.
+* Add class. Shortcut to creating a new Class from send badge page.
+* Get Badge. Redirection page for users after opening the email (by default, OBF will create a page /get-badge-page/ after the first activation).
 
 ![settings_links](../readme-assets/settings_links.png "Settings: links")
 
@@ -64,11 +66,13 @@ The same as Student role plus:
 * The profile can be delete but the Classes information can not ever be deleted.
 
 #### Academy teacher role
+The same as Teacher role plus:
 * Can send a non certified badge to multiple students at a time.
 * Can send a certified badge to one student/multiple students at a time.
 * Can create multiple classes.
 
 #### Administrator role
+The same as Academy role plus:
 * Can send certified teachers badges
 
 ## Creation of the Badges
@@ -98,27 +102,119 @@ OpenBadgesFramework allow to issue badges in 3 ways:
 Administrators have the same functionalities as Academy teacher role plus the issue of certified Teacher badges.
 
 Those are the options before to send a badge:
-* language: the language the student learn.
+* Field of education: the language the student learn.
 * Level: the level of the class.
 * Badge: the badge.
-* Language of Badge description: by defaul the badges are created in english, but translations are available.
-* Class: the student class name (with information such starting date and place).
-* Receivers' mail address: the email of the student/s.
-* Comment: a comment for the profile of the student/s.
+* Description: by defaul badges are in english, but translations are available.
+* Class: the student class name with information such starting date and place (Just Academy teachers role).
+* Mail: the email of the student/s.
+* Information:
+  * Addition information: Some information that will be showed in the description of badge.
+  * Criteria: Url of the work or of the document that the recipient did to earn the badge.
 
 If the student have a badge and a teacher send the same badge again, no updates in the information of the database.
 
-By sending a badge, 3 Json file are created inside of the folder open-badges-framework>Json.
+### Send badges pages
+
+#### Issuer page Self mode
+A student/Teacher/Academy teacher role can receive a badge as Student or Teacher (Non certified).
+
+* Field of education
+* Level
+* Badge
+* Description
+* Information:
+  * Addition information
+  * Criteria
+
+#### Issuer page Issue mode
+A Teacher/Academy teacher role can send a Student Badge (Non-Certified). An Academy teacher role can send a Student Badge (Certified)
+
+* Field of education
+* Level
+* Badge
+* Description
+* Class
+* Mail
+* Information:
+  * Addition information
+  * Criteria
+
+#### Issuer page Multiple issue mode
+An Academy teacher role can send Multiple badges to Multiple students (Certified and Non-Certified).
+
+* Field of education
+* Level
+* Badge
+* Description
+* Class
+* Mail (Multiple)
+* Information:
+  * Addition information
+  * Criteria
+
+### Database
+
+Open Badges Framework save all the badges information related to teachers and students in a [custom Database Table](https://codex.wordpress.org/Creating_Tables_with_Plugins)
+
+```
+id  userEmail            badgeId   fieldId   levelId   classId   teacherId    roleSlug         dateCreation          getDate               getMobDate    json                                                                 info                                  evidence
+1   student@student.com  140       1712      7                    1            administrator   2018-01-01 08:00:00   2017-12-18 09:00:00                 161499a421c21ea585cc025d04f0e3d439d6220451b22c820c62d4478fc6aaf0 	That is an example of information.    https://www.uni.edu/student-list.php
+```
+
+#### userEmail
+The Earn user email
+
+#### badgeId
+The ID of the Badge the student receive
+
+#### fieldId
+The ID of the Field of education of the Badge
+
+#### levelId
+The ID of the Level of the badge
+
+#### classId
+If the Badge is inside of a Class, the Class id
+
+#### teacherId
+The issuer user ID
+
+#### roleSlug
+The role of the issuer
+
+#### dateCreation
+The date of the issue of the badge
+
+#### getDate
+The date of the earn of the badge
+
+#### getMobDate
+If the badge is transfer to Mozilla Backpack
+
+#### json
+The Json file name
+
+#### info
+The information the teacher write about the students
+
+#### evidence
+Is the link to an external url where the teacher can show an evidence of the badge (pdf with a list of notes, a site with students names...).
+
+
+### Json file
+
+By sending a badge, 3 Json file are created inside of the folder open-badges-framework > Json. The Json files remain forever (For now).
 
 A file with the information about the website (just one file each installation):
 issuer-info.json
 ```
 {
-  "name": "Badges4Languages",
-  "url": "http://badges4languages.com",
+  "name": "Site Name",
+  "url": "http://site-name.com.com",
   "description": "Issue and Earn Badges.",
-  "image": "http://badges4languages.com/wp-content/uploads/2017/08/badges_for_Languages-badge.png",
-  "email": "webmaster@Badges4Languages.com"
+  "image": "http://site-name.com/wp-content/uploads/2017/05/badge-image.png",
+  "email": "webmaster@site-name.com.com"
 }
 ```
 One Json file is the technical information about the badges
@@ -126,12 +222,12 @@ One Json file is the technical information about the badges
 Example fo file name: badge-cc8197a1a66bd28d240934e16a895183f7a59e2285eb5e8b408ebba515ff
 ```
 {
-  "name": "A1 Valencian",
-  "description": "FIELD: Valencian  \u2013  LEVEL: A1  \u2013  DESCRIPTION: Can understand and use familiar everyday expressions and very basic phrases aimed at the satisfaction of needs of a concrete type.\r\nCan introduce themselves and others and can ask and answer questions about personal details such as where he/she lives, people they know and things they have.\r\nCan interact in a simple way provided the other person talks slowly and clearly and is prepared to help.  \u2013  Additional information: Example of badge.",
-  "image": "http://badges4languages.com/wp-content/uploads/2017/05/Badges4Languages-A1.0.png",
-  "criteria": "http://badges4languages.com/open-badge/a1/",
-  "tags": ["Valencian", "A1"],
-  "issuer": "http://badges4languages.com/wp-content/uploads/open-badges-framework/json/issuer-info.json"
+  "name": "Badge Name",
+  "description": "FIELD: Field of education Name  \u2013  LEVEL: Level Name  \u2013  DESCRIPTION: Can understand and use familiar everyday expressions and very basic phrases aimed at the satisfaction of needs of a concrete type.\r\nCan introduce themselves and others and can ask and answer questions about personal details such as where he/she lives, people they know and things they have.\r\nCan interact in a simple way provided the other person talks slowly and clearly and is prepared to help.  \u2013  Additional information: That is an example of information.",
+  "image": "http://site-name.com/wp-content/uploads/2018/01/badge.png",
+  "criteria": "http://site-name.com/open-badge/badge-name/",
+  "tags": ["Field Of Education Name", "Level Name"],
+  "issuer": "http://site-name.com/wp-content/uploads/open-badges-framework/json/issuer-info.json"
 }
 
 ```
@@ -151,44 +247,12 @@ Example of the file name: cc8197a1a66bd28d240934e16a895183f7a59e2285eb5e8b408ebb
     "url": "http://badges4languages.com/wp-content/uploads/open-badges-framework/json/cc8197a1a66bd28d240934e16a895183f7a59e2285eb5e8b408ebba515ffa5dd.json",
     "type": "hosted"
   },
-  "issuedOn": "2017-12-14",
-  "evidence": ""
+  "issuedOn": "2018-01-01",
+  "evidence": "https://www.center-name.edu/student-list.php"
 }
 
 ```
 
-### Issuer page Self mode
-A student/Teacher/Academy teacher role can receive a badge as Student or Teacher (Non certified).
-
-* Language
-* Level
-* Badge
-* Language of Badge description
-* Comment
-
-### Issuer page Issue mode
-A Teacher/Academy teacher role can send a Student Badge (Non-Certified). An Academy teacher role can send a Student Badge (Certified)
-
-* Language
-* Level
-* Badge
-* Language of Badge description
-* Class
-* Receiver's mail address
-* Comment
-
-### Issuer page Multiple issue mode
-An Academy teacher role can send Multiple badges to Multiple students (Certified and Non-Certified).
-
-* language
-* Level
-* Badge
-* Language of Badge description
-* Class
-* Receivers' mail address
-* Comment
-
-## Creation of Classes
 
 ## User profile
 All the roles have a profile for tracking the information of the receive badges.
@@ -200,62 +264,40 @@ The save information in the profile is:
 * Comment
 
 ## Shortcodes
-The frond-end fuctionality can be use in any page with the shortcode [send_badges]
+The frond-end fuctionality can be use in any page with the shortcode ```[send_badges]```.
+
+If we need to show just one of the 3 types of the send badges subpages, we can use the following shortcodes:
+
+* ```[send-badge form="a"]```: for self send of the badge.
+* ```[send-badge form="b"]```: for send the badge to one user at a time.
+* ```[send-badge form="c"]```: for send the badge to multiple users at a time.
 
 
 
-Manage Listings and Content Organization
 
-7 articles
-Theme Settings
 
-Modify Settings in Appearance ▸ Customize
-
-30 articles
-Menus
-
-Customize and Output Menus
-
-12 articles
-Pages
-
-Page Templates and Archives
-
-12 articles
-Widget Areas
-
-The What and Where of Widgets
-
-6 articles
-Widgets
-
-Homepage and Listing Widgets
-
-24 articles
 ## Customization
 Appearance
 
 Modify Colors and More
 
-26 articles
 Booking Service Integration
 
 Book Tables, Services, and More
 
-2 articles
 Customization Code Snippets
 
 Collection of Code
 
-46 articles
 Child Themes
 
 Advanced Customization Techniques
 
-4 articles
 Translations
 
 Change Text and Words
+
+
 
 
 

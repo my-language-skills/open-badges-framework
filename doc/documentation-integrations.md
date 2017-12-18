@@ -64,7 +64,46 @@ Show Your Love for Listings
 
 
 ## Other Integrations
+
+
+### Creation of Classes with [WP Job Manager (free)](https://wordpress.org/plugins/wp-job-manager/)
+By activating the plugin, we have an integration that allow to save information in Job Manager CPT, to have reviews and ratings of the teachers' classes.
+
+Each new user have a new post with the user name as name of the post. That is the post 0 where all the inforamtion is save by default. If you are an Academy, you can create new post for different groups and to save the students in the group where it belongs.
+
+Open Badges Framework will show a link to the registration page (if it exist) and to the creation of post page (if exist).
+
 ### Porfolio Integration
 OpenBadgesFramework-Languages-Portfolio allow to create a portfolio for teacher and students of second languages.
 
 Once activated, the portfolio will use the OpenBadges API for delivery of specific type of badges. Also the portfolio is used for the comprobation of the level of the teachers.
+
+
+Manage Listings and Content Organization
+
+7 articles
+Theme Settings
+
+Modify Settings in Appearance ▸ Customize
+
+30 articles
+Menus
+
+Customize and Output Menus
+
+12 articles
+Pages
+
+Page Templates and Archives
+
+12 articles
+Widget Areas
+
+The What and Where of Widgets
+
+6 articles
+Widgets
+
+Homepage and Listing Widgets
+
+24 articles
