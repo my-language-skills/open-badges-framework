@@ -209,7 +209,7 @@ The save information in the profile is:
 * Comment
 
 ## Shortcodes
-The frond-end fuctionality can be use in any page with the shortcode [send_badges].
+The frond-end fuctionality can be use in any page with the shortcode ```[send_badges]```.
 
 If we need to show just one of the 3 types of the send badges subpages, we can use the following shortcodes:
 
@@ -279,8 +279,8 @@ Change Text and Words
 Open Badges Framework save all the badges information related to teachers and students in a [custom Database Table](https://codex.wordpress.org/Creating_Tables_with_Plugins)
 
 ```
-userEmail 	badgeId 	fieldId 	levelId 	classId 	teacherId 	roleSlug 	dateCreation 	getDate 	getMobDate 	json 	info 	evidence
-1 	mylanguageskills@hotmail.com 	140 	1712 	7 		1 	administrator 	2017-12-18 08:28:57 			161499a421c21ea585cc025d04f0e3d439d6220451b22c820c62d4478fc6aaf0 	1234567890\'
+id  userEmail                     badgeId   fieldId   levelId   classId   teacherId    roleSlug         dateCreation          getDate               getMobDate    json                                                                                info    evidence
+1   mylanguageskills@hotmail.com  140       1712      7                    1            administrator   2018-01-01 08:00:00   2017-12-18 09:00:00                 161499a421c21ea585cc025d04f0e3d439d6220451b22c820c62d4478fc6aaf0 	1234567890\'      That is an example of information.    https://www.uni.edu/student-list.php
 ```
 
 ### userEmail
