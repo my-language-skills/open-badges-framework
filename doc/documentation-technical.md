@@ -112,6 +112,98 @@ Those are the options before to send a badge:
 
 If the student have a badge and a teacher send the same badge again, no updates in the information of the database.
 
+### Send badges pages
+
+#### Issuer page Self mode
+A student/Teacher/Academy teacher role can receive a badge as Student or Teacher (Non certified).
+
+* Field of education
+* Level
+* Badge
+* Description
+* Information:
+  * Addition information
+  * Criteria
+
+#### Issuer page Issue mode
+A Teacher/Academy teacher role can send a Student Badge (Non-Certified). An Academy teacher role can send a Student Badge (Certified)
+
+* Field of education
+* Level
+* Badge
+* Description
+* Class
+* Mail
+* Information:
+  * Addition information
+  * Criteria
+
+
+#### Issuer page Multiple issue mode
+An Academy teacher role can send Multiple badges to Multiple students (Certified and Non-Certified).
+
+* Field of education
+* Level
+* Badge
+* Description
+* Class
+* Mail (Multiple)
+* Information:
+  * Addition information
+  * Criteria
+
+
+### Database
+
+Open Badges Framework save all the badges information related to teachers and students in a [custom Database Table](https://codex.wordpress.org/Creating_Tables_with_Plugins)
+
+```
+id  userEmail            badgeId   fieldId   levelId   classId   teacherId    roleSlug         dateCreation          getDate               getMobDate    json                                                                 info                                  evidence
+1   student@student.com  140       1712      7                    1            administrator   2018-01-01 08:00:00   2017-12-18 09:00:00                 161499a421c21ea585cc025d04f0e3d439d6220451b22c820c62d4478fc6aaf0 	That is an example of information.    https://www.uni.edu/student-list.php
+```
+
+#### userEmail
+The Earn user email
+
+#### badgeId
+The ID of the Badge the student receive
+
+#### fieldId
+The ID of the Field of education of the Badge
+
+#### levelId
+The ID of the Level of the badge
+
+#### classId
+If the Badge is inside of a Class, the Class id
+
+#### teacherId
+The issuer user ID
+
+#### roleSlug
+The role of the issuer
+
+#### dateCreation
+The date of the issue of the badge
+
+#### getDate
+The date of the earn of the badge
+
+#### getMobDate
+If the badge is transfer to Mozilla Backpack
+
+#### json
+The Json file name
+
+#### info
+The information the teacher write about the students
+
+#### evidence
+Is the link to an external url where the teacher can show an evidence of the badge (pdf with a list of notes, a site with students names...).
+
+
+### Json file
+
 By sending a badge, 3 Json file are created inside of the folder open-badges-framework > Json.
 
 A file with the information about the website (just one file each installation):
@@ -132,7 +224,7 @@ Example fo file name: badge-cc8197a1a66bd28d240934e16a895183f7a59e2285eb5e8b408e
 {
   "name": "Badge Name",
   "description": "FIELD: Field of education Name  \u2013  LEVEL: Level Name  \u2013  DESCRIPTION: Can understand and use familiar everyday expressions and very basic phrases aimed at the satisfaction of needs of a concrete type.\r\nCan introduce themselves and others and can ask and answer questions about personal details such as where he/she lives, people they know and things they have.\r\nCan interact in a simple way provided the other person talks slowly and clearly and is prepared to help.  \u2013  Additional information: That is an example of information.",
-  "image": "http://site-name.com/wp-content/uploads/2017/05/badge.png",
+  "image": "http://site-name.com/wp-content/uploads/2018/01/badge.png",
   "criteria": "http://site-name.com/open-badge/badge-name/",
   "tags": ["Field Of Education Name", "Level Name"],
   "issuer": "http://site-name.com/wp-content/uploads/open-badges-framework/json/issuer-info.json"
@@ -156,48 +248,11 @@ Example of the file name: cc8197a1a66bd28d240934e16a895183f7a59e2285eb5e8b408ebb
     "type": "hosted"
   },
   "issuedOn": "2018-01-01",
-  "evidence": "https://www.uni.edu/student-list.php"
+  "evidence": "https://www.center-name.edu/student-list.php"
 }
 
 ```
 
-### Issuer page Self mode
-A student/Teacher/Academy teacher role can receive a badge as Student or Teacher (Non certified).
-
-* Field of education
-* Level
-* Badge
-* Description
-* Information:
-  * Addition information
-  * Criteria
-
-### Issuer page Issue mode
-A Teacher/Academy teacher role can send a Student Badge (Non-Certified). An Academy teacher role can send a Student Badge (Certified)
-
-* Field of education
-* Level
-* Badge
-* Description
-* Class
-* Mail
-* Information:
-  * Addition information
-  * Criteria
-
-
-### Issuer page Multiple issue mode
-An Academy teacher role can send Multiple badges to Multiple students (Certified and Non-Certified).
-
-* Field of education
-* Level
-* Badge
-* Description
-* Class
-* Mail (Multiple)
-* Information:
-  * Addition information
-  * Criteria
 
 ## User profile
 All the roles have a profile for tracking the information of the receive badges.
@@ -219,108 +274,29 @@ If we need to show just one of the 3 types of the send badges subpages, we can u
 
 
 
-Manage Listings and Content Organization
 
-7 articles
-Theme Settings
-
-Modify Settings in Appearance ▸ Customize
-
-30 articles
-Menus
-
-Customize and Output Menus
-
-12 articles
-Pages
-
-Page Templates and Archives
-
-12 articles
-Widget Areas
-
-The What and Where of Widgets
-
-6 articles
-Widgets
-
-Homepage and Listing Widgets
-
-24 articles
 
 ## Customization
 Appearance
 
 Modify Colors and More
 
-26 articles
 Booking Service Integration
 
 Book Tables, Services, and More
 
-2 articles
 Customization Code Snippets
 
 Collection of Code
 
-46 articles
 Child Themes
 
 Advanced Customization Techniques
 
-4 articles
 Translations
 
 Change Text and Words
 
-
-## Database
-
-Open Badges Framework save all the badges information related to teachers and students in a [custom Database Table](https://codex.wordpress.org/Creating_Tables_with_Plugins)
-
-```
-id  userEmail            badgeId   fieldId   levelId   classId   teacherId    roleSlug         dateCreation          getDate               getMobDate    json                                                                 info                                  evidence
-1   student@student.com  140       1712      7                    1            administrator   2018-01-01 08:00:00   2017-12-18 09:00:00                 161499a421c21ea585cc025d04f0e3d439d6220451b22c820c62d4478fc6aaf0 	That is an example of information.    https://www.uni.edu/student-list.php
-```
-
-### userEmail
-The Earn user email
-
-### badgeId
-The ID of the Badge the student receive
-
-### fieldId
-The ID of the Field of education of the Badge
-
-### levelId
-The ID of the Level of the badge
-
-### classId
-If the Badge is inside of a Class, the Class id
-
-### teacherId
-The issuer user ID
-
-### roleSlug
-The role of the issuer
-
-### dateCreation
-The date of the issue of the badge
-
-### getDate
-The date of the earn of the badge
-
-### getMobDate
-If the badge is transfer to Mozilla Backpack
-
-### json
-The Json file name
-
-### info
-The information the teacher write about the students
-
-### evidence
-Is the link to an external url where the teacher can show an evidence of the badge (pdf with a list of notes, a site with students names...).
 
 
 
