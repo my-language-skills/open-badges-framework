@@ -29,8 +29,6 @@ class User {
             'display_name' => 'Student',
             'capabilities' => array(
                 'read' => true,
-                'edit_posts' => false,
-                'delete_posts' => false
             ),
         ),
         array(
@@ -38,8 +36,6 @@ class User {
             'display_name' => 'Teacher',
             'capabilities' => array(
                 'read' => true,
-                'edit_posts' => false,
-                'delete_posts' => false
             ),
         ),
         array(
@@ -47,8 +43,6 @@ class User {
             'display_name' => 'Academy',
             'capabilities' => array(
                 'read' => true,
-                'edit_posts' => false,
-                'delete_posts' => false
             ),
         )
     );

@@ -75,7 +75,7 @@ final class SettingsTemp {
         $fiPremium = $options[self::FI_BECAME_PREMIUM];
         $fiBadge = $options[self::FI_GET_BADGE];
 
-        if (!$fiBadge && current_user_can( 'activate_plugins' )) {
+        if (!$fiBadge && current_user_can('activate_plugins')) {
             // Verify if the page doesn't exist
             if (!get_page_by_title(self::FI_GET_BADGE)) {
 
@@ -533,16 +533,20 @@ final class SettingsTemp {
     }
 
     /**
-     * Retrieve the slug of the Get Badge page that we connected in
-     * the link section.
+     * Get the form the option variable that are stored
+     * inside the information of the setting page
      *
      * @author      Alessandro RICCARDI
      * @since       x.x.x
+     *
+     * @param const $field_option a constant of this class that
+     *                            refer to a field in setting page
+     *
+     * @return the information of a specific field
      */
-    public static function getSlugGetBadgePage() {
-        $options = get_option(self::OPTION_NAME);
-        $id = isset($options[SettingsTemp::FI_GET_BADGE]) ? $options[SettingsTemp::FI_GET_BADGE] : '';
-        return isset(get_post($id)->post_name) ? get_post($id)->post_name : '';
+    public static function getOption($field_option) {
+        $options = get_option(SettingsTemp::OPTION_NAME);
+        return $options[$field_option] ? $options[$field_option] : null;
     }
 
 }

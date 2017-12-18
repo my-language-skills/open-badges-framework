@@ -154,7 +154,12 @@ class SendBadge extends BaseController {
      * @return the body of the email in html format
      */
     private function getBodyEmail($hash_file) {
-        $urlGetBadge = home_url('/' . SettingsTemp::getSlugGetBadgePage() . '/');
+        // Get badge page retrieved from the plugin setting
+        $getBadgePage = get_post(
+            SettingsTemp::getOption(SettingsTemp::FI_GET_BADGE)
+        );
+
+        $urlGetBadge = home_url('/' . $getBadgePage->post_name . '/');
 
         $badgeLink =
             $urlGetBadge .

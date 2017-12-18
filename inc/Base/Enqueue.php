@@ -12,24 +12,44 @@ use templates\SettingsTemp;
  * @author      Alessandro RICCARDI
  * @since       x.x.x
  *
- * @package    OpenBadgesFramework
+ * @package     OpenBadgesFramework
  */
 class Enqueue extends BaseController {
 
     /**
-     * Call the various WordPress hook to make enqueue the files.
+     * Initialize the enqueue of styles and scripts.
      *
      * @author      Alessandro RICCARDI
      * @since       x.x.x
      */
     public function register() {
+        self::setAdminEnqueue();
+        self::setPublicEnqueue();
+    }
+
+    /**
+     * Call the Admin WordPress enqueue hook.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
+     */
+    private function setAdminEnqueue() {
         add_action('admin_enqueue_scripts', array($this, 'enqueueAdmin'));
+    }
+
+    /**
+     * Call the Public WordPress enqueue hook.
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
+     */
+    private function setPublicEnqueue() {
         add_action('wp_head', array($this, 'cssHead'));
         add_action('wp_footer', array($this, 'jsFooter'));
     }
 
+
     /**
-     * All the admin style and script.
+     * All the admin styles and scripts.
      *
      * @author      Alessandro RICCARDI
      * @since       x.x.x
@@ -54,37 +74,46 @@ class Enqueue extends BaseController {
     }
 
     /**
-     * All the Head style.
+     * All the Head styles for the public section.
      *
      * @author      Alessandro RICCARDI
      * @since       x.x.x
      */
     public function cssHead() {
-        $options = get_option(SettingsTemp::OPTION_NAME);
-        $post = get_post($options[SettingsTemp::FI_GET_BADGE]);
+        // Get badge page retrieved from the plugin setting
+        $getBadgePage = get_post(
+            SettingsTemp::getOption(SettingsTemp::FI_GET_BADGE)
+        );
 
-        if (is_page($post->post_name)) {
+        if (is_page($getBadgePage->post_name)) {
+            // Get badge page Style
             wp_enqueue_style('bootstrap-css', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css');
             wp_enqueue_style('get-badge-css', $this->plugin_url . 'assets/css/get-badge.css');
         } else {
-            //send badge files
+            // Otherwise Style
             wp_enqueue_style('my-style', $this->plugin_url . 'assets/css/mystyle.css');
-
             wp_enqueue_style('send-badges-style', $this->plugin_url . 'assets/css/send-badge.css');
         }
     }
 
     /**
-     * All the Footer script.
+     * All the Footer scripts for the Public section.
      *
      * @author      Alessandro RICCARDI
      * @since       x.x.x
      */
     public function jsFooter() {
-        $options = get_option(SettingsTemp::OPTION_NAME);
-        $post = get_post($options[SettingsTemp::FI_GET_BADGE]);
-        if (is_page($post->post_name)) {
-            wp_enqueue_script('jquery-js', 'https://code.jquery.com/jquery-1.10.2.js');
+        // Get badge page retrieved from the plugin setting
+        $getBadgePage = get_post(
+            SettingsTemp::getOption(SettingsTemp::FI_GET_BADGE)
+        );
+
+        // Always
+        wp_enqueue_script('form-send-badges', $this->plugin_url . 'assets/js/jquery.steps.min.js');
+
+
+        if (is_page($getBadgePage->post_name)) {
+            // Get badge page Scripts
             wp_enqueue_script('get-badge-js', $this->plugin_url . 'assets/js/get-badge.js');
             wp_localize_script(
                 'get-badge-js',
@@ -96,9 +125,8 @@ class Enqueue extends BaseController {
                 )
             );
         } else {
-            //send badge files
+            // Otherwise Scripts
             wp_enqueue_script('general-js', $this->plugin_url . 'assets/js/general.js');
-            wp_enqueue_script('form-send-badges', $this->plugin_url . 'assets/js/jquery.steps.min.js');
             wp_enqueue_script("jQuery-validation", 'http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js', array('jquery'), 0.1, false);
             wp_enqueue_script('send-badge-js', $this->plugin_url . 'assets/js/send-badge.js');
             wp_localize_script(

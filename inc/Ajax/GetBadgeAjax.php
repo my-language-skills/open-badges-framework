@@ -212,6 +212,7 @@ class GetBadgeAjax extends BaseController {
 //            'fieldId' => $_POST['fieldId'],
 //            'levelId' => $_POST['levelId'],
 //        );
+
         $where = self::getUserInfoPost();
 
         if ($mob === 'true') {

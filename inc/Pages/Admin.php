@@ -24,14 +24,6 @@ use Templates\SettingsTemp;
 class Admin extends BaseController {
     const SLUG_PLUGIN = "open_badges_framework";
 
-//    const POST_TYPE_BADGES = "badges_obf_cpt";
-//    const POST_TYPE_CLASS_JL = "job_listing";
-//    const TAX_FIELDS = "fields_obf_tax";
-//    const TAX_LEVELS = "levels_obf_tax";
-//    const MTB_CERT = "certification_obf_mtb";
-//    const MTB_TARGET = "type_obf_mtb";
-//    const MTB_LBADGE = "lbadge_obf_mtb";
-
     const POST_TYPE_BADGES = "open-badge";
     const POST_TYPE_CLASS_JL = "job_listing";
     const TAX_FIELDS = "field_of_education";
@@ -42,11 +34,18 @@ class Admin extends BaseController {
     const PAGE_SEND_BADGE = 'send_badge_obf';
     const PAGE_SETTINGS = 'settings_obf';
 
+    // Old names, changed because of the compatibility with the last version.
+    //    const POST_TYPE_BADGES = "badges_obf_cpt";
+    //    const POST_TYPE_CLASS_JL = "job_listing";
+    //    const TAX_FIELDS = "fields_obf_tax";
+    //    const TAX_LEVELS = "levels_obf_tax";
+    //    const MTB_CERT = "certification_obf_mtb";
+    //    const MTB_TARGET = "type_obf_mtb";
+    //    const MTB_LBADGE = "lbadge_obf_mtb";
+
     private $settings;
     private $pages;
     private $subpages = array();
-
-
 
     /**
      * This function permit to load all the array in the instance
@@ -291,10 +290,15 @@ class Admin extends BaseController {
      * @since    x.x.x
      */
     public function setFrontEndPages() {
+        // Get badge page retrieved from the plugin setting
+        $getBadgePage = get_post(
+            SettingsTemp::getOption(SettingsTemp::FI_GET_BADGE)
+        );
+
         $args = array(
             // # GET BADGE PAGE
             array(
-                'slug' => SettingsTemp::getSlugGetBadgePage(),
+                'slug' => $getBadgePage->post_name,
                 'class' => GetBadgeTemp::class,
             ),
         );

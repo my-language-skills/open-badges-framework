@@ -1,7 +1,7 @@
 /* =========================
     jQuery
    ========================= */
-$(function (event) {
+jQuery(function (event) {
     var clickedGetBadge = false;
     var urlParam = function (name) {
         var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
@@ -53,7 +53,7 @@ $(function (event) {
      *              exist add the class "is-valid", if not add "is-invalid".
      *
      *
-     * @param {$} input <input> tag with a 'value'
+     * @param {jQuery} input <input> tag with a 'value'
      * @return
      */
     var checkValue = function (input) {
@@ -78,8 +78,8 @@ $(function (event) {
      * @return
      */
     var showGetMOBOpenBadges = function () {
-        $("#gb-wrap").fadeOut(400, function (event) {
-            $("#gb-wrap").html(loadingPage());
+        jQuery("#gb-wrap").fadeOut(400, function (event) {
+            jQuery("#gb-wrap").html(loadingPage());
 
             // If the user have an account in Open Badge BackPack,
             // have also the permission to get the badge.
@@ -92,7 +92,7 @@ $(function (event) {
             };
 
             var func = function (response) {
-                $("#gb-wrap").html(response);
+                jQuery("#gb-wrap").html(response);
             }
 
             ajaxCall(data, func);
@@ -107,19 +107,20 @@ $(function (event) {
      * @return
      */
     var showConclusion = function (mozOpenBadge = false) {
-        $("#gb-wrap").fadeOut(400, function (event) {
-            $("#gb-wrap").html(loadingPage());
+        jQuery("#gb-wrap").fadeOut(400, function (event) {
+            jQuery("#gb-wrap").html(loadingPage());
 
             var data = {
                 'action': 'ajaxGbShowConclusion',
                 'MOB': mozOpenBadge,
+                'json': urlParam('json'),
                 'badgeId': urlParam('badge'),
                 'fieldId': urlParam('field'),
                 'levelId': urlParam('level'),
             };
 
             var func = function (response) {
-                $("#gb-wrap").html(response);
+                jQuery("#gb-wrap").html(response);
             }
 
             ajaxCall(data, func);
@@ -133,9 +134,9 @@ $(function (event) {
      * @param {array} event of the click
      * @return
      */
-    $(document).on("click", "#gb-continue", function (event) {
-        $("#gb-wrap").fadeOut(400, function (event) {
-            $("#gb-wrap").html(loadingPage());
+    jQuery(document).on("click", "#gb-continue", function (event) {
+        jQuery("#gb-wrap").fadeOut(400, function (event) {
+            jQuery("#gb-wrap").html(loadingPage());
 
             var data = {
                 'action': 'ajaxGbShowLogin',
@@ -146,7 +147,7 @@ $(function (event) {
             };
 
             var func = function (response) {
-                $("#gb-wrap").html(response);
+                jQuery("#gb-wrap").html(response);
             }
 
             ajaxCall(data, func);
@@ -159,12 +160,12 @@ $(function (event) {
      *
      * @param {array} event of the click
      */
-    $(document).on("submit", "#gb-form-login", function (event) {
+    jQuery(document).on("submit", "#gb-form-login", function (event) {
         event.preventDefault();
 
-        var email = $("#staticEmail").val();
-        var password = $("#inputPassword").val();
-        var remember = $("#inputRemember").is(':checked');
+        var email = jQuery("#staticEmail").val();
+        var password = jQuery("#inputPassword").val();
+        var remember = jQuery("#inputRemember").is(':checked');
 
         var data = {
             'action': 'ajaxGbLogin',
@@ -180,7 +181,7 @@ $(function (event) {
 
         var func = function (response) {
             if (response != true) {
-                $("#gb-resp-login").html(response);
+                jQuery("#gb-resp-login").html(response);
             } else {
                 showGetMOBOpenBadges();
             }
@@ -194,17 +195,17 @@ $(function (event) {
      *
      * @param {array} event of the click
      */
-    $(document).on("submit", "#gb-form-registration", function (event) {
+    jQuery(document).on("submit", "#gb-form-registration", function (event) {
         event.preventDefault();
-        $("#gb-resp-register").html("");
+        jQuery("#gb-resp-register").html("");
 
         var inputFields = [
-            $(this).find("#reg-email"),
-            $(this).find("#reg-user-name"),
-            $(this).find("#reg-first-name"),
-            $(this).find("#reg-last-name"),
-            $(this).find("#reg-pass"),
-            $(this).find("#reg-repeat-pass"),
+            jQuery(this).find("#reg-email"),
+            jQuery(this).find("#reg-user-name"),
+            jQuery(this).find("#reg-first-name"),
+            jQuery(this).find("#reg-last-name"),
+            jQuery(this).find("#reg-pass"),
+            jQuery(this).find("#reg-repeat-pass"),
         ];
 
 
@@ -236,7 +237,7 @@ $(function (event) {
                 if (response == 0) {
                     showGetMOBOpenBadges();
                 } else if (response) {
-                    $("#gb-resp-register").html(response);
+                    jQuery("#gb-resp-register").html(response);
                 }
             }
 
@@ -250,10 +251,10 @@ $(function (event) {
      *
      * @param {array} event of the click
      */
-    $(document).on("click", "#gb-ob-get-badge", function (event) {
+    jQuery(document).on("click", "#gb-ob-get-badge", function (event) {
         if (!clickedGetBadge) {
             clickedGetBadge = true;
-            var thisBtn = $(this);
+            var thisBtn = jQuery(this);
             thisBtn.html("<img src='" + globalUrl.loaderPoint + "' width='150px' />");
 
             var data = {
@@ -269,7 +270,7 @@ $(function (event) {
                     if (successes.length) {
                         showConclusion(true);
                     } else if (errors.length) {
-                        $("#gb-ob-response").html("Badge not sent!")
+                        jQuery("#gb-ob-response").html("Badge not sent!")
                         thisBtn.html("Get the badge");
                     }
                     clickedGetBadge = false;
@@ -284,7 +285,7 @@ $(function (event) {
      *
      * @param {array} event  of the click
      */
-    $(document).on("click", "#gb-get-standard", function (event) {
+    jQuery(document).on("click", "#gb-get-standard", function (event) {
         showConclusion(false);
     });
 
