@@ -7,7 +7,9 @@
 For upgrades, download the las stable version from github, delete from FTP the old plugin and install the new one.
 
 ## Setup the plugin
+
 ### Plugin settings
+
 #### Change the badges issuer informations
 OpenBadges need some key information for the delivery of the badge. Without that information, the plugin will not work:
 * Site Name (by defaul, take the site name from ```get_bloginfo ('name')```)
@@ -138,7 +140,6 @@ A Teacher/Academy teacher role can send a Student Badge (Non-Certified). An Acad
   * Addition information
   * Criteria
 
-
 #### Issuer page Multiple issue mode
 An Academy teacher role can send Multiple badges to Multiple students (Certified and Non-Certified).
 
@@ -151,7 +152,6 @@ An Academy teacher role can send Multiple badges to Multiple students (Certified
 * Information:
   * Addition information
   * Criteria
-
 
 ### Database
 
@@ -204,7 +204,7 @@ Is the link to an external url where the teacher can show an evidence of the bad
 
 ### Json file
 
-By sending a badge, 3 Json file are created inside of the folder open-badges-framework > Json.
+By sending a badge, 3 Json file are created inside of the folder open-badges-framework > Json. The Json files remain forever (For now).
 
 A file with the information about the website (just one file each installation):
 issuer-info.json

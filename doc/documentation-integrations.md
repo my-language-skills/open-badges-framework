@@ -72,3 +72,33 @@ Show Your Love for Listings
 OpenBadgesFramework-Languages-Portfolio allow to create a portfolio for teacher and students of second languages.
 
 Once activated, the portfolio will use the OpenBadges API for delivery of specific type of badges. Also the portfolio is used for the comprobation of the level of the teachers.
+
+
+Manage Listings and Content Organization
+
+7 articles
+Theme Settings
+
+Modify Settings in Appearance ▸ Customize
+
+30 articles
+Menus
+
+Customize and Output Menus
+
+12 articles
+Pages
+
+Page Templates and Archives
+
+12 articles
+Widget Areas
+
+The What and Where of Widgets
+
+6 articles
+Widgets
+
+Homepage and Listing Widgets
+
+24 articles
