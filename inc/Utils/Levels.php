@@ -69,9 +69,14 @@ class Levels {
             // all the fields (category).
             if (!$badgeFields) {
                 if (!in_array($badgeLevel, $retLevels)) {
-                    if (User::checkTheRules("administrator", "editor")) {
+
+                    if (current_user_can(User::CAP_MULTIPLE)) {
                         $retLevels[] = $badgeLevel;
-                    } else {
+                    } else if (current_user_can(User::CAP_SINGLE)) {
+                        if ($badge_type == "student" || $badge_type == "teacher") {
+                            $retLevels[] = $badgeLevel;
+                        }
+                    } else if (current_user_can(User::CAP_SELF)) {
                         if ($badge_type == "student") {
                             $retLevels[] = $badgeLevel;
                         }
@@ -89,13 +94,13 @@ class Levels {
                     if (($badgeField->term_id == $fieldId || $badgeField->term_id == $selectedField->parent)
                         && !in_array($badgeLevel, $retLevels)) {
 
-                        if (User::checkTheRules("administrator", "editor")) {
+                        if (current_user_can(User::CAP_MULTIPLE)) {
                             $retLevels[] = $badgeLevel;
-                        } else if (User::checkTheRules("teacher")) {
+                        } else if (current_user_can(User::CAP_SINGLE)) {
                             if ($badge_type == "student" || $badge_type == "teacher") {
                                 $retLevels[] = $badgeLevel;
                             }
-                        } else if (User::checkTheRules("student")) {
+                        } else if (current_user_can(User::CAP_SELF)) {
                             if ($badge_type == "student") {
                                 $retLevels[] = $badgeLevel;
                             }

@@ -68,7 +68,7 @@ class Enqueue extends BaseController {
             'globalUrl',
             array(
                 'ajax' => admin_url('admin-ajax.php'),
-                'loader' => $this->plugin_url . "assets/gif/mixed-loading.gif",
+                'loader' => $this->plugin_url . "assets/gif/circle-loading.gif",
             )
         );
     }
@@ -134,7 +134,7 @@ class Enqueue extends BaseController {
                 'globalUrl',
                 array(
                     'ajax' => admin_url('admin-ajax.php'),
-                    'loader' => $this->plugin_url . "assets/gif/mixed-loading.gif",
+                    'loader' => $this->plugin_url . "assets/gif/circle-loading.gif",
                 )
             );
         }

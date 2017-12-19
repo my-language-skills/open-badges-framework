@@ -57,6 +57,7 @@ class Badges{
 
                 $fieldOK = 0; // Var that determinate if the field match with the badge
 
+
                 $badgeFields = get_the_terms($badge->ID, Admin::TAX_FIELDS);
                 $badgeLevel = get_the_terms($badge->ID, Admin::TAX_LEVELS)[0];
 
@@ -87,10 +88,18 @@ class Badges{
                 // $retBadges array.
                 if ((!$badgeFields || $fieldOK) && $badgeLevel->term_id == $levelId && !in_array($badge, $retBadges)) {
                     $badgeCert = get_post_meta($badge->ID, '_certification', true);
-                    if ($badgeCert == "certified" && User::checkTheRules("administrator", "academy")) {
+                    $badgeType = get_post_meta($badge->ID, "_target", true);
+
+                    if (current_user_can(User::CAP_MULTIPLE)) {
                         $retBadges[] = $badge;
-                    } elseif ($badgeCert != "certified") {
-                        $retBadges[] = $badge;
+                    } else if (current_user_can(User::CAP_SINGLE)) {
+                        if (($badgeType == "student" || $badgeType == "teacher") && $badgeCert != "certified") {
+                            $retBadges[] = $badge;
+                        }
+                    } else if (current_user_can(User::CAP_SELF) && $badgeCert != "certified") {
+                        if ($badgeType == "student") {
+                            $retBadges[] = $badge;
+                        }
                     }
                 }
             }
