@@ -381,12 +381,12 @@ final class GetBadgeTemp extends BaseController {
     }
 
     /**
-     * Show Conclusion step.
+     * Show Conclusions step.
      *
      * @author      Alessandro RICCARDI
      * @since       1.0.0
      */
-    public function showConclusionStep() {
+    public function showConclusionsStep() {
         ?>
 
         <div id="gb-wrap" class="cover-container">
@@ -394,7 +394,7 @@ final class GetBadgeTemp extends BaseController {
             <header class="masthead clearfix">
                 <?php echo $this->getInfoHeader(); ?>
                 <div class="inner container">
-                    <div class="cont-title">Congratulation</div>
+                    <div class="cont-title">Congratulations!</div>
                 </div>
             </header>
 
@@ -438,10 +438,8 @@ final class GetBadgeTemp extends BaseController {
                 <div id="gb-wrap" class="cover-container">
 
                     <header class="masthead clearfix">
-                        <div class="info-header-obf">
-                            <div class="container">
-                                <div><?php echo get_bloginfo('name'); ?></div>
-                            </div>
+                        <?php echo $this->getInfoHeader(); ?>
+                        <div class="inner container">
                         </div>
                     </header>
 
@@ -495,10 +493,8 @@ final class GetBadgeTemp extends BaseController {
                 <div id="gb-wrap" class="cover-container">
 
                     <header class="masthead clearfix">
-                        <div class="info-header-obf">
-                            <div class="container">
-                                <div><?php echo get_bloginfo('name'); ?></div>
-                            </div>
+                        <?php echo $this->getInfoHeader(); ?>
+                        <div class="inner container">
                         </div>
                     </header>
 

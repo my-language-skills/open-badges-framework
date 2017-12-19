@@ -33,11 +33,13 @@ final class Init {
             Base\Enqueue::class,
             Base\SettingsLinks::class,
             Base\User::class,
+            Base\Secondary::class,
             Utils\Fields::class,
             Api\AjaxApi::class,
             Utils\DisplayFunction::class,
             Utils\Statistics::class,
             Database\DbBadge::class,
+
         );
     }
 

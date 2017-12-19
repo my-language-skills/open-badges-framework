@@ -13,9 +13,13 @@ use Inc\Pages\Admin;
  * @package     OpenBadgesFramework
  */
 class User {
-    const STUDENT_ROLE = "student";
-    const TEACHER_ROLE = "teacher";
-    const ACADEMY_ROLE = "academy";
+    const ROLE_STUDENT = "student";
+    const ROLE_TEACHER = "teacher";
+    const ROLE_ACADEMY = "academy";
+
+    const CAP_SELF = "obf_send_self";
+    const CAP_SINGLE = "obf_send_single";
+    const CAP_MULTIPLE = "obf_send_multiple";
 
     const RET_SUCCESS = 0;
     const RET_NO_MATCH_PASS = "The <strong>passwords</strong> doesn't match, please write correctly. <br>";
@@ -25,24 +29,30 @@ class User {
     // List of roles that we need for our plugin.
     public $listRoles = array(
         array(
-            'role' => self::STUDENT_ROLE,
+            'role' => self::ROLE_STUDENT,
             'display_name' => 'Student',
             'capabilities' => array(
                 'read' => true,
+                self::CAP_SELF => true,
             ),
         ),
         array(
-            'role' => self::TEACHER_ROLE,
+            'role' => self::ROLE_TEACHER,
             'display_name' => 'Teacher',
             'capabilities' => array(
                 'read' => true,
+                self::CAP_SELF => true,
+                self::CAP_SINGLE => true,
             ),
         ),
         array(
-            'role' => self::ACADEMY_ROLE,
+            'role' => self::ROLE_ACADEMY,
             'display_name' => 'Academy',
             'capabilities' => array(
                 'read' => true,
+                self::CAP_SELF => true,
+                self::CAP_SINGLE => true,
+                self::CAP_MULTIPLE => true,
             ),
         )
     );
@@ -57,7 +67,7 @@ class User {
      * @since  1.0.0
      */
     public function register() {
-        $this->initialize();
+        $this->initializeRoleCap();
         add_action('user_register', array($this, 'registerUserClass'));
     }
 
@@ -67,7 +77,8 @@ class User {
      * @author Alessandro RICCARDI
      * @since  1.0.0
      */
-    private function initialize() {
+    private function initializeRoleCap() {
+        // Create Roles
         foreach ($this->listRoles as $role) {
             // Resetting of the role
             if (get_role($role['role'])) {
@@ -75,7 +86,16 @@ class User {
             }
             // Creation of the role
             add_role($role['role'], $role['display_name'], $role['capabilities']);
+        }
 
+        // Now give the capability to the 'administrator' and 'author' role
+        $roles[] = get_role( 'administrator' );
+        $roles[] = get_role( 'author' );
+
+        foreach($roles as $role) {
+            $role->add_cap(self::CAP_SELF);
+            $role->add_cap(self::CAP_SINGLE);
+            $role->add_cap(self::CAP_MULTIPLE);
         }
     }
 
@@ -188,7 +208,7 @@ class User {
                         'ID' => $user_id,
                         'first_name' => $user['first_name'],
                         'last_name' => $user['last_name'],
-                        'role' => User::STUDENT_ROLE,
+                        'role' => User::ROLE_STUDENT,
                     ));
 
                 if (is_wp_error($update)) {

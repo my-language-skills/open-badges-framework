@@ -169,7 +169,7 @@ class GetBadgeAjax extends BaseController {
 
         if($res) {
             $getBadgeTemp = GetBadgeTemp::getInstance();
-            echo $getBadgeTemp->showConclusionStep();
+            echo $getBadgeTemp->showConclusionsStep();
         } else {
             // Error
             echo $res;

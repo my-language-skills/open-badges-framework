@@ -79,12 +79,12 @@ final class SendBadgeTemp extends BaseController {
                 <?php
                 echo '<li class="active"><a href="#tab-1">Self</a></li>';
 
-                if (User::checkTheRules("academy", "teacher", "administrator", "editor")) {
+                if (current_user_can(User::CAP_SINGLE)) {
 
                     echo '<li class=""><a href="#tab-2">Issue</a></li>';
                 }
 
-                if (User::checkTheRules("academy", "administrator", "editor")) {
+                if (current_user_can(User::CAP_MULTIPLE)) {
                     echo '<li class=""><a href="#tab-3">Multiple issue</a></li>';
                 }
                 ?>
@@ -92,39 +92,53 @@ final class SendBadgeTemp extends BaseController {
 
             <div class="tab-content-page">
                 <div id="tab-1" class="tab-pane active">
-                    <?php self::getRightForm("a"); ?>
+                    <?php self::getForm("a"); ?>
                 </div>
                 <div id="tab-2" class="tab-pane">
-                    <?php self::getRightForm("b"); ?>
+                    <?php self::getForm("b"); ?>
                 </div>
                 <div id="tab-3" class="tab-pane">
-                    <?php self::getRightForm("c"); ?>
+                    <?php self::getForm("c"); ?>
                 </div>
             </div>
 
             <?php
         } else {
+
             if($form == self::FORM_SELF) {
-                if(User::checkTheRules('student', 'teacher', 'academy', 'administrator')){
+                if(current_user_can(User::CAP_SELF)){
                     self::getForm($form);
                 } else {
                     echo "You don't have the permission to access to this functionality.";
                 }
 
             } else if ($form == self::FORM_ISSUE) {
-                if(User::checkTheRules('teacher', 'academy', 'administrator')){
+                if(current_user_can(User::CAP_SINGLE)){
                     self::getForm($form);
                 } else {
                     echo "You don't have the permission to access to this functionality.";
                 }
             } else if ($form == self::FORM_MULTIPLE) {
-                if(User::checkTheRules('academy', 'administrator')){
+                if(current_user_can(User::CAP_MULTIPLE)){
                     self::getForm($form);
                 } else {
                     echo "You don't have the permission to access to this functionality.";
                 }
             }
-        }
+        }?>
+
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div id="responseSent"></div>
+            </div>
+
+        </div>
+
+        <?php
     }
 
 

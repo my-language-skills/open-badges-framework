@@ -304,7 +304,6 @@ class Admin extends BaseController {
                     'class' => GetBadgeTemp::class,
                 ),
             );
-
             $this->settings->loadFrontEndPages($args);
         }
     }
