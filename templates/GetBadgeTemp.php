@@ -50,7 +50,6 @@ final class GetBadgeTemp extends BaseController {
      * @since       1.0.0
      */
     public function main() {
-
         $res = $this->loadParm();
 
         switch ($res) {
@@ -81,8 +80,9 @@ final class GetBadgeTemp extends BaseController {
      * @author      Alessandro RICCARDI
      * @since       1.0.0
      *
-     * @return const    START when we can start with the procedure;
+     * @return constant START when we can start with the procedure;
      *                  GOT if is already got the badge;
+     *                  PREVIEW if the page is only a preview to show that works;
      *                  ERROR_JSON if the json is not stored in the server;
      *                  ERROR_LINK if the link have problems.
      */
@@ -167,7 +167,7 @@ final class GetBadgeTemp extends BaseController {
                 <!--<p><?php echo JsonManagement::getJsonUrl($this->json); ?></p>-->
                 <div class="inner">
                     <p class="lead">
-                        <a id="gb-continue" class="btn btn-lg btn-secondary" role="button">Continue</a>
+                        <button id="gb-continue" class="btn btn-lg btn-secondary" type="submit">Continue</button>
                     </p>
                 </div>
             </footer>
@@ -183,6 +183,8 @@ final class GetBadgeTemp extends BaseController {
      *
      * @author      Alessandro RICCARDI
      * @since       1.0.0
+     *
+     * @param string $email that the user need to use for the login
      */
     public function showTheLoginContent($email) { ?>
 
@@ -231,6 +233,8 @@ final class GetBadgeTemp extends BaseController {
      *
      * @author      Alessandro RICCARDI
      * @since       1.0.0
+     *
+     * @param string $email that the user need to use for the registration
      */
     public function showRegisterPage($email) { ?>
 
@@ -247,40 +251,34 @@ final class GetBadgeTemp extends BaseController {
                 <div class="container">
                     <form id="gb-form-registration" id="needs-validation" novalidate>
                         <div class="form-group row">
-                            <label for="firstName" class="col-sm-4 col-form-label">First name</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" id="reg-first-name" required>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" id="reg-first-name" placeholder="First name" required>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="lastName" class="col-sm-4 col-form-label">Last name</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" id="reg-last-name" required>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" id="reg-last-name" placeholder="Last name" required>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="staticEmail" class="col-sm-4 col-form-label">Email</label>
-                            <div class="col-sm-8">
+                            <div class="col-sm-12">
                                 <input type="text" readonly class="form-control" id="reg-email"
                                        value="<?php echo $email; ?>" required>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="username" class="col-sm-4 col-form-label">Username</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" id="reg-user-name" required>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" id="reg-user-name" placeholder="Username" required>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="inputPassword" class="col-sm-4 col-form-label">Password</label>
-                            <div class="col-sm-8">
-                                <input type="password" class="form-control" id="reg-pass" required>
+                            <div class="col-sm-12">
+                                <input type="password" class="form-control" id="reg-pass" placeholder="Password" required>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="inputRepeatPassword" class="col-sm-4 col-form-label">Repeat password</label>
-                            <div class="col-sm-8">
-                                <input type="password" class="form-control" id="reg-repeat-pass" required>
+                            <div class="col-sm-12">
+                                <input type="password" class="form-control" id="reg-repeat-pass" placeholder="Repeat password" required>
                             </div>
                         </div>
                         <div class="cont-btn-form-reg">
@@ -295,7 +293,7 @@ final class GetBadgeTemp extends BaseController {
 
             <footer class="mastfoot">
                 <div class="inner">
-                    <label class="btn btn-primary btn-lg" for="submit-form" tabindex="0">Register</label>
+                    <label id="lbl-submit-form" class="btn btn-primary btn-lg" for="submit-form" tabindex="0">Register</label>
                 </div>
             </footer>
         </div>
@@ -361,7 +359,6 @@ final class GetBadgeTemp extends BaseController {
                     } else { ?>
                         <a class="btn-link" href="<?php echo get_bloginfo('url'); ?>"
                            role="button">or go to the home page</a>
-
                         <?php
                     }
                     ?>
@@ -422,7 +419,6 @@ final class GetBadgeTemp extends BaseController {
             </footer>
         </div>
         <?php
-
     }
 
     /**

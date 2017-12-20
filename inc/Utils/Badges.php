@@ -119,6 +119,8 @@ class Badges {
      * @param       $badge        badge that we want to check
      * @param bool  $retLevel     permit to specify if insert in the array the
      *                            badge ore the level of the badge
+     *
+     * @return true if everything is ok || false if is not added
      */
     public static function checkCapInsertBadgeOrLevel(array &$retContainer, $badge, $retLevel = false) {
         $badgeLevel = null;
@@ -128,6 +130,14 @@ class Badges {
         $badgeType = get_post_meta($badge->ID, "_target", true);
         // Get the certification of the badge (certify or not-certify)
         $badgeCert = get_post_meta($badge->ID, '_certification', true);
+
+        if(!$retLevel && in_array(badge, $retContainer)){
+            return false;
+        }
+
+        if($retLevel && in_array($badgeLevel, $retContainer)){
+            return false;
+        }
 
         // Capability Teacher and Certification
         if (current_user_can(USER::CAP_TEACHER)
@@ -144,7 +154,7 @@ class Badges {
                 else array_push($retContainer, $badge);
 
             }
-
+            return true;
             // Capability Teacher and Certification
         } else if (!current_user_can(USER::CAP_TEACHER) && $badgeType == Metabox::META_FIELD_STUDENT) {
             if (current_user_can(USER::CAP_CERT)
@@ -159,6 +169,7 @@ class Badges {
                 else array_push($retContainer, $badge);
 
             }
+            return true;
         }
     }
 
