@@ -29,12 +29,24 @@ The users have some shortcuts to make easy the process. Here are the place where
 
 ![settings_links-get-badge](../readme-assets/settings_links-get-badge.png "Settings: selected page")
 
-### Manage Roles
+### Manage Roles and Cappabilities
 --- https://es.wordpress.org/plugins/wp-user-groups/ ----
-OpenBadgesFramework offer 3 types of roles:
+OpenBadgesFramework offer 3 types of roles with different cappabilities:
 * Student
+  * read (a WP cappability)
+  * obf_send_self (allow to self send of badges)
 * Teacher
+  * read (a WP cappability)
+  * obf_send_self (allow to self send of badges)
+  * obf_send_single (allow to send a badge to one student at a time)
 * Academy
+  * read (a WP cappability)
+  * obf_send_self (allow to self send of badges)
+  * obf_send_single (allow to send a badge to one student at a time)
+  * obf_send_multiple (allow to send a badge to multiple students at once)
+  * obf_send_certificate (allow to send certificate badges)
+  * obf_send_teacher (allow to send teacher badges)
+  * obf_job_listing_integration (allow to save badges in classes where a class is a post of WP Job Manager)
 
 Out of the box, a new user can be (after the login) one of those roles (upon the configuration of the site) and later the administrator can change the role to a more related one.
 
@@ -51,6 +63,9 @@ Remember to Asign a match to each [subscription level](http://docs.restrictconte
 A select the role page is need it (can be free or paid upon the configuration).
 
 The OpenBadgesFramework Settings page allow in **Links** to select the page where the [Register Form](http://docs.restrictcontentpro.com/article/1597-registerform) is created.
+
+With a plugin of roles and cappabilities, the capabilities can be asign to another role and to use the functionalities.
+
 
 #### Student role
 * Can receive badges and to keep the profile information.

@@ -69,7 +69,9 @@ Show Your Love for Listings
 ### Creation of Classes with [WP Job Manager (free)](https://wordpress.org/plugins/wp-job-manager/)
 By activating the plugin, we have an integration that allow to save information in Job Manager CPT, to have reviews and ratings of the teachers' classes.
 
-Each new user have a new post with the user name as name of the post. That is the post 0 where all the inforamtion is save by default. If you are an Academy, you can create new post for different groups and to save the students in the group where it belongs.
+Each new user have a new post with the user name as name of the post. That is the post 0 where all the inforamtion is save by default. If you can create new classes (CPT Job of WP Job Manager), you can organice your students trough different groups.
+
+Academy role or a role withthe cappability obf_job_listing_integration, can create a class from the send badges page class section.
 
 Open Badges Framework will show a link to the registration page (if it exist) and to the creation of post page (if exist).
 
