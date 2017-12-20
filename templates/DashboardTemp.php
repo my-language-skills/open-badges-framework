@@ -5,7 +5,7 @@ namespace templates;
 use Inc\Database\DbBadge;
 use Inc\Pages\Admin;
 use Inc\Base\BaseController;
-use inc\Utils\Statistics;
+use Inc\Utils\Statistics;
 
 /**
  * Template for the Dashboard page.
@@ -162,11 +162,11 @@ final class DashboardTemp extends BaseController {
                     <h2>Badges list</h2>
                     <p class="lead">
                         In this section we have the possibility to see all the badges that are sent.
-                        <?php
-                        $all = DbBadge::getAll();
-                        $numBadges = count($all);
-                        ?>
-                    <p>SENT: <?php echo $numBadges ?> –  GOT: <?php echo DbBadge::getNumGot();?> – GOT MOB: <?php echo DbBadge::getNumGotMob();?>
+
+                    <p>
+                        SENT: <?php echo Statistics::getNumBadgesSent(); ?> –
+                        GOT: <?php echo Statistics::getNumBadgesGot(); ?> –
+                        GOT MOB: <?php echo Statistics::getNumBadgesGotMob(); ?>
                     </p>
                 </div>
                 <div class="content-dash badges-list-dash">
@@ -244,11 +244,12 @@ final class DashboardTemp extends BaseController {
                 <div class="cont-title-dash">
                     <h2>About us</h2>
                     <p class="lead">
-                        Fill information about the plugin.
+                        The main functionality of this plugin is to create, manage and send badges. <br>
+                        Once a badge has been sent, the receiver has the possibility to take his badge through a link
+                        that is inserted in the email.<br>
+                        After a succession of steps, the user can get his own badge also having the possibility to send
+                        it to the <a href="https://openbadges.org/">Mozilla Open Badges</a> platform.
                     </p>
-                </div>
-                <div class="content-dash">
-                    <p>Random text.</p>
                 </div>
             </div>
         </div>

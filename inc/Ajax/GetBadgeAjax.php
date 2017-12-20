@@ -1,6 +1,6 @@
 <?php
 
-namespace inc\Ajax;
+namespace Inc\Ajax;
 
 use Inc\Base\BaseController;
 use Inc\Base\User;

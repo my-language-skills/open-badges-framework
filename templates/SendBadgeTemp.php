@@ -3,9 +3,9 @@
 namespace templates;
 
 use Inc\Base\BaseController;
-use inc\Base\User;
-use inc\Utils\DisplayFunction;
-use inc\Utils\Fields;
+use Inc\Base\User;
+use Inc\Utils\DisplayFunction;
+use Inc\Utils\Fields;
 
 /**
  * Template for the Send Badge page.
@@ -67,8 +67,8 @@ final class SendBadgeTemp extends BaseController {
      *
      * @param string $form name of the form, should be:
      *                     a -> Self
-     *                     b -> Issue
-     *                     c -> Multiple issue
+     *                     b -> Single
+     *                     c -> Multiple
      */
     public static function getRightForm($form) {
         if ($form === "all") {
@@ -81,11 +81,11 @@ final class SendBadgeTemp extends BaseController {
 
                 if (current_user_can(User::CAP_SINGLE)) {
 
-                    echo '<li class=""><a href="#tab-2">Issue</a></li>';
+                    echo '<li class=""><a href="#tab-2">Single</a></li>';
                 }
 
                 if (current_user_can(User::CAP_MULTIPLE)) {
-                    echo '<li class=""><a href="#tab-3">Multiple issue</a></li>';
+                    echo '<li class=""><a href="#tab-3">Multiple</a></li>';
                 }
                 ?>
             </ul>
@@ -150,8 +150,8 @@ final class SendBadgeTemp extends BaseController {
      *
      * @param string $form name of the form, should be:
      *                     a -> Self
-     *                     b -> Issue
-     *                     c -> Multiple issue
+     *                     b -> Single
+     *                     c -> Multiple
      */
     public static function getForm($form) {
         // When we want to show a specific tab.

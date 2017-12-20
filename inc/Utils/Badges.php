@@ -1,10 +1,11 @@
 <?php
 
-namespace inc\Utils;
+namespace Inc\Utils;
 
 use Inc\Base\BaseController;
-use inc\Base\User;
+use Inc\Base\User;
 use Inc\Pages\Admin;
+use Inc\Base\Metabox;
 
 /**
  * Contain all the function for the management of the badges.
@@ -14,8 +15,16 @@ use Inc\Pages\Admin;
  *
  * @package     OpenBadgesFramework
  */
-class Badges{
+class Badges {
 
+    /**
+     * Get all the Badges.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       1.0.0
+     *
+     * @return array the badges
+     */
     public static function getAll() {
         return get_posts(array(
             'post_type' => Admin::POST_TYPE_BADGES,
@@ -27,7 +36,7 @@ class Badges{
 
     /**
      * This function permit to filter with the field
-     * and level and get the right badges that we want.
+     * and level the right badges that we want.
      *
      * @author      Alessandro RICCARDI
      * @since       1.0.0
@@ -79,34 +88,80 @@ class Badges{
 
                 // (!$badgeFields || $fieldOK)      --> if $badgeFields is empty and that means there's no
                 // field of education for the badge return 1, if $fieldOK is 1 and that means the badge have
-                // the same field of the @param $fieldId return 1.
+                // the same field of the $fieldId return 1.
                 //
                 // $badgeLevel->term_id == $levelId --> return 1 if the level of the badge is the same of
-                // the @param $fieldId.
+                // the $fieldId.
                 //
                 // !in_array($badge, $retBadges)    --> return 1 if is not already stored the badge in the
                 // $retBadges array.
                 if ((!$badgeFields || $fieldOK) && $badgeLevel->term_id == $levelId && !in_array($badge, $retBadges)) {
-                    $badgeCert = get_post_meta($badge->ID, '_certification', true);
-                    $badgeType = get_post_meta($badge->ID, "_target", true);
-
-                    if (current_user_can(User::CAP_MULTIPLE)) {
-                        $retBadges[] = $badge;
-                    } else if (current_user_can(User::CAP_SINGLE)) {
-                        if (($badgeType == "student" || $badgeType == "teacher") && $badgeCert != "certified") {
-                            $retBadges[] = $badge;
-                        }
-                    } else if (current_user_can(User::CAP_SELF) && $badgeCert != "certified") {
-                        if ($badgeType == "student") {
-                            $retBadges[] = $badge;
-                        }
-                    }
+                    self::checkCapInsertBadgeOrLevel($retBadges, $badge);
                 }
             }
 
             return $retBadges;
         }
     }
+
+    /**
+     * Here we're checking if the capability of the role of the user match
+     * with the kind of badge.
+     * That function is probably complicated but useful for my propose and
+     * remember: we're using the pointer for the first parameter.
+     * for my scope.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       1.0.0
+     *
+     * @param array $retContainer this array is a pointer to the main
+     *                            container that we want to save the badge
+     * @param       $badge        badge that we want to check
+     * @param bool  $retLevel     permit to specify if insert in the array the
+     *                            badge ore the level of the badge
+     */
+    public static function checkCapInsertBadgeOrLevel(array &$retContainer, $badge, $retLevel = false) {
+        $badgeLevel = null;
+        // Get the level of the badge
+        if ($retLevel) $badgeLevel = get_the_terms($badge->ID, Admin::TAX_LEVELS)[0];
+        // Get the type of the badge (student or teacher)
+        $badgeType = get_post_meta($badge->ID, "_target", true);
+        // Get the certification of the badge (certify or not-certify)
+        $badgeCert = get_post_meta($badge->ID, '_certification', true);
+
+        // Capability Teacher and Certification
+        if (current_user_can(USER::CAP_TEACHER)
+            && ($badgeType == Metabox::META_FIELD_TEACHER || $badgeType == Metabox::META_FIELD_STUDENT)) {
+            if (current_user_can(USER::CAP_CERT)
+                && ($badgeCert == Metabox::META_FIELD_CERT || $badgeCert == Metabox::META_FIELD_NOT_CERT)) {
+
+                if ($retLevel) array_push($retContainer, $badgeLevel);
+                else array_push($retContainer, $badge);
+
+            } else if (!current_user_can(USER::CAP_CERT) && $badgeCert == Metabox::META_FIELD_NOT_CERT) {
+
+                if ($retLevel) array_push($retContainer, $badgeLevel);
+                else array_push($retContainer, $badge);
+
+            }
+
+            // Capability Teacher and Certification
+        } else if (!current_user_can(USER::CAP_TEACHER) && $badgeType == Metabox::META_FIELD_STUDENT) {
+            if (current_user_can(USER::CAP_CERT)
+                && ($badgeCert == Metabox::META_FIELD_CERT || $badgeCert == Metabox::META_FIELD_NOT_CERT)) {
+
+                if ($retLevel) array_push($retContainer, $badgeLevel);
+                else array_push($retContainer, $badge);
+
+            } else if (!current_user_can(USER::CAP_CERT) && $badgeCert == Metabox::META_FIELD_NOT_CERT) {
+
+                if ($retLevel) array_push($retContainer, $badgeLevel);
+                else array_push($retContainer, $badge);
+
+            }
+        }
+    }
+
 
     /**
      * This function permit to get a specific badge.
@@ -140,7 +195,6 @@ class Badges{
 
         return $img;
     }
-
 
 
 }

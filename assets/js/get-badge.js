@@ -3,14 +3,20 @@
    ========================= */
 jQuery(function (event) {
     var clicked = false;
+
+    /**
+     * @description Get the param from the url.
+     *
+     * @param strinf name, the name of the param that we want to take
+     */
     var urlParam = function (name) {
         var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
         return results[1] || 0;
     }
 
     /**
-     * @description Here's wrap all the code to make an ajax and
-     *              we need to worry about only 2 variable.
+     * @description Here's wrap the code that permit to simplify an
+     *              ajax call.
      *
      * @param {array} data, that will send with the ajax call
      * @param {function} func, that will be execute after the
@@ -36,12 +42,11 @@ jQuery(function (event) {
     }
 
     /**
-     * @description It's building the html structure to show the loading gif.
+     * @description Build the html structure to show the loading gif.
      *
-     * @param {array} event, of the click
      * @return string html format
      */
-    var loadingPage = function (event) {
+    var loadingPage = function () {
         return ("<div class='cover-container'><header class='masthead clearfix'>" +
             "</header><main role='main' class='inner cover'>" +
             "<img src='" + globalUrl.loader + "' width='200px' />" +
@@ -73,10 +78,7 @@ jQuery(function (event) {
     }
 
     /**
-     * @description Show the Mozilla Open Badge
-     *
-     * @param {array} event
-     * @return
+     * @description Show the Mozilla Open Badge step inside the #gb-wrap <div>
      */
     var showGetMOBOpenBadges = function () {
         jQuery("#gb-wrap").fadeOut(400, function (event) {
@@ -102,9 +104,10 @@ jQuery(function (event) {
     }
 
     /**
-     * @description Show the conclusion step
+     * @description Get definitely the badge and after show the conclusion
+     *              step inside the #gb-wrap <div>
      *
-     * @param {array} event
+     * @param {bool} mozOpenBadge
      * @return
      */
     var showConclusion = function (mozOpenBadge = false) {
@@ -130,7 +133,7 @@ jQuery(function (event) {
     }
 
     /**
-     * @description Click event of the button continue
+     * @description Click event of the button continue of the first step.
      *
      * @param {array} event of the click
      * @return
@@ -160,7 +163,7 @@ jQuery(function (event) {
     });
 
     /**
-     * @description Click event of the button login
+     * @description Click event of the button login.
      *
      * @param {array} event of the click
      */
@@ -197,7 +200,7 @@ jQuery(function (event) {
     });
 
     /**
-     * @description Click event of the button registration
+     * @description Click event of the button registration.
      *
      * @param {array} event of the click
      */
@@ -255,7 +258,7 @@ jQuery(function (event) {
     });
 
     /**
-     * @description Click event of get badge button in Mozilla Open badge Step
+     * @description Click event of get badge button in Mozilla Open badge step.
      *
      * @param {array} event of the click
      */

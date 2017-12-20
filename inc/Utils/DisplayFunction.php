@@ -1,6 +1,6 @@
 <?php
 
-namespace inc\Utils;
+namespace Inc\Utils;
 
 /**
  * Contain all the function to show some information.

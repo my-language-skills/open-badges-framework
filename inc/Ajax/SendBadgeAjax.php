@@ -1,8 +1,8 @@
 <?php
 
-namespace inc\Ajax;
+namespace Inc\Ajax;
 
-use inc\Base\User;
+use Inc\Base\User;
 use Inc\Utils\DisplayFunction;
 use Inc\Utils\Levels;
 use Inc\Utils\Badges;
@@ -81,29 +81,33 @@ class SendBadgeAjax extends BaseController {
         $field = $_POST['fieldId'];
         $level = $_POST['level'];
 
-        $rightBadges = $badges->getFiltered($field, $level);
+        $badges = $badges->getFiltered($field, $level);
 
-        foreach ($rightBadges as $badge) { ?>
-            <!-- HTML -->
-            <div class="cont-badge-sb">
-                <label for="<?php echo "badge-$badge->ID-form-$form" ?>" class="badge-cont">
-                    <input id="<?php echo "badge-$badge->ID-form-$form" ?>" type="radio"
-                           name="badge_<?php echo $form; ?>"
-                           class="input-badge" value="<?php echo $badge->ID; ?>"/>
-                    <img class="img-badge" src=" <?php echo Badges::getImage($badge->ID); ?>"/>
-                </label>
-                <br>
-                <b><?php echo $badge->post_title; ?></b>
-                </label>
-            </div>
-            <?php
+        if ($badges) {
+            foreach ($badges as $badge) { ?>
+                <!-- HTML -->
+                <div class="cont-badge-sb">
+                    <label for="<?php echo "badge-$badge->ID-form-$form" ?>" class="badge-cont">
+                        <input id="<?php echo "badge-$badge->ID-form-$form" ?>" type="radio"
+                               name="badge_<?php echo $form; ?>"
+                               class="input-badge" value="<?php echo $badge->ID; ?>"/>
+                        <img class="img-badge" src=" <?php echo Badges::getImage($badge->ID); ?>"/>
+                    </label>
+                    <br>
+                    <b><?php echo $badge->post_title; ?></b>
+                    </label>
+                </div>
+                <?php
+            }
+        } else {
+            echo "There aren't badges with this field of education!";
         }
 
         wp_die();
     }
 
     /**
-     * Show the description fo the badge.
+     * Show the description of the badge.
      *
      * @author Alessandro RICCARDI
      * @since  1.0.0
@@ -139,7 +143,7 @@ class SendBadgeAjax extends BaseController {
         }
 
         echo "<br><br>";
-        if(!User::checkTheRules("academy")) {
+        if(current_user_can(User::CAP_JOB_LISTING)) {
             $addClassPage = get_post(
                 SettingsTemp::getOption(SettingsTemp::FI_ADD_CLASS)
             );

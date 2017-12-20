@@ -1,6 +1,6 @@
 <?php
 
-namespace inc\Base;
+namespace Inc\Base;
 
 use Inc\Pages\Admin;
 
@@ -20,7 +20,27 @@ class User {
     const CAP_SELF = "obf_send_self";
     const CAP_SINGLE = "obf_send_single";
     const CAP_MULTIPLE = "obf_send_multiple";
+    const CAP_CERT = "obf_send_certificate";
+    const CAP_TEACHER = "obf_send_teacher";
+    const CAP_JOB_LISTING = "obf_job_listing_integration";
 
+    // That capability are created with the propose to allow the academy
+    // role to manage the backend of our plugin, but right now we only
+    // assigned the capability without give the possibility to the see
+    // the backend. Propose for the future -> show the plugin section in
+    // admin bar.
+    /*
+    const CAP_EDIT_BADGE = "edit_badge";
+    const CAP_EDIT_BADGES = "edit_badges";
+    const CAP_EDIT_OTHER_BADGES = "edit_other_badges";
+    const CAP_EDIT_PUBLISHED_BADGES = "edit_published_badges";
+    const CAP_PUBLISHED_BADGES = "publish_badges";
+    const CAP_READ_BADGE = "read_badge";
+    const CAP_READ_BADGES = "read_badges";
+    const CAP_READ_PRIVATE_BADGES = "read_private_badges";
+    const CAP_DELETE_BADGE = "delete_badge";
+    const CAP_DELETE_BADGES = "delete_badges";
+*/
     const RET_SUCCESS = 0;
     const RET_NO_MATCH_PASS = "The <strong>passwords</strong> doesn't match, please write correctly. <br>";
     const RET_USER_EXIST = "The <strong>username</strong> already exist, please chose another.";
@@ -33,7 +53,26 @@ class User {
             'display_name' => 'Student',
             'capabilities' => array(
                 'read' => true,
+                'publish_posts' => false,
                 self::CAP_SELF => true,
+                self::CAP_SINGLE => false,
+                self::CAP_MULTIPLE => false,
+                self::CAP_CERT => false,
+                self::CAP_TEACHER => false,
+                self::CAP_JOB_LISTING => false,
+
+
+               /* self::CAP_EDIT_BADGE => false,
+                self::CAP_EDIT_BADGES => false,
+                self::CAP_EDIT_OTHER_BADGES => false,
+                self::CAP_EDIT_PUBLISHED_BADGES => false,
+                self::CAP_PUBLISHED_BADGES => false,
+                self::CAP_READ_BADGE => false,
+                self::CAP_READ_BADGES => false,
+                self::CAP_READ_PRIVATE_BADGES => false,
+                self::CAP_DELETE_BADGE => false,
+                self::CAP_DELETE_BADGES => false,
+               */
             ),
         ),
         array(
@@ -43,6 +82,21 @@ class User {
                 'read' => true,
                 self::CAP_SELF => true,
                 self::CAP_SINGLE => true,
+                self::CAP_MULTIPLE => false,
+                self::CAP_CERT => false,
+                self::CAP_TEACHER => false,
+                self::CAP_JOB_LISTING => false,
+
+                /*self::CAP_EDIT_BADGE => false,
+                self::CAP_EDIT_BADGES => false,
+                self::CAP_EDIT_OTHER_BADGES => false,
+                self::CAP_EDIT_PUBLISHED_BADGES => false,
+                self::CAP_PUBLISHED_BADGES => false,
+                self::CAP_READ_BADGE => false,
+                self::CAP_READ_BADGES => false,
+                self::CAP_READ_PRIVATE_BADGES => false,
+                self::CAP_DELETE_BADGE => false,
+                self::CAP_DELETE_BADGES => false,*/
             ),
         ),
         array(
@@ -53,6 +107,20 @@ class User {
                 self::CAP_SELF => true,
                 self::CAP_SINGLE => true,
                 self::CAP_MULTIPLE => true,
+                self::CAP_CERT => true,
+                self::CAP_TEACHER => false,
+                self::CAP_JOB_LISTING => true,
+
+                /*self::CAP_EDIT_BADGE => true,
+                self::CAP_EDIT_BADGES => true,
+                self::CAP_EDIT_OTHER_BADGES => true,
+                self::CAP_EDIT_PUBLISHED_BADGES => true,
+                self::CAP_PUBLISHED_BADGES => true,
+                self::CAP_READ_BADGE => true,
+                self::CAP_READ_BADGES => true,
+                self::CAP_READ_PRIVATE_BADGES => true,
+                self::CAP_DELETE_BADGE => true,
+                self::CAP_DELETE_BADGES => true,*/
             ),
         )
     );
@@ -90,12 +158,29 @@ class User {
 
         // Now give the capability to the 'administrator' and 'author' role
         $roles[] = get_role( 'administrator' );
-        $roles[] = get_role( 'author' );
+        $roles[] = get_role( 'editor' );
 
         foreach($roles as $role) {
             $role->add_cap(self::CAP_SELF);
             $role->add_cap(self::CAP_SINGLE);
             $role->add_cap(self::CAP_MULTIPLE);
+            $role->add_cap(self::CAP_CERT);
+            $role->add_cap(self::CAP_TEACHER);
+            $role->add_cap(self::CAP_JOB_LISTING);
+
+            /*
+            $role->add_cap(self::CAP_EDIT_BADGE);
+            $role->add_cap(self::CAP_EDIT_BADGES);
+            $role->add_cap(self::CAP_EDIT_OTHER_BADGES);
+            $role->add_cap(self::CAP_EDIT_PUBLISHED_BADGES);
+            $role->add_cap(self::CAP_PUBLISHED_BADGES);
+            $role->add_cap(self::CAP_READ_BADGE);
+            $role->add_cap(self::CAP_READ_BADGES);
+            $role->add_cap(self::CAP_READ_PRIVATE_BADGES);
+            $role->add_cap(self::CAP_DELETE_BADGE);
+            $role->add_cap(self::CAP_DELETE_BADGES);
+            */
+
         }
     }
 

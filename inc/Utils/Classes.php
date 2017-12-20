@@ -1,8 +1,8 @@
 <?php
 
-namespace inc\Utils;
+namespace Inc\Utils;
 
-use inc\Base\User;
+use Inc\Base\User;
 use Inc\Pages\Admin;
 
 /**

@@ -30,10 +30,6 @@ window.addEventListener("load", function () {
     Image uploader
    ========================= */
 jQuery(function ($) {
-    /*
-     * Select/Upload image(s) event
-     * Source: https://rudrastyh.com/wordpress/customizable-media-uploader.html
-     */
     $('body').on('click', '.upload-image-obf-settings', function (e) {
         e.preventDefault();
 
@@ -52,16 +48,6 @@ jQuery(function ($) {
             }).on('select', function () { // it also has "open" and "close" events
                 var attachment = custom_uploader.state().get('selection').first().toJSON();
                 $(button).removeClass('button').html('<img class="image-setting-prev" src="' + attachment.url + '" />').next().val(attachment.id).next().show();
-                /* if you sen multiple to true, here is some code for getting the image IDs
-                var attachments = frame.state().get('selection'),
-                    attachment_ids = new Array(),
-                    i = 0;
-                attachments.each(function(attachment) {
-                     attachment_ids[i] = attachment['id'];
-                    console.log( attachment );
-                    i++;
-                });
-                */
             }).open();
     });
 

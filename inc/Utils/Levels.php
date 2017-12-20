@@ -1,9 +1,9 @@
 <?php
 
-namespace inc\Utils;
+namespace Inc\Utils;
 
 use Inc\Pages\Admin;
-use Inc\Base\User;
+use Inc\Utils\Badges;
 
 /**
  * That class permit to mange the Level taxonomies.
@@ -14,24 +14,6 @@ use Inc\Base\User;
  * @package     OpenBadgesFramework
  */
 class Levels {
-    public $levels = array();
-
-    /**
-     * This constructor load all the level stored
-     * in the db.
-     *
-     * @author   Alessandro RICCARDI
-     * @since    1.0.0
-     */
-    public function __construct() {
-
-        // Get Main
-        $this->levels = get_terms(array(
-            'taxonomy' => Admin::TAX_LEVELS,
-            'hide_empty' => false,
-        ));
-
-    }
 
     /**
      * Returns the right filtered levels.
@@ -57,10 +39,7 @@ class Levels {
         ));
 
         foreach ($allBadges as $badge) {
-            // Get the type of the badge (student or teacher)
-            $badge_type = get_post_meta($badge->ID, "_target", true);
-            // Get the level of the badge
-            $badgeLevel = get_the_terms($badge->ID, Admin::TAX_LEVELS)[0];
+
             // Get the field of the badge
             $badgeFields = get_the_terms($badge->ID, Admin::TAX_FIELDS);
 
@@ -68,20 +47,7 @@ class Levels {
             // If there is no fields of education in the badge, means that is part of
             // all the fields (category).
             if (!$badgeFields) {
-                if (!in_array($badgeLevel, $retLevels)) {
-
-                    if (current_user_can(User::CAP_MULTIPLE)) {
-                        $retLevels[] = $badgeLevel;
-                    } else if (current_user_can(User::CAP_SINGLE)) {
-                        if ($badge_type == "student" || $badge_type == "teacher") {
-                            $retLevels[] = $badgeLevel;
-                        }
-                    } else if (current_user_can(User::CAP_SELF)) {
-                        if ($badge_type == "student") {
-                            $retLevels[] = $badgeLevel;
-                        }
-                    }
-                }
+                Badges::checkCapInsertBadgeOrLevel($retLevels, $badge, true);
 
                 // FIELD\S OF EDUCATION EXISTING
             } else {
@@ -91,20 +57,8 @@ class Levels {
 
                     // Check if the field of education of the badge is the same of the $ourField,
                     // that mean we want to show only the levels of a specific field
-                    if (($badgeField->term_id == $fieldId || $badgeField->term_id == $selectedField->parent)
-                        && !in_array($badgeLevel, $retLevels)) {
-
-                        if (current_user_can(User::CAP_MULTIPLE)) {
-                            $retLevels[] = $badgeLevel;
-                        } else if (current_user_can(User::CAP_SINGLE)) {
-                            if ($badge_type == "student" || $badge_type == "teacher") {
-                                $retLevels[] = $badgeLevel;
-                            }
-                        } else if (current_user_can(User::CAP_SELF)) {
-                            if ($badge_type == "student") {
-                                $retLevels[] = $badgeLevel;
-                            }
-                        }
+                    if (($badgeField->term_id == $fieldId || $badgeField->term_id == $selectedField->parent)) {
+                        Badges::checkCapInsertBadgeOrLevel($retLevels, $badge, true);
                     }
                 }
             }
@@ -112,5 +66,6 @@ class Levels {
 
         return $retLevels;
     }
+
 
 }

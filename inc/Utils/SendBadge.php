@@ -3,7 +3,7 @@
 namespace Inc\Utils;
 
 use Inc\Base\BaseController;
-use inc\Base\User;
+use Inc\Base\User;
 use Inc\Database\DbBadge;
 use Inc\Utils\JsonManagement;
 use Inc\Pages\Admin;

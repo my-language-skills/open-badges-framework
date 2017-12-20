@@ -3,7 +3,7 @@
 namespace templates;
 
 use Inc\Base\BaseController;
-use inc\Base\User;
+use Inc\Base\User;
 use Inc\Database\DbBadge;
 use Inc\Utils\JsonManagement;
 use Inc\Pages\Admin;
@@ -103,6 +103,7 @@ final class GetBadgeTemp extends BaseController {
             $this->badge = $badges->get($data['badgeId']);
             $this->field = get_term($data['fieldId'], Admin::TAX_FIELDS);
             $this->level = get_term($data['levelId'], Admin::TAX_LEVELS);
+
 
             if ($this->badge && $this->field && $this->level && $this->jsonUrl) {
                 if (!DbBadge::isGotMOB($data)) {

@@ -14,6 +14,10 @@ use Inc\Pages\Admin;
  * @package     OpenBadgesFramework
  */
 class Metabox {
+    const META_FIELD_CERT = "certified";
+    const META_FIELD_NOT_CERT = "not_certified";
+    const META_FIELD_STUDENT = "student";
+    const META_FIELD_TEACHER = "teacher";
 
     public $cert_mtb;
     public $target_mtb;
@@ -47,13 +51,13 @@ class Metabox {
     public static function certification($post) {
         $val = get_post_meta($post->ID, '_certification', true);
 
-        echo '<input type="radio" value="not_certified" name="certification_input"';
-        self::check($val, 'not_certified');
-        printf(__('> Not certified<br>', 'open-badges-framework'));
-
-        echo '<input type="radio" value="certified" name="certification_input"';
-        self::check($val, 'certified');
+        echo '<input type="radio" value="'.self::META_FIELD_CERT.'" name="certification_input"';
+        self::check($val, self::META_FIELD_CERT);
         printf(__('> Certified<br>', 'open-badges-framework'));
+
+        echo '<input type="radio" value="'.self::META_FIELD_NOT_CERT.'" name="certification_input"';
+        self::check($val, self::META_FIELD_NOT_CERT);
+        printf(__('> Not certified<br>', 'open-badges-framework'));
     }
 
 
@@ -66,12 +70,12 @@ class Metabox {
     public static function target($post) {
         $val = get_post_meta($post->ID, '_target', true);
 
-        echo '<input type="radio" value="student" name="target_input"';
-        self::check($val, 'student');
+        echo '<input type="radio" value="'.self::META_FIELD_STUDENT.'" name="target_input"';
+        self::check($val, self::META_FIELD_STUDENT);
         printf(__('> Student<br>', 'open-badges-framework'));
 
-        echo '<input type="radio" value="teacher" name="target_input"';
-        self::check($val, 'teacher');
+        echo '<input type="radio" value="'.self::META_FIELD_TEACHER.'" name="target_input"';
+        self::check($val, self::META_FIELD_TEACHER);
         printf(__('> Teacher<br>', 'open-badges-framework'));
 
     }

@@ -229,7 +229,7 @@ window.onload = function () {
             onFinishing: function (event, currentIndex) {
                 if ($res = check_information("c", form_c)) {
                     modal.style.display = "block";
-                    jQuery('#responseSent').html("<br /><img src='" + globalUrl.loader + "' width='150px' height='150px' />");
+                    jQuery('#responseSent').html("<img src='" + globalUrl.loader + "' width='150px' height='150px' />");
                     return $res;
                 } else {
                     return false;

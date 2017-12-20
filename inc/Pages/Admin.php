@@ -5,6 +5,7 @@ namespace Inc\Pages;
 use Inc\Base\Metabox;
 use Inc\Base\BaseController;
 use Inc\Api\SettingApi;
+use Inc\Base\User;
 use Templates\DashboardTemp;
 use Templates\GetBadgeTemp;
 use Templates\SendBadgeTemp;
@@ -178,7 +179,20 @@ class Admin extends BaseController {
                     'has_archive' => true,
                     'show_ui' => true,
                     'show_in_menu' => false, // adding to custom menu manually
-                    'supports' => array('title', 'editor', 'author', 'thumbnail',)
+                    'supports' => array('title', 'editor', 'author', 'thumbnail',),
+                    /*
+                    'capabilities' => array(
+                        'edit_post' => User::CAP_EDIT_BADGE,
+                        'edit_posts' => User::CAP_EDIT_BADGES,
+                        'edit_others_posts' => User::CAP_EDIT_OTHER_BADGES,
+                        'edit_published_posts' => User::CAP_EDIT_PUBLISHED_BADGES,
+                        'publish_posts' => User::CAP_PUBLISHED_BADGES,
+                        'read_post' => User::CAP_READ_BADGE,
+                        'read_posts' => User::CAP_READ_BADGES,
+                        'read_private_posts' => User::CAP_READ_BADGES,
+                        'delete_post' => User::CAP_DELETE_BADGE,
+                        'delete_posts' => User::CAP_DELETE_BADGES,
+                    )*/
                 )
             ),
         );

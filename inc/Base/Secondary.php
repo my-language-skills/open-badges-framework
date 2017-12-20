@@ -1,6 +1,6 @@
 <?php
 
-namespace inc\Base;
+namespace Inc\Base;
 
 use Inc\Pages\Admin;
 
