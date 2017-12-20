@@ -123,7 +123,8 @@ class SendBadgeAjax extends BaseController {
     }
 
     /**
-     * Show the class of the user.
+     * Show the class of the user and permit to became premium or
+     * to add a class (in base of the roles).
      *
      * @author Alessandro RICCARDI
      * @since  1.0.0
@@ -147,12 +148,12 @@ class SendBadgeAjax extends BaseController {
             $addClassPage = get_post(
                 SettingsTemp::getOption(SettingsTemp::FI_ADD_CLASS)
             );
-            echo "<a href='". get_page_link($addClassPage->ID)."'>Add Class</a>";
+            if($addClassPage) echo "<a href='". get_page_link($addClassPage->ID)."'>Add Class</a>";
         } else {
             $becamePremiumPage = get_post(
                 SettingsTemp::getOption(SettingsTemp::FI_BECAME_PREMIUM)
             );
-            echo "<a href='". get_page_link($becamePremiumPage->ID)."'>Became Premium</a>";
+            if($becamePremiumPage) echo "<a href='". get_page_link($becamePremiumPage->ID)."'>Became Premium</a>";
         }
 
         wp_die();

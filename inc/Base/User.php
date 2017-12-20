@@ -53,7 +53,6 @@ class User {
             'display_name' => 'Student',
             'capabilities' => array(
                 'read' => true,
-                'publish_posts' => false,
                 self::CAP_SELF => true,
                 self::CAP_SINGLE => false,
                 self::CAP_MULTIPLE => false,
@@ -108,7 +107,7 @@ class User {
                 self::CAP_SINGLE => true,
                 self::CAP_MULTIPLE => true,
                 self::CAP_CERT => true,
-                self::CAP_TEACHER => false,
+                self::CAP_TEACHER => true,
                 self::CAP_JOB_LISTING => true,
 
                 /*self::CAP_EDIT_BADGE => true,

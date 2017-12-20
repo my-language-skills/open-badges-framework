@@ -138,135 +138,15 @@ jQuery(function (event) {
      * @param {array} event of the click
      * @return
      */
-    jQuery(document).on("click", "#gb-continue", function (event) {
-        if (!clicked) {
-            clicked = true;
-            jQuery("#gb-wrap").fadeOut(400, function (event) {
-                jQuery("#gb-wrap").html(loadingPage());
+    var btnContinue = "#gb-continue";
+    jQuery(document).on("click", btnContinue, function (event) {
+        jQuery(btnContinue).prop('disabled', true);
 
-                var data = {
-                    'action': 'ajaxGbShowLogin',
-                    'json': urlParam('json'),
-                    'badgeId': urlParam('badge'),
-                    'fieldId': urlParam('field'),
-                    'levelId': urlParam('level'),
-                };
+        jQuery("#gb-wrap").fadeOut(400, function (event) {
+            jQuery("#gb-wrap").html(loadingPage());
 
-                var func = function (response) {
-                    jQuery("#gb-wrap").html(response);
-                }
-
-                ajaxCall(data, func);
-
-            }).delay(400).fadeIn(400);
-        }
-    });
-
-    /**
-     * @description Click event of the button login.
-     *
-     * @param {array} event of the click
-     */
-    jQuery(document).on("submit", "#gb-form-login", function (event) {
-        if (!clicked) {
-            clicked = true;
-            event.preventDefault();
-
-            var email = jQuery("#staticEmail").val();
-            var password = jQuery("#inputPassword").val();
-            var remember = jQuery("#inputRemember").is(':checked');
             var data = {
-                'action': 'ajaxGbLogin',
-                'badgeId': urlParam('badge'),
-                'fieldId': urlParam('field'),
-                'levelId': urlParam('level'),
-                'user_email': email,
-                'user_password': password,
-                'remember': remember,
-
-            };
-
-            var func = function (response) {
-                if (response == true) {
-                    showGetMOBOpenBadges();
-                } else {
-                    jQuery("#gb-resp-login").html(response);
-                }
-                clicked = false;
-            }
-
-            ajaxCall(data, func);
-        }
-    });
-
-    /**
-     * @description Click event of the button registration.
-     *
-     * @param {array} event of the click
-     */
-    jQuery(document).on("submit", "#gb-form-registration", function (event) {
-        if (!clicked) {
-            clicked = true;
-            event.preventDefault();
-            jQuery("#gb-resp-register").html("");
-
-            var inputFields = [
-                jQuery(this).find("#reg-email"),
-                jQuery(this).find("#reg-user-name"),
-                jQuery(this).find("#reg-first-name"),
-                jQuery(this).find("#reg-last-name"),
-                jQuery(this).find("#reg-pass"),
-                jQuery(this).find("#reg-repeat-pass"),
-            ];
-
-            if (this.checkValidity() === false) {
-                event.stopPropagation();
-                inputFields.forEach(function (field) {
-                    checkValue(field);
-                });
-
-            } else {
-
-                var data = {
-                    'action': 'ajaxGbRegistration',
-                    'json': urlParam('json'),
-                    'badgeId': urlParam('badge'),
-                    'fieldId': urlParam('field'),
-                    'levelId': urlParam('level'),
-                    'user_email': inputFields[0].val(),
-                    'user_name': inputFields[1].val(),
-                    'first_name': inputFields[2].val(),
-                    'last_name': inputFields[3].val(),
-                    'user_pass': inputFields[4].val(),
-                    'user_rep_pass': inputFields[5].val(),
-                };
-
-                var func = function (response) {
-                    if (response == 0) {
-                        showGetMOBOpenBadges();
-                    } else if (response) {
-                        jQuery("#gb-resp-register").html(response);
-                    }
-                }
-
-                ajaxCall(data, func);
-
-                clicked = false;
-            }
-            this.classList.add('was-validated');
-        }
-    });
-
-    /**
-     * @description Click event of get badge button in Mozilla Open badge step.
-     *
-     * @param {array} event of the click
-     */
-    jQuery(document).on("click", "#gb-ob-get-badge", function (event) {
-        if (!clicked) {
-            clicked = true;
-            var data = {
-                'action': 'ajaxGbGetJsonUrl',
+                'action': 'ajaxGbShowLogin',
                 'json': urlParam('json'),
                 'badgeId': urlParam('badge'),
                 'fieldId': urlParam('field'),
@@ -274,18 +154,144 @@ jQuery(function (event) {
             };
 
             var func = function (response) {
-                OpenBadges.issue([response], function (errors, successes) {
-                    if (successes.length) {
-                        showConclusion(true);
-                    } else if (errors.length) {
-                        jQuery("#gb-ob-response").html("Badge not sent!")
-                    }
-                });
+                jQuery("#gb-wrap").html(response);
+                jQuery(btnContinue).prop('disabled', false);
+            }
+
+            ajaxCall(data, func);
+
+        }).delay(400).fadeIn(400);
+    });
+
+    /**
+     * @description Click event of the button login.
+     *
+     * @param {array} event of the click
+     */
+    var btnLogin = "#gb-form-login";
+    jQuery(document).on("submit", btnLogin, function (event) {
+        jQuery(btnLogin).prop('disabled', true);
+        event.preventDefault();
+
+        var email = jQuery("#staticEmail").val();
+        var password = jQuery("#inputPassword").val();
+        var remember = jQuery("#inputRemember").is(':checked');
+        var data = {
+            'action': 'ajaxGbLogin',
+            'badgeId': urlParam('badge'),
+            'fieldId': urlParam('field'),
+            'levelId': urlParam('level'),
+            'user_email': email,
+            'user_password': password,
+            'remember': remember,
+
+        };
+
+        var func = function (response) {
+            if (response == true) {
+                showGetMOBOpenBadges();
+            } else {
+                jQuery("#gb-resp-login").html(response);
+            }
+            jQuery(btnLogin).prop('disabled', false);
+        }
+
+        ajaxCall(data, func);
+    });
+
+    /**
+     * @description Click event of the button registration.
+     *
+     * @param {array} event of the click
+     */
+    var formRegister = "#gb-form-registration";
+    var responseRegister = "#gb-resp-register";
+    var btnRegister = "#submit-form";
+    var lblRegister = "#lbl-submit-form";
+    jQuery(document).on("submit", formRegister, function (event) {
+        jQuery(btnRegister).prop('disabled', true);
+        jQuery(lblRegister).addClass("disabled");
+
+        event.preventDefault();
+        jQuery(responseRegister).html("");
+
+        var inputFields = [
+            jQuery(this).find("#reg-email"),
+            jQuery(this).find("#reg-user-name"),
+            jQuery(this).find("#reg-first-name"),
+            jQuery(this).find("#reg-last-name"),
+            jQuery(this).find("#reg-pass"),
+            jQuery(this).find("#reg-repeat-pass"),
+        ];
+
+        if (this.checkValidity() === false) {
+            event.stopPropagation();
+            inputFields.forEach(function (field) {
+                checkValue(field);
+            });
+            jQuery(btnRegister).prop('disabled', false);
+            jQuery(lblRegister).removeClass("disabled");
+        } else {
+
+            var data = {
+                'action': 'ajaxGbRegistration',
+                'json': urlParam('json'),
+                'badgeId': urlParam('badge'),
+                'fieldId': urlParam('field'),
+                'levelId': urlParam('level'),
+                'user_email': inputFields[0].val(),
+                'user_name': inputFields[1].val(),
+                'first_name': inputFields[2].val(),
+                'last_name': inputFields[3].val(),
+                'user_pass': inputFields[4].val(),
+                'user_rep_pass': inputFields[5].val(),
+            };
+
+            var func = function (response) {
+                if (response == 0) {
+                    showGetMOBOpenBadges();
+                } else if (response) {
+                    jQuery(responseRegister).html(response);
+                }
+                jQuery(btnRegister).prop('disabled', false);
+                jQuery(lblRegister).removeClass("disabled");
+
             }
             ajaxCall(data, func);
-            clicked = false;
-
         }
+        this.classList.add('was-validated');
+    });
+
+    /**
+     * @description Click event of get badge button in Mozilla Open badge step.
+     *
+     * @param {array} event of the click
+     */
+    var btnGetBadgeMob = "#gb-ob-get-badge"
+    jQuery(document).on("click", btnGetBadgeMob, function (event) {
+        jQuery(btnGetBadgeMob).prop('disabled', true);
+
+        var data = {
+            'action': 'ajaxGbGetJsonUrl',
+            'json': urlParam('json'),
+            'badgeId': urlParam('badge'),
+            'fieldId': urlParam('field'),
+            'levelId': urlParam('level'),
+        };
+
+        var func = function (response) {
+            OpenBadges.issue([response], function (errors, successes) {
+                if (successes.length) {
+                    showConclusion(true);
+                } else if (errors.length) {
+                    jQuery("#gb-ob-response").html("Badge not sent!")
+                }
+                jQuery(btnGetBadgeMob).prop('disabled', false);
+
+            });
+        }
+        ajaxCall(data, func);
+
     });
 
     /**
@@ -293,13 +299,10 @@ jQuery(function (event) {
      *
      * @param {array} event  of the click
      */
-    jQuery(document).on("click", "#gb-get-standard", function (event) {
-        if (!clicked) {
-            clicked = true;
-            showConclusion(false);
-            clicked = false;
-        }
+    var btnGetBadgeStandard = "#gb-get-standard";
+    jQuery(document).on("click", btnGetBadgeStandard, function (event) {
+        jQuery(btnGetBadgeStandard).prop('disabled', false);
+        showConclusion(false);
+        jQuery(btnGetBadgeStandard).prop('disabled', true);
     });
-
-
 });
