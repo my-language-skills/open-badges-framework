@@ -37,8 +37,8 @@ class Statistics {
         $posts = wp_count_posts($slug);
         $terms = wp_count_terms($slug);
 
-        if (isset($posts) && !empty($posts->publish)) {
-            return $posts->publish;
+        if (isset($posts)) {
+            return !empty($posts->publish) ? $posts->publish : 0;
         } else if (isset($terms)) {
             return $terms;
         } else {
