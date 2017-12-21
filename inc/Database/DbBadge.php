@@ -3,8 +3,8 @@
 namespace Inc\Database;
 
 /**
- * That class manage the database table for
- * the badges that are sent.
+ * That class manage the database table for the badges
+ * that are sent.
  *
  * @author      Alessandro RICCARDI
  * @since       1.0.0
@@ -175,12 +175,7 @@ class DbBadge extends DbModel {
      * @author      Alessandro RICCARDI
      * @since       1.0.0
      *
-     * @param array $data  {
-     *                     Data that we want to update.
-     *                     example:
-     *
-     * @type string        getDate        Time.
-     *                     }
+     * @param array $data  Data that we want to update.
      *
      * @param array $where {
      *                     Array of information about a specific badge.
@@ -191,9 +186,9 @@ class DbBadge extends DbModel {
      * @type string        levelId          Level Id.
      * }
      *
-     * @param array $where , the field that you want to update
-     *
-     * @return true if everything is good | @const ER_DONT_EXIST if don't exist the badge | false, if other errors.
+     * @return  bool    true if everything is good
+     *          string  ER_DONT_EXIST if don't exist the badge
+     *          bool    false, if other errors.
      */
     public static function update(array $data, array $where) {
 
@@ -225,7 +220,8 @@ class DbBadge extends DbModel {
      * @type string        fieldId          Field Id.
      * @type string        levelId          Level Id.
      *
-     * @return true | false, if errors.
+     * @return  bool    true if everything ok
+     *                  false if errors.
      */
     public static function delete(array $data) {
         $rightKeys = array(
@@ -251,7 +247,8 @@ class DbBadge extends DbModel {
      * @param array $rightKeys
      * @param array $data
      *
-     * @return true|false, if errors.
+     * @return  bool    true if everything ok
+     *                  false if errors.
      */
     private static function checkFields(array $rightKeys, array $data) {
         $rightDim = count($rightKeys);
@@ -324,8 +321,10 @@ class DbBadge extends DbModel {
      * @type string        levelId          Level Id.
      * }
      *
-     * @return the badge | false, if don't exist. | @const ER_DONT_EXIST if the badge doesn't exist |
-     *         ER_WRONG_FIELDS if there are wrong field
+     * @return          the badge
+     *         bool     false, if don't exist.
+     *         const    ER_DONT_EXIST if the badge doesn't exist
+     *         const    ER_WRONG_FIELDS if there are wrong field
      */
     public static function isGotMOB(array $data) {
         $rightKeys = array(
@@ -389,7 +388,7 @@ class DbBadge extends DbModel {
      * @author      Alessandro RICCARDI
      * @since       1.0.0
      *
-     * @return return the number of badges that are got
+     * @return return the number of badges that are got.
      */
     public static function getNumGot(){
         global $wpdb;

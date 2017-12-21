@@ -41,10 +41,6 @@ class User {
     const CAP_DELETE_BADGE = "delete_badge";
     const CAP_DELETE_BADGES = "delete_badges";
 */
-    const RET_SUCCESS = 0;
-    const RET_NO_MATCH_PASS = "The <strong>passwords</strong> doesn't match, please write correctly. <br>";
-    const RET_USER_EXIST = "The <strong>username</strong> already exist, please chose another.";
-    const RET_REGISTRATION_ERROR = "<strong>Registration error<strong>, please ask to the help desk";
 
     // List of roles that we need for our plugin.
     public $listRoles = array(
@@ -61,17 +57,17 @@ class User {
                 self::CAP_JOB_LISTING => false,
 
 
-               /* self::CAP_EDIT_BADGE => false,
-                self::CAP_EDIT_BADGES => false,
-                self::CAP_EDIT_OTHER_BADGES => false,
-                self::CAP_EDIT_PUBLISHED_BADGES => false,
-                self::CAP_PUBLISHED_BADGES => false,
-                self::CAP_READ_BADGE => false,
-                self::CAP_READ_BADGES => false,
-                self::CAP_READ_PRIVATE_BADGES => false,
-                self::CAP_DELETE_BADGE => false,
-                self::CAP_DELETE_BADGES => false,
-               */
+                /* self::CAP_EDIT_BADGE => false,
+                 self::CAP_EDIT_BADGES => false,
+                 self::CAP_EDIT_OTHER_BADGES => false,
+                 self::CAP_EDIT_PUBLISHED_BADGES => false,
+                 self::CAP_PUBLISHED_BADGES => false,
+                 self::CAP_READ_BADGE => false,
+                 self::CAP_READ_BADGES => false,
+                 self::CAP_READ_PRIVATE_BADGES => false,
+                 self::CAP_DELETE_BADGE => false,
+                 self::CAP_DELETE_BADGES => false,
+                */
             ),
         ),
         array(
@@ -124,11 +120,17 @@ class User {
         )
     );
 
+    // Return messages.
+    const RET_SUCCESS = 0;
+    const RET_NO_MATCH_PASS = "The <strong>passwords</strong> doesn't match, please write correctly. <br>";
+    const RET_USER_EXIST = "The <strong>username</strong> already exist, please chose another.";
+    const RET_REGISTRATION_ERROR = "<strong>Registration error<strong>, please ask to the help desk";
+    const RET_LOGIN_ERROR = "<strong>Login error<strong>, please ask to the help desk";
 
     /**
      * Call the principal function (initialize) and call the
-     * WordPress hook that create the own class for every
-     * registration of user.
+     * WordPress hook that create the own class in Job_Listing
+     * for every registration of user.
      *
      * @author Alessandro RICCARDI
      * @since  1.0.0
@@ -156,10 +158,10 @@ class User {
         }
 
         // Now give the capability to the 'administrator' and 'author' role
-        $roles[] = get_role( 'administrator' );
-        $roles[] = get_role( 'editor' );
+        $roles[] = get_role('administrator');
+        $roles[] = get_role('editor');
 
-        foreach($roles as $role) {
+        foreach ($roles as $role) {
             $role->add_cap(self::CAP_SELF);
             $role->add_cap(self::CAP_SINGLE);
             $role->add_cap(self::CAP_MULTIPLE);
@@ -183,21 +185,22 @@ class User {
         }
     }
 
-
     /**
-     * Create the own class for every registration
-     * of user.
+     * Create the own class in Job_Listing for every new
+     * user registration. But remember it will not create
+     * for the user that was already registered before the
+     * activation of the Job Listing plugin.
      *
      * @author Alessandro RICCARDI
      * @since  1.0.0
      *
-     * @param int $user_id id of the user
+     * @param int $userId id of the user
      */
-    public function registerUserClass($user_id) {
-        if (!$user_id > 0) {
+    public function registerUserClass($userId) {
+        if (!$userId > 0) {
             return;
         } else {
-            $user = get_user_by('id', $user_id);
+            $user = get_user_by('id', $userId);
 
             $newClass = array(
                 'post_title' => $user->user_login,
@@ -227,8 +230,8 @@ class User {
     }
 
     /**
-     * Check if the user have one of the roles
-     * that we pass as a param.
+     * Check if the user have one of the roles that we pass
+     * as a param.
      *
      * @author Alessandro RICCARDI
      * @since  0.6.4
@@ -250,7 +253,7 @@ class User {
     }
 
     /**
-     * Get a badge by the ids.
+     * Get a badge by the Ids.
      *
      * @author      Alessandro RICCARDI
      * @since       1.0.0
@@ -266,9 +269,11 @@ class User {
      * @type string        last_name        Last Name.
      * }
      *
-     * @return Const error.
+     * @return int      RET_SUCCESS (0) in case of success
+     *         string   RET_USER_EXIST
+     *         string   RET_REGISTRATION_ERROR
      */
-    public static function registerUser($user){
+    public static function registerUser($user) {
         // Check if the passwords are the same
         if ($user['user_pass'] !== $user['user_rep_pass']) {
             return User::RET_NO_MATCH_PASS;
@@ -306,6 +311,8 @@ class User {
     }
 
     /**
+     * Permit to log-in a specific user
+     *
      * @param array $user {
      *                    Array with the information about the new user.
      *
@@ -313,9 +320,10 @@ class User {
      * @type string        user_pass        Password.
      * }
      *
-     * @return int|string
+     * @return int      RET_SUCCESS (0) in case of success
+     *         string   RET_LOGIN_ERROR error message
      */
-    public function loginUser($user){
+    public function loginUser($user) {
         // 3 !¡ SING-ON of the user
         $login = wp_signon(array(
             'user_login' => $user['user_email'],
@@ -324,7 +332,7 @@ class User {
 
         if (is_wp_error($login)) {
             // Error sing-on
-            return User::RET_REGISTRATION_ERROR;
+            return User::RET_LOGIN_ERROR;
         } else {
             // !¡!¡!¡ SUCCESS !¡!¡!¡
             return User::RET_SUCCESS;

@@ -9,7 +9,6 @@ use Inc\Utils\Fields;
 
 /**
  * Template for the Send Badge page.
- *
  * This class permit to show the steps to send the
  * badge to the student and create also a short-code.
  *
@@ -264,13 +263,15 @@ final class SendBadgeTemp extends BaseController {
      * This function is called from add_shortcode function
      * in the constructor of this class and permit to switch
      * to the different form in base of the form that
-     * we pass in the shortcode call.
+     * we pass in the short-code call.
      * ex: [send-badge form="b"]
      *
      * @author Alessandro RICCARDI
      * @since  1.0.0
      *
      * @param array $atts list of param passed in to the short code
+     *
+     * @return string the right form
      */
     public static function getShortCodeForm($atts) {
         $a = shortcode_atts(array(

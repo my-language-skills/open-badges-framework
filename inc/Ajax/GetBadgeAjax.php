@@ -9,10 +9,9 @@ use Inc\Utils\JsonManagement;
 use Templates\GetBadgeTemp;
 
 /**
- * This class is a wrap for all the function that are
- * called as a ajax call, they are all concentrated in
- * the get badge field and this function is initialized
- * from the InitAjax Class.
+ * This class is a wrap for all the functions that are
+ * called as a "ajax call" and concern the get badge process.
+ * This functions is initialized from the InitAjax Class.
  *
  * @author      Alessandro RICCARDI
  * @since       1.0.0
@@ -55,8 +54,8 @@ class GetBadgeAjax extends BaseController {
     }
 
     /**
-     * When we trigger the login button this
-     * is the public function that is called.
+     * This function retrieve the user email, password and
+     * remember check-box and then execute the login.
      *
      * @author Alessandro RICCARDI
      * @since  1.0.0
@@ -95,10 +94,10 @@ class GetBadgeAjax extends BaseController {
     }
 
     /**
-     * When we trigger the register button this is the public function that is called.
-     * Here what we're doing is principally a step of control about the argument
-     * that we passed. For every control that goes wrong we trigger an error that
-     * have a specific message.
+     * This function is called when is triggered the register button.
+     * Here what we're doing is principally a control about the arguments
+     * that we passed. For every control that goes wrong we trigger an
+     * error that have a specific message.
      *
      * @author Alessandro RICCARDI
      * @since  1.0.0

@@ -5,8 +5,8 @@ namespace Inc\Api;
 use Inc\Pages\Admin;
 
 /**
- * The SettingApi Class, this class permit to load
- * all the $pages that we want to create
+ * This class permit to load all the wordpress component
+ * (page, sub-pages, custom post type, ...).
  *
  * @author     Alessandro RICCARDI
  * @since      1.0.0
@@ -23,8 +23,8 @@ class SettingApi {
     public $frontEndPages = array();
 
     /**
-     * When called the function add extra submenus and
-     * menu options to the admin panel's menu structure.
+     * Function that permit to call the specific wordpress hooks
+     * to initialize all the component
      *
      * @author Alessandro RICCARDI
      * @since  1.0.0
@@ -51,8 +51,8 @@ class SettingApi {
     }
 
     /**
-     * Permit to add $pages in the "local" variable and
-     * then is possible to call the class register().
+     * Permit to store the pages param in the param
+     * of the class.
      *
      * @author Alessandro RICCARDI
      * @since  1.0.0
@@ -68,8 +68,8 @@ class SettingApi {
     }
 
     /**
-     * This function permit to add the first subpage
-     * to the plugin menu.
+     * Permit to add the first sub-page with a specific name to the
+     * sub pages param of the class.
      *
      * @param null $title The name of the principal page of the plugin
      *
@@ -99,8 +99,7 @@ class SettingApi {
     }
 
     /**
-     * Load all the subpages inside the variable of
-     * the class.
+     * Load all the sub-pages inside the variable of the class.
      *
      * @author Alessandro RICCARDI
      * @since  1.0.0
@@ -116,8 +115,8 @@ class SettingApi {
     }
 
     /**
-     * Load all the custom post type inside the variable
-     * of the class.
+     * Load all the custom post type inside the variable of the
+     * class.
      *
      * @author Alessandro RICCARDI
      * @since  1.0.0
@@ -133,8 +132,7 @@ class SettingApi {
     }
 
     /**
-     * Load all the taxonomies inside the variable of
-     * the class.
+     * Load all the taxonomies inside the variable of the class.
      *
      * @author Alessandro RICCARDI
      * @since  1.0.0
@@ -150,8 +148,7 @@ class SettingApi {
     }
 
     /**
-     * Load all the metaboxes inside the variable of
-     * the class.
+     * Load all the meta-boxes inside the variable of the class.
      *
      * @author Alessandro RICCARDI
      * @since  1.0.0
@@ -166,6 +163,16 @@ class SettingApi {
         return $this;
     }
 
+    /**
+     * Load all the front-end-pages inside the variable of the class.
+     *
+     * @author Alessandro RICCARDI
+     * @since  1.0.0
+     *
+     * @param array $frontEndPages Array of front-end-pages
+     *
+     * @return $this The instance of tha class
+     */
     public function loadFrontEndPages(array $frontEndPages) {
         $this->frontEndPages = $frontEndPages;
 
@@ -173,8 +180,8 @@ class SettingApi {
     }
 
     /**
-     * Loops all the $admin_pages adding at the
-     * "add_menu_page" function all the menus
+     * Loops all the $admin_pages adding at the "add_menu_page"
+     * function all the menus.
      *
      * @author Alessandro RICCARDI
      * @since  1.0.0
@@ -194,7 +201,7 @@ class SettingApi {
     /**
      * Loops the function "register_post_type" and
      * "register_taxonomy" to permit to add the custom
-     * post type and taxonomy
+     * post type and taxonomy.
      *
      * @author Alessandro RICCARDI
      * @since  1.0.0
@@ -210,8 +217,8 @@ class SettingApi {
     }
 
     /**
-     * Loops all the $metaboxes adding at the
-     * "add_meta_box" function all the menus
+     * Loops all the $metaboxes adding at the "add_meta_box"
+     * function all the menus.
      *
      * @author Alessandro RICCARDI
      * @since  1.0.0
@@ -254,7 +261,7 @@ class SettingApi {
 
 
     /**
-     * Initialize the class
+     * Instantiation of a class.
      *
      * @author Alessandro RICCARDI
      * @since  1.0.0
@@ -302,18 +309,10 @@ class SettingApi {
 
             $parent_file = Admin::SLUG_PLUGIN;
 
-        } elseif ($current_screen->post_type == Admin::POST_TYPE_CLASS_JL) {
-
-            if ($pagenow == 'post.php') {
-                $submenu_file = 'edit.php?post_type=' . $current_screen->post_type;
-            }
-
-            if ($pagenow == 'post-new.php') {
-                $submenu_file = 'edit.php?post_type=' . $current_screen->post_type;
-            }
-
-            if ($pagenow == 'edit-tags.php') {
-                //
+        } else if ($current_screen->taxonomy == Admin::TAX_FIELDS) {
+            // Not working.
+            if ($pagenow == 'term.php') {
+                $submenu_file = 'edit-tags.php?taxonomy=' . Admin::TAX_FIELDS . '&post_type=' . Admin::POST_TYPE_BADGES;
             }
 
             $parent_file = Admin::SLUG_PLUGIN;

@@ -19,8 +19,7 @@ class JsonManagement extends BaseController {
     const ISSUER_INFO_FILE = "issuer-info.json";
 
     /**
-     * This construct load the only information that now we care,
-     * all the information about the badge.
+     * This construct load the $badgeInfo param in the variable of the class.
      *
      * @param array $badgeInfo {
      *                         Array that contain the main information of the
@@ -52,7 +51,8 @@ class JsonManagement extends BaseController {
      * @author   Alessandro RICCARDI
      * @since    1.0.0
      *
-     * @param   string $receiver the email address of the person that is getting the badge.
+     * @param   string $receiver the email address of the person
+     *                           that is getting the badge.
      *
      * @return  string  the name of the json file already created without extension |
      *                  if there's error return false.
@@ -77,10 +77,15 @@ class JsonManagement extends BaseController {
     }
 
     /**
-     * Creation of the other json file where are stored the information about the badge.
+     * Creation of the json file where are stored the information
+     * about the badge.
      *
      * @author   Alessandro RICCARDI
      * @since    1.0.0
+     *
+     * @param   string $hashName of the principal json file
+     *
+     * @return  string the url of the json file that is crated
      */
     private function createBadgeInfo($hashName) {
         $hashFile = "badge-" . $hashName . ".json";
@@ -110,8 +115,9 @@ class JsonManagement extends BaseController {
     }
 
     /**
-     * This function permit to load all the array in the
-     * instance of SettingApi and execute the final "register()" function!
+     * Creation of the json file where are stored the information
+     * about the company, that information are retrieved from the
+     * settings page in the admin back-end.
      *
      * @author   Alessandro RICCARDI
      * @since    1.0.0
@@ -134,18 +140,32 @@ class JsonManagement extends BaseController {
     }
 
     /**
-     * This function permit to load all the array in the
-     * instance of SettingApi and execute the final "register()" function!
+     * Retrieve the information that are stored in the json file
+     * as an array object.
      *
      * @author   Alessandro RICCARDI
      * @since    1.0.0
+     *
+     * @param string $json name of the principal json file
+     *
+     * @return array Json information
      */
-    public static function getJsonObject($jsonName) {
+    public static function getJsonObject($json) {
         $baseController = new BaseController();
         $json = file_get_contents($baseController->getJsonFolderPath() . $jsonName . '.json');
         return json_decode($json, true);
     }
 
+    /**
+     * Retrieve the email stored in a specific json file.
+     *
+     * @author   Alessandro RICCARDI
+     * @since    1.0.0
+     *
+     * @param string $json name of the principal json file
+     *
+     * @return string email address
+     */
     public static function getEmailFromJson($json) {
         $jsonFile = self::getJsonObject($json);
         $email = $jsonFile["recipient"]['identity'];
@@ -153,13 +173,16 @@ class JsonManagement extends BaseController {
     }
 
     /**
-     * This function permit to load all the array in the
-     * instance of SettingApi and execute the final "register()" function!
+     * Retrieve the url of the specific json file.
      *
      * @author   Alessandro RICCARDI
      * @since    1.0.0
+     *
+     * @param string $json name of the principal json file
+     *
+     * @return the url of the json file
      */
-    public static function getJsonUrl($jsonName) {
+    public static function getJsonUrl($json) {
         $baseController = new BaseController();
         $jsonName = $jsonName . '.json';
         return file_exists($baseController->getJsonFolderPath() . $jsonName) ?

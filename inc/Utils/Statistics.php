@@ -12,7 +12,6 @@ use Inc\Database\DbBadge;
 
 /**
  * Class that contain the general statistics.
- *
  * This is a very initial class, created to be developed
  * in the future and to increase functionality.
  *
@@ -24,22 +23,39 @@ use Inc\Database\DbBadge;
 class Statistics {
 
     /**
-     * This function permit to retrieve the number c.p.t. or taxonomy.
+     * This function permit to retrieve the number of c.p.t.
      *
      * @author Alessandro RICCARDI
      * @since  1.0.0
      *
-     * @param const $slug name of the c.p.t. or taxonomy
+     * @param const $slug name of the c.p.t.
      *
-     * @return the number of post or term.
+     * @return the number of post
      */
-    public static function getNumberPostOrTerm($slug) {
+    public static function getNumberPost($slug) {
         $posts = wp_count_posts($slug);
-        $terms = wp_count_terms($slug);
 
         if (isset($posts)) {
             return !empty($posts->publish) ? $posts->publish : 0;
-        } else if (isset($terms)) {
+        } else {
+            return 0;
+        }
+    }
+
+    /**
+     * This function permit to retrieve the number of taxonomy.
+     *
+     * @author Alessandro RICCARDI
+     * @since  1.0.0
+     *
+     * @param const $slug name of the  taxonomy
+     *
+     * @return the number of term.
+     */
+    public static function getNumberTerm($slug) {
+        $terms = wp_count_terms($slug);
+
+        if (isset($terms)) {
             return $terms;
         } else {
             return 0;

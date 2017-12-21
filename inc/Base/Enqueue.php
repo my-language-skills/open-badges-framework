@@ -7,7 +7,7 @@ use Inc\Pages\Admin;
 use templates\SettingsTemp;
 
 /**
- * The Enqueue Class load all the files that we need.
+ * The Enqueue Class load all the script and style files that we need.
  *
  * @author      Alessandro RICCARDI
  * @since       1.0.0
@@ -38,7 +38,9 @@ class Enqueue extends BaseController {
     }
 
     /**
-     * Call the Public WordPress enqueue hook.
+     * Call the Public WordPress enqueue hook adding typically
+     * style in the head and script in the footer.
+     *
      * @author      Alessandro RICCARDI
      * @since       1.0.0
      */
@@ -49,7 +51,8 @@ class Enqueue extends BaseController {
 
 
     /**
-     * All the admin styles and scripts.
+     * Load all the admin styles and scripts in
+     * the admin section.
      *
      * @author      Alessandro RICCARDI
      * @since       1.0.0
@@ -97,7 +100,7 @@ class Enqueue extends BaseController {
     }
 
     /**
-     * All the Footer scripts for the Public section.
+     * All the Footer scripts for the public section.
      *
      * @author      Alessandro RICCARDI
      * @since       1.0.0

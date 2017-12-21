@@ -3,14 +3,13 @@
 namespace templates;
 
 /**
- * Template for the Settings page.
- *
- * This class create and manage the settings page.
+ * Template for the Settings page, this class create and manage the settings page.
  * It's look little bit complicated but with calm and patient you can understand
- * everything. The 'pageInit' function is the core of this class because permit to
+ * everything. The 'pageInit' function is the core of this class and permit to
  * instantiate all the sections and the relative fields (SECTION: company_profile_sect,
  * page_link_sect; FIELDS: site_name_field, website_url_field ...).
- * it can be fix watching this tutorial: https://www.youtube.com/watch?v=QYt5Ry3os88
+ * To make it more is it can be possible watching this tutorial:
+ * https://www.youtube.com/watch?v=QYt5Ry3os88
  *
  * @author      Alessandro RICCARDI
  * @since       1.0.0
@@ -113,8 +112,7 @@ final class SettingsTemp {
     }
 
     /**
-     * This is the function that is typically loaded at
-     * the beginning.
+     * This is the function that is typically loaded at the beginning.
      *
      * @author      Alessandro RICCARDI
      * @since       1.0.0
@@ -342,7 +340,7 @@ final class SettingsTemp {
     }
 
     /**
-     * Get the settings option array and print the Site Name value.
+     * Print the Site Name field with also the value (if exist).
      *
      * @author      Alessandro RICCARDI
      * @since       1.0.0
@@ -358,7 +356,7 @@ final class SettingsTemp {
     }
 
     /**
-     * Get the settings option array and print the url of the image of the website.
+     * Print the Url of the image field with also the value (if exist).
      *
      * @author      Alessandro RICCARDI
      * @since       1.0.0
@@ -395,7 +393,7 @@ final class SettingsTemp {
     }
 
     /**
-     * Get the settings option array and print the url of the website.
+     * Print the Website Url field with also the value (if exist).
      *
      * @author      Alessandro RICCARDI
      * @since       1.0.0
@@ -411,7 +409,7 @@ final class SettingsTemp {
     }
 
     /**
-     * Get the settings option array and print the telephone of the website.
+     * Print the Telephone field with also the value (if exist).
      *
      * @author      Alessandro RICCARDI
      * @since       1.0.0
@@ -427,7 +425,7 @@ final class SettingsTemp {
     }
 
     /**
-     * Get the settings option array and print the description of the website.
+     * Print the Company Description field with also the value (if exist).
      *
      * @author      Alessandro RICCARDI
      * @since       1.0.0
@@ -443,7 +441,7 @@ final class SettingsTemp {
     }
 
     /**
-     * Get the settings option array and print the email of the website.
+     * Print the Company Email field with also the value (if exist).
      *
      * @author      Alessandro RICCARDI
      * @since       1.0.0
@@ -459,7 +457,7 @@ final class SettingsTemp {
     }
 
     /**
-     * Get the settings option array and print the become premium page.
+     * Print the become premium page field with also the value (if exist).
      *
      * @author      Alessandro RICCARDI
      * @since       1.0.0
@@ -477,7 +475,7 @@ final class SettingsTemp {
     }
 
     /**
-     * Get the settings option array and print the add class page.
+     * Print the add class page field with also the value (if exist).
      *
      * @author      Alessandro RICCARDI
      * @since       1.0.0
@@ -497,7 +495,7 @@ final class SettingsTemp {
 
 
     /**
-     * Get the settings option array and print the get badge page.
+     * Print the get badge page field with also the value (if exist).
      *
      * @author      Alessandro RICCARDI
      * @since       1.0.0
@@ -517,7 +515,7 @@ final class SettingsTemp {
     }
 
     /**
-     * Create a link from an id of a page.
+     * Retrieve the link from thw id of a the page.
      *
      * @author      Alessandro RICCARDI
      * @since       1.0.0
@@ -534,8 +532,8 @@ final class SettingsTemp {
     }
 
     /**
-     * Get the form the option variable that are stored
-     * inside the information of the setting page
+     * Get option variable where are stored information of the
+     * setting page.
      *
      * @author      Alessandro RICCARDI
      * @since       1.0.0

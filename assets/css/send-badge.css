@@ -149,7 +149,7 @@ div.tab button.active {
 
 .wizard > .steps li {
     min-width: 90px;
-    margin: 0em 0.5em !important;
+    margin: 0em 1em 0.5em 0 !important;
 }
 
 .wizard > .steps li:first-child {

@@ -11,10 +11,7 @@ use templates\SettingsTemp;
 
 
 /**
- * This class permit to send the badge.
- *
- * Here are stored the most important function that permit
- * us to send a badge.
+ * Class that permit to send badges.
  *
  * @author      Alessandro RICCARDI
  * @since       1.0.0
@@ -38,7 +35,7 @@ class SendBadge extends BaseController {
     private $evidence = null;
 
     /**
-     * The constructor that initialize all the variable.
+     * Initialization of all the variable.
      *
      * @author      Alessandro RICCARDI
      * @since       1.0.0
@@ -71,7 +68,6 @@ class SendBadge extends BaseController {
             'evidence' => $evidence
         );
 
-
         $this->receivers = $receivers;
         $this->class = $class;
         $this->evidence = $evidence;
@@ -80,8 +76,8 @@ class SendBadge extends BaseController {
     }
 
     /**
-     * This class do three principal things, crate
-     * the json file, crate the body, send the email
+     * This class do principal four important things,
+     * crate the json file, crate the body, send the email
      * and store all of that information in the database.
      *
      * @author   Alessandro RICCARDI
@@ -90,34 +86,35 @@ class SendBadge extends BaseController {
      * @return const to determinate the status of the process.
      */
     public function sendBadge() {
+        $options = get_option(SettingsTemp::OPTION_NAME);
 
         $subject = "Badge: " . $this->badge->post_title . " Field: " . $this->field->name;
-        //Setting headers so it"s a MIME mail and a html
-        $headers = "From: badges4languages <mylanguageskills@hotmail.com>\n";
-        $headers .= "MIME-Version: 1.0\n";
-        $headers .= "Content-type: text/html; charset=utf-8\n";
-        $headers .= "Reply-To: mylanguageskills@hotmail.com\n";
+        $headers = array(
+            'Content-Type: text/html; charset=UTF-8',
+            "From: " . isset($options[SettingsTemp::FI_SITE_NAME_FIELD]) ? $options[SettingsTemp::FI_SITE_NAME_FIELD] : '' .
+            " &lt;" . isset($options[SettingsTemp::FI_EMAIL_FIELD]) ? $options[SettingsTemp::FI_EMAIL_FIELD] : '',
+        );
 
         if (is_array($this->receivers)) {
-            foreach ($this->receivers as $receiver) {
+            foreach ($this->receivers as $to) {
 
                 // Creation of json file
-                $hashName = $this->jsonMg->createJsonFile($receiver);
+                $hashName = $this->jsonMg->createJsonFile($to);
 
                 if ($hashName != null) {
                     // Creating the body of the email
-                    $body = $this->getBodyEmail($hashName);
+                    $message = $this->getBodyEmail($hashName);
                 } else {
                     return self::ER_JSON_FILE;
                 }
 
                 // Sending the email -->-->
-                if (!wp_mail($receiver, $subject, $body, $headers)) {
+                if (!wp_mail($to, $subject, $message, $headers)) {
                     return self::ER_SEND_EMAIL;
                 }
 
                 $data = array(
-                    'userEmail' => $receiver,
+                    'userEmail' => $to,
                     'badgeId' => $this->badgeInfo['id'],
                     'fieldId' => $this->field->term_id,
                     'levelId' => $this->level->term_id,
@@ -132,7 +129,7 @@ class SendBadge extends BaseController {
                 // Insertion of the email in the database
                 $res = DbBadge::insert($data);
                 if ($res === DbBadge::ER_DUPLICATE) {
-                    echo $receiver . " : " . DbBadge::ER_DUPLICATE;
+                    echo $to . " : " . DbBadge::ER_DUPLICATE;
                 } else if (!$res) {
                     return self::ER_DB_INSERT;
                 }

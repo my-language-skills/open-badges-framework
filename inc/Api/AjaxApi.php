@@ -7,7 +7,7 @@ use Inc\Ajax\GetBadgeAjax;
 use Inc\Base\BaseController;
 
 /**
- * Permit to load all the ajax class and they're functions.
+ * Permit to load all the functions from the ajax class.
  *
  * @author      Alessandro RICCARDI
  * @since       1.0.0
@@ -18,7 +18,7 @@ class AjaxApi extends BaseController {
 
     /**
      * The construct call the principal function that
-     * initialize all the ajax files.
+     * initialize the ajax class.
      *
      * @author      Alessandro RICCARDI
      * @since       1.0.0
@@ -28,7 +28,7 @@ class AjaxApi extends BaseController {
     }
 
     /**
-     * That function give all the ajax function that
+     * That function return all the ajax class that
      * we want to initialize.
      *
      * @author      Alessandro RICCARDI
@@ -46,7 +46,7 @@ class AjaxApi extends BaseController {
 
     /**
      * Here we're looping a list of classes, initializing
-     * them and retrieving all them function for declare
+     * them and retrieving all them functions for declare
      * it as ajax function.
      *
      * @author      Alessandro RICCARDI
@@ -66,7 +66,7 @@ class AjaxApi extends BaseController {
     }
 
     /**
-     * Initialize the class.
+     * Instantiation of a class.
      *
      * @author      Alessandro RICCARDI
      * @since       1.0.0
