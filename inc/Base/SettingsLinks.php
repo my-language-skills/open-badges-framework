@@ -5,8 +5,8 @@ namespace Inc\Base;
 use Inc\Pages\Admin;
 
 /**
- * That class create the setting link for
- * the plugin admin page.
+ * That class create the setting link for the plugin
+ * admin page.
  *
  * @author      Alessandro RICCARDI
  * @since       1.0.0
@@ -27,7 +27,7 @@ class SettingsLinks extends BaseController {
     }
 
     /**
-     * Create the link to the setting page .
+     * Create the link to the setting page.
      *
      * @author      Alessandro RICCARDI
      * @since       1.0.0

@@ -3,9 +3,9 @@
 namespace Inc\Base;
 
 /**
- * The BaseController class permit to retrieve
- * information about the plugin path, plugin url
- * and plugin initial function.
+ * The BaseController class permit to retrieve information
+ * about the plugin path, plugin url and plugin initial
+ * function.
  *
  * @author      Alessandro RICCARDI
  * @since       1.0.0
@@ -18,7 +18,7 @@ class BaseController {
     public $plugin;
 
     /**
-     * Are initialized main variable.
+     * Here are initialized main variables.
      *
      * @author      Alessandro RICCARDI
      * @since       1.0.0
@@ -30,7 +30,7 @@ class BaseController {
     }
 
     /**
-     * Get the path of the url.
+     * Get the path of the plugin.
      *
      * @author      Alessandro RICCARDI
      * @since       1.0.0

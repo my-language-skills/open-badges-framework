@@ -123,9 +123,9 @@ class Badges {
      * @return true if everything is ok || false if is not added
      */
     public static function checkCapInsertBadgeOrLevel(array &$retContainer, $badge, $retLevel = false) {
-        $badgeLevel = null;
+        $level = null;
         // Get the level of the badge
-        if ($retLevel) $badgeLevel = get_the_terms($badge->ID, Admin::TAX_LEVELS)[0];
+        if ($retLevel) $level = get_the_terms($badge->ID, Admin::TAX_LEVELS)[0];
         // Get the type of the badge (student or teacher)
         $badgeType = get_post_meta($badge->ID, "_target", true);
         // Get the certification of the badge (certify or not-certify)
@@ -135,44 +135,45 @@ class Badges {
             return false;
         }
 
-        if($retLevel && in_array($badgeLevel, $retContainer)){
+        if($retLevel && in_array($level, $retContainer)){
             return false;
         }
 
         // Capability Teacher and Certification
         if (current_user_can(USER::CAP_TEACHER)
             && ($badgeType == Metabox::META_FIELD_TEACHER || $badgeType == Metabox::META_FIELD_STUDENT)) {
+
             if (current_user_can(USER::CAP_CERT)
                 && ($badgeCert == Metabox::META_FIELD_CERT || $badgeCert == Metabox::META_FIELD_NOT_CERT)) {
 
-                if ($retLevel) array_push($retContainer, $badgeLevel);
+                if ($retLevel) array_push($retContainer, $level);
                 else array_push($retContainer, $badge);
 
             } else if (!current_user_can(USER::CAP_CERT) && $badgeCert == Metabox::META_FIELD_NOT_CERT) {
 
-                if ($retLevel) array_push($retContainer, $badgeLevel);
+                if ($retLevel) array_push($retContainer, $level);
                 else array_push($retContainer, $badge);
 
             }
             return true;
             // Capability Teacher and Certification
         } else if (!current_user_can(USER::CAP_TEACHER) && $badgeType == Metabox::META_FIELD_STUDENT) {
+
             if (current_user_can(USER::CAP_CERT)
                 && ($badgeCert == Metabox::META_FIELD_CERT || $badgeCert == Metabox::META_FIELD_NOT_CERT)) {
 
-                if ($retLevel) array_push($retContainer, $badgeLevel);
+                if ($retLevel) array_push($retContainer, $level);
                 else array_push($retContainer, $badge);
 
             } else if (!current_user_can(USER::CAP_CERT) && $badgeCert == Metabox::META_FIELD_NOT_CERT) {
 
-                if ($retLevel) array_push($retContainer, $badgeLevel);
+                if ($retLevel) array_push($retContainer, $level);
                 else array_push($retContainer, $badge);
 
             }
             return true;
         }
     }
-
 
     /**
      * This function permit to get a specific badge.

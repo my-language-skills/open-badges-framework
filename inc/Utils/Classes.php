@@ -6,7 +6,8 @@ use Inc\Base\User;
 use Inc\Pages\Admin;
 
 /**
- * That class permit to mange the classes from the c.p.t "job_listing".
+ * That class permit to mange the classes of the "Job_Listing"
+ * Custom Post Type.
  *
  * @author      Alessandro RICCARDI
  * @since       1.0.0
@@ -16,15 +17,15 @@ use Inc\Pages\Admin;
 class Classes {
 
     /**
-     * This function permit to understand if the "field of education"
-     * have subcategory (children) or not.
+     * Retrieve the right classes that match with the field if
+     * education passed as param.
      *
      * @author Alessandro RICCARDI
      * @since  1.0.0
      *
      * @param string $field the id of the field
      *
-     * @return bool     True if have children,
+     * @return array    classes that match with the field of education
      *                  False if don't have children
      */
     public static function getOwnClass($field = "") {

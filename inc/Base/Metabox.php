@@ -5,8 +5,7 @@ namespace Inc\Base;
 use Inc\Pages\Admin;
 
 /**
- * Hear are stored all callback function for
- * the meta-box.
+ * Hear are stored all callback function for the meta-box.
  *
  * @author      Alessandro RICCARDI
  * @since       1.0.0
@@ -19,14 +18,13 @@ class Metabox {
     const META_FIELD_STUDENT = "student";
     const META_FIELD_TEACHER = "teacher";
 
-    public $cert_mtb;
-    public $target_mtb;
-    public $lbadge_mtb;
-
+    /**
+     * Calling the save_post hook.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       1.0.0
+     */
     public function __construct() {
-        $this->cert_mtb = Admin::MTB_CERT;
-        $this->target_mtb = Admin::MTB_TARGET;
-        $this->lbadge_mtb = Admin::MTB_LBADGE;
         add_action('save_post', array($this, 'saveMetaboxes'));
     }
 

@@ -13,9 +13,8 @@ use templates\SettingsTemp;
 
 /**
  * This class is a wrap for all the public function that are
- * called as a ajax call, they are all concentrated in
- * the send badge field and this function is initialized
- * from the InitAjax Class.
+ * called as a "ajax call" and concern the send badge process.
+ * This function is initialized from the InitAjax Class.
  *
  * @author      Alessandro RICCARDI
  * @since       1.0.0
@@ -25,8 +24,7 @@ use templates\SettingsTemp;
 class SendBadgeAjax extends BaseController {
 
     /**
-     * Show the fields about the parent that we
-     * selected as a button in the first step.
+     * Show the fields of education based on the chosen parent
      *
      * @author Alessandro RICCARDI
      * @since  1.0.0
@@ -38,8 +36,7 @@ class SendBadgeAjax extends BaseController {
     }
 
     /**
-     * Show the levels in base a specific field
-     * of education.
+     * Show the levels in base a specific field of education.
      *
      * @author Alessandro RICCARDI
      * @since  1.0.0
@@ -107,7 +104,7 @@ class SendBadgeAjax extends BaseController {
     }
 
     /**
-     * Show the description of the badge.
+     * Show the description of a specific badge.
      *
      * @author Alessandro RICCARDI
      * @since  1.0.0
@@ -123,8 +120,8 @@ class SendBadgeAjax extends BaseController {
     }
 
     /**
-     * Show the class of the user and permit to became premium or
-     * to add a class (in base of the roles).
+     * Show the class of the user and also permit to became premium or
+     * to add a class (depending on the role).
      *
      * @author Alessandro RICCARDI
      * @since  1.0.0
@@ -162,7 +159,7 @@ class SendBadgeAjax extends BaseController {
     /**
      * When called that function means that we're arrive at the
      * end of the steps, here is instanced the SendBadge class
-     * with all the information and called the function sendBadge
+     * with all the information and then called the function sendBadge
      * that make start the process.
      *
      * @author Alessandro RICCARDI

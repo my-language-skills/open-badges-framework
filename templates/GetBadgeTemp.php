@@ -11,7 +11,6 @@ use Inc\Utils\Badges;
 
 /**
  * Template for the Get Badge page.
- *
  * In this class are defined all the function that permit
  * to follow all the step to get a badge.
  *
@@ -68,9 +67,7 @@ final class GetBadgeTemp extends BaseController {
             case self::ERROR_LINK:
                 $this->showMessage(self::ERROR_LINK);
                 break;
-
         }
-
     }
 
     /**
@@ -80,7 +77,7 @@ final class GetBadgeTemp extends BaseController {
      * @author      Alessandro RICCARDI
      * @since       1.0.0
      *
-     * @return constant START when we can start with the procedure;
+     * @return string   START when we can start with the procedure;
      *                  GOT if is already got the badge;
      *                  PREVIEW if the page is only a preview to show that works;
      *                  ERROR_JSON if the json is not stored in the server;
@@ -252,12 +249,14 @@ final class GetBadgeTemp extends BaseController {
                     <form id="gb-form-registration" id="needs-validation" novalidate>
                         <div class="form-group row">
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" id="reg-first-name" placeholder="First name" required>
+                                <input type="text" class="form-control" id="reg-first-name" placeholder="First name"
+                                       required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" id="reg-last-name" placeholder="Last name" required>
+                                <input type="text" class="form-control" id="reg-last-name" placeholder="Last name"
+                                       required>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -268,17 +267,20 @@ final class GetBadgeTemp extends BaseController {
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" id="reg-user-name" placeholder="Username" required>
+                                <input type="text" class="form-control" id="reg-user-name" placeholder="Username"
+                                       required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-12">
-                                <input type="password" class="form-control" id="reg-pass" placeholder="Password" required>
+                                <input type="password" class="form-control" id="reg-pass" placeholder="Password"
+                                       required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-12">
-                                <input type="password" class="form-control" id="reg-repeat-pass" placeholder="Repeat password" required>
+                                <input type="password" class="form-control" id="reg-repeat-pass"
+                                       placeholder="Repeat password" required>
                             </div>
                         </div>
                         <div class="cont-btn-form-reg">
@@ -293,7 +295,8 @@ final class GetBadgeTemp extends BaseController {
 
             <footer class="mastfoot">
                 <div class="inner">
-                    <label id="lbl-submit-form" class="btn btn-primary btn-lg" for="submit-form" tabindex="0">Register</label>
+                    <label id="lbl-submit-form" class="btn btn-primary btn-lg" for="submit-form"
+                           tabindex="0">Register</label>
                 </div>
             </footer>
         </div>

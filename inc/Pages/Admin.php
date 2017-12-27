@@ -13,9 +13,8 @@ use Templates\SettingsTemp;
 
 /**
  * The WordPress Admin generator.
- *
- * This class allow us to create array that will be pass
- * to the SettingApi class that will then create them.
+ * This class allow to create array that will be pass
+ * to the SettingApi class that will initialize them.
  *
  * @author     Alessandro RICCARDI
  * @since      1.0.0
@@ -34,15 +33,6 @@ class Admin extends BaseController {
     const MTB_LBADGE = "lbadge_obf_mtb";
     const PAGE_SEND_BADGE = 'send_badge_obf';
     const PAGE_SETTINGS = 'settings_obf';
-
-    // Old names, changed because of the compatibility with the last version.
-    //    const POST_TYPE_BADGES = "obf_badges_cpt";
-    //    const POST_TYPE_CLASS_JL = "job_listing";
-    //    const TAX_FIELDS = "obf_fields_tax";
-    //    const TAX_LEVELS = "obf_levels_tax";
-    //    const MTB_CERT = "obf_certification_mtb";
-    //    const MTB_TARGET = "obf_type_mtb";
-    //    const MTB_LBADGE = "obf_lbadge_mtb";
 
     private $settings;
     private $pages;
@@ -180,6 +170,8 @@ class Admin extends BaseController {
                     'show_ui' => true,
                     'show_in_menu' => false, // adding to custom menu manually
                     'supports' => array('title', 'editor', 'author', 'thumbnail',),
+                    // Capabilities that are debilitated waiting a solution
+                    // already explained in the User class.
                     /*
                     'capabilities' => array(
                         'edit_post' => User::CAP_EDIT_BADGE,
@@ -212,7 +204,7 @@ class Admin extends BaseController {
             // ## Fields ##
             array(
                 'taxonomy' => self::TAX_FIELDS,
-                'object_type' => array(self::POST_TYPE_BADGES, self::POST_TYPE_CLASS_JL),
+                'object_type' => array(self::POST_TYPE_BADGES),
                 'args' => array(
                     'labels' => array(
                         'name' => _x('Fields of education', 'taxonomy general name'),

@@ -4,8 +4,8 @@ namespace Inc\Base;
 use Templates\SettingsTemp;
 
 /**
- * That class is called only when you activate
- * the plugin.
+ * That class where are stored functions that are called only
+ * when you activate the plugin.
  *
  * @author      Alessandro RICCARDI
  * @since       1.0.0
