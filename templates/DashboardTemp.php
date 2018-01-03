@@ -5,6 +5,7 @@ namespace templates;
 use Inc\Database\DbBadge;
 use Inc\Pages\Admin;
 use Inc\Base\BaseController;
+use Inc\Utils\DisplayFunction;
 use Inc\Utils\Statistics;
 
 /**
@@ -154,7 +155,7 @@ final class DashboardTemp extends BaseController {
      * @since       1.0.0
      */
     public static function badgesTab() {
-        $table = DbBadge::getKeys();
+
         ?>
         <div class="container admin">
             <div class="intro-dash">
@@ -163,68 +164,9 @@ final class DashboardTemp extends BaseController {
                     <p class="lead">
                         In this section we have the possibility to see all the badges that are sent.
 
-                    <p>
-                        SENT: <?php echo Statistics::getNumBadgesSent(); ?> –
-                        GOT: <?php echo Statistics::getNumBadgesGot(); ?> –
-                        GOT MOB: <?php echo Statistics::getNumBadgesGotMob(); ?>
-                    </p>
                 </div>
-                <div class="content-dash badges-list-dash">
-                    <?php
-                    if ($table) {
-
-                        ?>
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <?php
-                                foreach ($table as $key => $value) { ?>
-                                    <th scope="col"><?php echo $key; ?></th>
-                                    <?php
-                                }
-                                ?>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <?php
-                            $i = 1;
-                            $table = DbBadge::getAll();
-                            foreach ($table as $row) {
-                                echo "<tr>";
-                                echo "<th scope='row'>" . $i++ . "</th>";
-
-                                foreach ($row as $key => $value) { ?>
-                                    <td>
-                                        <?php
-                                        if ($key == "badgeId") {
-                                            echo "<a href='" . get_edit_post_link($value) . "'>$value</a>";
-                                        } else if ($key == "fieldId") {
-                                            echo "<a href='" . get_edit_term_link($value) . "'>$value</a>";
-                                        } else if ($key == "levelId") {
-                                            echo "<a href='" . get_edit_term_link($value) . "'>$value</a>";
-                                        } else if ($key == "classId") {
-                                            echo "<a href='" . get_edit_post_link($value) . "'>$value</a>";
-                                        } else if ($key == "teacherId") {
-                                            echo "<a href='" . get_edit_user_link($value) . "'>$value</a>";
-                                        } else {
-                                            echo $value;
-                                        }
-                                        ?>
-                                    </td>
-                                    <?php
-                                }
-                                echo "</tr>";
-                            }
-                            ?>
-                            </tbody>
-                        </table>
-                        <?php
-                    } else {
-                        $protocol = stripos($_SERVER['SERVER_PROTOCOL'], 'https') === true ? 'https' : 'http';
-                        echo "<p>No badge sent. Click <a href='" . admin_url('admin.php?page=' . Admin::PAGE_SEND_BADGE, $protocol) . "'>here</a> to send a badge.</p>";
-                    }
-                    ?>
+                <div id="form-badges-list" class="content-dash badges-list-dash">
+                    <?php DisplayFunction::badgesTable();?>
                 </div>
             </div>
         </div>

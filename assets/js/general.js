@@ -1,4 +1,3 @@
-
 /* =========================
     Tab switcher
    ========================= */
@@ -6,7 +5,7 @@
 window.addEventListener("load", function () {
     var tabs = document.querySelectorAll("ul.nav-tabs > li");
 
-    for(i = 0; i < tabs.length; i++) {
+    for (i = 0; i < tabs.length; i++) {
         tabs[i].addEventListener("click", switchTab);
     }
 
@@ -26,10 +25,76 @@ window.addEventListener("load", function () {
     }
 });
 
-/* =========================
-    Image uploader
-   ========================= */
+
 jQuery(function ($) {
+    /* General func */
+    function ajaxCall(data, func) {
+        $.post(
+            globalUrl.ajax,
+            data)
+            .done(
+                function (response) {
+                    func(response);
+                    clicked = false;
+                }
+            )
+            .fail(
+                function (xhr, textStatus, errorThrown) {
+                    console.log(xhr.responseText);
+                    console.log(textStatus);
+                    console.log(errorThrown);
+                }
+            );
+    }
+
+    /* =========================
+        Action control
+       ========================= */
+
+    var formBadges = "#badges-list";
+    var contForm = "#form-badges-list";
+    $(document).on("submit", formBadges, function (event) {
+        event.preventDefault();
+
+        var ids = new Array();
+        $("input[name='badge[]']").each(function () {
+            if($(this).attr('checked')) ids.push($(this).val());
+        });
+
+        var trash = $("#bulk-action-selector-bottom :selected").val();
+
+        /* Delete badge */
+        if (trash === "trash") {
+
+            var data = {
+                'action': 'ajaxDeleteBadge',
+                'ids': ids
+            };
+
+            var func = function (response) {
+                console.log(response);
+                /* Show Table */
+                var data = {
+                    'action': 'ajaxShowBadgesTable',
+                };
+
+                var func = function (response) {
+                    $(contForm).html(response);
+                }
+
+                ajaxCall(data, func);
+            }
+
+            ajaxCall(data, func);
+        }
+
+
+    });
+
+
+    /* =========================
+        Image uploader
+       ========================= */
     $('body').on('click', '.upload-image-obf-settings', function (e) {
         e.preventDefault();
 

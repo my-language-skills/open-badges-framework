@@ -24,9 +24,9 @@ class BaseController {
      * @since       1.0.0
      */
     public function __construct() {
-        $this->plugin_path = plugin_dir_path(dirname(__FILE__, 2));
-        $this->plugin_url = plugin_dir_url(dirname(__FILE__, 2));
-        $this->plugin = plugin_basename(dirname(__FILE__, 3)) . '/open-badges-framework.php';
+        $this->plugin_path = plugin_dir_path($this->dirname_r(__FILE__, 2));
+        $this->plugin_url = plugin_dir_url($this->dirname_r(__FILE__, 2));
+        $this->plugin = plugin_basename($this->dirname_r(__FILE__, 3)) . '/open-badges-framework.php';
     }
 
     /**
@@ -38,7 +38,7 @@ class BaseController {
      * @return string the path
      */
     public static function getPluginPath() {
-        return plugin_dir_path(dirname(__FILE__, 2));
+        return plugin_dir_path(self::dirname_r(__FILE__, 2));
     }
 
     /**
@@ -50,7 +50,7 @@ class BaseController {
      * @return string the url
      */
     public static function getPluginUrl() {
-        return plugin_dir_url(dirname(__FILE__, 2));
+        return plugin_dir_url(self::dirname_r(__FILE__, 2));
     }
 
     /**
@@ -87,5 +87,23 @@ class BaseController {
         $path = wp_upload_dir()['baseurl'] . '/open-badges-framework/json/';
 
         return $path;
+    }
+
+    /**
+     * Returns a parent directory's path, implemented
+     * because in php minor of 7 return a warming about
+     * the second parameter that is not necessary.
+     *
+     * @param     $path     A path.
+     * @param int $levels   The number of parent directories to go up.
+     *
+     * @return string
+     */
+    public static function dirname_r($path, $levels = 1) {
+        if ($levels > 1) {
+            return dirname(self::dirname_r($path, --$levels));
+        } else {
+            return dirname($path);
+        }
     }
 }

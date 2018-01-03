@@ -28,13 +28,11 @@ class DbBadge extends DbModel {
      */
     public function register() {
         global $wpdb;
-        $wpdb->hide_errors();
-
         $charset_collate = $wpdb->get_charset_collate();
         $installed_version = get_option(self::DB_NAME_VERSION);
-
         if ($installed_version !== self::DB_VERSION) {
             $sql = "CREATE TABLE " . $this->getTableName() . " (
+            id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
             userEmail varchar(180) NOT NULL,
             badgeId mediumint(9) NOT NULL,
             fieldId mediumint(9) NOT NULL,
@@ -48,13 +46,33 @@ class DbBadge extends DbModel {
             json varchar(64) NOT NULL,
             info text,
             evidence varchar(1500),
-            PRIMARY KEY  (userEmail, badgeId, fieldId, levelId)
+            UNIQUE KEY  (userEmail, badgeId, fieldId, levelId)
         ) $charset_collate;";
             require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
             dbDelta($sql);
-
             update_option(self::DB_NAME_VERSION, self::DB_VERSION);
         }
+    }
+
+    /**
+     * Get a badge/s by the id.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       1.0.0
+     *
+     * @param array $data list of ids
+     *
+     * @return the badge | false, if don't exist. | @const ER_WRONG_FIELDS if there are wrong field
+     */
+    public static function getById(array $data) {
+        $badges = [];
+        foreach ($data as $id) {
+            $id = array('id'=> $id);
+            $badges[] = parent::get($id)[0];    //[0] -> permit to extract the first array because
+                                                // we will get only and always one result.
+        }
+
+        return !empty($badges) ? $badges : false;
     }
 
     /**
@@ -73,7 +91,7 @@ class DbBadge extends DbModel {
      *
      * @return the badge | false, if don't exist. | @const ER_WRONG_FIELDS if there are wrong field
      */
-    public static function getById(array $data) {
+    public static function getByIds(array $data) {
         $rightKeys = array(
             'userEmail',
             'badgeId',
@@ -162,7 +180,7 @@ class DbBadge extends DbModel {
             'levelId' => $data['levelId'],
         );
 
-        if (self::getById($dataGetById)) {
+        if (self::getByIds($dataGetById)) {
             return self::ER_DUPLICATE;
         }
 
@@ -199,11 +217,33 @@ class DbBadge extends DbModel {
             'levelId' => $where['levelId'],
         );
 
-        if (!self::getById($dataGetById)) {
+        if (!self::getByIds($dataGetById)) {
             return self::ER_DONT_EXIST;
         }
 
         return parent::update($data, $where) === false ? false : true;
+    }
+
+    /**
+     * Delete a badge by own id.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       1.0.0
+     *
+     * @param array $data the number id of the badge
+     *
+     * @return  bool    true if everything ok
+     *                  false if errors.
+     */
+    public static function deleteById(array $data) {
+        $rightKeys = array(
+            'id',
+        );
+        if (!self::checkFields($rightKeys, $data)) {
+            return false;
+        } else {
+            return parent::delete($data);
+        }
     }
 
     /**
@@ -223,7 +263,7 @@ class DbBadge extends DbModel {
      * @return  bool    true if everything ok
      *                  false if errors.
      */
-    public static function delete(array $data) {
+    public static function deleteByIds(array $data) {
         $rightKeys = array(
             'userEmail',
             'badgeId',
@@ -233,7 +273,7 @@ class DbBadge extends DbModel {
         if (!self::checkFields($rightKeys, $data)) {
             return false;
         } else {
-            return parent::delete($data);
+            return parent::deleteByIds($data);
         }
     }
 
@@ -354,8 +394,8 @@ class DbBadge extends DbModel {
      * @since       1.0.0
      *
      * @param array $where information about the badge that we want to update.
-     * @param bool  $mob true if I want to set the badge for MOB and for the current site as "taken";
-     *                  false if we want to set as "taken" only for the current website.
+     * @param bool  $mob   true if I want to set the badge for MOB and for the current site as "taken";
+     *                     false if we want to set as "taken" only for the current website.
      *
      * @return true if everything is ok;
      *         ER_DONT_EXIST if the row doesn't exist;
@@ -390,7 +430,7 @@ class DbBadge extends DbModel {
      *
      * @return return the number of badges that are got.
      */
-    public static function getNumGot(){
+    public static function getNumGot() {
         global $wpdb;
         $query = "SELECT COUNT(*) AS num FROM " . self::getTableName() . " WHERE getDate IS NOT NULL";
 
@@ -406,7 +446,7 @@ class DbBadge extends DbModel {
      *
      * @return return the number of badges that are got.
      */
-    public static function getNumGotMob(){
+    public static function getNumGotMob() {
         global $wpdb;
         $query = "SELECT COUNT(*) AS num FROM " . self::getTableName() . " WHERE getMobDate IS NOT NULL";
 

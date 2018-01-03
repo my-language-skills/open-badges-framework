@@ -2,6 +2,9 @@
 
 namespace Inc\Utils;
 
+use Inc\Database\DbBadge;
+use Inc\Pages\Admin;
+
 /**
  * Contain all the function to show some information.
  * I created that class because in the last version of the
@@ -92,4 +95,75 @@ class DisplayFunction {
         }
     }
 
+    public static function badgesTable() {
+        $table = DbBadge::getKeys();
+        if ($table) {
+
+            ?>
+            <p>
+                SENT: <?php echo Statistics::getNumBadgesSent(); ?> –
+                GOT: <?php echo Statistics::getNumBadgesGot(); ?> –
+                GOT MOB: <?php echo Statistics::getNumBadgesGotMob(); ?>
+            </p>
+            <form id="badges-list" method="post">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <?php
+                        foreach ($table as $key => $value) { ?>
+                            <th scope="col"><?php echo $key; ?></th>
+                            <?php
+                        }
+                        ?>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    if($table = DbBadge::getAll()) {
+                        foreach ($table as $row) {
+                            echo "<tr>";
+                            echo "<td><input id='bd-select-$row->id' type='checkbox' name='badge[]' value='$row->id'></td>";
+                            foreach ($row as $key => $value) { ?>
+                                <td>
+                                    <?php
+                                    if ($key == "badgeId") {
+                                        echo "<a href='" . get_edit_post_link($value) . "'>$value</a>";
+                                    } else if ($key == "fieldId") {
+                                        echo "<a href='" . get_edit_term_link($value) . "'>$value</a>";
+                                    } else if ($key == "levelId") {
+                                        echo "<a href='" . get_edit_term_link($value) . "'>$value</a>";
+                                    } else if ($key == "classId") {
+                                        echo "<a href='" . get_edit_post_link($value) . "'>$value</a>";
+                                    } else if ($key == "teacherId") {
+                                        echo "<a href='" . get_edit_user_link($value) . "'>$value</a>";
+                                    } else {
+                                        echo $value;
+                                    }
+                                    ?>
+                                </td>
+                                <?php
+                            }
+                            echo "</tr>";
+                        }
+                    }
+                    ?>
+                    </tbody>
+                </table>
+                <div class="alignleft actions bulkactions">
+                    <label for="bulk-action-selector-bottom" class="screen-reader-text">Select bulk action</label>
+                    <select name="action2" id="bulk-action-selector-bottom">
+                        <option value="-1">Bulk Actions</option>
+                        <option value="trash">Move to Trash</option>
+                    </select>
+                    <input type="submit" id="doaction2" class="button action" value="Apply">
+                </div>
+            </form>
+            <?php
+        } else {
+            $protocol = stripos($_SERVER['SERVER_PROTOCOL'], 'https') === true ? 'https' : 'http';
+            echo "<p>No badge sent. Click <a href='" . admin_url('admin.php?page=' . Admin::PAGE_SEND_BADGE, $protocol) . "'>here</a> to send a badge.</p>";
+        }
+
+    }
 }

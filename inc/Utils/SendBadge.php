@@ -62,7 +62,7 @@ class SendBadge extends BaseController {
             'level' => $this->level->name,
             'description' => $this->badge->post_content,
             'link' => get_permalink($this->badge),
-            'image' => get_the_post_thumbnail_url($this->badge->ID),
+            'image' => Badges::getImage($this->badge->ID),
             'tags' => array($this->field->name . "", $this->level->name . ""),
             'info' => $info,
             'evidence' => $evidence

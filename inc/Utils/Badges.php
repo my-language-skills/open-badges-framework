@@ -66,23 +66,24 @@ class Badges {
 
                 $fieldOK = 0; // Var that determinate if the field match with the badge
 
-
                 $badgeFields = get_the_terms($badge->ID, Admin::TAX_FIELDS);
                 $badgeLevel = get_the_terms($badge->ID, Admin::TAX_LEVELS)[0];
 
                 // Here is checked if the badge MATCH with the $fieldId
-                foreach ($badgeFields as $badgeField) {
+                if (is_array($badgeFields) || is_object($badgeFields)) {
+                    foreach ($badgeFields as $badgeField) {
 
-                    // Get the term array of the @param $fieldId
-                    $selectedField = get_term($fieldId, Admin::TAX_FIELDS);
+                        // Get the term array of the @param $fieldId
+                        $selectedField = get_term($fieldId, Admin::TAX_FIELDS);
 
-                    // In case the $fieldId match with one of the badges.
-                    if ($badgeField->term_id == $selectedField->term_id) {
-                        $fieldOK = 1;
+                        // In case the $fieldId match with one of the badges.
+                        if ($badgeField->term_id == $selectedField->term_id) {
+                            $fieldOK = 1;
 
-                        // In case the parent of the $fieldId match with one of the badges.
-                    } else if ($badgeField->term_id == $selectedField->parent) {
-                        $fieldOK = 1;
+                            // In case the parent of the $fieldId match with one of the badges.
+                        } else if ($badgeField->term_id == $selectedField->parent) {
+                            $fieldOK = 1;
+                        }
                     }
                 }
 
@@ -109,7 +110,6 @@ class Badges {
      * with the kind of badge.
      * That function is probably complicated but useful for my propose and
      * remember: we're using the pointer for the first parameter.
-     * for my scope.
      *
      * @author      Alessandro RICCARDI
      * @since       1.0.0
@@ -131,11 +131,11 @@ class Badges {
         // Get the certification of the badge (certify or not-certify)
         $badgeCert = get_post_meta($badge->ID, '_certification', true);
 
-        if(!$retLevel && in_array(badge, $retContainer)){
+        if (!$retLevel && in_array(badge, $retContainer)) {
             return false;
         }
 
-        if($retLevel && in_array($level, $retContainer)){
+        if ($retLevel && in_array($level, $retContainer)) {
             return false;
         }
 

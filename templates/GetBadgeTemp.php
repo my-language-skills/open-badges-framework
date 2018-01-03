@@ -510,7 +510,7 @@ final class GetBadgeTemp extends BaseController {
                             } elseif ($error == self::ERROR_JSON) { ?>
                                 <h1>BADGE ERROR</h1>
                                 <p class="lead">
-                                    Your're badge is not anymore stored in our server.
+                                    Your badge is not anymore stored in our server.
                                 </p>
                                 <?php
                             } else if ($error == self::ERROR_LINK) {

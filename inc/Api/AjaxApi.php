@@ -2,6 +2,7 @@
 
 namespace Inc\Api;
 
+use Inc\Ajax\AdminAjax;
 use Inc\Ajax\SendBadgeAjax;
 use Inc\Ajax\GetBadgeAjax;
 use Inc\Base\BaseController;
@@ -40,7 +41,7 @@ class AjaxApi extends BaseController {
         return array(
             SendBadgeAjax::class,
             GetBadgeAjax::class,
-
+            AdminAjax::class
         );
     }
 
