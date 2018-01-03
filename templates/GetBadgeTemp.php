@@ -88,36 +88,44 @@ final class GetBadgeTemp extends BaseController {
         if (isset($_GET['json']) && isset($_GET['badge']) && isset($_GET['field']) && isset($_GET['level'])) {
             $this->json = $_GET['json'];
 
-            $data = array(
-                'userEmail' => JsonManagement::getEmailFromJson($this->json),
-                'badgeId' => $_GET['badge'],
-                'fieldId' => $_GET['field'],
-                'levelId' => $_GET['level'],
-            );
+            if($this->jsonUrl = JsonManagement::getJsonUrl($this->json)) {
+                //Do this only if exist the json file
+                $data = array(
+                    'userEmail' => JsonManagement::getEmailFromJson($this->json),
+                    'badgeId' => $_GET['badge'],
+                    'fieldId' => $_GET['field'],
+                    'levelId' => $_GET['level'],
+                );
 
-            $this->jsonUrl = JsonManagement::getJsonUrl($this->json);
-            $badges = new Badges();
-            $this->badge = $badges->get($data['badgeId']);
-            $this->field = get_term($data['fieldId'], Admin::TAX_FIELDS);
-            $this->level = get_term($data['levelId'], Admin::TAX_LEVELS);
+                $badges = new Badges();
+                $this->badge = $badges->get($data['badgeId']);
+                $this->field = get_term($data['fieldId'], Admin::TAX_FIELDS);
+                $this->level = get_term($data['levelId'], Admin::TAX_LEVELS);
 
-
-            if ($this->badge && $this->field && $this->level && $this->jsonUrl) {
-                if (!DbBadge::isGotMOB($data)) {
-                    return self::START;
+                if ($this->badge && $this->field && $this->level && $this->jsonUrl) {
+                    if (!DbBadge::isGotMOB($data)) {
+                        //Everything OK
+                        return self::START;
+                    } else {
+                        //Badge already GOT
+                        return self::GOT;
+                    }
                 } else {
-                    return self::GOT;
+                    // Broken link
+                    return self::ERROR_LINK;
                 }
-            } else if ($this->badge && $this->field && $this->level && !($this->jsonUrl)) {
-                return self::ERROR_JSON;
+
             } else {
-                return self::ERROR_LINK;
+                return self::ERROR_JSON;
             }
 
         } else {
+            //Formation of the link not for get the badge
             if (isset($_GET['preview']) && $_GET['preview'] == 1) {
+                // Preview mode
                 return self::PREVIEW;
             } else {
+                // Broken link
                 return self::ERROR_LINK;
             }
         }

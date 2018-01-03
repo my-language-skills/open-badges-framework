@@ -27,7 +27,16 @@ window.addEventListener("load", function () {
 
 
 jQuery(function ($) {
+
     /* General func */
+    /**
+     * @description Here's wrap the code that permit to simplify an
+     *              ajax call.
+     *
+     * @param {array} data, that will send with the ajax call
+     * @param {function} func, that will be execute after the
+     *                         success of the ajax call
+     */
     function ajaxCall(data, func) {
         $.post(
             globalUrl.ajax,
@@ -53,48 +62,72 @@ jQuery(function ($) {
 
     var formBadges = "#badges-list";
     var contForm = "#form-badges-list";
+
+    /**
+     * @description Submit form for the badge list table,
+     * permit to delete a list of badges.
+     *
+     * @return
+     */
     $(document).on("submit", formBadges, function (event) {
         event.preventDefault();
 
         var ids = new Array();
         $("input[name='badge[]']").each(function () {
-            if($(this).attr('checked')) ids.push($(this).val());
+            if ($(this).attr('checked')) ids.push($(this).val());
         });
 
-        var trash = $("#bulk-action-selector-bottom :selected").val();
+        // If is not selected anything we will not do nothing
+        if (ids) {
 
-        /* Delete badge */
-        if (trash === "trash") {
-
-            var data = {
-                'action': 'ajaxDeleteBadge',
-                'ids': ids
-            };
-
-            var func = function (response) {
-                console.log(response);
-                /* Show Table */
-                var data = {
-                    'action': 'ajaxShowBadgesTable',
-                };
-
-                var func = function (response) {
-                    $(contForm).html(response);
+            //Select the right action, ex: trash
+            var btn = $("input[type=submit][clicked=true]")['context']['activeElement'];
+            var option = btn.previousElementSibling.children;
+            var action;
+            for (var i = 0; i < option.length; i++) {
+                if (option[i].selected) {
+                    action = option[i].value;
                 }
-
-                ajaxCall(data, func);
             }
 
-            ajaxCall(data, func);
+
+            switch (action) {
+                case "trash":
+
+                    // Delete badge/s
+                    var data = {
+                        'action': 'ajaxDeleteBadge',
+                        'ids': ids
+                    };
+
+                    // Reload the table
+                    var func = function (response) {
+                        console.log(response);
+                        var data = {
+                            'action': 'ajaxShowBadgesTable',
+                        };
+
+                        var func = function (response) {
+                            $(contForm).html(response);
+                        };
+
+                        ajaxCall(data, func);
+                    }
+
+                    ajaxCall(data, func);
+                    break;
+
+                default:
+                    break;
+            }
         }
-
-
     });
 
-
-    /* =========================
-        Image uploader
-       ========================= */
+    /**
+     * @description Image uploader
+     *
+     * @return
+     */
     $('body').on('click', '.upload-image-obf-settings', function (e) {
         e.preventDefault();
 

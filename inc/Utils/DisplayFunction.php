@@ -2,6 +2,7 @@
 
 namespace Inc\Utils;
 
+use Inc\Base\Secondary;
 use Inc\Database\DbBadge;
 use Inc\Pages\Admin;
 
@@ -100,64 +101,84 @@ class DisplayFunction {
         if ($table) {
 
             ?>
-            <p>
-                SENT: <?php echo Statistics::getNumBadgesSent(); ?> –
-                GOT: <?php echo Statistics::getNumBadgesGot(); ?> –
-                GOT MOB: <?php echo Statistics::getNumBadgesGotMob(); ?>
-            </p>
             <form id="badges-list" method="post">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th scope="col">#</th>
+
+                <?php echo self::showActionSection("2"); ?>
+
+                <div class="scroll-hor">
+                    <table class="wp-list-table widefat striped pages">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">User</th>
+                            <th scope="col">Badge</th>
+                            <th scope="col">Field</th>
+                            <th scope="col">Level</th>
+                            <?php if (Secondary::isJobManagerActive()) { ?>
+                                <th scope="col">Class</th>
+                            <?php } ?>
+                            <th scope="col">Teacher</th>
+                            <th scope="col">Creation</th>
+                            <th scope="col">Got</th>
+                            <th scope="col">Mozilla OB</th>
+                            <?php /*
+                            foreach ($table as $key => $value) { ?>
+                                <th scope="col"><?php echo $key; ?></th>
+                                <?php
+                            }*/
+                            ?>
+                        </tr>
+                        </thead>
+                        <tbody>
                         <?php
-                        foreach ($table as $key => $value) { ?>
-                            <th scope="col"><?php echo $key; ?></th>
-                            <?php
+                        if ($table = DbBadge::getAll()) {
+                            foreach ($table as $row) {
+
+                                echo "<tr>";
+                                echo "<td><input id='bd-select-$row->id' type='checkbox' name='badge[]' value='$row->id'></td>";
+                                echo "<td><a href='" . get_edit_user_link(get_user_by('email', $row->userEmail)->ID) . "'>" . $row->userEmail . "</a></td>";
+                                echo "<td><a href='" . get_edit_post_link($row->badgeId) . "'>" . get_post($row->badgeId)->post_title . "</a></td>";
+                                echo "<td><a href='" . get_edit_term_link($row->fieldId) . "'>" . get_term($row->fieldId)->name . "</a></td>";
+                                echo "<td><a href='" . get_edit_term_link($row->levelId) . "'>" . get_term($row->levelId)->name . "</a></td>";
+                                if (Secondary::isJobManagerActive()) {
+                                    echo "<td><a href='" . get_edit_post_link($row->classId) . "'>" . get_post($row->classId)->post_title . "</a></td>";
+                                }
+
+                                echo "<td><a href='" . get_edit_user_link(get_user_by('id', $row->teacherId)->ID) . "'>" .
+                                    get_user_by('id', $row->teacherId)->user_email .
+                                    "</a></td>";
+                                echo "<td>$row->dateCreation</td>";
+                                echo "<td>$row->getDate</td>";
+                                echo "<td>$row->getMobDate</td>";
+                                /*
+                                foreach ($row as $key => $value) { ?>
+                                    <td>
+                                        <?php
+                                        if ($key == "badgeId") {
+                                            echo "<a href='" . get_edit_post_link($value) . "'>$value</a>";
+                                        } else if ($key == "fieldId") {
+                                            echo "<a href='" . get_edit_term_link($value) . "'>$value</a>";
+                                        } else if ($key == "levelId") {
+                                            echo "<a href='" . get_edit_term_link($value) . "'>$value</a>";
+                                        } else if ($key == "classId") {
+                                            echo "<a href='" . get_edit_post_link($value) . "'>$value</a>";
+                                        } else if ($key == "teacherId") {
+                                            echo "<a href='" . get_edit_user_link($value) . "'>$value</a>";
+                                        } else {
+                                            echo $value;
+                                        }
+                                        ?>
+                                    </td>
+                                    <?php
+                                }
+                                echo "</tr>";*/
+                            }
                         }
                         ?>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-                    if($table = DbBadge::getAll()) {
-                        foreach ($table as $row) {
-                            echo "<tr>";
-                            echo "<td><input id='bd-select-$row->id' type='checkbox' name='badge[]' value='$row->id'></td>";
-                            foreach ($row as $key => $value) { ?>
-                                <td>
-                                    <?php
-                                    if ($key == "badgeId") {
-                                        echo "<a href='" . get_edit_post_link($value) . "'>$value</a>";
-                                    } else if ($key == "fieldId") {
-                                        echo "<a href='" . get_edit_term_link($value) . "'>$value</a>";
-                                    } else if ($key == "levelId") {
-                                        echo "<a href='" . get_edit_term_link($value) . "'>$value</a>";
-                                    } else if ($key == "classId") {
-                                        echo "<a href='" . get_edit_post_link($value) . "'>$value</a>";
-                                    } else if ($key == "teacherId") {
-                                        echo "<a href='" . get_edit_user_link($value) . "'>$value</a>";
-                                    } else {
-                                        echo $value;
-                                    }
-                                    ?>
-                                </td>
-                                <?php
-                            }
-                            echo "</tr>";
-                        }
-                    }
-                    ?>
-                    </tbody>
-                </table>
-                <div class="alignleft actions bulkactions">
-                    <label for="bulk-action-selector-bottom" class="screen-reader-text">Select bulk action</label>
-                    <select name="action2" id="bulk-action-selector-bottom">
-                        <option value="-1">Bulk Actions</option>
-                        <option value="trash">Move to Trash</option>
-                    </select>
-                    <input type="submit" id="doaction2" class="button action" value="Apply">
+                        </tbody>
+                    </table>
                 </div>
+                <?php echo self::showActionSection("2"); ?>
             </form>
             <?php
         } else {
@@ -165,5 +186,29 @@ class DisplayFunction {
             echo "<p>No badge sent. Click <a href='" . admin_url('admin.php?page=' . Admin::PAGE_SEND_BADGE, $protocol) . "'>here</a> to send a badge.</p>";
         }
 
+    }
+
+    public static function showActionSection($number = "") { ?>
+        <div class="tablenav bottom">
+            <div class="alignleft actions bulkactions">
+                <label for="bulk-action-selector-bottom" class="screen-reader-text">Select bulk action</label>
+                <select name="action<?php echo $number; ?>" id="bulk-action-selector-bottom">
+                    <option value="-1">Bulk Actions</option>
+                    <option value="trash">Move to Trash</option>
+                </select>
+                <input type="submit" id="doaction<?php echo $number; ?>" class="button action" value="Apply">
+            </div>
+            <div class="alignleft actions">
+            </div>
+            <div class="tablenav-pages one-page">
+                        <span class="displaying-num">
+                            <?php echo Statistics::getNumBadgesSent(); ?> items,
+                            <?php echo Statistics::getNumBadgesGot(); ?> got,
+                            <?php echo Statistics::getNumBadgesGotMob(); ?> mob
+                        </span>
+                <br class="clear">
+            </div>
+        </div>
+        <?php
     }
 }

@@ -2,6 +2,7 @@
 
 namespace templates;
 
+use Inc\Base\Secondary;
 use Inc\Database\DbBadge;
 use Inc\Pages\Admin;
 use Inc\Base\BaseController;
@@ -121,8 +122,9 @@ final class DashboardTemp extends BaseController {
                                class="manage-link">Manage</a>
                         </div>
                     </div>
-                    <?php include_once(ABSPATH . 'wp-admin/includes/plugin.php');
-                    if (is_plugin_active("WP-Job-Manager-master/wp-job-manager.php")) { ?>
+                    <?php
+                    if (Secondary::isJobManagerActive()) {
+                        ?>
 
                         <div class="row-dash">
                             <div class="col-dash">

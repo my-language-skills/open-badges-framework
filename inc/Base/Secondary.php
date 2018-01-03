@@ -31,4 +31,9 @@ class Secondary {
         $post_types[] = Admin::POST_TYPE_BADGES;
         return $post_types;
     }
+
+    public static function isJobManagerActive() {
+        include_once(ABSPATH . 'wp-admin/includes/plugin.php');
+        return is_plugin_active("WP-Job-Manager-master/wp-job-manager.php");
+    }
 }
