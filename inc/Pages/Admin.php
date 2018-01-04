@@ -10,6 +10,7 @@ use Templates\DashboardTemp;
 use Templates\GetBadgeTemp;
 use Templates\SendBadgeTemp;
 use Templates\SettingsTemp;
+use Templates\UserTemp;
 
 /**
  * The WordPress Admin generator.
@@ -33,6 +34,7 @@ class Admin extends BaseController {
     const MTB_LBADGE = "lbadge_obf_mtb";
     const PAGE_SEND_BADGE = 'send_badge_obf';
     const PAGE_SETTINGS = 'settings_obf';
+    const PAGE_USER = 'user_obf';
 
     private $settings;
     private $pages;
@@ -88,6 +90,7 @@ class Admin extends BaseController {
     public function setSubpages() {
         $sendbadgeTemp = new SendBadgeTemp();
         $settingTemp = new SettingsTemp();
+        $userTemp = new UserTemp();
 
         $this->subpages = array(
             // ## Badges ##
@@ -134,6 +137,15 @@ class Admin extends BaseController {
                 'capability' => 'manage_options',
                 'menu_slug' => self::PAGE_SETTINGS,
                 'callback' => array($settingTemp, 'main')
+            ),
+            // ## User ##
+            array(
+                'parent_slug' => self::SLUG_PLUGIN,
+                'page_title' => 'User',
+                'menu_title' => 'User',
+                'capability' => User::CAP_ALLOW_BE_USER,
+                'menu_slug' => self::PAGE_USER,
+                'callback' => array($userTemp, 'main')
             ),
         );
     }

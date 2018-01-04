@@ -23,6 +23,7 @@ class User {
     const CAP_CERT = "obf_send_certificate";
     const CAP_TEACHER = "obf_send_teacher";
     const CAP_JOB_LISTING = "obf_job_listing_integration";
+    const CAP_ALLOW_BE_USER = "obf_user";
 
     // That capability are created with the propose to allow the academy
     // role to manage the backend of our plugin, but right now we only
@@ -55,6 +56,7 @@ class User {
                 self::CAP_CERT => false,
                 self::CAP_TEACHER => false,
                 self::CAP_JOB_LISTING => false,
+                self::CAP_ALLOW_BE_USER => true,
 
 
                 /* self::CAP_EDIT_BADGE => false,

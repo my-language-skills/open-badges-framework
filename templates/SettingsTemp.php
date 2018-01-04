@@ -2,6 +2,8 @@
 
 namespace templates;
 
+use Inc\Base\Secondary;
+
 /**
  * Template for the Settings page, this class create and manage the settings page.
  * It's look little bit complicated but with calm and patient you can understand
@@ -230,7 +232,6 @@ final class SettingsTemp {
             self::SECT_COMPANY_PROFILE
         );
 
-
         /* #PAGES LINKS_________________________________________ */
         add_settings_section(
             self::SECT_PAGE_REF, // ID
@@ -304,7 +305,7 @@ final class SettingsTemp {
 
         if (isset($input[self::FI_EMAIL_FIELD]))
             $new_input[self::FI_EMAIL_FIELD] = sanitize_text_field(
-                    $input[self::FI_EMAIL_FIELD] ? $input[self::FI_EMAIL_FIELD] : get_bloginfo('admin_email'));
+                $input[self::FI_EMAIL_FIELD] ? $input[self::FI_EMAIL_FIELD] : get_bloginfo('admin_email'));
 
         if (isset($input[self::FI_BECAME_PREMIUM]))
             $new_input[self::FI_BECAME_PREMIUM] = sanitize_text_field($input[self::FI_BECAME_PREMIUM]);
@@ -464,14 +465,24 @@ final class SettingsTemp {
      */
     public function becamePremiumPageCallback() {
         $val = isset($this->options[self::FI_BECAME_PREMIUM]) ? esc_attr($this->options[self::FI_BECAME_PREMIUM]) : '';
-        wp_dropdown_pages(array(
-            'id' => self::FI_BECAME_PREMIUM,
-            'name' => self::OPTION_NAME . '[' . self::FI_BECAME_PREMIUM . ']',
-            'selected' => $val,
-            'show_option_none' => 'None', // string
-        ));
 
-        echo self::showPreviewLink($val);
+        if (Secondary::isJobManagerActive()) {
+            wp_dropdown_pages(array(
+                'id' => self::FI_BECAME_PREMIUM,
+                'name' => self::OPTION_NAME . '[' . self::FI_BECAME_PREMIUM . ']',
+                'selected' => $val,
+                'show_option_none' => 'None', // string
+                'show_option_no_change ' => '-1',
+            ));
+            echo self::showPreviewLink($val);
+        } else { ?>
+            <select id="<?php echo self::FI_BECAME_PREMIUM ?>"
+                    name="<?php echo self::OPTION_NAME . '[' . self::FI_BECAME_PREMIUM . ']' ?>" disabled>
+                <option>None</option>
+            </select>
+            <p class="description" id="tagline-description">WP Job Listing debilitated.</p>
+            <?php
+        }
     }
 
     /**
@@ -483,14 +494,22 @@ final class SettingsTemp {
     public function addClassPageCallback() {
         $val = isset($this->options[self::FI_ADD_CLASS]) ? esc_attr($this->options[self::FI_ADD_CLASS]) : '';
 
-        wp_dropdown_pages(array(
-            'id' => self::FI_ADD_CLASS,
-            'name' => self::OPTION_NAME . '[' . self::FI_ADD_CLASS . ']',
-            'selected' => $val,
-            'show_option_none' => 'None', // string
-        ));
-        echo self::showPreviewLink($val);
-
+        if (Secondary::isJobManagerActive()) {
+            wp_dropdown_pages(array(
+                'id' => self::FI_ADD_CLASS,
+                'name' => self::OPTION_NAME . '[' . self::FI_ADD_CLASS . ']',
+                'selected' => $val,
+                'show_option_none' => 'None', // string
+            ));
+            echo self::showPreviewLink($val);
+        } else { ?>
+            <select id="<?php echo self::FI_BECAME_PREMIUM ?>"
+                    name="<?php echo self::OPTION_NAME . '[' . self::FI_BECAME_PREMIUM . ']' ?>" disabled>
+                <option>None</option>
+            </select>
+            <p class="description" id="tagline-description">WP Job Listing debilitated.</p>
+            <?php
+        }
     }
 
 

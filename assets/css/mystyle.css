@@ -242,3 +242,82 @@ th {
 .submit {
     display: inline-block;
 }
+
+/* ======================
+    USER
+   ====================== */
+
+.flex-container {
+    display: -webkit-flex;
+    display: flex;
+    width: 50%;
+}
+
+.flex-item {
+    margin: 10px;
+}
+
+.center-container {
+    display: -webkit-flex;
+    display: flex;
+}
+
+.center-item {
+    margin: auto auto auto 10px;
+}
+
+.circle-img {
+    border-radius: 50%;
+}
+
+.user-info-admin .img-user {
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+.user-info-admin .img-user img {
+    height: auto;
+    width: 100%;
+}
+
+.user-info-admin .username-user {
+    -webkit-flex: 5;
+    flex: 5;
+}
+
+.user-info-admin .username-user h2{
+    font-size: 27px;
+    font-weight: 300;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.user-info-admin .username-user span{
+    font-size: 13px;
+    font-weight: 300;
+}
+
+.user-badges-cont {
+    background: #e2e2e2;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+.user-badges-cont .title-badges-cont{
+    overflow:auto;
+    width: 100%;
+    background: #d0d0d0;
+}
+
+.user-badges-cont .title-badges-cont h3{
+    margin: 10px 20px;
+    font-weight: 400;
+}
+
+.user-badges{
+    margin-top: 20px;
+}
+
+.user-badges .badge{
+    flex: 1;
+}
