@@ -54,7 +54,8 @@ Plugins/OpenBadgesFramework/                    # → Plugin root
 │   │── DashboardTemp.php                       # → Provide an admin area view
 │   │── GetBadgeTemp.php                        # → Provide a get badge template
 │   │── SendBadgeTemp.php                       # → Provide a send badge template
-│   └── SettingsTemp.php                        # → Provide a settings template
+│   │── SettingsTemp.php                        # → Provide a settings template
+│   └── UserTemp.php                            # → Provide a user template
 ├── vendor/                                     # → Composer folder for the autoloading of the files
 ├── README.md                                   # → Read-me file .md
 ├── Readme.txt                                  # → Read-me file .txt

@@ -6,10 +6,12 @@ use Inc\Base\Metabox;
 use Inc\Base\BaseController;
 use Inc\Api\SettingApi;
 use Inc\Base\User;
+use Templates\BadgesTemp;
 use Templates\DashboardTemp;
 use Templates\GetBadgeTemp;
 use Templates\SendBadgeTemp;
 use Templates\SettingsTemp;
+use Templates\SingleBadgeTemp;
 use Templates\UserTemp;
 
 /**
@@ -32,9 +34,11 @@ class Admin extends BaseController {
     const MTB_CERT = "certification_obf_mtb";
     const MTB_TARGET = "target_obf_mtb";
     const MTB_LBADGE = "lbadge_obf_mtb";
-    const PAGE_SEND_BADGE = 'send_badge_obf';
-    const PAGE_SETTINGS = 'settings_obf';
-    const PAGE_USER = 'user_obf';
+    const PAGE_SEND_BADGE = 'send-badge_obf';
+    const PAGE_SETTINGS = 'settings-obf';
+    const PAGE_USER = 'user-obf';
+    const PAGE_BADGES = 'badges-obf';
+    const PAGE_SINGLE_BADGES = 'single-badge-obf';
 
     private $settings;
     private $pages;
@@ -91,6 +95,8 @@ class Admin extends BaseController {
         $sendbadgeTemp = new SendBadgeTemp();
         $settingTemp = new SettingsTemp();
         $userTemp = new UserTemp();
+        $badgesTemp = new BadgesTemp();
+        $singleBadgesTemp = new SingleBadgeTemp();
 
         $this->subpages = array(
             // ## Badges ##
@@ -146,6 +152,24 @@ class Admin extends BaseController {
                 'capability' => User::CAP_ALLOW_BE_USER,
                 'menu_slug' => self::PAGE_USER,
                 'callback' => array($userTemp, 'main')
+            ),
+            // ## Badges ##
+            array(
+                'parent_slug' => self::SLUG_PLUGIN,
+                'page_title' => 'Badges',
+                'menu_title' => 'Badges',
+                'capability' => User::CAP_ALLOW_BE_USER,
+                'menu_slug' => self::PAGE_BADGES,
+                'callback' => array($badgesTemp, 'main')
+            ),
+            // ## Single Badge ##
+            array(
+                'parent_slug' => self::SLUG_PLUGIN,
+                'page_title' => 'Badge',
+                'menu_title' => null,
+                'capability' => User::CAP_ALLOW_BE_USER,
+                'menu_slug' => self::PAGE_SINGLE_BADGES,
+                'callback' => array($singleBadgesTemp, 'main')
             ),
         );
     }

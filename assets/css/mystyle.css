@@ -1,6 +1,16 @@
 /* **********************
     GENERAL
    ====================== */
+.circle-img {
+    border-radius: 50%;
+}
+
+.wrap-link{
+    display: block;
+    border: none;
+    box-shadow: none !important;
+}
+
 .scroll-hor{
     overflow-x: auto;
 }
@@ -247,10 +257,22 @@ th {
     USER
    ====================== */
 
+.user-badges-cont {
+    margin-top: 50px;
+    background: #e2e2e2;
+    border-radius: 5px;
+    display: inline-block;
+    border-bottom: 2px solid  #d0d0d0;
+    border-radius: 0px 0px 10px 10px;
+}
+
 .flex-container {
     display: -webkit-flex;
     display: flex;
-    width: 50%;
+    -webkit-align-items: flex-start;
+    align-items: flex-start;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
 }
 
 .flex-item {
@@ -266,13 +288,10 @@ th {
     margin: auto auto auto 10px;
 }
 
-.circle-img {
-    border-radius: 50%;
-}
-
 .user-info-admin .img-user {
     -webkit-flex: 1;
     flex: 1;
+    max-width: 100px;
 }
 
 .user-info-admin .img-user img {
@@ -297,12 +316,6 @@ th {
     font-weight: 300;
 }
 
-.user-badges-cont {
-    background: #e2e2e2;
-    border-radius: 10px;
-    display: inline-block;
-}
-
 .user-badges-cont .title-badges-cont{
     overflow:auto;
     width: 100%;
@@ -315,9 +328,69 @@ th {
 }
 
 .user-badges{
-    margin-top: 20px;
+    padding: 15px;
 }
 
-.user-badges .badge{
+.user-badges .badge {
     flex: 1;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.user-badges .badge .cont-img-badge {
+    display: inline-block;
+    width: 80px;
+    text-align: center;
+}
+
+.user-badges .badge img {
+    width: 100%;
+}
+
+.user-badges .badge img{
+    transition: 400ms;
+}
+
+.user-badges .badge:hover > div img{
+    box-shadow: 1px 1px 10px 2px #a8a8a8;
+}
+
+.user-badges .badge span {
+    width: 100%;
+    margin: auto;
+    font-size: 14px;
+    font-weight: 300;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-decoration: none;
+    position: relative;
+}
+
+/*effect-underline*/
+.user-badges .badge a {
+    color: black;
+    text-decoration: none;
+}
+
+.user-badges .badge > a div span:after {
+    content: '';
+    color: #4a4a4a;
+    position: absolute;
+    left: 0;
+    display: inline-block;
+    height: 1em;
+    width: 100%;
+    border-bottom: 1px solid;
+    margin-top: 3px;
+    opacity: 0;
+    -webkit-transition: opacity 400ms, -webkit-transform 400ms;
+    transition: opacity 400ms, transform 400ms;
+    -webkit-transform: scale(0,1);
+    transform: scale(0,1);
+}
+
+.user-badges .badge:hover > a div span:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
 }

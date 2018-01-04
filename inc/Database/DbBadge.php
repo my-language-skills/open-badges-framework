@@ -62,14 +62,15 @@ class DbBadge extends DbModel {
      *
      * @param array $data list of ids
      *
-     * @return the badge | false, if don't exist. | @const ER_WRONG_FIELDS if there are wrong field
+     * @return object the badge | false, if don't exist.
      */
-    public static function getById(array $data) {
-        $badges = [];
+    public static function getById($data) {
+        $badges = null;
+        if(!is_array($data)) $data = [$data];
         foreach ($data as $id) {
-            $id = array('id'=> $id);
-            $badges[] = parent::get($id)[0];    //[0] -> permit to extract the first array because
-                                                // we will get only and always one result.
+            $id = array('id' => $id);
+            $badges = parent::get($id)[0];    //[0] -> permit to extract the first array because
+            // we will get only and always one result.
         }
 
         return !empty($badges) ? $badges : false;
@@ -104,6 +105,20 @@ class DbBadge extends DbModel {
             $getValue = parent::get($data);
             return !empty($getValue) ? $getValue : false;
         }
+    }
+
+    /**
+     * Get badge/s.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       1.0.0
+     *
+     * @param array $data list of ids
+     *
+     * @return
+     */
+    public static function get(array $data = null) {
+        return parent::get($data);
     }
 
     /**

@@ -6,6 +6,7 @@ use Inc\Base\BaseController;
 use Inc\Base\User;
 use Inc\Pages\Admin;
 use Inc\Base\Metabox;
+use templates\SettingsTemp;
 
 /**
  * Contain all the function for the management of the badges.
@@ -206,6 +207,27 @@ class Badges {
         }
 
         return $img;
+    }
+
+    /**
+     *
+     * @author      Alessandro RICCARDI
+     * @since       1.0.0
+     */
+    public static function getLinkGetBadge($hash_file, $badgeId, $fieldId, $levelId) {
+        // Get badge page retrieved from the plugin setting
+        $getBadgePage = get_post(
+            SettingsTemp::getOption(SettingsTemp::FI_GET_BADGE)
+        );
+
+        $urlGetBadge = home_url('/' . $getBadgePage->post_name . '/');
+
+        return $badgeLink =
+            $urlGetBadge .
+            "?json=$hash_file" .
+            "&badge=" . $badgeId .
+            "&field=" . $fieldId .
+            "&level=" . $levelId;
     }
 
 
