@@ -1,0 +1,20 @@
+var searchData=
+[
+  ['dashboardtemp',['DashboardTemp',['../classtemplates_1_1_dashboard_temp.html',1,'templates']]],
+  ['dashboardtemp_2ephp',['DashboardTemp.php',['../_dashboard_temp_8php.html',1,'']]],
+  ['db_5fname_5fversion',['DB_NAME_VERSION',['../class_inc_1_1_database_1_1_db_model.html#a8f4213135aec7d72664b4447a06a7715',1,'Inc::Database::DbModel']]],
+  ['db_5fversion',['DB_VERSION',['../class_inc_1_1_database_1_1_db_model.html#abd8b3c0e609e1b8addf301401d28f932',1,'Inc::Database::DbModel']]],
+  ['dbbadge',['DbBadge',['../class_inc_1_1_database_1_1_db_badge.html',1,'Inc::Database']]],
+  ['dbbadge_2ephp',['DbBadge.php',['../_db_badge_8php.html',1,'']]],
+  ['dbmodel',['DbModel',['../class_inc_1_1_database_1_1_db_model.html',1,'Inc::Database']]],
+  ['dbmodel_2ephp',['DbModel.php',['../_db_model_8php.html',1,'']]],
+  ['deactivate',['Deactivate',['../class_inc_1_1_base_1_1_deactivate.html',1,'Deactivate'],['../class_inc_1_1_base_1_1_deactivate.html#a7f313467415045368c0633e67a2b6d75',1,'Inc\Base\Deactivate\deactivate()']]],
+  ['deactivate_2ephp',['Deactivate.php',['../_deactivate_8php.html',1,'']]],
+  ['delete',['delete',['../class_inc_1_1_database_1_1_db_badge.html#a560ddde31efe49bfeda1a72cec03f601',1,'Inc\Database\DbBadge\delete()'],['../class_inc_1_1_database_1_1_db_model.html#a560ddde31efe49bfeda1a72cec03f601',1,'Inc\Database\DbModel\delete()']]],
+  ['descriptioncallback',['descriptionCallback',['../classtemplates_1_1_settings_temp.html#ade831f07c3ee536459a64663226a47fc',1,'templates::SettingsTemp']]],
+  ['displayfunction',['DisplayFunction',['../class_inc_1_1_utils_1_1_display_function.html',1,'Inc::Utils']]],
+  ['displayfunction_2ephp',['DisplayFunction.php',['../_display_function_8php.html',1,'']]],
+  ['documentation_2dgeneral_2emd',['documentation-general.md',['../documentation-general_8md.html',1,'']]],
+  ['documentation_2dintegrations_2emd',['documentation-integrations.md',['../documentation-integrations_8md.html',1,'']]],
+  ['documentation_2dtechnical_2emd',['documentation-technical.md',['../documentation-technical_8md.html',1,'']]]
+];
