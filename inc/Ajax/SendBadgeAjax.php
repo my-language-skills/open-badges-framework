@@ -166,14 +166,14 @@ class SendBadgeAjax extends BaseController {
      * @since  1.0.0
      */
     public function ajaxSendBadge() {
-        $form = $_POST['form'];
-        $badgeId = $_POST['badgeId'];
-        $fieldId = $_POST['fieldId'];
-        $levelId = $_POST['levelId'];
-        $theClassId = $_POST['theClassId'];
-        $receivers = $_POST['receivers'];
-        $info = $_POST['info'];
-        $evidence = $_POST['evidence'];
+        $form = isset($_POST["form"]) ? $_POST['form'] : null;
+        $badgeId = isset($_POST["badgeId"]) ? $_POST['badgeId'] : null;
+        $fieldId = isset($_POST["fieldId"]) ? $_POST['fieldId'] : null;
+        $levelId = isset($_POST["levelId"]) ? $_POST['levelId'] : null;
+        $theClassId = isset($_POST["theClassId"]) ? $_POST['theClassId'] : null;
+        $receivers = isset($_POST["receivers"]) ? $_POST['receivers'] : null;
+        $info = isset($_POST["info"]) ? $_POST['info'] : null;
+        $evidence = isset($_POST["evidence"]) ? $_POST['evidence'] : null;
 
         // For the A form the receiver is the user (Self)
         if ($form === 'a') {

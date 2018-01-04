@@ -325,7 +325,7 @@ class User {
      * @return int      RET_SUCCESS (0) in case of success
      *         string   RET_LOGIN_ERROR error message
      */
-    public function loginUser($user) {
+    public static function loginUser($user) {
         // 3 !¡ SING-ON of the user
         $login = wp_signon(array(
             'user_login' => $user['user_email'],

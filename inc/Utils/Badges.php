@@ -132,7 +132,7 @@ class Badges {
         // Get the certification of the badge (certify or not-certify)
         $badgeCert = get_post_meta($badge->ID, '_certification', true);
 
-        if (!$retLevel && in_array(badge, $retContainer)) {
+        if (!$retLevel && in_array($badge, $retContainer)) {
             return false;
         }
 
