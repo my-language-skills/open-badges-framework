@@ -35,13 +35,19 @@ class Secondary {
     }
 
     public static function isJobManagerActive() {
-        include_once(ABSPATH . 'wp-admin/includes/plugin.php');
-        return is_plugin_active("WP-Job-Manager-master/wp-job-manager.php");
+        return class_exists("WP_Job_Manager");
     }
 
     public static function isRCPActive() {
         include_once(ABSPATH . 'wp-admin/includes/plugin.php');
-        return is_plugin_active("restrict-content-pro/restrict-content-pro.php");
+        $plugins = get_plugins();
+        foreach ($plugins as $key => $value){
+            if(strpos($key, 'restrict-content-pro') != false){
+                return true;
+            }
+        }
+        // default
+        return false;
     }
 
     public static function isRCPIntegratedJBM() {

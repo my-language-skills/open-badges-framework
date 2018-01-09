@@ -69,21 +69,22 @@ final class UserTemp {
                             </li>
                             <li>
                                 <?php
-                                if (Secondary::isRCPActive() && Secondary::isRCPIntegratedJBM()) {
-                                    if ($userData->ID == wp_get_current_user()->ID) {
+                                if ($userData->ID == wp_get_current_user()->ID) {
+                                    if (esc_url(get_permalink($rcp_options['edit_profile']))) {
+
                                         ?>
                                         <div class="btn-update-container">
                                             <a href="<?php echo esc_url(get_permalink($rcp_options['edit_profile'])); ?>"
                                                class="btn btn-secondary">Edit your profile</a>
                                         </div>
                                         <?php
-                                    }
-                                } else { ?>
-                                    <div class="btn-update-container">
-                                        <a href="profile.php"
-                                           class="btn btn-secondary">Edit your profile</a>
-                                    </div>
-                                <?php } ?>
+                                    } else { ?>
+                                        <div class="btn-update-container">
+                                            <a href="profile.php"
+                                               class="btn btn-secondary">Edit your profile</a>
+                                        </div>
+                                    <?php }
+                                } ?>
                             </li>
                         </ul>
                     </div>

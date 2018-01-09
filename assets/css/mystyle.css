@@ -310,24 +310,24 @@ th {
     width: 100%;
 }
 
-/*
-.user-info-admin .username-user {
-    -webkit-flex: 5;
-    flex: 5;
+.user-info .txt-info {
+    float: left;
+    width: 80%;
 }
 
-.user-info-admin .username-user h2{
-    font-size: 27px;
-    font-weight: 300;
-    margin-top: 10px;
-    margin-bottom: 10px;
+.txt-info li {
+    margin: 4px 0px;
+    font-size: 16px;
+    font-weight: 100;
+    list-style-type: none;
+    float: left;
+    clear: both;
+    display: inline-block;
 }
 
-.user-info-admin .username-user span{
-    font-size: 13px;
-    font-weight: 300;
+.txt-info li:first-child {
+    margin-top: 0px;
 }
-*/
 .user-badges-cont .title-badges-cont{
     overflow:auto;
     width: 100%;
