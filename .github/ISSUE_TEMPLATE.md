@@ -18,4 +18,4 @@
 OpenBadgesFramework: [Enter Pressbooks version here]
 WordPress: [Enter WordPress version here]
 
-_You can get the version of Open Badges Framework from the readme.txt file in the OpenBadgesFramework plugin (usually located at `https://<yourdomain.tld>/wp-content/plugins/OpenBadgesFramework/readme.txt`) and the version of WordPress from the readme.html file in the WordPress root directory (usually located at `https://<yourdomain.tld>/readme.html`). You can usually get your PHP version from your web host, or by using the [`phpversion()`](http://php.net/manual/en/function.phpversion.php) function._
+_You can get the version of Open Badges Framework from the readme.txt file in the OpenBadgesFramework plugin (usually located at `https://<yourdomain.tld>/wp-content/plugins/OpenBadgesFramework/readme.txt`) and the version of WordPress from the readme.html file in the WordPress root directory (usually located at `https://<yourdomain.tld>/readme.html`)._
