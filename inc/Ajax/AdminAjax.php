@@ -37,7 +37,12 @@ class AdminAjax extends BaseController {
      */
     public function ajaxDeleteBadge() {
         $ids = $_POST['ids'];
-        $badges = DbBadge::getById($ids);
+        $badges = array();
+
+        foreach ($ids as $id) {
+            $badges[] = DbBadge::getById($id);
+        }
+
         foreach ($badges as $badge) {
             echo JsonManagement::deleteJson($badge->json);
             echo DbBadge::deleteById(array('id' => $badge->id));

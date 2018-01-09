@@ -7,6 +7,8 @@ use Inc\Pages\Admin;
 /**
  * Secondary class that allow to add feature to the plugin.
  *
+ * @todo make this more intelligent.
+ *
  * @author      Alessandro RICCARDI
  * @since       1.0.0
  *
@@ -35,5 +37,20 @@ class Secondary {
     public static function isJobManagerActive() {
         include_once(ABSPATH . 'wp-admin/includes/plugin.php');
         return is_plugin_active("WP-Job-Manager-master/wp-job-manager.php");
+    }
+
+    public static function isRCPActive() {
+        include_once(ABSPATH . 'wp-admin/includes/plugin.php');
+        return is_plugin_active("restrict-content-pro/restrict-content-pro.php");
+    }
+
+    public static function isRCPIntegratedJBM() {
+        if(self::isJobManagerActive()) {
+            if (listify_has_integration('wp-job-manager')) {
+                return true;
+            }
+        }
+        // default
+        return false;
     }
 }

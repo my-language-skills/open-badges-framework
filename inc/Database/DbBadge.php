@@ -64,14 +64,10 @@ class DbBadge extends DbModel {
      *
      * @return object the badge | false, if don't exist.
      */
-    public static function getById($data) {
-        $badges = null;
-        if(!is_array($data)) $data = [$data];
-        foreach ($data as $id) {
-            $id = array('id' => $id);
-            $badges = parent::get($id)[0];    //[0] -> permit to extract the first array because
-            // we will get only and always one result.
-        }
+    public static function getById($id) {
+
+        $id = array('id' => $id);
+        $badges = parent::get($id)[0];    //[0] -> permit to extract the first array (badge)
 
         return !empty($badges) ? $badges : false;
     }

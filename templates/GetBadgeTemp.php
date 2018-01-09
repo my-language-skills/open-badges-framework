@@ -570,7 +570,7 @@ final class GetBadgeTemp extends BaseController {
         <body>
         <div class="container-wrap">
         <div  class="site-wrapper">
-        <div class="site-wrapper-inner">
+        <div class="site-wrapper-inner center-text">
         <?php
     }
 

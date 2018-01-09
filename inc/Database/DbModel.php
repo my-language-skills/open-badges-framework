@@ -87,7 +87,6 @@ class DbModel {
      * @param array $data  list of information that will be
      *                     placed after the expression WHERE
      *
-     * @return string the name.
      */
     public static function get(array $data = null) {
         global $wpdb;
@@ -103,7 +102,6 @@ class DbModel {
      * @param array $data  list of information that will be
      *                     placed after the expression WHERE
      *
-     * @return string the name.
      */
     public static function insert(array $data) {
         global $wpdb;
@@ -117,12 +115,11 @@ class DbModel {
      * @author      Alessandro RICCARDI
      * @since       1.0.0
      *
-     * @param array $data list of information contain the fields as a key and
-     *                    the values as a value that we want to update
+     * @param array $data  list of information contain the fields as a key and
+     *                     the values as a value that we want to update
      *
      * @param array $where list of information that identify the specific badge
      *
-     * @return string the name.
      */
     public static function update(array $data, array $where) {
         global $wpdb;
@@ -139,7 +136,6 @@ class DbModel {
      * @param array $data  list of information that will be
      *                     placed after the expression WHERE
      *
-     * @return string the name.
      */
     public static function delete(array $data) {
         global $wpdb;
@@ -153,7 +149,6 @@ class DbModel {
      * @author      Alessandro RICCARDI
      * @since       1.0.0
      *
-     * @return string the name.
      */
     public static function now() {
         return date('Y-m-d H:i:s');

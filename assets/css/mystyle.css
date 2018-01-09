@@ -15,8 +15,8 @@
     overflow-x: auto;
 }
 
-.center-text {
-    text-align: center;
+.center-text * {
+    text-align: center !important;
 }
 
 .lead {
@@ -258,10 +258,12 @@ th {
    ====================== */
 
 .user-badges-cont {
+    clear: both;
+    float: left;
     margin-top: 50px;
     background: #e2e2e2;
     border-radius: 5px;
-    display: inline-block;
+    display: block;
     border-bottom: 2px solid  #d0d0d0;
     border-radius: 0px 0px 10px 10px;
 }
@@ -269,8 +271,6 @@ th {
 .flex-container {
     display: -webkit-flex;
     display: flex;
-    -webkit-align-items: flex-start;
-    align-items: flex-start;
     -webkit-flex-wrap: wrap;
     flex-wrap: wrap;
 }
@@ -288,10 +288,21 @@ th {
     margin: auto auto auto 10px;
 }
 
+.author-name {
+    text-align: left;
+    float: none;
+    margin-bottom: 20px;
+}
+
+
+.author-name h1{
+    font-size: 40px;
+}
+
 .user-info-admin .img-user {
     -webkit-flex: 1;
     flex: 1;
-    max-width: 100px;
+    max-width: 150px;
 }
 
 .user-info-admin .img-user img {
@@ -299,6 +310,7 @@ th {
     width: 100%;
 }
 
+/*
 .user-info-admin .username-user {
     -webkit-flex: 5;
     flex: 5;
@@ -315,7 +327,7 @@ th {
     font-size: 13px;
     font-weight: 300;
 }
-
+*/
 .user-badges-cont .title-badges-cont{
     overflow:auto;
     width: 100%;
@@ -332,7 +344,6 @@ th {
 }
 
 .user-badges .badge {
-    flex: 1;
     border-radius: 10px;
     text-align: center;
 }

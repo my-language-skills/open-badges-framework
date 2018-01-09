@@ -6,12 +6,12 @@ use Inc\Base\Secondary;
 
 /**
  * Template for the Settings page, this class create and manage the settings page.
- * It's look little bit complicated but with calm and patient you can understand
- * everything. The 'pageInit' function is the core of this class and permit to
- * instantiate all the sections and the relative fields (SECTION: company_profile_sect,
- * page_link_sect; FIELDS: site_name_field, website_url_field ...).
- * To make it more is it can be possible watching this tutorial:
- * https://www.youtube.com/watch?v=QYt5Ry3os88
+ * @todo It's look little bit complicated but with calm and patient you can understand
+ * @todo everything. The 'pageInit' function is the core of this class and permit to
+ * @todo instantiate all the sections and the relative fields (SECTION: company_profile_sect,
+ * @todo page_link_sect; FIELDS: site_name_field, website_url_field ...).
+ * @todo To make it more is it can be possible watching this tutorial:
+ * @todo https://www.youtube.com/watch?v=QYt5Ry3os88
  *
  * @author      Alessandro RICCARDI
  * @since       1.0.0

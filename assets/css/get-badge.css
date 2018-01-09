@@ -12,9 +12,13 @@ html {
 }
 
 body {
-    text-align: center !important;
 
 }
+
+.center-text * {
+    text-align: center !important;
+}
+
 
 input{box-sizing:border-box}
 
