@@ -288,7 +288,6 @@ class SettingApi {
     public function setCurrentMenu($parent_file) {
         global $submenu_file, $current_screen, $pagenow;
 
-        # Set the submenu as active/current while anywhere in your Custom Post Type (nwcm_news)
         if ($current_screen->post_type == Admin::POST_TYPE_BADGES) {
 
             if ($pagenow == 'post.php') {
@@ -306,6 +305,8 @@ class SettingApi {
                     $submenu_file = 'edit-tags.php?taxonomy=' . Admin::TAX_LEVELS . '&post_type=' . $current_screen->post_type;
                 }
             }
+
+
 
             $parent_file = Admin::SLUG_PLUGIN;
 

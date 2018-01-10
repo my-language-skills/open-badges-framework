@@ -127,7 +127,7 @@ final class SendBadgeTemp extends BaseController {
         }?>
 
         <!-- The Modal -->
-        <div id="myModal" class="modal">
+        <div id="modalSendBadge" class="modal">
 
             <!-- Modal content -->
             <div class="modal-content">

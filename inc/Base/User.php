@@ -123,11 +123,11 @@ class User {
     );
 
     // Return messages.
-    const RET_SUCCESS = 0;
-    const RET_NO_MATCH_PASS = "The <strong>passwords</strong> doesn't match, please write correctly. <br>";
-    const RET_USER_EXIST = "The <strong>username</strong> already exist, please chose another.";
-    const RET_REGISTRATION_ERROR = "<strong>Registration error<strong>, please ask to the help desk";
-    const RET_LOGIN_ERROR = "<strong>Login error<strong>, please ask to the help desk";
+    const REGIS_SUCCESS = 0;
+    const REGIS_NO_MATCH_PASS = "The <strong>passwords</strong> doesn't match, please write correctly. <br>";
+    const REGIS_USER_EXIST = "The <strong>username</strong> already exist, please chose another.";
+    const REGIS_REGISTRATION_ERROR = "<strong>Registration error<strong>, please ask to the help desk";
+    const REGIS_LOGIN_ERROR = "<strong>Login error<strong>, please ask to the help desk";
 
     /**
      * Call the principal function (initialize) and call the
@@ -227,7 +227,6 @@ class User {
     public static function getCurrentUser() {
         global $current_user;
         wp_get_current_user();
-
         return $current_user;
     }
 
@@ -278,20 +277,20 @@ class User {
     public static function registerUser($user) {
         // Check if the passwords are the same
         if ($user['user_pass'] !== $user['user_rep_pass']) {
-            return User::RET_NO_MATCH_PASS;
+            return User::REGIS_NO_MATCH_PASS;
         }
 
         // Check if there are users with the same name and email
         if (username_exists($user['user_name']) || email_exists($user['user_email'])) {
             // User already exist
-            return User::RET_USER_EXIST;
+            return User::REGIS_USER_EXIST;
         } else {
             // 1 !¡ CREATION of the user
             $user_id = wp_create_user($user['user_name'], $user['user_pass'], $user['user_email']);
 
             if (is_wp_error($user_id)) {
                 // Error creation
-                return User::RET_REGISTRATION_ERROR;
+                return User::REGIS_REGISTRATION_ERROR;
             } else {
                 // 2 !¡ UPDATING of the first name, last name and role.
                 $update = wp_update_user(
@@ -304,9 +303,9 @@ class User {
 
                 if (is_wp_error($update)) {
                     // Error updating
-                    return User::RET_REGISTRATION_ERROR;
+                    return User::REGIS_REGISTRATION_ERROR;
                 } else {
-                    return self::RET_SUCCESS;
+                    return self::REGIS_SUCCESS;
                 }
             }
         }
@@ -334,10 +333,10 @@ class User {
 
         if (is_wp_error($login)) {
             // Error sing-on
-            return User::RET_LOGIN_ERROR;
+            return User::REGIS_LOGIN_ERROR;
         } else {
             // !¡!¡!¡ SUCCESS !¡!¡!¡
-            return User::RET_SUCCESS;
+            return User::REGIS_SUCCESS;
         }
     }
 }

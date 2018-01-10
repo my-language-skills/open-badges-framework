@@ -34,7 +34,10 @@
     font-size: large;
 }
 
-/* Tabs selector ****/
+/* ======================
+    Tabs selector
+   ====================== */
+
 .nav-tabs {
     float: left;
     width: 100%;
@@ -95,12 +98,12 @@
     box-shadow: 0 5px 4px -2px rgba(0, 0, 0, 0.15);
 }
 
-/* **********************
-    DASHBOARD
+/* ======================
+    Action Control
    ====================== */
 
 .obf-title {
-    font-size: 29px !important;
+    font-size: 40px !important;
     margin-bottom: 20px !important;
 }
 
@@ -129,7 +132,8 @@
     margin-top: 30px;
 }
 
-/* Action Control ****/
+
+/* ## Action TAB ## */
 .row-dash {
     padding: 10px 10px;
     margin-top: 10px;
@@ -196,7 +200,7 @@
     text-align: center;
 }
 
-/* Badges list ****/
+/* ## Badges list TAB ## */
 .badges-list-dash {
     width: 100%;
     white-space: nowrap;
@@ -258,6 +262,7 @@ th {
    ====================== */
 
 .user-badges-cont {
+    width: 100%;
     clear: both;
     float: left;
     margin-top: 50px;
@@ -266,6 +271,12 @@ th {
     display: block;
     border-bottom: 2px solid  #d0d0d0;
     border-radius: 0px 0px 10px 10px;
+}
+
+/* Style against Listify theme */
+.user-badges-cont * {
+    color: black;
+    text-shadow: none;
 }
 
 .flex-container {
@@ -362,7 +373,7 @@ th {
     transition: 400ms;
 }
 
-.user-badges .badge:hover > div img{
+.user-badges .badge:hover > a div img{
     box-shadow: 1px 1px 10px 2px #a8a8a8;
 }
 
@@ -383,25 +394,73 @@ th {
     text-decoration: none;
 }
 
-.user-badges .badge > a div span:after {
-    content: '';
-    color: #4a4a4a;
-    position: absolute;
-    left: 0;
-    display: inline-block;
-    height: 1em;
-    width: 100%;
-    border-bottom: 1px solid;
-    margin-top: 3px;
-    opacity: 0;
-    -webkit-transition: opacity 400ms, -webkit-transform 400ms;
-    transition: opacity 400ms, transform 400ms;
-    -webkit-transform: scale(0,1);
-    transform: scale(0,1);
+/* ===========================
+    SINGLE BADGE
+   =========================== */
+
+.user-cont-obf{
+    font-weight: 300;
+    font-size: 15px;
 }
 
-.user-badges .badge:hover > a div span:after {
-    opacity: 1;
-    -webkit-transform: scale(1);
-    transform: scale(1);
+.user-cont-obf h3 {
+    padding-bottom: 10px;
+}
+
+
+/* ===========================
+    MODAL (POP-UP)
+   =========================== */
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 9991; /* One more the navigation bar or wordpress*/
+    padding-top: 100px; /* Location of the box */
+    padding-bottom: 30px; /* Location of the box */
+    left: 0;
+    top: 0;
+    bottom: 30px;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;
+}
+
+/* Style against Listify theme */
+.modal-content * {
+    color: black;
+    text-shadow: none;
+}
+
+.modal-content-badge {
+    width: 50%;
+}
+
+/* The Close Button */
+.close {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
 }

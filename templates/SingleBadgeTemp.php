@@ -56,6 +56,7 @@ final class SingleBadgeTemp {
     }
 
     public function showPostBadge($id) {
+
         $badge = get_post($id);
         ?>
         <h1 class="obf-title">Badge: <strong><?php echo $badge->post_title; ?></strong></h1>
@@ -67,7 +68,7 @@ final class SingleBadgeTemp {
         <?php
     }
 
-    public function showDatabaseBadge($id) {
+    public static function showDatabaseBadge($id) {
         $dbBadge = DbBadge::getById($id);
         $badge = get_post($dbBadge->badgeId);
         $teacher = get_user_by( 'id', $dbBadge->teacherId);
@@ -76,13 +77,11 @@ final class SingleBadgeTemp {
         $badgeLink = Badges::getLinkGetBadge($dbBadge->json, $dbBadge->badgeId, $dbBadge->fieldId, $dbBadge->levelId );
 
         ?>
-        <h1 class="obf-title">Badge:
-            <strong><?php echo $badge->post_title; ?></strong>
-            &nbsp&nbsp&nbsp&nbsp&nbsp
-            <a class="button wp-generate-pw" href="<?php echo $badgeLink; ?>">Get it</a>
-        </h1>
+        <section class="user-cont-obf">
+        <h1 class="obf-title"> <strong><?php echo $badge->post_title; ?></strong> </h1>
         <section>
             <h3>Badge information</h3>
+            <p>Name: <strong><?php echo $badge->post_title; ?></strong></p>
             <p>Level: <strong><?php echo $level->name; ?></strong></p>
             <p>Field of education: <strong><?php echo $field->name; ?></strong></p>
             <p>Description: <strong><?php echo $badge->post_content; ?></strong></p>
@@ -100,6 +99,8 @@ final class SingleBadgeTemp {
             <p>Received: <strong><?php echo  date("d M Y", strtotime($dbBadge->dateCreation));?></strong></p>
             <p>Earned: <strong><?php echo $dbBadge->getDate ? date("d M Y", strtotime($dbBadge->getDate)) : "on hold";?></strong></p>
             <p>Earned in Mozilla Open Badge: <strong><?php echo $dbBadge->getMobDate ? date("d M Y", strtotime($dbBadge->getMOB)) : "on hold";?></strong></p>
+        </section>
+        <a class="button btn-redirect wp-generate-pw" href="<?php echo $badgeLink; ?>">Get it</a>
         </section>
         <?php
     }

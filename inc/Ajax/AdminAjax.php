@@ -6,6 +6,7 @@ use Inc\Base\BaseController;
 use Inc\Database\DbBadge;
 use Inc\Utils\DisplayFunction;
 use Inc\Utils\JsonManagement;
+use templates\SingleBadgeTemp;
 
 /**
  *
@@ -51,4 +52,10 @@ class AdminAjax extends BaseController {
         wp_die();
     }
 
+    public function ajaxShowBadge() {
+        $id = $_POST['id'];
+        SingleBadgeTemp::showDatabaseBadge($id);
+
+        wp_die();
+    }
 }

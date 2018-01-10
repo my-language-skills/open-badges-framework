@@ -136,42 +136,18 @@ class DisplayFunction {
 
                                 echo "<tr>";
                                 echo "<td><input id='bd-select-$row->id' type='checkbox' name='badge[]' value='$row->id'></td>";
-                                echo "<td><a href='" . get_edit_user_link(get_user_by('email', $row->userEmail)->ID) . "'>" . $row->userEmail . "</a></td>";
-                                echo "<td><a href='" . get_edit_post_link($row->badgeId) . "'>" . get_post($row->badgeId)->post_title . "</a></td>";
-                                echo "<td><a href='" . get_edit_term_link($row->fieldId) . "'>" . get_term($row->fieldId)->name . "</a></td>";
-                                echo "<td><a href='" . get_edit_term_link($row->levelId) . "'>" . get_term($row->levelId)->name . "</a></td>";
+                                echo "<td>" . (get_user_by('email', $row->userEmail) ? "<a href='" . get_edit_user_link(get_user_by('email', $row->userEmail)->ID) . "'>" . $row->userEmail . "</a>" : "<span>$row->userEmail</span>")."</td>";
+                                echo "<td><a href='" . get_edit_post_link($row->badgeId) . "'>" . (get_post($row->badgeId) ? get_post($row->badgeId)->post_title : "") . "</a></td>";
+                                echo "<td><a href='" . get_edit_term_link($row->fieldId) . "'>" . (get_term($row->fieldId) ? get_term($row->fieldId)->name : "") . "</a></td>";
+                                echo "<td><a href='" . get_edit_term_link($row->levelId) . "'>" . (get_term($row->levelId) ? get_term($row->levelId)->name : "") . "</a></td>";
                                 if (Secondary::isJobManagerActive()) {
-                                    echo "<td><a href='" . get_edit_post_link($row->classId) . "'>" . get_post($row->classId)->post_title . "</a></td>";
+                                    echo "<td><a href='" . get_edit_post_link($row->classId) . "'>" . (get_post($row->classId) ? get_post($row->classId)->post_title : "")  . "</a></td>";
                                 }
 
-                                echo "<td><a href='" . get_edit_user_link(get_user_by('id', $row->teacherId)->ID) . "'>" .
-                                    get_user_by('id', $row->teacherId)->user_email .
-                                    "</a></td>";
+                                echo "<td><a href='" . get_edit_user_link($row->teacherId) . "'>" . (get_user_by('id', $row->teacherId) ? get_user_by('id', $row->teacherId)->user_email : "" ) . "</a></td>";
                                 echo "<td>$row->dateCreation</td>";
                                 echo "<td>$row->getDate</td>";
                                 echo "<td>$row->getMobDate</td>";
-                                /*
-                                foreach ($row as $key => $value) { ?>
-                                    <td>
-                                        <?php
-                                        if ($key == "badgeId") {
-                                            echo "<a href='" . get_edit_post_link($value) . "'>$value</a>";
-                                        } else if ($key == "fieldId") {
-                                            echo "<a href='" . get_edit_term_link($value) . "'>$value</a>";
-                                        } else if ($key == "levelId") {
-                                            echo "<a href='" . get_edit_term_link($value) . "'>$value</a>";
-                                        } else if ($key == "classId") {
-                                            echo "<a href='" . get_edit_post_link($value) . "'>$value</a>";
-                                        } else if ($key == "teacherId") {
-                                            echo "<a href='" . get_edit_user_link($value) . "'>$value</a>";
-                                        } else {
-                                            echo $value;
-                                        }
-                                        ?>
-                                    </td>
-                                    <?php
-                                }
-                                echo "</tr>";*/
                             }
                         }
                         ?>

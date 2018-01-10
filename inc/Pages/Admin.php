@@ -19,6 +19,10 @@ use Templates\UserTemp;
  * This class allow to create array that will be pass
  * to the SettingApi class that will initialize them.
  *
+ * @todo       Restrict Access linked to open-badge-framework -
+ * @todo       go to Class:SettingApi Function:setCurrentMenu()
+ * @todo       to manage it
+ *
  * @author     Alessandro RICCARDI
  * @since      1.0.0
  *
@@ -171,6 +175,18 @@ class Admin extends BaseController {
                 'menu_slug' => self::PAGE_SINGLE_BADGES,
                 'callback' => array($singleBadgesTemp, 'main')
             ),
+        );
+
+
+        // ## Restrict Access ##
+        // Be careful HERE, this sub-page is created only for rcp-restrict-post-type
+        $this->subpages[] = array(
+            'parent_slug' => self::SLUG_PLUGIN,
+            'page_title' => 'Restrict Access',
+            'menu_title' => 'Restrict Access',
+            'capability' => 'manage_options',
+            'menu_slug' => 'admin.php?page=rcp-restrict-post-type-' . self::POST_TYPE_BADGES,
+            'callback' => ''
         );
     }
 

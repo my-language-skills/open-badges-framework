@@ -4,18 +4,16 @@ Plugins/OpenBadgesFramework/                    # → Plugin root
 ├── assets/                                     # → Resources folder
 │   │── css/                                    # → Css folder
 │   │   │── get-badge.css                       # → Get badge css files
-│   │   │── mystyle.css                         # → General style
+│   │   │── obf-style.css                       # → General style
 │   │   └── send-badge.css                      # → Send badge style
 │   │── gif/                                    # → Gif folder
-│   │   │── circle-loading.gif                  # → Loading gif for Send badge page
-│   │   │── mixed-loading.gif                   # → Loading gif for get badge page
-│   │   └── vertical-loading.gif                # → Loading gif for get badge page
+│   │   └── loading.gif                         # → Loading gif for Send badge page
 │   │── images/                                 # → Images folder
 │   │   │── default-badge.png                   # → Default badge image
 │   │   │── logo.png                            # → Logo of the official plugin
 │   │   └── open-badges-mz-logo.png             # → Logo of the Mozilla Open Badge
 │   │── js/                                     # → Js folder
-│   │   │── general.js                          # → Contain simple code
+│   │   │── obf-script.js                       # → General script
 │   │   │── get-badge.js                        # → Contain Get Badge page code
 │   │   │── jquery.steps.min.js                 # → Contain Send Badge steps code
 │   │   └── send-badge.js                       # → Contain Send Badge page code

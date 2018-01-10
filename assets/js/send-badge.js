@@ -3,6 +3,15 @@ window.onload = function () {
     var currentForm;
     var clickedSendBadge = false;
 
+    /* ----> POP-UP modal  */
+    // Get the modal
+    var modal = document.getElementById('modalSendBadge');
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+
     // Prevent "enter" pressing when filling the text fields
     jQuery(window).keydown(function (event) {
         if (event.keyCode == 13) {
@@ -10,6 +19,10 @@ window.onload = function () {
             return false;
         }
     });
+
+    function getLoaderHtml() {
+        return "<center style='padding: 50px'><img src='" + globalUrl.loader + "' width='50px' height='50px' /></center>";
+    }
 
     /* =====================================
         BADGE FORM # A #
@@ -70,7 +83,7 @@ window.onload = function () {
             onFinishing: function (event, currentIndex) {
                 if ($res = check_information("a", form_a)) {
                     modal.style.display = "block";
-                    jQuery('#responseSent').html("<br /><img src='" + globalUrl.loader + "' width='150px' height='150px' />");
+                    jQuery('#responseSent').html(getLoaderHtml());
                     return $res;
                 } else {
                     return false;
@@ -149,7 +162,7 @@ window.onload = function () {
             onFinishing: function (event, currentIndex) {
                 if ($res = check_information("b", form_b)) {
                     modal.style.display = "block";
-                    jQuery('#responseSent').html("<br /><img src='" + globalUrl.loader + "' width='150px' height='150px' />");
+                    jQuery('#responseSent').html(getLoaderHtml());
                     return $res;
                 } else {
                     return false;
@@ -229,7 +242,7 @@ window.onload = function () {
             onFinishing: function (event, currentIndex) {
                 if ($res = check_information("c", form_c)) {
                     modal.style.display = "block";
-                    jQuery('#responseSent').html("<img src='" + globalUrl.loader + "' width='150px' height='150px' />");
+                    jQuery('#responseSent').html(getLoaderHtml());
                     return $res;
                 } else {
                     return false;
@@ -294,7 +307,7 @@ window.onload = function () {
             return false;
         }
 
-        jQuery("#level_" + currentForm).html("<br> <img src='" + globalUrl.loader + "' width='150px' height='150px' />");
+        jQuery("#level_" + currentForm).html(getLoaderHtml());
 
         var data = {
             'action': 'ajaxShowLevels',
@@ -338,7 +351,7 @@ window.onload = function () {
             return false;
         }
 
-        jQuery("#badge_" + currentForm).html("<br /><img src='" + globalUrl.loader + "' width='150px' height='150px' />");
+        jQuery("#badge_" + currentForm).html(getLoaderHtml());
 
         var data = {
             'action': 'ajaxShowBadges',
@@ -383,7 +396,7 @@ window.onload = function () {
         }
 
         // LOAD the GIF
-        jQuery("#desc_" + currentForm).html("<br> <img src='" + globalUrl.loader + "' width='150px' height='150px' />");
+        jQuery("#desc_" + currentForm).html(getLoaderHtml());
 
         // Data for the AJAX call
         var data = {
@@ -422,7 +435,7 @@ window.onload = function () {
                 }
             });
 
-        jQuery("#class_" + currentForm).html("<br /><img src='" + globalUrl.loader + "' width='150px' height='150px' />");
+        jQuery("#class_" + currentForm).html(getLoaderHtml());
 
         var data = {
             'action': 'ajaxShowClasses',
@@ -601,6 +614,20 @@ window.onload = function () {
                 .done(
                     function (response) {
                         jQuery('#responseSent').html(response);
+
+                        // When the user clicks on <span> (x), close the modal
+                        if (span) span.onclick = function () {
+                            modal.style.display = "none";
+                            location.reload();
+                        }
+
+                        // When the user clicks anywhere outside of the modal, close it
+                        window.onclick = function (event) {
+                            if (event.target == modal) {
+                                modal.style.display = "none";
+                                location.reload();
+                            }
+                        }
                     }
                 )
                 .fail(
@@ -651,27 +678,5 @@ window.onload = function () {
         });
     }
 
-    // Get the modal
-    var modal = document.getElementById('myModal');
 
-// Get the button that opens the modal
-    var btn = document.getElementById("myBtn");
-
-// Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-
-
-// When the user clicks on <span> (x), close the modal
-    if (span) span.onclick = function () {
-        modal.style.display = "none";
-        location.reload();
-    }
-
-// When the user clicks anywhere outside of the modal, close it
-    window.onclick = function (event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
 }
-

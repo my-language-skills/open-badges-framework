@@ -99,15 +99,11 @@ final class UserTemp {
                 <?php
                 if ($dbBadges) {
                     foreach ($dbBadges as $dbBadge) { ?>
-                        <div class="badge flex-item">
-                            <a class="wrap-link"
-                               href="<?php
+                        <div class="badge flex-item badge-earned" name="<?php echo "".$dbBadge->id; ?>">
+                            <a class="wrap-link" <?php
                                if ($isAdmin) {
-                                   echo admin_url('admin.php?page=' . Admin::PAGE_SINGLE_BADGES, $protocol) . "&badge=$dbBadge->id&db=1";
-                               } else {
-                                   echo get_permalink($dbBadge->badgeId);
-                               }
-                               ?>">
+                                   echo "href='" . admin_url('admin.php?page=' . Admin::PAGE_SINGLE_BADGES, $protocol) . "&badge=$dbBadge->id&db=1'";
+                               } ?>">
                                 <div class="cont-img-badge">
                                     <img class="circle-img" src="<?php echo Badges::getImage($dbBadge->badgeId); ?>">
                                 </div>
@@ -124,7 +120,17 @@ final class UserTemp {
                 ?>
             </div>
         </section>
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        <!-- The Modal -->
+        <div id="modalShowBadge" class="modal">
 
+            <!-- Modal content -->
+            <div class="modal-content modal-content-badge">
+                <span class="close">&times;</span>
+                <div id="responseSent"></div>
+            </div>
+
+        </div>
         <?php
     }
 }
