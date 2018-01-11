@@ -35,15 +35,12 @@ final class UserTemp {
     /**
      *  Show all the information and the badges about the user.
      *
-     * @param int  $idUser id of the user that we want to show
+     * @param int  $idUser  id of the user that we want to show
      * @param bool $isAdmin understand if we are in the admin areao or in the front-end
      */
     public static function getUserPage($idUser, $isAdmin = true) {
         $userData = get_userdata($idUser);
         $urlImg = esc_url(get_avatar_url($idUser));
-        $dbBadges = DbBadge::get(Array("UserEmail" => $userData->user_email));
-        $protocol = stripos($_SERVER['SERVER_PROTOCOL'], 'https') === true ? 'https' : 'http';
-
         $rcp_options = get_option('rcp_settings');
         ?>
 
@@ -101,34 +98,86 @@ final class UserTemp {
                 </div>
             </div>
         </section>
+        <?php
+        self::showBadgeEarned($userData->user_email, $isAdmin);
+    }
+
+    /**
+     * @param string $userEmail
+     * @param bool   $isAdmin
+     */
+    public static function showBadgeEarned($userEmail, $isAdmin = true) {
+        $dbBadges = DbBadge::get(Array("UserEmail" => $userEmail));
+        $protocol = stripos($_SERVER['SERVER_PROTOCOL'], 'https') === true ? 'https' : 'http';
+        $toAccept = 0;
+        ?>
         <section class="user-badges-cont">
-            <div class="title-badges-cont">
-                <h3>Badges earned</h3>
-            </div>
             <div class="user-badges flex-container">
+                <div class="title-badges-cont">
+                    <h3>Badges earned &nbsp;<span class="dashicons dashicons-yes"></span></h3>
+                </div>
                 <?php
                 if ($dbBadges) {
-                    foreach ($dbBadges as $dbBadge) { ?>
-                        <div class="badge flex-item <?php echo !$isAdmin ? "badge-earned" : ""; ?>" name="<?php echo "".$dbBadge->id; ?>">
-                            <a class="wrap-link" <?php
-                               if ($isAdmin) {
-                                   echo "href='" . admin_url('admin.php?page=' . Admin::PAGE_SINGLE_BADGES, $protocol) . "&badge=$dbBadge->id&db=1'";
-                               } ?>">
+                    foreach ($dbBadges as $dbBadge) {
+                        if(!$dbBadge->getDate) $toAccept = 1;
+                        if ($dbBadge->getDate) {
+
+                            ?>
+                            <div class="badge flex-item <?php echo !$isAdmin ? "badge-earned" : ""; ?>"
+                                 name="<?php echo "" . $dbBadge->id; ?>">
+                                <a class="wrap-link" <?php
+                                if ($isAdmin) {
+                                    echo "href='" . admin_url('admin.php?page=' . Admin::PAGE_SINGLE_BADGES, $protocol) . "&badge=$dbBadge->id&db=1'";
+                                } ?>">
                                 <div class="cont-img-badge">
                                     <img class="circle-img" src="<?php echo Badges::getImage($dbBadge->badgeId); ?>">
                                 </div>
                                 <div>
                                     <span><?php echo Badges::get($dbBadge->badgeId)->post_title; ?></span>
                                 </div>
-                            </a>
-                        </div>
-                        <?php
+                                </a>
+                            </div>
+                            <?php
+                        }
                     }
                 } else {
                     echo "<p class='lead'>No badge earned</p>";
                 }
                 ?>
             </div>
+            <?php
+            if ($toAccept) { ?>
+                <div class="obf-badges-to-accept user-badges">
+                    <div class="title-badges-cont">
+                        <h4>To be accepted</h4>
+                    </div>
+                    <?php
+                    foreach ($dbBadges as $dbBadge) {
+                        if (!$dbBadge->getDate) {
+                            ?>
+                            <div class="badge flex-item <?php echo !$isAdmin ? "badge-earned" : ""; ?>"
+                                 name="<?php echo "" . $dbBadge->id; ?>">
+                                <a class="wrap-link" <?php
+                                if ($isAdmin) {
+                                    echo "href='" . admin_url('admin.php?page=' . Admin::PAGE_SINGLE_BADGES, $protocol) . "&badge=$dbBadge->id&db=1'";
+                                } ?>">
+                                <div class="cont-img-badge">
+                                    <img class="circle-img" src="<?php echo Badges::getImage($dbBadge->badgeId); ?>">
+                                </div>
+                                <div>
+                                    <span><?php echo Badges::get($dbBadge->badgeId)->post_title; ?></span>
+                                </div>
+                                </a>
+                            </div>
+                            <?php
+                        }
+                    } ?>
+                </div>
+                <?php
+
+            }
+            ?>
+
         </section>
         <!-- The Modal -->
         <div id="modalShowBadge" class="modal">

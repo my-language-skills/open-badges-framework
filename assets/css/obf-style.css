@@ -5,13 +5,13 @@
     border-radius: 50%;
 }
 
-.wrap-link{
+.wrap-link {
     display: block;
     border: none;
     box-shadow: none !important;
 }
 
-.scroll-hor{
+.scroll-hor {
     overflow-x: auto;
 }
 
@@ -24,7 +24,7 @@
     font-weight: 300;
 }
 
-.sb-instruction{
+.sb-instruction {
     margin-bottom: 30px;
     display: inline-block;
 }
@@ -114,8 +114,8 @@
     width: 100%; /* Full width */
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
 
 .modal-content {
@@ -132,8 +132,6 @@
     color: black;
     text-shadow: none;
 }
-
-
 
 /* ======================
     Action Control
@@ -168,7 +166,6 @@
 .content-dash {
     margin-top: 30px;
 }
-
 
 /* ## Action TAB ## */
 .row-dash {
@@ -298,24 +295,6 @@ th {
     USER
    ====================== */
 
-.user-badges-cont {
-    width: 100%;
-    clear: both;
-    float: left;
-    margin-top: 50px;
-    background: #e2e2e2;
-    border-radius: 5px;
-    display: block;
-    border-bottom: 2px solid  #d0d0d0;
-    border-radius: 0px 0px 10px 10px;
-}
-
-/* Style against Listify theme */
-.user-badges-cont * {
-    color: black;
-    text-shadow: none;
-}
-
 .flex-container {
     display: -webkit-flex;
     display: flex;
@@ -342,8 +321,7 @@ th {
     margin-bottom: 20px;
 }
 
-
-.author-name h1{
+.author-name h1 {
     font-size: 40px;
 }
 
@@ -376,19 +354,43 @@ th {
 .txt-info li:first-child {
     margin-top: 0px;
 }
-.user-badges-cont .title-badges-cont{
-    overflow:auto;
+
+/* List of badges */
+.user-badges-cont {
     width: 100%;
-    background: #d0d0d0;
+    clear: both;
+    float: left;
+    margin-top: 50px;
+    background: lightgrey;
+    border-radius: 5px;
+    display: block;
+    border-bottom: 2px solid #d0d0d0;
+    border-radius: 0px 0px 10px 10px;
+    padding: 0 5px 5px 5px;
 }
 
-.user-badges-cont .title-badges-cont h3{
-    margin: 10px 20px;
-    font-weight: 400;
+/* Style against Listify theme */
+.user-badges-cont * {
+    color: black;
+    text-shadow: none;
 }
 
-.user-badges{
-    padding: 15px;
+.user-badges {
+    background-color: whitesmoke;
+
+}
+
+.user-badges .title-badges-cont {
+    overflow: auto;
+    width: 100%;
+    background-color: lightgrey;
+    padding: 8px 20px;
+}
+
+.user-badges .title-badges-cont h3 {
+    font-weight: 300;
+    font-size: 25px;
+    margin:0;
 }
 
 .user-badges .badge {
@@ -406,11 +408,11 @@ th {
     width: 100%;
 }
 
-.user-badges .badge img{
+.user-badges .badge img {
     transition: 400ms;
 }
 
-.user-badges .badge:hover > a div img{
+.user-badges .badge:hover > a div img {
     box-shadow: 1px 1px 10px 2px #a8a8a8;
 }
 
@@ -431,6 +433,31 @@ th {
     text-decoration: none;
 }
 
+.obf-badges-to-accept {
+    width: 100%;
+    clear: both;
+    background-color: whitesmoke;
+}
+
+.obf-badges-to-accept.user-badges {
+    border-radius: 0 0 8px 8px;
+}
+
+.obf-badges-to-accept .title-badges-cont{
+    padding: 4px 25px;
+    background-color: #e3e3e3;
+}
+
+.obf-badges-to-accept h4 {
+    font-size: 17px;
+    font-weight: 300;
+    margin: 0px;
+}
+
+.obf-badges-to-accept .badge .cont-img-badge {
+    width: 40px;
+}
+
 /* ==============================
     SINGLE BADGE PAGE SBP (.sbp)
    ============================== */
@@ -441,8 +468,7 @@ th {
     padding: 15px;
 }
 
-
-.user-cont-obf{
+.user-cont-obf {
     font-weight: 300;
     font-size: 15px;
     background-color: white;
@@ -474,12 +500,12 @@ th {
 
 }
 
-.obf-sbp-cont-btn{
+.obf-sbp-cont-btn {
     margin-top: 50px;
     display: table;
 }
 
-.obf-sbp-cont-btn .btn-primary{
+.obf-sbp-cont-btn .btn-primary {
     color: white;
     background-color: #007bff;
 }

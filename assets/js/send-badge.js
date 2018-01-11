@@ -3,6 +3,14 @@ window.onload = function () {
     var currentForm;
     var clickedSendBadge = false;
 
+    /* ----> POP-UP modal  */
+    // Get the modal
+    var modal = document.getElementById('modalSendBadge');
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
 
     // Prevent "enter" pressing when filling the text fields
     jQuery(window).keydown(function (event) {
@@ -606,14 +614,6 @@ window.onload = function () {
                 .done(
                     function (response) {
                         jQuery('#responseSent').html(response);
-
-                        /* Variables */
-                        // Get the modal
-                        var modal = document.getElementById('modalSendBadge');
-                        // Get the button that opens the modal
-                        var btn = document.getElementById("myBtn");
-                        // Get the <span> element that closes the modal
-                        var span = document.getElementsByClassName("close")[0];
 
                         // When the user clicks on <span> (x), close the modal
                         if (span) span.onclick = function () {

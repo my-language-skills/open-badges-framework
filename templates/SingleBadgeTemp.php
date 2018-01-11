@@ -47,9 +47,7 @@ final class SingleBadgeTemp {
                 self::showErrorLink(self::ERROR_LINK);
                 break;
         }
-
         echo "</div>";
-
     }
 
     /**
@@ -78,9 +76,7 @@ final class SingleBadgeTemp {
                     return self::ERROR_LINK;
                 }
             }
-
         } else {
-
             return self::ERROR_LINK;
         }
     }
@@ -122,7 +118,7 @@ final class SingleBadgeTemp {
         $level = get_term($dbBadge->levelId);
         $field = get_term($dbBadge->fieldId);
         $badgeLink = Badges::getLinkGetBadge($dbBadge->json, $dbBadge->badgeId, $dbBadge->fieldId, $dbBadge->levelId);
-        $dataIdsBadge = array(
+        $idsBadge = array(
             "userEmail" => $dbBadge->userEmail,
             "badgeId" => $dbBadge->badgeId,
             "fieldId" => $dbBadge->fieldId,
@@ -161,11 +157,18 @@ final class SingleBadgeTemp {
             </section>
             <?php
 
-            if ($student->ID === wp_get_current_user()->ID && !DbBadge::isGotMOB($dataIdsBadge)) { ?>
-                <div class="obf-sbp-cont-btn">
-                    <a class="btn btn-lg btn-primary" href="<?php echo $badgeLink; ?>">Get it</a>
-                </div>
-                <?php
+            if($student->ID === wp_get_current_user()->ID) {
+                if (!DbBadge::isGot($idsBadge)) { ?>
+                    <div class="obf-sbp-cont-btn">
+                        <a class="btn btn-lg btn-primary" href="<?php echo $badgeLink; ?>">Get it</a>
+                    </div>
+                    <?php
+                } else if (!DbBadge::isGotMOB($idsBadge)) { ?>
+                    <div class="obf-sbp-cont-btn">
+                        <a class="btn btn-lg btn-secondary" href="<?php echo $badgeLink; ?>">Get Mozilla Open Badge</a>
+                    </div>
+                    <?php
+                }
             }
             ?>
         </section>
