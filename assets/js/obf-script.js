@@ -28,15 +28,7 @@ window.addEventListener("load", function () {
 
 jQuery(function ($) {
 
-    /* Variables */
 
-    /* ----> POP-UP modal  */
-    // Get the modal
-    var modal = document.getElementById('modalShowBadge');
-    // Get the button that opens the modal
-    var btn = document.getElementById("myBtn");
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
 
     /* General func */
     /**
@@ -172,6 +164,12 @@ jQuery(function ($) {
        POP-UP badge
       ========================= */
 
+    /* Variables */
+    // Get the modal
+    var modal = document.getElementById('modalShowBadge');
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+
     $(document).on('click', '.badge-earned', (function (e) {
         jQuery('#responseSent').html("<center style='padding: 100px'><img src='" + globalUrl.loader + "' width='50px' height='50px' /></center>");
 
@@ -184,10 +182,6 @@ jQuery(function ($) {
 
         var func = function (response) {
             $('#responseSent').html(response);
-            // When the user clicks on <span> (x), close the modal
-            if (span) span.onclick = function () {
-                modal.style.display = "none";
-            }
 
             // When the user clicks anywhere outside of the modal, close it
             window.onclick = function (event) {

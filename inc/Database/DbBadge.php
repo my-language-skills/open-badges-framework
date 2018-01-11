@@ -62,14 +62,21 @@ class DbBadge extends DbModel {
      *
      * @param array $data list of ids
      *
-     * @return object the badge | false, if don't exist.
+     * @return bool|Object of the badge or null if not exist.
+     */
+    /**
+     * @param $id
+     *
+     * @return bool
      */
     public static function getById($id) {
 
         $id = array('id' => $id);
-        $badges = parent::get($id)[0];    //[0] -> permit to extract the first array (badge)
+        if ($badges = parent::get($id)) {
+            $badge = $badges[0]; //[0] -> permit to extract the first array (badge)
+        }
 
-        return !empty($badges) ? $badges : false;
+        return !empty($badge) ? $badge : false;
     }
 
     /**
@@ -86,7 +93,9 @@ class DbBadge extends DbModel {
      * @type string        fieldId          Field Id.
      * @type string        levelId          Level Id.
      *
-     * @return the badge | false, if don't exist. | @const ER_WRONG_FIELDS if there are wrong field
+     * @return array|bool|null|object|string the object badge, false if don't exist and
+     *                                       constant string (@const ER_WRONG_FIELDS) if
+     *                                       there are wrong field.
      */
     public static function getByIds(array $data) {
         $rightKeys = array(
@@ -98,23 +107,9 @@ class DbBadge extends DbModel {
         if (!self::checkFields($rightKeys, $data)) {
             return self::ER_WRONG_FIELDS;
         } else {
-            $getValue = parent::get($data);
-            return !empty($getValue) ? $getValue : false;
+            $badge = parent::get($data);
+            return !empty($badge) ? $badge : false;
         }
-    }
-
-    /**
-     * Get badge/s.
-     *
-     * @author      Alessandro RICCARDI
-     * @since       1.0.0
-     *
-     * @param array $data list of ids
-     *
-     * @return
-     */
-    public static function get(array $data = null) {
-        return parent::get($data);
     }
 
     /**
@@ -123,19 +118,19 @@ class DbBadge extends DbModel {
      * @author      Alessandro RICCARDI
      * @since       1.0.0
      *
-     * @return get function from the parent class
+     * @return array|null|object array of object (badges), nul if not exist
      */
     public static function getAll() {
         return parent::get();
     }
 
     /**
-     * Get all the badge.
+     * Get the keys of the badge table.
      *
      * @author      Alessandro RICCARDI
      * @since       1.0.0
      *
-     * @return array of badges
+     * @return array keys
      */
     public static function getKeys() {
         $data = parent::get();
@@ -163,7 +158,8 @@ class DbBadge extends DbModel {
      * @type string        info             Information wrote from the teacher.
      * }
      *
-     * @return true | @const ER_DUPLICATE duplicate row | false, if errors.
+     * @return  bool|false|int|string true if it's inserted, false otherwise and
+     * @const         ER_DUPLICATE duplicate row.
      */
     public static function insert(array $data) {
         $rightKeys = array(
@@ -215,10 +211,10 @@ class DbBadge extends DbModel {
      * @type string        levelId          Level Id.
      * }
      *
-     * @return  bool    true if everything is good
-     *          string  ER_DONT_EXIST if don't exist the badge
-     *          bool    false, if other errors.
+     * @return bool|string|void true if everything is good, false, if other
+     *                           errors and ER_DONT_EXIST if don't exist the badge
      */
+
     public static function update(array $data, array $where) {
 
         $dataGetById = array(
@@ -232,7 +228,11 @@ class DbBadge extends DbModel {
             return self::ER_DONT_EXIST;
         }
 
-        return parent::update($data, $where) === false ? false : true;
+        if (parent::update($data, $where)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -243,8 +243,9 @@ class DbBadge extends DbModel {
      *
      * @param array $data the number id of the badge
      *
-     * @return  bool    true if everything ok
-     *                  false if errors.
+     * @return bool|false|int true if everything ok, false if errors, and a number that
+     *                        will be always 1 because is meaning the number of row
+     *                        affected in the database.
      */
     public static function deleteById(array $data) {
         $rightKeys = array(
@@ -271,8 +272,7 @@ class DbBadge extends DbModel {
      * @type string        fieldId          Field Id.
      * @type string        levelId          Level Id.
      *
-     * @return  bool    true if everything ok
-     *                  false if errors.
+     * @return bool true if everything ok, false if errors.
      */
     public static function deleteByIds(array $data) {
         $rightKeys = array(
@@ -289,8 +289,8 @@ class DbBadge extends DbModel {
     }
 
     /**
-     * Check that the array $data contain all the keys
-     * that are inside the array $rightKeys.
+     * Check if the array $data contain all the keys that are inside
+     * the array $rightKeys.
      *
      * @author      Alessandro RICCARDI
      * @since       1.0.0
@@ -298,8 +298,7 @@ class DbBadge extends DbModel {
      * @param array $rightKeys
      * @param array $data
      *
-     * @return  bool    true if everything ok
-     *                  false if errors.
+     * @return bool true if everything ok, false if errors.
      */
     private static function checkFields(array $rightKeys, array $data) {
         $rightDim = count($rightKeys);
@@ -333,8 +332,8 @@ class DbBadge extends DbModel {
      * @type string        levelId          Level Id.
      * }
      *
-     * @return the badge | false, if don't exist. | @const ER_DONT_EXIST if the badge doesn't exist |
-     *         ER_WRONG_FIELDS if there are wrong field
+     * @return bool|string true if is got, false is not,
+     * @const       ER_DONT_EXIST if the badge do no exist
      */
     public static function isGot(array $data) {
         $rightKeys = array(
@@ -372,10 +371,10 @@ class DbBadge extends DbModel {
      * @type string        levelId          Level Id.
      * }
      *
-     * @return          the badge
-     *         bool     false, if don't exist.
-     *         const    ER_DONT_EXIST if the badge doesn't exist
-     *         const    ER_WRONG_FIELDS if there are wrong field
+     * @return bool|string true if is got, false is not, @const ER_DONT_EXIST if
+     *                     the badge do no exist, @const ER_DONT_EXIST if the badge
+     *                     doesn't exist, @const ER_WRONG_FIELDS if there are wrong
+     *                     field.
      */
     public static function isGotMOB(array $data) {
         $rightKeys = array(
@@ -408,9 +407,8 @@ class DbBadge extends DbModel {
      * @param bool  $mob   true if I want to set the badge for MOB and for the current site as "taken";
      *                     false if we want to set as "taken" only for the current website.
      *
-     * @return true if everything is ok;
-     *         ER_DONT_EXIST if the row doesn't exist;
-     *         ER_ERROR if there's other kind of error.
+     * @return bool|string true if everything is ok, @const ER_DONT_EXIST if the row doesn't exist,
+     * @const       ER_ERROR if there's other kind of error.
      */
     public static function setBadgeGot($where, $mob = false) {
         //
@@ -439,7 +437,7 @@ class DbBadge extends DbModel {
      * @author      Alessandro RICCARDI
      * @since       1.0.0
      *
-     * @return return the number of badges that are got.
+     * @return mixed return the number of badges that are got.
      */
     public static function getNumGot() {
         global $wpdb;
@@ -455,7 +453,7 @@ class DbBadge extends DbModel {
      * @author      Alessandro RICCARDI
      * @since       1.0.0
      *
-     * @return return the number of badges that are got.
+     * @return mixed return the number of badges that are got.
      */
     public static function getNumGotMob() {
         global $wpdb;

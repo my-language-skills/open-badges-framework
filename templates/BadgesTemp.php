@@ -14,6 +14,7 @@ use Inc\Utils\Badges;
  * @package     OpenBadgesFramework
  */
 class BadgesTemp {
+
     public function main() {
         $protocol = stripos($_SERVER['SERVER_PROTOCOL'], 'https') === true ? 'https' : 'http';
         $badges = Badges::getAll();

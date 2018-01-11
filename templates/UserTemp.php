@@ -9,7 +9,8 @@ use Inc\Pages\Admin;
 use Inc\Utils\Badges;
 
 /**
- *
+ *  Permit to wrap all the function that take care of the user and
+ * the badges that he earned
  *
  * @author      Alessandro RICCARDI
  * @since       1.0.0
@@ -18,6 +19,9 @@ use Inc\Utils\Badges;
  */
 final class UserTemp {
 
+    /**
+     *  Make start the process but only for the back-end.
+     */
     public function main() {
         $user = User::getCurrentUser();
         ?>
@@ -28,6 +32,12 @@ final class UserTemp {
 
     }
 
+    /**
+     *  Show all the information and the badges about the user.
+     *
+     * @param int  $idUser id of the user that we want to show
+     * @param bool $isAdmin understand if we are in the admin areao or in the front-end
+     */
     public static function getUserPage($idUser, $isAdmin = true) {
         $userData = get_userdata($idUser);
         $urlImg = esc_url(get_avatar_url($idUser));
@@ -99,7 +109,7 @@ final class UserTemp {
                 <?php
                 if ($dbBadges) {
                     foreach ($dbBadges as $dbBadge) { ?>
-                        <div class="badge flex-item badge-earned" name="<?php echo "".$dbBadge->id; ?>">
+                        <div class="badge flex-item <?php echo !$isAdmin ? "badge-earned" : ""; ?>" name="<?php echo "".$dbBadge->id; ?>">
                             <a class="wrap-link" <?php
                                if ($isAdmin) {
                                    echo "href='" . admin_url('admin.php?page=' . Admin::PAGE_SINGLE_BADGES, $protocol) . "&badge=$dbBadge->id&db=1'";
@@ -120,16 +130,10 @@ final class UserTemp {
                 ?>
             </div>
         </section>
-        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
         <!-- The Modal -->
         <div id="modalShowBadge" class="modal">
-
             <!-- Modal content -->
-            <div class="modal-content modal-content-badge">
-                <span class="close">&times;</span>
-                <div id="responseSent"></div>
-            </div>
-
+            <div id="responseSent" class="modal-content obf-sbp-conatiner-badge"></div>
         </div>
         <?php
     }

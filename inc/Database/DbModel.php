@@ -84,9 +84,10 @@ class DbModel {
      * @author      Alessandro RICCARDI
      * @since       1.0.0
      *
-     * @param array $data  list of information that will be
-     *                     placed after the expression WHERE
+     * @param array|null $data  list of information that will be
+     *                          placed after the expression WHERE
      *
+     * @return array|object|null Database query results
      */
     public static function get(array $data = null) {
         global $wpdb;
@@ -102,11 +103,11 @@ class DbModel {
      * @param array $data  list of information that will be
      *                     placed after the expression WHERE
      *
+     * @return int|false The number of rows inserted, or false on error.
      */
     public static function insert(array $data) {
         global $wpdb;
-        $res = $wpdb->insert(self::getTableName(), $data);
-        return $res;
+        return $wpdb->insert(self::getTableName(), $data);
     }
 
     /**
@@ -120,10 +121,11 @@ class DbModel {
      *
      * @param array $where list of information that identify the specific badge
      *
+     * @return int|false The number of rows updated, or false on error.
      */
     public static function update(array $data, array $where) {
         global $wpdb;
-        $wpdb->update(self::getTableName(), $data, $where);
+        return $wpdb->update(self::getTableName(), $data, $where);
     }
 
     /**
@@ -136,6 +138,7 @@ class DbModel {
      * @param array $data  list of information that will be
      *                     placed after the expression WHERE
      *
+     * @return false|int Number of rows affected/selected or false on error
      */
     public static function delete(array $data) {
         global $wpdb;
@@ -149,6 +152,7 @@ class DbModel {
      * @author      Alessandro RICCARDI
      * @since       1.0.0
      *
+     * @return string the time.
      */
     public static function now() {
         return date('Y-m-d H:i:s');

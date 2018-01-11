@@ -32,6 +32,11 @@ final class GetBadgeTemp extends BaseController {
     private $field = null;
     private $level = null;
 
+    /**
+     * Singleton function to get the instance of the class.
+     *
+     * @return null|GetBadgeTemp
+     */
     public static function getInstance() {
         static $inst = null;
         if ($inst === null) {

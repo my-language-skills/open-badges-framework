@@ -210,9 +210,17 @@ class Badges {
     }
 
     /**
+     * Retrieves the URL of the right get badge page.
      *
      * @author      Alessandro RICCARDI
      * @since       1.0.0
+     *
+     * @param $hash_file
+     * @param $badgeId
+     * @param $fieldId
+     * @param $levelId
+     *
+     * @return string link to connect to the get badge page.
      */
     public static function getLinkGetBadge($hash_file, $badgeId, $fieldId, $levelId) {
         // Get badge page retrieved from the plugin setting
@@ -229,6 +237,4 @@ class Badges {
             "&field=" . $fieldId .
             "&level=" . $levelId;
     }
-
-
 }

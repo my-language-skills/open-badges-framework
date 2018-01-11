@@ -1,5 +1,5 @@
 /* **********************
-    GENERAL
+    GENERAL OBF (.obf)
    ====================== */
 .circle-img {
     border-radius: 50%;
@@ -97,6 +97,43 @@
     background-color: #fff;
     box-shadow: 0 5px 4px -2px rgba(0, 0, 0, 0.15);
 }
+
+/* ===========================
+    MODAL -> pop-up
+   =========================== */
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 9991; /* One more the navigation bar or wordpress*/
+    padding-top: 100px; /* Location of the box */
+    padding-bottom: 30px; /* Location of the box */
+    left: 0;
+    top: 0;
+    bottom: 30px;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;
+}
+
+/* Style against Listify theme */
+.modal-content * {
+    color: black;
+    text-shadow: none;
+}
+
+
 
 /* ======================
     Action Control
@@ -394,73 +431,55 @@ th {
     text-decoration: none;
 }
 
-/* ===========================
-    SINGLE BADGE
-   =========================== */
+/* ==============================
+    SINGLE BADGE PAGE SBP (.sbp)
+   ============================== */
+
+.obf-sbp-conatiner-badge {
+    width: 50%;
+    background-color: whitesmoke;
+    padding: 15px;
+}
+
 
 .user-cont-obf{
     font-weight: 300;
     font-size: 15px;
+    background-color: white;
+    padding: 25px;
 }
 
 .user-cont-obf h3 {
     padding-bottom: 10px;
 }
 
-
-/* ===========================
-    MODAL (POP-UP)
-   =========================== */
-
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 9991; /* One more the navigation bar or wordpress*/
-    padding-top: 100px; /* Location of the box */
-    padding-bottom: 30px; /* Location of the box */
-    left: 0;
-    top: 0;
-    bottom: 30px;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-.modal-content {
-    position: relative;
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 30%;
-}
-
-/* Style against Listify theme */
-.modal-content * {
-    color: black;
-    text-shadow: none;
-}
-
-.modal-content-badge {
-    width: 50%;
-}
-
 /* The Close Button */
-.close {
+.obf-bsp-badge-image {
     position: absolute;
-    right: 10px;
-    top: 5px;
-    color: #aaaaaa;
     float: right;
+    right: 0;
+    top: 0;
+    border-radius: 0 5px 0 5px;
+    background-color: whitesmoke;
+    padding: 20px;
     font-size: 28px;
     font-weight: bold;
+    height: auto;
+    width: auto;
 }
 
-.close:hover,
-.close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
+.obf-bsp-badge-image img {
+    height: 100px;
+    width: auto;
+
+}
+
+.obf-sbp-cont-btn{
+    margin-top: 50px;
+    display: table;
+}
+
+.obf-sbp-cont-btn .btn-primary{
+    color: white;
+    background-color: #007bff;
 }
