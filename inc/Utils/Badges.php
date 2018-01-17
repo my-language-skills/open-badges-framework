@@ -12,7 +12,7 @@ use templates\SettingsTemp;
  * Contain all the function for the management of the badges.
  *
  * @author      Alessandro RICCARDI
- * @since       1.0.0
+ * @since       x.x.x
  *
  * @package     OpenBadgesFramework
  */
@@ -22,7 +22,7 @@ class Badges {
      * Get all the Badges.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @return array the badges
      */
@@ -40,7 +40,7 @@ class Badges {
      * and level the right badges that we want.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @param string $fieldId the id of the field
      * @param string $levelId the id of the level
@@ -113,7 +113,7 @@ class Badges {
      * remember: we're using the pointer for the first parameter.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @param array $retContainer this array is a pointer to the main
      *                            container that we want to save the badge
@@ -180,7 +180,7 @@ class Badges {
      * This function permit to get a specific badge.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @param int $id the id of the badge
      *
@@ -194,7 +194,7 @@ class Badges {
      * This function permit to get the thumbnail image url of a badge.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @param int $id the id of the badge
      *
@@ -213,7 +213,7 @@ class Badges {
      * Retrieves the URL of the right get badge page.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @param $hash_file
      * @param $badgeId

@@ -14,7 +14,7 @@ use Inc\Base\Secondary;
  * @todo https://www.youtube.com/watch?v=QYt5Ry3os88
  *
  * @author      Alessandro RICCARDI
- * @since       1.0.0
+ * @since       x.x.x
  *
  * @package     OpenBadgesFramework
  */
@@ -50,7 +50,7 @@ final class SettingsTemp {
      * settings.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      */
     public function __construct() {
         add_action('admin_init', array($this, 'pageInit'));
@@ -62,7 +62,7 @@ final class SettingsTemp {
      * Class.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      */
     public static function init() {
         $options = get_option(self::OPTION_NAME);
@@ -117,7 +117,7 @@ final class SettingsTemp {
      * This is the function that is typically loaded at the beginning.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      */
     public function main() {
         // Set class property
@@ -162,7 +162,7 @@ final class SettingsTemp {
      * Initializing of all the settings information
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      */
     public function pageInit() {
         register_setting(
@@ -272,7 +272,7 @@ final class SettingsTemp {
      * Sanitize each setting field as needed.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @param array $input Contains all settings fields as array keys.
      *
@@ -324,7 +324,7 @@ final class SettingsTemp {
      * Print the Section text.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      */
     public function printSectionInfo() {
         print 'A Profile is a collection of information that describes the entity or organization using Open Badges.';
@@ -334,7 +334,7 @@ final class SettingsTemp {
      * Print the Link text.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      */
     public function printPageLinksInfo() {
         print 'Create and select the page that you will use for these options:';
@@ -344,7 +344,7 @@ final class SettingsTemp {
      * Print the Site Name field with also the value (if exist).
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      */
     public function siteNameCallback() {
         printf(
@@ -360,7 +360,7 @@ final class SettingsTemp {
      * Print the Url of the image field with also the value (if exist).
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      */
     public function imageUrlCallback() {
 
@@ -397,7 +397,7 @@ final class SettingsTemp {
      * Print the Website Url field with also the value (if exist).
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      */
     public function websiteUrlCallback() {
         printf(
@@ -413,7 +413,7 @@ final class SettingsTemp {
      * Print the Telephone field with also the value (if exist).
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      */
     public function telephoneCallback() {
         printf(
@@ -429,7 +429,7 @@ final class SettingsTemp {
      * Print the Company Description field with also the value (if exist).
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      */
     public function descriptionCallback() {
         printf(
@@ -445,7 +445,7 @@ final class SettingsTemp {
      * Print the Company Email field with also the value (if exist).
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      */
     public function emailCallback() {
         printf(
@@ -461,7 +461,7 @@ final class SettingsTemp {
      * Print the become premium page field with also the value (if exist).
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      */
     public function becamePremiumPageCallback() {
         $val = isset($this->options[self::FI_BECAME_PREMIUM]) ? esc_attr($this->options[self::FI_BECAME_PREMIUM]) : '';
@@ -489,7 +489,7 @@ final class SettingsTemp {
      * Print the add class page field with also the value (if exist).
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      */
     public function addClassPageCallback() {
         $val = isset($this->options[self::FI_ADD_CLASS]) ? esc_attr($this->options[self::FI_ADD_CLASS]) : '';
@@ -517,7 +517,7 @@ final class SettingsTemp {
      * Print the get badge page field with also the value (if exist).
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      */
     public function getBadgePageCallback() {
         $val = isset($this->options[self::FI_GET_BADGE]) ? esc_attr($this->options[self::FI_GET_BADGE]) : '';
@@ -537,7 +537,7 @@ final class SettingsTemp {
      * Retrieve the link from thw id of a the page.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @param int $idPage id of the page.
      *
@@ -555,7 +555,7 @@ final class SettingsTemp {
      * setting page.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @param const $field_option a constant of this class that
      *                            refer to a field in setting page

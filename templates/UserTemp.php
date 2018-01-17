@@ -13,7 +13,7 @@ use Inc\Utils\Badges;
  * the badges that he earned
  *
  * @author      Alessandro RICCARDI
- * @since       1.0.0
+ * @since       x.x.x
  *
  * @package     OpenBadgesFramework
  */

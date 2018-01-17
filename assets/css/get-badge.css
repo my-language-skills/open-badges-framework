@@ -29,7 +29,6 @@ input{box-sizing:border-box}
 .container-wrap {
     display: block;
     height: 100%;
-    overflow: hidden;
 }
 
 .info-header-obf{

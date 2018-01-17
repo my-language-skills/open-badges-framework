@@ -9,7 +9,7 @@ use Inc\Utils\Badges;
  * That class permit to mange the Level taxonomies.
  *
  * @author      Alessandro RICCARDI
- * @since       1.0.0
+ * @since       x.x.x
  *
  * @package     OpenBadgesFramework
  */
@@ -25,7 +25,7 @@ class Levels {
      * @param string | $fieldId field of education that is used as a filter
      *                          (typically selected in the first step)
      *
-     * @return array $levels Array of all levels found.
+     * @return array $levels all levels found.
      */
     public static function getAllLevels($fieldId = "") {
         // Variables

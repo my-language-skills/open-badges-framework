@@ -17,7 +17,7 @@ use templates\SettingsTemp;
  * This function is initialized from the InitAjax Class.
  *
  * @author      Alessandro RICCARDI
- * @since       1.0.0
+ * @since       x.x.x
  *
  * @package     OpenBadgesFramework
  */
@@ -27,7 +27,7 @@ class SendBadgeAjax extends BaseController {
      * Show the fields of education based on the chosen parent
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      */
     public function ajaxShowFields() {
         $display = new DisplayFunction();
@@ -39,7 +39,7 @@ class SendBadgeAjax extends BaseController {
      * Show the levels in base a specific field of education.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      */
     public function ajaxShowLevels() {
         $form = $_POST['form'];
@@ -70,7 +70,7 @@ class SendBadgeAjax extends BaseController {
      * the level of the second step.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      */
     public function ajaxShowBadges() {
         $badges = new Badges();
@@ -107,7 +107,7 @@ class SendBadgeAjax extends BaseController {
      * Show the description of a specific badge.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      */
     public function ajaxShowDescription() {
         $badges = new Badges();
@@ -124,7 +124,7 @@ class SendBadgeAjax extends BaseController {
      * to add a class (depending on the role).
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      */
     public function ajaxShowClasses() {
         $form = $_POST['form'];
@@ -163,7 +163,7 @@ class SendBadgeAjax extends BaseController {
      * that make start the process.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      */
     public function ajaxSendBadge() {
         $form = isset($_POST["form"]) ? $_POST['form'] : null;

@@ -12,7 +12,7 @@ use templates\SingleBadgeTemp;
  *
  *
  * @author      Alessandro RICCARDI
- * @since       1.0.0
+ * @since       x.x.x
  *
  * @package     OpenBadgesFramework
  */
@@ -22,7 +22,7 @@ class AdminAjax extends BaseController {
      *
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      */
     public function ajaxShowBadgesTable() {
         echo DisplayFunction::badgesTable();
@@ -34,7 +34,7 @@ class AdminAjax extends BaseController {
      *
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      */
     public function ajaxDeleteBadge() {
         $ids = $_POST['ids'];

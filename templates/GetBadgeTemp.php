@@ -15,7 +15,7 @@ use Inc\Utils\Badges;
  * to follow all the step to get a badge.
  *
  * @author      Alessandro RICCARDI
- * @since       1.0.0
+ * @since       x.x.x
  *
  * @package     OpenBadgesFramework
  */
@@ -51,7 +51,7 @@ final class GetBadgeTemp extends BaseController {
      * the right view.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      */
     public function main() {
         $res = $this->loadParm();
@@ -80,7 +80,7 @@ final class GetBadgeTemp extends BaseController {
      * information in variables.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @return string   START when we can start with the procedure;
      *                  GOT if is already got the badge;
@@ -140,7 +140,7 @@ final class GetBadgeTemp extends BaseController {
      * Show the starting step to get the badge.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      */
     public function getStartingStep() {
         $this->obf_header();
@@ -192,7 +192,7 @@ final class GetBadgeTemp extends BaseController {
      * Show login step.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @param string $email that the user need to use for the login
      */
@@ -242,7 +242,7 @@ final class GetBadgeTemp extends BaseController {
      * Show register page step.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @param string $email that the user need to use for the registration
      */
@@ -321,7 +321,7 @@ final class GetBadgeTemp extends BaseController {
      * Show Mozilla Open Badge step.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @param $gotPartial true if he got the badge but without certification from Mozilla Open Badge |
      *                    False if he need to take also the partial.
@@ -398,7 +398,7 @@ final class GetBadgeTemp extends BaseController {
      * Show Conclusions step.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      */
     public function showConclusionsStep() {
         ?>
@@ -441,7 +441,7 @@ final class GetBadgeTemp extends BaseController {
      * Show Badge Got step to inform that you're already took the badge.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      */
     private function showBadgeGot() {
         $this->obf_header()
@@ -494,7 +494,7 @@ final class GetBadgeTemp extends BaseController {
      * Show the error that we discovered in the loadParm() function.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @param const $error contain the kind of error
      */
@@ -557,7 +557,7 @@ final class GetBadgeTemp extends BaseController {
      * Contain the header of the page.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      */
     private function obf_header() {
         ?>
@@ -583,7 +583,7 @@ final class GetBadgeTemp extends BaseController {
      * Contain the footer of the page.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      */
     private function obf_footer() { ?>
         </div>
@@ -600,7 +600,7 @@ final class GetBadgeTemp extends BaseController {
      * Contain the info of the website that are show in the top of the page.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      */
     function getInfoHeader() {
         ?>

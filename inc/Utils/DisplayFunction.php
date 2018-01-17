@@ -15,7 +15,7 @@ use Inc\Pages\Admin;
  * delete that and create it better.
  *
  * @author      Alessandro RICCARDI
- * @since       1.0.0
+ * @since       x.x.x
  *
  * @package     OpenBadgesFramework
  */
@@ -27,7 +27,7 @@ class DisplayFunction {
      * @author Nicolas TORION
      * @since  0.6.1
      * @since  0.6.3 recreated the function more simply
-     * @since  1.0.0
+     * @since  x.x.x
      *
      * @param string $p_parent permit to display the child taxonomy of the parent taxonomy (category).
      */

@@ -34,6 +34,41 @@
     font-size: large;
 }
 
+/*
+ * Buttons
+ */
+
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    text-decoration: none;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-secondary {
+    color: #fff;
+    background-color: #868e96;
+    border-color: #868e96;
+}
+
 /* ======================
     Tabs selector
    ====================== */
@@ -505,7 +540,7 @@ th {
     display: table;
 }
 
-.obf-sbp-cont-btn .btn-primary {
+.obf-sbp-cont-btn .btn {
     color: white;
-    background-color: #007bff;
 }
+

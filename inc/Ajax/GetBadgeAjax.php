@@ -14,7 +14,7 @@ use Templates\GetBadgeTemp;
  * This functions is initialized from the InitAjax Class.
  *
  * @author      Alessandro RICCARDI
- * @since       1.0.0
+ * @since       x.x.x
  *
  * @package     OpenBadgesFramework
  */
@@ -31,7 +31,7 @@ class GetBadgeAjax extends BaseController {
      * login step) or is already logged in (show MOB step).
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      */
     public function ajaxGbShowLogin() {
         $json = $_POST['json'];
@@ -58,7 +58,7 @@ class GetBadgeAjax extends BaseController {
      * remember check-box and then execute the login.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      */
     public function ajaxGbLogin() {
         $creds = array(
@@ -82,7 +82,7 @@ class GetBadgeAjax extends BaseController {
      * Show the Register step.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      */
     public function ajaxGbShowRegister() {
         $email = $_POST['user_email'];
@@ -100,7 +100,7 @@ class GetBadgeAjax extends BaseController {
      * error that have a specific message.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      *
      * @return string RET_LOGIN_SUCCESS          registration success.
      *                RET_NO_MATCH_PASS          the passwords do not match.
@@ -131,7 +131,7 @@ class GetBadgeAjax extends BaseController {
      * Show the Mozilla Open Badges step.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      */
     public function ajaxGbShowMozillaOpenBadges() {
         $data = self::getUserInfoPost();
@@ -146,7 +146,7 @@ class GetBadgeAjax extends BaseController {
      * Permit to retrieve the url of the json file.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      */
     public function ajaxGbGetJsonUrl() {
         $json = $_POST['json'];
@@ -158,7 +158,7 @@ class GetBadgeAjax extends BaseController {
      * Show the Conclusion step.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      */
     public function ajaxGbShowConclusion() {
         $mob = $_POST['MOB'];
@@ -181,7 +181,7 @@ class GetBadgeAjax extends BaseController {
      * Get param about the user that are passed from ajax.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      *
      * @return array {
      *

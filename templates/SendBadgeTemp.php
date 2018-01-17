@@ -19,7 +19,7 @@ use Inc\Utils\Fields;
  *
  *
  * @author      Alessandro RICCARDI
- * @since       1.0.0
+ * @since       x.x.x
  *
  * @package     OpenBadgesFramework
  */
@@ -33,7 +33,7 @@ final class SendBadgeTemp extends BaseController {
      * the right section of the sending badge.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      */
     public function __construct() {
         add_shortcode('send-badge', array(SendBadgeTemp::class, 'getShortCodeForm'));
@@ -43,7 +43,7 @@ final class SendBadgeTemp extends BaseController {
      * The first thing that will show when you load this page.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      */
     public static function main() {
         ?>
@@ -62,7 +62,7 @@ final class SendBadgeTemp extends BaseController {
      * Show the right form.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      *
      * @param string $form name of the form, should be:
      *                     a -> Self
@@ -145,7 +145,7 @@ final class SendBadgeTemp extends BaseController {
      * Get the specific form.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      *
      * @param string $form name of the form, should be:
      *                     a -> Self
@@ -267,7 +267,7 @@ final class SendBadgeTemp extends BaseController {
      * ex: [send-badge form="b"]
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      *
      * @param array $atts list of param passed in to the short code
      *
@@ -286,7 +286,7 @@ final class SendBadgeTemp extends BaseController {
      * Easy way to show a massage with the lead class style.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      *
      * @param string $message message to print
      */
@@ -299,7 +299,7 @@ final class SendBadgeTemp extends BaseController {
      * of the parents fields of education.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      */
     private static function displayFieldsButtons() {
         $fields = new Fields();

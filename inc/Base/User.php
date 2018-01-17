@@ -8,7 +8,7 @@ use Inc\Pages\Admin;
  * The User Class for the management of the users.
  *
  * @author      Alessandro RICCARDI
- * @since       1.0.0
+ * @since       x.x.x
  *
  * @package     OpenBadgesFramework
  */
@@ -135,7 +135,7 @@ class User {
      * for every registration of user.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      */
     public function register() {
         $this->initializeRoleCap();
@@ -146,7 +146,7 @@ class User {
      * Register all the roles that we need for the plugin.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      */
     private function initializeRoleCap() {
         // Create Roles
@@ -194,7 +194,7 @@ class User {
      * activation of the Job Listing plugin.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      *
      * @param int $userId id of the user
      */
@@ -220,7 +220,7 @@ class User {
      * Get the current user that is logged in.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      *
      * @return the user
      */
@@ -257,7 +257,7 @@ class User {
      * Get a badge by the Ids.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @param array $user {
      *                    Array with the information about the new user.

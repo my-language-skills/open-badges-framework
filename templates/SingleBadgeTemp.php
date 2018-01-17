@@ -13,7 +13,7 @@ use Inc\Utils\Badges;
  * table create from the plugin.
  *
  * @author      Alessandro RICCARDI
- * @since       1.0.0
+ * @since       x.x.x
  *
  * @package     OpenBadgesFramework
  */
@@ -29,7 +29,7 @@ final class SingleBadgeTemp {
      * information form the url.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      */
     public function main() {
         $res = $this->loadParm();
@@ -54,7 +54,7 @@ final class SingleBadgeTemp {
      * Control the parameter in the url.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @return int
      */
@@ -85,7 +85,7 @@ final class SingleBadgeTemp {
      * Show Post badge section.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @param $id
      */
@@ -106,7 +106,7 @@ final class SingleBadgeTemp {
      * Show Database badge section
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @param $id
      */
@@ -158,9 +158,11 @@ final class SingleBadgeTemp {
             <?php
 
             if($student->ID === wp_get_current_user()->ID) {
+
                 if (!DbBadge::isGot($idsBadge)) { ?>
+
                     <div class="obf-sbp-cont-btn">
-                        <a class="btn btn-lg btn-primary" href="<?php echo $badgeLink; ?>">Get it</a>
+                        <a class="btn btn-lg btn-primary" href="<?php echo $badgeLink; ?>">Get the badge</a>
                     </div>
                     <?php
                 } else if (!DbBadge::isGotMOB($idsBadge)) { ?>
@@ -179,7 +181,7 @@ final class SingleBadgeTemp {
      * Show error section.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @param $error
      */

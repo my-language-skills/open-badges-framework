@@ -10,7 +10,7 @@ use Inc\Pages\Admin;
  * Custom Post Type.
  *
  * @author      Alessandro RICCARDI
- * @since       1.0.0
+ * @since       x.x.x
  *
  * @package     OpenBadgesFramework
  */
@@ -21,7 +21,7 @@ class Classes {
      * education passed as param.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      *
      * @param string $field the id of the field
      *

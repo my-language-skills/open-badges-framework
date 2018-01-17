@@ -10,7 +10,7 @@ use templates\SettingsTemp;
  * Permit to manage the Json files about the badges.
  *
  * @author      Alessandro RICCARDI
- * @since       1.0.0
+ * @since       x.x.x
  *
  * @package     OpenBadgesFramework
  */
@@ -39,7 +39,7 @@ class JsonManagement extends BaseController {
      * }
      *
      * @author   Alessandro RICCARDI
-     * @since    1.0.0
+     * @since    x.x.x
      */
     public function __construct(array $badgeInfo) {
         parent::__construct();
@@ -50,7 +50,7 @@ class JsonManagement extends BaseController {
      * Creation of the json file.
      *
      * @author   Alessandro RICCARDI
-     * @since    1.0.0
+     * @since    x.x.x
      *
      * @param   string $receiver the email address of the person that is getting the badge.
      *
@@ -78,7 +78,7 @@ class JsonManagement extends BaseController {
      * Creation of the other json file where are stored the information about the badge.
      *
      * @author   Alessandro RICCARDI
-     * @since    1.0.0
+     * @since    x.x.x
      */
     private function createBadgeInfo($hashName) {
         $hashFile = "badge-" . $hashName . ".json";
@@ -106,7 +106,7 @@ class JsonManagement extends BaseController {
      *
      *
      * @author   Alessandro RICCARDI
-     * @since    1.0.0
+     * @since    x.x.x
      */
     private function createIssuerInfo() {
         $hashFile = self::ISSUER_INFO_FILE;
@@ -127,7 +127,7 @@ class JsonManagement extends BaseController {
      *
      *
      * @author   Alessandro RICCARDI
-     * @since    1.0.0
+     * @since    x.x.x
      */
     public static function getJsonObject($jsonName) {
         $baseController = new BaseController();
@@ -145,7 +145,7 @@ class JsonManagement extends BaseController {
      *
      *
      * @author   Alessandro RICCARDI
-     * @since    1.0.0
+     * @since    x.x.x
      */
     public static function getJsonUrl($jsonName) {
         $baseController = new BaseController();
@@ -158,7 +158,7 @@ class JsonManagement extends BaseController {
      *
      *
      * @author   Alessandro RICCARDI
-     * @since    1.0.0
+     * @since    x.x.x
      */
     public static function getJsonPath($jsonName, $isBadge = false) {
         $baseController = new BaseController();
@@ -172,7 +172,7 @@ class JsonManagement extends BaseController {
      *
      *
      * @author   Alessandro RICCARDI
-     * @since    1.0.0
+     * @since    x.x.x
      */
     public static function deleteJson($jsonName) {
         $main = self::getJsonPath($jsonName);

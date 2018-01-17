@@ -49,7 +49,7 @@ jQuery(function (event) {
     var loadingPage = function () {
         return ("<div class='cover-container'><header class='masthead clearfix'>" +
             "</header><main role='main' class='inner cover'>" +
-            "<img src='" + globalUrl.loader + "' width='200px' />" +
+            "<img src='" + globalUrl.loader + "' width='80px' height='auto'/>" +
             "</main>" +
             "<footer class='mastfoot'></footer></div>");
     }

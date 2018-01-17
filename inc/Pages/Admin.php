@@ -24,7 +24,7 @@ use Templates\UserTemp;
  * @todo       to manage it
  *
  * @author     Alessandro RICCARDI
- * @since      1.0.0
+ * @since      x.x.x
  *
  * @package    OpenBadgesFramework
  */
@@ -53,7 +53,7 @@ class Admin extends BaseController {
      * of SettingApi and execute the final "register()" function.
      *
      * @author   Alessandro RICCARDI
-     * @since    1.0.0
+     * @since    x.x.x
      */
     function register() {
         $this->settings = new SettingApi();
@@ -73,7 +73,7 @@ class Admin extends BaseController {
      * This function permit store in a variable the principal page.
      *
      * @author   Alessandro RICCARDI
-     * @since    1.0.0
+     * @since    x.x.x
      */
     public function setPages() {
         $this->pages = array(
@@ -93,7 +93,7 @@ class Admin extends BaseController {
      * This function permit store in an array all the sub-pages.
      *
      * @author   Alessandro RICCARDI
-     * @since    1.0.0
+     * @since    x.x.x
      */
     public function setSubpages() {
         $sendbadgeTemp = new SendBadgeTemp();
@@ -194,7 +194,7 @@ class Admin extends BaseController {
      * This function permit load in the SettingApi the Custom Post Type.
      *
      * @author   Alessandro RICCARDI
-     * @since    1.0.0
+     * @since    x.x.x
      */
     public function setCustomPostTypes() {
         $args = array(
@@ -248,7 +248,7 @@ class Admin extends BaseController {
      * This function permit load in the SettingApi the Taxonomies.
      *
      * @author   Alessandro RICCARDI
-     * @since    1.0.0
+     * @since    x.x.x
      */
     public function setTaxonomies() {
         // ## TAXONOMIES ##
@@ -312,7 +312,7 @@ class Admin extends BaseController {
      * This function permit load in the SettingApi the Metaboxes.
      *
      * @author   Alessandro RICCARDI
-     * @since    1.0.0
+     * @since    x.x.x
      */
     public function setMetaboxes() {
         $metaboxTemp = new Metabox();
@@ -346,7 +346,7 @@ class Admin extends BaseController {
      * that is set in the setting page.
      *
      * @author   Alessandro RICCARDI
-     * @since    1.0.0
+     * @since    x.x.x
      */
     public function setFrontEndPages() {
         // Get badge page retrieved from the plugin setting

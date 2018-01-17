@@ -10,7 +10,7 @@ use templates\SettingsTemp;
  * The Enqueue Class load all the script and style files that we need.
  *
  * @author      Alessandro RICCARDI
- * @since       1.0.0
+ * @since       x.x.x
  *
  * @package     OpenBadgesFramework
  */
@@ -34,7 +34,7 @@ class Enqueue extends BaseController {
      * Initialize the enqueue of styles and scripts.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      */
     public function register() {
         self::setAdminEnqueue();
@@ -45,7 +45,7 @@ class Enqueue extends BaseController {
      * Call the Admin WordPress enqueue hook.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      */
     private function setAdminEnqueue() {
         add_action('admin_enqueue_scripts', array($this, 'enqueueAdmin'));
@@ -56,7 +56,7 @@ class Enqueue extends BaseController {
      * style in the head and script in the footer.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      */
     private function setPublicEnqueue() {
         add_action('wp_head', array($this, 'cssHead'));
@@ -69,7 +69,7 @@ class Enqueue extends BaseController {
      * the admin section.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      */
     public function enqueueAdmin() {
         // CSS
@@ -96,7 +96,7 @@ class Enqueue extends BaseController {
      * All the Head styles for the public section.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      */
     public function cssHead() {
         // Get badge page retrieved from the plugin setting
@@ -119,7 +119,7 @@ class Enqueue extends BaseController {
      * All the Footer scripts for the public section.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      */
     public function jsFooter() {
         // Get badge page retrieved from the plugin setting

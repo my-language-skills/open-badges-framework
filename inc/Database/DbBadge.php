@@ -7,7 +7,7 @@ namespace Inc\Database;
  * that are sent.
  *
  * @author      Alessandro RICCARDI
- * @since       1.0.0
+ * @since       x.x.x
  *
  * @package     OpenBadgesFramework
  */
@@ -21,24 +21,25 @@ class DbBadge extends DbModel {
 
     /**
      * In that function, called from the Init class,
-     * permit to create the database.
+     * permit to create the db table.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      */
     public function register() {
         global $wpdb;
+        $userTable = DbUser::getTableName();
         $charset_collate = $wpdb->get_charset_collate();
         $installed_version = get_option(self::DB_NAME_VERSION);
-        if ($installed_version !== self::DB_VERSION) {
-            $sql = "CREATE TABLE " . $this->getTableName() . " (
-            id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-            userEmail varchar(180) NOT NULL,
+        if ($installed_version == self::DB_VERSION) {
+            $sql = "CREATE TABLE IF NOT EXISTS " . $this->getTableName() . " (
+            id int(6) UNSIGNED AUTO_INCREMENT,
+            idUser int(6) UNSIGNED NOT NULL,
             badgeId mediumint(9) NOT NULL,
             fieldId mediumint(9) NOT NULL,
             levelId mediumint(9) NOT NULL,
             classId mediumint(9),
-            teacherId mediumint(9) NOT NULL,
+            idTeacher mediumint(9) NOT NULL,
             roleSlug varchar(50) NOT NULL,
             dateCreation datetime NOT NULL,
             getDate datetime,
@@ -46,7 +47,9 @@ class DbBadge extends DbModel {
             json varchar(64) NOT NULL,
             info text,
             evidence varchar(1500),
-            UNIQUE KEY  (userEmail, badgeId, fieldId, levelId)
+            PRIMARY KEY (id),
+            UNIQUE KEY  (idUser, badgeId, fieldId, levelId),
+            FOREIGN KEY (idUser) REFERENCES ". $userTable . "(id)
         ) $charset_collate;";
             require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
             dbDelta($sql);
@@ -58,7 +61,7 @@ class DbBadge extends DbModel {
      * Get a badge/s by the id.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @param array $data list of ids
      *
@@ -83,10 +86,10 @@ class DbBadge extends DbModel {
      * Get a badge by the ids.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @param array $data {
-     *                    Array of information about a specific badge.
+     *                    information about a specific badge.
      *
      * @type string        userEmail        Email.
      * @type string        badgeId          Badge Id.
@@ -116,7 +119,7 @@ class DbBadge extends DbModel {
      * Get all the badge.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @return array|null|object array of object (badges), nul if not exist
      */
@@ -128,7 +131,7 @@ class DbBadge extends DbModel {
      * Get the keys of the badge table.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @return array keys
      */
@@ -141,10 +144,10 @@ class DbBadge extends DbModel {
      * Insert a badge.
      *
      * @author        Alessandro RICCARDI
-     * @since         1.0.0
+     * @since         x.x.x
      *
      * @param array $data {
-     *                    Array of information about a specific badge.
+     *                    information about a specific badge.
      *
      * @type string        userEmail        Email.
      * @type string        badgeId          Badge Id.
@@ -198,12 +201,12 @@ class DbBadge extends DbModel {
      * Update a badge.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @param array $data  Data that we want to update.
      *
      * @param array $where {
-     *                     Array of information about a specific badge.
+     *                     information about a specific badge.
      *
      * @type string        userEmail        Email.
      * @type string        badgeId          Badge Id.
@@ -239,13 +242,23 @@ class DbBadge extends DbModel {
      * Delete a badge by own id.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @param array $data the number id of the badge
      *
-     * @return bool|false|int true if everything ok, false if errors, and a number that
+     * @return bool true if everything ok, false if errors, and a number that
      *                        will be always 1 because is meaning the number of row
      *                        affected in the database.
+     */
+    /**
+     * @param array $data
+     *
+     * @return bool|false|int
+     */
+    /**
+     * @param array $data
+     *
+     * @return bool
      */
     public static function deleteById(array $data) {
         $rightKeys = array(
@@ -253,39 +266,9 @@ class DbBadge extends DbModel {
         );
         if (!self::checkFields($rightKeys, $data)) {
             return false;
-        } else {
-            return parent::delete($data);
         }
-    }
+        return parent::delete($data);
 
-    /**
-     * Delete a badge.
-     *
-     * @author      Alessandro RICCARDI
-     * @since       1.0.0
-     *
-     * @param array $data {
-     *                    Array of information about a specific badge.
-     *
-     * @type string        userEmail        Email.
-     * @type string        badgeId          Badge Id.
-     * @type string        fieldId          Field Id.
-     * @type string        levelId          Level Id.
-     *
-     * @return bool true if everything ok, false if errors.
-     */
-    public static function deleteByIds(array $data) {
-        $rightKeys = array(
-            'userEmail',
-            'badgeId',
-            'fieldId',
-            'levelId',
-        );
-        if (!self::checkFields($rightKeys, $data)) {
-            return false;
-        } else {
-            return parent::deleteByIds($data);
-        }
     }
 
     /**
@@ -293,7 +276,7 @@ class DbBadge extends DbModel {
      * the array $rightKeys.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @param array $rightKeys
      * @param array $data
@@ -321,10 +304,10 @@ class DbBadge extends DbModel {
      * Permit to understand if the badge is got.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @param array $data {
-     *                    Array of information about a specific badge.
+     *                    information about a specific badge.
      *
      * @type string        userEmail        Email.
      * @type string        badgeId          Badge Id.
@@ -360,10 +343,10 @@ class DbBadge extends DbModel {
      * Permit to understand if the badge is got in the Mozilla Open Badge.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @param array $data {
-     *                    Array of information about a specific badge.
+     *                    information about a specific badge.
      *
      * @type string        userEmail        Email.
      * @type string        badgeId          Badge Id.
@@ -401,7 +384,7 @@ class DbBadge extends DbModel {
      * Permit to understand if the badge is got in the Mozilla Open Badge.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @param array $where information about the badge that we want to update.
      * @param bool  $mob   true if I want to set the badge for MOB and for the current site as "taken";
@@ -435,7 +418,7 @@ class DbBadge extends DbModel {
      * Permit retrieve the number of badges got in the past.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @return mixed return the number of badges that are got.
      */
@@ -451,7 +434,7 @@ class DbBadge extends DbModel {
      * Open Badge in the past.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @return mixed return the number of badges that are got.
      */

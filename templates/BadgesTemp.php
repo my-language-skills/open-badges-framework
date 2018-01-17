@@ -9,7 +9,7 @@ use Inc\Utils\Badges;
  *
  *
  * @author      Alessandro RICCARDI
- * @since       1.0.0
+ * @since       x.x.x
  *
  * @package     OpenBadgesFramework
  */

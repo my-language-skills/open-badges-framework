@@ -10,7 +10,7 @@ use Inc\Pages\Admin;
  * @todo make this more intelligent.
  *
  * @author      Alessandro RICCARDI
- * @since       1.0.0
+ * @since       x.x.x
  *
  * @package     OpenBadgesFramework
  */
@@ -22,7 +22,7 @@ class Secondary {
      * Documentation: http://docs.restrictcontentpro.com/article/1750-rcp-metabox-post-types
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      */
     public function register() {
         //add_filter('rcp_metabox_post_types', array($this, 'ag_rcp_metabox_post_types'));

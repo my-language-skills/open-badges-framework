@@ -9,7 +9,7 @@ use Inc\Pages\Admin;
  * (page, sub-pages, custom post type, ...).
  *
  * @author     Alessandro RICCARDI
- * @since      1.0.0
+ * @since      x.x.x
  *
  * @package     OpenBadgesFramework
  */
@@ -27,7 +27,7 @@ class SettingApi {
      * to initialize all the component
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      */
     public function register() {
         /* PAGES */
@@ -55,7 +55,7 @@ class SettingApi {
      * of the class.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      *
      * @param array $pages Array content the menus
      *
@@ -102,9 +102,9 @@ class SettingApi {
      * Load all the sub-pages inside the variable of the class.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      *
-     * @param array $pages Array of pages
+     * @param array $pages pages
      *
      * @return $this The instance of tha class
      */
@@ -119,9 +119,9 @@ class SettingApi {
      * class.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      *
-     * @param array $cpts Array of custom post type
+     * @param array $cpts custom post type
      *
      * @return $this The instance of tha class
      */
@@ -135,9 +135,9 @@ class SettingApi {
      * Load all the taxonomies inside the variable of the class.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      *
-     * @param array $taxonomies Array of taxonomies
+     * @param array $taxonomies taxonomies
      *
      * @return $this The instance of tha class
      */
@@ -151,9 +151,9 @@ class SettingApi {
      * Load all the meta-boxes inside the variable of the class.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      *
-     * @param array $metaboxes Array of metaboxes
+     * @param array $metaboxes metaboxes
      *
      * @return $this The instance of tha class
      */
@@ -167,9 +167,9 @@ class SettingApi {
      * Load all the front-end-pages inside the variable of the class.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      *
-     * @param array $frontEndPages Array of front-end-pages
+     * @param array $frontEndPages front-end-pages
      *
      * @return $this The instance of tha class
      */
@@ -184,7 +184,7 @@ class SettingApi {
      * function all the menus.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      */
     public function addAdminMenu() {
         foreach ($this->admin_pages as $page) {
@@ -204,7 +204,7 @@ class SettingApi {
      * post type and taxonomy.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      */
     public function addInit() {
         foreach ($this->cpts as $cpt) {
@@ -221,7 +221,7 @@ class SettingApi {
      * function all the menus.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      */
     public function addMetaBoxes() {
         foreach ($this->metaboxes as $metabox) {
@@ -244,7 +244,7 @@ class SettingApi {
      * function of the class that refer in the param $this->frontEndPages.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      */
     public function addFrontEndPages() {
         foreach ($this->frontEndPages as $frontEndPage) {
@@ -264,7 +264,7 @@ class SettingApi {
      * Instantiation of a class.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      *
      * @param class $class class form services array
      *
@@ -279,7 +279,7 @@ class SettingApi {
      * for each post type and taxonomy.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      *
      * @param $parent_file Of the plugin
      *

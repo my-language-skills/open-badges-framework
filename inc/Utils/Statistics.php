@@ -3,7 +3,7 @@
  *
  *
  * @author      Alessandro RICCARDI
- * @since       1.0.0
+ * @since       x.x.x
  *
  */
 
@@ -16,7 +16,7 @@ use Inc\Database\DbBadge;
  * in the future and to increase functionality.
  *
  * @author      Alessandro RICCARDI
- * @since       1.0.0
+ * @since       x.x.x
  *
  * @package     OpenBadgesFramework
  */
@@ -26,7 +26,7 @@ class Statistics {
      * This function permit to retrieve the number of c.p.t.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      *
      * @param const $slug name of the c.p.t.
      *
@@ -46,7 +46,7 @@ class Statistics {
      * This function permit to retrieve the number of taxonomy.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      *
      * @param const $slug name of the  taxonomy
      *
@@ -67,7 +67,7 @@ class Statistics {
      * the are sent.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      *
      * @return the number of badges the we sent
      */
@@ -81,7 +81,7 @@ class Statistics {
      * the are got from the users.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      *
      * @return string the number of badges that are got
      */
@@ -94,7 +94,7 @@ class Statistics {
      * the are got from the users in the Mozilla Open Badge platform.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      *
      * @return string the number of badges that are got in the
      *                Mozilla Open Badge platform

@@ -8,7 +8,7 @@ namespace Inc\Base;
  * function.
  *
  * @author      Alessandro RICCARDI
- * @since       1.0.0
+ * @since       x.x.x
  *
  * @package     OpenBadgesFramework
  */
@@ -21,7 +21,7 @@ class BaseController {
      * Here are initialized main variables.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      */
     public function __construct() {
         $this->plugin_path = plugin_dir_path($this->dirname_r(__FILE__, 2));
@@ -33,7 +33,7 @@ class BaseController {
      * Get the path of the plugin.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @return string the path
      */
@@ -45,7 +45,7 @@ class BaseController {
      * Get the url of the plugin.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @return string the url
      */
@@ -60,7 +60,7 @@ class BaseController {
      * path = ... /wp-content/uploads/open-badges-framework/json/
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @return string the path of the json folder.
      */
@@ -79,7 +79,7 @@ class BaseController {
      * the json file.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @return string the url of the json folder.
      */

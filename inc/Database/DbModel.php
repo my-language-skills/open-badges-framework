@@ -8,12 +8,12 @@ namespace Inc\Database;
  * intention to inject the queries.
  *
  * @author      Alessandro RICCARDI
- * @since       1.0.0
+ * @since       x.x.x
  *
  * @package     OpenBadgesFramework
  */
 class DbModel {
-    const DB_VERSION = '1.0.0';
+    const DB_VERSION = 'x.x.x';
     const DB_NAME_VERSION = 'OBF_db_version';
     // default database name
     static $tableName = "obf_model";
@@ -23,7 +23,7 @@ class DbModel {
      * also the prefix.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @return string the name.
      */
@@ -37,7 +37,7 @@ class DbModel {
      * Creation of the query and injection.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @param string $type of query that we want to inject
      *
@@ -82,7 +82,7 @@ class DbModel {
      * Get a badges.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @param array|null $data  list of information that will be
      *                          placed after the expression WHERE
@@ -98,7 +98,7 @@ class DbModel {
      * Insert a badge.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @param array $data  list of information that will be
      *                     placed after the expression WHERE
@@ -114,7 +114,7 @@ class DbModel {
      * Update a badge.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @param array $data  list of information contain the fields as a key and
      *                     the values as a value that we want to update
@@ -133,24 +133,24 @@ class DbModel {
      * passed throw param.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @param array $data  list of information that will be
      *                     placed after the expression WHERE
      *
-     * @return false|int Number of rows affected/selected or false on error
+     * @return bool true if everything good or false on error
      */
     public static function delete(array $data) {
         global $wpdb;
         echo $ret = self::fetchSql('DELETE', $data);
-        return $wpdb->query($ret);
+        return $wpdb->query($ret) ? true : false;
     }
 
     /**
      * Get the time now.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @return string the time.
      */
