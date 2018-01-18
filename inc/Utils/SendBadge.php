@@ -112,7 +112,7 @@ class SendBadge extends BaseController {
                             echo "Error for $email";
                         }
                     } else {
-                        echo "Error for $email"; 
+                        echo "Error for $email";
                     }
                 } else {
                     return self::ER_JSON_FILE;

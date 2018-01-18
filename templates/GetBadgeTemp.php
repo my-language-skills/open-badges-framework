@@ -4,9 +4,9 @@ namespace templates;
 
 use Inc\Base\BaseController;
 use Inc\Base\WPUser;
-use Inc\Database\DbBadge;
-use Inc\Utils\JsonManagement;
 use Inc\Pages\Admin;
+use Inc\Utils\Badge;
+use Inc\Utils\JsonManagement;
 use Inc\Utils\WPBadge;
 
 /**
@@ -26,11 +26,11 @@ final class GetBadgeTemp extends BaseController {
     const GOT = 3;
     const PREVIEW = 4;
 
-    private $json = null;
-    private $jsonUrl = null;
-    private $badge = null;
-    private $field = null;
-    private $level = null;
+    private $badgeDB = null;
+
+    private $badgeWP = null;
+    private $fieldWP = null;
+    private $levelWP = null;
 
     /**
      * Singleton function to get the instance of the class.
@@ -90,38 +90,23 @@ final class GetBadgeTemp extends BaseController {
      */
     private function loadParm() {
 
-        if (isset($_GET['json']) && isset($_GET['badge']) && isset($_GET['field']) && isset($_GET['level'])) {
-            $this->json = $_GET['json'];
+        if (isset($_GET['v']) && !empty($_GET['v'])) {
+            $this->badgeDB = new Badge();
+            $this->badgeDB->getInstance($_GET['v']);
+            if ($this->badgeDB->getCreationDate()) {
+                $this->badgeWP = WPBadge::get($this->badgeDB->getIdBadge());
+                $this->fieldWP = get_term($this->badgeDB->getIdField(), Admin::TAX_FIELDS);
+                $this->levelWP = get_term($this->badgeDB->getIdLevel(), Admin::TAX_LEVELS);
 
-            if($this->jsonUrl = JsonManagement::getJsonUrl($this->json)) {
-                //Do this only if exist the json file
-                $data = array(
-                    'userEmail' => JsonManagement::getEmailFromJson($this->json),
-                    'badgeId' => $_GET['badge'],
-                    'fieldId' => $_GET['field'],
-                    'levelId' => $_GET['level'],
-                );
-
-                $badges = new WPBadge();
-                $this->badge = $badges->get($data['badgeId']);
-                $this->field = get_term($data['fieldId'], Admin::TAX_FIELDS);
-                $this->level = get_term($data['levelId'], Admin::TAX_LEVELS);
-
-                if ($this->badge && $this->field && $this->level && $this->jsonUrl) {
-                    if (!DbBadge::isGotMOB($data)) {
-                        //Everything OK
-                        return self::START;
-                    } else {
-                        //Badge already GOT
-                        return self::GOT;
-                    }
+                if (!$this->badgeDB->getGotMozillaDate()) {
+                    //Everything OK
+                    return self::START;
                 } else {
-                    // Broken link
-                    return self::ERROR_LINK;
+                    //Badge already GOT
+                    return self::GOT;
                 }
-
             } else {
-                return self::ERROR_JSON;
+                return self::ERROR_LINK;
             }
 
         } else {
@@ -158,23 +143,23 @@ final class GetBadgeTemp extends BaseController {
             <main role="main" class="inner cover">
                 <div class="container">
                     <h1 class="badge-title-obf cover-heading">
-                        <strong><?php echo $this->badge->post_title; ?></strong>
+                        <strong><?php echo $this->badgeWP->post_title; ?></strong>
                     </h1>
-                    <h5 class="badge-field">Field of education: <strong><?php echo $this->field->name; ?></strong> -
+                    <h5 class="badge-field">Field of education: <strong><?php echo $this->fieldWP->name; ?></strong> -
                         Level:
-                        <strong><?php echo $this->level->name; ?></strong></h5>
+                        <strong><?php echo $this->levelWP->name; ?></strong></h5>
                     <p class="lead">
-                        <?php echo $this->badge->post_content; ?>
+                        <?php echo $this->badgeWP->post_content; ?>
                     </p>
                     <div class="logo-badge-cont">
-                        <img src="<?php echo WPBadge::getUrlImage($this->badge->ID); ?>" height="100px"
+                        <img src="<?php echo WPBadge::getUrlImage($this->badgeWP->ID); ?>" height="100px"
                              width="100px">
                     </div>
                 </div>
             </main>
 
             <footer class="mastfoot">
-                <!--<p><?php echo JsonManagement::getJsonUrl($this->json); ?></p>-->
+                <!--<p><?php echo JsonManagement::getJsonUrl($this->idDbBadge); ?></p>-->
                 <div class="inner">
                     <p class="lead">
                         <button id="gb-continue" class="btn btn-lg btn-secondary" type="submit">Continue</button>
@@ -459,16 +444,16 @@ final class GetBadgeTemp extends BaseController {
                     <main role="main" class="inner cover">
                         <div class="container">
                             <div class="logo-badge-got-cont">
-                                <img src="<?php echo get_the_post_thumbnail_url($this->badge->ID) ?>" height="100px"
+                                <img src="<?php echo get_the_post_thumbnail_url($this->badgeWP->ID) ?>" height="100px"
                                      width="100px">
                             </div>
 
                             <h4 class="">
-                                <strong><?php echo $this->badge->post_title; ?></strong>
+                                <strong><?php echo $this->badgeWP->post_title; ?></strong>
                             </h4>
-                            <h5 class="badge-field">Field: <strong><?php echo $this->field->name; ?></strong> -
+                            <h5 class="badge-field">Field: <strong><?php echo $this->fieldWP->name; ?></strong> -
                                 Level:
-                                <strong><?php echo $this->level->name; ?></strong></h5>
+                                <strong><?php echo $this->levelWP->name; ?></strong></h5>
                             <h2 class="badge-got-title">
                                 Badge already got!
                             </h2>

@@ -108,9 +108,6 @@ class Badge {
      */
     private $evidence = null;
 
-    public function __toString() {
-        return "" . $this->getIdBadge() . $this->getIdLevel() . $this->getIdField();
-    }
 
     /**
      * Set the id of the user.
@@ -372,6 +369,36 @@ class Badge {
     }
 
     /**
+     * @return string
+     */
+    public function __toString() {
+        return "" . $this->getIdBadge() . $this->getIdLevel() . $this->getIdField();
+    }
+
+    public function getInstance($idDbBadge) {
+        if($badgeDb = DbBadge::getById($idDbBadge)) {
+
+            $this->setIdUser($badgeDb->idUser);
+            $this->setIdBadge($badgeDb->idBadge);
+            $this->setIdField($badgeDb->idField);
+            $this->setIdLevel($badgeDb->idLevel);
+            $this->setIdClass($badgeDb->idClass);
+            $this->setIdTeacher($badgeDb->idTeacher);
+            $this->setTeacherRole($badgeDb->idTeacher);
+            $this->setCreationDate($badgeDb->creationDate);
+            $this->setGotDate($badgeDb->gotDate);
+            $this->setGotMozillaDate($badgeDb->gotMozillaDate);
+            $this->setJson($badgeDb->json);
+            $this->setInfo($badgeDb->info);
+            $this->setEvidence($badgeDb->evidence);
+
+            return $this;
+        } else {
+            return false;
+        }
+    }
+
+    /**
      * Insert a badge in the database and retrieve its id.
      * If is already stored in the DB the function will anyway
      * return the its id.
@@ -398,7 +425,7 @@ class Badge {
         );
 
         foreach ($dataBadge as $item) {
-            if($item != "idClass") {
+            if ($item != "idClass") {
                 $isOk = $item ? true : false;
             }
         }

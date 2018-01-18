@@ -63,7 +63,7 @@ class DbBadge extends DbModel {
      * @author      Alessandro RICCARDI
      * @since       x.x.x
      *
-     * @param array $data list of ids
+     * @param array $id id of the row
      *
      * @return bool|Object of the badge or null if not exist.
      */
