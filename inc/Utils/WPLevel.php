@@ -3,7 +3,7 @@
 namespace Inc\Utils;
 
 use Inc\Pages\Admin;
-use Inc\Utils\Badges;
+use Inc\Utils\WPBadge;
 
 /**
  * That class permit to mange the Level taxonomies.
@@ -13,7 +13,7 @@ use Inc\Utils\Badges;
  *
  * @package     OpenBadgesFramework
  */
-class Levels {
+class WPLevel {
 
     /**
      * Returns the right filtered levels.
@@ -47,7 +47,7 @@ class Levels {
             // If there is no fields of education in the badge, means that is part of
             // all the fields (category).
             if (!$badgeFields) {
-                Badges::checkCapInsertBadgeOrLevel($retLevels, $badge, true);
+                WPBadge::checkCapInsertBadgeOrLevel($retLevels, $badge, true);
 
                 // FIELD\S OF EDUCATION EXISTING
             } else {
@@ -58,7 +58,7 @@ class Levels {
                     // Check if the field of education of the badge is the same of the $ourField,
                     // that mean we want to show only the levels of a specific field
                     if (($badgeField->term_id == $fieldId || $badgeField->term_id == $selectedField->parent)) {
-                        Badges::checkCapInsertBadgeOrLevel($retLevels, $badge, true);
+                        WPBadge::checkCapInsertBadgeOrLevel($retLevels, $badge, true);
                     }
                 }
             }

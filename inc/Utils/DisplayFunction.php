@@ -32,7 +32,7 @@ class DisplayFunction {
      * @param string $p_parent permit to display the child taxonomy of the parent taxonomy (category).
      */
     public static function field($p_parent = "") {
-        $fieldsInstance = new Fields();
+        $fieldsInstance = new WPField();
 
         $selectionContOpen = '<div class="select-field"> <select name="field" id="field"> <option value="Select" selected disabled hidden>Select</option>';
         $selectionContClose = '</select></div>';

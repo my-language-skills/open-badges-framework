@@ -3,11 +3,11 @@
 namespace templates;
 
 use Inc\Base\BaseController;
-use Inc\Base\User;
+use Inc\Base\WPUser;
 use Inc\Database\DbBadge;
 use Inc\Utils\JsonManagement;
 use Inc\Pages\Admin;
-use Inc\Utils\Badges;
+use Inc\Utils\WPBadge;
 
 /**
  * Template for the Get Badge page.
@@ -102,7 +102,7 @@ final class GetBadgeTemp extends BaseController {
                     'levelId' => $_GET['level'],
                 );
 
-                $badges = new Badges();
+                $badges = new WPBadge();
                 $this->badge = $badges->get($data['badgeId']);
                 $this->field = get_term($data['fieldId'], Admin::TAX_FIELDS);
                 $this->level = get_term($data['levelId'], Admin::TAX_LEVELS);
@@ -167,7 +167,7 @@ final class GetBadgeTemp extends BaseController {
                         <?php echo $this->badge->post_content; ?>
                     </p>
                     <div class="logo-badge-cont">
-                        <img src="<?php echo Badges::getImage($this->badge->ID); ?>" height="100px"
+                        <img src="<?php echo WPBadge::getUrlImage($this->badge->ID); ?>" height="100px"
                              width="100px">
                     </div>
                 </div>
@@ -336,8 +336,8 @@ final class GetBadgeTemp extends BaseController {
                     <div class="ob-menu">
                         <span class="ob-cont-title">Mozilla Open Badges</span>
                         <span class="ob-user-info">
-                                <?php echo get_avatar(User::getCurrentUser()->ID); ?>
-                                <?php echo User::getCurrentUser()->user_login; ?>
+                                <?php echo get_avatar(WPUser::getCurrentUser()->ID); ?>
+                                <?php echo WPUser::getCurrentUser()->user_login; ?>
                             </span>
                     </div>
                 </div>
@@ -415,7 +415,7 @@ final class GetBadgeTemp extends BaseController {
             <main role="main" class="inner cover">
                 <div class="container">
                     <h1 class="cong-title-obf cover-heading">
-                        <?php echo User::getCurrentUser()->first_name . ", "; ?>you just added a new badge!
+                        <?php echo WPUser::getCurrentUser()->first_name . ", "; ?>you just added a new badge!
                     </h1>
                     <div class="container cont-button-redirect">
                         <div class="row justify-content-around">

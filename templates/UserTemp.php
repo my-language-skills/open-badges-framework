@@ -3,10 +3,10 @@
 namespace templates;
 
 use Inc\Base\Secondary;
-use Inc\Base\User;
+use Inc\Base\WPUser;
 use Inc\Database\DbBadge;
 use Inc\Pages\Admin;
-use Inc\Utils\Badges;
+use Inc\Utils\WPBadge;
 
 /**
  *  Permit to wrap all the function that take care of the user and
@@ -23,7 +23,7 @@ final class UserTemp {
      *  Make start the process but only for the back-end.
      */
     public function main() {
-        $user = User::getCurrentUser();
+        $user = WPUser::getCurrentUser();
         ?>
         <div class="wrap">
             <?php self::getUserPage($user->ID); ?>
@@ -130,10 +130,10 @@ final class UserTemp {
                                     echo "href='" . admin_url('admin.php?page=' . Admin::PAGE_SINGLE_BADGES, $protocol) . "&badge=$dbBadge->id&db=1'";
                                 } ?>">
                                 <div class="cont-img-badge">
-                                    <img class="circle-img" src="<?php echo Badges::getImage($dbBadge->badgeId); ?>">
+                                    <img class="circle-img" src="<?php echo WPBadge::getUrlImage($dbBadge->badgeId); ?>">
                                 </div>
                                 <div>
-                                    <span><?php echo Badges::get($dbBadge->badgeId)->post_title; ?></span>
+                                    <span><?php echo WPBadge::get($dbBadge->badgeId)->post_title; ?></span>
                                 </div>
                                 </a>
                             </div>
@@ -162,10 +162,10 @@ final class UserTemp {
                                     echo "href='" . admin_url('admin.php?page=' . Admin::PAGE_SINGLE_BADGES, $protocol) . "&badge=$dbBadge->id&db=1'";
                                 } ?>">
                                 <div class="cont-img-badge">
-                                    <img class="circle-img" src="<?php echo Badges::getImage($dbBadge->badgeId); ?>">
+                                    <img class="circle-img" src="<?php echo WPBadge::getUrlImage($dbBadge->badgeId); ?>">
                                 </div>
                                 <div>
-                                    <span><?php echo Badges::get($dbBadge->badgeId)->post_title; ?></span>
+                                    <span><?php echo WPBadge::get($dbBadge->badgeId)->post_title; ?></span>
                                 </div>
                                 </a>
                             </div>

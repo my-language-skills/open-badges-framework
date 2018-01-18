@@ -2,8 +2,6 @@
 
 namespace Inc\Base;
 
-use \Inc\Base\BaseController;
-use Inc\Pages\Admin;
 use templates\SettingsTemp;
 
 /**

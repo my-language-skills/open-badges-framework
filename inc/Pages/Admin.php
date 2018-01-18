@@ -5,7 +5,7 @@ namespace Inc\Pages;
 use Inc\Base\Metabox;
 use Inc\Base\BaseController;
 use Inc\Api\SettingApi;
-use Inc\Base\User;
+use Inc\Base\WPUser;
 use Templates\BadgesTemp;
 use Templates\DashboardTemp;
 use Templates\GetBadgeTemp;
@@ -153,7 +153,7 @@ class Admin extends BaseController {
                 'parent_slug' => self::SLUG_PLUGIN,
                 'page_title' => 'User',
                 'menu_title' => 'User',
-                'capability' => User::CAP_ALLOW_BE_USER,
+                'capability' => WPUser::CAP_ALLOW_BE_USER,
                 'menu_slug' => self::PAGE_USER,
                 'callback' => array($userTemp, 'main')
             ),
@@ -162,7 +162,7 @@ class Admin extends BaseController {
                 'parent_slug' => self::SLUG_PLUGIN,
                 'page_title' => 'Badges',
                 'menu_title' => 'Badges',
-                'capability' => User::CAP_ALLOW_BE_USER,
+                'capability' => WPUser::CAP_ALLOW_BE_USER,
                 'menu_slug' => self::PAGE_BADGES,
                 'callback' => array($badgesTemp, 'main')
             ),
@@ -171,7 +171,7 @@ class Admin extends BaseController {
                 'parent_slug' => self::SLUG_PLUGIN,
                 'page_title' => 'Badge',
                 'menu_title' => null,
-                'capability' => User::CAP_ALLOW_BE_USER,
+                'capability' => WPUser::CAP_ALLOW_BE_USER,
                 'menu_slug' => self::PAGE_SINGLE_BADGES,
                 'callback' => array($singleBadgesTemp, 'main')
             ),

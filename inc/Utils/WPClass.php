@@ -2,7 +2,7 @@
 
 namespace Inc\Utils;
 
-use Inc\Base\User;
+use Inc\Base\WPUser;
 use Inc\Pages\Admin;
 
 /**
@@ -14,7 +14,7 @@ use Inc\Pages\Admin;
  *
  * @package     OpenBadgesFramework
  */
-class Classes {
+class WPClass {
 
     /**
      * Retrieve the right classes that match with the field if
@@ -36,7 +36,7 @@ class Classes {
             'numberposts' => -1
         ));
 
-        $userId = User::getCurrentUser()->ID;
+        $userId = WPUser::getCurrentUser()->ID;
         $classes = array();
         foreach ($allClasses as $class) {
             $fieldsPost = wp_get_post_terms($class->ID, Admin::TAX_FIELDS);

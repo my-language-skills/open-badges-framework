@@ -12,7 +12,7 @@ use Inc\Pages\Admin;
  *
  * @package     OpenBadgesFramework
  */
-class User {
+class WPUser {
     const ROLE_STUDENT = "student";
     const ROLE_TEACHER = "teacher";
     const ROLE_ACADEMY = "academy";
@@ -277,20 +277,20 @@ class User {
     public static function registerUser($user) {
         // Check if the passwords are the same
         if ($user['user_pass'] !== $user['user_rep_pass']) {
-            return User::REGIS_NO_MATCH_PASS;
+            return WPUser::REGIS_NO_MATCH_PASS;
         }
 
         // Check if there are users with the same name and email
         if (username_exists($user['user_name']) || email_exists($user['user_email'])) {
             // User already exist
-            return User::REGIS_USER_EXIST;
+            return WPUser::REGIS_USER_EXIST;
         } else {
             // 1 !¡ CREATION of the user
             $user_id = wp_create_user($user['user_name'], $user['user_pass'], $user['user_email']);
 
             if (is_wp_error($user_id)) {
                 // Error creation
-                return User::REGIS_REGISTRATION_ERROR;
+                return WPUser::REGIS_REGISTRATION_ERROR;
             } else {
                 // 2 !¡ UPDATING of the first name, last name and role.
                 $update = wp_update_user(
@@ -298,12 +298,12 @@ class User {
                         'ID' => $user_id,
                         'first_name' => $user['first_name'],
                         'last_name' => $user['last_name'],
-                        'role' => User::ROLE_STUDENT,
+                        'role' => WPUser::ROLE_STUDENT,
                     ));
 
                 if (is_wp_error($update)) {
                     // Error updating
-                    return User::REGIS_REGISTRATION_ERROR;
+                    return WPUser::REGIS_REGISTRATION_ERROR;
                 } else {
                     return self::REGIS_SUCCESS;
                 }
@@ -333,10 +333,10 @@ class User {
 
         if (is_wp_error($login)) {
             // Error sing-on
-            return User::REGIS_LOGIN_ERROR;
+            return WPUser::REGIS_LOGIN_ERROR;
         } else {
             // !¡!¡!¡ SUCCESS !¡!¡!¡
-            return User::REGIS_SUCCESS;
+            return WPUser::REGIS_SUCCESS;
         }
     }
 }

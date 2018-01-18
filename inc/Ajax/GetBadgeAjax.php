@@ -3,7 +3,7 @@
 namespace Inc\Ajax;
 
 use Inc\Base\BaseController;
-use Inc\Base\User;
+use Inc\Base\WPUser;
 use Inc\Database\DbBadge;
 use Inc\Utils\JsonManagement;
 use Templates\GetBadgeTemp;
@@ -116,9 +116,9 @@ class GetBadgeAjax extends BaseController {
             'last_name'     => $_POST['last_name']
         );
 
-        $regRet = User::registerUser($user);
+        $regRet = WPUser::registerUser($user);
         if(!$regRet) {
-            $loginRet = User::loginUser($user);
+            $loginRet = WPUser::loginUser($user);
             echo $loginRet;
         } else {
             echo $regRet;

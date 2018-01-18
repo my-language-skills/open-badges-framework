@@ -3,12 +3,11 @@
 namespace Inc\Utils;
 
 use Inc\Base\BaseController;
-use Inc\Base\User;
+use Inc\Base\WPUser;
 use Inc\Database\DbBadge;
-use Inc\Utils\JsonManagement;
+use Inc\Database\DbModel;
 use Inc\Pages\Admin;
 use templates\SettingsTemp;
-
 
 /**
  * Class that permit to send badges.
@@ -45,34 +44,43 @@ class SendBadge extends BaseController {
      * @param int    $levelId   the id of the level
      * @param string $info      the additional from the teacher
      * @param array  $receivers the people that will receive the email
-     * @param string $class     the eventual class
+     * @param string $classId   the eventual class
      * @param string $evidence  the work of the student in url format
      */
-    function __construct($badgeId, $fieldId, $levelId, $info, $receivers, $class = '', $evidence = '') {
-        $badges = new Badges();
+    function __construct($badgeId, $fieldId, $levelId, $info, $receivers, $classId = '', $evidence = '') {
+        $badge = new Badge();
+        $badges = new WPBadge();
         $this->badge = $badges->get($badgeId);
-
         $this->field = get_term($fieldId, Admin::TAX_FIELDS);
         $this->level = get_term($levelId, Admin::TAX_LEVELS);
+        $this->receivers = $receivers;
+        $this->evidence = $evidence;
+        $this->jsonMg = new JsonManagement($this->badgeInfo);
+
+        $badge->setIdBadge($this->badge->ID);
+        $badge->setIdField($this->field->term_id);
+        $badge->setIdLevel($this->level->term_id);
+        $badge->setIdClass($classId);
+        $badge->setIdTeacher(WPUser::getCurrentUser()->ID);
+        $badge->setTeacherRole(WPUser::getCurrentUser()->ID);
+        $badge->setCreationDate(DbModel::now());
+        //$badge->setJson($json); --> we will set it after
+        $badge->setInfo($info);
+        $badge->setEvidence($evidence);
 
         $this->badgeInfo = array(
-            'id' => $this->badge->ID,
+            'id' => 1,
             'name' => $this->badge->post_title,
             'field' => $this->field->name,
             'level' => $this->level->name,
             'description' => $this->badge->post_content,
             'link' => get_permalink($this->badge),
-            'image' => Badges::getImage($this->badge->ID),
+            'image' => WPBadge::getUrlImage($this->badge->ID),
             'tags' => array($this->field->name . "", $this->level->name . ""),
             'info' => $info,
             'evidence' => $evidence
         );
 
-        $this->receivers = $receivers;
-        $this->class = $class;
-        $this->evidence = $evidence;
-
-        $this->jsonMg = new JsonManagement($this->badgeInfo);
     }
 
     /**
@@ -99,7 +107,7 @@ class SendBadge extends BaseController {
             foreach ($this->receivers as $to) {
 
                 // Creation of json file
-                $hashName = $this->jsonMg->createJsonFile($to);
+                $hashName = $this->jsonMg->startCreation($to);
 
                 if ($hashName != null) {
                     // Creating the body of the email
@@ -119,8 +127,8 @@ class SendBadge extends BaseController {
                     'fieldId' => $this->field->term_id,
                     'levelId' => $this->level->term_id,
                     'classId' => $this->class,
-                    'teacherId' => User::getCurrentUser()->ID,
-                    'roleSlug' => User::getCurrentUser()->roles[0],
+                    'teacherId' => WPUser::getCurrentUser()->ID,
+                    'roleSlug' => WPUser::getCurrentUser()->roles[0],
                     'dateCreation' => DbBadge::now() . '',
                     'json' => $hashName,
                     'info' => $this->badgeInfo['info']
@@ -151,7 +159,7 @@ class SendBadge extends BaseController {
      * @return the body of the email in html format
      */
     private function getBodyEmail($hash_file) {
-        $badgeLink = Badges::getLinkGetBadge($hash_file, $this->badge->ID, $this->field->term_id, $this->level->term_id );
+        $badgeLink = WPBadge::getLinkGetBadge($hash_file, $this->badge->ID, $this->field->term_id, $this->level->term_id );
 
         $body = "
                 <!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
@@ -167,7 +175,7 @@ class SendBadge extends BaseController {
                                 <h2>Learn languages and get official certifications</h2>
                                 <center>
                                     <a href='" . $badgeLink . "'>
-                                        <img src='" . Badges::getImage($this->badge->ID) . "' width='150' height='150'/>
+                                        <img src='" . WPBadge::getUrlImage($this->badge->ID) . "' width='150' height='150'/>
                                     </a>
                                 </center>
                                 <h2>" . $this->badge->post_title . " - " . $this->field->name . "</h2>

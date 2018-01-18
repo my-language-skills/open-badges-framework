@@ -3,7 +3,7 @@
 namespace Inc\Utils;
 
 use Inc\Base\BaseController;
-use Inc\Base\User;
+use Inc\Base\WPUser;
 use Inc\Pages\Admin;
 use Inc\Base\Metabox;
 use templates\SettingsTemp;
@@ -16,7 +16,7 @@ use templates\SettingsTemp;
  *
  * @package     OpenBadgesFramework
  */
-class Badges {
+class WPBadge {
 
     /**
      * Get all the Badges.
@@ -117,7 +117,7 @@ class Badges {
      *
      * @param array $retContainer this array is a pointer to the main
      *                            container that we want to save the badge
-     * @param       $badge        badge that we want to check
+     * @param       $badge        WPBadge that we want to check
      * @param bool  $retLevel     permit to specify if insert in the array the
      *                            badge ore the level of the badge
      *
@@ -141,16 +141,16 @@ class Badges {
         }
 
         // Capability Teacher and Certification
-        if (current_user_can(USER::CAP_TEACHER)
+        if (current_user_can(WPUser::CAP_TEACHER)
             && ($badgeType == Metabox::META_FIELD_TEACHER || $badgeType == Metabox::META_FIELD_STUDENT)) {
 
-            if (current_user_can(USER::CAP_CERT)
+            if (current_user_can(WPUser::CAP_CERT)
                 && ($badgeCert == Metabox::META_FIELD_CERT || $badgeCert == Metabox::META_FIELD_NOT_CERT)) {
 
                 if ($retLevel) array_push($retContainer, $level);
                 else array_push($retContainer, $badge);
 
-            } else if (!current_user_can(USER::CAP_CERT) && $badgeCert == Metabox::META_FIELD_NOT_CERT) {
+            } else if (!current_user_can(WPUser::CAP_CERT) && $badgeCert == Metabox::META_FIELD_NOT_CERT) {
 
                 if ($retLevel) array_push($retContainer, $level);
                 else array_push($retContainer, $badge);
@@ -158,15 +158,15 @@ class Badges {
             }
             return true;
             // Capability Teacher and Certification
-        } else if (!current_user_can(USER::CAP_TEACHER) && $badgeType == Metabox::META_FIELD_STUDENT) {
+        } else if (!current_user_can(WPUser::CAP_TEACHER) && $badgeType == Metabox::META_FIELD_STUDENT) {
 
-            if (current_user_can(USER::CAP_CERT)
+            if (current_user_can(WPUser::CAP_CERT)
                 && ($badgeCert == Metabox::META_FIELD_CERT || $badgeCert == Metabox::META_FIELD_NOT_CERT)) {
 
                 if ($retLevel) array_push($retContainer, $level);
                 else array_push($retContainer, $badge);
 
-            } else if (!current_user_can(USER::CAP_CERT) && $badgeCert == Metabox::META_FIELD_NOT_CERT) {
+            } else if (!current_user_can(WPUser::CAP_CERT) && $badgeCert == Metabox::META_FIELD_NOT_CERT) {
 
                 if ($retLevel) array_push($retContainer, $level);
                 else array_push($retContainer, $badge);
@@ -184,7 +184,7 @@ class Badges {
      *
      * @param int $id the id of the badge
      *
-     * @return array The badge information.
+     * @return array|null|\WP_Post The badge information.
      */
     public static function get($id) {
         return get_post($id);
@@ -200,7 +200,7 @@ class Badges {
      *
      * @return string url
      */
-    public static function getImage($id) {
+    public static function getUrlImage($id) {
         if (!$img = get_the_post_thumbnail_url($id, 'thumbnail')) {
             $url = BaseController::getPluginUrl();
             $img = $url . 'assets/images/default-badge.png';

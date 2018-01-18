@@ -35,20 +35,20 @@ class DbBadge extends DbModel {
             $sql = "CREATE TABLE IF NOT EXISTS " . $this->getTableName() . " (
             id int(6) UNSIGNED AUTO_INCREMENT,
             idUser int(6) UNSIGNED NOT NULL,
-            badgeId mediumint(9) NOT NULL,
-            fieldId mediumint(9) NOT NULL,
-            levelId mediumint(9) NOT NULL,
-            classId mediumint(9),
+            idBadge mediumint(9) NOT NULL,
+            idField mediumint(9) NOT NULL,
+            idLevel mediumint(9) NOT NULL,
+            idClass mediumint(9),
             idTeacher mediumint(9) NOT NULL,
-            roleSlug varchar(50) NOT NULL,
-            dateCreation datetime NOT NULL,
-            getDate datetime,
-            getMobDate datetime,
+            teacherRole varchar(50) NOT NULL,
+            creationDate datetime NOT NULL,
+            gotDate datetime,
+            gotMozillaDate datetime,
             json varchar(64) NOT NULL,
             info text,
             evidence varchar(1500),
             PRIMARY KEY (id),
-            UNIQUE KEY  (idUser, badgeId, fieldId, levelId),
+            UNIQUE KEY  (idUser, idBadge, idField, idLevel),
             FOREIGN KEY (idUser) REFERENCES ". $userTable . "(id)
         ) $charset_collate;";
             require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
@@ -92,8 +92,8 @@ class DbBadge extends DbModel {
      *                    information about a specific badge.
      *
      * @type string        userEmail        Email.
-     * @type string        badgeId          Badge Id.
-     * @type string        fieldId          Field Id.
+     * @type string        idBadge          Badge Id.
+     * @type string        idField          Field Id.
      * @type string        levelId          Level Id.
      *
      * @return array|bool|null|object|string the object badge, false if don't exist and
@@ -103,8 +103,8 @@ class DbBadge extends DbModel {
     public static function getByIds(array $data) {
         $rightKeys = array(
             'userEmail',
-            'badgeId',
-            'fieldId',
+            'idBadge',
+            'idField',
             'levelId',
         );
         if (!self::checkFields($rightKeys, $data)) {
@@ -150,8 +150,8 @@ class DbBadge extends DbModel {
      *                    information about a specific badge.
      *
      * @type string        userEmail        Email.
-     * @type string        badgeId          Badge Id.
-     * @type string        fieldId          Field Id.
+     * @type string        idBadge          Badge Id.
+     * @type string        idField          Field Id.
      * @type string        levelId          Level Id.
      * @type string        classId          Class Id.
      * @type string        teacherId        Teacher Id.
@@ -167,8 +167,8 @@ class DbBadge extends DbModel {
     public static function insert(array $data) {
         $rightKeys = array(
             'userEmail',
-            'badgeId',
-            'fieldId',
+            'idBadge',
+            'idField',
             'levelId',
             'classId',
             'teacherId',
@@ -185,8 +185,8 @@ class DbBadge extends DbModel {
 
         $dataGetById = array(
             'userEmail' => $data['userEmail'],
-            'badgeId' => $data['badgeId'],
-            'fieldId' => $data['fieldId'],
+            'idBadge' => $data['idBadge'],
+            'idField' => $data['idField'],
             'levelId' => $data['levelId'],
         );
 
@@ -209,8 +209,8 @@ class DbBadge extends DbModel {
      *                     information about a specific badge.
      *
      * @type string        userEmail        Email.
-     * @type string        badgeId          Badge Id.
-     * @type string        fieldId          Field Id.
+     * @type string        idBadge          Badge Id.
+     * @type string        idField          Field Id.
      * @type string        levelId          Level Id.
      * }
      *
@@ -222,8 +222,8 @@ class DbBadge extends DbModel {
 
         $dataGetById = array(
             'userEmail' => $where['userEmail'],
-            'badgeId' => $where['badgeId'],
-            'fieldId' => $where['fieldId'],
+            'idBadge' => $where['idBadge'],
+            'idField' => $where['idField'],
             'levelId' => $where['levelId'],
         );
 
@@ -310,8 +310,8 @@ class DbBadge extends DbModel {
      *                    information about a specific badge.
      *
      * @type string        userEmail        Email.
-     * @type string        badgeId          Badge Id.
-     * @type string        fieldId          Field Id.
+     * @type string        idBadge          Badge Id.
+     * @type string        idField          Field Id.
      * @type string        levelId          Level Id.
      * }
      *
@@ -321,8 +321,8 @@ class DbBadge extends DbModel {
     public static function isGot(array $data) {
         $rightKeys = array(
             'userEmail',
-            'badgeId',
-            'fieldId',
+            'idBadge',
+            'idField',
             'levelId',
         );
 
@@ -349,8 +349,8 @@ class DbBadge extends DbModel {
      *                    information about a specific badge.
      *
      * @type string        userEmail        Email.
-     * @type string        badgeId          Badge Id.
-     * @type string        fieldId          Field Id.
+     * @type string        idBadge          Badge Id.
+     * @type string        idField          Field Id.
      * @type string        levelId          Level Id.
      * }
      *
@@ -362,8 +362,8 @@ class DbBadge extends DbModel {
     public static function isGotMOB(array $data) {
         $rightKeys = array(
             'userEmail',
-            'badgeId',
-            'fieldId',
+            'idBadge',
+            'idField',
             'levelId',
         );
 

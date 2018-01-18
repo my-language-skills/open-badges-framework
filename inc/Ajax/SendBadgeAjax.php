@@ -2,10 +2,10 @@
 
 namespace Inc\Ajax;
 
-use Inc\Base\User;
+use Inc\Base\WPUser;
 use Inc\Utils\DisplayFunction;
-use Inc\Utils\Levels;
-use Inc\Utils\Badges;
+use Inc\Utils\WPLevel;
+use Inc\Utils\WPBadge;
 use Inc\Utils\SendBadge;
 use Inc\Utils\Classes;
 use Inc\Base\BaseController;
@@ -44,7 +44,7 @@ class SendBadgeAjax extends BaseController {
     public function ajaxShowLevels() {
         $form = $_POST['form'];
         $fieldId = $_POST['fieldId'];
-        $level = new Levels();
+        $level = new WPLevel();
         $levels = $level->getAllLevels($fieldId);
 
         if ($levels) {
@@ -73,7 +73,7 @@ class SendBadgeAjax extends BaseController {
      * @since  x.x.x
      */
     public function ajaxShowBadges() {
-        $badges = new Badges();
+        $badges = new WPBadge();
         $form = $_POST['form'];
         $field = $_POST['fieldId'];
         $level = $_POST['level'];
@@ -88,7 +88,7 @@ class SendBadgeAjax extends BaseController {
                         <input id="<?php echo "badge-$badge->ID-form-$form" ?>" type="radio"
                                name="badge_<?php echo $form; ?>"
                                class="input-badge" value="<?php echo $badge->ID; ?>"/>
-                        <img class="img-badge" src=" <?php echo Badges::getImage($badge->ID); ?>"/>
+                        <img class="img-badge" src=" <?php echo WPBadge::getUrlImage($badge->ID); ?>"/>
                     </label>
                     <br>
                     <b><?php echo $badge->post_title; ?></b>
@@ -110,7 +110,7 @@ class SendBadgeAjax extends BaseController {
      * @since  x.x.x
      */
     public function ajaxShowDescription() {
-        $badges = new Badges();
+        $badges = new WPBadge();
         $form = $_POST['form'];
         $badgeId = $_POST['badgeId'];
         $badge = $badges->get($badgeId);
@@ -141,7 +141,7 @@ class SendBadgeAjax extends BaseController {
         }
 
         echo "<br><br>";
-        if(current_user_can(User::CAP_JOB_LISTING)) {
+        if(current_user_can(WPUser::CAP_JOB_LISTING)) {
             $addClassPage = get_post(
                 SettingsTemp::getOption(SettingsTemp::FI_ADD_CLASS)
             );
@@ -178,7 +178,7 @@ class SendBadgeAjax extends BaseController {
         // For the A form the receiver is the user (Self)
         if ($form === 'a') {
             $receivers = array(
-                User::getCurrentUser()->user_email
+                WPUser::getCurrentUser()->user_email
             );
         }
 

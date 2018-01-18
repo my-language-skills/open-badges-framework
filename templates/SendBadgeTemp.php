@@ -3,9 +3,9 @@
 namespace templates;
 
 use Inc\Base\BaseController;
-use Inc\Base\User;
+use Inc\Base\WPUser;
 use Inc\Utils\DisplayFunction;
-use Inc\Utils\Fields;
+use Inc\Utils\WPField;
 
 /**
  * Template for the Send Badge page.
@@ -78,12 +78,12 @@ final class SendBadgeTemp extends BaseController {
                 <?php
                 echo '<li class="active"><a href="#tab-1">Self</a></li>';
 
-                if (current_user_can(User::CAP_SINGLE)) {
+                if (current_user_can(WPUser::CAP_SINGLE)) {
 
                     echo '<li class=""><a href="#tab-2">Single</a></li>';
                 }
 
-                if (current_user_can(User::CAP_MULTIPLE)) {
+                if (current_user_can(WPUser::CAP_MULTIPLE)) {
                     echo '<li class=""><a href="#tab-3">Multiple</a></li>';
                 }
                 ?>
@@ -105,20 +105,20 @@ final class SendBadgeTemp extends BaseController {
         } else {
 
             if($form == self::FORM_SELF) {
-                if(current_user_can(User::CAP_SELF)){
+                if(current_user_can(WPUser::CAP_SELF)){
                     self::getForm($form);
                 } else {
                     echo "You don't have the permission to access to this functionality.";
                 }
 
             } else if ($form == self::FORM_ISSUE) {
-                if(current_user_can(User::CAP_SINGLE)){
+                if(current_user_can(WPUser::CAP_SINGLE)){
                     self::getForm($form);
                 } else {
                     echo "You don't have the permission to access to this functionality.";
                 }
             } else if ($form == self::FORM_MULTIPLE) {
-                if(current_user_can(User::CAP_MULTIPLE)){
+                if(current_user_can(WPUser::CAP_MULTIPLE)){
                     self::getForm($form);
                 } else {
                     echo "You don't have the permission to access to this functionality.";
@@ -302,7 +302,7 @@ final class SendBadgeTemp extends BaseController {
      * @since  x.x.x
      */
     private static function displayFieldsButtons() {
-        $fields = new Fields();
+        $fields = new WPField();
         $i = 0;
 
         if ($fields->haveChildren()) {

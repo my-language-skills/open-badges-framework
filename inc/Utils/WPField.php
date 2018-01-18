@@ -12,7 +12,7 @@ use Inc\Pages\Admin;
  *
  * @package     OpenBadgesFramework
  */
-class Fields {
+class WPField {
     public $main = array();
     public $sub = array();
 

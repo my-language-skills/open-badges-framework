@@ -3,7 +3,7 @@
 namespace templates;
 
 use Inc\Database\DbBadge;
-use Inc\Utils\Badges;
+use Inc\Utils\WPBadge;
 
 /**
  * Class tha contain all the function to show a single
@@ -117,7 +117,7 @@ final class SingleBadgeTemp {
         $teacher = get_user_by('id', $dbBadge->teacherId);
         $level = get_term($dbBadge->levelId);
         $field = get_term($dbBadge->fieldId);
-        $badgeLink = Badges::getLinkGetBadge($dbBadge->json, $dbBadge->badgeId, $dbBadge->fieldId, $dbBadge->levelId);
+        $badgeLink = WPBadge::getLinkGetBadge($dbBadge->json, $dbBadge->badgeId, $dbBadge->fieldId, $dbBadge->levelId);
         $idsBadge = array(
             "userEmail" => $dbBadge->userEmail,
             "badgeId" => $dbBadge->badgeId,
@@ -126,7 +126,7 @@ final class SingleBadgeTemp {
         );
         ?>
         <div class="obf-bsp-badge-image">
-            <img class="circle-img" src="<?php echo Badges::getImage($badge->ID); ?>">
+            <img class="circle-img" src="<?php echo WPBadge::getUrlImage($badge->ID); ?>">
         </div>
         <section class="user-cont-obf">
             <h1 class="obf-title"><strong><?php echo $badge->post_title; ?></strong></h1>
