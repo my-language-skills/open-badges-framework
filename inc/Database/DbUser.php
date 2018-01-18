@@ -61,7 +61,7 @@ class DbUser extends DbModel {
 
         return !empty($user) ? $user : false;
     }
-    
+
 
     /**
      * Get all the users.
@@ -83,18 +83,16 @@ class DbUser extends DbModel {
      *
      * @param array $data information about a specific user.
      *
-     * @return  bool|string true if it's inserted, false otherwise and
-     *                                (@const ER_DUPLICATE) for duplicate row.
+     * @return false|int The last id inserted, false on error.
      */
     public static function insert(array $data) {
+        $dataGetById = ['email' => $data['email']];
 
-        $dataGetById = ['mail' => $data['email']];
-
-        if (self::getById($dataGetById)) {
-            return self::ER_DUPLICATE;
+        if ($user = self::get($dataGetById)) {
+            return $user[0]->id;
         }
 
-        return parent::insert($data) === false ? false : true;
+        return parent::insert($data);
     }
 
     /**
@@ -127,5 +125,5 @@ class DbUser extends DbModel {
         $where = ["id" => $id];
         return parent::delete($where);
     }
-    
+
 }

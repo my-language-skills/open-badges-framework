@@ -183,7 +183,7 @@ class SendBadgeAjax extends BaseController {
         }
 
         $badge = new SendBadge($badgeId, $fieldId, $levelId, $info, $receivers, $theClassId, $evidence);
-        echo $badge->sendBadge();
+        echo $badge->send();
         wp_die();
     }
 

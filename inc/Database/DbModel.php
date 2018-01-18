@@ -103,11 +103,15 @@ class DbModel {
      * @param array $data  list of information that will be
      *                     placed after the expression WHERE
      *
-     * @return int|false The number of rows inserted, or false on error.
+     * @return int|false The last id inserted, or false on error.
      */
     public static function insert(array $data) {
         global $wpdb;
-        return $wpdb->insert(self::getTableName(), $data);
+        if($wpdb->insert(self::getTableName(), $data)) {
+            return $wpdb->insert_id;
+        } else {
+            return false;
+        }
     }
 
     /**

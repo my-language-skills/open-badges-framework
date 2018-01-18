@@ -49,7 +49,7 @@ class DbBadge extends DbModel {
             evidence varchar(1500),
             PRIMARY KEY (id),
             UNIQUE KEY  (idUser, idBadge, idField, idLevel),
-            FOREIGN KEY (idUser) REFERENCES ". $userTable . "(id)
+            FOREIGN KEY (idUser) REFERENCES " . $userTable . "(id)
         ) $charset_collate;";
             require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
             dbDelta($sql);
@@ -67,11 +67,6 @@ class DbBadge extends DbModel {
      *
      * @return bool|Object of the badge or null if not exist.
      */
-    /**
-     * @param $id
-     *
-     * @return bool
-     */
     public static function getById($id) {
 
         $id = array('id' => $id);
@@ -88,8 +83,8 @@ class DbBadge extends DbModel {
      * @author      Alessandro RICCARDI
      * @since       x.x.x
      *
-     * @param array $data {
-     *                    information about a specific badge.
+     * @param array $where {
+     *                     information about a specific badge.
      *
      * @type string        userEmail        Email.
      * @type string        idBadge          Badge Id.
@@ -100,17 +95,20 @@ class DbBadge extends DbModel {
      *                                       constant string (@const ER_WRONG_FIELDS) if
      *                                       there are wrong field.
      */
-    public static function getByIds(array $data) {
+    public static function getByIds(array $where) {
         $rightKeys = array(
-            'userEmail',
+            'idUser',
             'idBadge',
             'idField',
-            'levelId',
+            'idLevel',
         );
-        if (!self::checkFields($rightKeys, $data)) {
-            return self::ER_WRONG_FIELDS;
+
+        if (!self::checkFields($rightKeys, $where)) {
+            return false;
         } else {
-            $badge = parent::get($data);
+            if ($badges = parent::get($where)) {
+                $badge = $badges[0]; //[0] -> permit to extract the first array (badge)
+            }
             return !empty($badge) ? $badge : false;
         }
     }
@@ -146,55 +144,23 @@ class DbBadge extends DbModel {
      * @author        Alessandro RICCARDI
      * @since         x.x.x
      *
-     * @param array $data {
-     *                    information about a specific badge.
+     * @param array $data the information to insert
      *
-     * @type string        userEmail        Email.
-     * @type string        idBadge          Badge Id.
-     * @type string        idField          Field Id.
-     * @type string        levelId          Level Id.
-     * @type string        classId          Class Id.
-     * @type string        teacherId        Teacher Id.
-     * @type string        roleSlug         Role of the teacher.
-     * @type string        dateCreation     Date of the creation of the badge.
-     * @type string        json             Json file name.
-     * @type string        info             Information wrote from the teacher.
-     * }
-     *
-     * @return  bool|false|int|string true if it's inserted, false otherwise and
-     * @const         ER_DUPLICATE duplicate row.
+     * @return false|int The last id inserted, false on error.
      */
     public static function insert(array $data) {
-        $rightKeys = array(
-            'userEmail',
-            'idBadge',
-            'idField',
-            'levelId',
-            'classId',
-            'teacherId',
-            'roleSlug',
-            'dateCreation',
-            'json',
-            'info'
-        );
-
-        //Check if the $data array contain the right information (keys)
-        if (!self::checkFields($rightKeys, $data)) {
-            return false;
-        }
-
         $dataGetById = array(
-            'userEmail' => $data['userEmail'],
+            'idUser' => $data['idUser'],
             'idBadge' => $data['idBadge'],
             'idField' => $data['idField'],
-            'levelId' => $data['levelId'],
+            'idLevel' => $data['idLevel'],
         );
 
-        if (self::getByIds($dataGetById)) {
-            return self::ER_DUPLICATE;
+        if ($badge = self::getByIds($dataGetById)) {
+            return $badge->id;
         }
 
-        return parent::insert($data) === false ? false : true;
+        return parent::insert($data);
     }
 
     /**
@@ -214,10 +180,8 @@ class DbBadge extends DbModel {
      * @type string        levelId          Level Id.
      * }
      *
-     * @return bool|string|void true if everything is good, false, if other
-     *                           errors and ER_DONT_EXIST if don't exist the badge
+     * @return bool true if everything ok, false if errors.
      */
-
     public static function update(array $data, array $where) {
 
         $dataGetById = array(
@@ -228,14 +192,10 @@ class DbBadge extends DbModel {
         );
 
         if (!self::getByIds($dataGetById)) {
-            return self::ER_DONT_EXIST;
-        }
-
-        if (parent::update($data, $where)) {
-            return true;
-        } else {
             return false;
         }
+
+        return parent::update($data, $where) ? true : false;
     }
 
     /**
@@ -246,19 +206,7 @@ class DbBadge extends DbModel {
      *
      * @param array $data the number id of the badge
      *
-     * @return bool true if everything ok, false if errors, and a number that
-     *                        will be always 1 because is meaning the number of row
-     *                        affected in the database.
-     */
-    /**
-     * @param array $data
-     *
-     * @return bool|false|int
-     */
-    /**
-     * @param array $data
-     *
-     * @return bool
+     * @return bool true if everything ok, false if errors.
      */
     public static function deleteById(array $data) {
         $rightKeys = array(
@@ -315,27 +263,15 @@ class DbBadge extends DbModel {
      * @type string        levelId          Level Id.
      * }
      *
-     * @return bool|string true if is got, false is not,
-     * @const       ER_DONT_EXIST if the badge do no exist
+     * @return null|bool true if is got, false if not, null if errors.
      */
     public static function isGot(array $data) {
-        $rightKeys = array(
-            'userEmail',
-            'idBadge',
-            'idField',
-            'levelId',
-        );
+        $getValue = self::getByIds($data);
 
-        if (!self::checkFields($rightKeys, $data)) {
-            return self::ER_WRONG_FIELDS;
+        if (empty($getValue)) {
+            return null;
         } else {
-            $getValue = parent::get($data);
-
-            if (empty($getValue)) {
-                self::ER_DONT_EXIST;
-            } else {
-                return $getValue[0]->getDate ? true : false;
-            }
+            return $getValue->gotDate ? true : false;
         }
     }
 
@@ -360,23 +296,12 @@ class DbBadge extends DbModel {
      *                     field.
      */
     public static function isGotMOB(array $data) {
-        $rightKeys = array(
-            'userEmail',
-            'idBadge',
-            'idField',
-            'levelId',
-        );
+        $getValue = self::getByIds($data);
 
-        if (!self::checkFields($rightKeys, $data)) {
-            return self::ER_WRONG_FIELDS;
+        if (empty($getValue)) {
+            return null;
         } else {
-            $getValue = parent::get($data);
-
-            if (empty($getValue)) {
-                self::ER_DONT_EXIST;
-            } else {
-                return $getValue[0]->getMobDate ? true : false;
-            }
+            return $getValue->gotMozillaDate ? true : false;
         }
     }
 

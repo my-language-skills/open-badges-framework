@@ -10,7 +10,9 @@ namespace inc\Utils;
 
 
 use Inc\Base\WPUser;
+use Inc\Database\DbBadge;
 use Inc\Database\DbUser;
+use Templates\SettingsTemp;
 
 class Badge {
 
@@ -107,7 +109,7 @@ class Badge {
     private $evidence = null;
 
     public function __toString() {
-        return "" . print_r($this);
+        return "" . $this->getIdBadge() . $this->getIdLevel() . $this->getIdField();
     }
 
     /**
@@ -176,15 +178,16 @@ class Badge {
             switch ($role) {
                 case WPUser::ROLE_STUDENT:
                     $this->teacherRole = $role;
-                    break;
+                    return $role;
                 case WPUser::ROLE_TEACHER:
                     $this->teacherRole = $role;
-                    break;
+                    return $role;
                 case WPUser::ROLE_ACADEMY:
                     $this->teacherRole = $role;
-                    break;
+                    return $role;
             }
         }
+        $this->teacherRole = $teacher->roles[0];
     }
 
     /**
@@ -368,5 +371,64 @@ class Badge {
         return $this->evidence;
     }
 
+    /**
+     * Insert a badge in the database and retrieve its id.
+     * If is already stored in the DB the function will anyway
+     * return the its id.
+     *
+     * @param int    $idUser   id of the user.
+     * @param string $jsonName json name of the file (without extension).
+     *
+     * @return int id of the badge
+     */
+    public function saveBadgeInDb($idUser, $jsonName) {
+        $isOk = false;
+        $dataBadge = array(
+            'idUser' => $idUser,
+            'idBadge' => $this->getIdBadge(),
+            'idField' => $this->getIdField(),
+            'idLevel' => $this->getIdLevel(),
+            'idClass' => $this->getIdClass(),
+            'idTeacher' => $this->getIdTeacher(),
+            'teacherRole' => $this->getTeacherRole(),
+            'creationDate' => $this->getCreationDate(),
+            'json' => $jsonName,
+            'info' => $this->getInfo(),
+            'evidence' => $this->getEvidence()
+        );
+
+        foreach ($dataBadge as $item) {
+            if($item != "idClass") {
+                $isOk = $item ? true : false;
+            }
+        }
+
+        if ($isOk) {
+            return DbBadge::insert($dataBadge);
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Retrieves the URL of the right get badge page.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
+     *
+     * @param int $idDbBadge id of the database row of the badge.
+     *
+     * @return string link to connect to the get badge page.
+     */
+    public static function getLinkGetBadge($idDbBadge) {
+        // Get badge page retrieved from the plugin setting
+        $getBadgePage = get_post(
+            SettingsTemp::getOption(SettingsTemp::FI_GET_BADGE)
+        );
+
+        $urlGetBadge = home_url('/' . $getBadgePage->post_name . '/');
+
+        return $badgeLink = $urlGetBadge . "?v=$idDbBadge";
+    }
 
 }

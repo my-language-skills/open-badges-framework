@@ -209,32 +209,4 @@ class WPBadge {
         return $img;
     }
 
-    /**
-     * Retrieves the URL of the right get badge page.
-     *
-     * @author      Alessandro RICCARDI
-     * @since       x.x.x
-     *
-     * @param $hash_file
-     * @param $badgeId
-     * @param $fieldId
-     * @param $levelId
-     *
-     * @return string link to connect to the get badge page.
-     */
-    public static function getLinkGetBadge($hash_file, $badgeId, $fieldId, $levelId) {
-        // Get badge page retrieved from the plugin setting
-        $getBadgePage = get_post(
-            SettingsTemp::getOption(SettingsTemp::FI_GET_BADGE)
-        );
-
-        $urlGetBadge = home_url('/' . $getBadgePage->post_name . '/');
-
-        return $badgeLink =
-            $urlGetBadge .
-            "?json=$hash_file" .
-            "&badge=" . $badgeId .
-            "&field=" . $fieldId .
-            "&level=" . $levelId;
-    }
 }

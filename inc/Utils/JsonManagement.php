@@ -49,7 +49,7 @@ class JsonManagement extends BaseController {
      * @return  string  the name of the json file already created without extension |
      *                  if there's error return false.
      */
-    public function startCreation($receiver) {
+    public function creation($receiver) {
         // function var
         $hashName = hash("sha256", $receiver . $this->badge);
         $hashFile = $hashName . ".json";
@@ -97,7 +97,7 @@ class JsonManagement extends BaseController {
         $urlIssuer = $this->createIssuerCompany();
         $badgeDesc = $this->createBadgeDescription();
         $jsonInfo = array(
-            "name" => $badge->post_name . " " . $field->name,
+            "name" => $badge->post_title . " " . $field->name,
             "description" => $badgeDesc,
             "image" => WPBadge::getUrlImage($badge->ID),
             "criteria" => get_permalink($badge->ID),
