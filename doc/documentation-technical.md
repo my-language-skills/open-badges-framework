@@ -33,7 +33,7 @@ The users have some shortcuts to make easy the process. Here are the place where
 --- https://es.wordpress.org/plugins/wp-user-groups/ ----
 
 OpenBadgesFramework offer 3 types of roles with different cappabilities:
-(Out of the box, the OBF roles is Subscriber as just the wordpress *Read* cappability is activated)
+(Out of the box, the OBF roles is Subscriber as just the wordpress **Read** cappability is activated)
 * Student
   * read (a WP cappability)
   * obf_send_self (allow to self send of badges)
@@ -158,7 +158,7 @@ An Academy teacher role can send a Student Badge (Certified)
 * Level
 * Badge
 * Description
-* Class
+* Class (Just available if activate)
 * Mail
 * Information:
   * Addition information
@@ -171,7 +171,7 @@ An Academy teacher role can send Multiple badges to Multiple students (Certified
 * Level
 * Badge
 * Description
-* Class
+* Class (Just available if activate)
 * Mail (Multiple)
 * Information:
   * Addition information
@@ -179,56 +179,34 @@ An Academy teacher role can send Multiple badges to Multiple students (Certified
 
 ### Database
 
-Open Badges Framework save all the badges information related to teachers and students in a [custom Database Table](https://codex.wordpress.org/Creating_Tables_with_Plugins)
+Open Badges Framework save all the badges information related to teachers and students with 2 [custom Database Tables](https://codex.wordpress.org/Creating_Tables_with_Plugins)
+
+#### Users Database
+```
+id  userEmail
+1   student@student.com
+```
+#### Badges Database
 
 ```
 id  userEmail            badgeId   fieldId   levelId   classId   teacherId    roleSlug         dateCreation          getDate               getMobDate    json                                                                 info                                  evidence
-1   student@student.com  140       1712      7                    1            administrator   2018-01-01 08:00:00   2017-12-18 09:00:00                 161499a421c21ea585cc025d04f0e3d439d6220451b22c820c62d4478fc6aaf0 	That is an example of information.    https://www.uni.edu/student-list.php
+1   student@student.com  140       1712      7                    1            administrator   2018-01-01 08:00:00   2017-12-18 09:00:00                 161499a421c21ea585cc025d04f0e3d439d6220451b22c820c62d4478fc6aaf0 	That is an example of information.    https://www.example.edu/student-list.php
 ```
-
-#### userEmail
-The Earn user email
-
-#### badgeId
-The ID of the Badge the student receive
-
-#### fieldId
-The ID of the Field of education of the Badge
-
-#### levelId
-The ID of the Level of the badge
-
-#### classId
-If the Badge is inside of a Class, the Class id
-
-#### teacherId
-The issuer user ID
-
-#### roleSlug
-The role of the issuer
-
-#### dateCreation
-The date of the issue of the badge
-
-#### getDate
-The date of the earn of the badge
-
-#### getMobDate
-If the badge is transfer to Mozilla Backpack
-
-#### json
-The Json file name
-
-#### info
-The information the teacher write about the students
-
-#### evidence
-Is the link to an external url where the teacher can show an evidence of the badge (pdf with a list of notes, a site with students names...).
-
-
-### Json file
-
-By sending a badge, 3 Json file are created inside of the folder open-badges-framework > Json. The Json files remain forever (For now).
+##### Badges Database columns
+* **userEmail**: The Earn user email.
+* **badgeId**: The ID of the Badge the student receive.
+* **fieldId**: The ID of the Field of education of the Badge.
+* **levelId**: The ID of the Level of the badge.
+* **classId**: If the Badge is inside of a Class, the Class id.
+* **teacherId**: The issuer user ID.
+* **roleSlug**: The role of the issuer.
+* **dateCreation**: The date of the issue of the badge.
+* **getDate**: The date of the earn of the badge.
+* **getMobDate**: If the badge is transfer to Mozilla Backpack.
+* **json**: The Json file name.
+* **info**: The information the teacher write about the students.
+* **evidence**: Is the link to an external url where the teacher can show an evidence of the badge (pdf with a list of notes, a site with students names...).
+* **Json file**: By sending a badge, 3 Json file are created inside of the folder open-badges-framework > Json. The Json files remain forever (For now).
 
 A file with the information about the website (just one file each installation):
 issuer-info.json
