@@ -4,6 +4,7 @@ namespace Inc\Ajax;
 
 use Inc\Base\WPUser;
 use Inc\Utils\DisplayFunction;
+use Inc\Utils\WPClass;
 use Inc\Utils\WPLevel;
 use Inc\Utils\WPBadge;
 use Inc\Utils\SendBadge;
@@ -128,9 +129,9 @@ class SendBadgeAjax extends BaseController {
      */
     public function ajaxShowClasses() {
         $form = $_POST['form'];
-        $field = $_POST['fieldId'];
-        $classes = new Classes();
-        $ownClasses = $classes->getOwnClass($field);
+        $fieldId = $_POST['fieldId'];
+        $classes = new WPClass();
+        $ownClasses = $classes->getOwnClass($fieldId);
 
         if (count($ownClasses)) {
             echo '<h3 class="title-classes">Own class</h3>';

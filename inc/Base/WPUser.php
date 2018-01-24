@@ -2,6 +2,7 @@
 
 namespace Inc\Base;
 
+use Inc\Database\DbUser;
 use Inc\Pages\Admin;
 
 /**
@@ -276,17 +277,17 @@ class WPUser {
      */
     public static function registerUser($user) {
         // Check if the passwords are the same
-        if ($user['user_pass'] !== $user['user_rep_pass']) {
+        if ($user['userPassword'] !== $user['userRepPass']) {
             return WPUser::REGIS_NO_MATCH_PASS;
         }
 
         // Check if there are users with the same name and email
-        if (username_exists($user['user_name']) || email_exists($user['user_email'])) {
+        if (username_exists($user['userName']) || email_exists($user['userEmail'])) {
             // User already exist
             return WPUser::REGIS_USER_EXIST;
         } else {
             // 1 !¡ CREATION of the user
-            $user_id = wp_create_user($user['user_name'], $user['user_pass'], $user['user_email']);
+            $user_id = wp_create_user($user['userName'], $user['userPassword'], $user['userEmail']);
 
             if (is_wp_error($user_id)) {
                 // Error creation
@@ -296,8 +297,8 @@ class WPUser {
                 $update = wp_update_user(
                     array(
                         'ID' => $user_id,
-                        'first_name' => $user['first_name'],
-                        'last_name' => $user['last_name'],
+                        'first_name' => $user['firstName'],
+                        'last_name' => $user['lastName'],
                         'role' => WPUser::ROLE_STUDENT,
                     ));
 
@@ -318,7 +319,7 @@ class WPUser {
      *                    Array with the information about the new user.
      *
      * @type string        userEmail        Email.
-     * @type string        user_pass        Password.
+     * @type string        userPassword        Password.
      * }
      *
      * @return int      RET_SUCCESS (0) in case of success
@@ -327,8 +328,8 @@ class WPUser {
     public static function loginUser($user) {
         // 3 !¡ SING-ON of the user
         $login = wp_signon(array(
-            'user_login' => $user['user_email'],
-            'user_password' => $user['user_pass'],
+            'user_login' => $user['userEmail'],
+            'user_password' => $user['userPassword'],
         ), false);
 
         if (is_wp_error($login)) {
@@ -339,4 +340,40 @@ class WPUser {
             return WPUser::REGIS_SUCCESS;
         }
     }
+
+    /**
+     * Insert a user in the database and retrieve its id.
+     * If is already stored in the DB the function will anyway
+     * return the its id.
+     *
+     * @param $email
+     *
+     * @return false|int|null The id of the user or false on error.
+     */
+    public static function insertUserInDB($email) {
+        $dataUser = ["email" => $email];
+        $userDB = DbUser::getSingle($dataUser);
+
+
+        if(!$userDB) {
+            # if doesn't exist in the database
+            if ($user = get_user_by("email", $email)) {
+                # if already exist in the wordpress db
+                $dataUser["idWP"] = $user->ID;
+            }
+            return DbUser::insert($dataUser);
+        } else {
+            # if already exist in the database
+            $where = $dataUser;
+            if ($user = get_user_by("email", $email)) {
+                # if already exist in the wordpress db
+                $dataUser["idWP"] = $user->ID;
+                return DbUser::update($dataUser, $where);
+            } else {
+                return false;
+            }
+        }
+
+    }
+
 }

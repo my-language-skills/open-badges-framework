@@ -177,7 +177,7 @@ jQuery(function ($) {
 
         var data = {
             'action': 'ajaxShowBadge',
-            'id': $(this).attr( "name" )
+            'id': $(this).data( "id" )
         };
 
         var func = function (response) {

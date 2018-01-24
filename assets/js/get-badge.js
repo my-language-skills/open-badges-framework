@@ -88,10 +88,7 @@ jQuery(function (event) {
             // have also the permission to get the badge.
             var data = {
                 'action': 'ajaxGbShowMozillaOpenBadges',
-                'json': urlParam('json'),
-                'badgeId': urlParam('badge'),
-                'fieldId': urlParam('field'),
-                'levelId': urlParam('level'),
+                'idBadge': urlParam('v'),
             };
 
             var func = function (response) {
@@ -107,20 +104,16 @@ jQuery(function (event) {
      * @description Get definitely the badge and after show the conclusion
      *              step inside the #gb-wrap <div>
      *
-     * @param {bool} mozOpenBadge
+     * @param {boolean} mozOpenBadge
      * @return
      */
-    var showConclusion = function (mozOpenBadge = false) {
+    var showConclusion = function (mozOpenBadge = 0) {
         jQuery("#gb-wrap").fadeOut(400, function (event) {
             jQuery("#gb-wrap").html(loadingPage(event));
-
             var data = {
                 'action': 'ajaxGbShowConclusion',
-                'MOB': mozOpenBadge,
-                'json': urlParam('json'),
-                'badgeId': urlParam('badge'),
-                'fieldId': urlParam('field'),
-                'levelId': urlParam('level'),
+                'isMozilla': mozOpenBadge,
+                'idBadge': urlParam('v'),
             };
 
             var func = function (response) {
@@ -147,10 +140,7 @@ jQuery(function (event) {
 
             var data = {
                 'action': 'ajaxGbShowLogin',
-                'json': urlParam('json'),
-                'badgeId': urlParam('badge'),
-                'fieldId': urlParam('field'),
-                'levelId': urlParam('level'),
+                'idBadge': urlParam('v'),
             };
 
             var func = function (response) {
@@ -178,11 +168,9 @@ jQuery(function (event) {
         var remember = jQuery("#inputRemember").is(':checked');
         var data = {
             'action': 'ajaxGbLogin',
-            'badgeId': urlParam('badge'),
-            'fieldId': urlParam('field'),
-            'levelId': urlParam('level'),
-            'user_email': email,
-            'user_password': password,
+            'idBadge': urlParam('v'),
+            'userEmail': email,
+            'userPassword': password,
             'remember': remember,
 
         };
@@ -235,16 +223,13 @@ jQuery(function (event) {
 
             var data = {
                 'action': 'ajaxGbRegistration',
-                'json': urlParam('json'),
-                'badgeId': urlParam('badge'),
-                'fieldId': urlParam('field'),
-                'levelId': urlParam('level'),
-                'user_email': inputFields[0].val(),
-                'user_name': inputFields[1].val(),
-                'first_name': inputFields[2].val(),
-                'last_name': inputFields[3].val(),
-                'user_pass': inputFields[4].val(),
-                'user_rep_pass': inputFields[5].val(),
+                'idBadge': urlParam('v'),
+                'userEmail': inputFields[0].val(),
+                'userName': inputFields[1].val(),
+                'firstName': inputFields[2].val(),
+                'lastName': inputFields[3].val(),
+                'userPassword': inputFields[4].val(),
+                'userRepPass': inputFields[5].val(),
             };
 
             var func = function (response) {
@@ -273,16 +258,13 @@ jQuery(function (event) {
 
         var data = {
             'action': 'ajaxGbGetJsonUrl',
-            'json': urlParam('json'),
-            'badgeId': urlParam('badge'),
-            'fieldId': urlParam('field'),
-            'levelId': urlParam('level'),
+            'idBadge': urlParam('v'),
         };
 
         var func = function (response) {
             OpenBadges.issue([response], function (errors, successes) {
                 if (successes.length) {
-                    showConclusion(true);
+                    showConclusion(1);
                 } else if (errors.length) {
                     jQuery("#gb-ob-response").html("Badge not sent!")
                 }
@@ -302,7 +284,7 @@ jQuery(function (event) {
     var btnGetBadgeStandard = "#gb-get-standard";
     jQuery(document).on("click", btnGetBadgeStandard, function (event) {
         jQuery(btnGetBadgeStandard).prop('disabled', false);
-        showConclusion(false);
+        showConclusion(0);
         jQuery(btnGetBadgeStandard).prop('disabled', true);
     });
 });

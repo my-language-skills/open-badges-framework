@@ -95,6 +95,23 @@ class DbModel {
     }
 
     /**
+     * Get a badges.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
+     *
+     * @param array|null $data  list of information that will be
+     *                          placed after the expression WHERE
+     *
+     * @return array|object|null Database query results
+     */
+    public static function getSingle(array $data) {
+        global $wpdb;
+        $res = $wpdb->get_results(self::fetchSql("SELECT", $data));
+        return $res[0];
+    }
+
+    /**
      * Insert a badge.
      *
      * @author      Alessandro RICCARDI

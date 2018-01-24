@@ -69,7 +69,7 @@ class Statistics {
      * @author Alessandro RICCARDI
      * @since  x.x.x
      *
-     * @return the number of badges the we sent
+     * @return int the number of badges the we sent
      */
     public static function getNumBadgesSent() {
         $all = DbBadge::getAll();

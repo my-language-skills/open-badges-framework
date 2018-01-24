@@ -4,6 +4,7 @@ namespace Inc\Utils;
 
 use Inc\Base\Secondary;
 use Inc\Database\DbBadge;
+use Inc\Database\DbUser;
 use Inc\Pages\Admin;
 
 /**
@@ -90,20 +91,21 @@ class DisplayFunction {
                 }
 
                 echo $selectionContClose;
-
             }
-
         }
     }
 
+    /**
+     * @return void
+     */
     public static function badgesTable() {
-        $table = DbBadge::getKeys();
+        $table = DbBadge::get();
         if ($table) {
 
             ?>
             <form id="badges-list" method="post">
 
-                <?php echo self::showActionSection("2"); ?>
+                <?php self::showActionSection("2"); ?>
 
                 <div class="scroll-hor">
                     <table class="wp-list-table widefat striped pages">
@@ -131,30 +133,32 @@ class DisplayFunction {
                         </thead>
                         <tbody>
                         <?php
-                        if ($table = DbBadge::getAll()) {
+                        if ($table = DbBadge::get()) {
                             foreach ($table as $row) {
+                                $badge = new Badge();
+                                $badge->retrieveBadge($row->id);
+                                $student = DbUser::getById($badge->getIdUser());
 
                                 echo "<tr>";
                                 echo "<td><input id='bd-select-$row->id' type='checkbox' name='badge[]' value='$row->id'></td>";
-                                echo "<td>" . (get_user_by('email', $row->userEmail) ? "<a href='" . get_edit_user_link(get_user_by('email', $row->userEmail)->ID) . "'>" . $row->userEmail . "</a>" : "<span>$row->userEmail</span>")."</td>";
-                                echo "<td><a href='" . get_edit_post_link($row->badgeId) . "'>" . (get_post($row->badgeId) ? get_post($row->badgeId)->post_title : "") . "</a></td>";
-                                echo "<td><a href='" . get_edit_term_link($row->fieldId) . "'>" . (get_term($row->fieldId) ? get_term($row->fieldId)->name : "") . "</a></td>";
-                                echo "<td><a href='" . get_edit_term_link($row->levelId) . "'>" . (get_term($row->levelId) ? get_term($row->levelId)->name : "") . "</a></td>";
+                                echo "<td>" . (get_user_by('id', $student->idWP) ? "<a href='" . get_edit_user_link(get_user_by('id', $student->idWP)->ID) . "'>" .  $student->email . "</a>" : "<span> $student->email</span>") . "</td>";
+                                echo "<td><a href='" . get_edit_post_link($badge->getIdBadge()) . "'>" . (get_post($badge->getIdBadge()) ? get_post($badge->getIdBadge())->post_title : "") . "</a></td>";
+                                echo "<td><a href='" . get_edit_term_link($badge->getIdField()) . "'>" . (get_term($badge->getIdField()) ? get_term($badge->getIdField())->name : "") . "</a></td>";
+                                echo "<td><a href='" . get_edit_term_link($badge->getIdLevel()) . "'>" . (get_term($badge->getIdLevel()) ? get_term($badge->getIdLevel())->name : "") . "</a></td>";
                                 if (Secondary::isJobManagerActive()) {
-                                    echo "<td><a href='" . get_edit_post_link($row->classId) . "'>" . (get_post($row->classId) ? get_post($row->classId)->post_title : "")  . "</a></td>";
+                                    echo "<td><a href='" . get_edit_post_link($badge->getIdClass()) . "'>" . (get_post($badge->getIdClass()) ? get_post($badge->getIdClass())->post_title : "") . "</a></td>";
                                 }
-
-                                echo "<td><a href='" . get_edit_user_link($row->teacherId) . "'>" . (get_user_by('id', $row->teacherId) ? get_user_by('id', $row->teacherId)->user_email : "" ) . "</a></td>";
-                                echo "<td>$row->dateCreation</td>";
-                                echo "<td>$row->getDate</td>";
-                                echo "<td>$row->getMobDate</td>";
+                                echo "<td><a href='" . get_edit_user_link($badge->getIdTeacher()) . "'>" . (get_user_by('id', $badge->getIdTeacher()) ? get_user_by('id', $badge->getIdTeacher())->userEmail : "") . "</a></td>";
+                                echo "<td>".$badge->getCreationDate()."</td>";
+                                echo "<td>".$badge->getGotDate()."</td>";
+                                echo "<td>".$badge->getGotMozillaDate()."</td>";
                             }
                         }
                         ?>
                         </tbody>
                     </table>
                 </div>
-                <?php echo self::showActionSection("2"); ?>
+                <?php self::showActionSection("2"); ?>
             </form>
             <?php
         } else {
@@ -164,6 +168,9 @@ class DisplayFunction {
 
     }
 
+    /**
+     * @param string $number
+     */
     public static function showActionSection($number = "") { ?>
         <div class="tablenav bottom">
             <div class="alignleft actions bulkactions">
@@ -177,11 +184,11 @@ class DisplayFunction {
             <div class="alignleft actions">
             </div>
             <div class="tablenav-pages one-page">
-                        <span class="displaying-num">
-                            <?php echo Statistics::getNumBadgesSent(); ?> items,
-                            <?php echo Statistics::getNumBadgesGot(); ?> got,
-                            <?php echo Statistics::getNumBadgesGotMob(); ?> mob
-                        </span>
+                <span class="displaying-num">
+                    <?php echo Statistics::getNumBadgesSent(); ?> items,
+                    <?php echo Statistics::getNumBadgesGot(); ?> got,
+                    <?php echo Statistics::getNumBadgesGotMob(); ?> mob
+                </span>
                 <br class="clear">
             </div>
         </div>

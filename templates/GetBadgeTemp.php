@@ -92,7 +92,7 @@ final class GetBadgeTemp extends BaseController {
 
         if (isset($_GET['v']) && !empty($_GET['v'])) {
             $this->badgeDB = new Badge();
-            $this->badgeDB->getInstance($_GET['v']);
+            $this->badgeDB->retrieveBadge($_GET['v']);
             if ($this->badgeDB->getCreationDate()) {
                 $this->badgeWP = WPBadge::get($this->badgeDB->getIdBadge());
                 $this->fieldWP = get_term($this->badgeDB->getIdField(), Admin::TAX_FIELDS);

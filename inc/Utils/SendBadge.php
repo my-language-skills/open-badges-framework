@@ -98,7 +98,7 @@ class SendBadge extends BaseController {
                 // Creation of json file
                 if ($jsonName = $this->jsonMg->creation($email)) {
 
-                    if($idDbUser = $this->insertUserInDB($email)){
+                    if($idDbUser = WPUser::insertUserInDB($email)){
                         if($idDbBadge = $this->badge->saveBadgeInDb($idDbUser, $jsonName)){
                             if($message = $this->getBodyEmail($idDbBadge)) {
                                 // Send the email
@@ -122,27 +122,6 @@ class SendBadge extends BaseController {
         } else {
             return self::ER_GENERAL;
         }
-    }
-
-    /**
-     * Insert a user in the database and retrieve its id.
-     * If is already stored in the DB the function will anyway
-     * return the its id.
-     *
-     * @param $email
-     *
-     * @return false|int|null The id of the user or false on error.
-     */
-    private function insertUserInDB($email) {
-        $dataUser = array(
-            "email" => $email,
-        );
-
-        if ($user = get_user_by("email", $email)) {
-            $dataUser["idWP"] = $user->ID;
-        }
-
-        return DbUser::insert($dataUser);
     }
 
     /**

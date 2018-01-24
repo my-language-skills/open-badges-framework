@@ -5,7 +5,9 @@ namespace templates;
 use Inc\Base\Secondary;
 use Inc\Base\WPUser;
 use Inc\Database\DbBadge;
+use Inc\Database\DbUser;
 use Inc\Pages\Admin;
+use Inc\Utils\Badge;
 use Inc\Utils\WPBadge;
 
 /**
@@ -99,15 +101,16 @@ final class UserTemp {
             </div>
         </section>
         <?php
-        self::showBadgeEarned($userData->user_email, $isAdmin);
+        self::showBadgeEarned($userData->ID, $isAdmin);
     }
 
     /**
-     * @param string $userEmail
-     * @param bool   $isAdmin
+     * @param int  $idUser
+     * @param bool $isAdmin
      */
-    public static function showBadgeEarned($userEmail, $isAdmin = true) {
-        $dbBadges = DbBadge::get(Array("UserEmail" => $userEmail));
+    public static function showBadgeEarned($idUser, $isAdmin = true) {
+        $userDb = DbUser::getSingle(["idWP" => $idUser]);
+        $dbBadges = DbBadge::get(Array("idUser" => $userDb->id));
         $protocol = stripos($_SERVER['SERVER_PROTOCOL'], 'https') === true ? 'https' : 'http';
         $toAccept = 0;
         ?>
@@ -119,21 +122,25 @@ final class UserTemp {
                 <?php
                 if ($dbBadges) {
                     foreach ($dbBadges as $dbBadge) {
-                        if(!$dbBadge->getDate) $toAccept = 1;
-                        if ($dbBadge->getDate) {
+                        $badge = new Badge();
+                        $badge->retrieveBadge($dbBadge->id);
+                        $badgeWP = WPBadge::get($badge->getIdBadge());
+                        if (!$badge->getGotDate()) $toAccept = 1;
+                        if ($badge->getGotDate()) {
 
                             ?>
                             <div class="badge flex-item <?php echo !$isAdmin ? "badge-earned" : ""; ?>"
-                                 name="<?php echo "" . $dbBadge->id; ?>">
+                                 data-id="<?php echo "" . $badge->getId(); ?>">
                                 <a class="wrap-link" <?php
                                 if ($isAdmin) {
-                                    echo "href='" . admin_url('admin.php?page=' . Admin::PAGE_SINGLE_BADGES, $protocol) . "&badge=$dbBadge->id&db=1'";
+                                    echo "href='" . admin_url('admin.php?page=' . Admin::PAGE_SINGLE_BADGES, $protocol) . "&badge=" . $badge->getId() . "()&db=1'";
                                 } ?>">
                                 <div class="cont-img-badge">
-                                    <img class="circle-img" src="<?php echo WPBadge::getUrlImage($dbBadge->badgeId); ?>">
+                                    <img class="circle-img"
+                                         src="<?php echo WPBadge::getUrlImage($badge->getIdBadge()); ?>">
                                 </div>
                                 <div>
-                                    <span><?php echo WPBadge::get($dbBadge->badgeId)->post_title; ?></span>
+                                    <span><?php echo $badgeWP->post_title; ?></span>
                                 </div>
                                 </a>
                             </div>
@@ -153,19 +160,23 @@ final class UserTemp {
                     </div>
                     <?php
                     foreach ($dbBadges as $dbBadge) {
-                        if (!$dbBadge->getDate) {
+                        $badge = new Badge();
+                        $badge->retrieveBadge($dbBadge->id);
+                        $badgeWP = WPBadge::get($badge->getIdBadge());
+                        if (!$badge->getGotDate()) {
                             ?>
                             <div class="badge flex-item <?php echo !$isAdmin ? "badge-earned" : ""; ?>"
-                                 name="<?php echo "" . $dbBadge->id; ?>">
+                                 name="<?php echo "" . $badge->getId(); ?>">
                                 <a class="wrap-link" <?php
                                 if ($isAdmin) {
-                                    echo "href='" . admin_url('admin.php?page=' . Admin::PAGE_SINGLE_BADGES, $protocol) . "&badge=$dbBadge->id&db=1'";
+                                    echo "href='" . admin_url('admin.php?page=' . Admin::PAGE_SINGLE_BADGES, $protocol) . "&badge=" . $badge->getId() . "&db=1'";
                                 } ?>">
                                 <div class="cont-img-badge">
-                                    <img class="circle-img" src="<?php echo WPBadge::getUrlImage($dbBadge->badgeId); ?>">
+                                    <img class="circle-img"
+                                         src="<?php echo WPBadge::getUrlImage($badge->getIdBadge()); ?>">
                                 </div>
                                 <div>
-                                    <span><?php echo WPBadge::get($dbBadge->badgeId)->post_title; ?></span>
+                                    <span><?php echo $badgeWP->post_title; ?></span>
                                 </div>
                                 </a>
                             </div>

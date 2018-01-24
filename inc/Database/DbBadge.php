@@ -163,40 +163,6 @@ class DbBadge extends DbModel {
         return parent::insert($data);
     }
 
-    /**
-     * Update a badge.
-     *
-     * @author      Alessandro RICCARDI
-     * @since       x.x.x
-     *
-     * @param array $data  Data that we want to update.
-     *
-     * @param array $where {
-     *                     information about a specific badge.
-     *
-     * @type string        userEmail        Email.
-     * @type string        idBadge          Badge Id.
-     * @type string        idField          Field Id.
-     * @type string        levelId          Level Id.
-     * }
-     *
-     * @return bool true if everything ok, false if errors.
-     */
-    public static function update(array $data, array $where) {
-
-        $dataGetById = array(
-            'userEmail' => $where['userEmail'],
-            'idBadge' => $where['idBadge'],
-            'idField' => $where['idField'],
-            'levelId' => $where['levelId'],
-        );
-
-        if (!self::getByIds($dataGetById)) {
-            return false;
-        }
-
-        return parent::update($data, $where) ? true : false;
-    }
 
     /**
      * Delete a badge by own id.
@@ -248,32 +214,6 @@ class DbBadge extends DbModel {
         return true;
     }
 
-    /**
-     * Permit to understand if the badge is got.
-     *
-     * @author      Alessandro RICCARDI
-     * @since       x.x.x
-     *
-     * @param array $data {
-     *                    information about a specific badge.
-     *
-     * @type string        userEmail        Email.
-     * @type string        idBadge          Badge Id.
-     * @type string        idField          Field Id.
-     * @type string        levelId          Level Id.
-     * }
-     *
-     * @return null|bool true if is got, false if not, null if errors.
-     */
-    public static function isGot(array $data) {
-        $getValue = self::getByIds($data);
-
-        if (empty($getValue)) {
-            return null;
-        } else {
-            return $getValue->gotDate ? true : false;
-        }
-    }
 
     /**
      * Permit to understand if the badge is got in the Mozilla Open Badge.
@@ -318,17 +258,18 @@ class DbBadge extends DbModel {
      * @return bool|string true if everything is ok, @const ER_DONT_EXIST if the row doesn't exist,
      * @const       ER_ERROR if there's other kind of error.
      */
-    public static function setBadgeGot($where, $mob = false) {
+    public static function setBadgeGot($where, $mozilla = false) {
         //
-        $data = $mob === 'true' ?
-            array(
-                'getDate' => self::now(),
-                'getMobDate' => self::now()
-            )
-            :
-            array(
-                'getDate' => self::now(),
+        if ($mozilla) {
+            $data = array(
+                'gotDate' => self::now(),
+                'gotMozillaDate' => self::now()
             );
+        } else {
+            $data = array(
+                'gotDate' => self::now(),
+            );
+        }
 
         if ($res = self::update($data, $where)) {
             return true;
@@ -349,7 +290,7 @@ class DbBadge extends DbModel {
      */
     public static function getNumGot() {
         global $wpdb;
-        $query = "SELECT COUNT(*) AS num FROM " . self::getTableName() . " WHERE getDate IS NOT NULL";
+        $query = "SELECT COUNT(*) AS num FROM " . self::getTableName() . " WHERE gotDate IS NOT NULL";
 
         return $wpdb->get_results($query)[0]->num;
     }
@@ -365,7 +306,7 @@ class DbBadge extends DbModel {
      */
     public static function getNumGotMob() {
         global $wpdb;
-        $query = "SELECT COUNT(*) AS num FROM " . self::getTableName() . " WHERE getMobDate IS NOT NULL";
+        $query = "SELECT COUNT(*) AS num FROM " . self::getTableName() . " WHERE gotMozillaDate IS NOT NULL";
 
         return $wpdb->get_results($query)[0]->num;
     }

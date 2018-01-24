@@ -6,7 +6,7 @@
  * Time: 09:49
  */
 
-namespace inc\Utils;
+namespace Inc\Utils;
 
 
 use Inc\Base\WPUser;
@@ -16,6 +16,12 @@ use Templates\SettingsTemp;
 
 class Badge {
 
+    /**
+     * Id of the badge.
+     *
+     * @var null
+     */
+    private $id = null;
     /**
      * Id of the user.
      *
@@ -114,6 +120,15 @@ class Badge {
      *
      * @param $id
      */
+    public function setId($id) {
+        $this->id = $id;
+    }
+
+    /**
+     * Set the id of the user.
+     *
+     * @param $id
+     */
     public function setIdUser($id) {
         $this->idUser = $id;
     }
@@ -167,6 +182,8 @@ class Badge {
      * Set the role of the teacher (user).
      *
      * @param $id
+     *
+     * @return mixed
      */
     public function setTeacherRole($id) {
         $teacher = get_user_by("id", $id);
@@ -248,8 +265,16 @@ class Badge {
 
     /**
      * Get the id of the user.
+     *
+     * @return null|int the id, otherwise null if not set.
      */
+    public function getId() {
+        return $this->id;
+    }
+
     /**
+     * Get the id of the user.
+     *
      * @return null|int the id, otherwise null if not set.
      */
     public function getIdUser() {
@@ -375,9 +400,9 @@ class Badge {
         return "" . $this->getIdBadge() . $this->getIdLevel() . $this->getIdField();
     }
 
-    public function getInstance($idDbBadge) {
+    public function retrieveBadge($idDbBadge) {
         if($badgeDb = DbBadge::getById($idDbBadge)) {
-
+            $this->setId($badgeDb->id);
             $this->setIdUser($badgeDb->idUser);
             $this->setIdBadge($badgeDb->idBadge);
             $this->setIdField($badgeDb->idField);

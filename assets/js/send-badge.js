@@ -272,8 +272,7 @@ window.onload = function () {
         //Add the class 'active' to the actual button.
         jQuery(this).addClass("active");
 
-        jQuery("#field_" + currentForm).html("<br />" +
-            "<img src='" + globalUrl.loader + "' width='150px' height='150px' />");
+        jQuery("#field_" + currentForm).html(getLoaderHtml());
 
         var id_lan = jQuery(this).attr('id');
         id_lan = id_lan.replace(/\s/g, '');

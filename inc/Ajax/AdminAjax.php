@@ -25,7 +25,7 @@ class AdminAjax extends BaseController {
      * @since  x.x.x
      */
     public function ajaxShowBadgesTable() {
-        echo DisplayFunction::badgesTable();
+        DisplayFunction::badgesTable();
 
         wp_die();
     }
