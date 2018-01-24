@@ -1,4 +1,4 @@
-# theme structure
+# Theme structure
 ```
 Plugins/OpenBadgesFramework/                    # → Plugin root
 ├── assets/                                     # → Resources folder
@@ -19,6 +19,7 @@ Plugins/OpenBadgesFramework/                    # → Plugin root
 │   │   └── send-badge.js                       # → Contain Send Badge page code
 │   │── inc/                                    # → Plugin core folder
 │   │   │── Ajax/                               # → Ajax functions folder
+│   │   │   │── AdminAjax.php                   # → Ajax class for general things of the plugin
 │   │   │   │── GetBadgeAjax.php                # → Ajax class for the Get Badge page
 │   │   │   └── SendBadgeAjax.php               # → Ajax class for the Send Badge page
 │   │   │── Api/                                # → Api folder
@@ -30,22 +31,25 @@ Plugins/OpenBadgesFramework/                    # → Plugin root
 │   │   │   │── Deactivate.php                  # → Contain code that execute at the deactivation
 │   │   │   │── Enqueue.php                     # → Load all the styles and scripts
 │   │   │   │── Metabox.php                     # → Contain code to create metaboxes
-│   │   │   │── SettingsLinks.php               # → Create the setting link for the plugin admin page
-│   │   │   └── User.php                        # → Class for the management of the users
+│   │   │   │── Secondary.php                   # → Allow to add feature to the plugin
+│   │   │   └── SettingsLinks.php               # → Create the setting link for the plugin admin page
 │   │   │── Database/                           # → Database classes folder
 │   │   │   │── DbBadge.php                     # → Manage the badges database table
-│   │   │   └── DbModel.php                     # → Parent class for management of the database
+│   │   │   │── DbModel.php                     # → Parent class for management of the database
+│   │   │   └── DbUser.php                      # → Manage the user database table
 │   │   │── Pages/                              # → WordPress component folder
 │   │   │   └── Admin.php                       # → Contain all the WordPress component (Sub-pages, CPT, ...)
 │   │   │── Utils/                              # → Utils folder
-│   │   │   │── Badges.php                      # → Contain code for the management of the badges
-│   │   │   │── Classes.php                     # → Contain code for the management of the classes
+│   │   │   │── Badge.php                       # → Contain code for the managment of the OBF DB, table user
 │   │   │   │── DisplayFunction.php             # → Class for display something of generic
-│   │   │   │── Fields.php                      # → Contain code for the management of the fields
-│   │   │   │── Levels.php                      # → Contain code for the management of the levels
-│   │   │   └── JsonManagement.php              # → Contain code for the management of json files
+│   │   │   │── JsonManagement.php              # → Contain code for the management of json files
 │   │   │   │── SendBadge.php                   # → Contain code for the management of the send badge process
-│   │   │   └── Statistics.php                  # → Contain code for statistical purposes
+│   │   │   │── Statistics.php                  # → Contain code for statistical purposes
+│   │   │   │── WPBadge.php                     # → Contain code for the management of the badges
+│   │   │   │── WPClass.php                     # → Contain code for the management of the classes
+│   │   │   │── WPField.php                     # → Contain code for the management of the fields
+│   │   │   │── WPLevel.php                     # → Contain code for the management of the levels
+│   │   │   └── WPUser.php                      # → Class for the management of the users
 │   │   └── Init.php                            # → The first class that make start all the process
 ├── languages/                                  # → Translation folder
 ├── templates/                                  # → Template pages folder
