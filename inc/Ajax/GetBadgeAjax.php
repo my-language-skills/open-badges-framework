@@ -3,7 +3,7 @@
 namespace Inc\Ajax;
 
 use Inc\Base\BaseController;
-use Inc\Base\WPUser;
+use Inc\Utils\WPUser;
 use Inc\Database\DbBadge;
 use Inc\Database\DbUser;
 use Inc\Utils\Badge;
@@ -39,13 +39,13 @@ class GetBadgeAjax extends BaseController {
         if (isset($_POST['idBadge']) && !empty($_POST['idBadge'])) {
             $badge = new Badge();
             $badge->retrieveBadge($_POST['idBadge']);
-            $user = DbUser::getById($badge->getIdUser());
+            $user = DbUser::getById($badge->idUser);
 
             $getBadgeTemp = GetBadgeTemp::getInstance();
             if (WPUser::getCurrentUser()->user_email == $user->email) {
                 // User already logged in
                 $getBadgeTemp = GetBadgeTemp::getInstance();
-                echo $getBadgeTemp->showMozillaOpenBadges($badge->getGotMozillaDate());
+                echo $getBadgeTemp->showMozillaOpenBadges($badge->gotMozillaDate);
             } else if (email_exists($user->email)) {
                 // User registrated but not logged in
                 echo $getBadgeTemp->showTheLoginContent($user->email);
@@ -134,7 +134,7 @@ class GetBadgeAjax extends BaseController {
             $badge->retrieveBadge($_POST['idBadge']);
 
             $getBadgeTemp = GetBadgeTemp::getInstance();
-            echo $getBadgeTemp->showMozillaOpenBadges($badge->getGotMozillaDate());
+            echo $getBadgeTemp->showMozillaOpenBadges($badge->gotMozillaDate);
         }
         wp_die();
     }
@@ -150,7 +150,7 @@ class GetBadgeAjax extends BaseController {
             $badge = new Badge();
             $badge->retrieveBadge($_POST['idBadge']);
 
-            echo JsonManagement::getJsonUrl($badge->getJson());
+            echo JsonManagement::getJsonUrl($badge->json);
         }
         wp_die();
     }
@@ -167,7 +167,7 @@ class GetBadgeAjax extends BaseController {
             $badge->retrieveBadge($_POST['idBadge']);
             $mozilla = $_POST['isMozilla'] ? true : false;
 
-            $res = DbBadge::setBadgeGot(["id" => $badge->getId()], $mozilla);
+            $res = DbBadge::setBadgeGot(["id" => $badge->id], $mozilla);
 
             if ($res) {
                 $getBadgeTemp = GetBadgeTemp::getInstance();

@@ -3,7 +3,7 @@
 namespace templates;
 
 use Inc\Base\BaseController;
-use Inc\Base\WPUser;
+use Inc\Utils\WPUser;
 use Inc\Utils\DisplayFunction;
 use Inc\Utils\WPField;
 

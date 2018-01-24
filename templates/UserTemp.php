@@ -3,7 +3,7 @@
 namespace templates;
 
 use Inc\Base\Secondary;
-use Inc\Base\WPUser;
+use Inc\Utils\WPUser;
 use Inc\Database\DbBadge;
 use Inc\Database\DbUser;
 use Inc\Pages\Admin;
@@ -124,20 +124,20 @@ final class UserTemp {
                     foreach ($dbBadges as $dbBadge) {
                         $badge = new Badge();
                         $badge->retrieveBadge($dbBadge->id);
-                        $badgeWP = WPBadge::get($badge->getIdBadge());
-                        if (!$badge->getGotDate()) $toAccept = 1;
-                        if ($badge->getGotDate()) {
+                        $badgeWP = WPBadge::get($badge->idBadge);
+                        if (!$badge->gotDate) $toAccept = 1;
+                        if ($badge->gotDate) {
 
                             ?>
                             <div class="badge flex-item <?php echo !$isAdmin ? "badge-earned" : ""; ?>"
-                                 data-id="<?php echo "" . $badge->getId(); ?>">
+                                 data-id="<?php echo "" . $badge->id; ?>">
                                 <a class="wrap-link" <?php
                                 if ($isAdmin) {
-                                    echo "href='" . admin_url('admin.php?page=' . Admin::PAGE_SINGLE_BADGES, $protocol) . "&badge=" . $badge->getId() . "()&db=1'";
+                                    echo "href='" . admin_url('admin.php?page=' . Admin::PAGE_SINGLE_BADGES, $protocol) . "&badge=" . $badge->id . "()&db=1'";
                                 } ?>">
                                 <div class="cont-img-badge">
                                     <img class="circle-img"
-                                         src="<?php echo WPBadge::getUrlImage($badge->getIdBadge()); ?>">
+                                         src="<?php echo WPBadge::getUrlImage($badge->idBadge); ?>">
                                 </div>
                                 <div>
                                     <span><?php echo $badgeWP->post_title; ?></span>
@@ -162,18 +162,18 @@ final class UserTemp {
                     foreach ($dbBadges as $dbBadge) {
                         $badge = new Badge();
                         $badge->retrieveBadge($dbBadge->id);
-                        $badgeWP = WPBadge::get($badge->getIdBadge());
-                        if (!$badge->getGotDate()) {
+                        $badgeWP = WPBadge::get($badge->idBadge);
+                        if (!$badge->gotDate) {
                             ?>
                             <div class="badge flex-item <?php echo !$isAdmin ? "badge-earned" : ""; ?>"
-                                 name="<?php echo "" . $badge->getId(); ?>">
+                                 name="<?php echo "" . $badge->id; ?>">
                                 <a class="wrap-link" <?php
                                 if ($isAdmin) {
-                                    echo "href='" . admin_url('admin.php?page=' . Admin::PAGE_SINGLE_BADGES, $protocol) . "&badge=" . $badge->getId() . "&db=1'";
+                                    echo "href='" . admin_url('admin.php?page=' . Admin::PAGE_SINGLE_BADGES, $protocol) . "&badge=" . $badge->id . "&db=1'";
                                 } ?>">
                                 <div class="cont-img-badge">
                                     <img class="circle-img"
-                                         src="<?php echo WPBadge::getUrlImage($badge->getIdBadge()); ?>">
+                                         src="<?php echo WPBadge::getUrlImage($badge->idBadge); ?>">
                                 </div>
                                 <div>
                                     <span><?php echo $badgeWP->post_title; ?></span>

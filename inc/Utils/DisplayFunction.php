@@ -137,21 +137,21 @@ class DisplayFunction {
                             foreach ($table as $row) {
                                 $badge = new Badge();
                                 $badge->retrieveBadge($row->id);
-                                $student = DbUser::getById($badge->getIdUser());
+                                $student = DbUser::getById($badge->idUser);
 
                                 echo "<tr>";
                                 echo "<td><input id='bd-select-$row->id' type='checkbox' name='badge[]' value='$row->id'></td>";
                                 echo "<td>" . (get_user_by('id', $student->idWP) ? "<a href='" . get_edit_user_link(get_user_by('id', $student->idWP)->ID) . "'>" .  $student->email . "</a>" : "<span> $student->email</span>") . "</td>";
-                                echo "<td><a href='" . get_edit_post_link($badge->getIdBadge()) . "'>" . (get_post($badge->getIdBadge()) ? get_post($badge->getIdBadge())->post_title : "") . "</a></td>";
-                                echo "<td><a href='" . get_edit_term_link($badge->getIdField()) . "'>" . (get_term($badge->getIdField()) ? get_term($badge->getIdField())->name : "") . "</a></td>";
-                                echo "<td><a href='" . get_edit_term_link($badge->getIdLevel()) . "'>" . (get_term($badge->getIdLevel()) ? get_term($badge->getIdLevel())->name : "") . "</a></td>";
+                                echo "<td><a href='" . get_edit_post_link($badge->idBadge) . "'>" . (get_post($badge->idBadge) ? get_post($badge->idBadge)->post_title : "") . "</a></td>";
+                                echo "<td><a href='" . get_edit_term_link($badge->idField) . "'>" . (get_term($badge->idField) ? get_term($badge->idField)->name : "") . "</a></td>";
+                                echo "<td><a href='" . get_edit_term_link($badge->idLevel) . "'>" . (get_term($badge->idLevel) ? get_term($badge->idLevel)->name : "") . "</a></td>";
                                 if (Secondary::isJobManagerActive()) {
-                                    echo "<td><a href='" . get_edit_post_link($badge->getIdClass()) . "'>" . (get_post($badge->getIdClass()) ? get_post($badge->getIdClass())->post_title : "") . "</a></td>";
+                                    echo "<td><a href='" . get_edit_post_link($badge->idClass) . "'>" . (get_post($badge->idClass) ? get_post($badge->idClass)->post_title : "") . "</a></td>";
                                 }
-                                echo "<td><a href='" . get_edit_user_link($badge->getIdTeacher()) . "'>" . (get_user_by('id', $badge->getIdTeacher()) ? get_user_by('id', $badge->getIdTeacher())->userEmail : "") . "</a></td>";
-                                echo "<td>".$badge->getCreationDate()."</td>";
-                                echo "<td>".$badge->getGotDate()."</td>";
-                                echo "<td>".$badge->getGotMozillaDate()."</td>";
+                                echo "<td><a href='" . get_edit_user_link($badge->idTeacher) . "'>" . (get_user_by('id', $badge->idTeacher) ? get_user_by('id', $badge->idTeacher)->userEmail : "") . "</a></td>";
+                                echo "<td>".$badge->creationDate."</td>";
+                                echo "<td>".$badge->gotDate."</td>";
+                                echo "<td>".$badge->gotMozillaDate."</td>";
                             }
                         }
                         ?>

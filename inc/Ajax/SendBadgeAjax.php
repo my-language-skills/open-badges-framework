@@ -2,7 +2,7 @@
 
 namespace Inc\Ajax;
 
-use Inc\Base\WPUser;
+use Inc\Utils\WPUser;
 use Inc\Utils\DisplayFunction;
 use Inc\Utils\WPClass;
 use Inc\Utils\WPLevel;

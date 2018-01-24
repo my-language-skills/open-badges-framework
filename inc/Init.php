@@ -32,7 +32,7 @@ final class Init {
             Pages\Admin::class,
             Base\Enqueue::class,
             Base\SettingsLinks::class,
-            Base\WPUser::class,
+            Utils\WPUser::class,
             Base\Secondary::class,
             Utils\WPField::class,
             Api\AjaxApi::class,

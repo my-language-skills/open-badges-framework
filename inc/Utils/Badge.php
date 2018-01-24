@@ -9,7 +9,6 @@
 namespace Inc\Utils;
 
 
-use Inc\Base\WPUser;
 use Inc\Database\DbBadge;
 use Inc\Database\DbUser;
 use Templates\SettingsTemp;
@@ -19,164 +18,108 @@ class Badge {
     /**
      * Id of the badge.
      *
-     * @var null
+     * @var int
      */
-    private $id = null;
+    public $id = null;
     /**
      * Id of the user.
      *
-     * @var null
+     * @var int
      */
-    private $idUser = null;
+    public $idUser = null;
 
     /**
      * Id of the wordpress badge (custom-post-type).
      *
-     * @var null
+     * @var int
      */
-    private $idBadge = null;
+    public $idBadge = null;
 
     /**
      * Id of the wordpress field (taxonomy).
      *
-     * @var null
+     * @var int
      */
-    private $idField = null;
+    public $idField = null;
 
     /**
      * Id of the wordpress level (taxonomy).
      *
-     * @var null
+     * @var int
      */
-    private $idLevel = null;
+    public $idLevel = null;
 
     /**
      * Id of the job-listing plugin Class (custom-post-type).
      *
-     * @var null
+     * @var int
      */
-    private $idClass = null;
+    public $idClass = null;
 
     /**
      * Id of the teacher (WP-user).
      *
-     * @var null
+     * @var int
      */
-    private $idTeacher = null;
+    public $idTeacher = null;
 
     /**
      * Role of the teacher in the moment that send the badge.
      *
-     * @var null
+     * @var string
      */
-    private $teacherRole = null;
+    public $teacherRole = null;
 
     /**
      * Date of the creation of the badge.
      *
-     * @var null
+     * @var string
      */
-    private $creationDate = null;
+    public $creationDate = null;
 
     /**
      * Date of when the user get the badge.
      *
-     * @var null
+     * @var string
      */
-    private $gotDate = null;
+    public $gotDate = null;
 
     /**
      * Date of when the user get the Mozilla Open Badge.
      *
-     * @var null
+     * @var string
      */
-    private $gotMozillaDate = null;
+    public $gotMozillaDate = null;
 
     /**
      * Json name without extension.
      *
-     * @var null
+     * @var string
      */
-    private $json = null;
+    public $json = null;
 
     /**
      * Info that the teacher write when send the badge
      *
-     * @var null
+     * @var string
      */
-    private $info = null;
+    public $info = null;
 
     /**
      * Link relative to a page that certify the work that the
      * student did to earn the badge
      *
-     * @var null
+     * @var string
      */
-    private $evidence = null;
-
-
-    /**
-     * Set the id of the user.
-     *
-     * @param $id
-     */
-    public function setId($id) {
-        $this->id = $id;
-    }
+    public $evidence = null;
 
     /**
-     * Set the id of the user.
+     * Object of the user that received the badge
      *
-     * @param $id
+     * @object WP_User
      */
-    public function setIdUser($id) {
-        $this->idUser = $id;
-    }
+    public $userWP = null;
 
-    /**
-     * Set the id of the wp badge.
-     *
-     * @param $id
-     */
-    public function setIdBadge($id) {
-        $this->idBadge = $id;
-    }
-
-    /**
-     * Set the id of the wp field.
-     *
-     * @param $id
-     */
-    public function setIdField($id) {
-        $this->idField = $id;
-    }
-
-    /**
-     * Set the id of the wp level.
-     *
-     * @param $id
-     */
-    public function setIdLevel($id) {
-        $this->idLevel = $id;
-    }
-
-    /**
-     * Set the id of the wp jbl class.
-     *
-     * @param $id
-     */
-    public function setIdClass($id) {
-        $this->idClass = $id;
-    }
-
-    /**
-     * Set the id of the teacher (user).
-     *
-     * @param $id
-     */
-    public function setIdTeacher($id) {
-        $this->idTeacher = $id;
-    }
 
     /**
      * Set the role of the teacher (user).
@@ -204,218 +147,33 @@ class Badge {
         $this->teacherRole = $teacher->roles[0];
     }
 
-    /**
-     * Set the creation date.
-     *
-     * @param $date
-     */
-    public function setCreationDate($date) {
-        $this->creationDate = $date;
-    }
-
-    /**
-     * Set the got date.
-     *
-     * @param $date
-     */
-    public function setGotDate($date) {
-        $this->gotDate = $date;
-
-    }
-
-    /**
-     * Set the got Mozilla Open Badge date.
-     *
-     * @param $date
-     */
-    public function setGotMozillaDate($date) {
-        $this->gotMozillaDate = $date;
-
-    }
-
-    /**
-     * Set the name of the Json file (without extension).
-     *
-     * @param $json
-     */
-    public function setJson($json) {
-        $this->json = $json;
-
-    }
-
-    /**
-     * Set the info of the badge that the teacher wrote.
-     *
-     * @param $info
-     */
-    public function setInfo($info) {
-        $this->info = $info;
-
-    }
-
-    /**
-     * Get the evidence.
-     *
-     * @param $evidence
-     */
-    public function setEvidence($evidence) {
-        $this->evidence = $evidence;
-    }
-
-
-    /**
-     * Get the id of the user.
-     *
-     * @return null|int the id, otherwise null if not set.
-     */
-    public function getId() {
-        return $this->id;
-    }
-
-    /**
-     * Get the id of the user.
-     *
-     * @return null|int the id, otherwise null if not set.
-     */
-    public function getIdUser() {
-        return $this->idUser;
-    }
-
-    /**
-     * Get the id of the wp badge.
-     *
-     * @return null|int the id, otherwise null if not set.
-     */
-    public function getIdBadge() {
-        return $this->idBadge;
-    }
-
-    /**
-     * Get the id of the wp field.
-     *
-     * @return null|int the id, otherwise null if not set.
-     */
-    public function getIdField() {
-        return $this->idField;
-    }
-
-    /**
-     * Get the id of the wp level.
-     *
-     * @return null|int the id, otherwise null if not set.
-     */
-    public function getIdLevel() {
-        return $this->idLevel;
-    }
-
-    /**
-     * Get the id of the wp jbl class.
-     *
-     * @return null|int the id, otherwise null if not set.
-     */
-    public function getIdClass() {
-        return $this->idClass;
-    }
-
-    /**
-     * Get the id of the teacher (user).
-     *
-     * @return null|int the id, otherwise null if not set.
-     */
-    public function getIdTeacher() {
-        return $this->idTeacher;
-    }
-
-    /**
-     * Get the role of the teacher (user).
-     *
-     * @return null|string the role, otherwise null if not set.
-     */
-    public function getTeacherRole() {
-        return $this->teacherRole;
-    }
-
-    /**
-     * Get the creation date.
-     *
-     * @return null|string the date, otherwise null if not set.
-     */
-    public function getCreationDate() {
-        return $this->creationDate;
-    }
-
-    /**
-     * Get the got date.
-     *
-     * @return null|string the date, otherwise null if not set.
-     */
-    public function getGotDate() {
-        return $this->gotDate;
-
-    }
-
-    /**
-     * Get the got Mozilla Open Badge date.
-     *
-     * @return null|string the date, otherwise null if not set.
-     */
-    public function getGotMozillaDate() {
-        return $this->gotMozillaDate;
-
-    }
-
-    /**
-     * Get the name of the Json file (without extension).
-     *
-     * @return null|string the name, otherwise null if not set.
-     */
-    public function getJson() {
-        return $this->json;
-
-    }
-
-    /**
-     * Get the info of the badge that the teacher wrote.
-     *
-     * @return null|string the info, otherwise null if not set.
-     */
-    public function getInfo() {
-        return $this->info;
-
-    }
-
-    /**
-     * Get the evidence.
-     *
-     * @return null|string the link, otherwise null if not set.
-     */
-    public function getEvidence() {
-        return $this->evidence;
-    }
 
     /**
      * @return string
      */
     public function __toString() {
-        return "" . $this->getIdBadge() . $this->getIdLevel() . $this->getIdField();
+        return "" . $this->idBadge . $this->idLevel . $this->idField;
     }
 
     public function retrieveBadge($idDbBadge) {
-        if($badgeDb = DbBadge::getById($idDbBadge)) {
-            $this->setId($badgeDb->id);
-            $this->setIdUser($badgeDb->idUser);
-            $this->setIdBadge($badgeDb->idBadge);
-            $this->setIdField($badgeDb->idField);
-            $this->setIdLevel($badgeDb->idLevel);
-            $this->setIdClass($badgeDb->idClass);
-            $this->setIdTeacher($badgeDb->idTeacher);
+        if ($badgeDb = DbBadge::getById($idDbBadge)) {
+            $this->id = $badgeDb->id;
+            $this->idUser = $badgeDb->idUser;
+            $this->idBadge = $badgeDb->idBadge;
+            $this->idField = $badgeDb->idField;
+            $this->idLevel = $badgeDb->idLevel;
+            $this->idClass = $badgeDb->idClass;
+            $this->idTeacher = $badgeDb->idTeacher;
             $this->setTeacherRole($badgeDb->idTeacher);
-            $this->setCreationDate($badgeDb->creationDate);
-            $this->setGotDate($badgeDb->gotDate);
-            $this->setGotMozillaDate($badgeDb->gotMozillaDate);
-            $this->setJson($badgeDb->json);
-            $this->setInfo($badgeDb->info);
-            $this->setEvidence($badgeDb->evidence);
+            $this->creationDate = $badgeDb->creationDate;
+            $this->gotDate = $badgeDb->gotDate;
+            $this->gotMozillaDate = $badgeDb->gotMozillaDate;
+            $this->json = $badgeDb->json;
+            $this->info = $badgeDb->info;
+            $this->evidence = $badgeDb->evidence;
+
+            $user = DbUser::getById($this->idUser);
+            $this->userWP = $user->idWP ? get_user_by("id", $user->idWP) : null;
 
             return $this;
         } else {
@@ -437,16 +195,16 @@ class Badge {
         $isOk = false;
         $dataBadge = array(
             'idUser' => $idUser,
-            'idBadge' => $this->getIdBadge(),
-            'idField' => $this->getIdField(),
-            'idLevel' => $this->getIdLevel(),
-            'idClass' => $this->getIdClass(),
-            'idTeacher' => $this->getIdTeacher(),
-            'teacherRole' => $this->getTeacherRole(),
-            'creationDate' => $this->getCreationDate(),
+            'idBadge' => $this->idBadge,
+            'idField' => $this->idField,
+            'idLevel' => $this->idLevel,
+            'idClass' => $this->idClass,
+            'idTeacher' => $this->idTeacher,
+            'teacherRole' => $this->teacherRole,
+            'creationDate' => $this->creationDate,
             'json' => $jsonName,
-            'info' => $this->getInfo(),
-            'evidence' => $this->getEvidence()
+            'info' => $this->info,
+            'evidence' => $this->evidence
         );
 
         foreach ($dataBadge as $item) {

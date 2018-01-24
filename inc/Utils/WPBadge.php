@@ -3,7 +3,7 @@
 namespace Inc\Utils;
 
 use Inc\Base\BaseController;
-use Inc\Base\WPUser;
+use Inc\Utils\WPUser;
 use Inc\Pages\Admin;
 use Inc\Base\Metabox;
 use templates\SettingsTemp;

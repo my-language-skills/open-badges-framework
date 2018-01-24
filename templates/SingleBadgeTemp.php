@@ -115,13 +115,13 @@ final class SingleBadgeTemp {
     public static function showDatabaseBadge($idBadge) {
         $badge = new Badge();
         $badge->retrieveBadge($idBadge);
-        $badgeWP = get_post($badge->getIdBadge());
-        $student = DbUser::getById($badge->getIdUser());
+        $badgeWP = get_post($badge->idBadge);
+        $student = DbUser::getById($badge->idUser);
         $studentWP = get_user_by("email", $student->email);
-        $teacherWP = get_user_by('id', $badge->getIdTeacher());
-        $level = get_term($badge->getIdLevel());
-        $field = get_term($badge->getIdField());
-        $badgeLink = Badge::getLinkGetBadge($badge->getId());
+        $teacherWP = get_user_by('id', $badge->idTeacher);
+        $level = get_term($badge->idLevel);
+        $field = get_term($badge->idField);
+        $badgeLink = Badge::getLinkGetBadge($badge->id);
         ?>
 
         <div class="obf-bsp-badge-image">
@@ -141,30 +141,30 @@ final class SingleBadgeTemp {
                 <p>Name: <strong><?php echo $teacherWP->first_name; ?></strong></p>
                 <p>Last name: <strong><?php echo $teacherWP->last_name; ?></strong></p>
                 <p>Email: <strong><?php echo $teacherWP->user_email; ?></strong></p>
-                <p>Info: <strong><?php echo $badge->getInfo(); ?></strong></p>
-                <p>Evidence: <strong><?php echo $badge->getEvidence(); ?></strong></p>
+                <p>Info: <strong><?php echo $badge->info; ?></strong></p>
+                <p>Evidence: <strong><?php echo $badge->evidence; ?></strong></p>
             </section>
             <section>
                 <h3>General information</h3>
-                <p>Received: <strong><?php echo date("d M Y", strtotime($badge->getCreationDate())); ?></strong></p>
+                <p>Received: <strong><?php echo date("d M Y", strtotime($badge->creationDate)); ?></strong></p>
                 <p>Earned:
-                    <strong><?php echo $badge->getGotDate() ? date("d M Y", strtotime($badge->getGotDate())) : "on hold"; ?></strong>
+                    <strong><?php echo $badge->gotDate ? date("d M Y", strtotime($badge->gotDate)) : "on hold"; ?></strong>
                 </p>
                 <p>Earned in Mozilla Open Badge:
-                    <strong><?php echo  $badge->getGotMozillaDate() ? date("d M Y", strtotime($badge->getGotMozillaDate())) : "on hold"; ?></strong>
+                    <strong><?php echo  $badge->gotMozillaDate ? date("d M Y", strtotime($badge->gotMozillaDate)) : "on hold"; ?></strong>
                 </p>
             </section>
             <?php
 
             if($studentWP->ID === wp_get_current_user()->ID) {
 
-                if (!$badge->getGotDate() ) { ?>
+                if (!$badge->gotDate ) { ?>
 
                     <div class="obf-sbp-cont-btn">
                         <a class="btn btn-lg btn-primary" href="<?php echo $badgeLink; ?>">Get the badge</a>
                     </div>
                     <?php
-                } else if (!$badge->getGotMozillaDate()) { ?>
+                } else if (!$badge->gotMozillaDate) { ?>
                     <div class="obf-sbp-cont-btn">
                         <a class="btn btn-lg btn-secondary" href="<?php echo $badgeLink; ?>">Get Mozilla Open Badge</a>
                     </div>

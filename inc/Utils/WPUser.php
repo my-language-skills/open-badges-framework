@@ -1,6 +1,6 @@
 <?php
 
-namespace Inc\Base;
+namespace Inc\Utils;
 
 use Inc\Database\DbUser;
 use Inc\Pages\Admin;

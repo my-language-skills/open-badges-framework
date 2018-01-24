@@ -3,7 +3,7 @@
 namespace templates;
 
 use Inc\Base\BaseController;
-use Inc\Base\WPUser;
+use Inc\Utils\WPUser;
 use Inc\Pages\Admin;
 use Inc\Utils\Badge;
 use Inc\Utils\JsonManagement;
@@ -93,12 +93,12 @@ final class GetBadgeTemp extends BaseController {
         if (isset($_GET['v']) && !empty($_GET['v'])) {
             $this->badgeDB = new Badge();
             $this->badgeDB->retrieveBadge($_GET['v']);
-            if ($this->badgeDB->getCreationDate()) {
-                $this->badgeWP = WPBadge::get($this->badgeDB->getIdBadge());
-                $this->fieldWP = get_term($this->badgeDB->getIdField(), Admin::TAX_FIELDS);
-                $this->levelWP = get_term($this->badgeDB->getIdLevel(), Admin::TAX_LEVELS);
+            if ($this->badgeDB->creationDate) {
+                $this->badgeWP = WPBadge::get($this->badgeDB->idBadge);
+                $this->fieldWP = get_term($this->badgeDB->idField, Admin::TAX_FIELDS);
+                $this->levelWP = get_term($this->badgeDB->idLevel, Admin::TAX_LEVELS);
 
-                if (!$this->badgeDB->getGotMozillaDate()) {
+                if (!$this->badgeDB->gotMozillaDate) {
                     //Everything OK
                     return self::START;
                 } else {

@@ -3,10 +3,7 @@
 namespace Inc\Utils;
 
 use Inc\Base\BaseController;
-use Inc\Base\WPUser;
-use Inc\Database\DbBadge;
 use Inc\Database\DbModel;
-use Inc\Database\DbUser;
 use Inc\Pages\Admin;
 use templates\SettingsTemp;
 
@@ -57,16 +54,16 @@ class SendBadge extends BaseController {
         $this->evidence = $evidence;
 
         //$this->badge->setIdUser($idUser); --> we will set it after for each student
-        $this->badge->setIdBadge($this->wpBadge->ID);
-        $this->badge->setIdField($this->field->term_id);
-        $this->badge->setIdLevel($this->level->term_id);
-        $this->badge->setIdClass($classId);
-        $this->badge->setIdTeacher(WPUser::getCurrentUser()->ID);
-        $this->badge->setTeacherRole(WPUser::getCurrentUser()->ID);
-        $this->badge->setCreationDate(DbModel::now());
+        $this->badge->idBadge = $this->wpBadge->ID;
+        $this->badge->idField = $this->field->term_id;
+        $this->badge->idLevel = $this->level->term_id;
+        $this->badge->idClass = $classId;
+        $this->badge->idTeacher = WPUser::getCurrentUser()->ID;
+        $this->badge->teacherRole = WPUser::getCurrentUser()->ID;
+        $this->badge->creationDate = DbModel::now();
         //$this->badge->setJson($json); --> we will set it after
-        $this->badge->setInfo($info);
-        $this->badge->setEvidence($evidence ? $evidence : "none");
+        $this->badge->info = $info;
+        $this->badge->evidence = $evidence ? $evidence : "none";
 
         $this->jsonMg = new JsonManagement($this->badge);
 

@@ -62,7 +62,7 @@ class JsonManagement extends BaseController {
             "badge" => $urlJsonBadge,
             "verify" => array("url" => $urlJsonMain, "type" => "hosted"),
             "issuedOn" => date('Y-m-d'),
-            "evidence" => $this->badge->getEvidence()
+            "evidence" => $this->badge->evidence
         );
 
         if (file_put_contents($pathFile, json_encode($assertion, JSON_UNESCAPED_SLASHES))) {
@@ -86,9 +86,9 @@ class JsonManagement extends BaseController {
      */
     private function createJsonBadge($hashNameMain) {
         // wordpress var
-        $badge = WPBadge::get($this->badge->getIdBadge());
-        $field = get_term($this->badge->getIdField(), Admin::TAX_FIELDS);
-        $level = get_term($this->badge->getIdLevel(), Admin::TAX_LEVELS);
+        $badge = WPBadge::get($this->badge->idBadge);
+        $field = get_term($this->badge->idField, Admin::TAX_FIELDS);
+        $level = get_term($this->badge->idLevel, Admin::TAX_LEVELS);
 
         // function var
         $hashFile = "badge-" . $hashNameMain . ".json";
@@ -156,9 +156,9 @@ class JsonManagement extends BaseController {
      */
     private function createBadgeDescription() {
         // wordpress var
-        $badge = WPBadge::get($this->badge->getIdBadge());
-        $field = get_term($this->badge->getIdField(), Admin::TAX_FIELDS);
-        $level = get_term($this->badge->getIdLevel(), Admin::TAX_LEVELS);
+        $badge = WPBadge::get($this->badge->idBadge);
+        $field = get_term($this->badge->idField, Admin::TAX_FIELDS);
+        $level = get_term($this->badge->idLevel, Admin::TAX_LEVELS);
 
         // function var
         $enDash = html_entity_decode('&#x2013;', ENT_COMPAT, 'UTF-8'); //special character
@@ -166,8 +166,8 @@ class JsonManagement extends BaseController {
             "FIELD: " . $field->name . "  $enDash  " .
             "LEVEL: " . $level->name . "  $enDash  " .
             "DESCRIPTION: " . $badge->post_content . "  $enDash  " .
-            "TEACHER INFO: " . $this->badge->getInfo() . "  $enDash  " .
-            "EVIDENCE: " . $this->badge->getEvidence();
+            "TEACHER INFO: " . $this->badge->info . "  $enDash  " .
+            "EVIDENCE: " . $this->badge->evidence;
 
         return $description;
     }

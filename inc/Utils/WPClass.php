@@ -2,7 +2,7 @@
 
 namespace Inc\Utils;
 
-use Inc\Base\WPUser;
+use Inc\Utils\WPUser;
 use Inc\Pages\Admin;
 
 /**

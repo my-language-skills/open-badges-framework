@@ -5,7 +5,7 @@ namespace Inc\Pages;
 use Inc\Base\Metabox;
 use Inc\Base\BaseController;
 use Inc\Api\SettingApi;
-use Inc\Base\WPUser;
+use Inc\Utils\WPUser;
 use Templates\BadgesTemp;
 use Templates\DashboardTemp;
 use Templates\GetBadgeTemp;
