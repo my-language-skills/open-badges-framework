@@ -186,13 +186,19 @@ Open Badges Framework save all the badges information related to teachers and st
 id  userEmail
 1   student@student.com
 ```
+
+#### Users Database columns
+* **id**: The id of the row.
+* **userEmail**: The Earn user email.
+
 #### Badges Database
 
 ```
 id  userEmail            badgeId   fieldId   levelId   classId   teacherId    roleSlug         dateCreation          getDate               getMobDate    json                                                                 info                                  evidence
-1   student@student.com  140       1712      7                    1            administrator   2018-01-01 08:00:00   2017-12-18 09:00:00                 161499a421c21ea585cc025d04f0e3d439d6220451b22c820c62d4478fc6aaf0 	That is an example of information.    https://www.example.edu/student-list.php
+1   student@student.com  140       1712      7                   1            administrator    2018-01-01 08:00:00   2017-12-18 09:00:00                 161499a421c21ea585cc025d04f0e3d439d6220451b22c820c62d4478fc6aaf0 	That is an example of information.    https://www.example.edu/student-list.php
 ```
 ##### Badges Database columns
+* **id**: The id of the row.
 * **userEmail**: The Earn user email.
 * **badgeId**: The ID of the Badge the student receive.
 * **fieldId**: The ID of the Field of education of the Badge.
