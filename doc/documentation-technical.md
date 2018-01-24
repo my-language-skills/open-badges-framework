@@ -49,7 +49,9 @@ OpenBadgesFramework offer 3 types of roles with different cappabilities:
   * obf_send_certificate (allow to send certificate badges)
   * obf_send_teacher (allow to send teacher badges)
   * obf_job_listing_integration (allow to save badges in classes where a class is a post of WP Job Manager)
-  * obf_user (allow to see th )
+  * obf_user (allow to see in the backend the user information)
+
+  Also it use the default WP Addministrator Role for the settings of the plugin.
 
 Out of the box, a new user can be (after the login) one of those roles (upon the configuration of the site) and later the administrator can change the role to a more related one.
 
@@ -67,7 +69,7 @@ A select the role page is need it (can be free or paid upon the configuration).
 
 The OpenBadgesFramework Settings page allow in **Links** to select the page where the [Register Form](http://docs.restrictcontentpro.com/article/1597-registerform) is created.
 
-With a plugin of roles and cappabilities (like members), the capabilities can be asign to another role and to use the functionalities.
+With a plugin of roles and cappabilities (like [Members](https://es.wordpress.org/plugins/members/ "Members plugin website")), the capabilities can be asign to another role and to use the functionalities.
 ![members-cappabilities](../readme-assets/members-cappabilities.png "Student Role Custom Cappabilities")
 
 
@@ -122,15 +124,15 @@ OpenBadgesFramework allow to issue badges in 3 ways:
 Administrators have the same functionalities as Academy teacher role plus the issue of certified Teacher badges.
 
 Those are the options before to send a badge:
-* Field of education: the language the student learn.
-* Level: the level of the class.
-* Badge: the badge.
-* Description: by defaul badges are in english, but translations are available.
-* Class: the student class name with information such starting date and place (Just Academy teachers role).
-* Mail: the email of the student/s.
+* **Field of education**: the subject the student learn.
+* **Level**: the level of the class.
+* **Badge**: the badge name.
+* **Description**: the Reference Level Descriptors of the badge. By defaul badges are in english, but translations are available.
+* **Class**: the student class name with information such starting date and place (Just Academy teachers role). It requires [Job Manager](https://wpjobmanager.com/ "WP Job Manager plugin") plugin activated.
+* **Mail**: the email of the student/s.
 * Information:
-  * Addition information: Some information that will be showed in the description of badge.
-  * Criteria: Url of the work or of the document that the recipient did to earn the badge.
+  * **Addition information**: Some information that will be showed in the description of badge.
+  * **Criteria**: Url of the work or of the document that the recipient did to earn the badge.
 
 If the student have a badge and a teacher send the same badge again, no updates in the information of the database.
 
@@ -148,7 +150,9 @@ A student/Teacher/Academy teacher role can receive a badge as Student or Teacher
   * Criteria
 
 #### Issuer page Issue mode
-A Teacher/Academy teacher role can send a Student Badge (Non-Certified). An Academy teacher role can send a Student Badge (Certified)
+A Teacher/Academy teacher role can send a Student Badge (Non-Certified).
+
+An Academy teacher role can send a Student Badge (Certified)
 
 * Field of education
 * Level
