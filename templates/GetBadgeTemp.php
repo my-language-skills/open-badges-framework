@@ -316,12 +316,12 @@ final class GetBadgeTemp extends BaseController {
      * @author      Alessandro RICCARDI
      * @since       x.x.x
      *
-     * @param $gotPartial true if he got the badge but without certification from Mozilla Open Badge |
+     * @param $isGot true if he got the badge but without certification from Mozilla Open Badge |
      *                    False if he need to take also the partial.
      *
      * @return void
      */
-    public function showMozillaOpenBadges($gotPartial = false) { ?>
+    public function showMozillaOpenBadges($isGot = false) { ?>
 
         <div id="gb-wrap" class="cover-container">
 
@@ -361,15 +361,15 @@ final class GetBadgeTemp extends BaseController {
                         </div>
                     </div>
                     <?php
-                    if (!$gotPartial) {
+                    if ($isGot) {
                         ?>
+                        <a class="btn-link" href="<?php echo get_bloginfo('url'); ?>"
+                           role="button">or go to the home page</a>
+                        <?php
+                    } else { ?>
                         <button id="gb-get-standard" class="btn-link" type="submit">
                             or skip the process and get anyway the Badge
                         </button>
-                        <?php
-                    } else { ?>
-                        <a class="btn-link" href="<?php echo get_bloginfo('url'); ?>"
-                           role="button">or go to the home page</a>
                         <?php
                     }
                     ?>

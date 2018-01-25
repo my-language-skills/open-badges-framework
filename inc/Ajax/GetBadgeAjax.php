@@ -45,7 +45,7 @@ class GetBadgeAjax extends BaseController {
             if (WPUser::getCurrentUser()->user_email == $user->email) {
                 // User already logged in
                 $getBadgeTemp = GetBadgeTemp::getInstance();
-                $getBadgeTemp->showMozillaOpenBadges($badge->gotMozillaDate);
+                $getBadgeTemp->showMozillaOpenBadges($badge->gotDate ? true : false);
             } else if (email_exists($user->email)) {
                 // User registrated but not logged in
                 $getBadgeTemp->showTheLoginContent($user->email);
@@ -132,9 +132,8 @@ class GetBadgeAjax extends BaseController {
         if (isset($_POST['idBadge']) && !empty($_POST['idBadge'])) {
             $badge = new Badge();
             $badge->retrieveBadge($_POST['idBadge']);
-
             $getBadgeTemp = GetBadgeTemp::getInstance();
-            echo $getBadgeTemp->showMozillaOpenBadges($badge->gotMozillaDate);
+            $getBadgeTemp->showMozillaOpenBadges($badge->gotDate ? true : false);
         }
         wp_die();
     }
