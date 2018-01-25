@@ -164,6 +164,19 @@
     width: 30%;
 }
 
+.modal-content .close{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 4px 7px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.modal-content .close:hover{
+    color: #a4a4a4;
+}
+
 /* Style against Listify theme */
 .modal-content * {
     color: black;
