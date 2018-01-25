@@ -1,8 +1,8 @@
 # OpenBadgesFramework General Documentation
 
-Badges for Languages is a on-line certification issuer with OpenBadges technology. Badges for Languages issue non official certifications for all the languages that exist for the C.E.F.R for Languages levels, and certifications for the level of the teachers.
+Badges for Languages is a on-line certification issuer with [OpenBadges](https://support.mozilla.org/en-US/products/open-badges/introduction-open-badges "Intro to Open Badges") technology. Badges for Languages issue non official certifications for all the languages that exist for the C.E.F.R for Languages levels, and certifications for the level of the teachers.
 
-OpenBadgesFramework is created by Badges for languages for second languages education but out of the box works for any type of education by just creating different badges.
+OpenBadgesFramework is created by Badges for languages for second languages education but out of the box works for any type of education by just creating different badges (different Fields of education and Levels).
 
 ## About OpenBadgesFramework plugin
 The aim of OpenBadgesFramework is to accomplish:
