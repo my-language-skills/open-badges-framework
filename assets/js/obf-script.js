@@ -9,6 +9,13 @@ window.addEventListener("load", function () {
         tabs[i].addEventListener("click", switchTab);
     }
 
+    /**
+     * @description Switch tab function
+     *
+     * @param event of the tab
+     *
+     * @return void
+     */
     function switchTab(event) {
         event.preventDefault();
 
@@ -28,16 +35,20 @@ window.addEventListener("load", function () {
 
 jQuery(function ($) {
 
+    /* ### General functions ### */
 
-
-    /* General func */
     /**
      * @description Here's wrap the code that permit to simplify an
      *              ajax call.
      *
-     * @param {array} data, that will send with the ajax call
+     * @author Alessandro RICCARDI
+     * @since  x.x.x
+     *
+     * @param {array} data, that will send with the ajax call.
      * @param {function} func, that will be execute after the
-     *                         success of the ajax call
+     *                         success of the ajax call.
+     *
+     * @return void
      */
     function ajaxCall(data, func) {
         $.post(
@@ -66,10 +77,13 @@ jQuery(function ($) {
     var contForm = "#form-badges-list";
 
     /**
-     * @description Submit form for the badge list table,
+     * @description Submit event of the form for the badge list table that
      * permit to delete a list of badges.
      *
-     * @return
+     * @author Alessandro RICCARDI
+     * @since  x.x.x
+     *
+     * @return void
      */
     $(document).on("submit", formBadges, function (event) {
         event.preventDefault();
@@ -126,9 +140,12 @@ jQuery(function ($) {
     });
 
     /**
-     * @description Image uploader
+     * @description Click event for the Image uploader used in the settings page.
      *
-     * @return
+     * @author Alessandro RICCARDI
+     * @since  x.x.x
+     *
+     * @return void
      */
     $('body').on('click', '.upload-image-obf-settings', function (e) {
         e.preventDefault();
@@ -151,12 +168,16 @@ jQuery(function ($) {
             }).open();
     });
 
-    /*
-     * Remove image event
+    /**
+     * @description Click event for remove an image from the image uploader in the settings page.
+     *
+     * @author Alessandro RICCARDI
+     * @since  x.x.x
+     *
+     * @return void
      */
     $('body').on('click', '.remove-image-obf-settings', function () {
         $(this).hide().prev().val('').prev().addClass('button').html('Upload image');
-        return false;
     });
 
 
@@ -170,6 +191,14 @@ jQuery(function ($) {
     // Get the button that opens the modal
     var btn = document.getElementById("myBtn");
 
+    /**
+     * @description Click event for the earned badge.
+     *
+     * @author Alessandro RICCARDI
+     * @since  x.x.x
+     *
+     * @return void
+     */
     $(document).on('click', '.badge-earned', (function (e) {
         jQuery('#responseSent').html("<center style='padding: 100px'><img src='" + globalUrl.loader + "' width='50px' height='50px' /></center>");
 
@@ -177,7 +206,7 @@ jQuery(function ($) {
 
         var data = {
             'action': 'ajaxShowBadgeEarned',
-            'id': $(this).data( "id" )
+            'id': $(this).data("id")
         };
 
         var func = function (response) {
@@ -192,7 +221,6 @@ jQuery(function ($) {
         };
 
         ajaxCall(data, func);
-
     }));
 
 });

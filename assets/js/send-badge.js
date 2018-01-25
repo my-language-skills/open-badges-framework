@@ -20,6 +20,14 @@ window.onload = function () {
         }
     });
 
+    /**
+     * Get the html loader that show a gif image.
+     *
+     * @author Alessandro RICCARDI
+     * @since  x.x.x
+     *
+     * @return {string} the html code.
+     */
     function getLoaderHtml() {
         return "<center style='padding: 50px'><img src='" + globalUrl.loader + "' width='50px' height='50px' /></center>";
     }
@@ -257,9 +265,11 @@ window.onload = function () {
 
     /**
      * @description To load the FIELD OF EDUCATION (PARENT)
-     *
      *              When you click on the .display_parent_categories to see the other "Field of Education" category (parent),
      *              the function call the "action_languages_form" in the other file.
+     *
+     * @author Alessandro RICCARDI
+     * @since  x.x.x
      *
      * @param {event} e of the event about the click
      */
@@ -294,10 +304,13 @@ window.onload = function () {
     });
 
     /**
-     * @description To load the LEVEL
+     * @description To load the LEVEL.
      *
-     * @param {char} currentForm , contain the letter of the form
-     * @return {array} form the current form
+     * @author Alessandro RICCARDI
+     * @since  x.x.x
+     *
+     * @param {char} currentForm , contain the letter of the form.
+     * @return {array} form the current form.
      */
     function load_levels(currentForm, form) {
         var fieldId = jQuery("#form_" + currentForm + " #field :selected").val();
@@ -328,10 +341,13 @@ window.onload = function () {
     }
 
     /**
-     * @description To load the BADGE
+     * @description To load the BADGE.
      *
-     * @param {char} currentForm , contain the letter of the form
-     * @return {array} form the current form
+     * @author Alessandro RICCARDI
+     * @since  x.x.x
+     *
+     * @param {char} currentForm , contain the letter of the form.
+     * @return {array} form the current form.
      */
     function load_badges(currentForm, form) {
         var check = false;
@@ -373,10 +389,13 @@ window.onload = function () {
     }
 
     /**
-     * @description To load the DESCRIPTION
+     * @description To load the DESCRIPTION.
      *
-     * @param {char} currentForm , contain the letter of the form
-     * @return {array} form the current form
+     * @author Alessandro RICCARDI
+     * @since  x.x.x
+     *
+     * @param {char} currentForm , contain the letter of the form,
+     * @return {array} form the current form.
      */
     function load_description(currentForm, form) {
         var badgeId = "";
@@ -418,10 +437,13 @@ window.onload = function () {
     }
 
     /**
-     * @description To load the CLASS
+     * @description To load the CLASS.
      *
-     * @param {char} currentForm , contain the letter of the form
-     * @return {array} form the current form
+     * @author Alessandro RICCARDI
+     * @since  x.x.x
+     *
+     * @param {char} currentForm , contain the letter of the form.
+     * @return {array} form the current form.
      */
     function load_classes(currentForm, form) {
         var fieldId = jQuery("#form_" + currentForm + " #field :selected").val();
@@ -456,8 +478,11 @@ window.onload = function () {
     /**
      * @description Check if is selected the class.
      *
-     * @param {char} currentForm , contain the letter of the form
-     * @return {array} form the current form
+     * @author Alessandro RICCARDI
+     * @since  x.x.x
+     *
+     * @param {char} currentForm , contain the letter of the form.
+     * @return {array} form the current form.
      */
     function check_class(currentForm, form) {
         var check = false;
@@ -486,8 +511,11 @@ window.onload = function () {
     /**
      * @description Check if the the email/s contain only email and not garbage.
      *
-     * @param {char} currentForm , contain the letter of the form
-     * @return {array} form the current form
+     * @author Alessandro RICCARDI
+     * @since  x.x.x
+     *
+     * @param {char} currentForm , contain the letter of the form.
+     * @return {array} form the current form.
      */
     function check_mails(currentForm, form) {
         var res = false;
@@ -521,8 +549,11 @@ window.onload = function () {
      * @description Check if there are information with text more long
      *              than 10 letter and less than 1000.
      *
-     * @param {char} currentForm , contain the letter of the form
-     * @return {array} form the current form
+     * @author Alessandro RICCARDI
+     * @since  x.x.x
+     *
+     * @param {char} currentForm , contain the letter of the form.
+     * @return {array} form the current form.
      */
     function check_information(currentForm, form) {
         var info = jQuery("#comment_" + currentForm).val();
@@ -550,8 +581,11 @@ window.onload = function () {
      *              This function make an ajax call to permit to send the
      *              badge to the right person and also to store in the server.
      *
-     * @param {char} currentForm , contain the letter of the form
-     * @return {array} form the current form
+     * @author Alessandro RICCARDI
+     * @since  x.x.x
+     *
+     * @param {char} currentForm , contain the letter of the form.
+     * @return {array} form the current form.
      */
     function sendMessageBadge(currentForm) {
         if (!clickedSendBadge) {
@@ -648,7 +682,10 @@ window.onload = function () {
     /**
      * @description This function permit to check the current form and save into a variable.
      *
-     * @param {event} event of the event about the click
+     * @author Alessandro RICCARDI
+     * @since  x.x.x
+     *
+     * @param {event} event of the event about the click.
      */
     function checkForm(event) {
         if (jQuery(event).parents('#form_a').length == 1) {
@@ -665,11 +702,14 @@ window.onload = function () {
 
     /**
      * @description Disable the selection of the tab from the
-     *              new index until the current index
+     *              new index until the current index.
      *
-     * @param {array} form the current
-     * @param {int} newIndex, contain the letter of the form
-     * @param {int} currentIndex, contain the letter of the form
+     * @author Alessandro RICCARDI
+     * @since  x.x.x
+     *
+     * @param {array} form the current.
+     * @param {int} newIndex, contain the letter of the form.
+     * @param {int} currentIndex, contain the letter of the form.
      */
     function disableTab(form, newIndex, currentIndex) {
         var doneDiv = form.find(".done");
