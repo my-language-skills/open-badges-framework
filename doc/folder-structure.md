@@ -13,9 +13,9 @@ Plugins/OpenBadgesFramework/                    # → Plugin root
 │   │   │── logo.png                            # → Logo of the official plugin
 │   │   └── open-badges-mz-logo.png             # → Logo of the Mozilla Open Badge
 │   │── js/                                     # → Js folder
-│   │   │── obf-script.js                       # → General script
 │   │   │── get-badge.js                        # → Contain Get Badge page code
 │   │   │── jquery.steps.min.js                 # → Contain Send Badge steps code
+│   │   │── obf-script.js                       # → General script
 │   │   └── send-badge.js                       # → Contain Send Badge page code
 │   │── inc/                                    # → Plugin core folder
 │   │   │── Ajax/                               # → Ajax functions folder
@@ -53,6 +53,7 @@ Plugins/OpenBadgesFramework/                    # → Plugin root
 │   │   └── Init.php                            # → The first class that make start all the process
 ├── languages/                                  # → Translation folder
 ├── templates/                                  # → Template pages folder
+│   │── BadgesTemp.php                          # → Provide to shows all the badgea created
 │   │── DashboardTemp.php                       # → Provide an admin area view
 │   │── GetBadgeTemp.php                        # → Provide a get badge template
 │   │── SendBadgeTemp.php                       # → Provide a send badge template

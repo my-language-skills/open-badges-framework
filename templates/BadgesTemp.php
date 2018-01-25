@@ -6,7 +6,7 @@ use Inc\Pages\Admin;
 use Inc\Utils\WPBadge;
 
 /**
- * Template class that shows all the badge created with
+ * Template class that shows all the badges created with
  * that plugin.
  *
  * @author      Alessandro RICCARDI

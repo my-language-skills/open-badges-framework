@@ -308,7 +308,7 @@ jQuery(function (event) {
 
     /**
      * @description Click event of skip get Mozilla Open Badge.
-     * 
+     *
      * @author Alessandro RICCARDI
      * @since  x.x.x
      *
