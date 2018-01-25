@@ -157,11 +157,11 @@ class Admin extends BaseController {
                 'menu_slug' => self::PAGE_USER,
                 'callback' => array($userTemp, 'main')
             ),
-            // ## Badges ##
+            // ## All Badges ##
             array(
                 'parent_slug' => self::SLUG_PLUGIN,
-                'page_title' => 'Badges',
-                'menu_title' => 'Badges',
+                'page_title' => 'All Badges',
+                'menu_title' => 'All Badges',
                 'capability' => 'read',
                 'menu_slug' => self::PAGE_BADGES,
                 'callback' => array($badgesTemp, 'main')

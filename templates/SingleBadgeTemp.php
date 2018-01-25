@@ -90,6 +90,8 @@ final class SingleBadgeTemp {
      * @since       x.x.x
      *
      * @param $id
+     *
+     * @return void
      */
     public function showPostBadge($id) {
 
@@ -111,6 +113,8 @@ final class SingleBadgeTemp {
      * @since       x.x.x
      *
      * @param $idBadge
+     *
+     * @return void
      */
     public static function showDatabaseBadge($idBadge) {
         $badge = new Badge();
@@ -183,6 +187,8 @@ final class SingleBadgeTemp {
      * @since       x.x.x
      *
      * @param $error
+     *
+     * @return void
      */
     public function showErrorLink($error) {
 

@@ -6,7 +6,8 @@ use Inc\Pages\Admin;
 use Inc\Utils\WPBadge;
 
 /**
- *
+ * Template class that shows all the badge created with
+ * that plugin.
  *
  * @author      Alessandro RICCARDI
  * @since       x.x.x
@@ -15,6 +16,10 @@ use Inc\Utils\WPBadge;
  */
 class BadgesTemp {
 
+    /**
+     * Show all the badge that exist, with the opportunity
+     * to click on them and see the information.
+     */
     public function main() {
         $protocol = stripos($_SERVER['SERVER_PROTOCOL'], 'https') === true ? 'https' : 'http';
         $badges = WPBadge::getAll();
@@ -28,8 +33,6 @@ class BadgesTemp {
             </div>
             <div class="user-badges flex-container">
                 <?php
-
-
                 foreach ($badges as $badge) { ?>
                     <div class="badge flex-item">
                         <a class="wrap-link"

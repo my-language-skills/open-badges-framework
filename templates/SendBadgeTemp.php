@@ -314,6 +314,8 @@ final class SendBadgeTemp extends BaseController {
      *
      * @author Alessandro RICCARDI
      * @since  x.x.x
+     *
+     * @return void
      */
     private static function displayFieldsButtons() {
         $fields = new WPField();

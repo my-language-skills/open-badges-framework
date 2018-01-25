@@ -27,6 +27,8 @@ final class DashboardTemp extends BaseController {
      *
      * @author      Alessandro RICCARDI
      * @since       x.x.x
+     *
+     * @return void
      */
     public static function main() {
         ?>
@@ -60,6 +62,8 @@ final class DashboardTemp extends BaseController {
      *
      * @author      Alessandro RICCARDI
      * @since       x.x.x
+     *
+     * @return void
      */
     public static function actionTab() {
         ?>
@@ -155,6 +159,8 @@ final class DashboardTemp extends BaseController {
      *
      * @author      Alessandro RICCARDI
      * @since       x.x.x
+     *
+     * @return void
      */
     public static function badgesTab() {
 
@@ -168,7 +174,7 @@ final class DashboardTemp extends BaseController {
 
                 </div>
                 <div id="form-badges-list" class="content-dash badges-list-dash">
-                    <?php DisplayFunction::badgesTable();?>
+                    <?php DisplayFunction::badgesTable(); ?>
                 </div>
             </div>
         </div>
@@ -180,6 +186,8 @@ final class DashboardTemp extends BaseController {
      *
      * @author      Alessandro RICCARDI
      * @since       x.x.x
+     *
+     * @return void
      */
     public static function aboutTab() {
         ?>

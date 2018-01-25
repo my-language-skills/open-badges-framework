@@ -52,6 +52,8 @@ final class GetBadgeTemp extends BaseController {
      *
      * @author      Alessandro RICCARDI
      * @since       x.x.x
+     *
+     * @return void
      */
     public function main() {
         $res = $this->loadParm();
@@ -126,6 +128,8 @@ final class GetBadgeTemp extends BaseController {
      *
      * @author      Alessandro RICCARDI
      * @since       x.x.x
+     *
+     * @return void
      */
     public function getStartingStep() {
         $this->obf_header();
@@ -180,6 +184,8 @@ final class GetBadgeTemp extends BaseController {
      * @since       x.x.x
      *
      * @param string $email that the user need to use for the login
+     *
+     * @return void
      */
     public function showTheLoginContent($email) { ?>
 
@@ -230,6 +236,8 @@ final class GetBadgeTemp extends BaseController {
      * @since       x.x.x
      *
      * @param string $email that the user need to use for the registration
+     *
+     * @return void
      */
     public function showRegisterPage($email) { ?>
 
@@ -310,6 +318,8 @@ final class GetBadgeTemp extends BaseController {
      *
      * @param $gotPartial true if he got the badge but without certification from Mozilla Open Badge |
      *                    False if he need to take also the partial.
+     *
+     * @return void
      */
     public function showMozillaOpenBadges($gotPartial = false) { ?>
 
@@ -384,6 +394,8 @@ final class GetBadgeTemp extends BaseController {
      *
      * @author      Alessandro RICCARDI
      * @since       x.x.x
+     *
+     * @return void
      */
     public function showConclusionsStep() {
         ?>
@@ -427,6 +439,8 @@ final class GetBadgeTemp extends BaseController {
      *
      * @author      Alessandro RICCARDI
      * @since       x.x.x
+     *
+     * @return void
      */
     private function showBadgeGot() {
         $this->obf_header()
@@ -481,7 +495,9 @@ final class GetBadgeTemp extends BaseController {
      * @author      Alessandro RICCARDI
      * @since       x.x.x
      *
-     * @param const $error contain the kind of error
+     * @param string $error constant that contain the kind of error
+     *
+     * @return void
      */
     private function showMessage($error) {
         $this->obf_header()
@@ -543,6 +559,8 @@ final class GetBadgeTemp extends BaseController {
      *
      * @author      Alessandro RICCARDI
      * @since       x.x.x
+     *
+     * @return void
      */
     private function obf_header() {
         ?>
@@ -569,6 +587,8 @@ final class GetBadgeTemp extends BaseController {
      *
      * @author      Alessandro RICCARDI
      * @since       x.x.x
+     *
+     * @return void
      */
     private function obf_footer() { ?>
         </div>
@@ -586,6 +606,8 @@ final class GetBadgeTemp extends BaseController {
      *
      * @author      Alessandro RICCARDI
      * @since       x.x.x
+     *
+     * @return void
      */
     function getInfoHeader() {
         ?>

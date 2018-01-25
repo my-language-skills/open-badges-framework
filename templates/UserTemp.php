@@ -22,7 +22,7 @@ use Inc\Utils\WPBadge;
 final class UserTemp {
 
     /**
-     *  Make start the process but only for the back-end.
+     *  Make start the process only for the back-end.
      */
     public function main() {
         $user = WPUser::getCurrentUser();
@@ -35,10 +35,15 @@ final class UserTemp {
     }
 
     /**
-     *  Show all the information and the badges about the user.
+     * Show all the information about the user.
      *
-     * @param int  $idUser  id of the user that we want to show
-     * @param bool $isAdmin understand if we are in the admin areao or in the front-end
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
+     *
+     * @param int  $idUser  id of the user that we want to show.
+     * @param bool $isAdmin understand if we are in the admin area or in the front-end.
+     *
+     * @return void
      */
     public static function getUserPage($idUser, $isAdmin = true) {
         $userData = get_userdata($idUser);
@@ -105,8 +110,15 @@ final class UserTemp {
     }
 
     /**
+     * Show all the information about the user badges.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
+     *
      * @param int  $idUser
      * @param bool $isAdmin
+     *
+     * @return void
      */
     public static function showBadgeEarned($idUser, $isAdmin = true) {
         $userDb = DbUser::getSingle(["idWP" => $idUser]);
