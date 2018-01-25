@@ -103,13 +103,13 @@ class SendBadge extends BaseController {
                                 if (!$retEmail) return self::ER_SEND_EMAIL;
 
                             } else {
-                                echo "Error for $email";
+                                echo "Error send email for $email \n";
                             }
                         } else {
-                            echo "Error for $email";
+                            echo "Error save badge in db for $email \n";
                         }
                     } else {
-                        echo "Error for $email";
+                        echo "Error insert user in db for $email \n";
                     }
                 } else {
                     return self::ER_JSON_FILE;

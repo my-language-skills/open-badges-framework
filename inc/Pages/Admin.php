@@ -135,7 +135,7 @@ class Admin extends BaseController {
                 'parent_slug' => self::SLUG_PLUGIN,
                 'page_title' => 'Send Badges',
                 'menu_title' => 'Send Badges',
-                'capability' => 'manage_options',
+                'capability' => 'read',
                 'menu_slug' => self::PAGE_SEND_BADGE,
                 'callback' => array($sendbadgeTemp, 'main')
             ),
@@ -153,7 +153,7 @@ class Admin extends BaseController {
                 'parent_slug' => self::SLUG_PLUGIN,
                 'page_title' => 'User',
                 'menu_title' => 'User',
-                'capability' => WPUser::CAP_ALLOW_BE_USER,
+                'capability' => 'read',
                 'menu_slug' => self::PAGE_USER,
                 'callback' => array($userTemp, 'main')
             ),
@@ -162,7 +162,7 @@ class Admin extends BaseController {
                 'parent_slug' => self::SLUG_PLUGIN,
                 'page_title' => 'Badges',
                 'menu_title' => 'Badges',
-                'capability' => WPUser::CAP_ALLOW_BE_USER,
+                'capability' => 'read',
                 'menu_slug' => self::PAGE_BADGES,
                 'callback' => array($badgesTemp, 'main')
             ),
@@ -171,7 +171,7 @@ class Admin extends BaseController {
                 'parent_slug' => self::SLUG_PLUGIN,
                 'page_title' => 'Badge',
                 'menu_title' => null,
-                'capability' => WPUser::CAP_ALLOW_BE_USER,
+                'capability' => 'read',
                 'menu_slug' => self::PAGE_SINGLE_BADGES,
                 'callback' => array($singleBadgesTemp, 'main')
             ),

@@ -140,16 +140,18 @@ class WPBadge {
             return false;
         }
 
-        // Capability Teacher and Certification
+        // if the user have TEACHER cap. and the badge is for teacher or student
         if (current_user_can(WPUser::CAP_TEACHER)
             && ($badgeType == Metabox::META_FIELD_TEACHER || $badgeType == Metabox::META_FIELD_STUDENT)) {
 
+            // if the user have certification cap. and the badge is certify or not
             if (current_user_can(WPUser::CAP_CERT)
                 && ($badgeCert == Metabox::META_FIELD_CERT || $badgeCert == Metabox::META_FIELD_NOT_CERT)) {
 
                 if ($retLevel) array_push($retContainer, $level);
                 else array_push($retContainer, $badge);
 
+                // if the user don't have certification cap.
             } else if (!current_user_can(WPUser::CAP_CERT) && $badgeCert == Metabox::META_FIELD_NOT_CERT) {
 
                 if ($retLevel) array_push($retContainer, $level);
@@ -157,15 +159,17 @@ class WPBadge {
 
             }
             return true;
-            // Capability Teacher and Certification
+            // if the user doesn't have teacher cap. and the badge is for only student
         } else if (!current_user_can(WPUser::CAP_TEACHER) && $badgeType == Metabox::META_FIELD_STUDENT) {
 
+            // if the user have certification cap. and the badge is certify or not
             if (current_user_can(WPUser::CAP_CERT)
                 && ($badgeCert == Metabox::META_FIELD_CERT || $badgeCert == Metabox::META_FIELD_NOT_CERT)) {
 
                 if ($retLevel) array_push($retContainer, $level);
                 else array_push($retContainer, $badge);
 
+                // if the user don't have certification cap.
             } else if (!current_user_can(WPUser::CAP_CERT) && $badgeCert == Metabox::META_FIELD_NOT_CERT) {
 
                 if ($retLevel) array_push($retContainer, $level);

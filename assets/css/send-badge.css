@@ -95,6 +95,7 @@ div.tab button.active {
     display: block;
     width: 100%;
     overflow: hidden;
+    line-height: 1.3;
 }
 
 .wizard a,
@@ -212,6 +213,7 @@ div.tab button.active {
 .wizard > .content {
     display: block;
     min-height: 35em;
+    height: 100%;
     margin-top: auto;
     position: relative;
     width: auto;
@@ -219,11 +221,9 @@ div.tab button.active {
 
 .wizard > .content > .body {
     float: left;
-    position: absolute;
     width: 99%;
-    height: 100%;
+    min-height: 100%;
     background-color: whitesmoke;
-    border: 2px solid #bdbdbd;
     border-radius: 10px;
 }
 
@@ -316,26 +316,36 @@ div.tab button.active {
     SEND badge SECTION
    =========================== */
 
+.form-send-badge section{
+    position: relative;
+}
+
 section.current {
 
 }
 
-.section-container {
+.sb-cont {
     text-align: center;
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 70px;
+    margin-bottom: 20px;
 }
 
 .title-form {
-    display: inline-block;
-    margin: 30px auto 30px auto;
-    border: 2px solid #e2e2e2;
-    padding: 10px 40px 10px 40px;
-    border-radius: 10px;
+    position: absolute;
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    background: #909090;
+    border-radius: 8px 8px 0 0;
 }
 
 .title-form h2 {
     font-size: 25px;
     font-weight: 300;
-    color: #474747;
+    color: #f0f0f0;
     display: inline;
 }
 
@@ -363,9 +373,19 @@ section.current {
 /* ### SELECT LANGUAGE ###*/
 
 .btn-change-children {
+    display: inline-block;
+    font-weight: 400;
     margin-left: 20px;
+    margin-bottom: 10px;
     text-decoration: none;
-
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 5px 10px !important;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    text-decoration: none;
+    color: black;
+    background-color: white;
 }
 
 .btn-change-children:first-child {
@@ -373,9 +393,8 @@ section.current {
 }
 
 .btn-change-children.active {
-    color: black;
     background-color: #f2f2f2;
-    border-color: #9d9d9d;
+    border: 1px solid lightgrey;
     pointer-events: none;
     cursor: default;
 }

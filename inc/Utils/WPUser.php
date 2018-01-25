@@ -24,7 +24,6 @@ class WPUser {
     const CAP_CERT = "obf_send_certificate";
     const CAP_TEACHER = "obf_send_teacher";
     const CAP_JOB_LISTING = "obf_job_listing_integration";
-    const CAP_ALLOW_BE_USER = "obf_user";
 
     // That capability are created with the propose to allow the academy
     // role to manage the backend of our plugin, but right now we only
@@ -57,8 +56,6 @@ class WPUser {
                 self::CAP_CERT => false,
                 self::CAP_TEACHER => false,
                 self::CAP_JOB_LISTING => false,
-                self::CAP_ALLOW_BE_USER => true,
-
 
                 /* self::CAP_EDIT_BADGE => false,
                  self::CAP_EDIT_BADGES => false,
@@ -356,23 +353,20 @@ class WPUser {
 
 
         if(!$userDB) {
-            # if doesn't exist in the database
-            if ($user = get_user_by("email", $email)) {
-                # if already exist in the wordpress db
-                $dataUser["idWP"] = $user->ID;
-            }
-            return DbUser::insert($dataUser);
-        } else {
-            # if already exist in the database
-            $where = $dataUser;
-            if ($user = get_user_by("email", $email)) {
-                # if already exist in the wordpress db
-                $dataUser["idWP"] = $user->ID;
-                return DbUser::update($dataUser, $where);
-            } else {
-                return false;
-            }
+            DbUser::insert($dataUser);
+            $userDB = DbUser::getSingle($dataUser);
         }
+
+        # if doesn't exist in the database
+        if (!$userDB->idWP && $user = get_user_by("email", $email)) {
+            # if already exist in the wordpress db
+            $where["id"] = $userDB->id;
+            $data["idWP"] = $user->ID;
+            return DbUser::update($dataUser, $where);
+        } else {
+            return true;
+        }
+
 
     }
 

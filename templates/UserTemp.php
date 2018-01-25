@@ -148,7 +148,8 @@ final class UserTemp {
                         }
                     }
                 } else {
-                    echo "<p class='lead'>No badge earned</p>";
+
+                    echo "<p class='lead'><br/>&nbsp;&nbsp;&nbsp;&nbsp;No badge earned</p>";
                 }
                 ?>
             </div>

@@ -528,9 +528,14 @@ window.onload = function () {
         var info = jQuery("#comment_" + currentForm).val();
         var evidence = jQuery("#evidence_" + currentForm).val();
 
-        var patLink = /(http|https):\/\/(\w+:{0,1}\w*)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
+        var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+            '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|'+ // domain name
+            '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+            '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+            '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+            '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
 
-        if ((info.length > 10 && info.length < 1000) && (!evidence || patLink.test(evidence))) {
+        if ((info.length > 10 && info.length < 1000) && (!evidence || pattern.test(evidence))) {
             // Everything good
             form.validate().settings.ignore = ":disabled,:hidden";
             return form.valid();
@@ -617,14 +622,14 @@ window.onload = function () {
                         // When the user clicks on <span> (x), close the modal
                         if (span) span.onclick = function () {
                             modal.style.display = "none";
-                            location.reload();
+                            //location.reload();
                         }
 
                         // When the user clicks anywhere outside of the modal, close it
                         window.onclick = function (event) {
                             if (event.target == modal) {
                                 modal.style.display = "none";
-                                location.reload();
+                                //location.reload();
                             }
                         }
                     }
@@ -637,6 +642,7 @@ window.onload = function () {
                     }
                 );
         }
+        clickedSendBadge = false;
     }
 
     /**
