@@ -48,7 +48,7 @@ class DbUser extends DbModel {
      * @author      Alessandro RICCARDI
      * @since       x.x.x
      *
-     * @param array $data list of ids
+     * @param int $id the OBF user id
      *
      * @return bool|Object of the user or false if not exist.
      */

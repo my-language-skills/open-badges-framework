@@ -220,7 +220,7 @@ class WPUser {
      * @author Alessandro RICCARDI
      * @since  x.x.x
      *
-     * @return the user
+     * @return object the user.
      */
     public static function getCurrentUser() {
         global $current_user;
@@ -235,10 +235,10 @@ class WPUser {
      * @author Alessandro RICCARDI
      * @since  0.6.4
      *
-     * @param infinity      roles that you can pass after the first parameter like this:
-     *                      check_the_rules("academy", "teacher")
+     * @param string  roles that you can pass after the first parameter like this:
+     *                check_the_rules("academy", "teacher")
      *
-     * @return bool         true if have the privilege, false otherwise
+     * @return bool   true if have the privilege, false otherwise
      */
     public static function checkTheRules() {
         $user = self::getCurrentUser();
@@ -261,11 +261,11 @@ class WPUser {
      *                    Array with the information about the new user.
      *
      * @type string        userEmail        Email.
-     * @type string        user_name        Username.
-     * @type string        user_pass        Password.
-     * @type string        user_rep_pass    Repeated Password.
-     * @type string        first_name       First Name.
-     * @type string        last_name        Last Name.
+     * @type string        userName        Username.
+     * @type string        userPass        Password.
+     * @type string        userRepPass    Repeated Password.
+     * @type string        firstName       First Name.
+     * @type string        lastName        Last Name.
      * }
      *
      * @return int      RET_SUCCESS (0) in case of success
@@ -352,7 +352,7 @@ class WPUser {
         $userDB = DbUser::getSingle($dataUser);
 
 
-        if(!$userDB) {
+        if (!$userDB) {
             DbUser::insert($dataUser);
             $userDB = DbUser::getSingle($dataUser);
         }

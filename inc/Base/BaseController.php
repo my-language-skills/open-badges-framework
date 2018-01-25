@@ -30,7 +30,7 @@ class BaseController {
     }
 
     /**
-     * Get the path of the plugin.
+     * Get the PATH of the plugin.
      *
      * @author      Alessandro RICCARDI
      * @since       x.x.x
@@ -42,7 +42,7 @@ class BaseController {
     }
 
     /**
-     * Get the url of the plugin.
+     * Get the URL of the plugin.
      *
      * @author      Alessandro RICCARDI
      * @since       x.x.x
@@ -54,7 +54,7 @@ class BaseController {
     }
 
     /**
-     * Retrieve the path of the folder that we will
+     * Retrieve the PATH of the folder that we will
      * save the json file, if is not existing we will
      * create it.
      * path = ... /wp-content/uploads/open-badges-framework/json/

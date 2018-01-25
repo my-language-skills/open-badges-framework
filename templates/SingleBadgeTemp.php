@@ -109,8 +109,9 @@ final class SingleBadgeTemp {
             <section>
                 <h3>Badge information</h3>
                 <p>Name: <strong><?php echo $badge->post_title; ?></strong></p>
-                <p>Level: <strong><?php foreach ($levels as $level) echo $level->name . " " ; ?></strong></p>
-                <p>Field of education: <strong><?php foreach ($fields as $field) echo $field->name; echo !$fields ? "All" : ""; ?></strong></p>
+                <p>Level: <strong><?php foreach ($levels as $level) echo $level->name . " "; ?></strong></p>
+                <p>Field of education: <strong><?php foreach ($fields as $field) echo $field->name;
+                        echo !$fields ? "All" : ""; ?></strong></p>
                 <p>Description: <strong><?php echo $badge->post_content; ?></strong></p>
                 <?php if (current_user_can("manage_options")) { ?>
                     <a href="<?php echo get_edit_post_link($badge->ID) ?>">Edit post</a>
@@ -160,7 +161,16 @@ final class SingleBadgeTemp {
                 <p>Last name: <strong><?php echo $teacherWP->last_name; ?></strong></p>
                 <p>Email: <strong><?php echo $teacherWP->user_email; ?></strong></p>
                 <p>Info: <strong><?php echo $badge->info; ?></strong></p>
-                <p>Evidence: <strong><?php echo $badge->evidence; ?></strong></p>
+                <p>
+                    Evidence:
+                    <strong>
+                        <?php if ($badge->evidence != "none") { ?>
+                            <a href="<?php echo $badge->evidence; ?>"><?php echo $badge->evidence; ?></a>
+                        <?php } else {
+                            echo $badge->evidence;
+                        } ?>
+                    </strong>
+                </p>
             </section>
             <section>
                 <h3>General information</h3>

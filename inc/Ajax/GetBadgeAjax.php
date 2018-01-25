@@ -45,13 +45,13 @@ class GetBadgeAjax extends BaseController {
             if (WPUser::getCurrentUser()->user_email == $user->email) {
                 // User already logged in
                 $getBadgeTemp = GetBadgeTemp::getInstance();
-                echo $getBadgeTemp->showMozillaOpenBadges($badge->gotMozillaDate);
+                $getBadgeTemp->showMozillaOpenBadges($badge->gotMozillaDate);
             } else if (email_exists($user->email)) {
                 // User registrated but not logged in
-                echo $getBadgeTemp->showTheLoginContent($user->email);
+                $getBadgeTemp->showTheLoginContent($user->email);
             } else {
                 // User is not registered
-                echo $getBadgeTemp->showRegisterPage($user->email);
+                $getBadgeTemp->showRegisterPage($user->email);
             }
         }
         wp_die();

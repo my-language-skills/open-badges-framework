@@ -63,7 +63,7 @@ class DbBadge extends DbModel {
      * @author      Alessandro RICCARDI
      * @since       x.x.x
      *
-     * @param array $id id of the row
+     * @param int $id id of the row
      *
      * @return bool|Object of the badge or null if not exist.
      */
@@ -251,9 +251,9 @@ class DbBadge extends DbModel {
      * @author      Alessandro RICCARDI
      * @since       x.x.x
      *
-     * @param array $where information about the badge that we want to update.
-     * @param bool  $mob   true if I want to set the badge for MOB and for the current site as "taken";
-     *                     false if we want to set as "taken" only for the current website.
+     * @param array $where   information about the badge that we want to update.
+     * @param bool  $mozilla true if I want to set the badge for MOB and for the current site as "taken";
+     *                       false if we want to set as "taken" only for the current website.
      *
      * @return bool|string true if everything is ok, @const ER_DONT_EXIST if the row doesn't exist,
      * @const       ER_ERROR if there's other kind of error.

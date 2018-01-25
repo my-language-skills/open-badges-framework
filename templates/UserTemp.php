@@ -163,7 +163,7 @@ final class UserTemp {
             </div>
             <?php
             if ($toAccept) { ?>
-                <div class="obf-badges-to-accept user-badges">
+                <div class="obf-badges-to-accept user-badges flex-container">
                     <div class="title-badges-cont">
                         <h4>To be accepted</h4>
                     </div>
@@ -175,7 +175,7 @@ final class UserTemp {
                         if (!$badge->gotDate) {
                             ?>
                             <div class="badge flex-item <?php echo !$isAdmin ? "badge-earned" : ""; ?>"
-                                 name="<?php echo "" . $badge->id; ?>">
+                                 data-id="<?php echo "" . $badge->id; ?>">
                                 <a class="wrap-link" <?php
                                 if ($isAdmin) {
                                     echo "href='" . admin_url('admin.php?page=' . Admin::PAGE_SINGLE_BADGES, $protocol) . "&badge=" . $badge->id . "&db=1'";

@@ -202,7 +202,7 @@ class JsonManagement extends BaseController {
     }
 
     /**
-     * Get the url of a json file.
+     * Get the URL of a json file.
      *
      * @author   Alessandro RICCARDI
      * @since    x.x.x
@@ -219,7 +219,7 @@ class JsonManagement extends BaseController {
     }
 
     /**
-     * Get the url of a json file.
+     * Get the PATH of a json file.
      *
      * @author   Alessandro RICCARDI
      * @since    x.x.x

@@ -176,7 +176,7 @@ jQuery(function ($) {
         modal.style.display = "block";
 
         var data = {
-            'action': 'ajaxShowBadge',
+            'action': 'ajaxShowBadgeEarned',
             'id': $(this).data( "id" )
         };
 

@@ -23,12 +23,12 @@ use Inc\Database\DbBadge;
 class Statistics {
 
     /**
-     * This function permit to retrieve the number of c.p.t.
+     * Retrieve the number of the custom post type.
      *
      * @author Alessandro RICCARDI
      * @since  x.x.x
      *
-     * @param const $slug name of the c.p.t.
+     * @param string $slug of the custom post type.
      *
      * @return the number of post
      */
@@ -48,15 +48,15 @@ class Statistics {
      * @author Alessandro RICCARDI
      * @since  x.x.x
      *
-     * @param const $slug name of the  taxonomy
+     * @param string $slug of the taxonomy.
      *
-     * @return the number of term.
+     * @return int the number of term.
      */
     public static function getNumberTerm($slug) {
-        $terms = wp_count_terms($slug);
+        $numTerms = wp_count_terms($slug);
 
-        if (isset($terms)) {
-            return $terms;
+        if (isset($numTerms)) {
+            return $numTerms;
         } else {
             return 0;
         }
@@ -69,7 +69,7 @@ class Statistics {
      * @author Alessandro RICCARDI
      * @since  x.x.x
      *
-     * @return int the number of badges the we sent
+     * @return int the number of badges the we sent.
      */
     public static function getNumBadgesSent() {
         $all = DbBadge::getAll();

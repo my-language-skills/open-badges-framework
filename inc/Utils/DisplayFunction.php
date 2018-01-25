@@ -96,6 +96,8 @@ class DisplayFunction {
     }
 
     /**
+     * Show the Table of all the OBF badges.
+     *
      * @return void
      */
     public static function badgesTable() {
@@ -105,7 +107,7 @@ class DisplayFunction {
             ?>
             <form id="badges-list" method="post">
 
-                <?php self::showActionSection("2"); ?>
+                <?php self::actionSection("2"); ?>
 
                 <div class="scroll-hor">
                     <table class="wp-list-table widefat striped pages">
@@ -123,12 +125,6 @@ class DisplayFunction {
                             <th scope="col">Creation</th>
                             <th scope="col">Got</th>
                             <th scope="col">Mozilla OB</th>
-                            <?php /*
-                            foreach ($table as $key => $value) { ?>
-                                <th scope="col"><?php echo $key; ?></th>
-                                <?php
-                            }*/
-                            ?>
                         </tr>
                         </thead>
                         <tbody>
@@ -158,7 +154,7 @@ class DisplayFunction {
                         </tbody>
                     </table>
                 </div>
-                <?php self::showActionSection("2"); ?>
+                <?php self::actionSection("2"); ?>
             </form>
             <?php
         } else {
@@ -169,9 +165,11 @@ class DisplayFunction {
     }
 
     /**
+     * Show the action section situated in the DashboardTemp class.
+     *
      * @param string $number
      */
-    public static function showActionSection($number = "") { ?>
+    public static function actionSection($number = "") { ?>
         <div class="tablenav bottom">
             <div class="alignleft actions bulkactions">
                 <label for="bulk-action-selector-bottom" class="screen-reader-text">Select bulk action</label>

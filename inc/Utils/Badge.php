@@ -149,6 +149,8 @@ class Badge {
 
 
     /**
+     * Retrieve the main information of class.
+     *
      * @return string
      */
     public function __toString() {
@@ -156,7 +158,10 @@ class Badge {
     }
 
     /**
-     * @param $idDbBadge
+     * Set the fields of the class with the information of a
+     * specific OBF badge.
+     *
+     * @param int $idDbBadge the id of the specific OBF badge
      *
      * @return $this|bool
      */

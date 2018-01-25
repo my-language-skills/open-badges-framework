@@ -15,7 +15,7 @@ use templates\SettingsTemp;
  *
  * @package     OpenBadgesFramework
  */
-class SendBadge extends BaseController {
+class SendBadge{
     const ER_JSON_FILE = "Error json file\n";
     const ER_SEND_EMAIL = "Error email\n";
     const ER_DB_INSERT = "Db insert error.\n";
@@ -66,13 +66,15 @@ class SendBadge extends BaseController {
         $this->badge->evidence = $evidence ? $evidence : "none";
 
         $this->jsonMg = new JsonManagement($this->badge);
-
     }
 
     /**
-     * This class do principal four important things,
-     * crate the json file, crate the body, send the email
-     * and store all of that information in the database.
+     * This class do four important things:
+     * 1) creation of the json file;
+     * 2) insert or update the information of the receiver in the database;
+     * 3) save the badge that is sent in the database;
+     * 4) creation of the email body;
+     * 5) send the email.
      *
      * @author   Alessandro RICCARDI
      * @since    x.x.x
@@ -81,7 +83,6 @@ class SendBadge extends BaseController {
      */
     public function send() {
         $options = get_option(SettingsTemp::OPTION_NAME);
-
         $subject = "Badge: " . $this->wpBadge->post_title . " Field: " . $this->field->name;
         $headers = array(
             'Content-Type: text/html; charset=UTF-8',
@@ -92,13 +93,19 @@ class SendBadge extends BaseController {
         if (is_array($this->receivers)) {
             foreach ($this->receivers as $email) {
 
-                // Creation of json file
+                ### 1) creation of the json file;
                 if ($jsonName = $this->jsonMg->creation($email)) {
 
+                    ### 2) insert or update the information of the receiver in the database
                     if($idDbUser = WPUser::insertUserInDB($email)){
+
+                        ### 3) save the badge that is sent in the database
                         if($idDbBadge = $this->badge->saveBadgeInDb($idDbUser, $jsonName)){
+
+                            #### 4) creation of the email body
                             if($message = $this->getBodyEmail($idDbBadge)) {
-                                // Send the email
+
+                                ### 5) send the email
                                 $retEmail = wp_mail($email, $subject, $message, $headers);
                                 if (!$retEmail) return self::ER_SEND_EMAIL;
 

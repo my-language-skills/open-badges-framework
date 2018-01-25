@@ -36,8 +36,8 @@ class WPBadge {
     }
 
     /**
-     * This function permit to filter with the field
-     * and level the right badges that we want.
+     * This function permit to filter with the field and level
+     * the right badges that we want.
      *
      * @author      Alessandro RICCARDI
      * @since       x.x.x
@@ -45,8 +45,7 @@ class WPBadge {
      * @param string $fieldId the id of the field
      * @param string $levelId the id of the level
      *
-     * @return bool     True if have children,
-     *                  False if don't have children
+     * @return array of badges.
      */
     public static function getFiltered($fieldId = "", $levelId = "") {
 

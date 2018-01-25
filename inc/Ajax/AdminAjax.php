@@ -9,7 +9,8 @@ use Inc\Utils\JsonManagement;
 use templates\SingleBadgeTemp;
 
 /**
- *
+ * AdminAjax class that contain all the the general ajax function.
+ * This functions is initialized from the InitAjax Class.
  *
  * @author      Alessandro RICCARDI
  * @since       x.x.x
@@ -19,19 +20,18 @@ use templates\SingleBadgeTemp;
 class AdminAjax extends BaseController {
 
     /**
-     *
+     * Show the table about all sent badges.
      *
      * @author Alessandro RICCARDI
      * @since  x.x.x
      */
     public function ajaxShowBadgesTable() {
         DisplayFunction::badgesTable();
-
         wp_die();
     }
 
     /**
-     *
+     * Delete a specific badge throw the id.
      *
      * @author Alessandro RICCARDI
      * @since  x.x.x
@@ -52,7 +52,14 @@ class AdminAjax extends BaseController {
         wp_die();
     }
 
-    public function ajaxShowBadge() {
+    /**
+     * Show the information about a specific badge that
+     * a user earned.
+     *
+     * @author Alessandro RICCARDI
+     * @since  x.x.x
+     */
+    public function ajaxShowBadgeEarned() {
         $id = $_POST['id'];
         SingleBadgeTemp::showDatabaseBadge($id);
 
