@@ -173,13 +173,17 @@ Each Open Badge is associated with an image and information about the badge, its
 [What’s an Open Badge?](https://openbadges.org/get-started/)
 
 ### Developers Guide
-Badges for Languages use [Mozilla's Open Badges Infrastructure (OBI)](https://github.com/mozilla/openbadges-specification/blob/master/Assertion/latest.md "Assertion Specification") wich provides the open, core technology to support the ecosystem of badges.
+Badges for Languages use [Mozilla's Open Badges Infrastructure (OBI)](https://support.mozilla.org/en-US/kb/what-open-badges-infrastructure "What is the Open Badges Infrastructure?") wich provides the open, core technology to support the ecosystem of badges.
 
 The badges go from the plugin to the [Backpack](https://backpack.openbadges.org/backpack/welcome).
 
 This section provides a set of technical resources to guide you through the processes of creating, issuing and displaying Open Badges. The Specification provides technical documentation and code examples. These guides will build on those examples.
 
 [Developers Guide](https://openbadges.org/developers/)
+
+[Open Badges Specification V2.0](https://www.imsglobal.org/sites/default/files/Badges/OBv2p0/examples/index.html "Open Badges v2.0 IMS Candidate Final")
+
+[Open Badges Assertion Specification](https://github.com/mozilla/openbadges-specification/blob/master/Assertion/latest.md "Assertion Specification")
 
 ### openbadges-backpack
 With the Issuer API, you can push earner badges to the Mozilla hosted Backpack. This tutorial will walk you through the process of sending earner badges to the Backpack via the Issuer API script. The API handles getting the earner's permission to push to their Backpack, so your own code only has to pass the details of badges you are trying to send, then if necessary retrieve the response from the API.
