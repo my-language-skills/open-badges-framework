@@ -170,7 +170,7 @@ final class SendBadgeTemp extends BaseController {
                 <h3>Field of Education</h3>
                 <section>
                     <div class="title-form"><h2>Select your field of education:</h2></div>
-                    <div class=" fit-height-section flex-center-cont">
+                    <div class="fit-height-section flex-center-cont">
                         <div class="flex-center-item sb-cont">
                             <?php
                             self::displayLeadInfo("Change the visualization of the fields of education with the
@@ -187,7 +187,7 @@ final class SendBadgeTemp extends BaseController {
                 <h3>Level</h3>
                 <section>
                     <div class="title-form"><h2>Select the level:</h2></div>
-                    <div class="sb-cont fit-height-section flex-center-cont">
+                    <div class="fit-height-section flex-center-cont">
                         <div class="flex-center-item sb-cont">
                             <?php self::displayLeadInfo("Select one of the below levels"); ?>
                             <div id="level_<?php echo $form; ?>"></div>
@@ -198,7 +198,7 @@ final class SendBadgeTemp extends BaseController {
                 <h3>Badge</h3>
                 <section>
                     <div class="title-form"><h2>Select the kind of badge:</h2></div>
-                    <div class="sb-cont fit-height-section flex-center-cont">
+                    <div class="fit-height-section flex-center-cont">
                         <div class="flex-center-item sb-cont">
                             <?php self::displayLeadInfo("Select one of the below badges"); ?>
                             <div id="badge_<?php echo $form; ?>"></div>
@@ -209,7 +209,7 @@ final class SendBadgeTemp extends BaseController {
                 <h3>Description</h3>
                 <section>
                     <div class="title-form"><h2>Check the description:</h2></div>
-                    <div class="sb-cont fit-height-section flex-center-cont">
+                    <div class="fit-height-section flex-center-cont">
                         <div class="flex-center-item sb-cont">
                             <?php self::displayLeadInfo("This is the text of the badge."); ?>
                             <div id="desc_<?php echo $form; ?>" class="desc-badge"></div>
@@ -223,7 +223,7 @@ final class SendBadgeTemp extends BaseController {
                     <h3>Class</h3>
                     <section>
                         <div class="title-form"><h2>Class:</h2></div>
-                        <div class="sb-cont fit-height-section flex-center-cont">
+                        <div class="fit-height-section flex-center-cont">
                             <div class="flex-center-item sb-cont">
                                 <?php self::displayLeadInfo("Select one of yours classes."); ?>
                                 <div id="class_<?php echo $form; ?>"></div>
@@ -235,7 +235,7 @@ final class SendBadgeTemp extends BaseController {
                     <h3>Email</h3>
                     <section>
                         <div class="title-form"><h2>Receiver's mail addresses:</h2></div>
-                        <div class="sb-cont fit-height-section flex-center-cont">
+                        <div class="fit-height-section flex-center-cont">
                             <div class="flex-center-item sb-cont">
                                 <?php
 
@@ -254,7 +254,7 @@ final class SendBadgeTemp extends BaseController {
                 <h3>Information</h3>
                 <section>
                     <div class="title-form"><h2>Addition information:</h2></div>
-                    <div class="sb-cont fit-height-section flex-center-cont">
+                    <div class="fit-height-section flex-center-cont">
                         <div class="flex-center-item sb-cont">
                             <?php self::displayLeadInfo("Write some information that will be showed in the description of badge *"); ?>
                             <textarea id="comment_<?php echo $form; ?>" placeholder="More than 10 letters ..."

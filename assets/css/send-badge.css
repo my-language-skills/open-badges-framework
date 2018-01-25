@@ -1,3 +1,21 @@
+.flex-center-cont {
+    display: -webkit-flex;
+    display: flex;
+    text-align: center;
+}
+
+.flex-center-item {
+    margin: auto !important;
+}
+
+.fit-height-section {
+    width: 100%;
+    min-height: 30em;
+    height: 100%;
+    background-size: 100% !important;
+    background-repeat: no-repeat !important;
+}
+
 .btn {
     display: inline-block;
     padding: 6px 12px;
@@ -212,7 +230,7 @@ div.tab button.active {
 
 .wizard > .content {
     display: block;
-    min-height: 35em;
+    min-height: 30em;
     height: 100%;
     margin-top: auto;
     position: relative;
@@ -356,6 +374,7 @@ section.current {
 }
 
 .info-field {
+    min-width: 300px;
     width: 80%;
     margin: auto;
 }

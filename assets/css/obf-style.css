@@ -2,23 +2,6 @@
     GENERAL OBF (.obf)
    ====================== */
 
-.flex-center-cont {
-    display: -webkit-flex;
-    display: flex;
-    text-align: center;
-}
-
-.flex-center-item {
-    margin: auto;
-}
-
-.fit-height-section {
-    width: 100%;
-    min-height: 35em;
-    height: 100%;
-    background-size: 100% !important;
-    background-repeat: no-repeat !important;
-}
 
 .circle-img {
     border-radius: 50%;
