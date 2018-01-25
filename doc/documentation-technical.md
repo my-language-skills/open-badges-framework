@@ -214,6 +214,13 @@ id  userEmail            badgeId   fieldId   levelId   classId   teacherId    ro
 * **evidence**: Is the link to an external url where the teacher can show an evidence of the badge (pdf with a list of notes, a site with students names...).
 * **Json file**: By sending a badge, 3 Json file are created inside of the folder open-badges-framework > Json. The Json files remain forever (For now).
 
+### Json files
+
+Open Badges contain detailed metadata about achievements. Who earned a badge, who issued it, and what does it mean? The data is all inside.
+
+Information is divided between badge objects that describe an individual earner’s accomplishment (Assertion), the general features of the achievement (BadgeClass), and the entity or organization issuing the badge (Issuer)
+
+
 A file with the information about the website (just one file each installation):
 issuer-info.json
 ```
@@ -261,7 +268,6 @@ Example of the file name: cc8197a1a66bd28d240934e16a895183f7a59e2285eb5e8b408ebb
 
 ```
 
-
 ## User profile
 All the roles have a profile for tracking the information of the receive badges.
 
@@ -279,10 +285,6 @@ If we need to show just one of the 3 types of the send badges subpages, we can u
 * ```[send-badge form="a"]```: for self send of the badge.
 * ```[send-badge form="b"]```: for send the badge to one user at a time.
 * ```[send-badge form="c"]```: for send the badge to multiple users at a time.
-
-
-
-
 
 ## Customization
 Appearance

@@ -173,10 +173,9 @@ Each Open Badge is associated with an image and information about the badge, its
 [What’s an Open Badge?](https://openbadges.org/get-started/)
 
 ### Developers Guide
-Badges for Languages use OpenBadges API for the delivery of the credentials (Badges).
+Badges for Languages use [Mozilla's Open Badges Infrastructure (OBI)](https://github.com/mozilla/openbadges-specification/blob/master/Assertion/latest.md "Assertion Specification") wich provides the open, core technology to support the ecosystem of badges.
 
-The badges go from the plugin to the
-[Backpack](https://backpack.openbadges.org/backpack/welcome).
+The badges go from the plugin to the [Backpack](https://backpack.openbadges.org/backpack/welcome).
 
 This section provides a set of technical resources to guide you through the processes of creating, issuing and displaying Open Badges. The Specification provides technical documentation and code examples. These guides will build on those examples.
 
