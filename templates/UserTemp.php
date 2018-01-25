@@ -37,8 +37,7 @@ final class UserTemp {
     /**
      * Show all the information about the user.
      *
-     * @author      Alessandro RICCARDI
-     * @since       x.x.x
+     *
      *
      * @param int  $idUser  id of the user that we want to show.
      * @param bool $isAdmin understand if we are in the admin area or in the front-end.
@@ -112,9 +111,6 @@ final class UserTemp {
     /**
      * Show all the information about the user badges.
      *
-     * @author      Alessandro RICCARDI
-     * @since       x.x.x
-     *
      * @param int  $idUser
      * @param bool $isAdmin
      *
@@ -145,7 +141,7 @@ final class UserTemp {
                                  data-id="<?php echo "" . $badge->id; ?>">
                                 <a class="wrap-link" <?php
                                 if ($isAdmin) {
-                                    echo "href='" . admin_url('admin.php?page=' . Admin::PAGE_SINGLE_BADGES, $protocol) . "&badge=" . $badge->id . "()&db=1'";
+                                    echo "href='" . admin_url('admin.php?page=' . Admin::PAGE_SINGLE_BADGES, $protocol) . "&badge=" . $badge->id . "&db=1'";
                                 } ?>">
                                 <div class="cont-img-badge">
                                     <img class="circle-img"

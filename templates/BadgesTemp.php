@@ -26,7 +26,6 @@ class BadgesTemp {
         ?>
         <div class="wrap">
             <h1 class="obf-title">Badges</h1>
-
         <section class="user-badges-cont">
             <div class="title-badges-cont">
                 <h3>Number badges: <?php echo sizeof($badges)?></h3>

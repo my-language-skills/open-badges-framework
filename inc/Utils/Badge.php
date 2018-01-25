@@ -152,9 +152,14 @@ class Badge {
      * @return string
      */
     public function __toString() {
-        return "" . $this->idBadge . $this->idLevel . $this->idField;
+        return "Badge :" . $this->idBadge . ", Level: " . $this->idLevel . ", Field: " . $this->idField;
     }
 
+    /**
+     * @param $idDbBadge
+     *
+     * @return $this|bool
+     */
     public function retrieveBadge($idDbBadge) {
         if ($badgeDb = DbBadge::getById($idDbBadge)) {
             $this->id = $badgeDb->id;
@@ -189,7 +194,7 @@ class Badge {
      * @param int    $idUser   id of the user.
      * @param string $jsonName json name of the file (without extension).
      *
-     * @return int id of the badge
+     * @return int id of the OBF DB badge.
      */
     public function saveBadgeInDb($idUser, $jsonName) {
         $isOk = false;
@@ -221,14 +226,14 @@ class Badge {
     }
 
     /**
-     * Retrieves the URL of the right get badge page.
+     * Retrieves the URL for the Get-Badge-Page.
      *
      * @author      Alessandro RICCARDI
      * @since       x.x.x
      *
-     * @param int $idDbBadge id of the database row of the badge.
+     * @param int $idDbBadge id of the specific badge in the Database OBF.
      *
-     * @return string link to connect to the get badge page.
+     * @return string link to connect to the Get-Badge-Page.
      */
     public static function getLinkGetBadge($idDbBadge) {
         // Get badge page retrieved from the plugin setting

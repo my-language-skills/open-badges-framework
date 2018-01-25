@@ -40,7 +40,7 @@ class Admin extends BaseController {
     const MTB_LBADGE = "lbadge_obf_mtb";
     const PAGE_SEND_BADGE = 'send-badge_obf';
     const PAGE_SETTINGS = 'settings-obf';
-    const PAGE_USER = 'user-obf';
+    const PAGE_PROFILE = 'profile-obf';
     const PAGE_BADGES = 'badges-obf';
     const PAGE_SINGLE_BADGES = 'single-badge-obf';
 
@@ -135,27 +135,9 @@ class Admin extends BaseController {
                 'parent_slug' => self::SLUG_PLUGIN,
                 'page_title' => 'Send Badges',
                 'menu_title' => 'Send Badges',
-                'capability' => 'read',
+                'capability' => WPUser::CAP_SELF,
                 'menu_slug' => self::PAGE_SEND_BADGE,
                 'callback' => array($sendbadgeTemp, 'main')
-            ),
-            // ## Settings ##
-            array(
-                'parent_slug' => self::SLUG_PLUGIN,
-                'page_title' => 'Settings',
-                'menu_title' => 'Settings',
-                'capability' => 'manage_options',
-                'menu_slug' => self::PAGE_SETTINGS,
-                'callback' => array($settingTemp, 'main')
-            ),
-            // ## User ##
-            array(
-                'parent_slug' => self::SLUG_PLUGIN,
-                'page_title' => 'User',
-                'menu_title' => 'User',
-                'capability' => 'read',
-                'menu_slug' => self::PAGE_USER,
-                'callback' => array($userTemp, 'main')
             ),
             // ## All Badges ##
             array(
@@ -165,6 +147,24 @@ class Admin extends BaseController {
                 'capability' => 'read',
                 'menu_slug' => self::PAGE_BADGES,
                 'callback' => array($badgesTemp, 'main')
+            ),
+            // ## User ##
+            array(
+                'parent_slug' => self::SLUG_PLUGIN,
+                'page_title' => 'User',
+                'menu_title' => 'User',
+                'capability' => 'read',
+                'menu_slug' => self::PAGE_PROFILE,
+                'callback' => array($userTemp, 'main')
+            ),
+            // ## Settings ##
+            array(
+                'parent_slug' => self::SLUG_PLUGIN,
+                'page_title' => 'Settings',
+                'menu_title' => 'Settings',
+                'capability' => 'manage_options',
+                'menu_slug' => self::PAGE_SETTINGS,
+                'callback' => array($settingTemp, 'main')
             ),
             // ## Single Badge ##
             array(

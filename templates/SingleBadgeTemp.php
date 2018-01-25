@@ -4,8 +4,10 @@ namespace templates;
 
 use Inc\Database\DbBadge;
 use Inc\Database\DbUser;
+use Inc\Pages\Admin;
 use Inc\Utils\Badge;
 use Inc\Utils\WPBadge;
+use Inc\Utils\WPUser;
 
 /**
  * Class tha contain all the function to show a single
@@ -96,13 +98,25 @@ final class SingleBadgeTemp {
     public function showPostBadge($id) {
 
         $badge = get_post($id);
+        $levels = wp_get_post_terms($id, Admin::TAX_LEVELS);
+        $fields = wp_get_post_terms($id, Admin::TAX_FIELDS);
         ?>
+        <div class="obf-bsp-badge-image">
+            <img class="circle-img" src="<?php echo WPBadge::getUrlImage($badge->ID); ?>">
+        </div>
         <section class="user-cont-obf">
             <h1 class="obf-title">Badge: <strong><?php echo $badge->post_title; ?></strong></h1>
-            <h3>Badge information</h3>
-            <p>Description: <strong><?php echo $badge->post_content; ?></strong></p>
+            <section>
+                <h3>Badge information</h3>
+                <p>Name: <strong><?php echo $badge->post_title; ?></strong></p>
+                <p>Level: <strong><?php foreach ($levels as $level) echo $level->name . " " ; ?></strong></p>
+                <p>Field of education: <strong><?php foreach ($fields as $field) echo $field->name; echo !$fields ? "All" : ""; ?></strong></p>
+                <p>Description: <strong><?php echo $badge->post_content; ?></strong></p>
+                <?php if (current_user_can("manage_options")) { ?>
+                    <a href="<?php echo get_edit_post_link($badge->ID) ?>">Edit post</a>
+                <?php } ?>
+            </section>
         </section>
-
         <?php
     }
 
@@ -155,14 +169,14 @@ final class SingleBadgeTemp {
                     <strong><?php echo $badge->gotDate ? date("d M Y", strtotime($badge->gotDate)) : "on hold"; ?></strong>
                 </p>
                 <p>Earned in Mozilla Open Badge:
-                    <strong><?php echo  $badge->gotMozillaDate ? date("d M Y", strtotime($badge->gotMozillaDate)) : "on hold"; ?></strong>
+                    <strong><?php echo $badge->gotMozillaDate ? date("d M Y", strtotime($badge->gotMozillaDate)) : "on hold"; ?></strong>
                 </p>
             </section>
             <?php
 
-            if($studentWP->ID === wp_get_current_user()->ID) {
+            if ($studentWP->ID === wp_get_current_user()->ID) {
 
-                if (!$badge->gotDate ) { ?>
+                if (!$badge->gotDate) { ?>
 
                     <div class="obf-sbp-cont-btn">
                         <a class="btn btn-lg btn-primary" href="<?php echo $badgeLink; ?>">Get the badge</a>
