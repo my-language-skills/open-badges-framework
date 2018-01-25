@@ -62,7 +62,7 @@ class JsonManagement extends BaseController {
             "badge" => $urlJsonBadge,
             "verify" => array("url" => $urlJsonMain, "type" => "hosted"),
             "issuedOn" => date('Y-m-d'),
-            "evidence" => $this->badge->evidence
+            "evidence" => $this->badge->evidence != "none" ? $this->badge->evidence : ""
         );
 
         if (file_put_contents($pathFile, json_encode($assertion, JSON_UNESCAPED_SLASHES))) {

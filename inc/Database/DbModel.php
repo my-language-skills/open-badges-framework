@@ -13,7 +13,7 @@ namespace Inc\Database;
  * @package     OpenBadgesFramework
  */
 class DbModel {
-    const DB_VERSION = 'x.x.x';
+    const DB_VERSION = '1.0.0';
     const DB_NAME_VERSION = 'OBF_db_version';
     // default database name
     static $tableName = "obf_model";
@@ -109,7 +109,7 @@ class DbModel {
     public static function getSingle(array $data) {
         global $wpdb;
         $res = $wpdb->get_results(self::fetchSql("SELECT", $data));
-        return $res[0] ? $res[0] : null;
+        return $res ? $res[0] : null;
     }
 
     /**

@@ -28,7 +28,7 @@ class DbUser extends DbModel {
         global $wpdb;
         $charset_collate = $wpdb->get_charset_collate();
         $installed_version = get_option(self::DB_NAME_VERSION);
-        if ($installed_version == self::DB_VERSION) {
+        if ($installed_version != self::DB_VERSION) {
             $sql = "CREATE TABLE IF NOT EXISTS " . $this->getTableName() . " (
             id INT(6) UNSIGNED AUTO_INCREMENT,
             email varchar(180) NOT NULL,

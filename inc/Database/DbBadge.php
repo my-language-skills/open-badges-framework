@@ -31,7 +31,7 @@ class DbBadge extends DbModel {
         $userTable = DbUser::getTableName();
         $charset_collate = $wpdb->get_charset_collate();
         $installed_version = get_option(self::DB_NAME_VERSION);
-        if ($installed_version == self::DB_VERSION) {
+        if ($installed_version != self::DB_VERSION) {
             $sql = "CREATE TABLE IF NOT EXISTS " . $this->getTableName() . " (
             id int(6) UNSIGNED AUTO_INCREMENT,
             idUser int(6) UNSIGNED NOT NULL,

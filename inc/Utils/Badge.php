@@ -183,7 +183,9 @@ class Badge {
             $this->evidence = $badgeDb->evidence;
 
             $user = DbUser::getById($this->idUser);
-            $this->userWP = $user->idWP ? get_user_by("id", $user->idWP) : null;
+            if($user){
+                $this->userWP = get_userdata($user->id);
+            }
 
             return $this;
         } else {

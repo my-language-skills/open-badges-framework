@@ -345,29 +345,31 @@ class WPUser {
      *
      * @param $email
      *
-     * @return false|int|null The id of the user or false on error.
+     * @return false|int The id of the OBF user, false on error.
      */
     public static function insertUserInDB($email) {
-        $dataUser = ["email" => $email];
-        $userDB = DbUser::getSingle($dataUser);
+        $userDB = DbUser::getSingle(["email" => $email]);
 
+        if ($userDB && $userDB->idWP) {
+            return $userDB->id;
+        }
 
         if (!$userDB) {
-            DbUser::insert($dataUser);
-            $userDB = DbUser::getSingle($dataUser);
+            DbUser::insert(["email" => $email]);
+            $id = DbUser::getSingle(["email" => $email])->id;
+        } else {
+            $id = $userDB->id;
         }
 
         # if doesn't exist in the database
-        if (!$userDB->idWP && $user = get_user_by("email", $email)) {
+        if ($userWP = get_user_by("email", $email)) {
             # if already exist in the wordpress db
-            $where["id"] = $userDB->id;
-            $data["idWP"] = $user->ID;
-            return DbUser::update($dataUser, $where);
+            $where["id"] = $id;
+            $data["idWP"] = $userWP->ID;
+            return DbUser::update($data, $where) ? $id : false;
         } else {
-            return true;
+            return $id;
         }
-
-
     }
 
 }
