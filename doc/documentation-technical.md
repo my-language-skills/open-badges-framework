@@ -31,7 +31,9 @@ The users have some shortcuts to make easy the process. Here are the place where
 
 ### Manage Roles and Cappabilities
 --- https://es.wordpress.org/plugins/wp-user-groups/ ----
+
 OpenBadgesFramework offer 3 types of roles with different cappabilities:
+(Out of the box, the OBF roles is Subscriber as just the wordpress **Read** cappability is activated)
 * Student
   * read (a WP cappability)
   * obf_send_self (allow to self send of badges)
@@ -47,6 +49,9 @@ OpenBadgesFramework offer 3 types of roles with different cappabilities:
   * obf_send_certificate (allow to send certificate badges)
   * obf_send_teacher (allow to send teacher badges)
   * obf_job_listing_integration (allow to save badges in classes where a class is a post of WP Job Manager)
+  * obf_user (allow to see in the backend the user information)
+
+  Also it use the default WP Addministrator Role for the settings of the plugin.
 
 Out of the box, a new user can be (after the login) one of those roles (upon the configuration of the site) and later the administrator can change the role to a more related one.
 
@@ -64,7 +69,9 @@ A select the role page is need it (can be free or paid upon the configuration).
 
 The OpenBadgesFramework Settings page allow in **Links** to select the page where the [Register Form](http://docs.restrictcontentpro.com/article/1597-registerform) is created.
 
-With a plugin of roles and cappabilities, the capabilities can be asign to another role and to use the functionalities.
+With a plugin of roles and cappabilities (like [Members](https://es.wordpress.org/plugins/members/ "Members plugin website")), the capabilities can be asign to another role and to use the functionalities.
+![members-cappabilities](../readme-assets/members-cappabilities.png "Student Role Custom Cappabilities")
+
 
 
 #### Student role
@@ -117,15 +124,15 @@ OpenBadgesFramework allow to issue badges in 3 ways:
 Administrators have the same functionalities as Academy teacher role plus the issue of certified Teacher badges.
 
 Those are the options before to send a badge:
-* Field of education: the language the student learn.
-* Level: the level of the class.
-* Badge: the badge.
-* Description: by defaul badges are in english, but translations are available.
-* Class: the student class name with information such starting date and place (Just Academy teachers role).
-* Mail: the email of the student/s.
+* **Field of education**: the subject the student learn.
+* **Level**: the level of the class.
+* **Badge**: the badge name.
+* **Description**: the Reference Level Descriptors of the badge. By defaul badges are in english, but translations are available.
+* **Class**: the student class name with information such starting date and place (Just Academy teachers role). It requires [Job Manager](https://wpjobmanager.com/ "WP Job Manager plugin") plugin activated.
+* **Mail**: the email of the student/s.
 * Information:
-  * Addition information: Some information that will be showed in the description of badge.
-  * Criteria: Url of the work or of the document that the recipient did to earn the badge.
+  * **Addition information**: Some information that will be showed in the description of badge.
+  * **Criteria**: Url of the work or of the document that the recipient did to earn the badge.
 
 If the student have a badge and a teacher send the same badge again, no updates in the information of the database.
 
@@ -143,13 +150,15 @@ A student/Teacher/Academy teacher role can receive a badge as Student or Teacher
   * Criteria
 
 #### Issuer page Issue mode
-A Teacher/Academy teacher role can send a Student Badge (Non-Certified). An Academy teacher role can send a Student Badge (Certified)
+A Teacher/Academy teacher role can send a Student Badge (Non-Certified).
+
+An Academy teacher role can send a Student Badge (Certified)
 
 * Field of education
 * Level
 * Badge
 * Description
-* Class
+* Class (Just available if activate)
 * Mail
 * Information:
   * Addition information
@@ -162,7 +171,7 @@ An Academy teacher role can send Multiple badges to Multiple students (Certified
 * Level
 * Badge
 * Description
-* Class
+* Class (Just available if activate)
 * Mail (Multiple)
 * Information:
   * Addition information
@@ -170,56 +179,47 @@ An Academy teacher role can send Multiple badges to Multiple students (Certified
 
 ### Database
 
-Open Badges Framework save all the badges information related to teachers and students in a [custom Database Table](https://codex.wordpress.org/Creating_Tables_with_Plugins)
+Open Badges Framework save all the badges information related to teachers and students with 2 [custom Database Tables](https://codex.wordpress.org/Creating_Tables_with_Plugins)
+
+#### Users Database
+```
+id  userEmail
+1   student@student.com
+```
+
+#### Users Database columns
+* **id**: The id of the row.
+* **userEmail**: The Earn user email.
+
+#### Badges Database
 
 ```
 id  userEmail            badgeId   fieldId   levelId   classId   teacherId    roleSlug         dateCreation          getDate               getMobDate    json                                                                 info                                  evidence
-1   student@student.com  140       1712      7                    1            administrator   2018-01-01 08:00:00   2017-12-18 09:00:00                 161499a421c21ea585cc025d04f0e3d439d6220451b22c820c62d4478fc6aaf0 	That is an example of information.    https://www.uni.edu/student-list.php
+1   student@student.com  140       1712      7                   1            administrator    2018-01-01 08:00:00   2017-12-18 09:00:00                 161499a421c21ea585cc025d04f0e3d439d6220451b22c820c62d4478fc6aaf0 	That is an example of information.    https://www.example.edu/student-list.php
 ```
+##### Badges Database columns
+* **id**: The id of the row.
+* **userEmail**: The Earn user email.
+* **badgeId**: The ID of the Badge the student receive.
+* **fieldId**: The ID of the Field of education of the Badge.
+* **levelId**: The ID of the Level of the badge.
+* **classId**: If the Badge is inside of a Class, the Class id.
+* **teacherId**: The issuer user ID.
+* **roleSlug**: The role of the issuer.
+* **dateCreation**: The date of the issue of the badge.
+* **getDate**: The date of the earn of the badge.
+* **getMobDate**: If the badge is transfer to Mozilla Backpack.
+* **json**: The Json file name.
+* **info**: The information the teacher write about the students.
+* **evidence**: Is the link to an external url where the teacher can show an evidence of the badge (pdf with a list of notes, a site with students names...).
+* **Json file**: By sending a badge, 3 Json file are created inside of the folder open-badges-framework > Json. The Json files remain forever (For now).
 
-#### userEmail
-The Earn user email
+### Json files
 
-#### badgeId
-The ID of the Badge the student receive
+Open Badges contain detailed metadata about achievements. Who earned a badge, who issued it, and what does it mean? The data is all inside.
 
-#### fieldId
-The ID of the Field of education of the Badge
+Information is divided between badge objects that describe an individual earner’s accomplishment (Assertion), the general features of the achievement (BadgeClass), and the entity or organization issuing the badge (Issuer)
 
-#### levelId
-The ID of the Level of the badge
-
-#### classId
-If the Badge is inside of a Class, the Class id
-
-#### teacherId
-The issuer user ID
-
-#### roleSlug
-The role of the issuer
-
-#### dateCreation
-The date of the issue of the badge
-
-#### getDate
-The date of the earn of the badge
-
-#### getMobDate
-If the badge is transfer to Mozilla Backpack
-
-#### json
-The Json file name
-
-#### info
-The information the teacher write about the students
-
-#### evidence
-Is the link to an external url where the teacher can show an evidence of the badge (pdf with a list of notes, a site with students names...).
-
-
-### Json file
-
-By sending a badge, 3 Json file are created inside of the folder open-badges-framework > Json. The Json files remain forever (For now).
 
 A file with the information about the website (just one file each installation):
 issuer-info.json
@@ -268,7 +268,6 @@ Example of the file name: cc8197a1a66bd28d240934e16a895183f7a59e2285eb5e8b408ebb
 
 ```
 
-
 ## User profile
 All the roles have a profile for tracking the information of the receive badges.
 
@@ -286,10 +285,6 @@ If we need to show just one of the 3 types of the send badges subpages, we can u
 * ```[send-badge form="a"]```: for self send of the badge.
 * ```[send-badge form="b"]```: for send the badge to one user at a time.
 * ```[send-badge form="c"]```: for send the badge to multiple users at a time.
-
-
-
-
 
 ## Customization
 Appearance
