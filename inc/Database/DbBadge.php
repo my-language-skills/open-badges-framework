@@ -7,7 +7,7 @@ namespace Inc\Database;
  * that are sent.
  *
  * @author      Alessandro RICCARDI
- * @since       1.0.0
+ * @since       x.x.x
  *
  * @package     OpenBadgesFramework
  */
@@ -21,32 +21,35 @@ class DbBadge extends DbModel {
 
     /**
      * In that function, called from the Init class,
-     * permit to create the database.
+     * permit to create the db table.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      */
     public function register() {
         global $wpdb;
+        $userTable = DbUser::getTableName();
         $charset_collate = $wpdb->get_charset_collate();
         $installed_version = get_option(self::DB_NAME_VERSION);
-        if ($installed_version !== self::DB_VERSION) {
-            $sql = "CREATE TABLE " . $this->getTableName() . " (
-            id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-            userEmail varchar(180) NOT NULL,
-            badgeId mediumint(9) NOT NULL,
-            fieldId mediumint(9) NOT NULL,
-            levelId mediumint(9) NOT NULL,
-            classId mediumint(9),
-            teacherId mediumint(9) NOT NULL,
-            roleSlug varchar(50) NOT NULL,
-            dateCreation datetime NOT NULL,
-            getDate datetime,
-            getMobDate datetime,
+        if ($installed_version != self::DB_VERSION) {
+            $sql = "CREATE TABLE IF NOT EXISTS " . $this->getTableName() . " (
+            id int(6) UNSIGNED AUTO_INCREMENT,
+            idUser int(6) UNSIGNED NOT NULL,
+            idBadge mediumint(9) NOT NULL,
+            idField mediumint(9) NOT NULL,
+            idLevel mediumint(9) NOT NULL,
+            idClass mediumint(9),
+            idTeacher mediumint(9) NOT NULL,
+            teacherRole varchar(50) NOT NULL,
+            creationDate datetime NOT NULL,
+            gotDate datetime,
+            gotMozillaDate datetime,
             json varchar(64) NOT NULL,
             info text,
             evidence varchar(1500),
-            UNIQUE KEY  (userEmail, badgeId, fieldId, levelId)
+            PRIMARY KEY (id),
+            UNIQUE KEY  (idUser, idBadge, idField, idLevel),
+            FOREIGN KEY (idUser) REFERENCES " . $userTable . "(id)
         ) $charset_collate;";
             require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
             dbDelta($sql);
@@ -58,88 +61,77 @@ class DbBadge extends DbModel {
      * Get a badge/s by the id.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
-     * @param array $data list of ids
+     * @param int $id id of the row
      *
-     * @return object the badge | false, if don't exist.
+     * @return bool|Object of the badge or null if not exist.
      */
-    public static function getById($data) {
-        $badges = null;
-        if(!is_array($data)) $data = [$data];
-        foreach ($data as $id) {
-            $id = array('id' => $id);
-            $badges = parent::get($id)[0];    //[0] -> permit to extract the first array because
-            // we will get only and always one result.
+    public static function getById($id) {
+
+        $id = array('id' => $id);
+        if ($badges = parent::get($id)) {
+            $badge = $badges[0]; //[0] -> permit to extract the first array (badge)
         }
 
-        return !empty($badges) ? $badges : false;
+        return !empty($badge) ? $badge : false;
     }
 
     /**
      * Get a badge by the ids.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
-     * @param array $data {
-     *                    Array of information about a specific badge.
+     * @param array $where {
+     *                     information about a specific badge.
      *
      * @type string        userEmail        Email.
-     * @type string        badgeId          Badge Id.
-     * @type string        fieldId          Field Id.
+     * @type string        idBadge          Badge Id.
+     * @type string        idField          Field Id.
      * @type string        levelId          Level Id.
      *
-     * @return the badge | false, if don't exist. | @const ER_WRONG_FIELDS if there are wrong field
+     * @return array|bool|null|object|string the object badge, false if don't exist and
+     *                                       constant string (@const ER_WRONG_FIELDS) if
+     *                                       there are wrong field.
      */
-    public static function getByIds(array $data) {
+    public static function getByIds(array $where) {
         $rightKeys = array(
-            'userEmail',
-            'badgeId',
-            'fieldId',
-            'levelId',
+            'idUser',
+            'idBadge',
+            'idField',
+            'idLevel',
         );
-        if (!self::checkFields($rightKeys, $data)) {
-            return self::ER_WRONG_FIELDS;
-        } else {
-            $getValue = parent::get($data);
-            return !empty($getValue) ? $getValue : false;
-        }
-    }
 
-    /**
-     * Get badge/s.
-     *
-     * @author      Alessandro RICCARDI
-     * @since       1.0.0
-     *
-     * @param array $data list of ids
-     *
-     * @return
-     */
-    public static function get(array $data = null) {
-        return parent::get($data);
+        if (!self::checkFields($rightKeys, $where)) {
+            return false;
+        } else {
+            if ($badges = parent::get($where)) {
+                $badge = $badges[0]; //[0] -> permit to extract the first array (badge)
+            }
+            return !empty($badge) ? $badge : false;
+        }
     }
 
     /**
      * Get all the badge.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
-     * @return get function from the parent class
+     * @return array|null|object array of object (badges), nul if not exist
      */
     public static function getAll() {
         return parent::get();
     }
 
     /**
-     * Get all the badge.
+     * Get the keys of the badge table.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
-     * @return array of badges
+     * @return array keys
      */
     public static function getKeys() {
         $data = parent::get();
@@ -150,105 +142,37 @@ class DbBadge extends DbModel {
      * Insert a badge.
      *
      * @author        Alessandro RICCARDI
-     * @since         1.0.0
+     * @since         x.x.x
      *
-     * @param array $data {
-     *                    Array of information about a specific badge.
+     * @param array $data the information to insert
      *
-     * @type string        userEmail        Email.
-     * @type string        badgeId          Badge Id.
-     * @type string        fieldId          Field Id.
-     * @type string        levelId          Level Id.
-     * @type string        classId          Class Id.
-     * @type string        teacherId        Teacher Id.
-     * @type string        roleSlug         Role of the teacher.
-     * @type string        dateCreation     Date of the creation of the badge.
-     * @type string        json             Json file name.
-     * @type string        info             Information wrote from the teacher.
-     * }
-     *
-     * @return true | @const ER_DUPLICATE duplicate row | false, if errors.
+     * @return false|int The last id inserted, false on error.
      */
     public static function insert(array $data) {
-        $rightKeys = array(
-            'userEmail',
-            'badgeId',
-            'fieldId',
-            'levelId',
-            'classId',
-            'teacherId',
-            'roleSlug',
-            'dateCreation',
-            'json',
-            'info'
-        );
-
-        //Check if the $data array contain the right information (keys)
-        if (!self::checkFields($rightKeys, $data)) {
-            return false;
-        }
-
         $dataGetById = array(
-            'userEmail' => $data['userEmail'],
-            'badgeId' => $data['badgeId'],
-            'fieldId' => $data['fieldId'],
-            'levelId' => $data['levelId'],
+            'idUser' => $data['idUser'],
+            'idBadge' => $data['idBadge'],
+            'idField' => $data['idField'],
+            'idLevel' => $data['idLevel'],
         );
 
-        if (self::getByIds($dataGetById)) {
-            return self::ER_DUPLICATE;
+        if ($badge = self::getByIds($dataGetById)) {
+            return $badge->id;
         }
 
-        return parent::insert($data) === false ? false : true;
+        return parent::insert($data);
     }
 
-    /**
-     * Update a badge.
-     *
-     * @author      Alessandro RICCARDI
-     * @since       1.0.0
-     *
-     * @param array $data  Data that we want to update.
-     *
-     * @param array $where {
-     *                     Array of information about a specific badge.
-     *
-     * @type string        userEmail        Email.
-     * @type string        badgeId          Badge Id.
-     * @type string        fieldId          Field Id.
-     * @type string        levelId          Level Id.
-     * }
-     *
-     * @return  bool    true if everything is good
-     *          string  ER_DONT_EXIST if don't exist the badge
-     *          bool    false, if other errors.
-     */
-    public static function update(array $data, array $where) {
-
-        $dataGetById = array(
-            'userEmail' => $where['userEmail'],
-            'badgeId' => $where['badgeId'],
-            'fieldId' => $where['fieldId'],
-            'levelId' => $where['levelId'],
-        );
-
-        if (!self::getByIds($dataGetById)) {
-            return self::ER_DONT_EXIST;
-        }
-
-        return parent::update($data, $where) === false ? false : true;
-    }
 
     /**
      * Delete a badge by own id.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @param array $data the number id of the badge
      *
-     * @return  bool    true if everything ok
-     *                  false if errors.
+     * @return bool true if everything ok, false if errors.
      */
     public static function deleteById(array $data) {
         $rightKeys = array(
@@ -256,54 +180,22 @@ class DbBadge extends DbModel {
         );
         if (!self::checkFields($rightKeys, $data)) {
             return false;
-        } else {
-            return parent::delete($data);
         }
+        return parent::delete($data);
+
     }
 
     /**
-     * Delete a badge.
+     * Check if the array $data contain all the keys that are inside
+     * the array $rightKeys.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
-     *
-     * @param array $data {
-     *                    Array of information about a specific badge.
-     *
-     * @type string        userEmail        Email.
-     * @type string        badgeId          Badge Id.
-     * @type string        fieldId          Field Id.
-     * @type string        levelId          Level Id.
-     *
-     * @return  bool    true if everything ok
-     *                  false if errors.
-     */
-    public static function deleteByIds(array $data) {
-        $rightKeys = array(
-            'userEmail',
-            'badgeId',
-            'fieldId',
-            'levelId',
-        );
-        if (!self::checkFields($rightKeys, $data)) {
-            return false;
-        } else {
-            return parent::deleteByIds($data);
-        }
-    }
-
-    /**
-     * Check that the array $data contain all the keys
-     * that are inside the array $rightKeys.
-     *
-     * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @param array $rightKeys
      * @param array $data
      *
-     * @return  bool    true if everything ok
-     *                  false if errors.
+     * @return bool true if everything ok, false if errors.
      */
     private static function checkFields(array $rightKeys, array $data) {
         $rightDim = count($rightKeys);
@@ -322,83 +214,34 @@ class DbBadge extends DbModel {
         return true;
     }
 
-    /**
-     * Permit to understand if the badge is got.
-     *
-     * @author      Alessandro RICCARDI
-     * @since       1.0.0
-     *
-     * @param array $data {
-     *                    Array of information about a specific badge.
-     *
-     * @type string        userEmail        Email.
-     * @type string        badgeId          Badge Id.
-     * @type string        fieldId          Field Id.
-     * @type string        levelId          Level Id.
-     * }
-     *
-     * @return the badge | false, if don't exist. | @const ER_DONT_EXIST if the badge doesn't exist |
-     *         ER_WRONG_FIELDS if there are wrong field
-     */
-    public static function isGot(array $data) {
-        $rightKeys = array(
-            'userEmail',
-            'badgeId',
-            'fieldId',
-            'levelId',
-        );
-
-        if (!self::checkFields($rightKeys, $data)) {
-            return self::ER_WRONG_FIELDS;
-        } else {
-            $getValue = parent::get($data);
-
-            if (empty($getValue)) {
-                self::ER_DONT_EXIST;
-            } else {
-                return $getValue[0]->getDate ? true : false;
-            }
-        }
-    }
 
     /**
      * Permit to understand if the badge is got in the Mozilla Open Badge.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @param array $data {
-     *                    Array of information about a specific badge.
+     *                    information about a specific badge.
      *
      * @type string        userEmail        Email.
-     * @type string        badgeId          Badge Id.
-     * @type string        fieldId          Field Id.
+     * @type string        idBadge          Badge Id.
+     * @type string        idField          Field Id.
      * @type string        levelId          Level Id.
      * }
      *
-     * @return          the badge
-     *         bool     false, if don't exist.
-     *         const    ER_DONT_EXIST if the badge doesn't exist
-     *         const    ER_WRONG_FIELDS if there are wrong field
+     * @return bool|string true if is got, false is not, @const ER_DONT_EXIST if
+     *                     the badge do no exist, @const ER_DONT_EXIST if the badge
+     *                     doesn't exist, @const ER_WRONG_FIELDS if there are wrong
+     *                     field.
      */
     public static function isGotMOB(array $data) {
-        $rightKeys = array(
-            'userEmail',
-            'badgeId',
-            'fieldId',
-            'levelId',
-        );
+        $getValue = self::getByIds($data);
 
-        if (!self::checkFields($rightKeys, $data)) {
-            return self::ER_WRONG_FIELDS;
+        if (empty($getValue)) {
+            return null;
         } else {
-            $getValue = parent::get($data);
-
-            if (empty($getValue)) {
-                self::ER_DONT_EXIST;
-            } else {
-                return $getValue[0]->getMobDate ? true : false;
-            }
+            return $getValue->gotMozillaDate ? true : false;
         }
     }
 
@@ -406,27 +249,27 @@ class DbBadge extends DbModel {
      * Permit to understand if the badge is got in the Mozilla Open Badge.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
-     * @param array $where information about the badge that we want to update.
-     * @param bool  $mob   true if I want to set the badge for MOB and for the current site as "taken";
-     *                     false if we want to set as "taken" only for the current website.
+     * @param array $where   information about the badge that we want to update.
+     * @param bool  $mozilla true if I want to set the badge for MOB and for the current site as "taken";
+     *                       false if we want to set as "taken" only for the current website.
      *
-     * @return true if everything is ok;
-     *         ER_DONT_EXIST if the row doesn't exist;
-     *         ER_ERROR if there's other kind of error.
+     * @return bool|string true if everything is ok, @const ER_DONT_EXIST if the row doesn't exist,
+     * @const       ER_ERROR if there's other kind of error.
      */
-    public static function setBadgeGot($where, $mob = false) {
+    public static function setBadgeGot($where, $mozilla = false) {
         //
-        $data = $mob === 'true' ?
-            array(
-                'getDate' => self::now(),
-                'getMobDate' => self::now()
-            )
-            :
-            array(
-                'getDate' => self::now(),
+        if ($mozilla) {
+            $data = array(
+                'gotDate' => self::now(),
+                'gotMozillaDate' => self::now()
             );
+        } else {
+            $data = array(
+                'gotDate' => self::now(),
+            );
+        }
 
         if ($res = self::update($data, $where)) {
             return true;
@@ -441,13 +284,13 @@ class DbBadge extends DbModel {
      * Permit retrieve the number of badges got in the past.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
-     * @return return the number of badges that are got.
+     * @return mixed return the number of badges that are got.
      */
     public static function getNumGot() {
         global $wpdb;
-        $query = "SELECT COUNT(*) AS num FROM " . self::getTableName() . " WHERE getDate IS NOT NULL";
+        $query = "SELECT COUNT(*) AS num FROM " . self::getTableName() . " WHERE gotDate IS NOT NULL";
 
         return $wpdb->get_results($query)[0]->num;
     }
@@ -457,13 +300,13 @@ class DbBadge extends DbModel {
      * Open Badge in the past.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
-     * @return return the number of badges that are got.
+     * @return mixed return the number of badges that are got.
      */
     public static function getNumGotMob() {
         global $wpdb;
-        $query = "SELECT COUNT(*) AS num FROM " . self::getTableName() . " WHERE getMobDate IS NOT NULL";
+        $query = "SELECT COUNT(*) AS num FROM " . self::getTableName() . " WHERE gotMozillaDate IS NOT NULL";
 
         return $wpdb->get_results($query)[0]->num;
     }

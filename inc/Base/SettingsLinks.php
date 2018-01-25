@@ -9,7 +9,7 @@ use Inc\Pages\Admin;
  * admin page.
  *
  * @author      Alessandro RICCARDI
- * @since       1.0.0
+ * @since       x.x.x
  *
  * @package     OpenBadgesFramework
  */
@@ -20,7 +20,7 @@ class SettingsLinks extends BaseController {
      * the plugin admin page.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      */
     public function register() {
         add_filter("plugin_action_links_$this->plugin", array($this, 'settingsLink'));
@@ -30,7 +30,7 @@ class SettingsLinks extends BaseController {
      * Create the link to the setting page.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @param string $links
      *

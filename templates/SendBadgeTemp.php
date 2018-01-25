@@ -3,9 +3,9 @@
 namespace templates;
 
 use Inc\Base\BaseController;
-use Inc\Base\User;
+use Inc\Utils\WPUser;
 use Inc\Utils\DisplayFunction;
-use Inc\Utils\Fields;
+use Inc\Utils\WPField;
 
 /**
  * Template for the Send Badge page.
@@ -19,7 +19,7 @@ use Inc\Utils\Fields;
  *
  *
  * @author      Alessandro RICCARDI
- * @since       1.0.0
+ * @since       x.x.x
  *
  * @package     OpenBadgesFramework
  */
@@ -33,7 +33,7 @@ final class SendBadgeTemp extends BaseController {
      * the right section of the sending badge.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      */
     public function __construct() {
         add_shortcode('send-badge', array(SendBadgeTemp::class, 'getShortCodeForm'));
@@ -43,7 +43,7 @@ final class SendBadgeTemp extends BaseController {
      * The first thing that will show when you load this page.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      */
     public static function main() {
         ?>
@@ -62,7 +62,7 @@ final class SendBadgeTemp extends BaseController {
      * Show the right form.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      *
      * @param string $form name of the form, should be:
      *                     a -> Self
@@ -78,12 +78,12 @@ final class SendBadgeTemp extends BaseController {
                 <?php
                 echo '<li class="active"><a href="#tab-1">Self</a></li>';
 
-                if (current_user_can(User::CAP_SINGLE)) {
+                if (current_user_can(WPUser::CAP_SINGLE)) {
 
                     echo '<li class=""><a href="#tab-2">Single</a></li>';
                 }
 
-                if (current_user_can(User::CAP_MULTIPLE)) {
+                if (current_user_can(WPUser::CAP_MULTIPLE)) {
                     echo '<li class=""><a href="#tab-3">Multiple</a></li>';
                 }
                 ?>
@@ -104,30 +104,30 @@ final class SendBadgeTemp extends BaseController {
             <?php
         } else {
 
-            if($form == self::FORM_SELF) {
-                if(current_user_can(User::CAP_SELF)){
+            if ($form == self::FORM_SELF) {
+                if (current_user_can(WPUser::CAP_SELF)) {
                     self::getForm($form);
                 } else {
                     echo "You don't have the permission to access to this functionality.";
                 }
 
             } else if ($form == self::FORM_ISSUE) {
-                if(current_user_can(User::CAP_SINGLE)){
+                if (current_user_can(WPUser::CAP_SINGLE)) {
                     self::getForm($form);
                 } else {
                     echo "You don't have the permission to access to this functionality.";
                 }
             } else if ($form == self::FORM_MULTIPLE) {
-                if(current_user_can(User::CAP_MULTIPLE)){
+                if (current_user_can(WPUser::CAP_MULTIPLE)) {
                     self::getForm($form);
                 } else {
                     echo "You don't have the permission to access to this functionality.";
                 }
             }
-        }?>
+        } ?>
 
         <!-- The Modal -->
-        <div id="myModal" class="modal">
+        <div id="modalSendBadge" class="modal">
 
             <!-- Modal content -->
             <div class="modal-content">
@@ -145,7 +145,7 @@ final class SendBadgeTemp extends BaseController {
      * Get the specific form.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      *
      * @param string $form name of the form, should be:
      *                     a -> Self
@@ -165,47 +165,55 @@ final class SendBadgeTemp extends BaseController {
         }
         ?>
 
-        <form id="form_<?php echo $form; ?>" action="" method="post">
+        <form id="form_<?php echo $form; ?>" class="form-send-badge" action="" method="post">
             <div>
                 <h3>Field of Education</h3>
                 <section>
-                    <div class="section-container">
-                        <div class="title-form"><h2>Select your field of education:</h2></div>
-                        <?php
-                        self::displayLeadInfo("Change the visualization of the fields of education with the
+                    <div class="title-form"><h2>Select your field of education:</h2></div>
+                    <div class="fit-height-section flex-center-cont">
+                        <div class="flex-center-item sb-cont">
+                            <?php
+                            self::displayLeadInfo("Change the visualization of the fields of education with the
                                                     below buttons an then select the field");
-                        self::displayFieldsButtons(); ?>
-                        <div id="field_<?php echo $form; ?>"><?php DisplayFunction::field(""); ?>
-                            <p>
-                                <small>Some browser can delay the opening of the field of education.</small>
-                            </p>
+                            self::displayFieldsButtons(); ?>
+                            <div id="field_<?php echo $form; ?>"><?php DisplayFunction::field(""); ?>
+                                <p>
+                                    <small>Some browser can delay the opening of the field of education.</small>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </section>
                 <h3>Level</h3>
                 <section>
-                    <div class="section-container">
-                        <div class="title-form"><h2>Select the level:</h2></div>
-                        <?php self::displayLeadInfo("Select one of the below levels"); ?>
-                        <div id="level_<?php echo $form; ?>"></div>
+                    <div class="title-form"><h2>Select the level:</h2></div>
+                    <div class="fit-height-section flex-center-cont">
+                        <div class="flex-center-item sb-cont">
+                            <?php self::displayLeadInfo("Select one of the below levels"); ?>
+                            <div id="level_<?php echo $form; ?>"></div>
+                        </div>
                     </div>
                 </section>
 
                 <h3>Badge</h3>
                 <section>
-                    <div class="section-container">
-                        <div class="title-form"><h2>Select the kind of badge:</h2></div>
-                        <?php self::displayLeadInfo("Select one of the below badges"); ?>
-                        <div id="badge_<?php echo $form; ?>"></div>
+                    <div class="title-form"><h2>Select the kind of badge:</h2></div>
+                    <div class="fit-height-section flex-center-cont">
+                        <div class="flex-center-item sb-cont">
+                            <?php self::displayLeadInfo("Select one of the below badges"); ?>
+                            <div id="badge_<?php echo $form; ?>"></div>
+                        </div>
                     </div>
                 </section>
 
                 <h3>Description</h3>
                 <section>
-                    <div class="section-container">
-                        <div class="title-form"><h2>Check the description:</h2></div>
-                        <?php self::displayLeadInfo("This is the text of the badge."); ?>
-                        <div id="desc_<?php echo $form; ?>" class="desc-badge"></div>
+                    <div class="title-form"><h2>Check the description:</h2></div>
+                    <div class="fit-height-section flex-center-cont">
+                        <div class="flex-center-item sb-cont">
+                            <?php self::displayLeadInfo("This is the text of the badge."); ?>
+                            <div id="desc_<?php echo $form; ?>" class="desc-badge"></div>
+                        </div>
                     </div>
                 </section>
 
@@ -214,42 +222,48 @@ final class SendBadgeTemp extends BaseController {
                     ?>
                     <h3>Class</h3>
                     <section>
-                        <div id="class-section" class="section-container">
-                            <div class="title-form"><h2>Class:</h2></div>
-                            <?php self::displayLeadInfo("Select one of yours classes."); ?>
-                            <div id="class_<?php echo $form; ?>"></div>
+                        <div class="title-form"><h2>Class:</h2></div>
+                        <div class="fit-height-section flex-center-cont">
+                            <div class="flex-center-item sb-cont">
+                                <?php self::displayLeadInfo("Select one of yours classes."); ?>
+                                <div id="class_<?php echo $form; ?>"></div>
+                            </div>
                         </div>
                     </section>
                 <?php } ?>
                 <?php if ($form == 'b' || $form == 'c') { ?>
                     <h3>Email</h3>
                     <section>
-                        <div class="section-container">
-                            <div class="title-form"><h2>Receiver's mail addresses:</h2></div>
-                            <?php
+                        <div class="title-form"><h2>Receiver's mail addresses:</h2></div>
+                        <div class="fit-height-section flex-center-cont">
+                            <div class="flex-center-item sb-cont">
+                                <?php
 
-                            if ($form == 'b') {
-                                self::displayLeadInfo("Write the emails of the receiver badge");
-                                echo "<input id='mail_$form' name='mail' class='mail' style='width: 300px; text-align: center;'>";
-                            } elseif ($form == 'c') {
-                                self::displayLeadInfo("Write the emails of the receiver badge (to send multiple email, write each address separeted by \",\")");
-                                echo "<textarea id='mail_$form' name='mail' class='mail' rows='10' cols='50' style='width: 300px; text-align: center;'></textarea>";
-                            }
-                            ?>
+                                if ($form == 'b') {
+                                    self::displayLeadInfo("Write the emails of the receiver badge");
+                                    echo "<input id='mail_$form' name='mail' class='mail' style='width: 300px; text-align: center;'>";
+                                } elseif ($form == 'c') {
+                                    self::displayLeadInfo("Write the emails of the receiver badge (to send multiple email, write each address separeted by \",\")");
+                                    echo "<textarea id='mail_$form' name='mail' class='mail' rows='10' cols='50' style='width: 300px; text-align: center;'></textarea>";
+                                }
+                                ?>
+                            </div>
                         </div>
                     </section>
                 <?php } ?>
                 <h3>Information</h3>
                 <section>
-                    <div class="section-container">
-                        <div class="title-form"><h2>Addition information:</h2></div>
-                        <?php self::displayLeadInfo("Write some information that will be showed in the description of badge *"); ?>
-                        <textarea id="comment_<?php echo $form; ?>" placeholder="More than 10 letters ..."
-                                  name="comment" rows="5" cols="80"></textarea>
-                        <br><br>
-                        <?php self::displayLeadInfo("Url of the work or of the document that the recipient did to earn the badge"); ?>
-                        <input id='evidence_<?php echo $form; ?>' name='mail' class='mail'
-                               placeholder="www.example.com/work" style='width: 400px; text-align: center;'>
+                    <div class="title-form"><h2>Addition information:</h2></div>
+                    <div class="fit-height-section flex-center-cont">
+                        <div class="flex-center-item sb-cont">
+                            <?php self::displayLeadInfo("Write some information that will be showed in the description of badge *"); ?>
+                            <textarea id="comment_<?php echo $form; ?>" placeholder="More than 10 letters ..."
+                                      name="comment" rows="5" cols="80"></textarea>
+                            <br><br>
+                            <?php self::displayLeadInfo("Url of the work or of the document that the recipient did to earn the badge"); ?>
+                            <input id='evidence_<?php echo $form; ?>' name='mail' class='mail'
+                                   placeholder="www.example.com/work" style='width: 400px; text-align: center;'>
+                        </div>
                     </div>
                 </section>
             </div>
@@ -267,7 +281,7 @@ final class SendBadgeTemp extends BaseController {
      * ex: [send-badge form="b"]
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      *
      * @param array $atts list of param passed in to the short code
      *
@@ -286,7 +300,7 @@ final class SendBadgeTemp extends BaseController {
      * Easy way to show a massage with the lead class style.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      *
      * @param string $message message to print
      */
@@ -299,10 +313,12 @@ final class SendBadgeTemp extends BaseController {
      * of the parents fields of education.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
+     *
+     * @return void
      */
     private static function displayFieldsButtons() {
-        $fields = new Fields();
+        $fields = new WPField();
         $i = 0;
 
         if ($fields->haveChildren()) {
@@ -310,12 +326,12 @@ final class SendBadgeTemp extends BaseController {
             foreach ($fields->main as $parent) {
                 if (!$i) {
                     $i = 1;
-                    echo '<a class="btn btn-default btn-xs btn-change-children active" id="' . $parent->slug . '">Display ' . $parent->name . '</a>';
+                    echo '<a class="btn-change-children active" id="' . $parent->slug . '">Display ' . $parent->name . '</a>';
                 } else {
-                    echo '<a class="btn btn-default btn-xs btn-change-children" id="' . $parent->slug . '">Display ' . $parent->name . '</a>';
+                    echo '<a class="btn-change-children" id="' . $parent->slug . '">Display ' . $parent->name . '</a>';
                 }
             }
-            echo '<a class="btn btn-default btn-xs btn-change-children" id="all_field">Display all Fields</a>';
+            echo '<a class="btn-change-children" id="all_field">Display all Fields</a>';
         }
     }
 }

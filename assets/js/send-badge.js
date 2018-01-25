@@ -3,6 +3,15 @@ window.onload = function () {
     var currentForm;
     var clickedSendBadge = false;
 
+    /* ----> POP-UP modal  */
+    // Get the modal
+    var modal = document.getElementById('modalSendBadge');
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+
     // Prevent "enter" pressing when filling the text fields
     jQuery(window).keydown(function (event) {
         if (event.keyCode == 13) {
@@ -10,6 +19,18 @@ window.onload = function () {
             return false;
         }
     });
+
+    /**
+     * Get the html loader that show a gif image.
+     *
+     * @author Alessandro RICCARDI
+     * @since  x.x.x
+     *
+     * @return {string} the html code.
+     */
+    function getLoaderHtml() {
+        return "<center style='padding: 50px'><img src='" + globalUrl.loader + "' width='50px' height='50px' /></center>";
+    }
 
     /* =====================================
         BADGE FORM # A #
@@ -70,7 +91,7 @@ window.onload = function () {
             onFinishing: function (event, currentIndex) {
                 if ($res = check_information("a", form_a)) {
                     modal.style.display = "block";
-                    jQuery('#responseSent').html("<br /><img src='" + globalUrl.loader + "' width='150px' height='150px' />");
+                    jQuery('#responseSent').html(getLoaderHtml());
                     return $res;
                 } else {
                     return false;
@@ -149,7 +170,7 @@ window.onload = function () {
             onFinishing: function (event, currentIndex) {
                 if ($res = check_information("b", form_b)) {
                     modal.style.display = "block";
-                    jQuery('#responseSent').html("<br /><img src='" + globalUrl.loader + "' width='150px' height='150px' />");
+                    jQuery('#responseSent').html(getLoaderHtml());
                     return $res;
                 } else {
                     return false;
@@ -229,7 +250,7 @@ window.onload = function () {
             onFinishing: function (event, currentIndex) {
                 if ($res = check_information("c", form_c)) {
                     modal.style.display = "block";
-                    jQuery('#responseSent').html("<img src='" + globalUrl.loader + "' width='150px' height='150px' />");
+                    jQuery('#responseSent').html(getLoaderHtml());
                     return $res;
                 } else {
                     return false;
@@ -244,9 +265,11 @@ window.onload = function () {
 
     /**
      * @description To load the FIELD OF EDUCATION (PARENT)
-     *
      *              When you click on the .display_parent_categories to see the other "Field of Education" category (parent),
      *              the function call the "action_languages_form" in the other file.
+     *
+     * @author Alessandro RICCARDI
+     * @since  x.x.x
      *
      * @param {event} e of the event about the click
      */
@@ -259,8 +282,7 @@ window.onload = function () {
         //Add the class 'active' to the actual button.
         jQuery(this).addClass("active");
 
-        jQuery("#field_" + currentForm).html("<br />" +
-            "<img src='" + globalUrl.loader + "' width='150px' height='150px' />");
+        jQuery("#field_" + currentForm).html(getLoaderHtml());
 
         var id_lan = jQuery(this).attr('id');
         id_lan = id_lan.replace(/\s/g, '');
@@ -282,10 +304,13 @@ window.onload = function () {
     });
 
     /**
-     * @description To load the LEVEL
+     * @description To load the LEVEL.
      *
-     * @param {char} currentForm , contain the letter of the form
-     * @return {array} form the current form
+     * @author Alessandro RICCARDI
+     * @since  x.x.x
+     *
+     * @param {char} currentForm , contain the letter of the form.
+     * @return {array} form the current form.
      */
     function load_levels(currentForm, form) {
         var fieldId = jQuery("#form_" + currentForm + " #field :selected").val();
@@ -294,7 +319,7 @@ window.onload = function () {
             return false;
         }
 
-        jQuery("#level_" + currentForm).html("<br> <img src='" + globalUrl.loader + "' width='150px' height='150px' />");
+        jQuery("#level_" + currentForm).html(getLoaderHtml());
 
         var data = {
             'action': 'ajaxShowLevels',
@@ -316,10 +341,13 @@ window.onload = function () {
     }
 
     /**
-     * @description To load the BADGE
+     * @description To load the BADGE.
      *
-     * @param {char} currentForm , contain the letter of the form
-     * @return {array} form the current form
+     * @author Alessandro RICCARDI
+     * @since  x.x.x
+     *
+     * @param {char} currentForm , contain the letter of the form.
+     * @return {array} form the current form.
      */
     function load_badges(currentForm, form) {
         var check = false;
@@ -338,7 +366,7 @@ window.onload = function () {
             return false;
         }
 
-        jQuery("#badge_" + currentForm).html("<br /><img src='" + globalUrl.loader + "' width='150px' height='150px' />");
+        jQuery("#badge_" + currentForm).html(getLoaderHtml());
 
         var data = {
             'action': 'ajaxShowBadges',
@@ -361,10 +389,13 @@ window.onload = function () {
     }
 
     /**
-     * @description To load the DESCRIPTION
+     * @description To load the DESCRIPTION.
      *
-     * @param {char} currentForm , contain the letter of the form
-     * @return {array} form the current form
+     * @author Alessandro RICCARDI
+     * @since  x.x.x
+     *
+     * @param {char} currentForm , contain the letter of the form,
+     * @return {array} form the current form.
      */
     function load_description(currentForm, form) {
         var badgeId = "";
@@ -383,7 +414,7 @@ window.onload = function () {
         }
 
         // LOAD the GIF
-        jQuery("#desc_" + currentForm).html("<br> <img src='" + globalUrl.loader + "' width='150px' height='150px' />");
+        jQuery("#desc_" + currentForm).html(getLoaderHtml());
 
         // Data for the AJAX call
         var data = {
@@ -406,10 +437,13 @@ window.onload = function () {
     }
 
     /**
-     * @description To load the CLASS
+     * @description To load the CLASS.
      *
-     * @param {char} currentForm , contain the letter of the form
-     * @return {array} form the current form
+     * @author Alessandro RICCARDI
+     * @since  x.x.x
+     *
+     * @param {char} currentForm , contain the letter of the form.
+     * @return {array} form the current form.
      */
     function load_classes(currentForm, form) {
         var fieldId = jQuery("#form_" + currentForm + " #field :selected").val();
@@ -422,7 +456,7 @@ window.onload = function () {
                 }
             });
 
-        jQuery("#class_" + currentForm).html("<br /><img src='" + globalUrl.loader + "' width='150px' height='150px' />");
+        jQuery("#class_" + currentForm).html(getLoaderHtml());
 
         var data = {
             'action': 'ajaxShowClasses',
@@ -444,8 +478,11 @@ window.onload = function () {
     /**
      * @description Check if is selected the class.
      *
-     * @param {char} currentForm , contain the letter of the form
-     * @return {array} form the current form
+     * @author Alessandro RICCARDI
+     * @since  x.x.x
+     *
+     * @param {char} currentForm , contain the letter of the form.
+     * @return {array} form the current form.
      */
     function check_class(currentForm, form) {
         var check = false;
@@ -474,8 +511,11 @@ window.onload = function () {
     /**
      * @description Check if the the email/s contain only email and not garbage.
      *
-     * @param {char} currentForm , contain the letter of the form
-     * @return {array} form the current form
+     * @author Alessandro RICCARDI
+     * @since  x.x.x
+     *
+     * @param {char} currentForm , contain the letter of the form.
+     * @return {array} form the current form.
      */
     function check_mails(currentForm, form) {
         var res = false;
@@ -509,16 +549,24 @@ window.onload = function () {
      * @description Check if there are information with text more long
      *              than 10 letter and less than 1000.
      *
-     * @param {char} currentForm , contain the letter of the form
-     * @return {array} form the current form
+     * @author Alessandro RICCARDI
+     * @since  x.x.x
+     *
+     * @param {char} currentForm , contain the letter of the form.
+     * @return {array} form the current form.
      */
     function check_information(currentForm, form) {
         var info = jQuery("#comment_" + currentForm).val();
         var evidence = jQuery("#evidence_" + currentForm).val();
 
-        var patLink = /(http|https):\/\/(\w+:{0,1}\w*)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
+        var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+            '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|'+ // domain name
+            '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+            '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+            '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+            '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
 
-        if ((info.length > 10 && info.length < 1000) && (!evidence || patLink.test(evidence))) {
+        if ((info.length > 10 && info.length < 1000) && (!evidence || pattern.test(evidence))) {
             // Everything good
             form.validate().settings.ignore = ":disabled,:hidden";
             return form.valid();
@@ -533,8 +581,11 @@ window.onload = function () {
      *              This function make an ajax call to permit to send the
      *              badge to the right person and also to store in the server.
      *
-     * @param {char} currentForm , contain the letter of the form
-     * @return {array} form the current form
+     * @author Alessandro RICCARDI
+     * @since  x.x.x
+     *
+     * @param {char} currentForm , contain the letter of the form.
+     * @return {array} form the current form.
      */
     function sendMessageBadge(currentForm) {
         if (!clickedSendBadge) {
@@ -601,6 +652,20 @@ window.onload = function () {
                 .done(
                     function (response) {
                         jQuery('#responseSent').html(response);
+
+                        // When the user clicks on <span> (x), close the modal
+                        if (span) span.onclick = function () {
+                            modal.style.display = "none";
+                            location.reload();
+                        }
+
+                        // When the user clicks anywhere outside of the modal, close it
+                        window.onclick = function (event) {
+                            if (event.target == modal) {
+                                modal.style.display = "none";
+                                location.reload();
+                            }
+                        }
                     }
                 )
                 .fail(
@@ -611,12 +676,16 @@ window.onload = function () {
                     }
                 );
         }
+        clickedSendBadge = false;
     }
 
     /**
      * @description This function permit to check the current form and save into a variable.
      *
-     * @param {event} event of the event about the click
+     * @author Alessandro RICCARDI
+     * @since  x.x.x
+     *
+     * @param {event} event of the event about the click.
      */
     function checkForm(event) {
         if (jQuery(event).parents('#form_a').length == 1) {
@@ -633,11 +702,14 @@ window.onload = function () {
 
     /**
      * @description Disable the selection of the tab from the
-     *              new index until the current index
+     *              new index until the current index.
      *
-     * @param {array} form the current
-     * @param {int} newIndex, contain the letter of the form
-     * @param {int} currentIndex, contain the letter of the form
+     * @author Alessandro RICCARDI
+     * @since  x.x.x
+     *
+     * @param {array} form the current.
+     * @param {int} newIndex, contain the letter of the form.
+     * @param {int} currentIndex, contain the letter of the form.
      */
     function disableTab(form, newIndex, currentIndex) {
         var doneDiv = form.find(".done");
@@ -651,27 +723,5 @@ window.onload = function () {
         });
     }
 
-    // Get the modal
-    var modal = document.getElementById('myModal');
 
-// Get the button that opens the modal
-    var btn = document.getElementById("myBtn");
-
-// Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-
-
-// When the user clicks on <span> (x), close the modal
-    if (span) span.onclick = function () {
-        modal.style.display = "none";
-        location.reload();
-    }
-
-// When the user clicks anywhere outside of the modal, close it
-    window.onclick = function (event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
 }
-

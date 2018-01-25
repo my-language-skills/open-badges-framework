@@ -7,7 +7,7 @@ namespace Inc\Base;
  * when you deactivate the plugin.
  *
  * @author      Alessandro RICCARDI
- * @since       1.0.0
+ * @since       x.x.x
  *
  * @package     OpenBadgesFramework
  */
@@ -17,7 +17,7 @@ class Deactivate {
      * Deactivation function.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      */
     public static function deactivate() {
         flush_rewrite_rules();

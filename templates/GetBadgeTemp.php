@@ -3,11 +3,11 @@
 namespace templates;
 
 use Inc\Base\BaseController;
-use Inc\Base\User;
-use Inc\Database\DbBadge;
-use Inc\Utils\JsonManagement;
+use Inc\Utils\WPUser;
 use Inc\Pages\Admin;
-use Inc\Utils\Badges;
+use Inc\Utils\Badge;
+use Inc\Utils\JsonManagement;
+use Inc\Utils\WPBadge;
 
 /**
  * Template for the Get Badge page.
@@ -15,7 +15,7 @@ use Inc\Utils\Badges;
  * to follow all the step to get a badge.
  *
  * @author      Alessandro RICCARDI
- * @since       1.0.0
+ * @since       x.x.x
  *
  * @package     OpenBadgesFramework
  */
@@ -26,12 +26,17 @@ final class GetBadgeTemp extends BaseController {
     const GOT = 3;
     const PREVIEW = 4;
 
-    private $json = null;
-    private $jsonUrl = null;
-    private $badge = null;
-    private $field = null;
-    private $level = null;
+    private $badgeDB = null;
 
+    private $badgeWP = null;
+    private $fieldWP = null;
+    private $levelWP = null;
+
+    /**
+     * Singleton function to get the instance of the class.
+     *
+     * @return null|GetBadgeTemp
+     */
     public static function getInstance() {
         static $inst = null;
         if ($inst === null) {
@@ -46,7 +51,9 @@ final class GetBadgeTemp extends BaseController {
      * the right view.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
+     *
+     * @return void
      */
     public function main() {
         $res = $this->loadParm();
@@ -75,7 +82,7 @@ final class GetBadgeTemp extends BaseController {
      * information in variables.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @return string   START when we can start with the procedure;
      *                  GOT if is already got the badge;
@@ -85,38 +92,23 @@ final class GetBadgeTemp extends BaseController {
      */
     private function loadParm() {
 
-        if (isset($_GET['json']) && isset($_GET['badge']) && isset($_GET['field']) && isset($_GET['level'])) {
-            $this->json = $_GET['json'];
+        if (isset($_GET['v']) && !empty($_GET['v'])) {
+            $this->badgeDB = new Badge();
+            $this->badgeDB->retrieveBadge($_GET['v']);
+            if ($this->badgeDB->creationDate) {
+                $this->badgeWP = WPBadge::get($this->badgeDB->idBadge);
+                $this->fieldWP = get_term($this->badgeDB->idField, Admin::TAX_FIELDS);
+                $this->levelWP = get_term($this->badgeDB->idLevel, Admin::TAX_LEVELS);
 
-            if($this->jsonUrl = JsonManagement::getJsonUrl($this->json)) {
-                //Do this only if exist the json file
-                $data = array(
-                    'userEmail' => JsonManagement::getEmailFromJson($this->json),
-                    'badgeId' => $_GET['badge'],
-                    'fieldId' => $_GET['field'],
-                    'levelId' => $_GET['level'],
-                );
-
-                $badges = new Badges();
-                $this->badge = $badges->get($data['badgeId']);
-                $this->field = get_term($data['fieldId'], Admin::TAX_FIELDS);
-                $this->level = get_term($data['levelId'], Admin::TAX_LEVELS);
-
-                if ($this->badge && $this->field && $this->level && $this->jsonUrl) {
-                    if (!DbBadge::isGotMOB($data)) {
-                        //Everything OK
-                        return self::START;
-                    } else {
-                        //Badge already GOT
-                        return self::GOT;
-                    }
+                if (!$this->badgeDB->gotMozillaDate) {
+                    //Everything OK
+                    return self::START;
                 } else {
-                    // Broken link
-                    return self::ERROR_LINK;
+                    //Badge already GOT
+                    return self::GOT;
                 }
-
             } else {
-                return self::ERROR_JSON;
+                return self::ERROR_LINK;
             }
 
         } else {
@@ -135,7 +127,9 @@ final class GetBadgeTemp extends BaseController {
      * Show the starting step to get the badge.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
+     *
+     * @return void
      */
     public function getStartingStep() {
         $this->obf_header();
@@ -153,23 +147,23 @@ final class GetBadgeTemp extends BaseController {
             <main role="main" class="inner cover">
                 <div class="container">
                     <h1 class="badge-title-obf cover-heading">
-                        <strong><?php echo $this->badge->post_title; ?></strong>
+                        <strong><?php echo $this->badgeWP->post_title; ?></strong>
                     </h1>
-                    <h5 class="badge-field">Field of education: <strong><?php echo $this->field->name; ?></strong> -
+                    <h5 class="badge-field">Field of education: <strong><?php echo $this->fieldWP->name; ?></strong> -
                         Level:
-                        <strong><?php echo $this->level->name; ?></strong></h5>
+                        <strong><?php echo $this->levelWP->name; ?></strong></h5>
                     <p class="lead">
-                        <?php echo $this->badge->post_content; ?>
+                        <?php echo $this->badgeWP->post_content; ?>
                     </p>
                     <div class="logo-badge-cont">
-                        <img src="<?php echo Badges::getImage($this->badge->ID); ?>" height="100px"
+                        <img src="<?php echo WPBadge::getUrlImage($this->badgeWP->ID); ?>" height="100px"
                              width="100px">
                     </div>
                 </div>
             </main>
 
             <footer class="mastfoot">
-                <!--<p><?php echo JsonManagement::getJsonUrl($this->json); ?></p>-->
+                <!--<p><?php echo JsonManagement::getJsonUrl($this->idDbBadge); ?></p>-->
                 <div class="inner">
                     <p class="lead">
                         <button id="gb-continue" class="btn btn-lg btn-secondary" type="submit">Continue</button>
@@ -187,9 +181,11 @@ final class GetBadgeTemp extends BaseController {
      * Show login step.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @param string $email that the user need to use for the login
+     *
+     * @return void
      */
     public function showTheLoginContent($email) { ?>
 
@@ -237,9 +233,11 @@ final class GetBadgeTemp extends BaseController {
      * Show register page step.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @param string $email that the user need to use for the registration
+     *
+     * @return void
      */
     public function showRegisterPage($email) { ?>
 
@@ -316,12 +314,14 @@ final class GetBadgeTemp extends BaseController {
      * Show Mozilla Open Badge step.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
-     * @param $gotPartial true if he got the badge but without certification from Mozilla Open Badge |
+     * @param $isGot true if he got the badge but without certification from Mozilla Open Badge |
      *                    False if he need to take also the partial.
+     *
+     * @return void
      */
-    public function showMozillaOpenBadges($gotPartial = false) { ?>
+    public function showMozillaOpenBadges($isGot = false) { ?>
 
         <div id="gb-wrap" class="cover-container">
 
@@ -331,8 +331,8 @@ final class GetBadgeTemp extends BaseController {
                     <div class="ob-menu">
                         <span class="ob-cont-title">Mozilla Open Badges</span>
                         <span class="ob-user-info">
-                                <?php echo get_avatar(User::getCurrentUser()->ID); ?>
-                                <?php echo User::getCurrentUser()->user_login; ?>
+                                <?php echo get_avatar(WPUser::getCurrentUser()->ID); ?>
+                                <?php echo WPUser::getCurrentUser()->user_login; ?>
                             </span>
                     </div>
                 </div>
@@ -361,15 +361,15 @@ final class GetBadgeTemp extends BaseController {
                         </div>
                     </div>
                     <?php
-                    if (!$gotPartial) {
+                    if ($isGot) {
                         ?>
+                        <a class="btn-link" href="<?php echo get_bloginfo('url'); ?>"
+                           role="button">or go to the home page</a>
+                        <?php
+                    } else { ?>
                         <button id="gb-get-standard" class="btn-link" type="submit">
                             or skip the process and get anyway the Badge
                         </button>
-                        <?php
-                    } else { ?>
-                        <a class="btn-link" href="<?php echo get_bloginfo('url'); ?>"
-                           role="button">or go to the home page</a>
                         <?php
                     }
                     ?>
@@ -393,7 +393,9 @@ final class GetBadgeTemp extends BaseController {
      * Show Conclusions step.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
+     *
+     * @return void
      */
     public function showConclusionsStep() {
         ?>
@@ -410,7 +412,7 @@ final class GetBadgeTemp extends BaseController {
             <main role="main" class="inner cover">
                 <div class="container">
                     <h1 class="cong-title-obf cover-heading">
-                        <?php echo User::getCurrentUser()->first_name . ", "; ?>you just added a new badge!
+                        <?php echo WPUser::getCurrentUser()->first_name . ", "; ?>you just added a new badge!
                     </h1>
                     <div class="container cont-button-redirect">
                         <div class="row justify-content-around">
@@ -436,7 +438,9 @@ final class GetBadgeTemp extends BaseController {
      * Show Badge Got step to inform that you're already took the badge.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
+     *
+     * @return void
      */
     private function showBadgeGot() {
         $this->obf_header()
@@ -454,16 +458,16 @@ final class GetBadgeTemp extends BaseController {
                     <main role="main" class="inner cover">
                         <div class="container">
                             <div class="logo-badge-got-cont">
-                                <img src="<?php echo get_the_post_thumbnail_url($this->badge->ID) ?>" height="100px"
+                                <img src="<?php echo get_the_post_thumbnail_url($this->badgeWP->ID) ?>" height="100px"
                                      width="100px">
                             </div>
 
                             <h4 class="">
-                                <strong><?php echo $this->badge->post_title; ?></strong>
+                                <strong><?php echo $this->badgeWP->post_title; ?></strong>
                             </h4>
-                            <h5 class="badge-field">Field: <strong><?php echo $this->field->name; ?></strong> -
+                            <h5 class="badge-field">Field: <strong><?php echo $this->fieldWP->name; ?></strong> -
                                 Level:
-                                <strong><?php echo $this->level->name; ?></strong></h5>
+                                <strong><?php echo $this->levelWP->name; ?></strong></h5>
                             <h2 class="badge-got-title">
                                 Badge already got!
                             </h2>
@@ -489,9 +493,11 @@ final class GetBadgeTemp extends BaseController {
      * Show the error that we discovered in the loadParm() function.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
-     * @param const $error contain the kind of error
+     * @param string $error constant that contain the kind of error
+     *
+     * @return void
      */
     private function showMessage($error) {
         $this->obf_header()
@@ -552,7 +558,9 @@ final class GetBadgeTemp extends BaseController {
      * Contain the header of the page.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
+     *
+     * @return void
      */
     private function obf_header() {
         ?>
@@ -570,7 +578,7 @@ final class GetBadgeTemp extends BaseController {
         <body>
         <div class="container-wrap">
         <div  class="site-wrapper">
-        <div class="site-wrapper-inner">
+        <div class="site-wrapper-inner center-text">
         <?php
     }
 
@@ -578,7 +586,9 @@ final class GetBadgeTemp extends BaseController {
      * Contain the footer of the page.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
+     *
+     * @return void
      */
     private function obf_footer() { ?>
         </div>
@@ -595,7 +605,9 @@ final class GetBadgeTemp extends BaseController {
      * Contain the info of the website that are show in the top of the page.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
+     *
+     * @return void
      */
     function getInfoHeader() {
         ?>

@@ -1,22 +1,24 @@
 /* **********************
-    GENERAL
+    GENERAL OBF (.obf)
    ====================== */
+
+
 .circle-img {
     border-radius: 50%;
 }
 
-.wrap-link{
+.wrap-link {
     display: block;
     border: none;
     box-shadow: none !important;
 }
 
-.scroll-hor{
+.scroll-hor {
     overflow-x: auto;
 }
 
-.center-text {
-    text-align: center;
+.center-text * {
+    text-align: center !important;
 }
 
 .lead {
@@ -24,7 +26,7 @@
     font-weight: 300;
 }
 
-.sb-instruction{
+.sb-instruction {
     margin-bottom: 30px;
     display: inline-block;
 }
@@ -34,7 +36,45 @@
     font-size: large;
 }
 
-/* Tabs selector ****/
+/*
+ * Buttons
+ */
+
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    text-decoration: none;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-secondary {
+    color: #fff;
+    background-color: #868e96;
+    border-color: #868e96;
+}
+
+/* ======================
+    Tabs selector
+   ====================== */
+
 .nav-tabs {
     float: left;
     width: 100%;
@@ -95,12 +135,60 @@
     box-shadow: 0 5px 4px -2px rgba(0, 0, 0, 0.15);
 }
 
-/* **********************
-    DASHBOARD
+/* ===========================
+    MODAL -> pop-up
+   =========================== */
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 9991; /* One more the navigation bar or wordpress*/
+    padding-top: 100px; /* Location of the box */
+    padding-bottom: 30px; /* Location of the box */
+    left: 0;
+    top: 0;
+    bottom: 30px;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;
+}
+
+.modal-content .close{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 4px 7px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.modal-content .close:hover{
+    color: #a4a4a4;
+}
+
+/* Style against Listify theme */
+.modal-content * {
+    color: black;
+    text-shadow: none;
+}
+
+/* ======================
+    Action Control
    ====================== */
 
 .obf-title {
-    font-size: 29px !important;
+    font-size: 40px !important;
     margin-bottom: 20px !important;
 }
 
@@ -129,7 +217,7 @@
     margin-top: 30px;
 }
 
-/* Action Control ****/
+/* ## Action TAB ## */
 .row-dash {
     padding: 10px 10px;
     margin-top: 10px;
@@ -196,7 +284,7 @@
     text-align: center;
 }
 
-/* Badges list ****/
+/* ## Badges list TAB ## */
 .badges-list-dash {
     width: 100%;
     white-space: nowrap;
@@ -257,20 +345,9 @@ th {
     USER
    ====================== */
 
-.user-badges-cont {
-    margin-top: 50px;
-    background: #e2e2e2;
-    border-radius: 5px;
-    display: inline-block;
-    border-bottom: 2px solid  #d0d0d0;
-    border-radius: 0px 0px 10px 10px;
-}
-
 .flex-container {
     display: -webkit-flex;
     display: flex;
-    -webkit-align-items: flex-start;
-    align-items: flex-start;
     -webkit-flex-wrap: wrap;
     flex-wrap: wrap;
 }
@@ -288,10 +365,20 @@ th {
     margin: auto auto auto 10px;
 }
 
+.author-name {
+    text-align: left;
+    float: none;
+    margin-bottom: 20px;
+}
+
+.author-name h1 {
+    font-size: 40px;
+}
+
 .user-info-admin .img-user {
     -webkit-flex: 1;
     flex: 1;
-    max-width: 100px;
+    max-width: 150px;
 }
 
 .user-info-admin .img-user img {
@@ -299,40 +386,63 @@ th {
     width: 100%;
 }
 
-.user-info-admin .username-user {
-    -webkit-flex: 5;
-    flex: 5;
+.user-info .txt-info {
+    float: left;
+    width: 80%;
 }
 
-.user-info-admin .username-user h2{
-    font-size: 27px;
-    font-weight: 300;
-    margin-top: 10px;
-    margin-bottom: 10px;
+.txt-info li {
+    margin: 4px 0px;
+    font-size: 16px;
+    font-weight: 100;
+    list-style-type: none;
+    float: left;
+    clear: both;
+    display: inline-block;
 }
 
-.user-info-admin .username-user span{
-    font-size: 13px;
-    font-weight: 300;
+.txt-info li:first-child {
+    margin-top: 0px;
 }
 
-.user-badges-cont .title-badges-cont{
-    overflow:auto;
+/* List of badges */
+.user-badges-cont {
+    clear: both;
+    float: left;
+    margin-top: 50px;
+    background: lightgrey;
+    border-radius: 5px;
+    display: block;
+    border-bottom: 2px solid #d0d0d0;
+    border-radius: 0px 0px 10px 10px;
+    padding: 0 5px 5px 5px;
+}
+
+/* Style against Listify theme */
+.user-badges-cont * {
+    color: black;
+    text-shadow: none;
+}
+
+.user-badges {
+    background-color: whitesmoke;
+
+}
+
+.user-badges .title-badges-cont {
+    overflow: auto;
     width: 100%;
-    background: #d0d0d0;
+    background-color: lightgrey;
+    padding: 8px 20px;
 }
 
-.user-badges-cont .title-badges-cont h3{
-    margin: 10px 20px;
-    font-weight: 400;
-}
-
-.user-badges{
-    padding: 15px;
+.user-badges .title-badges-cont h3 {
+    font-weight: 300;
+    font-size: 25px;
+    margin:0;
 }
 
 .user-badges .badge {
-    flex: 1;
     border-radius: 10px;
     text-align: center;
 }
@@ -347,11 +457,11 @@ th {
     width: 100%;
 }
 
-.user-badges .badge img{
+.user-badges .badge img {
     transition: 400ms;
 }
 
-.user-badges .badge:hover > div img{
+.user-badges .badge:hover > a div img {
     box-shadow: 1px 1px 10px 2px #a8a8a8;
 }
 
@@ -372,25 +482,79 @@ th {
     text-decoration: none;
 }
 
-.user-badges .badge > a div span:after {
-    content: '';
-    color: #4a4a4a;
-    position: absolute;
-    left: 0;
-    display: inline-block;
-    height: 1em;
+.obf-badges-to-accept {
     width: 100%;
-    border-bottom: 1px solid;
-    margin-top: 3px;
-    opacity: 0;
-    -webkit-transition: opacity 400ms, -webkit-transform 400ms;
-    transition: opacity 400ms, transform 400ms;
-    -webkit-transform: scale(0,1);
-    transform: scale(0,1);
+    clear: both;
+    background-color: whitesmoke;
 }
 
-.user-badges .badge:hover > a div span:after {
-    opacity: 1;
-    -webkit-transform: scale(1);
-    transform: scale(1);
+.obf-badges-to-accept.user-badges {
+    border-radius: 0 0 8px 8px;
 }
+
+.obf-badges-to-accept .title-badges-cont{
+    padding: 4px 25px;
+    background-color: #e3e3e3;
+}
+
+.obf-badges-to-accept h4 {
+    font-size: 17px;
+    font-weight: 300;
+    margin: 0px;
+}
+
+.obf-badges-to-accept .badge .cont-img-badge {
+    width: 40px;
+}
+
+/* ==============================
+    SINGLE BADGE PAGE SBP (.sbp)
+   ============================== */
+
+.obf-sbp-conatiner-badge {
+    width: 50%;
+    background-color: whitesmoke;
+    padding: 15px;
+}
+
+.user-cont-obf {
+    font-weight: 300;
+    font-size: 15px;
+    background-color: white;
+    padding: 25px;
+}
+
+.user-cont-obf h3 {
+    padding-bottom: 10px;
+}
+
+/* The Close Button */
+.obf-bsp-badge-image {
+    position: absolute;
+    float: right;
+    right: 0;
+    top: 0;
+    border-radius: 0 5px 0 5px;
+    background-color: whitesmoke;
+    padding: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    height: auto;
+    width: auto;
+}
+
+.obf-bsp-badge-image img {
+    height: 100px;
+    width: auto;
+
+}
+
+.obf-sbp-cont-btn {
+    margin-top: 50px;
+    display: table;
+}
+
+.obf-sbp-cont-btn .btn {
+    color: white;
+}
+
