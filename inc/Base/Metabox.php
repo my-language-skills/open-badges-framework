@@ -8,7 +8,7 @@ use Inc\Pages\Admin;
  * Hear are stored all callback function for the meta-box.
  *
  * @author      Alessandro RICCARDI
- * @since       1.0.0
+ * @since       x.x.x
  *
  * @package     OpenBadgesFramework
  */
@@ -22,7 +22,7 @@ class Metabox {
      * Calling the save_post hook.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      */
     public function __construct() {
         add_action('save_post', array($this, 'saveMetaboxes'));
@@ -42,7 +42,7 @@ class Metabox {
      * Certification meta-box.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      *
      * @param $post
      */
@@ -63,7 +63,7 @@ class Metabox {
      * Certification meta-box.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      */
     public static function target($post) {
         $val = get_post_meta($post->ID, '_target', true);

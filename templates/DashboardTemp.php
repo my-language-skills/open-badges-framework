@@ -16,7 +16,7 @@ use Inc\Utils\Statistics;
  * markup the admin-facing aspects of the plugin.
  *
  * @author      Alessandro RICCARDI
- * @since       1.0.0
+ * @since       x.x.x
  *
  * @package     OpenBadgesFramework
  */
@@ -26,7 +26,9 @@ final class DashboardTemp extends BaseController {
      * First function that show the template.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
+     *
+     * @return void
      */
     public static function main() {
         ?>
@@ -59,7 +61,9 @@ final class DashboardTemp extends BaseController {
      * The action tab, loaded as a first tab.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
+     *
+     * @return void
      */
     public static function actionTab() {
         ?>
@@ -154,7 +158,9 @@ final class DashboardTemp extends BaseController {
      * The badges tab.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
+     *
+     * @return void
      */
     public static function badgesTab() {
 
@@ -168,7 +174,7 @@ final class DashboardTemp extends BaseController {
 
                 </div>
                 <div id="form-badges-list" class="content-dash badges-list-dash">
-                    <?php DisplayFunction::badgesTable();?>
+                    <?php DisplayFunction::badgesTable(); ?>
                 </div>
             </div>
         </div>
@@ -179,7 +185,9 @@ final class DashboardTemp extends BaseController {
      * The about tab.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
+     *
+     * @return void
      */
     public static function aboutTab() {
         ?>

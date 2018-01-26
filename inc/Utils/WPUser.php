@@ -1,18 +1,19 @@
 <?php
 
-namespace Inc\Base;
+namespace Inc\Utils;
 
+use Inc\Database\DbUser;
 use Inc\Pages\Admin;
 
 /**
  * The User Class for the management of the users.
  *
  * @author      Alessandro RICCARDI
- * @since       1.0.0
+ * @since       x.x.x
  *
  * @package     OpenBadgesFramework
  */
-class User {
+class WPUser {
     const ROLE_STUDENT = "student";
     const ROLE_TEACHER = "teacher";
     const ROLE_ACADEMY = "academy";
@@ -23,7 +24,6 @@ class User {
     const CAP_CERT = "obf_send_certificate";
     const CAP_TEACHER = "obf_send_teacher";
     const CAP_JOB_LISTING = "obf_job_listing_integration";
-    const CAP_ALLOW_BE_USER = "obf_user";
 
     // That capability are created with the propose to allow the academy
     // role to manage the backend of our plugin, but right now we only
@@ -56,8 +56,6 @@ class User {
                 self::CAP_CERT => false,
                 self::CAP_TEACHER => false,
                 self::CAP_JOB_LISTING => false,
-                self::CAP_ALLOW_BE_USER => true,
-
 
                 /* self::CAP_EDIT_BADGE => false,
                  self::CAP_EDIT_BADGES => false,
@@ -123,11 +121,11 @@ class User {
     );
 
     // Return messages.
-    const RET_SUCCESS = 0;
-    const RET_NO_MATCH_PASS = "The <strong>passwords</strong> doesn't match, please write correctly. <br>";
-    const RET_USER_EXIST = "The <strong>username</strong> already exist, please chose another.";
-    const RET_REGISTRATION_ERROR = "<strong>Registration error<strong>, please ask to the help desk";
-    const RET_LOGIN_ERROR = "<strong>Login error<strong>, please ask to the help desk";
+    const REGIS_SUCCESS = 0;
+    const REGIS_NO_MATCH_PASS = "The <strong>passwords</strong> doesn't match, please write correctly. <br>";
+    const REGIS_USER_EXIST = "The <strong>username</strong> already exist, please chose another.";
+    const REGIS_REGISTRATION_ERROR = "<strong>Registration error<strong>, please ask to the help desk";
+    const REGIS_LOGIN_ERROR = "<strong>Login error<strong>, please ask to the help desk";
 
     /**
      * Call the principal function (initialize) and call the
@@ -135,7 +133,7 @@ class User {
      * for every registration of user.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      */
     public function register() {
         $this->initializeRoleCap();
@@ -146,7 +144,7 @@ class User {
      * Register all the roles that we need for the plugin.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      */
     private function initializeRoleCap() {
         // Create Roles
@@ -194,7 +192,7 @@ class User {
      * activation of the Job Listing plugin.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      *
      * @param int $userId id of the user
      */
@@ -220,14 +218,13 @@ class User {
      * Get the current user that is logged in.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      *
-     * @return the user
+     * @return object the user.
      */
     public static function getCurrentUser() {
         global $current_user;
         wp_get_current_user();
-
         return $current_user;
     }
 
@@ -238,10 +235,10 @@ class User {
      * @author Alessandro RICCARDI
      * @since  0.6.4
      *
-     * @param infinity      roles that you can pass after the first parameter like this:
-     *                      check_the_rules("academy", "teacher")
+     * @param string  roles that you can pass after the first parameter like this:
+     *                check_the_rules("academy", "teacher")
      *
-     * @return bool         true if have the privilege, false otherwise
+     * @return bool   true if have the privilege, false otherwise
      */
     public static function checkTheRules() {
         $user = self::getCurrentUser();
@@ -258,17 +255,17 @@ class User {
      * Get a badge by the Ids.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @param array $user {
      *                    Array with the information about the new user.
      *
      * @type string        userEmail        Email.
-     * @type string        user_name        Username.
-     * @type string        user_pass        Password.
-     * @type string        user_rep_pass    Repeated Password.
-     * @type string        first_name       First Name.
-     * @type string        last_name        Last Name.
+     * @type string        userName        Username.
+     * @type string        userPass        Password.
+     * @type string        userRepPass    Repeated Password.
+     * @type string        firstName       First Name.
+     * @type string        lastName        Last Name.
      * }
      *
      * @return int      RET_SUCCESS (0) in case of success
@@ -277,36 +274,36 @@ class User {
      */
     public static function registerUser($user) {
         // Check if the passwords are the same
-        if ($user['user_pass'] !== $user['user_rep_pass']) {
-            return User::RET_NO_MATCH_PASS;
+        if ($user['userPassword'] !== $user['userRepPass']) {
+            return WPUser::REGIS_NO_MATCH_PASS;
         }
 
         // Check if there are users with the same name and email
-        if (username_exists($user['user_name']) || email_exists($user['user_email'])) {
+        if (username_exists($user['userName']) || email_exists($user['userEmail'])) {
             // User already exist
-            return User::RET_USER_EXIST;
+            return WPUser::REGIS_USER_EXIST;
         } else {
             // 1 !¡ CREATION of the user
-            $user_id = wp_create_user($user['user_name'], $user['user_pass'], $user['user_email']);
+            $user_id = wp_create_user($user['userName'], $user['userPassword'], $user['userEmail']);
 
             if (is_wp_error($user_id)) {
                 // Error creation
-                return User::RET_REGISTRATION_ERROR;
+                return WPUser::REGIS_REGISTRATION_ERROR;
             } else {
                 // 2 !¡ UPDATING of the first name, last name and role.
                 $update = wp_update_user(
                     array(
                         'ID' => $user_id,
-                        'first_name' => $user['first_name'],
-                        'last_name' => $user['last_name'],
-                        'role' => User::ROLE_STUDENT,
+                        'first_name' => $user['firstName'],
+                        'last_name' => $user['lastName'],
+                        'role' => WPUser::ROLE_STUDENT,
                     ));
 
                 if (is_wp_error($update)) {
                     // Error updating
-                    return User::RET_REGISTRATION_ERROR;
+                    return WPUser::REGIS_REGISTRATION_ERROR;
                 } else {
-                    return self::RET_SUCCESS;
+                    return self::REGIS_SUCCESS;
                 }
             }
         }
@@ -319,7 +316,7 @@ class User {
      *                    Array with the information about the new user.
      *
      * @type string        userEmail        Email.
-     * @type string        user_pass        Password.
+     * @type string        userPassword        Password.
      * }
      *
      * @return int      RET_SUCCESS (0) in case of success
@@ -328,16 +325,51 @@ class User {
     public static function loginUser($user) {
         // 3 !¡ SING-ON of the user
         $login = wp_signon(array(
-            'user_login' => $user['user_email'],
-            'user_password' => $user['user_pass'],
+            'user_login' => $user['userEmail'],
+            'user_password' => $user['userPassword'],
         ), false);
 
         if (is_wp_error($login)) {
             // Error sing-on
-            return User::RET_LOGIN_ERROR;
+            return WPUser::REGIS_LOGIN_ERROR;
         } else {
             // !¡!¡!¡ SUCCESS !¡!¡!¡
-            return User::RET_SUCCESS;
+            return WPUser::REGIS_SUCCESS;
         }
     }
+
+    /**
+     * Insert a user in the database and retrieve its id.
+     * If is already stored in the DB the function will anyway
+     * return the its id.
+     *
+     * @param $email
+     *
+     * @return false|int The id of the OBF user, false on error.
+     */
+    public static function insertUserInDB($email) {
+        $userDB = DbUser::getSingle(["email" => $email]);
+
+        if ($userDB && $userDB->idWP) {
+            return $userDB->id;
+        }
+
+        if (!$userDB) {
+            DbUser::insert(["email" => $email]);
+            $id = DbUser::getSingle(["email" => $email])->id;
+        } else {
+            $id = $userDB->id;
+        }
+
+        # if doesn't exist in the database
+        if ($userWP = get_user_by("email", $email)) {
+            # if already exist in the wordpress db
+            $where["id"] = $id;
+            $data["idWP"] = $userWP->ID;
+            return DbUser::update($data, $where) ? $id : false;
+        } else {
+            return $id;
+        }
+    }
+
 }

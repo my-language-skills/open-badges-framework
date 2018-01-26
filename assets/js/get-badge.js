@@ -7,7 +7,7 @@ jQuery(function (event) {
     /**
      * @description Get the param from the url.
      *
-     * @param strinf name, the name of the param that we want to take
+     * @param strinf name, the name of the param that we want to take.
      */
     var urlParam = function (name) {
         var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
@@ -15,12 +15,10 @@ jQuery(function (event) {
     }
 
     /**
-     * @description Here's wrap the code that permit to simplify an
-     *              ajax call.
+     * @description Here's wrap the code that permit to simplify an ajax call.
      *
-     * @param {array} data, that will send with the ajax call
-     * @param {function} func, that will be execute after the
-     *                         success of the ajax call
+     * @param {array} data, that will send with the ajax call.
+     * @param {function} func, that will be execute after the success of the ajax call,
      */
     var ajaxCall = function (data, func) {
         jQuery.post(
@@ -44,12 +42,15 @@ jQuery(function (event) {
     /**
      * @description Build the html structure to show the loading gif.
      *
-     * @return string html format
+     * @author Alessandro RICCARDI
+     * @since  x.x.x
+     *
+     * @return string html format.
      */
     var loadingPage = function () {
         return ("<div class='cover-container'><header class='masthead clearfix'>" +
             "</header><main role='main' class='inner cover'>" +
-            "<img src='" + globalUrl.loader + "' width='200px' />" +
+            "<img src='" + globalUrl.loader + "' width='80px' height='auto'/>" +
             "</main>" +
             "<footer class='mastfoot'></footer></div>");
     }
@@ -58,9 +59,12 @@ jQuery(function (event) {
      * @description Permit to check if inside an <input> exist a value, if
      *              exist add the class "is-valid", if not add "is-invalid".
      *
+     * @author Alessandro RICCARDI
+     * @since  x.x.x
      *
-     * @param {jQuery} input <input> tag with a 'value'
-     * @return
+     * @param {jQuery} input <input> tag with a 'value'.
+     *
+     * @return void
      */
     var checkValue = function (input) {
         if (input.val() == "") {
@@ -78,7 +82,12 @@ jQuery(function (event) {
     }
 
     /**
-     * @description Show the Mozilla Open Badge step inside the #gb-wrap <div>
+     * @description Show the Mozilla Open Badge step inside the #gb-wrap <div>.
+     *
+     * @author Alessandro RICCARDI
+     * @since  x.x.x
+     *
+     * @return void
      */
     var showGetMOBOpenBadges = function () {
         jQuery("#gb-wrap").fadeOut(400, function (event) {
@@ -88,10 +97,7 @@ jQuery(function (event) {
             // have also the permission to get the badge.
             var data = {
                 'action': 'ajaxGbShowMozillaOpenBadges',
-                'json': urlParam('json'),
-                'badgeId': urlParam('badge'),
-                'fieldId': urlParam('field'),
-                'levelId': urlParam('level'),
+                'idBadge': urlParam('v'),
             };
 
             var func = function (response) {
@@ -107,20 +113,19 @@ jQuery(function (event) {
      * @description Get definitely the badge and after show the conclusion
      *              step inside the #gb-wrap <div>
      *
-     * @param {bool} mozOpenBadge
-     * @return
+     * @author Alessandro RICCARDI
+     * @since  x.x.x
+     *
+     * @param {boolean} mozOpenBadge
+     * @return void
      */
-    var showConclusion = function (mozOpenBadge = false) {
+    var showConclusion = function (mozOpenBadge = 0) {
         jQuery("#gb-wrap").fadeOut(400, function (event) {
             jQuery("#gb-wrap").html(loadingPage(event));
-
             var data = {
                 'action': 'ajaxGbShowConclusion',
-                'MOB': mozOpenBadge,
-                'json': urlParam('json'),
-                'badgeId': urlParam('badge'),
-                'fieldId': urlParam('field'),
-                'levelId': urlParam('level'),
+                'isMozilla': mozOpenBadge,
+                'idBadge': urlParam('v'),
             };
 
             var func = function (response) {
@@ -135,8 +140,11 @@ jQuery(function (event) {
     /**
      * @description Click event of the button continue of the first step.
      *
+     * @author Alessandro RICCARDI
+     * @since  x.x.x
+     *
      * @param {array} event of the click
-     * @return
+     * @return vodi
      */
     var btnContinue = "#gb-continue";
     jQuery(document).on("click", btnContinue, function (event) {
@@ -147,10 +155,7 @@ jQuery(function (event) {
 
             var data = {
                 'action': 'ajaxGbShowLogin',
-                'json': urlParam('json'),
-                'badgeId': urlParam('badge'),
-                'fieldId': urlParam('field'),
-                'levelId': urlParam('level'),
+                'idBadge': urlParam('v'),
             };
 
             var func = function (response) {
@@ -166,7 +171,12 @@ jQuery(function (event) {
     /**
      * @description Click event of the button login.
      *
+     * @author Alessandro RICCARDI
+     * @since  x.x.x
+     *
      * @param {array} event of the click
+     *
+     * @return void
      */
     var btnLogin = "#gb-form-login";
     jQuery(document).on("submit", btnLogin, function (event) {
@@ -178,11 +188,9 @@ jQuery(function (event) {
         var remember = jQuery("#inputRemember").is(':checked');
         var data = {
             'action': 'ajaxGbLogin',
-            'badgeId': urlParam('badge'),
-            'fieldId': urlParam('field'),
-            'levelId': urlParam('level'),
-            'user_email': email,
-            'user_password': password,
+            'idBadge': urlParam('v'),
+            'userEmail': email,
+            'userPassword': password,
             'remember': remember,
 
         };
@@ -202,7 +210,12 @@ jQuery(function (event) {
     /**
      * @description Click event of the button registration.
      *
-     * @param {array} event of the click
+     * @author Alessandro RICCARDI
+     * @since  x.x.x
+     *
+     * @param {array} event of the click.
+     *
+     * @return void
      */
     var formRegister = "#gb-form-registration";
     var responseRegister = "#gb-resp-register";
@@ -235,16 +248,13 @@ jQuery(function (event) {
 
             var data = {
                 'action': 'ajaxGbRegistration',
-                'json': urlParam('json'),
-                'badgeId': urlParam('badge'),
-                'fieldId': urlParam('field'),
-                'levelId': urlParam('level'),
-                'user_email': inputFields[0].val(),
-                'user_name': inputFields[1].val(),
-                'first_name': inputFields[2].val(),
-                'last_name': inputFields[3].val(),
-                'user_pass': inputFields[4].val(),
-                'user_rep_pass': inputFields[5].val(),
+                'idBadge': urlParam('v'),
+                'userEmail': inputFields[0].val(),
+                'userName': inputFields[1].val(),
+                'firstName': inputFields[2].val(),
+                'lastName': inputFields[3].val(),
+                'userPassword': inputFields[4].val(),
+                'userRepPass': inputFields[5].val(),
             };
 
             var func = function (response) {
@@ -265,7 +275,12 @@ jQuery(function (event) {
     /**
      * @description Click event of get badge button in Mozilla Open badge step.
      *
+     * @author Alessandro RICCARDI
+     * @since  x.x.x
+     *
      * @param {array} event of the click
+     *
+     * @return void
      */
     var btnGetBadgeMob = "#gb-ob-get-badge"
     jQuery(document).on("click", btnGetBadgeMob, function (event) {
@@ -273,16 +288,13 @@ jQuery(function (event) {
 
         var data = {
             'action': 'ajaxGbGetJsonUrl',
-            'json': urlParam('json'),
-            'badgeId': urlParam('badge'),
-            'fieldId': urlParam('field'),
-            'levelId': urlParam('level'),
+            'idBadge': urlParam('v'),
         };
 
         var func = function (response) {
             OpenBadges.issue([response], function (errors, successes) {
                 if (successes.length) {
-                    showConclusion(true);
+                    showConclusion(1);
                 } else if (errors.length) {
                     jQuery("#gb-ob-response").html("Badge not sent!")
                 }
@@ -297,12 +309,17 @@ jQuery(function (event) {
     /**
      * @description Click event of skip get Mozilla Open Badge.
      *
+     * @author Alessandro RICCARDI
+     * @since  x.x.x
+     *
      * @param {array} event  of the click
+     *
+     * @return void
      */
     var btnGetBadgeStandard = "#gb-get-standard";
     jQuery(document).on("click", btnGetBadgeStandard, function (event) {
         jQuery(btnGetBadgeStandard).prop('disabled', false);
-        showConclusion(false);
+        showConclusion(0);
         jQuery(btnGetBadgeStandard).prop('disabled', true);
     });
 });

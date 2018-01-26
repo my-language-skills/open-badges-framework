@@ -6,38 +6,44 @@ use Inc\Base\BaseController;
 use Inc\Database\DbBadge;
 use Inc\Utils\DisplayFunction;
 use Inc\Utils\JsonManagement;
+use templates\SingleBadgeTemp;
 
 /**
- *
+ * AdminAjax class that contain all the the general ajax function.
+ * This functions is initialized from the InitAjax Class.
  *
  * @author      Alessandro RICCARDI
- * @since       1.0.0
+ * @since       x.x.x
  *
  * @package     OpenBadgesFramework
  */
 class AdminAjax extends BaseController {
 
     /**
-     *
+     * Show the table about all sent badges.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      */
     public function ajaxShowBadgesTable() {
-        echo DisplayFunction::badgesTable();
-
+        DisplayFunction::badgesTable();
         wp_die();
     }
 
     /**
-     *
+     * Delete a specific badge throw the id.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      */
     public function ajaxDeleteBadge() {
         $ids = $_POST['ids'];
-        $badges = DbBadge::getById($ids);
+        $badges = array();
+
+        foreach ($ids as $id) {
+            $badges[] = DbBadge::getById($id);
+        }
+
         foreach ($badges as $badge) {
             echo JsonManagement::deleteJson($badge->json);
             echo DbBadge::deleteById(array('id' => $badge->id));
@@ -46,4 +52,17 @@ class AdminAjax extends BaseController {
         wp_die();
     }
 
+    /**
+     * Show the information about a specific badge that
+     * a user earned.
+     *
+     * @author Alessandro RICCARDI
+     * @since  x.x.x
+     */
+    public function ajaxShowBadgeEarned() {
+        $id = $_POST['id'];
+        SingleBadgeTemp::showDatabaseBadge($id);
+
+        wp_die();
+    }
 }

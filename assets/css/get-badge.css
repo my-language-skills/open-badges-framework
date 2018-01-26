@@ -12,9 +12,13 @@ html {
 }
 
 body {
-    text-align: center !important;
 
 }
+
+.center-text * {
+    text-align: center !important;
+}
+
 
 input{box-sizing:border-box}
 
@@ -25,7 +29,6 @@ input{box-sizing:border-box}
 .container-wrap {
     display: block;
     height: 100%;
-    overflow: hidden;
 }
 
 .info-header-obf{

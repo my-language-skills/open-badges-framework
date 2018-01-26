@@ -8,7 +8,7 @@ namespace Inc\Database;
  * intention to inject the queries.
  *
  * @author      Alessandro RICCARDI
- * @since       1.0.0
+ * @since       x.x.x
  *
  * @package     OpenBadgesFramework
  */
@@ -23,7 +23,7 @@ class DbModel {
      * also the prefix.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @return string the name.
      */
@@ -37,16 +37,17 @@ class DbModel {
      * Creation of the query and injection.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
-     * @param string $type of query that we want to inject
+     * @param string $type of query that we want to create.
      *
      * @param array  $data list of information that will be
-     *                     placed after the expression WHERE
+     *                     placed after the expression WHERE.
      *
-     * @return string the name.
+     * @return string sql query.
      */
     public static function fetchSql($type, $data) {
+        $sql = "";
         if ($type == "SELECT") {
             $sql = "SELECT * FROM " . self::getTableName();
         } else if ($type == "UPDATE") {
@@ -79,15 +80,15 @@ class DbModel {
     }
 
     /**
-     * Get a badges.
+     * Get badges.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
-     * @param array $data  list of information that will be
-     *                     placed after the expression WHERE
+     * @param array|null $data  list of information that will be
+     *                          placed after the expression WHERE.
      *
-     * @return string the name.
+     * @return array|null|object array of object, null otherwise.
      */
     public static function get(array $data = null) {
         global $wpdb;
@@ -95,38 +96,58 @@ class DbModel {
     }
 
     /**
-     * Insert a badge.
+     * Get a badges.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
+     *
+     * @param array|null $data  list of information that will be
+     *                          placed after the expression WHERE
+     *
+     * @return object|null Object of the information, null if error
+     */
+    public static function getSingle(array $data) {
+        global $wpdb;
+        $res = $wpdb->get_results(self::fetchSql("SELECT", $data));
+        return $res ? $res[0] : null;
+    }
+
+    /**
+     * Insert a badge and retrieve the id.
+     *
+     * @author      Alessandro RICCARDI
+     * @since       x.x.x
      *
      * @param array $data  list of information that will be
      *                     placed after the expression WHERE
      *
-     * @return string the name.
+     * @return int|false The last id inserted, or false on error.
      */
     public static function insert(array $data) {
         global $wpdb;
-        $res = $wpdb->insert(self::getTableName(), $data);
-        return $res;
+        if ($wpdb->insert(self::getTableName(), $data)) {
+            return $wpdb->insert_id;
+        } else {
+            return false;
+        }
     }
 
     /**
      * Update a badge.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
-     * @param array $data list of information contain the fields as a key and
-     *                    the values as a value that we want to update
+     * @param array $data  list of information contain the fields as a key and
+     *                     the values as a value that we want to update
      *
      * @param array $where list of information that identify the specific badge
      *
-     * @return string the name.
+     * @return int|false The number of rows updated, false on error.
      */
     public static function update(array $data, array $where) {
         global $wpdb;
-        $wpdb->update(self::getTableName(), $data, $where);
+        return $wpdb->update(self::getTableName(), $data, $where);
     }
 
     /**
@@ -134,26 +155,26 @@ class DbModel {
      * passed throw param.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @param array $data  list of information that will be
      *                     placed after the expression WHERE
      *
-     * @return string the name.
+     * @return bool true if everything good, false on error
      */
     public static function delete(array $data) {
         global $wpdb;
         echo $ret = self::fetchSql('DELETE', $data);
-        return $wpdb->query($ret);
+        return $wpdb->query($ret) ? true : false;
     }
 
     /**
      * Get the time now.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
-     * @return string the name.
+     * @return string the time.
      */
     public static function now() {
         return date('Y-m-d H:i:s');

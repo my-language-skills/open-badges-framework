@@ -3,7 +3,7 @@
  *
  *
  * @author      Alessandro RICCARDI
- * @since       1.0.0
+ * @since       x.x.x
  *
  */
 
@@ -16,19 +16,19 @@ use Inc\Database\DbBadge;
  * in the future and to increase functionality.
  *
  * @author      Alessandro RICCARDI
- * @since       1.0.0
+ * @since       x.x.x
  *
  * @package     OpenBadgesFramework
  */
 class Statistics {
 
     /**
-     * This function permit to retrieve the number of c.p.t.
+     * Retrieve the number of the custom post type.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      *
-     * @param const $slug name of the c.p.t.
+     * @param string $slug of the custom post type.
      *
      * @return the number of post
      */
@@ -46,17 +46,17 @@ class Statistics {
      * This function permit to retrieve the number of taxonomy.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      *
-     * @param const $slug name of the  taxonomy
+     * @param string $slug of the taxonomy.
      *
-     * @return the number of term.
+     * @return int the number of term.
      */
     public static function getNumberTerm($slug) {
-        $terms = wp_count_terms($slug);
+        $numTerms = wp_count_terms($slug);
 
-        if (isset($terms)) {
-            return $terms;
+        if (isset($numTerms)) {
+            return $numTerms;
         } else {
             return 0;
         }
@@ -67,9 +67,9 @@ class Statistics {
      * the are sent.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      *
-     * @return the number of badges the we sent
+     * @return int the number of badges the we sent.
      */
     public static function getNumBadgesSent() {
         $all = DbBadge::getAll();
@@ -81,7 +81,7 @@ class Statistics {
      * the are got from the users.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      *
      * @return string the number of badges that are got
      */
@@ -94,7 +94,7 @@ class Statistics {
      * the are got from the users in the Mozilla Open Badge platform.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      *
      * @return string the number of badges that are got in the
      *                Mozilla Open Badge platform

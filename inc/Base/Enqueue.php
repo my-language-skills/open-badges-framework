@@ -2,25 +2,37 @@
 
 namespace Inc\Base;
 
-use \Inc\Base\BaseController;
-use Inc\Pages\Admin;
 use templates\SettingsTemp;
 
 /**
  * The Enqueue Class load all the script and style files that we need.
  *
  * @author      Alessandro RICCARDI
- * @since       1.0.0
+ * @since       x.x.x
  *
  * @package     OpenBadgesFramework
  */
 class Enqueue extends BaseController {
 
+    const DIRECTORY_CSS = 'assets/css/';
+    const DIRECTORY_JS = 'assets/js/';
+    const DIRECTORY_GIF = 'assets/gif/';
+
+    const STYLE_GET_BADGE = 'get-badge.css';
+    const STYLE_SEND_BADGE = 'send-badge.css';
+    const STYLE_OBF = 'obf-style.css';
+
+    const SCRIPT_GET_BADGE = 'get-badge.js';
+    const SCRIPT_SEND_BADGE = 'send-badge.js';
+    const SCRIPT_OBF = 'obf-script.js';
+
+    const GIF_LOADING = 'loading.gif';
+
     /**
      * Initialize the enqueue of styles and scripts.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      */
     public function register() {
         self::setAdminEnqueue();
@@ -31,7 +43,7 @@ class Enqueue extends BaseController {
      * Call the Admin WordPress enqueue hook.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      */
     private function setAdminEnqueue() {
         add_action('admin_enqueue_scripts', array($this, 'enqueueAdmin'));
@@ -42,7 +54,7 @@ class Enqueue extends BaseController {
      * style in the head and script in the footer.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      */
     private function setPublicEnqueue() {
         add_action('wp_head', array($this, 'cssHead'));
@@ -51,27 +63,29 @@ class Enqueue extends BaseController {
 
 
     /**
-     * Load all the admin styles and scripts in
+     * Load all the ADMIN styles and scripts in
      * the admin section.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      */
     public function enqueueAdmin() {
         // CSS
-        wp_enqueue_style('send-badges-style', $this->plugin_url . 'assets/css/send-badge.css');
-        wp_enqueue_style('my-style', $this->plugin_url . 'assets/css/mystyle.css');
+
+        wp_enqueue_style(self::STYLE_SEND_BADGE, $this->plugin_url . self::DIRECTORY_CSS . self::STYLE_SEND_BADGE);
+        wp_enqueue_style(self::STYLE_OBF, $this->plugin_url . self::DIRECTORY_CSS . self::STYLE_OBF);
+
         // JavaScript
-        wp_enqueue_script('general-js', $this->plugin_url . 'assets/js/general.js');
-        wp_enqueue_script('form-send-badges', $this->plugin_url . 'assets/js/jquery.steps.min.js');
         wp_enqueue_script("jQuery-validation", 'http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js', array('jquery'), 0.1, false);
-        wp_enqueue_script('send-badges', $this->plugin_url . 'assets/js/send-badge.js');
+        wp_enqueue_script('form-send-badges', $this->plugin_url . 'assets/js/jquery.steps.min.js');
+        wp_enqueue_script(self::SCRIPT_SEND_BADGE, $this->plugin_url . self::DIRECTORY_JS . self::SCRIPT_SEND_BADGE);
+        wp_enqueue_script(self::SCRIPT_OBF, $this->plugin_url . self::DIRECTORY_JS . self::SCRIPT_OBF);
         wp_localize_script(
-            'send-badges',
+            self::SCRIPT_SEND_BADGE,
             'globalUrl',
             array(
                 'ajax' => admin_url('admin-ajax.php'),
-                'loader' => $this->plugin_url . "assets/gif/circle-loading.gif",
+                'loader' => $this->plugin_url . self::DIRECTORY_GIF .self::GIF_LOADING,
             )
         );
     }
@@ -80,7 +94,7 @@ class Enqueue extends BaseController {
      * All the Head styles for the public section.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      */
     public function cssHead() {
         // Get badge page retrieved from the plugin setting
@@ -89,13 +103,13 @@ class Enqueue extends BaseController {
         );
 
         if (is_page($getBadgePage->post_name)) {
-            // Get badge page Style
+            // GET BADGE page Style
             wp_enqueue_style('bootstrap-css', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css');
-            wp_enqueue_style('get-badge-css', $this->plugin_url . 'assets/css/get-badge.css');
+            wp_enqueue_style(self::STYLE_GET_BADGE, $this->plugin_url . self::DIRECTORY_CSS . self::STYLE_GET_BADGE);
         } else {
-            // Otherwise Style
-            wp_enqueue_style('my-style', $this->plugin_url . 'assets/css/mystyle.css');
-            wp_enqueue_style('send-badges-style', $this->plugin_url . 'assets/css/send-badge.css');
+            // OTHERWISE Style
+            wp_enqueue_style(self::STYLE_OBF, $this->plugin_url . self::DIRECTORY_CSS . self::STYLE_OBF);
+            wp_enqueue_style(self::STYLE_SEND_BADGE, $this->plugin_url . self::DIRECTORY_CSS . self::STYLE_SEND_BADGE);
         }
     }
 
@@ -103,7 +117,7 @@ class Enqueue extends BaseController {
      * All the Footer scripts for the public section.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      */
     public function jsFooter() {
         // Get badge page retrieved from the plugin setting
@@ -114,30 +128,30 @@ class Enqueue extends BaseController {
         // Always
         wp_enqueue_script('form-send-badges', $this->plugin_url . 'assets/js/jquery.steps.min.js');
 
-
         if (is_page($getBadgePage->post_name)) {
-            // Get badge page Scripts
-            wp_enqueue_script('get-badge-js', $this->plugin_url . 'assets/js/get-badge.js');
+            // GET BADGE page Scripts
+            wp_enqueue_script(self::SCRIPT_GET_BADGE, $this->plugin_url . self::DIRECTORY_JS . self::SCRIPT_GET_BADGE);
+
             wp_localize_script(
-                'get-badge-js',
+                self::SCRIPT_GET_BADGE,
                 'globalUrl',
                 array(
                     'ajax' => admin_url('admin-ajax.php'),
-                    'loader' => $this->plugin_url . "assets/gif/circle-loading.gif",
-                    'loaderPoint' => $this->plugin_url . "assets/gif/horizontal-loading.gif",
+                    'loader' => $this->plugin_url . self::DIRECTORY_GIF . self::GIF_LOADING,
                 )
             );
         } else {
-            // Otherwise Scripts
-            wp_enqueue_script('general-js', $this->plugin_url . 'assets/js/general.js');
+            // OTHERWISE Scripts
             wp_enqueue_script("jQuery-validation", 'http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js', array('jquery'), 0.1, false);
-            wp_enqueue_script('send-badge-js', $this->plugin_url . 'assets/js/send-badge.js');
+            wp_enqueue_script(self::SCRIPT_SEND_BADGE, $this->plugin_url . self::DIRECTORY_JS . self::SCRIPT_SEND_BADGE);
+            wp_enqueue_script(self::SCRIPT_OBF, $this->plugin_url . self::DIRECTORY_JS . self::SCRIPT_OBF);
+
             wp_localize_script(
-                'send-badge-js',
+                self::SCRIPT_SEND_BADGE,
                 'globalUrl',
                 array(
                     'ajax' => admin_url('admin-ajax.php'),
-                    'loader' => $this->plugin_url . "assets/gif/circle-loading.gif",
+                    'loader' => $this->plugin_url . self::DIRECTORY_GIF . self::GIF_LOADING,
                 )
             );
         }

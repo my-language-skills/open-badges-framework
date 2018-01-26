@@ -5,7 +5,7 @@ namespace Inc\Pages;
 use Inc\Base\Metabox;
 use Inc\Base\BaseController;
 use Inc\Api\SettingApi;
-use Inc\Base\User;
+use Inc\Utils\WPUser;
 use Templates\BadgesTemp;
 use Templates\DashboardTemp;
 use Templates\GetBadgeTemp;
@@ -19,8 +19,12 @@ use Templates\UserTemp;
  * This class allow to create array that will be pass
  * to the SettingApi class that will initialize them.
  *
+ * @todo       Restrict Access linked to open-badge-framework -
+ * @todo       go to Class:SettingApi Function:setCurrentMenu()
+ * @todo       to manage it
+ *
  * @author     Alessandro RICCARDI
- * @since      1.0.0
+ * @since      x.x.x
  *
  * @package    OpenBadgesFramework
  */
@@ -36,7 +40,7 @@ class Admin extends BaseController {
     const MTB_LBADGE = "lbadge_obf_mtb";
     const PAGE_SEND_BADGE = 'send-badge_obf';
     const PAGE_SETTINGS = 'settings-obf';
-    const PAGE_USER = 'user-obf';
+    const PAGE_PROFILE = 'profile-obf';
     const PAGE_BADGES = 'badges-obf';
     const PAGE_SINGLE_BADGES = 'single-badge-obf';
 
@@ -49,7 +53,7 @@ class Admin extends BaseController {
      * of SettingApi and execute the final "register()" function.
      *
      * @author   Alessandro RICCARDI
-     * @since    1.0.0
+     * @since    x.x.x
      */
     function register() {
         $this->settings = new SettingApi();
@@ -69,7 +73,7 @@ class Admin extends BaseController {
      * This function permit store in a variable the principal page.
      *
      * @author   Alessandro RICCARDI
-     * @since    1.0.0
+     * @since    x.x.x
      */
     public function setPages() {
         $this->pages = array(
@@ -89,7 +93,7 @@ class Admin extends BaseController {
      * This function permit store in an array all the sub-pages.
      *
      * @author   Alessandro RICCARDI
-     * @since    1.0.0
+     * @since    x.x.x
      */
     public function setSubpages() {
         $sendbadgeTemp = new SendBadgeTemp();
@@ -131,9 +135,27 @@ class Admin extends BaseController {
                 'parent_slug' => self::SLUG_PLUGIN,
                 'page_title' => 'Send Badges',
                 'menu_title' => 'Send Badges',
-                'capability' => 'manage_options',
+                'capability' => WPUser::CAP_SELF,
                 'menu_slug' => self::PAGE_SEND_BADGE,
                 'callback' => array($sendbadgeTemp, 'main')
+            ),
+            // ## All Badges ##
+            array(
+                'parent_slug' => self::SLUG_PLUGIN,
+                'page_title' => 'All Badges',
+                'menu_title' => 'All Badges',
+                'capability' => 'read',
+                'menu_slug' => self::PAGE_BADGES,
+                'callback' => array($badgesTemp, 'main')
+            ),
+            // ## User ##
+            array(
+                'parent_slug' => self::SLUG_PLUGIN,
+                'page_title' => 'User',
+                'menu_title' => 'User',
+                'capability' => 'read',
+                'menu_slug' => self::PAGE_PROFILE,
+                'callback' => array($userTemp, 'main')
             ),
             // ## Settings ##
             array(
@@ -144,33 +166,27 @@ class Admin extends BaseController {
                 'menu_slug' => self::PAGE_SETTINGS,
                 'callback' => array($settingTemp, 'main')
             ),
-            // ## User ##
-            array(
-                'parent_slug' => self::SLUG_PLUGIN,
-                'page_title' => 'User',
-                'menu_title' => 'User',
-                'capability' => User::CAP_ALLOW_BE_USER,
-                'menu_slug' => self::PAGE_USER,
-                'callback' => array($userTemp, 'main')
-            ),
-            // ## Badges ##
-            array(
-                'parent_slug' => self::SLUG_PLUGIN,
-                'page_title' => 'Badges',
-                'menu_title' => 'Badges',
-                'capability' => User::CAP_ALLOW_BE_USER,
-                'menu_slug' => self::PAGE_BADGES,
-                'callback' => array($badgesTemp, 'main')
-            ),
             // ## Single Badge ##
             array(
                 'parent_slug' => self::SLUG_PLUGIN,
                 'page_title' => 'Badge',
                 'menu_title' => null,
-                'capability' => User::CAP_ALLOW_BE_USER,
+                'capability' => 'read',
                 'menu_slug' => self::PAGE_SINGLE_BADGES,
                 'callback' => array($singleBadgesTemp, 'main')
             ),
+        );
+
+
+        // ## Restrict Access ##
+        // Be careful HERE, this sub-page is created only for rcp-restrict-post-type
+        $this->subpages[] = array(
+            'parent_slug' => self::SLUG_PLUGIN,
+            'page_title' => 'Restrict Access',
+            'menu_title' => 'Restrict Access',
+            'capability' => 'manage_options',
+            'menu_slug' => 'admin.php?page=rcp-restrict-post-type-' . self::POST_TYPE_BADGES,
+            'callback' => ''
         );
     }
 
@@ -178,7 +194,7 @@ class Admin extends BaseController {
      * This function permit load in the SettingApi the Custom Post Type.
      *
      * @author   Alessandro RICCARDI
-     * @since    1.0.0
+     * @since    x.x.x
      */
     public function setCustomPostTypes() {
         $args = array(
@@ -232,7 +248,7 @@ class Admin extends BaseController {
      * This function permit load in the SettingApi the Taxonomies.
      *
      * @author   Alessandro RICCARDI
-     * @since    1.0.0
+     * @since    x.x.x
      */
     public function setTaxonomies() {
         // ## TAXONOMIES ##
@@ -296,7 +312,7 @@ class Admin extends BaseController {
      * This function permit load in the SettingApi the Metaboxes.
      *
      * @author   Alessandro RICCARDI
-     * @since    1.0.0
+     * @since    x.x.x
      */
     public function setMetaboxes() {
         $metaboxTemp = new Metabox();
@@ -330,7 +346,7 @@ class Admin extends BaseController {
      * that is set in the setting page.
      *
      * @author   Alessandro RICCARDI
-     * @since    1.0.0
+     * @since    x.x.x
      */
     public function setFrontEndPages() {
         // Get badge page retrieved from the plugin setting

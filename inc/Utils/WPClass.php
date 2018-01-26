@@ -2,7 +2,7 @@
 
 namespace Inc\Utils;
 
-use Inc\Base\User;
+use Inc\Utils\WPUser;
 use Inc\Pages\Admin;
 
 /**
@@ -10,18 +10,18 @@ use Inc\Pages\Admin;
  * Custom Post Type.
  *
  * @author      Alessandro RICCARDI
- * @since       1.0.0
+ * @since       x.x.x
  *
  * @package     OpenBadgesFramework
  */
-class Classes {
+class WPClass {
 
     /**
      * Retrieve the right classes that match with the field if
      * education passed as param.
      *
      * @author Alessandro RICCARDI
-     * @since  1.0.0
+     * @since  x.x.x
      *
      * @param string $field the id of the field
      *
@@ -36,7 +36,7 @@ class Classes {
             'numberposts' => -1
         ));
 
-        $userId = User::getCurrentUser()->ID;
+        $userId = WPUser::getCurrentUser()->ID;
         $classes = array();
         foreach ($allClasses as $class) {
             $fieldsPost = wp_get_post_terms($class->ID, Admin::TAX_FIELDS);

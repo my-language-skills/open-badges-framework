@@ -3,7 +3,7 @@
 namespace Inc\Utils;
 
 use Inc\Base\BaseController;
-use Inc\Base\User;
+use Inc\Utils\WPUser;
 use Inc\Pages\Admin;
 use Inc\Base\Metabox;
 use templates\SettingsTemp;
@@ -12,17 +12,17 @@ use templates\SettingsTemp;
  * Contain all the function for the management of the badges.
  *
  * @author      Alessandro RICCARDI
- * @since       1.0.0
+ * @since       x.x.x
  *
  * @package     OpenBadgesFramework
  */
-class Badges {
+class WPBadge {
 
     /**
      * Get all the Badges.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @return array the badges
      */
@@ -36,17 +36,16 @@ class Badges {
     }
 
     /**
-     * This function permit to filter with the field
-     * and level the right badges that we want.
+     * This function permit to filter with the field and level
+     * the right badges that we want.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @param string $fieldId the id of the field
      * @param string $levelId the id of the level
      *
-     * @return bool     True if have children,
-     *                  False if don't have children
+     * @return array of badges.
      */
     public static function getFiltered($fieldId = "", $levelId = "") {
 
@@ -113,11 +112,11 @@ class Badges {
      * remember: we're using the pointer for the first parameter.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @param array $retContainer this array is a pointer to the main
      *                            container that we want to save the badge
-     * @param       $badge        badge that we want to check
+     * @param       $badge        WPBadge that we want to check
      * @param bool  $retLevel     permit to specify if insert in the array the
      *                            badge ore the level of the badge
      *
@@ -140,33 +139,37 @@ class Badges {
             return false;
         }
 
-        // Capability Teacher and Certification
-        if (current_user_can(USER::CAP_TEACHER)
+        // if the user have TEACHER cap. and the badge is for teacher or student
+        if (current_user_can(WPUser::CAP_TEACHER)
             && ($badgeType == Metabox::META_FIELD_TEACHER || $badgeType == Metabox::META_FIELD_STUDENT)) {
 
-            if (current_user_can(USER::CAP_CERT)
+            // if the user have certification cap. and the badge is certify or not
+            if (current_user_can(WPUser::CAP_CERT)
                 && ($badgeCert == Metabox::META_FIELD_CERT || $badgeCert == Metabox::META_FIELD_NOT_CERT)) {
 
                 if ($retLevel) array_push($retContainer, $level);
                 else array_push($retContainer, $badge);
 
-            } else if (!current_user_can(USER::CAP_CERT) && $badgeCert == Metabox::META_FIELD_NOT_CERT) {
+                // if the user don't have certification cap.
+            } else if (!current_user_can(WPUser::CAP_CERT) && $badgeCert == Metabox::META_FIELD_NOT_CERT) {
 
                 if ($retLevel) array_push($retContainer, $level);
                 else array_push($retContainer, $badge);
 
             }
             return true;
-            // Capability Teacher and Certification
-        } else if (!current_user_can(USER::CAP_TEACHER) && $badgeType == Metabox::META_FIELD_STUDENT) {
+            // if the user doesn't have teacher cap. and the badge is for only student
+        } else if (!current_user_can(WPUser::CAP_TEACHER) && $badgeType == Metabox::META_FIELD_STUDENT) {
 
-            if (current_user_can(USER::CAP_CERT)
+            // if the user have certification cap. and the badge is certify or not
+            if (current_user_can(WPUser::CAP_CERT)
                 && ($badgeCert == Metabox::META_FIELD_CERT || $badgeCert == Metabox::META_FIELD_NOT_CERT)) {
 
                 if ($retLevel) array_push($retContainer, $level);
                 else array_push($retContainer, $badge);
 
-            } else if (!current_user_can(USER::CAP_CERT) && $badgeCert == Metabox::META_FIELD_NOT_CERT) {
+                // if the user don't have certification cap.
+            } else if (!current_user_can(WPUser::CAP_CERT) && $badgeCert == Metabox::META_FIELD_NOT_CERT) {
 
                 if ($retLevel) array_push($retContainer, $level);
                 else array_push($retContainer, $badge);
@@ -180,11 +183,11 @@ class Badges {
      * This function permit to get a specific badge.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @param int $id the id of the badge
      *
-     * @return array The badge information.
+     * @return array|null|\WP_Post The badge information.
      */
     public static function get($id) {
         return get_post($id);
@@ -194,13 +197,13 @@ class Badges {
      * This function permit to get the thumbnail image url of a badge.
      *
      * @author      Alessandro RICCARDI
-     * @since       1.0.0
+     * @since       x.x.x
      *
      * @param int $id the id of the badge
      *
      * @return string url
      */
-    public static function getImage($id) {
+    public static function getUrlImage($id) {
         if (!$img = get_the_post_thumbnail_url($id, 'thumbnail')) {
             $url = BaseController::getPluginUrl();
             $img = $url . 'assets/images/default-badge.png';
@@ -208,27 +211,5 @@ class Badges {
 
         return $img;
     }
-
-    /**
-     *
-     * @author      Alessandro RICCARDI
-     * @since       1.0.0
-     */
-    public static function getLinkGetBadge($hash_file, $badgeId, $fieldId, $levelId) {
-        // Get badge page retrieved from the plugin setting
-        $getBadgePage = get_post(
-            SettingsTemp::getOption(SettingsTemp::FI_GET_BADGE)
-        );
-
-        $urlGetBadge = home_url('/' . $getBadgePage->post_name . '/');
-
-        return $badgeLink =
-            $urlGetBadge .
-            "?json=$hash_file" .
-            "&badge=" . $badgeId .
-            "&field=" . $fieldId .
-            "&level=" . $levelId;
-    }
-
 
 }
