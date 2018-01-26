@@ -240,10 +240,10 @@ final class SendBadgeTemp extends BaseController {
                                 <?php
 
                                 if ($form == 'b') {
-                                    self::displayLeadInfo("Write the emails of the receiver badge");
+                                    self::displayLeadInfo("Write the email of the receiver badge");
                                     echo "<input id='mail_$form' name='mail' class='mail' style='width: 300px; text-align: center;'>";
                                 } elseif ($form == 'c') {
-                                    self::displayLeadInfo("Write the emails of the receiver badge (to send multiple email, write each address separeted by \",\")");
+                                    self::displayLeadInfo("Write the emails of the receivers badge (to send multiple email, write each address separeted by \",\")");
                                     echo "<textarea id='mail_$form' name='mail' class='mail' rows='10' cols='50' style='width: 300px; text-align: center;'></textarea>";
                                 }
                                 ?>
@@ -262,7 +262,7 @@ final class SendBadgeTemp extends BaseController {
                             <br><br>
                             <?php self::displayLeadInfo("Url of the work or of the document that the recipient did to earn the badge"); ?>
                             <input id='evidence_<?php echo $form; ?>' name='mail' class='mail'
-                                   placeholder="www.example.com/work" style='width: 400px; text-align: center;'>
+                                   placeholder="http://www.example.com/work" style='width: 400px; text-align: center;'>
                         </div>
                     </div>
                 </section>
