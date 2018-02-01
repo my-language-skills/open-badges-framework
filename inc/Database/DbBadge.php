@@ -25,14 +25,17 @@ class DbBadge extends DbModel {
      *
      * @author      Alessandro RICCARDI
      * @since       x.x.x
+     *
+     * @return array Strings containing the results of the various
+     *               update queries (dbDelta() function).
      */
-    public function register() {
+    public function createTable() {
+        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+        # =======
         global $wpdb;
         $userTable = DbUser::getTableName();
         $charset_collate = $wpdb->get_charset_collate();
-        $installed_version = get_option(self::DB_NAME_VERSION);
-        if ($installed_version != self::DB_VERSION) {
-            $sql = "CREATE TABLE IF NOT EXISTS " . $this->getTableName() . " (
+        $sql = "CREATE TABLE IF NOT EXISTS " . $this->getTableName() . " (
             id int(6) UNSIGNED AUTO_INCREMENT,
             idUser int(6) UNSIGNED NOT NULL,
             idBadge mediumint(9) NOT NULL,
@@ -51,10 +54,7 @@ class DbBadge extends DbModel {
             UNIQUE KEY  (idUser, idBadge, idField, idLevel),
             FOREIGN KEY (idUser) REFERENCES " . $userTable . "(id)
         ) $charset_collate;";
-            require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-            dbDelta($sql);
-            update_option(self::DB_NAME_VERSION, self::DB_VERSION);
-        }
+        return dbDelta($sql);
     }
 
     /**
