@@ -23,23 +23,23 @@ class DbUser extends DbModel {
      *
      * @author      Alessandro RICCARDI
      * @since       x.x.x
+     *
+     * @return array Strings containing the results of the various
+     *               update queries (dbDelta() function).
      */
-    public function register() {
+    public function createTable() {
+        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+        # =======
         global $wpdb;
         $charset_collate = $wpdb->get_charset_collate();
-        $installed_version = get_option(self::DB_NAME_VERSION);
-        if ($installed_version != self::DB_VERSION) {
-            $sql = "CREATE TABLE IF NOT EXISTS " . $this->getTableName() . " (
+        $sql = "CREATE TABLE IF NOT EXISTS " . $this->getTableName() . " (
             id INT(6) UNSIGNED AUTO_INCREMENT,
             email varchar(180) NOT NULL,
             idWP INT(6),
             PRIMARY KEY (id),
             UNIQUE KEY (email)
         ) $charset_collate;";
-            require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-            dbDelta($sql);
-            update_option(self::DB_NAME_VERSION, self::DB_VERSION);
-        }
+        return dbDelta($sql);
     }
 
     /**

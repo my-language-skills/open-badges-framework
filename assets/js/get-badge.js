@@ -169,7 +169,7 @@ jQuery(function (event) {
     });
 
     /**
-     * @description Click event of the button login.
+     * @description Submit event of the button login.
      *
      * @author Alessandro RICCARDI
      * @since  x.x.x

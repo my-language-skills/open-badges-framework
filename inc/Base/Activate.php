@@ -1,6 +1,8 @@
 <?php
 
 namespace Inc\Base;
+use Inc\Database\DbBadge;
+use Inc\Database\DbUser;
 use Templates\SettingsTemp;
 
 /**
@@ -22,7 +24,16 @@ class Activate {
      * @since       x.x.x
      */
     public static function activate() {
-        SettingsTemp::init();
         flush_rewrite_rules();
+
+        # Database
+        $dbUser = new DbUser();
+        $dbBadge = new DbBadge();
+        $dbUser->createTable();
+        $dbBadge->createTable();
+
+        # Settings
+        SettingsTemp::init();
+
     }
 }
