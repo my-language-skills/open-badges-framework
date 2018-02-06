@@ -81,3 +81,16 @@ if (class_exists('Inc\\Init')) {
     Inc\Init::register_services();
 
 }
+
+
+/*
+ * Auto update from github
+ *
+ */
+
+ require 'vendor/plugin-update-checker/plugin-update-checker.php';
+$myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
+	'https://github.com/Badges4Languages/open-badges-framework/',
+	__FILE__,
+	'open-badges-framework'
+);
