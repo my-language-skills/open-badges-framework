@@ -35,7 +35,7 @@ The Open-Badge-Framework plugin is supplied "as is" and all use is at your own r
 
 ## Screenshots
 
-You can see all of the screenshots of the plugin [here](doc/screenshot.md "screenshots").
+You can see all of the screenshots of the plugin [here](doc/screenshots.md "screenshots").
 
 ## Roadmap
 
