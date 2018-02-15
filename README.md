@@ -5,6 +5,11 @@ Contributors: @colomet, @AleRiccardi, @ntorion, @uzair043, @CorentinPerrot, @ale
 
 Tags: badges
 
+## Community / Support
+
+You can join our [Chat](https://gitter.im/open-badges-framework "chat" ) and talk with us.
+
+
 ## Description
 
 Open Badges Framework allows you to distribute and receive certifications of level language skills.
