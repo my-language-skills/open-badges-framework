@@ -17,6 +17,7 @@ use Inc\Utils\WPField;
  * [send-badge form="c"] -> multiple
  * [send-badge form="all"] -> all together
  *
+ * [send-badge ... sec-form="..."] -> add a second form (a/b/c) that will be show with the first
  *
  * @author      @AleRiccardi
  * @since       x.x.x
@@ -68,8 +69,9 @@ final class SendBadgeTemp extends BaseController {
      *                     a -> Self
      *                     b -> Single
      *                     c -> Multiple
+     * @param string $secForm add a second form (a/b/c) that will be show with the first
      */
-    public static function getRightForm($form) {
+    public static function getRightForm($form, $secForm) {
         if ($form === "all") {
             // In the case we want to show all the 3 form all together
             // like in the admin Send Badge page.
@@ -102,28 +104,69 @@ final class SendBadgeTemp extends BaseController {
             </div>
 
             <?php
+        } else if (($form == "a" || $form == "b" || $form == "c") &&
+            ($secForm == "a" || $secForm == "b" || $secForm == "c")) {
+            ?>
+            <ul class="nav nav-tabs">
+                <?php
+                $active = true;
+                if ($form == "a" || $secForm == "a") {
+                    echo "<li class='";
+                    if ($active) {
+                        echo "active";
+                        $active = false;
+                    }
+                    echo "'><a href='#tab-1'>Self</a></li>";
+                }
+                if (($form == "b" || $secForm == "b")) {
+                    echo "<li class='";
+                    if ($active) {
+                        echo "active";
+                        $active = false;
+                    }
+                    echo "'><a href='#tab-2'>Single</a></li>";
+                }
+
+                if ($form == "c" || $secForm == "c") {
+                    echo "<li class='";
+                    if ($active) {
+                        echo "active";
+                        $active = false;
+                    }
+                    echo "'><a href='#tab-3'>Multiple</a></li>";
+                }
+                ?>
+            </ul>
+
+            <div class="tab-content-page">
+                <?php
+                $active = true;
+                if ($form == "a" || $secForm == "a") {
+                    ?>
+                    <div id="tab-1" class="tab-pane <?php if ($active) { echo "active"; $active = false; } ?>">
+                        <?php self::getForm("a"); ?>
+                    </div>
+                    <?php
+                }
+                if ($form == "b" || $secForm == "b") {
+                    ?>
+                    <div id="tab-2" class="tab-pane <?php if ($active) { echo "active"; $active = false; } ?>">
+                        <?php self::getForm("b"); ?>
+                    </div>
+                    <?php
+                }
+                if ($form == "c" || $secForm == "c") {
+                    ?>
+                    <div id="tab-3" class="tab-pane <?php if ($active) { echo "active"; $active = false; } ?>">
+                        <?php self::getForm("c"); ?>
+                    </div>
+                <?php }
+                ?>
+            </div>
+
+            <?php
         } else {
-
-            if ($form == self::FORM_SELF) {
-                if (current_user_can(WPUser::CAP_SELF)) {
-                    self::getForm($form);
-                } else {
-                    echo "You don't have the permission to access to this functionality.";
-                }
-
-            } else if ($form == self::FORM_ISSUE) {
-                if (current_user_can(WPUser::CAP_SINGLE)) {
-                    self::getForm($form);
-                } else {
-                    echo "You don't have the permission to access to this functionality.";
-                }
-            } else if ($form == self::FORM_MULTIPLE) {
-                if (current_user_can(WPUser::CAP_MULTIPLE)) {
-                    self::getForm($form);
-                } else {
-                    echo "You don't have the permission to access to this functionality.";
-                }
-            }
+            self::getForm($form);
         } ?>
 
         <!-- The Modal -->
@@ -151,8 +194,29 @@ final class SendBadgeTemp extends BaseController {
      *                     a -> Self
      *                     b -> Single
      *                     c -> Multiple
+     *
+     * @return false if error
      */
     public static function getForm($form) {
+
+        if ($form == self::FORM_SELF) {
+            if (!current_user_can(WPUser::CAP_SELF)) {
+                echo "You don't have the permission to access to this functionality.";
+                return false;
+            }
+
+        } else if ($form == self::FORM_ISSUE) {
+            if (!current_user_can(WPUser::CAP_SINGLE)) {
+                echo "You don't have the permission to access to this functionality.";
+                return false;
+            }
+        } else if ($form == self::FORM_MULTIPLE) {
+            if (!current_user_can(WPUser::CAP_MULTIPLE)) {
+                echo "You don't have the permission to access to this functionality.";
+                return false;
+            }
+        }
+
         // When we want to show a specific tab.
         echo '<div class="tab-content center-text">';
 
@@ -288,9 +352,10 @@ final class SendBadgeTemp extends BaseController {
     public static function getShortCodeForm($atts) {
         $a = shortcode_atts(array(
             'form' => 'all',
+            'sec-form' => ''
         ), $atts);
 
-        return self::getRightForm($a['form']);
+        return self::getRightForm($a['form'], $a['sec-form']);
 
     }
 
