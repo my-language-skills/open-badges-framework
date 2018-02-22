@@ -10,7 +10,7 @@ use Inc\Pages\Admin;
  * Custom Post Type.
  *
  * @author      @AleRiccardi
- * @since       x.x.x
+ * @since       1.0.0
  *
  * @package     OpenBadgesFramework
  */
@@ -21,7 +21,7 @@ class WPClass {
      * education passed as param.
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @param string $field the id of the field
      *

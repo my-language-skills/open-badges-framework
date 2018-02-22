@@ -42,7 +42,7 @@ jQuery(function ($) {
      *              ajax call.
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @param {array} data, that will send with the ajax call.
      * @param {function} func, that will be execute after the
@@ -81,7 +81,7 @@ jQuery(function ($) {
      * permit to delete a list of badges.
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @return void
      */
@@ -143,7 +143,7 @@ jQuery(function ($) {
      * @description Click event for the Image uploader used in the settings page.
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @return void
      */
@@ -172,7 +172,7 @@ jQuery(function ($) {
      * @description Click event for remove an image from the image uploader in the settings page.
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @return void
      */
@@ -195,7 +195,7 @@ jQuery(function ($) {
      * @description Click event for the earned badge.
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @return void
      */

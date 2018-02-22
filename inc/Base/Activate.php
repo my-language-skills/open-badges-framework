@@ -10,7 +10,7 @@ use Templates\SettingsTemp;
  * when you activate the plugin.
  *
  * @author      @AleRiccardi
- * @since       x.x.x
+ * @since       1.0.0
  *
  * @package     OpenBadgesFramework
  */
@@ -21,7 +21,7 @@ class Activate {
      * wen you active the plugin.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      */
     public static function activate() {
         flush_rewrite_rules();

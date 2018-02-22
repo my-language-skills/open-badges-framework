@@ -15,7 +15,7 @@ use Inc\Utils\WPBadge;
  * you to follow all the step to get a badge.
  *
  * @author      @AleRiccardi
- * @since       x.x.x
+ * @since       1.0.0
  *
  * @package     OpenBadgesFramework
  */
@@ -51,7 +51,7 @@ final class GetBadgeTemp extends BaseController {
      * the right view.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @return void
      */
@@ -82,7 +82,7 @@ final class GetBadgeTemp extends BaseController {
      * information in variables.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @return string   START when we can start with the procedure;
      *                  GOT if is already got the badge;
@@ -127,7 +127,7 @@ final class GetBadgeTemp extends BaseController {
      * Show the starting step to get the badge.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @return void
      */
@@ -135,7 +135,7 @@ final class GetBadgeTemp extends BaseController {
         $this->obf_header();
         ?>
         <header class="masthead mb-auto">
-            <?php echo $this->getInfoHeader(); ?>
+            <?php $this->getInfoHeader(); ?>
             <div class="container inner">
                 <div class="cont-title">New badge</div>
             </div>
@@ -176,7 +176,7 @@ final class GetBadgeTemp extends BaseController {
      * Show login step.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @param string $email that the user need to use for the login
      *
@@ -185,7 +185,7 @@ final class GetBadgeTemp extends BaseController {
     public function showTheLoginContent($email) { ?>
 
         <header class="masthead mb-auto">
-            <?php echo $this->getInfoHeader(); ?>
+            <?php $this->getInfoHeader(); ?>
         </header>
 
         <main role="main" class="inner cover">
@@ -225,7 +225,7 @@ final class GetBadgeTemp extends BaseController {
      * Show register page step.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @param string $email that the user need to use for the registration
      *
@@ -234,7 +234,7 @@ final class GetBadgeTemp extends BaseController {
     public function showRegisterPage($email) { ?>
 
         <header class="masthead mb-auto">
-            <?php echo $this->getInfoHeader(); ?>
+            <?php $this->getInfoHeader(); ?>
             <div class="inner">
                 <div class="cont-title">Registration</div>
             </div>
@@ -303,7 +303,7 @@ final class GetBadgeTemp extends BaseController {
      * Show Mozilla Open Badge step.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @param $isGot      true if he got the badge but without certification from Mozilla Open Badge |
      *                    False if he need to take also the partial.
@@ -313,7 +313,7 @@ final class GetBadgeTemp extends BaseController {
     public function showMozillaOpenBadges($isGot = false) { ?>
 
         <header class="masthead mb-auto">
-            <?php echo $this->getInfoHeader(); ?>
+            <?php $this->getInfoHeader(); ?>
             <div class="inner container">
                 <div class="ob-menu">
                     <span class="ob-cont-title">Mozilla Open Badges</span>
@@ -379,7 +379,7 @@ final class GetBadgeTemp extends BaseController {
      * Show Conclusions step.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @return void
      */
@@ -421,7 +421,7 @@ final class GetBadgeTemp extends BaseController {
      * Show Badge Got step to inform that you're already took the badge.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @return void
      */
@@ -467,7 +467,7 @@ final class GetBadgeTemp extends BaseController {
      * Show the error that we discovered in the loadParm() function.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @param string $error constant that contain the kind of error
      *
@@ -477,7 +477,7 @@ final class GetBadgeTemp extends BaseController {
         $this->obf_header()
         ?>
         <header class="masthead mb-auto">
-            <?php echo $this->getInfoHeader(); ?>
+            <?php $this->getInfoHeader(); ?>
             <div class="inner container">
             </div>
         </header>
@@ -524,7 +524,7 @@ final class GetBadgeTemp extends BaseController {
      * Contain the header of the page.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @return void
      */
@@ -550,7 +550,7 @@ final class GetBadgeTemp extends BaseController {
      * Contain the footer of the page.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @return void
      */
@@ -568,7 +568,7 @@ final class GetBadgeTemp extends BaseController {
      * Contain the info of the website that are show in the top of the page.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @return void
      */

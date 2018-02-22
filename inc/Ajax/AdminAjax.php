@@ -13,7 +13,7 @@ use templates\SingleBadgeTemp;
  * This functions is initialized from the InitAjax Class.
  *
  * @author      @AleRiccardi
- * @since       x.x.x
+ * @since       1.0.0
  *
  * @package     OpenBadgesFramework
  */
@@ -23,7 +23,7 @@ class AdminAjax extends BaseController {
      * Show the table about all sent badges.
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      */
     public function ajaxShowBadgesTable() {
         DisplayFunction::badgesTable();
@@ -34,7 +34,7 @@ class AdminAjax extends BaseController {
      * Delete a specific badge throw the id.
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      */
     public function ajaxDeleteBadge() {
         $ids = $_POST['ids'];
@@ -57,7 +57,7 @@ class AdminAjax extends BaseController {
      * a user earned.
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      */
     public function ajaxShowBadgeEarned() {
         $id = $_POST['id'];

@@ -19,12 +19,10 @@ use Templates\UserTemp;
  * This class allow to create array that will be pass
  * to the SettingApi class that will initialize them.
  *
- * @todo       Restrict Access linked to open-badge-framework -
- * @todo       go to Class:SettingApi Function:setCurrentMenu()
- * @todo       to manage it
+ * @todo       Restrict Access linked to open-badge-framework - go to Class:SettingApi Function:setCurrentMenu() to manage it
  *
  * @author     @AleRiccardi
- * @since      x.x.x
+ * @since      1.0.0
  *
  * @package    OpenBadgesFramework
  */
@@ -53,7 +51,7 @@ class Admin extends BaseController {
      * of SettingApi and execute the final "register()" function.
      *
      * @author   @AleRiccardi
-     * @since    x.x.x
+     * @since    1.0.0
      */
     function register() {
         $this->settings = new SettingApi();
@@ -73,7 +71,7 @@ class Admin extends BaseController {
      * This function permit store in a variable the principal page.
      *
      * @author   @AleRiccardi
-     * @since    x.x.x
+     * @since    1.0.0
      */
     public function setPages() {
         $this->pages = array(
@@ -93,7 +91,7 @@ class Admin extends BaseController {
      * This function permit store in an array all the sub-pages.
      *
      * @author   @AleRiccardi
-     * @since    x.x.x
+     * @since    1.0.0
      */
     public function setSubpages() {
         $sendbadgeTemp = new SendBadgeTemp();
@@ -194,7 +192,7 @@ class Admin extends BaseController {
      * This function permit load in the SettingApi the Custom Post Type.
      *
      * @author   @AleRiccardi
-     * @since    x.x.x
+     * @since    1.0.0
      */
     public function setCustomPostTypes() {
         $args = array(
@@ -247,7 +245,7 @@ class Admin extends BaseController {
      * This function permit load in the SettingApi the Taxonomies.
      *
      * @author   @AleRiccardi
-     * @since    x.x.x
+     * @since    1.0.0
      */
     public function setTaxonomies() {
         // ## TAXONOMIES ##
@@ -311,7 +309,7 @@ class Admin extends BaseController {
      * This function permit load in the SettingApi the Metaboxes.
      *
      * @author   @AleRiccardi
-     * @since    x.x.x
+     * @since    1.0.0
      */
     public function setMetaboxes() {
         $metaboxTemp = new Metabox();
@@ -345,7 +343,7 @@ class Admin extends BaseController {
      * that is set in the setting page.
      *
      * @author   @AleRiccardi
-     * @since    x.x.x
+     * @since    1.0.0
      */
     public function setFrontEndPages() {
         // Get badge page retrieved from the plugin setting

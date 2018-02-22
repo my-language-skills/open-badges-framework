@@ -3,7 +3,7 @@
  * Initial class that is called.
  *
  * @author      @AleRiccardi
- * @since       x.x.x
+ * @since       1.0.0
  *
  * @package     OpenBadgesFramework
  */
@@ -15,7 +15,7 @@ namespace Inc;
  * Here will start all the initial class that we want to execute.
  *
  * @author      @AleRiccardi
- * @since       x.x.x
+ * @since       1.0.0
  */
 final class Init {
 
@@ -23,7 +23,7 @@ final class Init {
      * Store all the classes inside an array.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @return array Full list of classes
      */
@@ -48,7 +48,7 @@ final class Init {
      * and call the register() method if it exists.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      */
     public static function register_services() {
         foreach (self::get_services() as $class) {
@@ -63,7 +63,7 @@ final class Init {
      * Initialize the class.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @param class $class class form services array
      *

@@ -236,7 +236,7 @@ class Badge {
      * Retrieves the URL for the Get-Badge-Page.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @param int $idDbBadge id of the specific badge in the Database OBF.
      *

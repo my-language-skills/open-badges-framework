@@ -17,7 +17,7 @@ use Inc\Utils\WPUser;
  * table create from the plugin.
  *
  * @author      @AleRiccardi
- * @since       x.x.x
+ * @since       1.0.0
  *
  * @package     OpenBadgesFramework
  */
@@ -33,7 +33,7 @@ final class SingleBadgeTemp {
      * information form the url.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      */
     public function main() {
         $res = $this->loadParm();
@@ -58,7 +58,7 @@ final class SingleBadgeTemp {
      * Control the parameter in the url.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @return int
      */
@@ -89,7 +89,7 @@ final class SingleBadgeTemp {
      * Show Post badge section.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @param $id
      *
@@ -125,7 +125,7 @@ final class SingleBadgeTemp {
      * Show Database badge section
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @param $idBadge
      *
@@ -208,7 +208,7 @@ final class SingleBadgeTemp {
      * Show error section.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @param $error
      *

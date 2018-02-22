@@ -10,7 +10,7 @@ use Inc\Utils\WPBadge;
  * that plugin.
  *
  * @author      @AleRiccardi
- * @since       x.x.x
+ * @since       1.0.0
  *
  * @package     OpenBadgesFramework
  */

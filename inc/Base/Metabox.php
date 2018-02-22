@@ -8,7 +8,7 @@ use Inc\Pages\Admin;
  * Hear are stored all callback function for the meta-box.
  *
  * @author      @AleRiccardi
- * @since       x.x.x
+ * @since       1.0.0
  *
  * @package     OpenBadgesFramework
  */
@@ -22,7 +22,7 @@ class Metabox {
      * Calling the save_post hook.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      */
     public function __construct() {
         add_action('save_post', array($this, 'saveMetaboxes'));
@@ -40,20 +40,21 @@ class Metabox {
 
     /**
      * Certification meta-box.
+     * @todo control the function of the @function check()
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @param $post
      */
     public static function certification($post) {
         $val = get_post_meta($post->ID, '_certification', true);
 
-        echo '<input type="radio" value="'.self::META_FIELD_CERT.'" name="certification_input"';
+        echo '<input type="radio" value="' . self::META_FIELD_CERT . '" name="certification_input"';
         self::check($val, self::META_FIELD_CERT);
         printf(__('> Certified<br>', 'open-badges-framework'));
 
-        echo '<input type="radio" value="'.self::META_FIELD_NOT_CERT.'" name="certification_input"';
+        echo '<input type="radio" value="' . self::META_FIELD_NOT_CERT . '" name="certification_input"';
         self::check($val, self::META_FIELD_NOT_CERT);
         printf(__('> Not certified<br>', 'open-badges-framework'));
     }
@@ -61,18 +62,19 @@ class Metabox {
 
     /**
      * Certification meta-box.
+     * @todo control the function of the @function check()
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      */
     public static function target($post) {
         $val = get_post_meta($post->ID, '_target', true);
 
-        echo '<input type="radio" value="'.self::META_FIELD_STUDENT.'" name="target_input"';
+        echo '<input type="radio" value="' . self::META_FIELD_STUDENT . '" name="target_input"';
         self::check($val, self::META_FIELD_STUDENT);
         printf(__('> Student<br>', 'open-badges-framework'));
 
-        echo '<input type="radio" value="'.self::META_FIELD_TEACHER.'" name="target_input"';
+        echo '<input type="radio" value="' . self::META_FIELD_TEACHER . '" name="target_input"';
         self::check($val, self::META_FIELD_TEACHER);
         printf(__('> Teacher<br>', 'open-badges-framework'));
 
@@ -85,8 +87,8 @@ class Metabox {
      * @author Nicolas TORION
      * @since  0.4
      *
-     * @param $val      value to verify
-     * @param $expected value that is confronted with the first param.
+     * @param mixed $val      value to verify
+     * @param mixed $expected value that is confronted with the first param.
      */
     function check($val, $expected) {
         if ($val == $expected) {

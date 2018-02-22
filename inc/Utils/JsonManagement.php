@@ -10,7 +10,7 @@ use templates\SettingsTemp;
  * Permit to manage the Json files about the badges.
  *
  * @author      @AleRiccardi
- * @since       x.x.x
+ * @since       1.0.0
  *
  * @package     OpenBadgesFramework
  */
@@ -30,7 +30,7 @@ class JsonManagement extends BaseController {
      * @param Badge $badge
      *
      * @author   @AleRiccardi
-     * @since    x.x.x
+     * @since    1.0.0
      */
     public function __construct(Badge $badge) {
         parent::__construct();
@@ -42,7 +42,7 @@ class JsonManagement extends BaseController {
      * Creation of the main json file.
      *
      * @author   @AleRiccardi
-     * @since    x.x.x
+     * @since    1.0.0
      *
      * @param   string $receiver the email address of the person that is getting the badge.
      *
@@ -77,7 +77,7 @@ class JsonManagement extends BaseController {
      * information about the <b>badge</b>.
      *
      * @author   @AleRiccardi
-     * @since    x.x.x
+     * @since    1.0.0
      *
      * @param $hashNameMain string name of the main json file.
      *
@@ -117,7 +117,7 @@ class JsonManagement extends BaseController {
      * information about the <b>company</b>.
      *
      * @author   @AleRiccardi
-     * @since    x.x.x
+     * @since    1.0.0
      */
     private function createIssuerCompany() {
         // function var
@@ -176,7 +176,7 @@ class JsonManagement extends BaseController {
      * Get the json file as an object.
      *
      * @author   @AleRiccardi
-     * @since    x.x.x
+     * @since    1.0.0
      *
      * @param $jsonName
      *
@@ -205,7 +205,7 @@ class JsonManagement extends BaseController {
      * Get the URL of a json file.
      *
      * @author   @AleRiccardi
-     * @since    x.x.x
+     * @since    1.0.0
      *
      * @param $jsonName string the json name (without extension).
      *
@@ -222,7 +222,7 @@ class JsonManagement extends BaseController {
      * Get the PATH of a json file.
      *
      * @author   @AleRiccardi
-     * @since    x.x.x
+     * @since    1.0.0
      *
      * @param $jsonName    string the json name (without extension).
      * @param $isMain      bool true if we want the main issuer,
@@ -242,7 +242,7 @@ class JsonManagement extends BaseController {
      * Delete a main issuer json file and its related badge issuer.
      *
      * @author   @AleRiccardi
-     * @since    x.x.x
+     * @since    1.0.0
      *
      * @param $jsonName string the main issuer json name (without extension).
      *

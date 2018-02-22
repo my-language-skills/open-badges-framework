@@ -15,7 +15,7 @@ use Inc\Utils\WPBadge;
  * the badges that he earned
  *
  * @author      @AleRiccardi
- * @since       x.x.x
+ * @since       1.0.0
  *
  * @package     OpenBadgesFramework
  */

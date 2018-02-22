@@ -11,7 +11,7 @@ use templates\SettingsTemp;
  * Class that permit to send badges.
  *
  * @author      @AleRiccardi
- * @since       x.x.x
+ * @since       1.0.0
  *
  * @package     OpenBadgesFramework
  */
@@ -34,7 +34,7 @@ class SendBadge{
      * Initialization of all the variable.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @param int    $idBadge   the id of the badge
      * @param int    $idField   the id of the field
@@ -77,7 +77,7 @@ class SendBadge{
      * 5) send the email.
      *
      * @author   @AleRiccardi
-     * @since    x.x.x
+     * @since    1.0.0
      *
      * @return string to determinate the status of the process.
      */
@@ -132,7 +132,7 @@ class SendBadge{
      * Function that permit to create the body of the email.
      *
      * @author   @AleRiccardi
-     * @since    x.x.x
+     * @since    1.0.0
      *
      * @param int $idDbBadge id of the database row of the badge.
      *

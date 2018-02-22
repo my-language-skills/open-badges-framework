@@ -9,7 +9,7 @@ use Inc\Pages\Admin;
  * (page, sub-pages, custom post type, ...).
  *
  * @author     @AleRiccardi
- * @since      x.x.x
+ * @since      1.0.0
  *
  * @package     OpenBadgesFramework
  */
@@ -27,7 +27,7 @@ class SettingApi {
      * to initialize all the component
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      */
     public function register() {
         /* PAGES */
@@ -55,7 +55,7 @@ class SettingApi {
      * of the class.
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @param array $pages Array content the menus
      *
@@ -102,7 +102,7 @@ class SettingApi {
      * Load all the sub-pages inside the variable of the class.
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @param array $pages pages
      *
@@ -119,7 +119,7 @@ class SettingApi {
      * class.
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @param array $cpts custom post type
      *
@@ -135,7 +135,7 @@ class SettingApi {
      * Load all the taxonomies inside the variable of the class.
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @param array $taxonomies taxonomies
      *
@@ -151,7 +151,7 @@ class SettingApi {
      * Load all the meta-boxes inside the variable of the class.
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @param array $metaboxes metaboxes
      *
@@ -167,7 +167,7 @@ class SettingApi {
      * Load all the front-end-pages inside the variable of the class.
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @param array $frontEndPages front-end-pages
      *
@@ -184,7 +184,7 @@ class SettingApi {
      * function all the menus.
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      */
     public function addAdminMenu() {
         foreach ($this->admin_pages as $page) {
@@ -204,7 +204,7 @@ class SettingApi {
      * post type and taxonomy.
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      */
     public function addInit() {
         foreach ($this->cpts as $cpt) {
@@ -221,7 +221,7 @@ class SettingApi {
      * function all the menus.
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      */
     public function addMetaBoxes() {
         foreach ($this->metaboxes as $metabox) {
@@ -244,7 +244,7 @@ class SettingApi {
      * function of the class that refer in the param $this->frontEndPages.
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      */
     public function addFrontEndPages() {
         foreach ($this->frontEndPages as $frontEndPage) {
@@ -264,7 +264,7 @@ class SettingApi {
      * Instantiation of a class.
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @param class $class class form services array
      *
@@ -279,7 +279,7 @@ class SettingApi {
      * for each post type and taxonomy.
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @param $parent_file Of the plugin
      *

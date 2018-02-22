@@ -8,7 +8,7 @@ use Inc\Pages\Admin;
  * That class permit to mange the Fields taxonomies.
  *
  * @author      @AleRiccardi
- * @since       x.x.x
+ * @since       1.0.0
  *
  * @package     OpenBadgesFramework
  */
@@ -21,7 +21,7 @@ class WPField {
      * also the sub field if they exist.
      *
      * @author   @AleRiccardi
-     * @since    x.x.x
+     * @since    1.0.0
      */
     public function __construct() {
 
@@ -53,7 +53,7 @@ class WPField {
      * also the sub field if they exist.
      *
      * @author   @AleRiccardi
-     * @since    x.x.x
+     * @since    1.0.0
      *
      * @return array|int|\WP_Error
      */
@@ -88,7 +88,7 @@ class WPField {
      * have subcategory (children) or not.
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @return bool     True if have children,
      *                  False if don't have children

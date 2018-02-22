@@ -16,7 +16,7 @@ use Inc\Utils\Statistics;
  * markup the admin-facing aspects of the plugin.
  *
  * @author      @AleRiccardi
- * @since       x.x.x
+ * @since       1.0.0
  *
  * @package     OpenBadgesFramework
  */
@@ -26,7 +26,7 @@ final class DashboardTemp extends BaseController {
      * First function that show the template.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @return void
      */
@@ -61,7 +61,7 @@ final class DashboardTemp extends BaseController {
      * The action tab, loaded as a first tab.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @return void
      */
@@ -157,7 +157,7 @@ final class DashboardTemp extends BaseController {
      * The badges tab.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @return void
      */
@@ -184,7 +184,7 @@ final class DashboardTemp extends BaseController {
      * The about tab.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @return void
      */

@@ -20,7 +20,7 @@ use Inc\Utils\WPField;
  * [send-badge ... sec-form="..."] -> add a second form (a/b/c) that will be show with the first
  *
  * @author      @AleRiccardi
- * @since       x.x.x
+ * @since       1.0.0
  *
  * @package     OpenBadgesFramework
  */
@@ -34,7 +34,7 @@ final class SendBadgeTemp extends BaseController {
      * the right section of the sending badge.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      */
     public function __construct() {
         add_shortcode('send-badge', array(SendBadgeTemp::class, 'getShortCodeForm'));
@@ -44,7 +44,7 @@ final class SendBadgeTemp extends BaseController {
      * The first thing that will show when you load this page.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      */
     public static function main() {
         ?>
@@ -63,7 +63,7 @@ final class SendBadgeTemp extends BaseController {
      * Show the right form.
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @param string $form name of the form, should be:
      *                     a -> Self
@@ -183,12 +183,11 @@ final class SendBadgeTemp extends BaseController {
         <?php
     }
 
-
     /**
      * Get the specific form.
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @param string $form name of the form, should be:
      *                     a -> Self
@@ -343,7 +342,7 @@ final class SendBadgeTemp extends BaseController {
      * ex: [send-badge form="b"]
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @param array $atts list of param passed in to the short code
      *
@@ -363,7 +362,7 @@ final class SendBadgeTemp extends BaseController {
      * Easy way to show a massage with the lead class style.
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @param string $message message to print
      */
@@ -376,7 +375,7 @@ final class SendBadgeTemp extends BaseController {
      * of the parents fields of education.
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @return void
      */

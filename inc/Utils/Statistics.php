@@ -3,7 +3,7 @@
  *
  *
  * @author      @AleRiccardi
- * @since       x.x.x
+ * @since       1.0.0
  *
  */
 
@@ -16,7 +16,7 @@ use Inc\Database\DbBadge;
  * in the future and to increase functionality.
  *
  * @author      @AleRiccardi
- * @since       x.x.x
+ * @since       1.0.0
  *
  * @package     OpenBadgesFramework
  */
@@ -26,7 +26,7 @@ class Statistics {
      * Retrieve the number of the custom post type.
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @param string $slug of the custom post type.
      *
@@ -46,7 +46,7 @@ class Statistics {
      * This function permit to retrieve the number of taxonomy.
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @param string $slug of the taxonomy.
      *
@@ -67,7 +67,7 @@ class Statistics {
      * the are sent.
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @return int the number of badges the we sent.
      */
@@ -81,7 +81,7 @@ class Statistics {
      * the are got from the users.
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @return string the number of badges that are got
      */
@@ -94,7 +94,7 @@ class Statistics {
      * the are got from the users in the Mozilla Open Badge platform.
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @return string the number of badges that are got in the
      *                Mozilla Open Badge platform

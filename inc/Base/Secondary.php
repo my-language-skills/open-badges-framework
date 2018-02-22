@@ -9,7 +9,7 @@ use Inc\Pages\Admin;
  * @todo make this more intelligent.
  *
  * @author      @AleRiccardi
- * @since       x.x.x
+ * @since       1.0.0
  *
  * @package     OpenBadgesFramework
  */
@@ -21,7 +21,7 @@ class Secondary {
      * Documentation: http://docs.restrictcontentpro.com/article/1750-rcp-metabox-post-types
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      */
     public function register() {
         //add_filter('rcp_metabox_post_types', array($this, 'ag_rcp_metabox_post_types'));
@@ -33,7 +33,7 @@ class Secondary {
      * extension (doesn't work).
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @param $post_types
      *
@@ -48,7 +48,7 @@ class Secondary {
      * Is Job Manager Activated?
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @return bool true if activated, otherwise false.
      */
@@ -60,7 +60,7 @@ class Secondary {
      * Is Restrict Content Pro activated?
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @return bool true if activated, otherwise false.
      */
@@ -80,7 +80,7 @@ class Secondary {
      * Is Restrict Content Pro integrated with Job Manager?
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @return bool true if integrated, otherwise false.
      */

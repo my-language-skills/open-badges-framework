@@ -15,7 +15,7 @@ use Inc\Base\Secondary;
  * @todo        https://www.youtube.com/watch?v=QYt5Ry3os88
  *
  * @author      @AleRiccardi
- * @since       x.x.x
+ * @since       1.0.0
  *
  * @package     OpenBadgesFramework
  */
@@ -51,7 +51,7 @@ final class SettingsTemp {
      * settings.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      */
     public function __construct() {
         add_action('admin_init', array($this, 'pageInit'));
@@ -63,7 +63,7 @@ final class SettingsTemp {
      * Class.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      */
     public static function init() {
         $options = get_option(self::OPTION_NAME);
@@ -118,7 +118,7 @@ final class SettingsTemp {
      * This is the function that is typically loaded at the beginning.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      */
     public function main() {
         // Set class property
@@ -163,7 +163,7 @@ final class SettingsTemp {
      * Initializing of all the settings information
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      */
     public function pageInit() {
         register_setting(
@@ -273,7 +273,7 @@ final class SettingsTemp {
      * Sanitize each setting field as needed.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @param array $input Contains all settings fields as array keys.
      *
@@ -325,7 +325,7 @@ final class SettingsTemp {
      * Print the Section text.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @return void
      */
@@ -337,7 +337,7 @@ final class SettingsTemp {
      * Print the Link text.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @return void
      */
@@ -349,7 +349,7 @@ final class SettingsTemp {
      * Print the Site Name field with also the value (if exist).
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @return void
      */
@@ -367,7 +367,7 @@ final class SettingsTemp {
      * Print the Url of the image field with also the value (if exist).
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @return void
      */
@@ -406,7 +406,7 @@ final class SettingsTemp {
      * Print the Website Url field with also the value (if exist).
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @return void
      */
@@ -424,7 +424,7 @@ final class SettingsTemp {
      * Print the Telephone field with also the value (if exist).
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @return void
      */
@@ -442,7 +442,7 @@ final class SettingsTemp {
      * Print the Company Description field with also the value (if exist).
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @return void
      */
@@ -460,7 +460,7 @@ final class SettingsTemp {
      * Print the Company Email field with also the value (if exist).
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @return void
      */
@@ -478,7 +478,7 @@ final class SettingsTemp {
      * Print the become premium page field with also the value (if exist).
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @return void
      */
@@ -508,7 +508,7 @@ final class SettingsTemp {
      * Print the add class page field with also the value (if exist).
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @return void
      */
@@ -538,7 +538,7 @@ final class SettingsTemp {
      * Print the get badge page field with also the value (if exist).
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @return void
      */
@@ -560,7 +560,7 @@ final class SettingsTemp {
      * Retrieve the link from thw id of a the page.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @param int $idPage id of the page.
      *
@@ -578,7 +578,7 @@ final class SettingsTemp {
      * setting page.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @param string $field_option a constant of this class that refer
      *                             to a field in setting page

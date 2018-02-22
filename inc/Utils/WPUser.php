@@ -9,7 +9,7 @@ use Inc\Pages\Admin;
  * The User Class for the management of the users.
  *
  * @author      @AleRiccardi
- * @since       x.x.x
+ * @since       1.0.0
  *
  * @package     OpenBadgesFramework
  */
@@ -134,7 +134,7 @@ class WPUser {
      * for every registration of user.
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      */
     public function register() {
         $this->initializeRoleCap();
@@ -145,7 +145,7 @@ class WPUser {
      * Register all the roles that we need for the plugin.
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      */
     private function initializeRoleCap() {
         // Create Roles
@@ -193,7 +193,7 @@ class WPUser {
      * activation of the Job Listing plugin.
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @param int $userId id of the user
      */
@@ -219,7 +219,7 @@ class WPUser {
      * Get the current user that is logged in.
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @return object the user.
      */
@@ -256,7 +256,7 @@ class WPUser {
      * Get a badge by the Ids.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @param array $user {
      *                    Array with the information about the new user.

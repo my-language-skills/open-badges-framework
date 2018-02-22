@@ -24,7 +24,7 @@ window.onload = function () {
      * Get the html loader that show a gif image.
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @return {string} the html code.
      */
@@ -269,7 +269,7 @@ window.onload = function () {
      *              the function call the "action_languages_form" in the other file.
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @param {event} e of the event about the click
      */
@@ -307,7 +307,7 @@ window.onload = function () {
      * @description To load the LEVEL.
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @param {char} currentForm , contain the letter of the form.
      * @return {array} form the current form.
@@ -344,7 +344,7 @@ window.onload = function () {
      * @description To load the BADGE.
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @param {char} currentForm , contain the letter of the form.
      * @return {array} form the current form.
@@ -392,7 +392,7 @@ window.onload = function () {
      * @description To load the DESCRIPTION.
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @param {char} currentForm , contain the letter of the form,
      * @return {array} form the current form.
@@ -440,7 +440,7 @@ window.onload = function () {
      * @description To load the CLASS.
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @param {char} currentForm , contain the letter of the form.
      * @return {array} form the current form.
@@ -479,7 +479,7 @@ window.onload = function () {
      * @description Check if is selected the class.
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @param {char} currentForm , contain the letter of the form.
      * @return {array} form the current form.
@@ -512,7 +512,7 @@ window.onload = function () {
      * @description Check if the the email/s contain only email and not garbage.
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @param {char} currentForm , contain the letter of the form.
      * @return {array} form the current form.
@@ -550,7 +550,7 @@ window.onload = function () {
      *              than 10 letter and less than 1000.
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @param {char} currentForm , contain the letter of the form.
      * @return {array} form the current form.
@@ -582,7 +582,7 @@ window.onload = function () {
      *              badge to the right person and also to store in the server.
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @param {char} currentForm , contain the letter of the form.
      * @return {array} form the current form.
@@ -683,7 +683,7 @@ window.onload = function () {
      * @description This function permit to check the current form and save into a variable.
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @param {event} event of the event about the click.
      */
@@ -705,7 +705,7 @@ window.onload = function () {
      *              new index until the current index.
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @param {array} form the current.
      * @param {int} newIndex, contain the letter of the form.

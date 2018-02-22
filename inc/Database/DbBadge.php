@@ -7,7 +7,7 @@ namespace Inc\Database;
  * that are sent.
  *
  * @author      @AleRiccardi
- * @since       x.x.x
+ * @since       1.0.0
  *
  * @package     OpenBadgesFramework
  */
@@ -24,7 +24,7 @@ class DbBadge extends DbModel {
      * permit to create the db table.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @return array Strings containing the results of the various
      *               update queries (dbDelta() function).
@@ -61,7 +61,7 @@ class DbBadge extends DbModel {
      * Get a badge/s by the id.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @param int $id id of the row
      *
@@ -81,7 +81,7 @@ class DbBadge extends DbModel {
      * Get a badge by the ids.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @param array $where {
      *                     information about a specific badge.
@@ -117,7 +117,7 @@ class DbBadge extends DbModel {
      * Get all the badge.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @return array|null|object array of object (badges), nul if not exist
      */
@@ -129,7 +129,7 @@ class DbBadge extends DbModel {
      * Get the keys of the badge table.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @return array keys
      */
@@ -142,7 +142,7 @@ class DbBadge extends DbModel {
      * Insert a badge.
      *
      * @author        @AleRiccardi
-     * @since         x.x.x
+     * @since         1.0.0
      *
      * @param array $data the information to insert
      *
@@ -168,7 +168,7 @@ class DbBadge extends DbModel {
      * Delete a badge by own id.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @param array $data the number id of the badge
      *
@@ -190,7 +190,7 @@ class DbBadge extends DbModel {
      * the array $rightKeys.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @param array $rightKeys
      * @param array $data
@@ -219,7 +219,7 @@ class DbBadge extends DbModel {
      * Permit to understand if the badge is got in the Mozilla Open Badge.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @param array $data {
      *                    information about a specific badge.
@@ -249,7 +249,7 @@ class DbBadge extends DbModel {
      * Permit to understand if the badge is got in the Mozilla Open Badge.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @param array $where   information about the badge that we want to update.
      * @param bool  $mozilla true if I want to set the badge for MOB and for the current site as "taken";
@@ -284,7 +284,7 @@ class DbBadge extends DbModel {
      * Permit retrieve the number of badges got in the past.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @return mixed return the number of badges that are got.
      */
@@ -300,7 +300,7 @@ class DbBadge extends DbModel {
      * Open Badge in the past.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @return mixed return the number of badges that are got.
      */

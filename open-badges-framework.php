@@ -16,7 +16,7 @@
  * Plugin URI:        www.badges4languages.com
  * Description:       Open Badges Framework allows you to distribute and receive certifications of level language skills.
  * area.
- * Version:           x.x.x
+ * Version:           1.0.0
  * Author:            My language skills team
  * Author URI:        www.badges4languages.com
  * License:           GPL-2.0+
@@ -55,7 +55,7 @@ define( 'PLUGIN', plugin_basename( __FILE__ ) );
 /**
  * The code that runs during plugin activation
  *
- * @since x.x.x
+ * @since 1.0.0
  */
 function open_badges_framework_activation() {
     Inc\Base\Activate::activate();
@@ -65,7 +65,7 @@ register_activation_hook(__FILE__, 'open_badges_framework_activation');
 /**
  * The code that runs during plugin deactivation
  *
- * @since x.x.x
+ * @since 1.0.0
  */
 function open_badges_framework_deactivation() {
     Inc\Base\Deactivate::deactivate();
@@ -75,7 +75,7 @@ register_deactivation_hook(__FILE__, 'open_badges_framework_deactivation');
 /**
  * Initialize all the core classes of the plugin
  *
- * @since x.x.x
+ * @since 1.0.0
  */
 if (class_exists('Inc\\Init')) {
     Inc\Init::register_services();

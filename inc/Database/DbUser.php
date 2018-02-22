@@ -6,7 +6,7 @@ namespace Inc\Database;
  * That class manage the database table for the users.
  *
  * @author      @AleRiccardi
- * @since       x.x.x
+ * @since       1.0.0
  *
  * @package     OpenBadgesFramework
  */
@@ -22,7 +22,7 @@ class DbUser extends DbModel {
      * permit to create the db table.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @return array Strings containing the results of the various
      *               update queries (dbDelta() function).
@@ -46,7 +46,7 @@ class DbUser extends DbModel {
      * Get a user/s by the id.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @param int $id the OBF user id
      *
@@ -67,7 +67,7 @@ class DbUser extends DbModel {
      * Get all the users.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @return array|null|object array of object (users), nul if not exist
      */
@@ -79,7 +79,7 @@ class DbUser extends DbModel {
      * Insert a user.
      *
      * @author        @AleRiccardi
-     * @since         x.x.x
+     * @since         1.0.0
      *
      * @param array $data information about a specific user.
      *
@@ -99,7 +99,7 @@ class DbUser extends DbModel {
      * Update a user.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @param array $data  data that we want to update.
      *
@@ -115,7 +115,7 @@ class DbUser extends DbModel {
      * Delete a user by own id.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @param int $id the number id of the user
      *

@@ -12,7 +12,7 @@ use templates\SettingsTemp;
  * Contain all the function for the management of the badges.
  *
  * @author      @AleRiccardi
- * @since       x.x.x
+ * @since       1.0.0
  *
  * @package     OpenBadgesFramework
  */
@@ -22,7 +22,7 @@ class WPBadge {
      * Get all the Badges.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @return array the badges
      */
@@ -40,7 +40,7 @@ class WPBadge {
      * the right badges that we want.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @param string $fieldId the id of the field
      * @param string $levelId the id of the level
@@ -112,7 +112,7 @@ class WPBadge {
      * remember: we're using the pointer for the first parameter.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
      * @param array $retContainer this array is a pointer to the main
      *                            container that we want to save the badge
@@ -120,7 +120,7 @@ class WPBadge {
      * @param bool  $retLevel     permit to specify if insert in the array the
      *                            badge ore the level of the badge
      *
-     * @return true if everything is ok || false if is not added
+     * @return true if everything is ok || false if is not added.
      */
     public static function checkCapInsertBadgeOrLevel(array &$retContainer, $badge, $retLevel = false) {
         $level = null;
@@ -183,9 +183,9 @@ class WPBadge {
      * This function permit to get a specific badge.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
-     * @param int $id the id of the badge
+     * @param int $id the id of the badge.
      *
      * @return array|null|\WP_Post The badge information.
      */
@@ -197,11 +197,11 @@ class WPBadge {
      * This function permit to get the thumbnail image url of a badge.
      *
      * @author      @AleRiccardi
-     * @since       x.x.x
+     * @since       1.0.0
      *
-     * @param int $id the id of the badge
+     * @param int $id the id of the badge.
      *
-     * @return string url
+     * @return string url.
      */
     public static function getUrlImage($id) {
         if (!$img = get_the_post_thumbnail_url($id, 'thumbnail')) {

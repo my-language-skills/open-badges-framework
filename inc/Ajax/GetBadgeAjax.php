@@ -16,7 +16,7 @@ use Templates\GetBadgeTemp;
  * This functions is initialized from the InitAjax Class.
  *
  * @author      @AleRiccardi
- * @since       x.x.x
+ * @since       1.0.0
  *
  * @package     OpenBadgesFramework
  */
@@ -33,7 +33,7 @@ class GetBadgeAjax extends BaseController {
      * login step) or is already logged in (show MOB step).
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      */
     public function ajaxGbShowLogin() {
         if (isset($_POST['idBadge']) && !empty($_POST['idBadge'])) {
@@ -62,7 +62,7 @@ class GetBadgeAjax extends BaseController {
      * remember check-box and then execute the login.
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      */
     public function ajaxGbLogin() {
         if (isset($_POST['idBadge']) && !empty($_POST['idBadge'])) {
@@ -93,7 +93,7 @@ class GetBadgeAjax extends BaseController {
      * error that have a specific message.
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      *
      * @return string RET_LOGIN_SUCCESS          registration success.
      *                RET_NO_MATCH_PASS          the passwords do not match.
@@ -126,7 +126,7 @@ class GetBadgeAjax extends BaseController {
      * Show the Mozilla Open Badges step.
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      */
     public function ajaxGbShowMozillaOpenBadges() {
         if (isset($_POST['idBadge']) && !empty($_POST['idBadge'])) {
@@ -142,7 +142,7 @@ class GetBadgeAjax extends BaseController {
      * Permit to retrieve the url of the json file.
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      */
     public function ajaxGbGetJsonUrl() {
         if (isset($_POST['idBadge']) && !empty($_POST['idBadge'])) {
@@ -158,7 +158,7 @@ class GetBadgeAjax extends BaseController {
      * Show the Conclusion step.
      *
      * @author @AleRiccardi
-     * @since  x.x.x
+     * @since  1.0.0
      */
     public function ajaxGbShowConclusion() {
         if (isset($_POST['idBadge']) && isset($_POST['isMozilla']) && !empty($_POST['idBadge']) ) {
