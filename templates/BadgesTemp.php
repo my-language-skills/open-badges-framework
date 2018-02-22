@@ -9,7 +9,7 @@ use Inc\Utils\WPBadge;
  * Template class that shows all the badges created with
  * that plugin.
  *
- * @author      Alessandro RICCARDI
+ * @author      @AleRiccardi
  * @since       x.x.x
  *
  * @package     OpenBadgesFramework

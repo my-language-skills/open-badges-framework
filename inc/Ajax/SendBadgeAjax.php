@@ -17,7 +17,7 @@ use templates\SettingsTemp;
  * called as a "ajax call" and concern the send badge process.
  * This function is initialized from the InitAjax Class.
  *
- * @author      Alessandro RICCARDI
+ * @author      @AleRiccardi
  * @since       x.x.x
  *
  * @package     OpenBadgesFramework
@@ -27,7 +27,7 @@ class SendBadgeAjax extends BaseController {
     /**
      * Show the fields of education based on the chosen parent
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      */
     public function ajaxShowFields() {
@@ -39,7 +39,7 @@ class SendBadgeAjax extends BaseController {
     /**
      * Show the levels in base a specific field of education.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      */
     public function ajaxShowLevels() {
@@ -70,7 +70,7 @@ class SendBadgeAjax extends BaseController {
      * that we selected in the first step and in base of
      * the level of the second step.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      */
     public function ajaxShowBadges() {
@@ -107,7 +107,7 @@ class SendBadgeAjax extends BaseController {
     /**
      * Show the description of a specific badge.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      */
     public function ajaxShowDescription() {
@@ -124,7 +124,7 @@ class SendBadgeAjax extends BaseController {
      * Show the class of the user and also permit to became premium or
      * to add a class (depending on the role).
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      */
     public function ajaxShowClasses() {
@@ -163,7 +163,7 @@ class SendBadgeAjax extends BaseController {
      * with all the information and then called the function sendBadge
      * that make start the process.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      */
     public function ajaxSendBadge() {

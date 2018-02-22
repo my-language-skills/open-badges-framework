@@ -7,7 +7,7 @@ use Inc\Pages\Admin;
 /**
  * Hear are stored all callback function for the meta-box.
  *
- * @author      Alessandro RICCARDI
+ * @author      @AleRiccardi
  * @since       x.x.x
  *
  * @package     OpenBadgesFramework
@@ -21,7 +21,7 @@ class Metabox {
     /**
      * Calling the save_post hook.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      */
     public function __construct() {
@@ -41,7 +41,7 @@ class Metabox {
     /**
      * Certification meta-box.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      *
      * @param $post
@@ -62,7 +62,7 @@ class Metabox {
     /**
      * Certification meta-box.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      */
     public static function target($post) {

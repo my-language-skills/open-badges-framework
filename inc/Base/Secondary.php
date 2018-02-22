@@ -8,7 +8,7 @@ use Inc\Pages\Admin;
  * Secondary class that allow to add feature to the plugin.
  * @todo make this more intelligent.
  *
- * @author      Alessandro RICCARDI
+ * @author      @AleRiccardi
  * @since       x.x.x
  *
  * @package     OpenBadgesFramework
@@ -20,7 +20,7 @@ class Secondary {
      * Presume a bug of Restrict Content Pro
      * Documentation: http://docs.restrictcontentpro.com/article/1750-rcp-metabox-post-types
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      */
     public function register() {
@@ -32,7 +32,7 @@ class Secondary {
      * Allow Restrict Content Pro to see our plugin as part of its
      * extension (doesn't work).
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @param $post_types
@@ -47,7 +47,7 @@ class Secondary {
     /**
      * Is Job Manager Activated?
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @return bool true if activated, otherwise false.
@@ -59,7 +59,7 @@ class Secondary {
     /**
      * Is Restrict Content Pro activated?
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @return bool true if activated, otherwise false.
@@ -79,7 +79,7 @@ class Secondary {
     /**
      * Is Restrict Content Pro integrated with Job Manager?
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @return bool true if integrated, otherwise false.

@@ -8,7 +8,7 @@ use Inc\Pages\Admin;
 /**
  * The User Class for the management of the users.
  *
- * @author      Alessandro RICCARDI
+ * @author      @AleRiccardi
  * @since       x.x.x
  *
  * @package     OpenBadgesFramework
@@ -132,7 +132,7 @@ class WPUser {
      * WordPress hook that create the own class in Job_Listing
      * for every registration of user.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      */
     public function register() {
@@ -143,7 +143,7 @@ class WPUser {
     /**
      * Register all the roles that we need for the plugin.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      */
     private function initializeRoleCap() {
@@ -191,7 +191,7 @@ class WPUser {
      * for the user that was already registered before the
      * activation of the Job Listing plugin.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      *
      * @param int $userId id of the user
@@ -217,7 +217,7 @@ class WPUser {
     /**
      * Get the current user that is logged in.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      *
      * @return object the user.
@@ -232,7 +232,7 @@ class WPUser {
      * Check if the user have one of the roles that we pass
      * as a param.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  0.6.4
      *
      * @param string  roles that you can pass after the first parameter like this:
@@ -254,7 +254,7 @@ class WPUser {
     /**
      * Get a badge by the Ids.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @param array $user {

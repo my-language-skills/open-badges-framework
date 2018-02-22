@@ -2,7 +2,7 @@
 /**
  *
  *
- * @author      Alessandro RICCARDI
+ * @author      @AleRiccardi
  * @since       x.x.x
  *
  */
@@ -15,7 +15,7 @@ use Inc\Database\DbBadge;
  * This is a very initial class, created to be developed
  * in the future and to increase functionality.
  *
- * @author      Alessandro RICCARDI
+ * @author      @AleRiccardi
  * @since       x.x.x
  *
  * @package     OpenBadgesFramework
@@ -25,7 +25,7 @@ class Statistics {
     /**
      * Retrieve the number of the custom post type.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      *
      * @param string $slug of the custom post type.
@@ -45,7 +45,7 @@ class Statistics {
     /**
      * This function permit to retrieve the number of taxonomy.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      *
      * @param string $slug of the taxonomy.
@@ -66,7 +66,7 @@ class Statistics {
      * This function permit to retrieve the number of the badges
      * the are sent.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      *
      * @return int the number of badges the we sent.
@@ -80,7 +80,7 @@ class Statistics {
      * This function permit to retrieve the number of the badges
      * the are got from the users.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      *
      * @return string the number of badges that are got
@@ -93,7 +93,7 @@ class Statistics {
      * This function permit to retrieve the number of the badges
      * the are got from the users in the Mozilla Open Badge platform.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      *
      * @return string the number of badges that are got in the

@@ -7,7 +7,7 @@ use templates\SettingsTemp;
 /**
  * The Enqueue Class load all the script and style files that we need.
  *
- * @author      Alessandro RICCARDI
+ * @author      @AleRiccardi
  * @since       x.x.x
  *
  * @package     OpenBadgesFramework
@@ -31,7 +31,7 @@ class Enqueue extends BaseController {
     /**
      * Initialize the enqueue of styles and scripts.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      */
     public function register() {
@@ -42,7 +42,7 @@ class Enqueue extends BaseController {
     /**
      * Call the Admin WordPress enqueue hook.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      */
     private function setAdminEnqueue() {
@@ -53,7 +53,7 @@ class Enqueue extends BaseController {
      * Call the Public WordPress enqueue hook adding typically
      * style in the head and script in the footer.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      */
     private function setPublicEnqueue() {
@@ -66,7 +66,7 @@ class Enqueue extends BaseController {
      * Load all the ADMIN styles and scripts in
      * the admin section.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      */
     public function enqueueAdmin() {
@@ -93,7 +93,7 @@ class Enqueue extends BaseController {
     /**
      * All the Head styles for the public section.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      */
     public function cssHead() {
@@ -116,7 +116,7 @@ class Enqueue extends BaseController {
     /**
      * All the Footer scripts for the public section.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      */
     public function jsFooter() {

@@ -5,7 +5,7 @@ namespace Inc\Database;
 /**
  * That class manage the database table for the users.
  *
- * @author      Alessandro RICCARDI
+ * @author      @AleRiccardi
  * @since       x.x.x
  *
  * @package     OpenBadgesFramework
@@ -21,7 +21,7 @@ class DbUser extends DbModel {
      * In that function, called from the Init class,
      * permit to create the db table.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @return array Strings containing the results of the various
@@ -45,7 +45,7 @@ class DbUser extends DbModel {
     /**
      * Get a user/s by the id.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @param int $id the OBF user id
@@ -66,7 +66,7 @@ class DbUser extends DbModel {
     /**
      * Get all the users.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @return array|null|object array of object (users), nul if not exist
@@ -78,7 +78,7 @@ class DbUser extends DbModel {
     /**
      * Insert a user.
      *
-     * @author        Alessandro RICCARDI
+     * @author        @AleRiccardi
      * @since         x.x.x
      *
      * @param array $data information about a specific user.
@@ -98,7 +98,7 @@ class DbUser extends DbModel {
     /**
      * Update a user.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @param array $data  data that we want to update.
@@ -114,7 +114,7 @@ class DbUser extends DbModel {
     /**
      * Delete a user by own id.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @param int $id the number id of the user

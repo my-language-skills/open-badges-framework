@@ -9,7 +9,7 @@ use Inc\Pages\Admin;
  * That class permit to mange the classes of the "Job_Listing"
  * Custom Post Type.
  *
- * @author      Alessandro RICCARDI
+ * @author      @AleRiccardi
  * @since       x.x.x
  *
  * @package     OpenBadgesFramework
@@ -20,7 +20,7 @@ class WPClass {
      * Retrieve the right classes that match with the field if
      * education passed as param.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      *
      * @param string $field the id of the field

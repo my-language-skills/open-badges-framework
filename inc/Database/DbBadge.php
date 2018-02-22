@@ -6,7 +6,7 @@ namespace Inc\Database;
  * That class manage the database table for the badges
  * that are sent.
  *
- * @author      Alessandro RICCARDI
+ * @author      @AleRiccardi
  * @since       x.x.x
  *
  * @package     OpenBadgesFramework
@@ -23,7 +23,7 @@ class DbBadge extends DbModel {
      * In that function, called from the Init class,
      * permit to create the db table.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @return array Strings containing the results of the various
@@ -60,7 +60,7 @@ class DbBadge extends DbModel {
     /**
      * Get a badge/s by the id.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @param int $id id of the row
@@ -80,7 +80,7 @@ class DbBadge extends DbModel {
     /**
      * Get a badge by the ids.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @param array $where {
@@ -116,7 +116,7 @@ class DbBadge extends DbModel {
     /**
      * Get all the badge.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @return array|null|object array of object (badges), nul if not exist
@@ -128,7 +128,7 @@ class DbBadge extends DbModel {
     /**
      * Get the keys of the badge table.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @return array keys
@@ -141,7 +141,7 @@ class DbBadge extends DbModel {
     /**
      * Insert a badge.
      *
-     * @author        Alessandro RICCARDI
+     * @author        @AleRiccardi
      * @since         x.x.x
      *
      * @param array $data the information to insert
@@ -167,7 +167,7 @@ class DbBadge extends DbModel {
     /**
      * Delete a badge by own id.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @param array $data the number id of the badge
@@ -189,7 +189,7 @@ class DbBadge extends DbModel {
      * Check if the array $data contain all the keys that are inside
      * the array $rightKeys.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @param array $rightKeys
@@ -218,7 +218,7 @@ class DbBadge extends DbModel {
     /**
      * Permit to understand if the badge is got in the Mozilla Open Badge.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @param array $data {
@@ -248,7 +248,7 @@ class DbBadge extends DbModel {
     /**
      * Permit to understand if the badge is got in the Mozilla Open Badge.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @param array $where   information about the badge that we want to update.
@@ -283,7 +283,7 @@ class DbBadge extends DbModel {
     /**
      * Permit retrieve the number of badges got in the past.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @return mixed return the number of badges that are got.
@@ -299,7 +299,7 @@ class DbBadge extends DbModel {
      * Permit retrieve the number of badges got as a Mozilla
      * Open Badge in the past.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @return mixed return the number of badges that are got.

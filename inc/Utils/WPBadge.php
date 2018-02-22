@@ -11,7 +11,7 @@ use templates\SettingsTemp;
 /**
  * Contain all the function for the management of the badges.
  *
- * @author      Alessandro RICCARDI
+ * @author      @AleRiccardi
  * @since       x.x.x
  *
  * @package     OpenBadgesFramework
@@ -21,7 +21,7 @@ class WPBadge {
     /**
      * Get all the Badges.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @return array the badges
@@ -39,7 +39,7 @@ class WPBadge {
      * This function permit to filter with the field and level
      * the right badges that we want.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @param string $fieldId the id of the field
@@ -111,7 +111,7 @@ class WPBadge {
      * That function is probably complicated but useful for my propose and
      * remember: we're using the pointer for the first parameter.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @param array $retContainer this array is a pointer to the main
@@ -182,7 +182,7 @@ class WPBadge {
     /**
      * This function permit to get a specific badge.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @param int $id the id of the badge
@@ -196,7 +196,7 @@ class WPBadge {
     /**
      * This function permit to get the thumbnail image url of a badge.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @param int $id the id of the badge

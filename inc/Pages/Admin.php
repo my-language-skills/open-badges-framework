@@ -23,7 +23,7 @@ use Templates\UserTemp;
  * @todo       go to Class:SettingApi Function:setCurrentMenu()
  * @todo       to manage it
  *
- * @author     Alessandro RICCARDI
+ * @author     @AleRiccardi
  * @since      x.x.x
  *
  * @package    OpenBadgesFramework
@@ -52,7 +52,7 @@ class Admin extends BaseController {
      * This function permit to load all the array in the instance
      * of SettingApi and execute the final "register()" function.
      *
-     * @author   Alessandro RICCARDI
+     * @author   @AleRiccardi
      * @since    x.x.x
      */
     function register() {
@@ -72,7 +72,7 @@ class Admin extends BaseController {
     /**
      * This function permit store in a variable the principal page.
      *
-     * @author   Alessandro RICCARDI
+     * @author   @AleRiccardi
      * @since    x.x.x
      */
     public function setPages() {
@@ -92,7 +92,7 @@ class Admin extends BaseController {
     /**
      * This function permit store in an array all the sub-pages.
      *
-     * @author   Alessandro RICCARDI
+     * @author   @AleRiccardi
      * @since    x.x.x
      */
     public function setSubpages() {
@@ -193,7 +193,7 @@ class Admin extends BaseController {
     /**
      * This function permit load in the SettingApi the Custom Post Type.
      *
-     * @author   Alessandro RICCARDI
+     * @author   @AleRiccardi
      * @since    x.x.x
      */
     public function setCustomPostTypes() {
@@ -219,8 +219,10 @@ class Admin extends BaseController {
                     ),
                     'public' => true,
                     'has_archive' => true,
-                    'show_ui' => true,
-                    'show_in_menu' => false, // adding to custom menu manually
+                    'show_ui'             => true,
+                    'show_in_menu'        => true,
+                    'show_in_nav_menus'   => true,
+                    'show_in_admin_bar'   => true,
                     'supports' => array('title', 'editor', 'author', 'thumbnail',),
                     // Capabilities that are debilitated waiting a solution
                     // already explained in the User class.
@@ -247,7 +249,7 @@ class Admin extends BaseController {
     /**
      * This function permit load in the SettingApi the Taxonomies.
      *
-     * @author   Alessandro RICCARDI
+     * @author   @AleRiccardi
      * @since    x.x.x
      */
     public function setTaxonomies() {
@@ -311,7 +313,7 @@ class Admin extends BaseController {
     /**
      * This function permit load in the SettingApi the Metaboxes.
      *
-     * @author   Alessandro RICCARDI
+     * @author   @AleRiccardi
      * @since    x.x.x
      */
     public function setMetaboxes() {
@@ -345,7 +347,7 @@ class Admin extends BaseController {
      * This function permit to load al the front-end page
      * that is set in the setting page.
      *
-     * @author   Alessandro RICCARDI
+     * @author   @AleRiccardi
      * @since    x.x.x
      */
     public function setFrontEndPages() {

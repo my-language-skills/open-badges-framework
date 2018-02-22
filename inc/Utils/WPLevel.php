@@ -8,7 +8,7 @@ use Inc\Utils\WPBadge;
 /**
  * That class permit to mange the Level taxonomies.
  *
- * @author      Alessandro RICCARDI
+ * @author      @AleRiccardi
  * @since       x.x.x
  *
  * @package     OpenBadgesFramework

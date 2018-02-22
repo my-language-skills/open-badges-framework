@@ -8,7 +8,7 @@ use Inc\Pages\Admin;
  * That class create the setting link for the plugin
  * admin page.
  *
- * @author      Alessandro RICCARDI
+ * @author      @AleRiccardi
  * @since       x.x.x
  *
  * @package     OpenBadgesFramework
@@ -19,7 +19,7 @@ class SettingsLinks extends BaseController {
      * Add the setting link in the plugin preview of
      * the plugin admin page.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      */
     public function register() {
@@ -29,7 +29,7 @@ class SettingsLinks extends BaseController {
     /**
      * Create the link to the setting page.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @param string $links

@@ -2,7 +2,7 @@
 /**
  * Initial class that is called.
  *
- * @author      Alessandro RICCARDI
+ * @author      @AleRiccardi
  * @since       x.x.x
  *
  * @package     OpenBadgesFramework
@@ -14,7 +14,7 @@ namespace Inc;
  * This is the initial class that is called from WordPress.
  * Here will start all the initial class that we want to execute.
  *
- * @author      Alessandro RICCARDI
+ * @author      @AleRiccardi
  * @since       x.x.x
  */
 final class Init {
@@ -22,7 +22,7 @@ final class Init {
     /**
      * Store all the classes inside an array.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @return array Full list of classes
@@ -47,7 +47,7 @@ final class Init {
      * Loop through the classes, initialize them,
      * and call the register() method if it exists.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      */
     public static function register_services() {
@@ -62,7 +62,7 @@ final class Init {
     /**
      * Initialize the class.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @param class $class class form services array

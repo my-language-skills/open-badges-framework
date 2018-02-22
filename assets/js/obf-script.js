@@ -41,7 +41,7 @@ jQuery(function ($) {
      * @description Here's wrap the code that permit to simplify an
      *              ajax call.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      *
      * @param {array} data, that will send with the ajax call.
@@ -80,7 +80,7 @@ jQuery(function ($) {
      * @description Submit event of the form for the badge list table that
      * permit to delete a list of badges.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      *
      * @return void
@@ -142,7 +142,7 @@ jQuery(function ($) {
     /**
      * @description Click event for the Image uploader used in the settings page.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      *
      * @return void
@@ -171,7 +171,7 @@ jQuery(function ($) {
     /**
      * @description Click event for remove an image from the image uploader in the settings page.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      *
      * @return void
@@ -194,7 +194,7 @@ jQuery(function ($) {
     /**
      * @description Click event for the earned badge.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      *
      * @return void

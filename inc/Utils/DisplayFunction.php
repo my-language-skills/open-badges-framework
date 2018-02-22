@@ -15,7 +15,7 @@ use Inc\Pages\Admin;
  * time to fix that but the purpose for the future is to
  * delete that and create it better.
  *
- * @author      Alessandro RICCARDI
+ * @author      @AleRiccardi
  * @since       x.x.x
  *
  * @package     OpenBadgesFramework
@@ -93,6 +93,12 @@ class DisplayFunction {
                 echo $selectionContClose;
             }
         }
+
+        ?>
+        <p>
+            <small>Some browser can delay the opening of the field of education.</small>
+        </p>
+        <?php
     }
 
     /**
@@ -137,7 +143,7 @@ class DisplayFunction {
 
                                 echo "<tr>";
                                 echo "<td><input id='bd-select-$row->id' type='checkbox' name='badge[]' value='$row->id'></td>";
-                                echo "<td>" . (get_user_by('id', $student->idWP) ? "<a href='" . get_edit_user_link(get_user_by('id', $student->idWP)->ID) . "'>" .  $student->email . "</a>" : "<span> $student->email</span>") . "</td>";
+                                echo "<td>" . (get_user_by('id', $student->idWP) ? "<a href='" . get_edit_user_link(get_user_by('id', $student->idWP)->ID) . "'>" . $student->email . "</a>" : "<span> $student->email</span>") . "</td>";
                                 echo "<td><a href='" . get_edit_post_link($badge->idBadge) . "'>" . (get_post($badge->idBadge) ? get_post($badge->idBadge)->post_title : "") . "</a></td>";
                                 echo "<td><a href='" . get_edit_term_link($badge->idField) . "'>" . (get_term($badge->idField) ? get_term($badge->idField)->name : "") . "</a></td>";
                                 echo "<td><a href='" . get_edit_term_link($badge->idLevel) . "'>" . (get_term($badge->idLevel) ? get_term($badge->idLevel)->name : "") . "</a></td>";
@@ -145,9 +151,9 @@ class DisplayFunction {
                                     echo "<td><a href='" . get_edit_post_link($badge->idClass) . "'>" . (get_post($badge->idClass) ? get_post($badge->idClass)->post_title : "") . "</a></td>";
                                 }
                                 echo "<td><a href='" . get_edit_user_link($badge->idTeacher) . "'>" . (get_user_by('id', $badge->idTeacher) ? get_user_by('id', $badge->idTeacher)->userEmail : "") . "</a></td>";
-                                echo "<td>".$badge->creationDate."</td>";
-                                echo "<td>".$badge->gotDate."</td>";
-                                echo "<td>".$badge->gotMozillaDate."</td>";
+                                echo "<td>" . $badge->creationDate . "</td>";
+                                echo "<td>" . $badge->gotDate . "</td>";
+                                echo "<td>" . $badge->gotMozillaDate . "</td>";
                             }
                         }
                         ?>

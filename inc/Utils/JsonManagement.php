@@ -9,7 +9,7 @@ use templates\SettingsTemp;
 /**
  * Permit to manage the Json files about the badges.
  *
- * @author      Alessandro RICCARDI
+ * @author      @AleRiccardi
  * @since       x.x.x
  *
  * @package     OpenBadgesFramework
@@ -29,7 +29,7 @@ class JsonManagement extends BaseController {
      *
      * @param Badge $badge
      *
-     * @author   Alessandro RICCARDI
+     * @author   @AleRiccardi
      * @since    x.x.x
      */
     public function __construct(Badge $badge) {
@@ -41,7 +41,7 @@ class JsonManagement extends BaseController {
     /**
      * Creation of the main json file.
      *
-     * @author   Alessandro RICCARDI
+     * @author   @AleRiccardi
      * @since    x.x.x
      *
      * @param   string $receiver the email address of the person that is getting the badge.
@@ -76,7 +76,7 @@ class JsonManagement extends BaseController {
      * Creation of the json Badge file where are stored the most important
      * information about the <b>badge</b>.
      *
-     * @author   Alessandro RICCARDI
+     * @author   @AleRiccardi
      * @since    x.x.x
      *
      * @param $hashNameMain string name of the main json file.
@@ -116,7 +116,7 @@ class JsonManagement extends BaseController {
      * Creation of the json Issuer file where are stored the
      * information about the <b>company</b>.
      *
-     * @author   Alessandro RICCARDI
+     * @author   @AleRiccardi
      * @since    x.x.x
      */
     private function createIssuerCompany() {
@@ -175,7 +175,7 @@ class JsonManagement extends BaseController {
     /**
      * Get the json file as an object.
      *
-     * @author   Alessandro RICCARDI
+     * @author   @AleRiccardi
      * @since    x.x.x
      *
      * @param $jsonName
@@ -204,7 +204,7 @@ class JsonManagement extends BaseController {
     /**
      * Get the URL of a json file.
      *
-     * @author   Alessandro RICCARDI
+     * @author   @AleRiccardi
      * @since    x.x.x
      *
      * @param $jsonName string the json name (without extension).
@@ -221,7 +221,7 @@ class JsonManagement extends BaseController {
     /**
      * Get the PATH of a json file.
      *
-     * @author   Alessandro RICCARDI
+     * @author   @AleRiccardi
      * @since    x.x.x
      *
      * @param $jsonName    string the json name (without extension).
@@ -241,7 +241,7 @@ class JsonManagement extends BaseController {
     /**
      * Delete a main issuer json file and its related badge issuer.
      *
-     * @author   Alessandro RICCARDI
+     * @author   @AleRiccardi
      * @since    x.x.x
      *
      * @param $jsonName string the main issuer json name (without extension).

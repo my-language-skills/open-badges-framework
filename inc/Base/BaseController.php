@@ -7,7 +7,7 @@ namespace Inc\Base;
  * about the plugin path, plugin url and plugin initial
  * function.
  *
- * @author      Alessandro RICCARDI
+ * @author      @AleRiccardi
  * @since       x.x.x
  *
  * @package     OpenBadgesFramework
@@ -20,7 +20,7 @@ class BaseController {
     /**
      * Here are initialized main variables.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      */
     public function __construct() {
@@ -32,7 +32,7 @@ class BaseController {
     /**
      * Get the PATH of the plugin.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @return string the path
@@ -44,7 +44,7 @@ class BaseController {
     /**
      * Get the URL of the plugin.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @return string the url
@@ -59,7 +59,7 @@ class BaseController {
      * create it.
      * path = ... /wp-content/uploads/open-badges-framework/json/
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @return string the path of the json folder.
@@ -78,7 +78,7 @@ class BaseController {
      * Retrieve the url of the folder that are saved
      * the json file.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @return string the url of the json folder.

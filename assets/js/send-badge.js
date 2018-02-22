@@ -23,7 +23,7 @@ window.onload = function () {
     /**
      * Get the html loader that show a gif image.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      *
      * @return {string} the html code.
@@ -268,7 +268,7 @@ window.onload = function () {
      *              When you click on the .display_parent_categories to see the other "Field of Education" category (parent),
      *              the function call the "action_languages_form" in the other file.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      *
      * @param {event} e of the event about the click
@@ -306,7 +306,7 @@ window.onload = function () {
     /**
      * @description To load the LEVEL.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      *
      * @param {char} currentForm , contain the letter of the form.
@@ -343,7 +343,7 @@ window.onload = function () {
     /**
      * @description To load the BADGE.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      *
      * @param {char} currentForm , contain the letter of the form.
@@ -391,7 +391,7 @@ window.onload = function () {
     /**
      * @description To load the DESCRIPTION.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      *
      * @param {char} currentForm , contain the letter of the form,
@@ -439,7 +439,7 @@ window.onload = function () {
     /**
      * @description To load the CLASS.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      *
      * @param {char} currentForm , contain the letter of the form.
@@ -478,7 +478,7 @@ window.onload = function () {
     /**
      * @description Check if is selected the class.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      *
      * @param {char} currentForm , contain the letter of the form.
@@ -511,7 +511,7 @@ window.onload = function () {
     /**
      * @description Check if the the email/s contain only email and not garbage.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      *
      * @param {char} currentForm , contain the letter of the form.
@@ -549,7 +549,7 @@ window.onload = function () {
      * @description Check if there are information with text more long
      *              than 10 letter and less than 1000.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      *
      * @param {char} currentForm , contain the letter of the form.
@@ -581,7 +581,7 @@ window.onload = function () {
      *              This function make an ajax call to permit to send the
      *              badge to the right person and also to store in the server.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      *
      * @param {char} currentForm , contain the letter of the form.
@@ -682,7 +682,7 @@ window.onload = function () {
     /**
      * @description This function permit to check the current form and save into a variable.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      *
      * @param {event} event of the event about the click.
@@ -704,7 +704,7 @@ window.onload = function () {
      * @description Disable the selection of the tab from the
      *              new index until the current index.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      *
      * @param {array} form the current.

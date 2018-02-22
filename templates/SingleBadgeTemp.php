@@ -16,7 +16,7 @@ use Inc\Utils\WPUser;
  * wordpress and the Database badge is saved in the custom
  * table create from the plugin.
  *
- * @author      Alessandro RICCARDI
+ * @author      @AleRiccardi
  * @since       x.x.x
  *
  * @package     OpenBadgesFramework
@@ -32,7 +32,7 @@ final class SingleBadgeTemp {
      * Init the process for the backend taking the
      * information form the url.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      */
     public function main() {
@@ -57,7 +57,7 @@ final class SingleBadgeTemp {
     /**
      * Control the parameter in the url.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @return int
@@ -88,7 +88,7 @@ final class SingleBadgeTemp {
     /**
      * Show Post badge section.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @param $id
@@ -124,7 +124,7 @@ final class SingleBadgeTemp {
     /**
      * Show Database badge section
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @param $idBadge
@@ -207,7 +207,7 @@ final class SingleBadgeTemp {
     /**
      * Show error section.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @param $error

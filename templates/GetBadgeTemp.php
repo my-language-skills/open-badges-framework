@@ -14,7 +14,7 @@ use Inc\Utils\WPBadge;
  * In this class are defined all the function that permit
  * to follow all the step to get a badge.
  *
- * @author      Alessandro RICCARDI
+ * @author      @AleRiccardi
  * @since       x.x.x
  *
  * @package     OpenBadgesFramework
@@ -50,7 +50,7 @@ final class GetBadgeTemp extends BaseController {
      * the url string and then based on the kind of return it will show
      * the right view.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @return void
@@ -81,7 +81,7 @@ final class GetBadgeTemp extends BaseController {
      * Check the parameters if they're right and then load the
      * information in variables.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @return string   START when we can start with the procedure;
@@ -126,7 +126,7 @@ final class GetBadgeTemp extends BaseController {
     /**
      * Show the starting step to get the badge.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @return void
@@ -180,7 +180,7 @@ final class GetBadgeTemp extends BaseController {
     /**
      * Show login step.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @param string $email that the user need to use for the login
@@ -232,7 +232,7 @@ final class GetBadgeTemp extends BaseController {
     /**
      * Show register page step.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @param string $email that the user need to use for the registration
@@ -313,7 +313,7 @@ final class GetBadgeTemp extends BaseController {
     /**
      * Show Mozilla Open Badge step.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @param $isGot true if he got the badge but without certification from Mozilla Open Badge |
@@ -392,7 +392,7 @@ final class GetBadgeTemp extends BaseController {
     /**
      * Show Conclusions step.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @return void
@@ -437,7 +437,7 @@ final class GetBadgeTemp extends BaseController {
     /**
      * Show Badge Got step to inform that you're already took the badge.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @return void
@@ -492,7 +492,7 @@ final class GetBadgeTemp extends BaseController {
     /**
      * Show the error that we discovered in the loadParm() function.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @param string $error constant that contain the kind of error
@@ -557,7 +557,7 @@ final class GetBadgeTemp extends BaseController {
     /**
      * Contain the header of the page.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @return void
@@ -585,7 +585,7 @@ final class GetBadgeTemp extends BaseController {
     /**
      * Contain the footer of the page.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @return void
@@ -604,7 +604,7 @@ final class GetBadgeTemp extends BaseController {
     /**
      * Contain the info of the website that are show in the top of the page.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @return void

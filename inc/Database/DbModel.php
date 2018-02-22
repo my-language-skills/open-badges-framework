@@ -7,7 +7,7 @@ namespace Inc\Database;
  * most basic way, without control and with the only
  * intention to inject the queries.
  *
- * @author      Alessandro RICCARDI
+ * @author      @AleRiccardi
  * @since       x.x.x
  *
  * @package     OpenBadgesFramework
@@ -22,7 +22,7 @@ class DbModel {
      * Retrieve the name of the database with included
      * also the prefix.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @return string the name.
@@ -36,7 +36,7 @@ class DbModel {
     /**
      * Creation of the query and injection.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @param string $type of query that we want to create.
@@ -82,7 +82,7 @@ class DbModel {
     /**
      * Get badges.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @param array|null $data  list of information that will be
@@ -98,7 +98,7 @@ class DbModel {
     /**
      * Get a badges.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @param array|null $data  list of information that will be
@@ -115,7 +115,7 @@ class DbModel {
     /**
      * Insert a badge and retrieve the id.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @param array $data  list of information that will be
@@ -135,7 +135,7 @@ class DbModel {
     /**
      * Update a badge.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @param array $data  list of information contain the fields as a key and
@@ -154,7 +154,7 @@ class DbModel {
      * Delete the rows that match with the information tha we
      * passed throw param.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @param array $data  list of information that will be
@@ -171,7 +171,7 @@ class DbModel {
     /**
      * Get the time now.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @return string the time.

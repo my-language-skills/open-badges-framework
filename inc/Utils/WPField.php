@@ -7,7 +7,7 @@ use Inc\Pages\Admin;
 /**
  * That class permit to mange the Fields taxonomies.
  *
- * @author      Alessandro RICCARDI
+ * @author      @AleRiccardi
  * @since       x.x.x
  *
  * @package     OpenBadgesFramework
@@ -20,7 +20,7 @@ class WPField {
      * This constructor load the main fields and
      * also the sub field if they exist.
      *
-     * @author   Alessandro RICCARDI
+     * @author   @AleRiccardi
      * @since    x.x.x
      */
     public function __construct() {
@@ -52,7 +52,7 @@ class WPField {
      * This constructor load the main fields and
      * also the sub field if they exist.
      *
-     * @author   Alessandro RICCARDI
+     * @author   @AleRiccardi
      * @since    x.x.x
      *
      * @return array|int|\WP_Error
@@ -87,7 +87,7 @@ class WPField {
      * This function permit to understand if the "field of education"
      * have subcategory (children) or not.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      *
      * @return bool     True if have children,

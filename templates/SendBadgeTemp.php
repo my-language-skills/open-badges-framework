@@ -18,7 +18,7 @@ use Inc\Utils\WPField;
  * [send-badge form="all"] -> all together
  *
  *
- * @author      Alessandro RICCARDI
+ * @author      @AleRiccardi
  * @since       x.x.x
  *
  * @package     OpenBadgesFramework
@@ -32,7 +32,7 @@ final class SendBadgeTemp extends BaseController {
      * Add the short-code [send-badge form="a/b/c"] to permit to show
      * the right section of the sending badge.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      */
     public function __construct() {
@@ -42,7 +42,7 @@ final class SendBadgeTemp extends BaseController {
     /**
      * The first thing that will show when you load this page.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      */
     public static function main() {
@@ -61,7 +61,7 @@ final class SendBadgeTemp extends BaseController {
     /**
      * Show the right form.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      *
      * @param string $form name of the form, should be:
@@ -144,7 +144,7 @@ final class SendBadgeTemp extends BaseController {
     /**
      * Get the specific form.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      *
      * @param string $form name of the form, should be:
@@ -176,10 +176,8 @@ final class SendBadgeTemp extends BaseController {
                             self::displayLeadInfo("Change the visualization of the fields of education with the
                                                     below buttons an then select the field");
                             self::displayFieldsButtons(); ?>
-                            <div id="field_<?php echo $form; ?>"><?php DisplayFunction::field(""); ?>
-                                <p>
-                                    <small>Some browser can delay the opening of the field of education.</small>
-                                </p>
+                            <div id="field_<?php echo $form; ?>">
+                                <?php DisplayFunction::field(""); ?>
                             </div>
                         </div>
                     </div>
@@ -280,7 +278,7 @@ final class SendBadgeTemp extends BaseController {
      * we pass in the short-code call.
      * ex: [send-badge form="b"]
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      *
      * @param array $atts list of param passed in to the short code
@@ -299,7 +297,7 @@ final class SendBadgeTemp extends BaseController {
     /**
      * Easy way to show a massage with the lead class style.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      *
      * @param string $message message to print
@@ -312,7 +310,7 @@ final class SendBadgeTemp extends BaseController {
      * Code that permit to display the list of buttons
      * of the parents fields of education.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      *
      * @return void

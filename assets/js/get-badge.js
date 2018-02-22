@@ -42,7 +42,7 @@ jQuery(function (event) {
     /**
      * @description Build the html structure to show the loading gif.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      *
      * @return string html format.
@@ -59,7 +59,7 @@ jQuery(function (event) {
      * @description Permit to check if inside an <input> exist a value, if
      *              exist add the class "is-valid", if not add "is-invalid".
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      *
      * @param {jQuery} input <input> tag with a 'value'.
@@ -84,7 +84,7 @@ jQuery(function (event) {
     /**
      * @description Show the Mozilla Open Badge step inside the #gb-wrap <div>.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      *
      * @return void
@@ -113,7 +113,7 @@ jQuery(function (event) {
      * @description Get definitely the badge and after show the conclusion
      *              step inside the #gb-wrap <div>
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      *
      * @param {boolean} mozOpenBadge
@@ -140,7 +140,7 @@ jQuery(function (event) {
     /**
      * @description Click event of the button continue of the first step.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      *
      * @param {array} event of the click
@@ -171,7 +171,7 @@ jQuery(function (event) {
     /**
      * @description Submit event of the button login.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      *
      * @param {array} event of the click
@@ -210,7 +210,7 @@ jQuery(function (event) {
     /**
      * @description Click event of the button registration.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      *
      * @param {array} event of the click.
@@ -275,7 +275,7 @@ jQuery(function (event) {
     /**
      * @description Click event of get badge button in Mozilla Open badge step.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      *
      * @param {array} event of the click
@@ -309,7 +309,7 @@ jQuery(function (event) {
     /**
      * @description Click event of skip get Mozilla Open Badge.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      *
      * @param {array} event  of the click

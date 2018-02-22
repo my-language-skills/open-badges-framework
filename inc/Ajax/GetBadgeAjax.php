@@ -15,7 +15,7 @@ use Templates\GetBadgeTemp;
  * called as a "ajax call" and concern the get badge process.
  * This functions is initialized from the InitAjax Class.
  *
- * @author      Alessandro RICCARDI
+ * @author      @AleRiccardi
  * @since       x.x.x
  *
  * @package     OpenBadgesFramework
@@ -32,7 +32,7 @@ class GetBadgeAjax extends BaseController {
      * (show registration step), need to do the login (show
      * login step) or is already logged in (show MOB step).
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      */
     public function ajaxGbShowLogin() {
@@ -61,7 +61,7 @@ class GetBadgeAjax extends BaseController {
      * This function retrieve the user email, password and
      * remember check-box and then execute the login.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      */
     public function ajaxGbLogin() {
@@ -92,7 +92,7 @@ class GetBadgeAjax extends BaseController {
      * that we passed. For every control that goes wrong we trigger an
      * error that have a specific message.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      *
      * @return string RET_LOGIN_SUCCESS          registration success.
@@ -125,7 +125,7 @@ class GetBadgeAjax extends BaseController {
     /**
      * Show the Mozilla Open Badges step.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      */
     public function ajaxGbShowMozillaOpenBadges() {
@@ -141,7 +141,7 @@ class GetBadgeAjax extends BaseController {
     /**
      * Permit to retrieve the url of the json file.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      */
     public function ajaxGbGetJsonUrl() {
@@ -157,7 +157,7 @@ class GetBadgeAjax extends BaseController {
     /**
      * Show the Conclusion step.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      */
     public function ajaxGbShowConclusion() {

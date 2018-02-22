@@ -14,7 +14,7 @@ use Inc\Utils\WPBadge;
  *  Permit to wrap all the function that take care of the user and
  * the badges that he earned
  *
- * @author      Alessandro RICCARDI
+ * @author      @AleRiccardi
  * @since       x.x.x
  *
  * @package     OpenBadgesFramework
@@ -83,7 +83,7 @@ final class UserTemp {
                             <li>
                                 <?php
                                 if ($userData->ID == wp_get_current_user()->ID) {
-                                    if (esc_url(get_permalink($rcp_options['edit_profile']))) {
+                                    if (esc_url(get_permalink($rcp_options['edit_profile'])) && Secondary::isRCPActive()) {
 
                                         ?>
                                         <div class="btn-update-container">

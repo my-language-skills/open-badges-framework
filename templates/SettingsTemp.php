@@ -14,7 +14,7 @@ use Inc\Base\Secondary;
  * @todo        To make it more is it can be possible watching this tutorial:
  * @todo        https://www.youtube.com/watch?v=QYt5Ry3os88
  *
- * @author      Alessandro RICCARDI
+ * @author      @AleRiccardi
  * @since       x.x.x
  *
  * @package     OpenBadgesFramework
@@ -50,7 +50,7 @@ final class SettingsTemp {
      * The construct allow to call th admin_init hook initializing the
      * settings.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      */
     public function __construct() {
@@ -62,7 +62,7 @@ final class SettingsTemp {
      * get_badge_page that will be used as a container for the GetBadgeTemp
      * Class.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      */
     public static function init() {
@@ -117,7 +117,7 @@ final class SettingsTemp {
     /**
      * This is the function that is typically loaded at the beginning.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      */
     public function main() {
@@ -162,7 +162,7 @@ final class SettingsTemp {
     /**
      * Initializing of all the settings information
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      */
     public function pageInit() {
@@ -272,7 +272,7 @@ final class SettingsTemp {
     /**
      * Sanitize each setting field as needed.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @param array $input Contains all settings fields as array keys.
@@ -324,7 +324,7 @@ final class SettingsTemp {
     /**
      * Print the Section text.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @return void
@@ -336,7 +336,7 @@ final class SettingsTemp {
     /**
      * Print the Link text.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @return void
@@ -348,7 +348,7 @@ final class SettingsTemp {
     /**
      * Print the Site Name field with also the value (if exist).
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @return void
@@ -366,7 +366,7 @@ final class SettingsTemp {
     /**
      * Print the Url of the image field with also the value (if exist).
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @return void
@@ -405,7 +405,7 @@ final class SettingsTemp {
     /**
      * Print the Website Url field with also the value (if exist).
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @return void
@@ -423,7 +423,7 @@ final class SettingsTemp {
     /**
      * Print the Telephone field with also the value (if exist).
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @return void
@@ -441,7 +441,7 @@ final class SettingsTemp {
     /**
      * Print the Company Description field with also the value (if exist).
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @return void
@@ -459,7 +459,7 @@ final class SettingsTemp {
     /**
      * Print the Company Email field with also the value (if exist).
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @return void
@@ -477,7 +477,7 @@ final class SettingsTemp {
     /**
      * Print the become premium page field with also the value (if exist).
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @return void
@@ -507,7 +507,7 @@ final class SettingsTemp {
     /**
      * Print the add class page field with also the value (if exist).
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @return void
@@ -537,7 +537,7 @@ final class SettingsTemp {
     /**
      * Print the get badge page field with also the value (if exist).
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @return void
@@ -559,7 +559,7 @@ final class SettingsTemp {
     /**
      * Retrieve the link from thw id of a the page.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @param int $idPage id of the page.
@@ -577,7 +577,7 @@ final class SettingsTemp {
      * Get option variable where are stored information of the
      * setting page.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @param string $field_option a constant of this class that refer

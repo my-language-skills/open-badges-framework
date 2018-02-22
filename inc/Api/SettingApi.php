@@ -8,7 +8,7 @@ use Inc\Pages\Admin;
  * This class permit to load all the wordpress component
  * (page, sub-pages, custom post type, ...).
  *
- * @author     Alessandro RICCARDI
+ * @author     @AleRiccardi
  * @since      x.x.x
  *
  * @package     OpenBadgesFramework
@@ -26,7 +26,7 @@ class SettingApi {
      * Function that permit to call the specific wordpress hooks
      * to initialize all the component
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      */
     public function register() {
@@ -54,7 +54,7 @@ class SettingApi {
      * Permit to store the pages param in the param
      * of the class.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      *
      * @param array $pages Array content the menus
@@ -101,7 +101,7 @@ class SettingApi {
     /**
      * Load all the sub-pages inside the variable of the class.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      *
      * @param array $pages pages
@@ -118,7 +118,7 @@ class SettingApi {
      * Load all the custom post type inside the variable of the
      * class.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      *
      * @param array $cpts custom post type
@@ -134,7 +134,7 @@ class SettingApi {
     /**
      * Load all the taxonomies inside the variable of the class.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      *
      * @param array $taxonomies taxonomies
@@ -150,7 +150,7 @@ class SettingApi {
     /**
      * Load all the meta-boxes inside the variable of the class.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      *
      * @param array $metaboxes metaboxes
@@ -166,7 +166,7 @@ class SettingApi {
     /**
      * Load all the front-end-pages inside the variable of the class.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      *
      * @param array $frontEndPages front-end-pages
@@ -183,7 +183,7 @@ class SettingApi {
      * Loops all the $admin_pages adding at the "add_menu_page"
      * function all the menus.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      */
     public function addAdminMenu() {
@@ -203,7 +203,7 @@ class SettingApi {
      * "register_taxonomy" to permit to add the custom
      * post type and taxonomy.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      */
     public function addInit() {
@@ -220,7 +220,7 @@ class SettingApi {
      * Loops all the $metaboxes adding at the "add_meta_box"
      * function all the menus.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      */
     public function addMetaBoxes() {
@@ -243,7 +243,7 @@ class SettingApi {
      * and then when that specific page is active we load the 'main'
      * function of the class that refer in the param $this->frontEndPages.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      */
     public function addFrontEndPages() {
@@ -263,7 +263,7 @@ class SettingApi {
     /**
      * Instantiation of a class.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      *
      * @param class $class class form services array
@@ -278,7 +278,7 @@ class SettingApi {
      * This function permit to set the current menu
      * for each post type and taxonomy.
      *
-     * @author Alessandro RICCARDI
+     * @author @AleRiccardi
      * @since  x.x.x
      *
      * @param $parent_file Of the plugin

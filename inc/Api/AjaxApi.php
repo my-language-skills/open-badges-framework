@@ -10,7 +10,7 @@ use Inc\Base\BaseController;
 /**
  * Permit to load all the functions from the ajax class.
  *
- * @author      Alessandro RICCARDI
+ * @author      @AleRiccardi
  * @since       x.x.x
  *
  * @package     OpenBadgesFramework
@@ -21,7 +21,7 @@ class AjaxApi extends BaseController {
      * The construct call the principal function that
      * initialize the ajax class.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      */
     public function __construct() {
@@ -32,7 +32,7 @@ class AjaxApi extends BaseController {
      * That function return all the ajax class that
      * we want to initialize.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @return array of ajax class
@@ -50,7 +50,7 @@ class AjaxApi extends BaseController {
      * them and retrieving all them functions for declare
      * it as ajax function.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @return array of ajax class
@@ -69,7 +69,7 @@ class AjaxApi extends BaseController {
     /**
      * Instantiation of a class.
      *
-     * @author      Alessandro RICCARDI
+     * @author      @AleRiccardi
      * @since       x.x.x
      *
      * @param class $class class form services array
