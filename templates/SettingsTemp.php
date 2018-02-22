@@ -40,7 +40,7 @@ final class SettingsTemp {
     const FI_EMAIL_FIELD = 'email_field';
 
     const FI_ADD_CLASS = 'add_class_page';
-    const FI_BECAME_PREMIUM = 'became_premium_page';
+    const FI_BECOME_PREMIUM = 'become_premium_page';
     const FI_GET_BADGE = 'get-badge-page';
 
     private $options;
@@ -74,7 +74,7 @@ final class SettingsTemp {
         $fiImageUrl = $options[self::FI_IMAGE_URL_FIELD];
         $fiEmail = $options[self::FI_EMAIL_FIELD];
         $fiClass = $options[self::FI_ADD_CLASS];
-        $fiPremium = $options[self::FI_BECAME_PREMIUM];
+        $fiPremium = $options[self::FI_BECOME_PREMIUM];
         $fiBadge = $options[self::FI_GET_BADGE];
 
         if (!$fiBadge && current_user_can('activate_plugins')) {
@@ -107,7 +107,7 @@ final class SettingsTemp {
             self::FI_IMAGE_URL_FIELD => $fiImageUrl ? $fiImageUrl : '',
             self::FI_EMAIL_FIELD => $fiEmail ? $fiEmail : get_bloginfo('admin_email'),
             self::FI_ADD_CLASS => $fiClass ? $fiClass : '',
-            self::FI_BECAME_PREMIUM => $fiPremium ? $fiPremium : '',
+            self::FI_BECOME_PREMIUM => $fiPremium ? $fiPremium : '',
             self::FI_GET_BADGE => $fiBadge ? $fiBadge : '',
         );
 
@@ -241,11 +241,11 @@ final class SettingsTemp {
             self::PAGE_LINKS // Page
         );
 
-        /* --> Became Premium Page____*/
+        /* --> Become Premium Page____*/
         add_settings_field(
-            self::FI_BECAME_PREMIUM, // ID
-            'Became Premium', // Title
-            array($this, 'becamePremiumPageCallback'), // Callback
+            self::FI_BECOME_PREMIUM, // ID
+            'Become Premium', // Title
+            array($this, 'becomePremiumPageCallback'), // Callback
             self::PAGE_LINKS, // Page
             self::SECT_PAGE_REF
         );
@@ -308,8 +308,8 @@ final class SettingsTemp {
             $new_input[self::FI_EMAIL_FIELD] = sanitize_text_field(
                 $input[self::FI_EMAIL_FIELD] ? $input[self::FI_EMAIL_FIELD] : get_bloginfo('admin_email'));
 
-        if (isset($input[self::FI_BECAME_PREMIUM]))
-            $new_input[self::FI_BECAME_PREMIUM] = sanitize_text_field($input[self::FI_BECAME_PREMIUM]);
+        if (isset($input[self::FI_BECOME_PREMIUM]))
+            $new_input[self::FI_BECOME_PREMIUM] = sanitize_text_field($input[self::FI_BECOME_PREMIUM]);
 
         if (isset($input[self::FI_ADD_CLASS]))
             $new_input[self::FI_ADD_CLASS] = sanitize_text_field($input[self::FI_ADD_CLASS]);
@@ -482,21 +482,21 @@ final class SettingsTemp {
      *
      * @return void
      */
-    public function becamePremiumPageCallback() {
-        $val = isset($this->options[self::FI_BECAME_PREMIUM]) ? esc_attr($this->options[self::FI_BECAME_PREMIUM]) : '';
+    public function becomePremiumPageCallback() {
+        $val = isset($this->options[self::FI_BECOME_PREMIUM]) ? esc_attr($this->options[self::FI_BECOME_PREMIUM]) : '';
 
         if (Secondary::isJobManagerActive()) {
             wp_dropdown_pages(array(
-                'id' => self::FI_BECAME_PREMIUM,
-                'name' => self::OPTION_NAME . '[' . self::FI_BECAME_PREMIUM . ']',
+                'id' => self::FI_BECOME_PREMIUM,
+                'name' => self::OPTION_NAME . '[' . self::FI_BECOME_PREMIUM . ']',
                 'selected' => $val,
                 'show_option_none' => 'None', // string
                 'show_option_no_change ' => '-1',
             ));
             echo self::showPreviewLink($val);
         } else { ?>
-            <select id="<?php echo self::FI_BECAME_PREMIUM ?>"
-                    name="<?php echo self::OPTION_NAME . '[' . self::FI_BECAME_PREMIUM . ']' ?>" disabled>
+            <select id="<?php echo self::FI_BECOME_PREMIUM ?>"
+                    name="<?php echo self::OPTION_NAME . '[' . self::FI_BECOME_PREMIUM . ']' ?>" disabled>
                 <option>None</option>
             </select>
             <p class="description" id="tagline-description">WP Job Listing deactivated.</p>
@@ -524,8 +524,8 @@ final class SettingsTemp {
             ));
             echo self::showPreviewLink($val);
         } else { ?>
-            <select id="<?php echo self::FI_BECAME_PREMIUM ?>"
-                    name="<?php echo self::OPTION_NAME . '[' . self::FI_BECAME_PREMIUM . ']' ?>" disabled>
+            <select id="<?php echo self::FI_BECOME_PREMIUM ?>"
+                    name="<?php echo self::OPTION_NAME . '[' . self::FI_BECOME_PREMIUM . ']' ?>" disabled>
                 <option>None</option>
             </select>
             <p class="description" id="tagline-description">WP Job Listing deactivated.</p>

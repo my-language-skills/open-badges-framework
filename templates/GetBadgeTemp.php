@@ -11,8 +11,8 @@ use Inc\Utils\WPBadge;
 
 /**
  * Template for the Get Badge page.
- * In this class are defined all the function that permit
- * to follow all the step to get a badge.
+ * In this class are defined all the function that permits
+ * you to follow all the step to get a badge.
  *
  * @author      @AleRiccardi
  * @since       x.x.x
@@ -329,9 +329,8 @@ final class GetBadgeTemp extends BaseController {
             <div class="container">
                 <div class="jumbotron jumbotron-fluid jumb-obm">
                     <p class="lead">
-                        Mozilla Open Badges give you the opportunity to store your badge in its platform to permit
-                        to
-                        show your progress with all the community.
+                        Mozilla Open Badges give you the opportunity to store your badges in its platform which
+                        permit you to share your progress with all the community.
                         <br><br>
                         If you don’t have an Open Badge account, please click
                         <a href="https://backpack.openbadges.org/backpack/signup" target="_blank"
@@ -356,10 +355,11 @@ final class GetBadgeTemp extends BaseController {
                 } else { ?>
                     <button id="gb-get-standard" class="btn-link" type="submit">
                         or skip the process and get anyway the Badge
-                    </button>
-                    <?php
-                }
-                ?>
+
+                </button>
+                <?php
+            }
+            ?>
             </div>
         </main>
 
@@ -476,11 +476,57 @@ final class GetBadgeTemp extends BaseController {
     private function showMessage($error) {
         $this->obf_header()
         ?>
+<<<<<<< HEAD
         <header class="masthead mb-auto">
             <?php echo $this->getInfoHeader(); ?>
             <div class="inner container">
             </div>
         </header>
+=======
+        <div class="site-wrapper">
+            <div class="site-wrapper-inner">
+                <div id="gb-wrap" class="cover-container">
+
+                    <header class="masthead clearfix">
+                        <?php echo $this->getInfoHeader(); ?>
+                        <div class="inner container">
+                        </div>
+                    </header>
+
+                    <main role="main" class="inner cover">
+                        <div class="container">
+                            <?php
+                            if ($error == self::PREVIEW) { ?>
+                                <h1>GET BADGE PAGE PREVIEW</h1>
+                                <p class="lead">
+                                    This page is set as a default page that permits you to get the badge.
+                                </p>
+                                <?php
+                            } elseif ($error == self::ERROR_JSON) { ?>
+                                <h1>BADGE ERROR</h1>
+                                <p class="lead">
+                                    Your badge is not anymore stored in our server.
+                                </p>
+                                <?php
+                            } else if ($error == self::ERROR_LINK) {
+                                ?>
+                                <h1>URL ERROR</h1>
+                                <p class="lead">
+                                    There's something wrong with the link, ask to the help desk to fix the
+                                    problem!
+                                </p>
+                                <?php
+                            }
+                            ?>
+                        </div>
+                    </main>
+
+                    <footer class="mastfoot">
+                        <div class="inner">
+                            <div id="gb-resp-login"></div>
+                        </div>
+                    </footer>
+>>>>>>> a071037a6f41e3846f122d2a0c55fe4e570a6c8c
 
         <main role="main" class="inner cover">
             <div class="container">

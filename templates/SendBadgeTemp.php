@@ -9,7 +9,7 @@ use Inc\Utils\WPField;
 
 /**
  * Template for the Send Badge page.
- * This class permit to show the steps to send the
+ * This class permits to show the steps to send the
  * badge to the student and create also a short-code.
  *
  * [send-badge form="a"] -> self
@@ -29,7 +29,7 @@ final class SendBadgeTemp extends BaseController {
     const FORM_MULTIPLE = "c";
 
     /**
-     * Add the short-code [send-badge form="a/b/c"] to permit to show
+     * Add the short-code [send-badge form="a/b/c"] to permits to show
      * the right section of the sending badge.
      *
      * @author      @AleRiccardi
@@ -157,11 +157,11 @@ final class SendBadgeTemp extends BaseController {
         echo '<div class="tab-content center-text">';
 
         if ($form == "a") {
-            echo "<p class='text-large'>That permit you to send badges to yourself.</p>";
+            echo "<p class='text-large'>This permits you to send badges to yourself.</p>";
         } else if ($form == "b") {
-            echo "<p class='text-large'>That permit you to send the badge only to another student.</p>";
+            echo "<p class='text-large'>This permits you to send the badge only to another student.</p>";
         } else if ($form == "c") {
-            echo "<p class='text-large'>That permit you to send the badges to more students.</p>";
+            echo "<p class='text-large'>This permits you to send the badges to more students.</p>";
         }
         ?>
 
@@ -174,7 +174,7 @@ final class SendBadgeTemp extends BaseController {
                         <div class="flex-center-item sb-cont">
                             <?php
                             self::displayLeadInfo("Change the visualization of the fields of education with the
-                                                    below buttons an then select the field");
+                                                    buttons below and then select the field");
                             self::displayFieldsButtons(); ?>
                             <div id="field_<?php echo $form; ?>">
                                 <?php DisplayFunction::field(""); ?>
@@ -187,7 +187,7 @@ final class SendBadgeTemp extends BaseController {
                     <div class="title-form"><h2>Select the level:</h2></div>
                     <div class="fit-height-section flex-center-cont">
                         <div class="flex-center-item sb-cont">
-                            <?php self::displayLeadInfo("Select one of the below levels"); ?>
+                            <?php self::displayLeadInfo("Select one of the levels below "); ?>
                             <div id="level_<?php echo $form; ?>"></div>
                         </div>
                     </div>
@@ -198,7 +198,7 @@ final class SendBadgeTemp extends BaseController {
                     <div class="title-form"><h2>Select the kind of badge:</h2></div>
                     <div class="fit-height-section flex-center-cont">
                         <div class="flex-center-item sb-cont">
-                            <?php self::displayLeadInfo("Select one of the below badges"); ?>
+                            <?php self::displayLeadInfo("Select one of the badges below"); ?>
                             <div id="badge_<?php echo $form; ?>"></div>
                         </div>
                     </div>
@@ -209,7 +209,7 @@ final class SendBadgeTemp extends BaseController {
                     <div class="title-form"><h2>Check the description:</h2></div>
                     <div class="fit-height-section flex-center-cont">
                         <div class="flex-center-item sb-cont">
-                            <?php self::displayLeadInfo("This is the text of the badge."); ?>
+                            <?php self::displayLeadInfo("This is the description of the badge."); ?>
                             <div id="desc_<?php echo $form; ?>" class="desc-badge"></div>
                         </div>
                     </div>
@@ -251,7 +251,7 @@ final class SendBadgeTemp extends BaseController {
                 <?php } ?>
                 <h3>Information</h3>
                 <section>
-                    <div class="title-form"><h2>Addition information:</h2></div>
+                    <div class="title-form"><h2>Additional information:</h2></div>
                     <div class="fit-height-section flex-center-cont">
                         <div class="flex-center-item sb-cont">
                             <?php self::displayLeadInfo("Write some information that will be showed in the description of badge *"); ?>
@@ -307,7 +307,7 @@ final class SendBadgeTemp extends BaseController {
     }
 
     /**
-     * Code that permit to display the list of buttons
+     * Code that permits to display the list of buttons
      * of the parents fields of education.
      *
      * @author @AleRiccardi
