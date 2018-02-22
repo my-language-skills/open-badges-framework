@@ -96,7 +96,7 @@ class DisplayFunction {
 
         ?>
         <p>
-            <small>Some browser can delay the opening of the field of education.</small>
+            <small>Some browsers may delay the opening of the fields of education.</small>
         </p>
         <?php
     }

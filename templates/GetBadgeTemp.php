@@ -11,8 +11,8 @@ use Inc\Utils\WPBadge;
 
 /**
  * Template for the Get Badge page.
- * In this class are defined all the function that permit
- * to follow all the step to get a badge.
+ * In this class are defined all the function that permits
+ * you to follow all the step to get a badge.
  *
  * @author      @AleRiccardi
  * @since       x.x.x
@@ -342,7 +342,7 @@ final class GetBadgeTemp extends BaseController {
                 <div class="container">
                     <div class="jumbotron jumbotron-fluid jumb-obm">
                         <p class="lead">
-                            Mozilla Open Badges give you the opportunity to store your badge in its platform to permit
+                            Mozilla Open Badges give you the opportunity to store your badge in its platform to permits you
                             to
                             show your progress with all the community.
                             <br><br>
@@ -518,7 +518,7 @@ final class GetBadgeTemp extends BaseController {
                             if ($error == self::PREVIEW) { ?>
                                 <h1>GET BADGE PAGE PREVIEW</h1>
                                 <p class="lead">
-                                    This page is set as a default page that permit to get the badge.
+                                    This page is set as a default page that permits you to get the badge.
                                 </p>
                                 <?php
                             } elseif ($error == self::ERROR_JSON) { ?>

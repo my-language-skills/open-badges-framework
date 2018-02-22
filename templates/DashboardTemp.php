@@ -72,8 +72,7 @@ final class DashboardTemp extends BaseController {
                 <div class="cont-title-dash">
                     <h2>Action control</h2>
                     <p class="lead">
-                        Here you can have the possibility to see all the custom post type and taxonomies that permit you
-                        to manage the badges information.
+                        Here you can see the statistics of the Badges.
                     </p>
                 </div>
 
@@ -196,20 +195,20 @@ final class DashboardTemp extends BaseController {
                 <div class="cont-title-dash">
                     <h2>About us</h2>
                     <p class="lead">
-                        The main functionality of this plugin is to create, manage and send badges. <br>
+                        The main function of this plugin is to create, manage and send badges. <br>
                         Once a badge has been sent, the receiver has the possibility to take his badge through a link
                         that is inserted in the email.<br>
-                        After a succession of steps, the user can get his own badge also having the possibility to send
+                        After successive steps, the user can get his own badge also he has the possibility to send
                         it to the <a href="https://openbadges.org/">Mozilla Open Badges</a> platform.
                     </p>
                     <H2>Shortcodes</h2>
                     <p class="lead">
-                        The frond-end fuctionality can be use in any page with the shortcode  <b>[send_badges]</b>.<br><br>
+                        The front-end function can be used in any page with the shortcode  <b>[send_badge]</b>.<br><br>
 
-                        If we need to show just one of the 3 types of the send badges subpages, we can use the following shortcodes:<br>
-                        <b>[send-badge form="a"] </b>: for self send of the badge.<br>
-                        <b>[send-badge form="b"] </b>: for send the badge to one user at a time.<br>
-                        <b>[send-badge form="c"] </b>: for send the badge to multiple users at a time.
+                        If we need to show just one of the 3 types, we can use the following shortcodes:<br>
+                        <b>[send-badge form="a"] </b>: to send the badge to yourself.<br>
+                        <b>[send-badge form="b"] </b>: to send the badge to one user at a time.<br>
+                        <b>[send-badge form="c"] </b>: to send the badge to multiple users at a time.
                     </p>
                     <H2>Documentation</h2>
                     <p class="lead">
