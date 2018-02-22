@@ -9,9 +9,12 @@ Plugins/OpenBadgesFramework/                    # → Plugin root
 │   │── gif/                                    # → Gif folder
 │   │   └── loading.gif                         # → Loading gif for Send badge page
 │   │── images/                                 # → Images folder
-│   │   │── default-badge.png                   # → Default badge image
+│   │   │── default-badge.png                   # → Default badge image  
 │   │   │── logo.png                            # → Logo of the official plugin
-│   │   └── open-badges-mz-logo.png             # → Logo of the Mozilla Open Badge
+│   │   │── open-badges-mz-logo.png             # → Logo of the Mozilla Open Badge
+│   │   │── open-badges-mz-logo-header.jpg      # → Logo of the Mozilla Open Badge (secondary)
+│   │   │── open-badges-mz-logo-header2.jpg     # → Logo of the Mozilla Open Badge (secondary)
+│   │   └── open-badges-mz-logo-header-EID.jpg  # → Logo of the Mozilla Open Badge (secondary)
 │   │── js/                                     # → Js folder
 │   │   │── get-badge.js                        # → Contain Get Badge page code
 │   │   │── jquery.steps.min.js                 # → Contain Send Badge steps code
