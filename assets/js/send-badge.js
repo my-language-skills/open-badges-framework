@@ -566,7 +566,7 @@ window.onload = function () {
             '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
             '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
 
-        if ((info.length > 10 && info.length < 1000) && (!evidence || pattern.test(evidence))) {
+        if ((info.length >= 10 && info.length < 1000) && (!evidence || pattern.test(evidence))) {
             // Everything good
             form.validate().settings.ignore = ":disabled,:hidden";
             return form.valid();
