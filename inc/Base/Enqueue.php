@@ -76,7 +76,7 @@ class Enqueue extends BaseController {
         wp_enqueue_style(self::STYLE_OBF, $this->plugin_url . self::DIRECTORY_CSS . self::STYLE_OBF);
 
         // JavaScript
-        wp_enqueue_script("jQuery-validation", 'http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js', array('jquery'), 0.1, false);
+        wp_enqueue_script("jQuery-validation", '//ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js', array('jquery'), 0.1, false);
         wp_enqueue_script('form-send-badges', $this->plugin_url . 'assets/js/jquery.steps.min.js');
         wp_enqueue_script(self::SCRIPT_SEND_BADGE, $this->plugin_url . self::DIRECTORY_JS . self::SCRIPT_SEND_BADGE);
         wp_enqueue_script(self::SCRIPT_OBF, $this->plugin_url . self::DIRECTORY_JS . self::SCRIPT_OBF);
@@ -104,7 +104,7 @@ class Enqueue extends BaseController {
 
         if (is_page($getBadgePage->post_name)) {
             // GET BADGE page Style
-            wp_enqueue_style('bootstrap-css', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css');
+            wp_enqueue_style('bootstrap-css', '//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css');
             wp_enqueue_style(self::STYLE_GET_BADGE, $this->plugin_url . self::DIRECTORY_CSS . self::STYLE_GET_BADGE);
         } else {
             // OTHERWISE Style
@@ -142,7 +142,7 @@ class Enqueue extends BaseController {
             );
         } else {
             // OTHERWISE Scripts
-            wp_enqueue_script("jQuery-validation", 'http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js', array('jquery'), 0.1, false);
+            wp_enqueue_script("jQuery-validation", '//ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js', array('jquery'), 0.1, false);
             wp_enqueue_script(self::SCRIPT_SEND_BADGE, $this->plugin_url . self::DIRECTORY_JS . self::SCRIPT_SEND_BADGE);
             wp_enqueue_script(self::SCRIPT_OBF, $this->plugin_url . self::DIRECTORY_JS . self::SCRIPT_OBF);
 
