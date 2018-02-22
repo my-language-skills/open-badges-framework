@@ -183,13 +183,14 @@ Open Badges Framework save all the badges information related to teachers and st
 
 #### Users Database
 ```
-id  userEmail
-1   student@student.com
+id  userEmail            idWP
+1   student@student.com  1
 ```
 
 #### Users Database columns
 * **id**: The id of the row.
 * **userEmail**: The Earn user email.
+* **idWP**: The Wordpress Earn uses id.
 
 #### Badges Database
 
