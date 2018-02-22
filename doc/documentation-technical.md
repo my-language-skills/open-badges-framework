@@ -279,7 +279,7 @@ The save information in the profile is:
 * Comment
 
 ## Shortcodes
-The frond-end fuctionality can be use in any page with the shortcode ```[send_badges]```.
+The frond-end fuctionality can be use in any page with the shortcode ```[send_badge]```.
 
 If we need to show just one of the 3 types of the send badges subpages, we can use the following shortcodes:
 
