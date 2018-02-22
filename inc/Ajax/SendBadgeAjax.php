@@ -142,16 +142,24 @@ class SendBadgeAjax extends BaseController {
         }
 
         echo "<br><br>";
-        if(current_user_can(WPUser::CAP_JOB_LISTING)) {
+        if (current_user_can(WPUser::CAP_JOB_LISTING)) {
             $addClassPage = get_post(
                 SettingsTemp::getOption(SettingsTemp::FI_ADD_CLASS)
             );
-            if($addClassPage) echo "<a href='". get_page_link($addClassPage->ID)."'>Add Class</a>";
+            if ($addClassPage) {
+                echo "<a href='" . get_page_link($addClassPage->ID) . "'>Add Class</a>";
+            } else {
+                echo "<small>Remember to set in the obf setting a page that refer to \"Add Class\" page.</small>";
+            }
         } else {
             $becomePremiumPage = get_post(
                 SettingsTemp::getOption(SettingsTemp::FI_become_PREMIUM)
             );
-            if($becomePremiumPage) echo "<a href='". get_page_link($becomePremiumPage->ID)."'>become Premium</a>";
+            if ($becomePremiumPage) {
+                echo "<a href='" . get_page_link($becomePremiumPage->ID) . "'>become Premium</a>";
+            } else {
+                echo "<small>Remember to set in the obf setting a page that refer to \"Become Premium\" page.</small>";
+            }
         }
 
         wp_die();

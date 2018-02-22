@@ -117,7 +117,8 @@ class WPUser {
                 self::CAP_DELETE_BADGE => true,
                 self::CAP_DELETE_BADGES => true,*/
             ),
-        )
+        ),
+
     );
 
     // Return messages.
