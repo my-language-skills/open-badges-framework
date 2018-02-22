@@ -48,11 +48,11 @@ jQuery(function (event) {
      * @return string html format.
      */
     var loadingPage = function () {
-        return ("<div class='cover-container'><header class='masthead clearfix'>" +
+        return ("<header class='masthead mb-auto'>" +
             "</header><main role='main' class='inner cover'>" +
             "<img src='" + globalUrl.loader + "' width='80px' height='auto'/>" +
             "</main>" +
-            "<footer class='mastfoot'></footer></div>");
+            "<footer class='mastfoot mt-auto'></footer>");
     }
 
     /**
