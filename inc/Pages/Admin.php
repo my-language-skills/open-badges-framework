@@ -216,6 +216,8 @@ class Admin extends BaseController {
                         'parent' => 'Parent Badges'
                     ),
                     'public' => true,
+                    'has_archive' => true,
+                    'show_in_admin_bar'   => true,
                     'show_ui' => true,
                     'show_in_menu' => false, // adding to custom menu manually
                     'supports' => array('title', 'editor', 'author', 'thumbnail',),
@@ -365,4 +367,3 @@ class Admin extends BaseController {
 
 
 }
-
