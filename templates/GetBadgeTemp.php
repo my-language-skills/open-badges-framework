@@ -387,7 +387,7 @@ final class GetBadgeTemp extends BaseController {
         ?>
 
         <header class="masthead mb-auto">
-            <?php echo $this->getInfoHeader(); ?>
+            <?php $this->getInfoHeader(); ?>
             <div class="inner container">
                 <div class="cont-title">Congratulations!</div>
             </div>
@@ -429,7 +429,7 @@ final class GetBadgeTemp extends BaseController {
         $this->obf_header()
         ?>
         <header class="masthead mb-auto">
-            <?php echo $this->getInfoHeader(); ?>
+            <?php $this->getInfoHeader(); ?>
             <div class="inner container">
             </div>
         </header>
@@ -476,57 +476,11 @@ final class GetBadgeTemp extends BaseController {
     private function showMessage($error) {
         $this->obf_header()
         ?>
-<<<<<<< HEAD
         <header class="masthead mb-auto">
             <?php echo $this->getInfoHeader(); ?>
             <div class="inner container">
             </div>
         </header>
-=======
-        <div class="site-wrapper">
-            <div class="site-wrapper-inner">
-                <div id="gb-wrap" class="cover-container">
-
-                    <header class="masthead clearfix">
-                        <?php echo $this->getInfoHeader(); ?>
-                        <div class="inner container">
-                        </div>
-                    </header>
-
-                    <main role="main" class="inner cover">
-                        <div class="container">
-                            <?php
-                            if ($error == self::PREVIEW) { ?>
-                                <h1>GET BADGE PAGE PREVIEW</h1>
-                                <p class="lead">
-                                    This page is set as a default page that permits you to get the badge.
-                                </p>
-                                <?php
-                            } elseif ($error == self::ERROR_JSON) { ?>
-                                <h1>BADGE ERROR</h1>
-                                <p class="lead">
-                                    Your badge is not anymore stored in our server.
-                                </p>
-                                <?php
-                            } else if ($error == self::ERROR_LINK) {
-                                ?>
-                                <h1>URL ERROR</h1>
-                                <p class="lead">
-                                    There's something wrong with the link, ask to the help desk to fix the
-                                    problem!
-                                </p>
-                                <?php
-                            }
-                            ?>
-                        </div>
-                    </main>
-
-                    <footer class="mastfoot">
-                        <div class="inner">
-                            <div id="gb-resp-login"></div>
-                        </div>
-                    </footer>
->>>>>>> a071037a6f41e3846f122d2a0c55fe4e570a6c8c
 
         <main role="main" class="inner cover">
             <div class="container">
@@ -534,7 +488,7 @@ final class GetBadgeTemp extends BaseController {
                 if ($error == self::PREVIEW) { ?>
                     <h1>GET BADGE PAGE PREVIEW</h1>
                     <p class="lead">
-                        This page is set as a default page that permit to get the badge.
+                        his page is set as a default page that permits you to get the badge.
                     </p>
                     <?php
                 } elseif ($error == self::ERROR_JSON) { ?>
