@@ -379,7 +379,7 @@ final class GetBadgeTemp extends BaseController {
             <footer class="mastfoot">
                 <div class="inner">
                     <div class="logo-open-badges">
-                        <img src="<?php echo $this->plugin_url; ?>/assets/images/open-badges-mz-logo.png">
+                        <img src="<?php echo $this->plugin_url; ?>/assets/images/openBadges-logo-header-EID.png">
                     </div>
                 </div>
             </footer>

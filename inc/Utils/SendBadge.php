@@ -173,7 +173,7 @@ class SendBadge{
                                 <p style='font-size:9px; color:grey '>Badges for $compName" . ($compDesc ? ", $compDesc" : "" ) . "
                                 <br>
                                 More information <a href='$compUrl'>here</a>.
-                                Contact us <a href='$compEmail'>here</a>.
+                                Contact us <a href='mailto:$compEmail'>here</a>.
                                 </p>
                             </div>
                         </div>

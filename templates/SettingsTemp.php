@@ -499,7 +499,7 @@ final class SettingsTemp {
                     name="<?php echo self::OPTION_NAME . '[' . self::FI_BECAME_PREMIUM . ']' ?>" disabled>
                 <option>None</option>
             </select>
-            <p class="description" id="tagline-description">WP Job Listing debilitated.</p>
+            <p class="description" id="tagline-description">WP Job Listing deactivated.</p>
             <?php
         }
     }
@@ -528,7 +528,7 @@ final class SettingsTemp {
                     name="<?php echo self::OPTION_NAME . '[' . self::FI_BECAME_PREMIUM . ']' ?>" disabled>
                 <option>None</option>
             </select>
-            <p class="description" id="tagline-description">WP Job Listing debilitated.</p>
+            <p class="description" id="tagline-description">WP Job Listing deactivated.</p>
             <?php
         }
     }
