@@ -86,7 +86,7 @@ if (class_exists('Inc\\Init')) {
 /*
  * Auto update from github
  *
- * @since 1.0
+ * @since 1.0.0
  */
 
  require 'vendor/plugin-update-checker/plugin-update-checker.php';
