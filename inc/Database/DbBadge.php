@@ -27,8 +27,8 @@ class DbBadge extends DbModel {
      * @since       1.0.0
      */
     public function register(){
-        // Create table if not exist
-        $this->createTable();
+        // Create table if not exist - not used
+        //$this->createTable();
     }
 
     /**
