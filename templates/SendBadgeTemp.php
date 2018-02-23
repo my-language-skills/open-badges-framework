@@ -71,7 +71,7 @@ final class SendBadgeTemp extends BaseController {
      *                     c -> Multiple
      * @param string $secForm add a second form (a/b/c) that will be show with the first
      */
-    public static function getRightForm($form, $secForm) {
+    public static function getRightForm($form, $secForm = '') {
         if ($form === "all") {
             // In the case we want to show all the 3 form all together
             // like in the admin Send Badge page.
