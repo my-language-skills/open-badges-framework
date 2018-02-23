@@ -153,7 +153,7 @@ class SendBadgeAjax extends BaseController {
             }
         } else {
             $becomePremiumPage = get_post(
-                SettingsTemp::getOption(SettingsTemp::FI_become_PREMIUM)
+                SettingsTemp::getOption(SettingsTemp::FI_BECOME_PREMIUM)
             );
             if ($becomePremiumPage) {
                 echo "<a href='" . get_page_link($becomePremiumPage->ID) . "'>become Premium</a>";
