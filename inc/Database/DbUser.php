@@ -18,6 +18,18 @@ class DbUser extends DbModel {
     static $tableName = 'obf_user';
 
     /**
+     * Always loaded from the Init class and permit to create
+     * the table if not exist.
+     *
+     * @author      @AleRiccardi
+     * @since       1.0.0
+     */
+    public function register(){
+        // Create table if not exist
+        $this->createTable();
+    }
+
+    /**
      * In that function, called from the Init class,
      * permit to create the db table.
      *
