@@ -1,12 +1,16 @@
 # Badges4Languages purposes
 
 * One common worldwide standard
+
 All the certified teachers follow the same CEFR recommendations
 * Lower price
+
  Due to the estandarisation, Students no longer need to pay more for Official language exams.
 * Profile of the Reputation
+
 Rating and Reviews for teachers and classes
 * System of Trust
+
 Data logger recording online to see all of the information about teachers, students and their classes.
 
 # Badges4Languages all the features
