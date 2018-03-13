@@ -131,6 +131,8 @@ final class SettingsTemp {
                 <li class="active"><a href="#tab-1">Profile</a></li>
                 <li class=""><a href="#tab-2">Links</a></li>
             </ul>
+			
+
             <form method="post" action="options.php">
                 <?php
                 wp_enqueue_media();
@@ -151,8 +153,8 @@ final class SettingsTemp {
                         ?>
                     </div>
                 </div>
-                <?php
-                submit_button('Save Settings', 'primary', 'wpdocs-save-settings');
+				<?php
+					submit_button('Save Settings', 'primary', 'wpdocs-save-settings');
                 ?>
             </form>
         </div>
@@ -589,4 +591,15 @@ final class SettingsTemp {
         $options = get_option(SettingsTemp::OPTION_NAME);
         return $options[$field_option] ? $options[$field_option] : null;
     }
+	
+	
+	/**
+	 * The about tab.
+     *
+     * @author      @AleRiccardi
+     * @since       1.0.0
+     *
+     * @return void
+     */	
+
 }

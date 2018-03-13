@@ -13,6 +13,7 @@ use Templates\SendBadgeTemp;
 use Templates\SettingsTemp;
 use Templates\SingleBadgeTemp;
 use Templates\UserTemp;
+use Templates\StaticPagesTemp;
 
 /**
  * The WordPress Admin generator.
@@ -41,6 +42,7 @@ class Admin extends BaseController {
     const PAGE_PROFILE = 'profile-obf';
     const PAGE_BADGES = 'badges-obf';
     const PAGE_SINGLE_BADGES = 'single-badge-obf';
+	const PAGE_ABOUT = 'about-us';
 
     private $settings;
     private $pages;
@@ -99,6 +101,7 @@ class Admin extends BaseController {
         $userTemp = new UserTemp();
         $badgesTemp = new BadgesTemp();
         $singleBadgesTemp = new SingleBadgeTemp();
+		$staticPagesTemp = new StaticPagesTemp();
 
         $this->subpages = array(
             // ## Badges ##
@@ -164,6 +167,17 @@ class Admin extends BaseController {
                 'menu_slug' => self::PAGE_SETTINGS,
                 'callback' => array($settingTemp, 'main')
             ),
+			
+			// ## About us ##
+            array(
+                'parent_slug' => self::SLUG_PLUGIN,
+                'page_title' => 'About us',
+                'menu_title' => 'About us',
+                'capability' => 'read',
+                'menu_slug' => self::PAGE_ABOUT,
+                'callback' => array($staticPagesTemp, 'aboutTab')
+            ),
+			
             // ## Single Badge ##
             array(
                 'parent_slug' => self::SLUG_PLUGIN,
@@ -173,6 +187,8 @@ class Admin extends BaseController {
                 'menu_slug' => self::PAGE_SINGLE_BADGES,
                 'callback' => array($singleBadgesTemp, 'main')
             ),
+			
+
         );
 
 
