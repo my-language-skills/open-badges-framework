@@ -10,7 +10,7 @@ For upgrades, download the last stable version from Github, delete from FTP the 
 
 ### Plugin settings
 
-#### Change the Badges issuer information
+#### Profile Tab
 OpenBadges need some key information for the delivery of the Badge. Without that information, the Plugin will not work:
 * Site Name (by default, take the site name from ```get_bloginfo ('name')```)
 * WebSite URL (by default, take the url from ```get_bloginfo ('url')```)
@@ -19,7 +19,7 @@ OpenBadges need some key information for the delivery of the Badge. Without that
 
 ![settings_profile](../readme-assets/settings_profile.png "Settings: profile")
 
-#### Change issuer Badges page links
+#### Links Tab
 The users have some shortcuts to make easier the process. Here is the place where the links to those shortcuts are created:
 * Change the role. Teachers can change the role from Send Badge page.
 * Add class. Shortcut to create a new Class from Send Badge page.
@@ -28,6 +28,10 @@ The users have some shortcuts to make easier the process. Here is the place wher
 ![settings_links](../readme-assets/settings_links.png "Settings: links")
 
 ![settings_links-get-badge](../readme-assets/settings_links-get-badge.png "Settings: selected page")
+
+#### About us
+
+General information for the administrators of the site
 
 ### Manage Roles and Capabilities
 --- https://es.wordpress.org/plugins/wp-user-groups/ ----
