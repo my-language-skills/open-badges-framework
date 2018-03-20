@@ -193,11 +193,11 @@ final class GetBadgeTemp extends BaseController {
                 <form method="post" id="gb-form-login" class="gb-form">
                     <h2 class="form-signin-heading">Please sign in</h2>
                     <label for="inputEmail" class="sr-only">Email address / Username</label>
-                    <input type="text" readonly class="form-control" id="staticEmail"
-                           value="<?php echo $email; ?>">
+                    <input type="email"  class="form-control" id="staticEmail"
+                            placeholder="Email" required>
                     <label for="inputPassword" class="sr-only">Password</label>
                     <input type="password" id="inputPassword" class="form-control" placeholder="Password"
-                           required="">
+                           required>
                     <div class="checkbox">
                         <label>
                             <input id="inputRemember" type="checkbox" value="remember-me"> Remember me
@@ -206,16 +206,15 @@ final class GetBadgeTemp extends BaseController {
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in
                     </button>
                 </form>
+				<div class="mastfoot mt-auto">
+					<div class="inner">
+						<div id="gb-resp-login">
+
+						</div>
+					</div>
+				</div>
             </div>
         </main>
-
-        <footer class="mastfoot mt-auto">
-            <div class="inner">
-                <div id="gb-resp-login">
-
-                </div>
-            </div>
-        </footer>
 
 
         <?php
@@ -257,8 +256,8 @@ final class GetBadgeTemp extends BaseController {
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-12">
-                            <input type="text" readonly class="form-control" id="reg-email"
-                                   value="<?php echo $email; ?>" required>
+                            <input type="email" class="form-control" id="reg-email" placeholder="Email"
+                                    required>
                         </div>
                     </div>
                     <div class="form-group row">

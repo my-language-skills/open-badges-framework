@@ -66,21 +66,35 @@ class GetBadgeAjax extends BaseController {
      */
     public function ajaxGbLogin() {
         if (isset($_POST['idBadge']) && !empty($_POST['idBadge'])) {
+		
             $badge = new Badge();
             $badge->retrieveBadge($_POST['idBadge']);
-            $creds = array(
+			$user = DbUser::getById($badge->idUser);
+			$userEmail = $user->email;
+			
+			$creds = array(
                 'user_login' => $_POST['userEmail'],
                 'user_password' => $_POST['userPassword'],
-                'remember' => $_POST['remember']
+				'remember' => $_POST['remember']
             );
-
-            $user = wp_signon($creds, false);
-
-            if (is_wp_error($user)) {
-                echo $user->get_error_message();
-            } else {
-                echo true;
-            }
+			
+			
+			//condition to see if the user is using the right email to login
+			 if ( $userEmail != $creds['user_login']){
+	
+				echo "You have to login with the email that you opened the badge";
+				
+			} else {
+					
+				$valid = wp_signon($creds, false);
+				
+				if (is_wp_error($valid)) {
+					echo $valid->get_error_message();
+				} else {
+					echo true;
+				}  
+			}
+			
         }
         wp_die();
     }
@@ -100,27 +114,45 @@ class GetBadgeAjax extends BaseController {
      *                RET_REGISTRATION_ERROR     random message.
      */
     public function ajaxGbRegistration() {
-        $user = array(
-            'userEmail' => $_POST['userEmail'],
-            'userName' => $_POST['userName'],
-            'userPassword' => $_POST['userPassword'],
-            'userRepPass' => $_POST['userRepPass'],
-            'firstName' => $_POST['firstName'],
-            'lastName' => $_POST['lastName']
-        );
-
-        $regRet = WPUser::registerUser($user);
-        if (!$regRet) {
-            // connecting the user with the dbUser
-            WPUser::insertUserInDB($user["userEmail"]);
-            $loginRet = WPUser::loginUser($user);
-            echo $loginRet;
-        } else {
-            echo $regRet;
-        }
-
-        wp_die();
-    }
+		if (isset($_POST['idBadge']) && !empty($_POST['idBadge'])) {
+		
+			$badge = new Badge();
+            $badge->retrieveBadge($_POST['idBadge']);
+			$user = DbUser::getById($badge->idUser);
+			$userEmail = $user->email;
+		
+			$user = array(
+				'userEmail' => $_POST['userEmail'],
+				'userName' => $_POST['userName'],
+				'userPassword' => $_POST['userPassword'],
+				'userRepPass' => $_POST['userRepPass'],
+				'firstName' => $_POST['firstName'],
+				'lastName' => $_POST['lastName']
+			);
+			
+			
+			//condition to see if the user is using the right email to register
+			if ( $userEmail != $user['userEmail']){
+				
+				echo "Please register with the email we contacted you!";
+				
+			}else{
+				
+				$regRet = WPUser::registerUser($user);
+				
+				if (!$regRet) {
+					// connecting the user with the dbUser
+					WPUser::insertUserInDB($user["userEmail"]);
+					$loginRet = WPUser::loginUser($user);
+					echo $loginRet;
+				} else {
+					echo $regRet;
+				}	
+					
+			}	
+		}
+		wp_die();
+	}
 
     /**
      * Show the Mozilla Open Badges step.
