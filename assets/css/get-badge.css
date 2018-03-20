@@ -283,6 +283,10 @@ input {
     color: rgba(255, 255, 255, .5);
 }
 
+#gb-resp-login {
+	max-width: 350px;	
+}
+
 .logo-open-badges {
     margin-bottom: 30px;
 }

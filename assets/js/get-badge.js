@@ -199,7 +199,9 @@ jQuery(function (event) {
             if (response == true) {
                 showGetMOBOpenBadges();
             } else {
+				
                 jQuery("#gb-resp-login").html(response);
+				jQuery("#gb-resp-login").addClass("alert alert-warning");
             }
             jQuery(btnLogin).prop('disabled', false);
         }
@@ -262,6 +264,7 @@ jQuery(function (event) {
                     showGetMOBOpenBadges();
                 } else if (response) {
                     jQuery(responseRegister).html(response);
+					jQuery(responseRegister).addClass("alert alert-warning");
                 }
                 jQuery(btnRegister).prop('disabled', false);
                 jQuery(lblRegister).removeClass("disabled");
