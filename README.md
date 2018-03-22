@@ -1,7 +1,7 @@
 # Open Badges Framework
 A WordPress plugin for open badges
 
-Contributors: @colomet, @@AleRiccardi, @ntorion, @uzair043, @CorentinPerrot, @alevacher
+Contributors: @colomet, @AleRiccardi, @ntorion, @uzair043, @CorentinPerrot, @alevacher, @Kongat
 
 Tags: badges
 
@@ -71,6 +71,18 @@ You can see all of the screenshots of the plugin [here](doc/screenshots.md "scre
 ## Changelog
 
 ### 1.0
+
+* **ADDITIONS**
+	* Delete users(teachers and students) intergrated with WP
+ * Delete custom databse tables when uninstalling the plugin
+	
+* **ENHANCEMENTS**
+ * Fix the email security issue #205
+
+
+* BUGFIXES
+
+### 1.0 RC
 
 Completely overhauled design, from top to bottom. The plugin has been completely rewritten. Version 1.0 just basic functionalities.
 * Aceptation badge email.
