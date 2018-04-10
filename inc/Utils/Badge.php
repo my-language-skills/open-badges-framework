@@ -130,21 +130,22 @@ class Badge {
      */
     public function setTeacherRole($id) {
         $teacher = get_user_by("id", $id);
-
-        foreach ($teacher->roles as $role) {
-            switch ($role) {
-                case WPUser::ROLE_STUDENT:
-                    $this->teacherRole = $role;
-                    return $role;
-                case WPUser::ROLE_TEACHER:
-                    $this->teacherRole = $role;
-                    return $role;
-                case WPUser::ROLE_ACADEMY:
-                    $this->teacherRole = $role;
-                    return $role;
-            }
-        }
-        $this->teacherRole = $teacher->roles[0];
+		if ($teacher){
+			foreach ($teacher->roles as $role) {
+				switch ($role) {
+					case WPUser::ROLE_STUDENT:
+						$this->teacherRole = $role;
+						return $role;
+					case WPUser::ROLE_TEACHER:
+						$this->teacherRole = $role;
+						return $role;
+					case WPUser::ROLE_ACADEMY:
+						$this->teacherRole = $role;
+						return $role;
+				}
+			}
+			$this->teacherRole = $teacher->roles[0];
+		}
     }
 
 

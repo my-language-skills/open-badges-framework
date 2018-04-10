@@ -15,6 +15,7 @@ use Templates\SingleBadgeTemp;
 use Templates\UserTemp;
 use Templates\StaticPagesTemp;
 
+
 /**
  * The WordPress Admin generator.
  * This class allow to create array that will be pass
@@ -43,6 +44,7 @@ class Admin extends BaseController {
     const PAGE_BADGES = 'badges-obf';
     const PAGE_SINGLE_BADGES = 'single-badge-obf';
 	const PAGE_ABOUT = 'about-us';
+	
 
     private $settings;
     private $pages;
@@ -102,7 +104,7 @@ class Admin extends BaseController {
         $badgesTemp = new BadgesTemp();
         $singleBadgesTemp = new SingleBadgeTemp();
 		$staticPagesTemp = new StaticPagesTemp();
-
+	
         $this->subpages = array(
             // ## Badges ##
             array(
@@ -178,16 +180,23 @@ class Admin extends BaseController {
                 'callback' => array($staticPagesTemp, 'aboutTab')
             ),
 			
-            // ## Single Badge ##
+			// ## Single Badge ##
+			
+			/**
+			*
+			* We set the 'parent_slug' = null so this page is not displayed 
+			* at the admin menu
+			*
+			*/
             array(
-                'parent_slug' => self::SLUG_PLUGIN,
+                'parent_slug' => null,
                 'page_title' => 'Badge',
                 'menu_title' => null,
                 'capability' => 'read',
                 'menu_slug' => self::PAGE_SINGLE_BADGES,
                 'callback' => array($singleBadgesTemp, 'main')
             ),
-			
+		
 
         );
 

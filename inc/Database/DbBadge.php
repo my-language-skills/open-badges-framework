@@ -35,6 +35,10 @@ class DbBadge extends DbModel {
      * In that function, called from the Init class,
      * permit to create the db table.
      *
+	 * We have added "on cascade" at the foreign key(idUser),that means that when a user is deleted
+	 * from the obf_user table,the badges that are related to him are also deleted from the
+	 * obf_badge table.
+	 *
      * @author      @AleRiccardi
      * @since       1.0.0
      *
@@ -64,7 +68,7 @@ class DbBadge extends DbModel {
             evidence varchar(1500),
             PRIMARY KEY (id),
             UNIQUE KEY  (idUser, idBadge, idField, idLevel),
-            FOREIGN KEY (idUser) REFERENCES " . $userTable . "(id)
+            FOREIGN KEY (idUser) REFERENCES " . $userTable . "(id) ON DELETE CASCADE
         ) $charset_collate;";
         return dbDelta($sql);
     }

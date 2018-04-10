@@ -14,6 +14,9 @@ use Inc\Utils\WPBadge;
  *  Permit to wrap all the function that take care of the user and
  * the badges that he earned
  *
+ * All the content to show in the front-end is wrapped in the __() function
+ * for internationalization purposes 	
+ *
  * @author      @AleRiccardi
  * @since       1.0.0
  *
@@ -70,7 +73,7 @@ final class UserTemp {
                             </li>
                             <li>
                                 <span class="dashicons dashicons-calendar"></span>
-                                <span>Member since <?php echo date("d M Y", strtotime($userData->user_registered)); ?></span>
+                                <span> <?php _e('Member since','open-badges-framework'); echo date("d M Y", strtotime($userData->user_registered)); ?></span>
                             </li>
                             <li>
                                 <span class="dashicons dashicons-email-alt"></span>
@@ -88,13 +91,13 @@ final class UserTemp {
                                         ?>
                                         <div class="btn-update-container">
                                             <a href="<?php echo esc_url(get_permalink($rcp_options['edit_profile'])); ?>"
-                                               class="btn btn-secondary">Edit your profile</a>
+                                               class="btn btn-secondary"><?php _e('Edit your profile','open-badges-framework'); ?></a>
                                         </div>
                                         <?php
                                     } else { ?>
                                         <div class="btn-update-container">
                                             <a href="profile.php"
-                                               class="btn btn-secondary">Edit your profile</a>
+                                               class="btn btn-secondary"><?php _e('Edit your profile','open-badges-framework'); ?></a>
                                         </div>
                                     <?php }
                                 } ?>
@@ -118,14 +121,21 @@ final class UserTemp {
      */
     public static function showBadgeEarned($idUser, $isAdmin = true) {
         $userDb = DbUser::getSingle(["idWP" => $idUser]);
-        $dbBadges = DbBadge::get(Array("idUser" => $userDb->id));
+		
+		if (!$userDb){
+			$dbBadges = null;
+			
+		}else{
+			$dbBadges = DbBadge::get(Array("idUser" => $userDb->id));
+		}
+        
         $protocol = stripos($_SERVER['SERVER_PROTOCOL'], 'https') === true ? 'https' : 'http';
         $toAccept = 0;
         ?>
         <section class="user-badges-cont">
             <div class="user-badges flex-container">
                 <div class="title-badges-cont">
-                    <h3>Badges earned &nbsp;<span class="dashicons dashicons-yes"></span></h3>
+                    <h3><?php _e('Badges earned','open-badges-framework'); ?> &nbsp;<span class="dashicons dashicons-yes"></span></h3>
                 </div>
                 <?php
                 if ($dbBadges) {
@@ -156,8 +166,9 @@ final class UserTemp {
                         }
                     }
                 } else {
-
-                    echo "<p class='lead'><br/>&nbsp;&nbsp;&nbsp;&nbsp;No badges earned</p>";
+					?>
+                     <p class='lead'><br/>&nbsp;&nbsp;&nbsp;&nbsp; <?php _e('No badges earned','open-badges-framework');?></p>
+					 <?php
                 }
                 ?>
             </div>
@@ -165,7 +176,7 @@ final class UserTemp {
             if ($toAccept) { ?>
                 <div class="obf-badges-to-accept user-badges flex-container">
                     <div class="title-badges-cont">
-                        <h4>To be accepted</h4>
+                        <h4><?php _e('To be accepted','open-badges-framework'); ?></h4>
                     </div>
                     <?php
                     foreach ($dbBadges as $dbBadge) {

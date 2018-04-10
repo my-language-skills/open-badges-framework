@@ -183,17 +183,20 @@ class SettingApi {
      * Loops all the $admin_pages adding at the "add_menu_page"
      * function all the menus.
      *
+	 * We use the method __() for the $page['page_title'] and $page['menu_title'] arguements so they 
+	 * are internationalized and can be translated
+	 *
      * @author @AleRiccardi
      * @since  1.0.0
      */
     public function addAdminMenu() {
         foreach ($this->admin_pages as $page) {
-            add_menu_page($page['page_title'], $page['menu_title'], $page['capability'], $page['menu_slug'],
+            add_menu_page(__($page['page_title'],'open-badges-framework'), __($page['menu_title'],'open-badges-framework'), $page['capability'], $page['menu_slug'],
                 $page['callback'], $page['icon_url'], $page['position']);
         }
 
         foreach ($this->admin_subpages as $page) {
-            add_submenu_page($page['parent_slug'], $page['page_title'], $page['menu_title'], $page['capability'],
+            add_submenu_page($page['parent_slug'], __($page['page_title'],'open-badges-framework'), __($page['menu_title'],'open-badges-framework'), $page['capability'],
                 $page['menu_slug'], $page['callback']);
         }
     }

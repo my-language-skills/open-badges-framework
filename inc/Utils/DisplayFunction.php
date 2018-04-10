@@ -15,6 +15,9 @@ use Inc\Pages\Admin;
  * time to fix that but the purpose for the future is to
  * delete that and create it better.
  *
+ * All the content to show in the front-end is wrapped in the __() function
+ * for internationalization purposes
+ *
  * @author      @AleRiccardi
  * @since       1.0.0
  *
@@ -96,7 +99,7 @@ class DisplayFunction {
 
         ?>
         <p>
-            <small>Some browsers may delay the opening of the fields of education.</small>
+            <small><?php _e('Some browsers may delay the opening of the fields of education.','open-badges-framework');?></small>
         </p>
         <?php
     }
@@ -120,17 +123,17 @@ class DisplayFunction {
                         <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">User</th>
-                            <th scope="col">Badge</th>
-                            <th scope="col">Field</th>
-                            <th scope="col">Level</th>
+                            <th scope="col"><?php _e('User','open-badges-framework');?></th>
+                            <th scope="col"><?php _e('Badge','open-badges-framework');?></th>
+                            <th scope="col"><?php _e('Field','open-badges-framework');?></th>
+                            <th scope="col"><?php _e('Level','open-badges-framework');?></th>
                             <?php if (Secondary::isJobManagerActive()) { ?>
-                                <th scope="col">Class</th>
+                                <th scope="col"><?php _e('Class','open-badges-framework');?></th>
                             <?php } ?>
-                            <th scope="col">Teacher</th>
-                            <th scope="col">Creation</th>
-                            <th scope="col">Got</th>
-                            <th scope="col">Mozilla OB</th>
+                            <th scope="col"><?php _e('Teacher','open-badges-framework');?></th>
+                            <th scope="col"><?php _e('Creation','open-badges-framework');?></th>
+                            <th scope="col"><?php _e('Got','open-badges-framework');?></th>
+                            <th scope="col"><?php _e('Mozilla OB','open-badges-framework');?></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -178,20 +181,20 @@ class DisplayFunction {
     public static function actionSection($number = "") { ?>
         <div class="tablenav bottom">
             <div class="alignleft actions bulkactions">
-                <label for="bulk-action-selector-bottom" class="screen-reader-text">Select bulk action</label>
+                <label for="bulk-action-selector-bottom" class="screen-reader-text"><?php _e('Select bulk action','open-badges-framework');?></label>
                 <select name="action<?php echo $number; ?>" id="bulk-action-selector-bottom">
-                    <option value="-1">Bulk Actions</option>
-                    <option value="trash">Move to Trash</option>
+                    <option value="-1"><?php _e('Bulk Actions','open-badges-framework');?></option>
+                    <option value="trash"><?php _e('Move to Trash','open-badges-framework');?></option>
                 </select>
-                <input type="submit" id="doaction<?php echo $number; ?>" class="button action" value="Apply">
+                <input type="submit" id="doaction<?php echo $number; ?>" class="button action" value="<?php _e('Apply','open-badges-framework');?>">
             </div>
             <div class="alignleft actions">
             </div>
             <div class="tablenav-pages one-page">
                 <span class="displaying-num">
-                    <?php echo Statistics::getNumBadgesSent(); ?> items,
-                    <?php echo Statistics::getNumBadgesGot(); ?> got,
-                    <?php echo Statistics::getNumBadgesGotMob(); ?> mob
+                    <?php echo Statistics::getNumBadgesSent(); _e('items','open-badges-framework');?> ,
+                    <?php echo Statistics::getNumBadgesGot(); _e('got','open-badges-framework');?>,
+                    <?php echo Statistics::getNumBadgesGotMob(); _e('mob','open-badges-framework');?> 
                 </span>
                 <br class="clear">
             </div>

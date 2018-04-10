@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 namespace templates;
 
@@ -13,6 +13,9 @@ use Inc\Utils\WPBadge;
  * Template for the Get Badge page.
  * In this class are defined all the function that permits
  * you to follow all the step to get a badge.
+ *
+ * All the content to show in the front-end is wrapped in the __() function
+ * for internationalization purposes
  *
  * @author      @AleRiccardi
  * @since       1.0.0
@@ -137,7 +140,7 @@ final class GetBadgeTemp extends BaseController {
         <header class="masthead mb-auto">
             <?php $this->getInfoHeader(); ?>
             <div class="container inner">
-                <div class="cont-title">New badge</div>
+                <div class="cont-title"><?php _e('New badge','open-badges-framework');?></div>
             </div>
         </header>
 
@@ -146,8 +149,8 @@ final class GetBadgeTemp extends BaseController {
                 <h1 class="badge-title-obf cover-heading">
                     <strong><?php echo $this->badgeWP->post_title; ?></strong>
                 </h1>
-                <h5 class="badge-field">Field of education: <strong><?php echo $this->fieldWP->name; ?></strong> -
-                    Level:
+                <h5 class="badge-field"> <?php _e('Field of education: ','open-badges-framework')?><strong><?php echo $this->fieldWP->name; ?></strong> 
+					<?php _e('- Level:','open-badges-framework')?>
                     <strong><?php echo $this->levelWP->name; ?></strong></h5>
                 <p class="lead">
                     <?php echo $this->badgeWP->post_content; ?>
@@ -162,7 +165,7 @@ final class GetBadgeTemp extends BaseController {
         <footer class="mastfoot mt-auto">
             <div class="inner">
                 <p class="lead">
-                    <button id="gb-continue" class="btn btn-lg btn-secondary" type="submit">Continue</button>
+                    <button id="gb-continue" class="btn btn-lg btn-secondary" type="submit"><?php _e('Continue','open-badges-framework');?></button>
                 </p>
             </div>
         </footer>
@@ -191,19 +194,19 @@ final class GetBadgeTemp extends BaseController {
         <main role="main" class="inner cover">
             <div class="container cont-form">
                 <form method="post" id="gb-form-login" class="gb-form">
-                    <h2 class="form-signin-heading">Please sign in</h2>
-                    <label for="inputEmail" class="sr-only">Email address / Username</label>
+                    <h2 class="form-signin-heading"><?php _e('Please sign in','open-badges-framework')?></h2>
+                    <label for="inputEmail" class="sr-only"><?php _e('Email address / Username','open-badges-framework')?></label>
                     <input type="email"  class="form-control" id="staticEmail"
-                            placeholder="Email" required>
-                    <label for="inputPassword" class="sr-only">Password</label>
-                    <input type="password" id="inputPassword" class="form-control" placeholder="Password"
+                            placeholder="<?php _e('Email','open-badges-framework')?>" required>
+                    <label for="inputPassword" class="sr-only"><?php _e('Password','open-badges-framework')?></label>
+                    <input type="password" id="inputPassword" class="form-control" placeholder="<?php _e('Password','open-badges-framework')?>"
                            required>
                     <div class="checkbox">
                         <label>
-                            <input id="inputRemember" type="checkbox" value="remember-me"> Remember me
+                            <input id="inputRemember" type="checkbox" value="remember-me"> <?php _e('Remember me','open-badges-framework')?>
                         </label>
                     </div>
-                    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in
+                    <button class="btn btn-lg btn-primary btn-block" type="submit"><?php _e('Sign in','open-badges-framework')?>
                     </button>
                 </form>
 				<div class="mastfoot mt-auto">
@@ -235,7 +238,7 @@ final class GetBadgeTemp extends BaseController {
         <header class="masthead mb-auto">
             <?php $this->getInfoHeader(); ?>
             <div class="inner">
-                <div class="cont-title">Registration</div>
+                <div class="cont-title"><?php _e('Registration','open-badges-framework')?></div>
             </div>
         </header>
 
@@ -244,31 +247,31 @@ final class GetBadgeTemp extends BaseController {
                 <form id="gb-form-registration" id="needs-validation" novalidate>
                     <div class="form-group row">
                         <div class="col-sm-12">
-                            <input type="text" class="form-control" id="reg-first-name" placeholder="First name"
+                            <input type="text" class="form-control" id="reg-first-name" placeholder="<?php _e('First name','open-badges-framework')?>"
                                    required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-12">
-                            <input type="text" class="form-control" id="reg-last-name" placeholder="Last name"
+                            <input type="text" class="form-control" id="reg-last-name" placeholder="<?php _e('Last name','open-badges-framework')?>"
                                    required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-12">
-                            <input type="email" class="form-control" id="reg-email" placeholder="Email"
+                            <input type="email" class="form-control" id="reg-email" placeholder="<?php _e('Email','open-badges-framework')?>"
                                     required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-12">
-                            <input type="text" class="form-control" id="reg-user-name" placeholder="Username"
+                            <input type="text" class="form-control" id="reg-user-name" placeholder="<?php _e('Username','open-badges-framework')?>"
                                    required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-12">
-                            <input type="password" class="form-control" id="reg-pass" placeholder="Password"
+                            <input type="password" class="form-control" id="reg-pass" placeholder="<?php _e('Password','open-badges-framework')?>"
                                    required>
                         </div>
                     </div>
@@ -291,7 +294,7 @@ final class GetBadgeTemp extends BaseController {
         <footer class="mastfoot mt-auto">
             <div class="inner">
                 <label id="lbl-submit-form" class="btn btn-primary btn-lg" for="submit-form"
-                       tabindex="0">Register</label>
+                       tabindex="0"><?php _e('Register','open-badges-framework')?></label>
             </div>
         </footer>
 
@@ -328,18 +331,18 @@ final class GetBadgeTemp extends BaseController {
             <div class="container">
                 <div class="jumbotron jumbotron-fluid jumb-obm">
                     <p class="lead">
-                        Mozilla Open Badges give you the opportunity to store your badges in its platform which
-                        permit you to share your progress with all the community.
+                        <?php _e('Mozilla Open Badges give you the opportunity to store your badges in its platform which
+                        permit you to share your progress with all the community.','open-badges-framework');?>
                         <br><br>
-                        If you don’t have an Open Badge account, please click
+                        <?php _e('If you don’t have an Open Badge account, please click','open-badges-framework');?>
                         <a href="https://backpack.openbadges.org/backpack/signup" target="_blank"
-                           style="font-size: 25px;">here</a>
-                        and create a new account with the same email address of the registration of this website and
-                        then <strong>get the badge</strong>.
+                           style="font-size: 25px;"><?php _e('here','open-badges-framework');?></a>
+                        <?php _e('and create a new account with the same email address of the registration of this website and
+                        then','open-badges-framework');?> <strong><?php _e('get the badge','open-badges-framework');?></strong>.
 
                     </p>
                     <div class="cont-btn-standar">
-                        <button id="gb-ob-get-badge" class="btn btn-lg btn-primary" type="submit">Get the Badge
+                        <button id="gb-ob-get-badge" class="btn btn-lg btn-primary" type="submit"><?php _e('Get the Badge','open-badges-framework');?>
                         </button>
                     </div>
                     <div id="gb-ob-response">
@@ -349,11 +352,11 @@ final class GetBadgeTemp extends BaseController {
                 if ($isGot) {
                     ?>
                     <a class="btn-link" href="<?php echo get_bloginfo('url'); ?>"
-                       role="button">or go to the home page</a>
+                       role="button"><?php _e('or go to the home page','open-badges-framework');?></a>
                     <?php
                 } else { ?>
                     <button id="gb-get-standard" class="btn-link" type="submit">
-                        or skip the process and get anyway the Badge
+                        <?php _e('or skip the process and get anyway the Badge','open-badges-framework');?>
 
                 </button>
                 <?php
@@ -388,20 +391,20 @@ final class GetBadgeTemp extends BaseController {
         <header class="masthead mb-auto">
             <?php $this->getInfoHeader(); ?>
             <div class="inner container">
-                <div class="cont-title">Congratulations!</div>
+                <div class="cont-title"><?php _e('Congratulations!','open-badges-framework');?></div>
             </div>
         </header>
 
         <main role="main" class="inner cover">
             <div class="container">
                 <h1 class="cong-title-obf cover-heading">
-                    <?php echo WPUser::getCurrentUser()->first_name . ", "; ?>you just added a new badge!
+                    <?php echo WPUser::getCurrentUser()->first_name . ", "; _e('you just added a new badge!','open-badges-framework');?>
                 </h1>
                 <div class="container cont-button-redirect">
                     <div class="row justify-content-around">
                         <div class="col-3">
                             <a class="btn btn-redirect" href="<?php echo get_bloginfo('url'); ?>"
-                               role="button">Home</a>
+                               role="button"> <?php _e('Home','open-badges-framework');?></a>
                         </div>
                     </div>
                 </div>
@@ -443,11 +446,11 @@ final class GetBadgeTemp extends BaseController {
                 <h4 class="">
                     <strong><?php echo $this->badgeWP->post_title; ?></strong>
                 </h4>
-                <h5 class="badge-field">Field: <strong><?php echo $this->fieldWP->name; ?></strong> -
-                    Level:
+                <h5 class="badge-field"><?php _e('Field: ','open-badges-framework');?><strong><?php echo $this->fieldWP->name; ?></strong> -
+                     <?php _e('Level: ','open-badges-framework');?>
                     <strong><?php echo $this->levelWP->name; ?></strong></h5>
                 <h2 class="badge-got-title">
-                    Badge already got!
+                    <?php _e('Badge already got! ','open-badges-framework');?>
                 </h2>
 
             </div>
@@ -485,23 +488,22 @@ final class GetBadgeTemp extends BaseController {
             <div class="container">
                 <?php
                 if ($error == self::PREVIEW) { ?>
-                    <h1>GET BADGE PAGE PREVIEW</h1>
-                    <p class="lead">
-                        his page is set as a default page that permits you to get the badge.
+                    <h1><?php _e('GET BADGE PAGE PREVIEW','open-badges-framework');?></h1>
+                    <p class="lead">                       
+						<?php _e('his page is set as a default page that permits you to get the badge.','open-badges-framework');?>
                     </p>
                     <?php
                 } elseif ($error == self::ERROR_JSON) { ?>
-                    <h1>BADGE ERROR</h1>
-                    <p class="lead">
-                        Your badge is not anymore stored in our server.
+                    <h1><?php _e('BADGE ERROR','open-badges-framework');?></h1>
+                    <p class="lead">                       
+						<?php _e('Your badge is not anymore stored in our server.','open-badges-framework');?>
                     </p>
                     <?php
                 } else if ($error == self::ERROR_LINK) {
                     ?>
                     <h1>URL ERROR</h1>
                     <p class="lead">
-                        There's something wrong with the link, ask to the help desk to fix the
-                        problem!
+						<?php _e("There's something wrong with the link, ask to the help desk to fix the problem!",'open-badges-framework');?>
                     </p>
                     <?php
                 }
@@ -535,7 +537,7 @@ final class GetBadgeTemp extends BaseController {
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
             <meta name="viewport" content="width=device-width, initial-scale=1">
-            <title>Get the Badge</title>
+            <title><?php _e('Get the Badge','open-badges-framework');?></title>
             <script src="https://backpack.openbadges.org/issuer.js"></script>
 
             <?php wp_head(); ?>

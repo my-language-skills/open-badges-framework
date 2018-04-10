@@ -57,10 +57,25 @@ define( 'PLUGIN', plugin_basename( __FILE__ ) );
  *
  * @since 1.0.0
  */
+
+
 function open_badges_framework_activation() {
     Inc\Base\Activate::activate();
 }
 register_activation_hook(__FILE__, 'open_badges_framework_activation');
+
+ 
+/**
+ * This piece of code loads the text domain.
+ * It is used for internationalization purposes.
+ * It should be executed before the rest of the plugin is loaded, so all the strings of the plugin 
+ * are internationalized
+ */
+function my_plugin_load_plugin_textdomain() {
+	load_plugin_textdomain( 'open-badges-framework', FALSE, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+}
+add_action( 'init', 'my_plugin_load_plugin_textdomain' );	
+
 
 /**
  * The code that runs during plugin deactivation
@@ -78,8 +93,8 @@ register_deactivation_hook(__FILE__, 'open_badges_framework_deactivation');
  * @since 1.0.0
  */
 if (class_exists('Inc\\Init')) {
-    Inc\Init::register_services();
-
+		
+    Inc\Init::register_services();	
 }
 
 

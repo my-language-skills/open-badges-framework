@@ -27,7 +27,31 @@ class DbUser extends DbModel {
     public function register(){
         // Create table if not exist - not used
         //$this->createTable();
+		self::deleteStudent();
     }
+	
+	 /**
+     * Call the delete_user hook with our custom method my_delete_user()
+     *  
+     */
+	private function deleteStudent() {
+		
+        add_action( 'delete_user', array($this, 'my_delete_user') );
+    }
+	
+	/**
+     * While the user is being deleted from the Wordpress user table
+     *  is also being deleted from the obf_user table
+     */
+	public function my_delete_user( $user_id ) {
+		global $wpdb;
+		$user_obj = get_userdata( $user_id );
+		$id_user = $user_obj->ID;
+		
+		/*Delete Data from obf user table*/  
+		$data_users= $wpdb->query("DELETE FROM `wp_badges_wp_obf_user` where `idWP` = ".$user_obj->ID."");
+		
+	}
 
     /**
      * In that function, called from the Init class,

@@ -16,6 +16,9 @@ use Inc\Utils\WPUser;
  * wordpress and the Database badge is saved in the custom
  * table create from the plugin.
  *
+ * All the content to show in the front-end is wrapped in the __() function
+ * for internationalization purposes 
+ *
  * @author      @AleRiccardi
  * @since       1.0.0
  *
@@ -52,7 +55,7 @@ final class SingleBadgeTemp {
                 break;
         }
         echo "</div>";
-    }
+		}
 
     /**
      * Control the parameter in the url.
@@ -105,16 +108,16 @@ final class SingleBadgeTemp {
             <img class="circle-img" src="<?php echo WPBadge::getUrlImage($badge->ID); ?>">
         </div>
         <section class="user-cont-obf">
-            <h1 class="obf-title">Badge: <strong><?php echo $badge->post_title; ?></strong></h1>
+            <h1 class="obf-title"><?php _e('Badge','open-badges-framework.');?><strong><?php echo $badge->post_title; ?></strong></h1>
             <section>
-                <h3>Badge information</h3>
-                <p>Name: <strong><?php echo $badge->post_title; ?></strong></p>
-                <p>Level: <strong><?php foreach ($levels as $level) echo $level->name . " "; ?></strong></p>
-                <p>Field of education: <strong><?php foreach ($fields as $field) echo $field->name;
+                <h3><?php _e('Badge information','open-badges-framework.');?></h3>
+                <p> <?php _e('Name: ','open-badges-framework.');?><strong><?php echo $badge->post_title; ?></strong></p>
+                <p> <?php _e('Level: ','open-badges-framework.');?><strong><?php foreach ($levels as $level) echo $level->name . " "; ?></strong></p>
+                <p> <?php _e('Field of education: ','open-badges-framework.');?><strong><?php foreach ($fields as $field) echo $field->name;
                         echo !$fields ? "All" : ""; ?></strong></p>
-                <p>Description: <strong><?php echo $badge->post_content; ?></strong></p>
+                <p> <?php _e('Description: ','open-badges-framework.');?><strong><?php echo $badge->post_content; ?></strong></p>
                 <?php if (current_user_can("manage_options")) { ?>
-                    <a href="<?php echo get_edit_post_link($badge->ID) ?>">Edit post</a>
+                    <a href="<?php echo get_edit_post_link($badge->ID) ?>"> <?php _e('Edit post ','open-badges-framework.');?></a>
                 <?php } ?>
             </section>
         </section>
@@ -122,7 +125,8 @@ final class SingleBadgeTemp {
     }
 
     /**
-     * Show Database badge section
+     * Show Database badge section,if the teacher is an active user his info will be displayed,
+	 * if he has been deleted a proper message will appear.
      *
      * @author      @AleRiccardi
      * @since       1.0.0
@@ -149,20 +153,24 @@ final class SingleBadgeTemp {
         <section class="user-cont-obf">
             <h1 class="obf-title"><strong><?php echo $badgeWP->post_title; ?></strong></h1>
             <section>
-                <h3>Badge information</h3>
-                <p>Name: <strong><?php echo $badgeWP->post_title; ?></strong></p>
-                <p>Level: <strong><?php echo $level->name; ?></strong></p>
-                <p>Field of education: <strong><?php echo $field->name; ?></strong></p>
-                <p>Description: <strong><?php echo $badgeWP->post_content; ?></strong></p>
+                <h3><?php _e('Badge information ','open-badges-framework.');?></h3>
+                <p><?php _e('Name: ','open-badges-framework.');?><strong><?php echo $badgeWP->post_title; ?></strong></p>
+                <p><?php _e('Level: ','open-badges-framework.');?><strong><?php echo $level->name; ?></strong></p>
+                <p><?php _e('Field of education: ','open-badges-framework.');?><strong><?php echo $field->name; ?></strong></p>
+                <p><?php _e('Description: ','open-badges-framework.');?><strong><?php echo $badgeWP->post_content; ?></strong></p>
             </section>
             <section>
-                <h3>Teacher information</h3>
-                <p>Name: <strong><?php echo $teacherWP->first_name; ?></strong></p>
-                <p>Last name: <strong><?php echo $teacherWP->last_name; ?></strong></p>
-                <p>Email: <strong><?php echo $teacherWP->user_email; ?></strong></p>
-                <p>Info: <strong><?php echo $badge->info; ?></strong></p>
+                <h3><?php _e('Teacher information','open-badges-framework.');?></h3>
+				 <?php if ($teacherWP ) { ?>
+					<p><?php _e('Name: ','open-badges-framework.');?><strong><?php echo $teacherWP->first_name; ?></strong></p>
+					<p><?php _e('Last name: ','open-badges-framework.');?><strong><?php echo $teacherWP->last_name; ?></strong></p>
+					<p><?php _e('Email: ','open-badges-framework.');?><strong><?php echo $teacherWP->user_email; ?></strong></p>
+				<?php } else { ?>
+					<p><strong><?php _e('Teacher no longer available!!!','open-badges-framework.');?></strong></p>
+				<?php }	?>
+                <p><?php _e('Info: ','open-badges-framework.');?><strong><?php echo $badge->info; ?></strong></p>
                 <p>
-                    Evidence:
+                    <?php _e('Evidence: ','open-badges-framework.');?>
                     <strong>
                         <?php if ($badge->evidence != "none") { ?>
                             <a href="<?php echo $badge->evidence; ?>"><?php echo $badge->evidence; ?></a>
@@ -173,12 +181,12 @@ final class SingleBadgeTemp {
                 </p>
             </section>
             <section>
-                <h3>General information</h3>
-                <p>Received: <strong><?php echo date("d M Y", strtotime($badge->creationDate)); ?></strong></p>
-                <p>Earned:
+                <h3><?php _e('General information','open-badges-framework.');?></h3>
+                <p><?php _e('Received: ','open-badges-framework.');?><strong><?php echo date("d M Y", strtotime($badge->creationDate)); ?></strong></p>
+                <p><?php _e('Earned: ','open-badges-framework.');?>
                     <strong><?php echo $badge->gotDate ? date("d M Y", strtotime($badge->gotDate)) : "on hold"; ?></strong>
                 </p>
-                <p>Earned in Mozilla Open Badge:
+                <p><?php _e('Earned in Mozilla Open Badge: ','open-badges-framework.');?>
                     <strong><?php echo $badge->gotMozillaDate ? date("d M Y", strtotime($badge->gotMozillaDate)) : "on hold"; ?></strong>
                 </p>
             </section>
@@ -189,12 +197,12 @@ final class SingleBadgeTemp {
                 if (!$badge->gotDate) { ?>
 
                     <div class="obf-sbp-cont-btn">
-                        <a class="btn btn-lg btn-primary" href="<?php echo $badgeLink; ?>">Get the badge</a>
+                        <a class="btn btn-lg btn-primary" href="<?php echo $badgeLink; ?>"><?php _e('Get the badge','open-badges-framework.');?></a>
                     </div>
                     <?php
                 } else if (!$badge->gotMozillaDate) { ?>
                     <div class="obf-sbp-cont-btn">
-                        <a class="btn btn-lg btn-secondary" href="<?php echo $badgeLink; ?>">Get Mozilla Open Badge</a>
+                        <a class="btn btn-lg btn-secondary" href="<?php echo $badgeLink; ?>"><?php _e('Get Mozilla Open Badge','open-badges-framework.');?></a>
                     </div>
                     <?php
                 }

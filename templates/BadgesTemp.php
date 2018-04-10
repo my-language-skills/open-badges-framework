@@ -9,6 +9,9 @@ use Inc\Utils\WPBadge;
  * Template class that shows all the badges created with
  * that plugin.
  *
+ * All the content to show in the front-end is wrapped in the __() function
+ * for internationalization purposes 
+ *
  * @author      @AleRiccardi
  * @since       1.0.0
  *
@@ -25,10 +28,10 @@ class BadgesTemp {
         $badges = WPBadge::getAll();
         ?>
         <div class="wrap">
-            <h1 class="obf-title">Badges</h1>
+            <h1 class="obf-title"><?php _e('Badges','open-badges-framework'); ?></h1>
         <section class="user-badges-cont">
             <div class="title-badges-cont">
-                <h3>Number badges: <?php echo sizeof($badges)?></h3>
+                <h3><?php _e('Number of Badges : ','open-badges-framework'); ?><?php echo sizeof($badges)?></h3>
             </div>
             <div class="user-badges flex-container">
                 <?php

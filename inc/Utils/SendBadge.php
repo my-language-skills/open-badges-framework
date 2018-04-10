@@ -141,15 +141,17 @@ class SendBadge{
     private function getBodyEmail($idDbBadge) {
         $badgeLink = Badge::getLinkGetBadge($idDbBadge);
         $options = get_option(SettingsTemp::OPTION_NAME);
-        // wordpress var
-        $compName = isset($options[SettingsTemp::FI_SITE_NAME_FIELD]) ? $options[SettingsTemp::FI_SITE_NAME_FIELD] : '';
-        $compUrl = isset($options[SettingsTemp::FI_WEBSITE_URL_FIELD]) ? $options[SettingsTemp::FI_WEBSITE_URL_FIELD] : '';
-        $compDesc = isset($options[SettingsTemp::FI_DESCRIPTION_FIELD]) ? $options[SettingsTemp::FI_DESCRIPTION_FIELD] : '';
-        $compUrlImg = isset($options[SettingsTemp::FI_IMAGE_URL_FIELD]) ? wp_get_attachment_url($options[SettingsTemp::FI_IMAGE_URL_FIELD]) : '';
-        $compEmail = isset($options[SettingsTemp::FI_EMAIL_FIELD]) ? $options[SettingsTemp::FI_EMAIL_FIELD] : '';
-
-
-        $body = "
+		
+        // retrieving the values of the Email Settings section and displaying to the email that we send
+		
+        $compName = isset($options[SettingsTemp::FI_SITE_NAME_EMAIL_FIELD]) ? $options[SettingsTemp::FI_SITE_NAME_EMAIL_FIELD] : '';
+        $compUrl = isset($options[SettingsTemp::FI_WEBSITE_URL_EMAIL_FIELD]) ? $options[SettingsTemp::FI_WEBSITE_URL_EMAIL_FIELD] : '';
+		$compEmail = isset($options[SettingsTemp::FI_CONTACT_EMAIL_FIELD]) ? $options[SettingsTemp::FI_CONTACT_EMAIL_FIELD] : '';
+        $compUrlImg = isset($options[SettingsTemp::FI_IMAGE_URL_EMAIL_FIELD]) ? wp_get_attachment_url($options[SettingsTemp::FI_IMAGE_URL_EMAIL_FIELD]) : '';
+        $header = isset($options[SettingsTemp::FI_HEADER_EMAIL_FIELD]) ? $options[SettingsTemp::FI_HEADER_EMAIL_FIELD] : '';
+        $message = isset($options[SettingsTemp::FI_MESSAGE_EMAIL_FIELD]) ? $options[SettingsTemp::FI_MESSAGE_EMAIL_FIELD] : '';
+		
+         $body = "
                 <!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
                 <html xmlns='http://www.w3.org/1999/xhtml'>
                     <head>
@@ -158,28 +160,31 @@ class SendBadge{
                     <body>
                         <div id='b4l-award-actions-wrap'>
                             <div align='center'>
-                                <h1>BADGES FOR LANGUAGES</h1>
-                                <h1><b>Congratulations you have just earned a badge!</b></h1>
-                                <h2>Learn languages and get official certifications</h2>
+								<img src='" . $compUrlImg . "' width='150' height='150'/>
+                                <h1>$compName</h1>
+                                 $header	
                                 <center>
                                     <a href='" . $badgeLink . "'>
                                         <img src='" . WPBadge::getUrlImage($this->wpBadge->ID) . "' width='150' height='150'/>
                                     </a>
                                 </center>
                                 <h2>" . $this->wpBadge->post_title . " - " . $this->field->name . "</h2>
-                                <p>Open the link, and get the badge.</p>
+                                <p>$message</p>
                                 <a href='" . $badgeLink . "'>$badgeLink</a>
                                 <br><br><hr>
-                                <p style='font-size:9px; color:grey '>Badges for $compName" . ($compDesc ? ", $compDesc" : "" ) . "
-                                <br>
-                                More information <a href='$compUrl'>here</a>.
-                                Contact us <a href='mailto:$compEmail'>here</a>.
-                                </p>
+                                <p style='font-size:9px; color:grey '>$compName </p>
+                                
+								<p style='font-size:9px; color:grey '>
+                               More information <a href='$compUrl'>here</a>.
+							   Contact us <a href='mailto:$compEmail'>here</a>.;
+                               </p>
                             </div>
                         </div>
                     </body>
             </html>
                 ";
-        return $body;
+        return $body; 
+
+
     }
 }
