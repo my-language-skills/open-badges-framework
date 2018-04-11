@@ -172,6 +172,85 @@ class DisplayFunction {
         }
 
     }
+	
+	
+	
+	
+	
+	public static function usersTable() {
+        $table = DbBadge::get();
+        if ($table) {
+
+            ?>
+                <div class="scroll-hor">
+                    <table class="wp-list-table widefat striped pages">
+                        <thead>
+                        <tr>
+
+                            <th scope="col"><?php _e('Teacher','open-badges-framework');?></th>
+                            <th scope="col"><?php _e('Badges Sent','open-badges-framework');?></th>
+                            <th scope="col"><?php _e('Active Since','open-badges-framework');?></th>
+							<th scope="col"><?php _e('Ratio','open-badges-framework');?></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+/*                         if ($table = DbBadge::get()) {
+                            foreach ($table as $row) {
+                                $badge = new Badge();
+                                $badge->retrieveBadge($row->id);
+                                $student = DbUser::getById($badge->idUser);
+
+                                echo "<tr>";
+                                echo "<td><input id='bd-select-$row->id' type='checkbox' name='badge[]' value='$row->id'></td>";
+                                echo "<td>" . (get_user_by('id', $student->idWP) ? "<a href='" . get_edit_user_link(get_user_by('id', $student->idWP)->ID) . "'>" . $student->email . "</a>" : "<span> $student->email</span>") . "</td>";
+                                echo "<td><a href='" . get_edit_post_link($badge->idBadge) . "'>" . (get_post($badge->idBadge) ? get_post($badge->idBadge)->post_title : "") . "</a></td>";
+                                echo "<td><a href='" . get_edit_term_link($badge->idField) . "'>" . (get_term($badge->idField) ? get_term($badge->idField)->name : "") . "</a></td>";
+                                echo "<td><a href='" . get_edit_term_link($badge->idLevel) . "'>" . (get_term($badge->idLevel) ? get_term($badge->idLevel)->name : "") . "</a></td>";
+                                if (Secondary::isJobManagerActive()) {
+                                    echo "<td><a href='" . get_edit_post_link($badge->idClass) . "'>" . (get_post($badge->idClass) ? get_post($badge->idClass)->post_title : "") . "</a></td>";
+                                }
+                                echo "<td><a href='" . get_edit_user_link($badge->idTeacher) . "'>" . (get_user_by('id', $badge->idTeacher) ? get_user_by('id', $badge->idTeacher)->userEmail : "") . "</a></td>";
+                                echo "<td>" . $badge->creationDate . "</td>";
+                                echo "<td>" . $badge->gotDate . "</td>";
+                                echo "<td>" . $badge->gotMozillaDate . "</td>";
+                            }
+                        } */
+						
+						$args = array(
+							'role__in'     => array('administrator','teacher','academy'),
+						); 
+						
+						$blogusers = get_users( $args );
+						
+						foreach ( $blogusers as $user ) {
+							 $userData = get_userdata($user->ID);
+							 $date = date("d-m-Y", strtotime($userData->user_registered));
+							 global $wpdb;
+							 $countBadges = $wpdb->get_var("SELECT COUNT(idTeacher) FROM `wp_badges_wp_obf_badge` WHERE `idTeacher`=".$user->ID.";");
+							 echo "<tr>";						 
+							 echo "<td><a href='" . get_edit_user_link($user->ID) . "'>" . $user->user_email . "</a></td>";
+							 echo "<td>" . $countBadges . "</td>";
+							 echo "<td>" . $date . "</td>";
+							  echo "<td>-</td>";
+						}
+						
+                        ?>
+						
+						
+						
+                        </tbody>
+                    </table>
+                </div>
+               
+            
+            <?php
+        } else {
+            $protocol = stripos($_SERVER['SERVER_PROTOCOL'], 'https') === true ? 'https' : 'http';
+            echo "<p>No badge sent. Click <a href='" . admin_url('admin.php?page=' . Admin::PAGE_SEND_BADGE, $protocol) . "'>here</a> to send a badge.</p>";
+        }
+
+    }
 
     /**
      * Show the action section situated in the DashboardTemp class.

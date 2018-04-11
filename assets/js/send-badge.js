@@ -526,9 +526,15 @@ window.onload = function () {
 
             if (currentForm == 'c') {
                 mails = mails[0].split(",");
+				
                 for (var i = 0; i < mails.length; i++) {
                     mails[i] = mails[i].replace(/ /g, '')
                 }
+				
+				if ( mails.length > 5 ){
+					 alert("You cant Send to more than 5 people at one time.");
+					 return false;
+				}
             }
 
             for (var i = 0; i < mails.length; i++) {
@@ -625,6 +631,10 @@ window.onload = function () {
             receivers = [jQuery("#mail_" + currentForm).val()];
             if (currentForm == 'c') {
                 receivers = receivers[0].split(",");
+				console.log(receivers);
+			  /*if (receivers.length > 5){
+					alert("You cant Send to more than 5 people at one time.");
+				} */
                 for (var i = 0; i < receivers.length; i++) {
                     receivers[i] = receivers[i].replace(/ /g, '')
                 }

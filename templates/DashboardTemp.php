@@ -41,7 +41,7 @@ final class DashboardTemp extends BaseController {
             <ul class="nav nav-tabs">
                 <li class="active"><a href="#tab-1"><?php _e('Action','open-badges-framework'); ?></a></li>
                 <li class=""><a href="#tab-2"> <?php _e('Badges','open-badges-framework'); ?></a></li>
-                
+                <li class=""><a href="#tab-3"> <?php _e('Teachers','open-badges-framework'); ?></a></li>
             </ul>
 
             <div class="tab-content-page">
@@ -51,6 +51,9 @@ final class DashboardTemp extends BaseController {
                 <div id="tab-2" class="tab-pane">
                     <?php self::badgesTab(); ?>
                 </div>
+                <div id="tab-3" class="tab-pane">
+                    <?php self::teachersTab(); ?>
+                </div>				
 
             </div>
         </div>
@@ -189,5 +192,27 @@ final class DashboardTemp extends BaseController {
      *
      * @return void
      */
+	 
+    public static function teachersTab() {
+
+        ?> 
+        <div class="container admin">
+            <div class="intro-dash">
+                <div class="cont-title-dash">
+                    <h2><?php _e('Teachers list','open-badges-framework'); ?></h2>
+                    <p class="lead">
+                        
+						<?php _e('In this section we have the possibility to see statistics about the amount of badges that are sent by the teachers.','open-badges-framework'); ?>
+                </div>
+                <div id="form-badges-list" class="content-dash badges-list-dash">
+                    <!--?php DisplayFunction::badgesTable(); ?> -->
+					<?php DisplayFunction::usersTable(); ?>
+                </div>
+            </div>
+        </div>
+        <?php
+    }
+	 
+	 
  
 }
