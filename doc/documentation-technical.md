@@ -6,6 +6,8 @@
 
 For upgrades, download the last stable version from Github, delete from FTP the old Plugin and install the new one.
 
+Remember, permalink in Post name option activated is necesary.
+
 ## Setup the Plugin
 
 ### Plugin settings
