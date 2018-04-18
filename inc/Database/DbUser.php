@@ -28,6 +28,7 @@ class DbUser extends DbModel {
         // Create table if not exist - not used
         //$this->createTable();
 		self::deleteStudent();
+		self::updateStudent();
     }
 	
 	 /**
@@ -37,7 +38,18 @@ class DbUser extends DbModel {
 	private function deleteStudent() {
 		
         add_action( 'delete_user', array($this, 'my_delete_user') );
+		
     }
+
+	/**
+     * Call the profile_update hook with our custom method my_update_user()
+     *  
+     */
+	private function updateStudent() {
+		
+		add_action( 'profile_update', array($this,'my_update_user'), 10, 2 );
+		
+    }	
 	
 	/**
      * While the user is being deleted from the Wordpress user table
@@ -47,11 +59,33 @@ class DbUser extends DbModel {
 		global $wpdb;
 		$user_obj = get_userdata( $user_id );
 		$id_user = $user_obj->ID;
+		echo '<script type="text/javascript">alert("hello!");</script>';
 		
 		/*Delete Data from obf user table*/  
 		$data_users= $wpdb->query("DELETE FROM `wp_badges_wp_obf_user` where `idWP` = ".$user_obj->ID."");
 		
 	}
+	
+	/**
+     * While the user upstaed his email through the Wordpress system
+     * his email is also updated to the obf_user custom table
+     */
+	function my_update_user( $user_id, $old_user_data ) {
+	 
+	  $user = get_userdata( $user_id );
+	  if($old_user_data->user_email != $user->user_email) {
+		
+		global $wpdb;
+		
+		$newemail = $user->user_email;
+		$userid = $user->ID;
+		
+		$wpdb->query( $wpdb->prepare("UPDATE `wp_badges_wp_obf_user` SET email = %s WHERE idWP = %s",$newemail, $userid));
+	  }
+	 
+	}
+	
+
 
     /**
      * In that function, called from the Init class,

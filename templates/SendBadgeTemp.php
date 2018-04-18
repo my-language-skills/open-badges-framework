@@ -55,6 +55,9 @@ final class SendBadgeTemp extends BaseController {
             <h1>
                 <?php echo get_admin_page_title(); ?>
             </h1>
+			<span id="teacher_academy_email" class="hidden"><?php 
+						$current_user = wp_get_current_user();
+						echo $current_user->user_email;?></span>
             <br>
 
             <?php self::getRightForm("all"); ?>
@@ -313,6 +316,7 @@ final class SendBadgeTemp extends BaseController {
                 <?php if ($form == 'b' || $form == 'c') { ?>
                     <h3><?php _e('Email','open-badges-framework');?></h3>
                     <section>
+					
                         <div class="title-form"><h2><?php _e("Receiver's mail addresses:",'open-badges-framework');?></h2></div>
                         <div class="fit-height-section flex-center-cont">
                             <div class="flex-center-item sb-cont">

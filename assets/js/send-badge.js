@@ -523,7 +523,8 @@ window.onload = function () {
 
         if (mails) {
             var patEmail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
+            
+			
             if (currentForm == 'c') {
                 mails = mails[0].split(",");
 				
@@ -531,16 +532,31 @@ window.onload = function () {
                     mails[i] = mails[i].replace(/ /g, '')
                 }
 				
+                //checks if the teacher is trying to send a badge to more than 5 students			
 				if ( mails.length > 5 ){
 					 alert("You cant Send to more than 5 people at one time.");
 					 return false;
 				}
             }
+			
+			//checks if the teacher is trying to send a badge to himself
+			for (var i = 0; i < mails.length; i++) {
+				
+				var $teacher_academy_email = jQuery("#teacher_academy_email").text();
+		
+				if  (mails[i] === $teacher_academy_email){
+					alert('You cant send a badge to yourself this way');
+					return false;
+				}
+				
+			}
 
             for (var i = 0; i < mails.length; i++) {
                 res = patEmail.test(mails[i]);
                 if (!res && mails[i] <= 220) return false;
             }
+			
+	
 
             // Everything good
             form.validate().settings.ignore = ":disabled,:hidden";
@@ -632,9 +648,7 @@ window.onload = function () {
             if (currentForm == 'c') {
                 receivers = receivers[0].split(",");
 				console.log(receivers);
-			  /*if (receivers.length > 5){
-					alert("You cant Send to more than 5 people at one time.");
-				} */
+			
                 for (var i = 0; i < receivers.length; i++) {
                     receivers[i] = receivers[i].replace(/ /g, '')
                 }
