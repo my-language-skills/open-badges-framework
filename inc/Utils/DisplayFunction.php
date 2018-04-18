@@ -190,7 +190,7 @@ class DisplayFunction {
                             <th scope="col"><?php _e('Teacher','open-badges-framework');?></th>
                             <th scope="col"><?php _e('Badges Sent','open-badges-framework');?></th>
                             <th scope="col"><?php _e('Active Since','open-badges-framework');?></th>
-							<th scope="col"><?php _e('Ratio','open-badges-framework');?></th>
+							<th scope="col"><?php _e('Nothing','open-badges-framework');?></th>
                         </tr>
                         </thead>
                         <tbody>

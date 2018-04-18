@@ -31,6 +31,15 @@ The users have some shortcuts to make easier the process. Here is the place wher
 
 ![settings_links-get-badge](../readme-assets/settings_links-get-badge.png "Settings: selected page")
 
+#### Email Settings
+In this section the user can fill the information that will be displayed to the email which a badge receiver will receive when he is sent a badge
+* Site Name
+* Website URL
+* Email Contact
+* Image of the entity
+* Header
+* Message
+
 #### About us
 
 General information for the administrators of the site
@@ -182,6 +191,13 @@ An Academy Teacher role can send Multiple Badges to Multiple Students (Certified
 * Information:
   * Addition information
   * Criteria
+  
+#### Send Badges Notice
+The plugin is developed in that way that doesnt allow a Teacher/Academy Teacher to send a badge to himself in the Single or Multiple way,
+but only by the Self way.
+Also in the Multiple way,we have set a limitation that a Teacher?Academy teacher can send a badge to maximum 5 people,
+this can be changed by the send-badge.js file in the check_mails() method.
+
 
 ### Database
 
@@ -201,8 +217,8 @@ id  userEmail            idWP
 #### Badges Database
 
 ```
-id  userEmail            badgeId   fieldId   levelId   classId   teacherId    roleSlug         dateCreation          getDate               getMobDate    json                                                                 info                                  evidence
-1   student@student.com  140       1712      7                   1            administrator    2018-01-01 08:00:00   2017-12-18 09:00:00                 161499a421c21ea585cc025d04f0e3d439d6220451b22c820c62d4478fc6aaf0 	That is an example of information.    https://www.example.edu/student-list.php
+id            badgeId   fieldId   levelId   classId   teacherId    roleSlug         dateCreation          getDate               getMobDate    json                                                                 info                                  evidence
+1  			  140       1712      7                   1            administrator    2018-01-01 08:00:00   2017-12-18 09:00:00                 161499a421c21ea585cc025d04f0e3d439d6220451b22c820c62d4478fc6aaf0 	That is an example of information.    https://www.example.edu/student-list.php
 ```
 ##### Badges Database columns
 * **id**: The id of the row.
@@ -220,6 +236,14 @@ id  userEmail            badgeId   fieldId   levelId   classId   teacherId    ro
 * **info**: The information the Teacher write about the Students.
 * **evidence**: Is the link to an external url where the Teacher can show an evidence of the Badge (pdf with a list of notes, a site with students names...).
 * **Json file**: By sending a Badge, 3 Json file are created inside of the folder open-badges-framework > Json. The Json files remain forever (For now).
+
+#### Database Notice
+The plugin is developed in that way so when a user account is deleted from the Wordpress DB,
+this user is also deleted from the custom Users Database table.
+
+Also when a user changes his email through  Update Profile,the plugin tracks this change and also
+updates the email of this user to the custom Users Database table.
+
 
 ### Json files
 
@@ -325,7 +349,10 @@ Translations
 
 Change Text and Words
 
+####Teachers Stats
 
+In this page it is being shown the information about how many badges a Teacher or Academy Teacher has sent.
+it is planed for the future to create a column about 'Ratio' instead of 'Nothing' for analyzing the data.
 
 
 
