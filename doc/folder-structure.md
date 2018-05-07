@@ -33,6 +33,7 @@ Plugins/OpenBadgesFramework/                    # → Plugin root
 │   │   │   │── BaseController.php              # → Retrieve information about paths and urls
 │   │   │   │── Deactivate.php                  # → Contain code that execute at the deactivation
 │   │   │   │── Enqueue.php                     # → Load all the styles and scripts
+│   │   │   │── ExtendComment.php               # → Extend the WP comments for creating the translations of the Badges
 │   │   │   │── Metabox.php                     # → Contain code to create metaboxes
 │   │   │   │── Secondary.php                   # → Allow to add feature to the plugin
 │   │   │   └── SettingsLinks.php               # → Create the setting link for the plugin admin page

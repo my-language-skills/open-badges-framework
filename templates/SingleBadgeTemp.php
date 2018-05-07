@@ -103,6 +103,7 @@ final class SingleBadgeTemp {
         $badge = get_post($id);
         $levels = wp_get_post_terms($id, Admin::TAX_LEVELS);
         $fields = wp_get_post_terms($id, Admin::TAX_FIELDS);
+		
         ?>
         <div class="obf-bsp-badge-image">
             <img class="circle-img" src="<?php echo WPBadge::getUrlImage($badge->ID); ?>">
@@ -157,7 +158,7 @@ final class SingleBadgeTemp {
                 <p><?php _e('Name: ','open-badges-framework.');?><strong><?php echo $badgeWP->post_title; ?></strong></p>
                 <p><?php _e('Level: ','open-badges-framework.');?><strong><?php echo $level->name; ?></strong></p>
                 <p><?php _e('Field of education: ','open-badges-framework.');?><strong><?php echo $field->name; ?></strong></p>
-                <p><?php _e('Description: ','open-badges-framework.');?><strong><?php echo $badgeWP->post_content; ?></strong></p>
+                <p><?php _e('Description: ','open-badges-framework.');?><strong><?php echo $badge->description; ?></strong></p>
             </section>
             <section>
                 <h3><?php _e('Teacher information','open-badges-framework.');?></h3>

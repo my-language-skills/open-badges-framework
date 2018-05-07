@@ -223,8 +223,4 @@ jQuery(function ($) {
         ajaxCall(data, func);
     }));
 	
-	
-	
-	
-
 });

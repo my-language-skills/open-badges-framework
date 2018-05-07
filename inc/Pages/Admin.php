@@ -245,7 +245,7 @@ class Admin extends BaseController {
                     'show_in_admin_bar'   => true,
                     'show_ui' => true,
                     'show_in_menu' => false, // adding to custom menu manually
-                    'supports' => array('title', 'editor', 'author', 'thumbnail',),
+                    'supports' => array('title', 'editor', 'author', 'thumbnail','comments'),
                     // Capabilities that are debilitated waiting a solution
                     // already explained in the User class.
                     /*

@@ -29,7 +29,7 @@ class SendBadge{
     private $level = null;
     private $receivers = null;
     private $evidence = null;
-
+    
     /**
      * Initialization of all the variable.
      *
@@ -44,7 +44,7 @@ class SendBadge{
      * @param string $classId   the eventual class
      * @param string $evidence  the work of the student in url format
      */
-    function __construct($idBadge, $idField, $idLevel, $info, $receivers, $classId = '', $evidence = '') {
+    function __construct($idBadge, $idField, $idLevel, $info, $receivers, $classId = '', $evidence = '',$description) {
 
         $this->badge = new Badge();
         $this->wpBadge = WPBadge::get($idBadge);
@@ -52,6 +52,7 @@ class SendBadge{
         $this->level = get_term($idLevel, Admin::TAX_LEVELS);
         $this->receivers = $receivers;
         $this->evidence = $evidence;
+		
 
         //$this->badge->setIdUser($idUser); --> we will set it after for each student
         $this->badge->idBadge = $this->wpBadge->ID;
@@ -64,6 +65,7 @@ class SendBadge{
         //$this->badge->setJson($json); --> we will set it after
         $this->badge->info = $info;
         $this->badge->evidence = $evidence ? $evidence : "none";
+		$this->badge->description = $description;
 
         $this->jsonMg = new JsonManagement($this->badge);
     }

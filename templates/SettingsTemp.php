@@ -826,4 +826,3 @@ final class SettingsTemp {
 	
 	
 }
-

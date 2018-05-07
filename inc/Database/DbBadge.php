@@ -65,6 +65,7 @@ class DbBadge extends DbModel {
             gotMozillaDate datetime,
             json varchar(64) NOT NULL,
             info text,
+			description text, 
             evidence varchar(1500),
             PRIMARY KEY (id),
             UNIQUE KEY  (idUser, idBadge, idField, idLevel),

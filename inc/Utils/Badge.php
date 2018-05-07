@@ -112,7 +112,13 @@ class Badge {
      * @var string
      */
     public $evidence = null;
-
+	
+	 /**
+     * The description of the badge(could be translated also)
+     * @var string
+     */
+    public $description = null;
+	
     /**
      * Object of the user that received the badge
      *
@@ -182,6 +188,7 @@ class Badge {
             $this->json = $badgeDb->json;
             $this->info = $badgeDb->info;
             $this->evidence = $badgeDb->evidence;
+			 $this->description = $badgeDb->description;
 
             $user = DbUser::getById($this->idUser);
             if($user){
@@ -217,7 +224,8 @@ class Badge {
             'creationDate' => $this->creationDate,
             'json' => $jsonName,
             'info' => $this->info,
-            'evidence' => $this->evidence
+            'evidence' => $this->evidence,
+			'description' => $this->description,
         );
 
         foreach ($dataBadge as $item) {

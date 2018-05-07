@@ -115,8 +115,21 @@ class SendBadgeAjax extends BaseController {
         $form = $_POST['form'];
         $badgeId = $_POST['badgeId'];
         $badge = $badges->get($badgeId);
-
-        echo "<div name='desc_$form'>$badge->post_content</div>";
+		
+		
+		global $wpdb;
+		$available_traslated_descriptions =  $wpdb->get_results($wpdb->prepare("SELECT meta_value,comment_content FROM wp_badges_wp_commentmeta as a,wp_badges_wp_comments as b where a.comment_id = b.comment_ID and comment_post_ID=%s and comment_approved = 1 ORDER BY meta_value",$badgeId));
+     
+		echo "<div name='description_$form' id='description_$form'>$badge->post_content</div>";
+	    echo "<select name='translation_$form' id='translation_$form'>";
+		echo "<option value='$badge->post_content'>Select a translation(Default Description)</option>";
+		foreach($available_traslated_descriptions as $value){
+			
+			echo "<option value='$value->comment_content'>$value->meta_value</option>";
+			
+		}
+		echo "</select>";
+		
         wp_die();
     }
 
@@ -173,7 +186,7 @@ class SendBadgeAjax extends BaseController {
      *
      * @author @AleRiccardi
      * @since  1.0.0
-     */
+     */ 
     public function ajaxSendBadge() {
         $form = isset($_POST["form"]) ? $_POST['form'] : null;
         $badgeId = isset($_POST["badgeId"]) ? $_POST['badgeId'] : null;
@@ -183,6 +196,7 @@ class SendBadgeAjax extends BaseController {
         $receivers = isset($_POST["receivers"]) ? $_POST['receivers'] : null;
         $info = isset($_POST["info"]) ? $_POST['info'] : null;
         $evidence = isset($_POST["evidence"]) ? $_POST['evidence'] : null;
+		$description = isset($_POST["description"]) ? $_POST['description'] : null;
 
         // For the A form the receiver is the user (Self)
         if ($form === 'a') {
@@ -191,7 +205,7 @@ class SendBadgeAjax extends BaseController {
             );
         }
 
-        $badge = new SendBadge($badgeId, $fieldId, $levelId, $info, $receivers, $theClassId, $evidence);
+        $badge = new SendBadge($badgeId, $fieldId, $levelId, $info, $receivers, $theClassId, $evidence, $description);
         echo $badge->send();
         wp_die();
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- * The plugin bootstrap file
+* The plugin bootstrap file
  *
  * This file is read by WordPress to generate the plugin information in the plugin
  * admin area. This file also includes all of the dependencies used by the plugin,
@@ -64,17 +64,16 @@ function open_badges_framework_activation() {
 }
 register_activation_hook(__FILE__, 'open_badges_framework_activation');
 
- 
 /**
  * This piece of code loads the text domain.
  * It is used for internationalization purposes.
- * It should be executed before the rest of the plugin is loaded, so all the strings of the plugin 
+ * It should be executed before the rest of the plugin is loaded, so all the strings of the plugin
  * are internationalized
  */
-function my_plugin_load_plugin_textdomain() {
+ function my_plugin_load_plugin_textdomain() {
 	load_plugin_textdomain( 'open-badges-framework', FALSE, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 }
-add_action( 'init', 'my_plugin_load_plugin_textdomain' );	
+add_action( 'init', 'my_plugin_load_plugin_textdomain' );	 
 
 
 /**
@@ -110,7 +109,3 @@ $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
 	__FILE__,
 	'open-badges-framework'
 );
-
-
-
-

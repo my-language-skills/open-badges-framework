@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace templates;
 
@@ -153,7 +153,9 @@ final class GetBadgeTemp extends BaseController {
 					<?php _e('- Level:','open-badges-framework')?>
                     <strong><?php echo $this->levelWP->name; ?></strong></h5>
                 <p class="lead">
-                    <?php echo $this->badgeWP->post_content; ?>
+                    <?php //echo $this->badgeWP->post_content; 
+							echo $this->badgeDB->description;
+					?>
                 </p>
                 <div class="logo-badge-cont">
                     <img src="<?php echo WPBadge::getUrlImage($this->badgeWP->ID); ?>" height="100px"
