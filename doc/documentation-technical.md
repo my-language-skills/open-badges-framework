@@ -349,10 +349,23 @@ Translations
 
 Change Text and Words
 
-####Teachers Stats
+#### Teachers Stats
 
 In this page it is being shown the information about how many badges a Teacher or Academy Teacher has sent.
 it is planed for the future to create a column about 'Ratio' instead of 'Nothing' for analyzing the data.
+
+#### Translation of the Description of the Badges
+
+Theis feature is being done by adding a new field(a dropdown list that contains the languages) at the default WP comment form.
+The user picks a language from the list and then writes a comment(translation).
+Only administrators and academy teachers can create translations for the description of the Badge.
+For each language only one translation of the decription should exist.
+
+When a Teacher/Academy Teacher/Administrator sends a Single badge or a Multiple badge,at the Description tab he can pick one translation
+from the dropdown list with available translations for this specific desccription of the badge that he wants to send or he can just send the 
+badge with the default description.
+
+The file that this feature is developed is ExtendComment.php
 
 
 

@@ -1,6 +1,7 @@
 <?php
 namespace Inc\Base;
 
+
 /**
  *This class extends the comments section and mofifies them
  *
@@ -23,6 +24,13 @@ class ExtendComment {
 		add_filter( 'preprocess_comment', array($this,'verify_comment_meta_data' ));
 		add_action( 'comment_post', array($this,'save_comment_meta_data'));
 	    add_filter( 'comment_text', array($this,'modify_comment'));
+		
+		//$thanks_for_reading = new WPJMR_Form();
+
+		//add_action('plugins_loaded', array($this,'my_coupon_init'));
+
+        
+		
 		
 	}
 	
@@ -73,13 +81,19 @@ class ExtendComment {
 		$user = wp_get_current_user();
 		$allowed_roles = array('administrator', 'academy');
 		$cptype = get_post_type();
-      
+		$cpid = get_the_ID();
+        
+		 global $wpdb;
+			  
+		//the workflow below checks if there is a translation for the language that the commentator selected
+		
 		if( !array_intersect($allowed_roles, $user->roles ) && $cptype =='open-badge' ) { 
 			$arg['comment_field'] = '';
 			$arg['title_reply'] = 'You dont have permission to comment';
 			
 			return $arg;
 		}
+		
 	}
 	
 	
