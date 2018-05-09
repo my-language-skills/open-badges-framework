@@ -61,7 +61,7 @@ class DbUser extends DbModel {
 		
 		
 		/*Delete Data from obf user table*/  
-		$data_users= $wpdb->query("DELETE FROM `wp_badges_wp_obf_user` where `idWP` = ".$user_obj->ID."");
+		$data_users= $wpdb->query("DELETE FROM ".$wpdb->prefix."obf_user where `idWP` = ".$user_obj->ID."");
 		
 	}
 	
@@ -79,7 +79,7 @@ class DbUser extends DbModel {
 		$newemail = $user->user_email;
 		$userid = $user->ID;
 		
-		$wpdb->query( $wpdb->prepare("UPDATE `wp_badges_wp_obf_user` SET email = %s WHERE idWP = %s",$newemail, $userid));
+		$wpdb->query( $wpdb->prepare("UPDATE `".$wpdb->prefix."obf_user` SET email = %s WHERE idWP = %s",$newemail, $userid));
 	  }
 	 
 	}

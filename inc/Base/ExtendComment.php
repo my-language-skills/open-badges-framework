@@ -199,7 +199,7 @@ class ExtendComment {
 			  global $wpdb;
 			  
 			  //the workflow below checks if there is a translation for the language that the commentator selected
-			  $language_exists =  $wpdb->get_results($wpdb->prepare("SELECT meta_value FROM wp_badges_wp_commentmeta as a,wp_badges_wp_comments as b where meta_value = %s and comment_post_ID = %s and a.comment_id = b.comment_ID and comment_approved = 1",$langvalue,$commentdata['comment_post_ID']));
+			  $language_exists =  $wpdb->get_results($wpdb->prepare("SELECT meta_value FROM ".$wpdb->prefix."commentmeta as a,".$wpdb->prefix."comments as b where meta_value = %s and comment_post_ID = %s and a.comment_id = b.comment_ID and comment_approved = 1",$langvalue,$commentdata['comment_post_ID']));
 			  
 			  if($language_exists){
 				  wp_die( __( 'The transaltion for this language already exists for this badge!' ) );

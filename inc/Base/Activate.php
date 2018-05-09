@@ -29,7 +29,10 @@ class Activate {
         $dbUser = new DbUser();
         $dbUser->createTable();
 		$dbBadge = new DbBadge();
-        $dbBadge->createTable();  
+        $dbBadge->createTable(); 
+		
+		
+		$dbBadge->updateTable();
 
         # Settings
         SettingsTemp::init();

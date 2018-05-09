@@ -227,7 +227,7 @@ class DisplayFunction {
 							 $userData = get_userdata($user->ID);
 							 $date = date("d-m-Y", strtotime($userData->user_registered));
 							 global $wpdb;
-							 $countBadges = $wpdb->get_var("SELECT COUNT(idTeacher) FROM `wp_badges_wp_obf_badge` WHERE `idTeacher`=".$user->ID.";");
+							 $countBadges = $wpdb->get_var("SELECT COUNT(idTeacher) FROM ".$wpdb->prefix."obf_badge WHERE `idTeacher`=".$user->ID.";");
 							 echo "<tr>";						 
 							 echo "<td><a href='" . get_edit_user_link($user->ID) . "'>" . $user->user_email . "</a></td>";
 							 echo "<td>" . $countBadges . "</td>";

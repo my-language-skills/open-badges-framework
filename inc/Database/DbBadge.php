@@ -73,6 +73,26 @@ class DbBadge extends DbModel {
         ) $charset_collate;";
         return dbDelta($sql);
     }
+	
+	
+	
+	
+	
+	
+	public function updateTable(){
+	
+		//this is way to add a new column to db tables if they dont exist
+		//just replace 'description' with the field that you want to add
+		//and reactivate the plugin
+		global $wpdb;
+		$row = $wpdb->get_results("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS
+		WHERE table_name = '".$this->getTableName()."' AND column_name = 'description'"  );
+
+		if(empty($row)){
+		   $wpdb->query("ALTER TABLE  ".$this->getTableName()."  ADD description text");
+		}
+	}
+
 
     /**
      * Get a badge/s by the id.

@@ -144,6 +144,13 @@ class SendBadge{
         $badgeLink = Badge::getLinkGetBadge($idDbBadge);
         $options = get_option(SettingsTemp::OPTION_NAME);
 		
+		$badge = new Badge();
+        $badge->retrieveBadge($idDbBadge);
+		$teacherObj =  get_userdata($badge->idTeacher);
+		$teacherFirst = $teacherObj->first_name;
+		$teacherLast = $teacherObj->last_name;
+		
+		
         // retrieving the values of the Email Settings section and displaying to the email that we send
 		
         $compName = isset($options[SettingsTemp::FI_SITE_NAME_EMAIL_FIELD]) ? $options[SettingsTemp::FI_SITE_NAME_EMAIL_FIELD] : '';
@@ -153,8 +160,12 @@ class SendBadge{
         $header = isset($options[SettingsTemp::FI_HEADER_EMAIL_FIELD]) ? $options[SettingsTemp::FI_HEADER_EMAIL_FIELD] : '';
         $message = isset($options[SettingsTemp::FI_MESSAGE_EMAIL_FIELD]) ? $options[SettingsTemp::FI_MESSAGE_EMAIL_FIELD] : '';
 		
+		$url = BaseController::getPluginUrl();
+        $img = $url . 'assets/images/default-badge.png';
+		
          $body = "
-                <!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+
+            <!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
                 <html xmlns='http://www.w3.org/1999/xhtml'>
                     <head>
                             <meta http-equiv='Content-Type' content='text/html'; charset='utf-8' />
@@ -184,6 +195,7 @@ class SendBadge{
                         </div>
                     </body>
             </html>
+
                 ";
         return $body; 
 
