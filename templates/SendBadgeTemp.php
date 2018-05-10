@@ -340,7 +340,7 @@ final class SendBadgeTemp extends BaseController {
                     <div class="fit-height-section flex-center-cont">
                         <div class="flex-center-item sb-cont">
                             <?php self::displayLeadInfo(_e('Write some information that will be showed in the description of badge *','open-badges-framework')); ?>
-                            <textarea id="comment_<?php echo $form; ?>" placeholder="More than 10 letters ..."
+                            <textarea id="comment_<?php echo $form; ?>" placeholder="More than 10 characters..."
                                       name="comment" rows="5" cols="80"></textarea>
                             <br><br>
                             <?php self::displayLeadInfo(_e('Url of the work or of the document that the recipient did to earn the badge','open-badges-framework')); ?>

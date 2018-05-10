@@ -118,7 +118,7 @@ class SendBadgeAjax extends BaseController {
 		
 		
 		global $wpdb;
-		$available_traslated_descriptions =  $wpdb->get_results($wpdb->prepare("SELECT meta_value,comment_content FROM ".$wpdb->prefix."commentmeta as a,".$wpdb->prefix."comments as b where a.comment_id = b.comment_ID and comment_post_ID=%s and comment_approved = 1 ORDER BY meta_value",$badgeId));
+		$available_traslated_descriptions =  $wpdb->get_results($wpdb->prepare("SELECT meta_value,comment_content FROM ".$wpdb->prefix."commentmeta as a,".$wpdb->prefix."comments as b where a.comment_id = b.comment_ID and comment_post_ID=%s and comment_approved = 1 and meta_key='language' ORDER BY meta_value",$badgeId));
      
 		echo "<div name='description_$form' id='description_$form'>$badge->post_content</div>";
 	    echo "<select name='translation_$form' id='translation_$form'>";

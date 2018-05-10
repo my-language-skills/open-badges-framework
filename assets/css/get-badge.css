@@ -234,8 +234,10 @@ input {
 }
 
 .logo-badge-cont img {
-    height: 80px;
-    width: 80px;
+    /*height: 150px;
+      width: 150px;
+	*/
+	
 }
 
 .logo-badge-got-cont {
@@ -393,6 +395,10 @@ input {
  */
 .mastfoot {
     color: rgba(255, 255, 255, .5);
+}
+
+#footer_login{
+	padding-top:0px;
 }
 
 /*
