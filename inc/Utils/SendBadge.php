@@ -77,7 +77,24 @@ class SendBadge{
      */
     public function send() {
         $options = get_option(SettingsTemp::OPTION_NAME);
-        $subject = "Badge: " . $this->wpBadge->post_title . " Field: " . $this->field->name;
+        //$subject = "Badge: " . $this->wpBadge->post_title . " Field: " . $this->field->name;
+		
+		$teacherID = WPUser::getCurrentUser()->ID;
+		$teacherObj =  get_userdata($teacherID);
+		$teacherFirst = $teacherObj->first_name;
+		$teacherLast = $teacherObj->last_name;
+		$teacherUserName = $teacherObj->user_login;
+		
+		if(($teacherFirst) && ($teacherLast)){
+			$subject =$teacherFirst." ".$teacherLast." has sent you a Badge for your ".$this->field->name." class";
+		}else if((!$teacherFirst)&& (!$teacherLast)){
+			$subject =$teacherUserName." has sent you a Badge for your ".$this->field->name." class";
+		}else if(($teacherFirst)&& (!$teacherLast)){
+			$subject =$teacherFirst." has sent you a Badge for your ".$this->field->name." class";
+		}else if((!$teacherFirst)&& ($teacherLast)){
+			$subject =$teacherLast." has sent you a Badge for your ".$this->field->name." class";
+		}
+		
         $headers = array(
             'Content-Type: text/html; charset=UTF-8',
             "From: " . isset($options[SettingsTemp::FI_SITE_NAME_FIELD]) ? $options[SettingsTemp::FI_SITE_NAME_FIELD] : '' .
@@ -128,11 +145,7 @@ class SendBadge{
         $badgeLink = Badge::getLinkGetBadge($idDbBadge);
         $options = get_option(SettingsTemp::OPTION_NAME);
 		
-		$badge = new Badge();
-        $badge->retrieveBadge($idDbBadge);
-		$teacherObj =  get_userdata($badge->idTeacher);
-		$teacherFirst = $teacherObj->first_name;
-		$teacherLast = $teacherObj->last_name;
+
 		
 		
         // retrieving the values of the Email Settings section and displaying to the email that we send
