@@ -1,7 +1,7 @@
 # Open Badges Framework
 A WordPress plugin for open badges
 
-Contributors: @colomet, @AleRiccardi, @ntorion, @uzair043, @CorentinPerrot, @alevacher, @Kongat
+Contributors: @colomet, @AleRiccardi, @ntorion, @uzair043, @CorentinPerrot, @alevacher, @Kongat, @leocharlier
 
 Tags: badges
 
@@ -70,14 +70,19 @@ You can see all of the screenshots of the plugin [here](doc/screenshots.md "scre
 
 ## Changelog
 
+### 1.0.1 dev
+
+* **ADDITIONS**
+ 	* Add two filters in order to use them to display the badges earned by a user.
+
 ### 1.0
 
 * **ADDITIONS**
 	* Delete users(teachers and students) intergrated with WP
- * Delete custom databse tables when uninstalling the plugin
+ 	* Delete custom databse tables when uninstalling the plugin
 	
 * **ENHANCEMENTS**
- * Fix the email security issue #205
+ 	* Fix the email security issue #205
 
 
 * BUGFIXES
