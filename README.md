@@ -78,9 +78,17 @@ You can see all of the screenshots of the plugin [here](doc/screenshots.md "scre
 ### 1.0
 
 * **ADDITIONS**
-	* Delete users(teachers and students) intergrated with WP
- 	* Delete custom databse tables when uninstalling the plugin
-	
+
+  * Plugin Internationalization( notes,not bug ) #220
+  * Badges can be now translated #181
+  * multiple emails limitation #68
+  * Teachers Statistics ( Ratio ) #219
+  * Basic stadistical information #67
+  * To reset the badge / user database #207
+  * Delete users(teachers and students) intergrated with WP
+  * ~~Deletion of the custom db tables when uninstall #224~~
+  * Get the badge page basic personalization #64
+
 * **ENHANCEMENTS**
  	* Fix the email security issue #205
 
