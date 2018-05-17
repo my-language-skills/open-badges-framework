@@ -18,6 +18,27 @@ class DbBadge extends DbModel {
     const ER_ERROR = "There's an error in the database.\n";
     // database name
     static $tableName = 'obf_badge';
+	
+    /**
+     * Constructor that add filters for the child theme.
+     *
+     * @author      @leocharlier
+     * @since       1.0.1 dev
+     */
+    public function __construct(){
+        $this->register_callbacks();
+    }
+	
+    /**
+     * Add the filter to use the function get in the child theme.
+     *
+     * @author      @leocharlier
+     * @since       1.0.1 dev
+     */
+    protected function register_callbacks()
+    {
+        add_filter( 'theme_DbBadge_get', array( $this, 'get' ) );
+    }
 
     /**
      * Always loaded from the Init class and permit to create
