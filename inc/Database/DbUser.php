@@ -16,6 +16,26 @@ class DbUser extends DbModel {
     const ER_ERROR = "There's an error in the database.\n";
     // database name
     static $tableName = 'obf_user';
+    
+    /**
+     * Constructor that add filters.
+     *
+     * @author      @leocharlier
+     * @since       1.0.1 dev
+     */
+    public function __construct(){
+        $this->register_callbacks();
+    }
+    /**
+     * Function called in constructor to add filter.
+     * The filter added permit to use the funtion getSingle in the child theme.
+     * @author      @leocharlier
+     * @since       1.0.1 dev
+     */
+    protected function register_callbacks()
+    {
+        add_filter( 'theme_DbUser_get_single', array( $this, 'getSingle' ) );
+    }
 
     /**
      * Always loaded from the Init class and permit to create
