@@ -74,8 +74,9 @@ You can see all of the screenshots of the plugin [here](doc/screenshots.md "scre
 
 * **ADDITIONS**
  	* Add two filters in order to use them to display the badges earned by a user.
-		* Add custom fields in the Restrict Content Pro regitration form (this datas are saved in the WP user profile and not in the RCP member).
-		* Add custom fields in the WP profile editor.
+	* Add custom fields in the Restrict Content Pro regitration form (this datas are saved in the WP user profile and not in the RCP member).
+	* Add custom fields in the WP profile editor.
+	* Add fields in the registration form during the "Get a badge" process.
 
 ### 1.0
 
