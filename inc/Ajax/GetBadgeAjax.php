@@ -127,7 +127,14 @@ class GetBadgeAjax extends BaseController {
 				'userPassword' => $_POST['userPassword'],
 				'userRepPass' => $_POST['userRepPass'],
 				'firstName' => $_POST['firstName'],
-				'lastName' => $_POST['lastName']
+				'lastName' => $_POST['lastName'],
+                'userYear' => $_POST['userYear'],
+                'userCountry' => $_POST['userCountry'],
+                'userCity' => $_POST['userCity'],
+                'userMotherTongue' => $_POST['userMotherTongue'],
+                'userPrimaryDegree' => $_POST['userPrimaryDegree'],
+                'userSecondaryDegree' => $_POST['userSecondaryDegree'],
+                'userTertiaryDegree' => $_POST['userTertiaryDegree']
 			);
 			
 			

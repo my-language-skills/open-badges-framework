@@ -237,6 +237,13 @@ jQuery(function (event) {
             jQuery(this).find("#reg-last-name"),
             jQuery(this).find("#reg-pass"),
             jQuery(this).find("#reg-repeat-pass"),
+            jQuery(this).find("#reg-year"),
+            jQuery(this).find("#reg-country"),
+            jQuery(this).find("#reg-city"),
+            jQuery(this).find("#reg-mother-tongue"),
+            jQuery(this).find("#reg-primary-degree"),
+            jQuery(this).find("#reg-secondary-degree"),
+            jQuery(this).find("#reg-tertiary-degree")
         ];
 
         if (this.checkValidity() === false) {
@@ -257,6 +264,13 @@ jQuery(function (event) {
                 'lastName': inputFields[3].val(),
                 'userPassword': inputFields[4].val(),
                 'userRepPass': inputFields[5].val(),
+                'userYear': inputFields[6].val(),
+                'userCountry': inputFields[7].val(),
+                'userCity': inputFields[8].val(),
+                'userMotherTongue': inputFields[9].val(),
+                'userPrimaryDegree': inputFields[10].val(),
+                'userSecondaryDegree': inputFields[11].val(),
+                'userTertiaryDegree': inputFields[12].val()
             };
 
             var func = function (response) {

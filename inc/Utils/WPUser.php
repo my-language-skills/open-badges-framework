@@ -300,6 +300,15 @@ class WPUser {
                         'role' => WPUser::ROLE_STUDENT,
                     ));
 
+                //Update the custom WP user fields
+                update_user_meta( $user_id, 'year_of_birth', $user['userYear'] );
+                update_user_meta( $user_id, 'country', $user['userCountry'] );
+                update_user_meta( $user_id, 'city', $user['userCity'] );
+                update_user_meta( $user_id, 'mother_tongue', $user['userMotherTongue'] );
+                update_user_meta( $user_id, 'primary_degree', $user['userPrimaryDegree'] );
+                update_user_meta( $user_id, 'secondary_degree', $user['userSecondaryDegree'] );
+                update_user_meta( $user_id, 'tertiary_degree', $user['userTertiaryDegree'] );
+
                 if (is_wp_error($update)) {
                     // Error updating
                     return WPUser::REGIS_REGISTRATION_ERROR;
