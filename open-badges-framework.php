@@ -96,13 +96,19 @@ if (class_exists('Inc\\Init')) {
     Inc\Init::register_services();	
 }
 
+/**
+ * Add custom fields for registration form and profile editor
+ *
+ * @since 1.0.0
+ */
+require_once( "inc/rcp-member-custom_fields.php" );
+require_once( "inc/wp-user-custom_fields.php" );
 
-/*
+/**
  * Auto update from github
  *
  * @since 1.0.0
  */
-
  require 'vendor/plugin-update-checker/plugin-update-checker.php';
 $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
 	'https://github.com/Badges4Languages/open-badges-framework/',
