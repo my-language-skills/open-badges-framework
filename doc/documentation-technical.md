@@ -217,7 +217,7 @@ id  userEmail            idWP
 #### Badges Database
 
 ```
-id   idUser   idBadge   idField   idLevel   idClass   idTeacher   teacherRole   creationDate          gotDate               gotMozillaDate        json                                                               info                                 description          evidence
+id   idUser   idBadge   idField   idLevel   idClass   idTeacher   teacherRole   creationDate          gotDate               gotMozillaDate        json                                                                 info                                 description          evidence
 1    4        140       7         1         378       5           5             2018-01-01 08:00:00   2017-12-18 09:00:00   2018-01-01 08:00:00   161499a421c21ea585cc025d04f0e3d439d6220451b22c820c62d4478fc6aaf0 	 That is an example of information.   danish translation   https://www.example.edu/student-list.php
 ```
 
