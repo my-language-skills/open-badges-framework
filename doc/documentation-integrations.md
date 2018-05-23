@@ -1,4 +1,4 @@
-# OpenBadgesFramework Integration Documentation
+# Open Badges Framework Integration Documentation
 
 
 ## Installing Required Plugins
@@ -8,7 +8,7 @@ If we were to create our Plugin without the use of existing Plugin solutions we 
 * [Reviews for Job Manager (free)](https://astoundify.com/products/wp-job-manager-reviews/)
 
 ## Installing Recomended Plugins for the Site
-Not all the Plugins are 100% integrated with OpenBadgesFramework, some of them work in the site for enhancement of the features of the site.
+Not all the Plugins are 100% integrated with Open Badges Framework, some of them work in the site for enhancement of the features of the site.
 * [Restrict Content Pro or RCP (paid)](https://restrictcontentpro.com/) here the free download alternative from [GitHub](https://github.com/restrictcontentpro/restrict-content-pro)
   - [Restric Content](https://es.wordpress.org/plugins/restrict-content/) can it be a simple option.
 * [The Seo Framework OR TSF (free)](https://theseoframework.com/) here the download alternative from [GitHub](https://github.com/sybrew/the-seo-framework)
@@ -21,7 +21,7 @@ Not all the Plugins are 100% integrated with OpenBadgesFramework, some of them w
 * Social Media Feather 1.7.12 (Newer version have bad performance)
 
 ## Integrated Theme
-Any theme can work with OpenBadgesFramework, but just themes that are integrated with Job Manager can use all the features of the plugin as these two plugins (OBF and WP Job Manager) are integrated.
+Any theme can work with Open Badges Framework, but just themes that are integrated with Job Manager can use all the features of the plugin as these two plugins (OBF and WP Job Manager) are integrated.
 
 At Books for Languages we use [Listify](https://themeforest.net/item/listify-wordpress-directory-theme/9602611?ref=colomet] as the theme for the platform. Here is the link to the (documentation)[http://listify.astoundify.com/).
 
@@ -81,7 +81,7 @@ By activating the Plugin, we have an integration that allows us to have new regi
 ### Porfolio Integration
 OpenBadgesFramework-Languages-Portfolio allow to create a portfolio for teacher and students of second languages.
 
-Once activated, the portfolio will use the OpenBadges API for delivery of specific type of badges. Also the portfolio is used for the comprobation of the teachers' level.
+Once activated, the portfolio will use the Open Badges API for delivery of specific type of badges. Also the portfolio is used for the comprobation of the teachers' level.
 
 
 Manage Listings and Content Organization

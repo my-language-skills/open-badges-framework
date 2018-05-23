@@ -1,4 +1,4 @@
-# OpenBadgesFramework Technical Documentation
+# Open Badges Framework Technical Documentation
 
 ## Installation and Upgrades
 1. Clone (or copy) this [repository](https://github.com/Badges4Languages/OpenBadgesFramework/releases) to the /wp-content/plugins/ directory
@@ -13,7 +13,7 @@ Remember, permalink in Post name option activated is necesary.
 ### Plugin settings
 
 #### Profile Tab
-OpenBadges need some key information for the delivery of the Badge. Without that information, the Plugin will not work:
+Open Badges need some key information for the delivery of the Badge. Without that information, the Plugin will not work:
 * Site Name (by default, take the site name from ```get_bloginfo ('name')```)
 * WebSite URL (by default, take the url from ```get_bloginfo ('url')```)
 * Image URL
@@ -47,7 +47,7 @@ General information for the administrators of the site
 ### Manage Roles and Capabilities
 --- https://es.wordpress.org/plugins/wp-user-groups/ ----
 
-OpenBadgesFramework offer 3 types of roles with different capabilities:
+Open Badges Framework offer 3 types of roles with different capabilities:
 (Out of the box, the OBF roles is Subscriber as just the when the Wordpress **Read** capability is activated)
 * **Student**
   * read (a WP capability)
@@ -82,7 +82,7 @@ Remember to assign a match to each [subscription level](http://docs.restrictcont
 
 A 'Select the Role' page is needed (can be free or paid upon the configuration).
 
-The OpenBadgesFramework Settings page allow in **Links** tab to select the page where the [Register Form](http://docs.restrictcontentpro.com/article/1597-registerform) is created.
+The Open Badges Framework Settings page allow in **Links** tab to select the page where the [Register Form](http://docs.restrictcontentpro.com/article/1597-registerform) is created.
 
 With a Plugin of roles and capabilities (like [Members](https://es.wordpress.org/plugins/members/ "Members plugin website")), the capabilities can be assigned to another role and use the functionalities.
 ![members-cappabilities](../readme-assets/members-cappabilities.png "Student Role Custom Cappabilities")
@@ -113,7 +113,7 @@ The same as Academy role plus:
 * Can send certified Teachers Badges
 
 ## Creation of the Badges
-OpenBadgesFramework allow the creation of two types of Badges for the **Administrators** of the site. Normal Badges and Certified Badges.
+Open Badges Framework allow the creation of two types of Badges for the **Administrators** of the site. Normal Badges and Certified Badges.
 * Normal Badges can be delivered by any user of the site with Teacher Role.
 * Certified Badges are allowed just for Teachers with the Academy Role.
 
@@ -134,7 +134,7 @@ Optional:
 * Description translations (WP Comments): A translation of the description.
 
 ## Sending of Badges (Issuer page)
-OpenBadgesFramework allow to issue badges in 3 ways:
+Open Badges Framework allow to issue badges in 3 ways:
 
 Administrators have the same functionalities as the Academy Teacher role plus the issue of certified Teacher Badges.
 
@@ -191,7 +191,7 @@ An Academy Teacher role can send Multiple Badges to Multiple Students (Certified
 * Information:
   * Addition information
   * Criteria
-  
+
 #### Send Badges Notice
 The plugin is developed in that way that doesnt allow a Teacher/Academy Teacher to send a badge to himself in the Single or Multiple way,
 but only by the Self way.
@@ -220,22 +220,31 @@ id  userEmail            idWP
 id            badgeId   fieldId   levelId   classId   teacherId    roleSlug         dateCreation          getDate               getMobDate    json                                                                 info                                  evidence
 1  			  140       1712      7                   1            administrator    2018-01-01 08:00:00   2017-12-18 09:00:00                 161499a421c21ea585cc025d04f0e3d439d6220451b22c820c62d4478fc6aaf0 	That is an example of information.    https://www.example.edu/student-list.php
 ```
+
+```
+id   idUser   idBadge   idField   idLevel   idClass         idTeacher         teacherRole          creationDate          gotDate    gotMozillaDate                                                                 json                                  info      description      evidence
+1    4        140       7         1         378             5                5                     2018-01-01 08:00:00   2017-12-18 09:00:00                 161499a421c21ea585cc025d04f0e3d439d6220451b22c820c62d4478fc6aaf0 	That is an example of information.    https://www.example.edu/student-list.php
+```
+
 ##### Badges Database columns
 * **id**: The id of the row.
-* **userEmail**: The Earn user email.
-* **badgeId**: The ID of the Badge the Student receive.
-* **fieldId**: The ID of the Field of education of the Badge.
-* **levelId**: The ID of the Level of the Badge.
-* **classId**: If the Badge is inside of a Class, the Class id.
-* **teacherId**: The issuer user ID.
-* **roleSlug**: The role of the issuer.
-* **dateCreation**: The date of the issue of the Badge.
-* **getDate**: The date of the earn of the Badge.
-* **getMobDate**: If the Badge is transfer to Mozilla Backpack.
-* **json**: The Json file name.
-* **info**: The information the Teacher write about the Students.
-* **evidence**: Is the link to an external url where the Teacher can show an evidence of the Badge (pdf with a list of notes, a site with students names...).
-* **Json file**: By sending a Badge, 3 Json file are created inside of the folder open-badges-framework > Json. The Json files remain forever (For now).
+* **idUser**;
+* **idBadge**; The ID of the Badge the Student receive.
+* **idField**; The ID of the Field of education of the Badge.
+* **idLevel**; The ID of the Level of the Badge.
+* **idClass**; If the Badge is inside of a Class, the Class id.
+* **idTeacher**; The issuer user ID.
+* **teacherRole**; The role of the issuer.
+* **creationDate**; The date of the issue of the Badge.
+* **gotDate**; The date of the earn of the Badge.
+* **gotMozillaDate**; If the Badge is transfer to Mozilla Backpack.
+* **json**; The Json file name.
+* **info**; The information the Teacher write about the Students.
+* **description**; The description of the badge: if is original or a translation.
+* **evidence**; Is the link to an external url where the Teacher can show an evidence of the Badge (pdf with a list of notes, a site with students names...).
+
+
+**Json file**: By sending a Badge, 3 Json file are created inside of the folder open-badges-framework > Json. The Json files remain forever (For now).
 
 #### Database Notice
 The plugin is developed in that way so when a user account is deleted from the Wordpress DB,
@@ -282,7 +291,7 @@ Example fo file name: badge-cc8197a1a66bd28d240934e16a895183f7a59e2285eb5e8b408e
 
 ```
 ####Badge Assertion
-One Json file is the earner details 
+One Json file is the earner details
 
 Example of the file name: cc8197a1a66bd28d240934e16a895183f7a59e2285eb5e8b408ebba515ffa5dd.json
 ```
@@ -304,7 +313,7 @@ Example of the file name: cc8197a1a66bd28d240934e16a895183f7a59e2285eb5e8b408ebb
 
 ```
 ## Getting Badges
-The user must login and register to the site using the email account from which he retrieved the link for the 'Get Badge' page 
+The user must login and register to the site using the email account from which he retrieved the link for the 'Get Badge' page
 
 
 ## User profile
@@ -362,7 +371,7 @@ Only administrators and academy teachers can create translations for the descrip
 For each language only one translation of the decription should exist.
 
 When a Teacher/Academy Teacher/Administrator sends a Single badge or a Multiple badge,at the Description tab he can pick one translation
-from the dropdown list with available translations for this specific desccription of the badge that he wants to send or he can just send the 
+from the dropdown list with available translations for this specific desccription of the badge that he wants to send or he can just send the
 badge with the default description.
 
 The file that this feature is developed is ExtendComment.php
