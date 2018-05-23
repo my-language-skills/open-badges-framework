@@ -1,8 +1,8 @@
-# Badges4Languages purposes
+# Open Badges Framework purposes
 
 * **One common worldwide standard**
 
-	All the certified teachers follow the same CEFR recommendations
+	All the certified teachers follow the same recommendations
 * **Lower price**
 
 	Due to the standardization, Students no longer need to pay more for official language exams
@@ -13,7 +13,7 @@
 
 	Data logger recording online to see all of the information about Teachers, Students and their Classes
 
-# Badges4Languages all the features
+# Open Badges Framework all the features
 
 * **Easy registration**
 
@@ -23,16 +23,13 @@
 	Students, Teachers and Academies offer different tools for each situation
 * **CEFR Badges**
 
-	Use Badges alienated with CEFR for languages (A1, A2, B1, B2, C1 and C2)
+	Use Badges alienated with educational levels
 * **Badges for teachers**
 
-	Show your level of expertise for the language you teach (T1, T2, T3, T4, T5 and T6)
+	Show your level of expertise for the language you teach
 * **Unlimited type of Badges**
 
 	Academy teachers can create unlimited number of Badges for specified purposes
-* **All of the languages**
-
-	In all of the 6.993 languages, if we are missing one, let us to know
 * **Single Badge issue**
 
 	Teachers send Badges to the Students (one Student at a time)
@@ -73,12 +70,6 @@
 * **Official examinations**
 
 	Following MCER recommendations, the Academics can offer an international examination.
-* **Teacher Porftolio**
-
-	Full description of Teachers' skills.
-* **Student Portfolio**
-
-	Full description of the Students' learning process.
 * **Student Profile**
 
 	Show Badges and Classes in the profile.
@@ -87,7 +78,13 @@
 	Show Badges, Classes and rating in the profile.
 * **Self Badges issue**
 
-	Receive Badges for different levels of the language.
+	Receive Badges for different levels.
+* **Language Teacher Porftolio**
+
+	Full description of Teachers' skills.
+* **Language Student Portfolio**
+
+	Full description of the Students' learning process.
 
 
 ---

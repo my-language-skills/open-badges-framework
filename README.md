@@ -22,7 +22,7 @@ Open-Badge-Framework extends this possibility by giving the proof that your cert
 
 ## Frequently Asked Questions
 
-* [Badges4Languages](doc/badges-for-languages.md).
+* [Badges4Languages](doc/open-badges-framework.md).
 * [General documentation](doc/documentation-general.md).
 * [Technical documentation](doc/documentation-technical.md).
 * [Integrations](doc/documentation-integrations.md).
