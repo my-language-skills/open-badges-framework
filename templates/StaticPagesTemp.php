@@ -56,13 +56,13 @@ final class StaticPagesTemp {
                     </p>
                     <H2><?php _e('Documentation','open-badges-framework');?></h2>
                     <p class="lead">
-                        <?php _e('The official documentation can be found at','open-badges-framework');?> <a href="https://github.com/Badges4Languages/OpenBadgesFramework/">GitHub.</a><br>
+                        <?php _e('The official documentation can be found at','open-badges-framework');?> <a href="https://github.com/my-language-skills/open-badges-framework/blob/master/README.md/">GitHub.</a><br>
                         <ul>
-                          <li><a href="https://github.com/Badges4Languages/OpenBadgesFramework/blob/master/doc/badges-for-languages.md">Badges4Languages.</a></li>
-                          <li><a href="https://github.com/Badges4Languages/OpenBadgesFramework/blob/master/doc/documentation-general.md"><?php _e('General documentation.','open-badges-framework');?></a></li>
-                          <li><a href="https://github.com/Badges4Languages/OpenBadgesFramework/blob/master/doc/documentation-technical.md"><?php _e('Technical documentation.','open-badges-framework');?></a></li>
-                          <li><a href="https://github.com/Badges4Languages/OpenBadgesFramework/blob/master/doc/documentation-integrations.md"><?php _e('Integrations.','open-badges-framework');?></a></li>
-                          <li><a href="https://github.com/Badges4Languages/OpenBadgesFramework/blob/master/doc/folder-structure.md"><?php _e('The folder structure.','open-badges-framework');?></a></li>
+                          <li><a href="https://github.com/my-language-skills/open-badges-framework/blob/master/doc/badges-for-languages.md">Badges4Languages.</a></li>
+                          <li><a href="https://github.com/my-language-skills/open-badges-framework/blob/master/doc/documentation-general.md"><?php _e('General documentation.','open-badges-framework');?></a></li>
+                          <li><a href="https://github.com/my-language-skills/open-badges-framework/blob/master/doc/documentation-technical.md"><?php _e('Technical documentation.','open-badges-framework');?></a></li>
+                          <li><a href="https://github.com/my-language-skills/open-badges-framework/blob/master/doc/documentation-integrations.md"><?php _e('Integrations.','open-badges-framework');?></a></li>
+                          <li><a href="https://github.com/my-language-skills/open-badges-framework/blob/master/doc/folder-structure.md"><?php _e('The folder structure.','open-badges-framework');?></a></li>
                         </ul>
                     </p>
                 </div>
