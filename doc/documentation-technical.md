@@ -269,7 +269,7 @@ issuer-info.json
   "email": "webmaster@site-name.com.com"
 }
 ```
-####Badge Class
+#### Badge Class
 
 One Json file is the badge details
 
@@ -285,7 +285,7 @@ Example fo file name: badge-cc8197a1a66bd28d240934e16a895183f7a59e2285eb5e8b408e
 }
 
 ```
-####Badge Assertion
+#### Badge Assertion
 One Json file is the earner details
 
 Example of the file name: cc8197a1a66bd28d240934e16a895183f7a59e2285eb5e8b408ebba515ffa5dd.json
