@@ -69,11 +69,14 @@ Show Your Love for Listings
 ### Creation of Classes with [WP Job Manager (free)](https://wordpress.org/plugins/wp-job-manager/)
 By activating the Plugin, we have an integration that allows us to save information in Job Manager CPT, to have reviews and ratings of the Teachers' Classes.
 
-Each new user has a new post with the user name as name of the post. That is the post 0 where all the information is saved by default. If you can create new classes (CPT Job of WP Job Manager), you can organize your Students through different groups.
+Each new user has a new post with the username as name of the post. That is the post 0 where all the information is saved by default. If you can create new classes (CPT Job of WP Job Manager), you can organize your Students through different groups.
 
 Academy role or a role with the capability obf_job_listing_integration, can create a Class from the Send Badges page class section.
 
 Open Badges Framework will show a link to the registration page (if it exist) and to the creation of post page (if exist).
+
+### User Registration with [Restrict Content Pro](https://github.com/restrictcontentpro/restrict-content-pro)
+By activating the Plugin, we have an integration that allows us to have new registration fields. Those fields are also in the RCP registration page and in the Edit your profile page.
 
 ### Porfolio Integration
 OpenBadgesFramework-Languages-Portfolio allow to create a portfolio for teacher and students of second languages.
