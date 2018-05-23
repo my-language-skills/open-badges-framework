@@ -206,7 +206,7 @@ Open Badges Framework save all the badges information related to Teachers and St
 #### Users Database
 ```
 id  userEmail            idWP
-1   student@student.com  1
+4   student@student.com  1
 ```
 
 #### Users Database columns
@@ -217,18 +217,13 @@ id  userEmail            idWP
 #### Badges Database
 
 ```
-id            badgeId   fieldId   levelId   classId   teacherId    roleSlug         dateCreation          getDate               getMobDate    json                                                                 info                                  evidence
-1  			  140       1712      7                   1            administrator    2018-01-01 08:00:00   2017-12-18 09:00:00                 161499a421c21ea585cc025d04f0e3d439d6220451b22c820c62d4478fc6aaf0 	That is an example of information.    https://www.example.edu/student-list.php
-```
-
-```
-id   idUser   idBadge   idField   idLevel   idClass         idTeacher         teacherRole          creationDate          gotDate        gotMozillaDate                                                                 json                                  info      description      evidence
-1    4        140       7         1         378             5                5                     2018-01-01 08:00:00   2017-12-18 09:00:00   2018-01-01 08:00:00                 161499a421c21ea585cc025d04f0e3d439d6220451b22c820c62d4478fc6aaf0 	That is an example of information.    https://www.example.edu/student-list.php
+id   idUser   idBadge   idField   idLevel   idClass   idTeacher   teacherRole   creationDate          gotDate               gotMozillaDate        json                                                               info                                 description          evidence
+1    4        140       7         1         378       5           5             2018-01-01 08:00:00   2017-12-18 09:00:00   2018-01-01 08:00:00   161499a421c21ea585cc025d04f0e3d439d6220451b22c820c62d4478fc6aaf0 	 That is an example of information.   danish translation   https://www.example.edu/student-list.php
 ```
 
 ##### Badges Database columns
 * **id**: The id of the row.
-* **idUser**;
+* **idUser**; The id of the OBF Users Database
 * **idBadge**; The ID of the Badge the Student receive.
 * **idField**; The ID of the Field of education of the Badge.
 * **idLevel**; The ID of the Level of the Badge.
