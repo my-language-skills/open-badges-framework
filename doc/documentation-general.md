@@ -1,11 +1,11 @@
-# OpenBadgesFramework General Documentation
+# Open Badges Framework General Documentation
 
-Badges for Languages is an on-line certification issuer with [OpenBadges](https://support.mozilla.org/en-US/products/open-badges/introduction-open-badges "Intro to Open Badges") technology. Badges for Languages issue non official certifications for all the languages that exist for the C.E.F.R for Languages levels, and certifications for the teachers' levels.
+Badges for Languages is an on-line certification issuer with [Open Badges](https://support.mozilla.org/en-US/products/open-badges/introduction-open-badges "Intro to Open Badges") technology. Badges for Languages issue non official certifications for all the languages that exist for the C.E.F.R for Languages levels, and certifications for the teachers' levels.
 
-OpenBadgesFramework is created by Badges for Languages for second languages learning,but out of the box works for any type of education by just creating different badges (different Fields of education and Levels).
+Open Badges Framework is created by Badges for Languages for second languages learning,but out of the box works for any type of education by just creating different badges (different Fields of education and Levels).
 
-## About OpenBadgesFramework Plugin
-The aim of OpenBadgesFramework is to accomplish:
+## About Open Badges Framework Plugin
+The aim of Open Badges Framework is to accomplish:
 * **One common worldwide standard for each field of education**
 
   All the certified teachers follow the same educational recommendations
@@ -22,16 +22,16 @@ The aim of OpenBadgesFramework is to accomplish:
 
   Data logger recording online to see all of the information about Teachers, Students and their Classes.
 
-### [OpenBadgesFramework](https://github.com/Badges4Languages/OpenBadgesFramework/releases) key features
+### [Open Badges Framework](https://github.com/Badges4Languages/OpenBadgesFramework/releases) key features
 
 * Teachers can to send digital certifications to Students or Teachers
 * Save the information (Student name/email, Level, Lesson name, Date, etc)
 * Students can to write a comment to the teacher Classes and receive an answer.
 * Users can collect the certifications in their profile
 
-OpenBadgesFramework integrate in one place several digital tools for Language Examiners.
+Open Badges Framework integrate in one place several digital tools for Language Examiners.
 
-### OpenBadgesFramework all the features
+### Open Badges Framework all the features
 
 * **Acceptation Badge email**
 
@@ -143,7 +143,7 @@ OpenBadgesFramework integrate in one place several digital tools for Language Ex
 
 To be clear, the theme doesn’t come bundled with these Plugins. You’ll have to download them yourself (and some may require a purchase). What we’ve done, however, is code the theme to support and style the integration with those Plugins so that you can add all the functionality you like, while still looking great!
 
-OpenBadgesFramework works with any theme. But we did integrate with several Plugins and Listify in order to be able to enhance the power of the Plugin. Thanks to those complements, Badges4Languages offers a listing/directory for teachers and their classes, charge for the classes, and much more. With Listify, OpenBadgesFramework:
+Open Badges Framework works with any theme. But we did integrate with several Plugins and Listify in order to be able to enhance the power of the Plugin. Thanks to those complements, Badges4Languages offers a listing/directory for teachers and their classes, charge for the classes, and much more. With Listify, Open Badges Framework:
 * Offers a directory of Classes (for Academies, Schools, Teachers,)
 * Organizes the students by Classes (Unlimited classes)
 * Offers profiles (for Teachers and their Academies/Schools)
@@ -164,7 +164,7 @@ The Portfolio is a personal document of a learner. In this document learners of 
 * Student Portfolio (Full description of the Students' learning process)
 * Upload credential to the portfolio to prove your knowledge and experience
 
-## OpenBadges
+## Open Badges
 Open Badges are verifiable, portable digital badges with embedded metadata about skills and achievements. They comply with the Open Badges Specification and are shareable across the web.
 
 Each Open Badge is associated with an image and information about the badge, its recipient, the issuer, and any supporting evidence. All this information may be packaged within a badge image file that can be displayed via online CVs and social networks. Thousands of organizations across the world issue badges in accordance with the Open Badges Specification, from non-profits to major employers to educational institutions at all levels.
@@ -184,7 +184,7 @@ This section provides a set of technical resources to guide you through the proc
 
 [Open Badges Assertion Specification](https://github.com/mozilla/openbadges-specification/blob/master/Assertion/latest.md "Assertion Specification")
 
-### openbadges-backpack
+### open badges backpack
 With the Issuer API, you can push earner badges to the Mozilla hosted Backpack. This tutorial will walk you through the process of sending earner badges to the Backpack via the Issuer API script. The API handles getting the earner's permission to push to their Backpack, so your own code only has to pass the details of badges you are trying to send, then if necessary retrieve the response from the API.
 
 [Using the Issuer API](https://github.com/mozilla/openbadges-backpack/wiki/using-the-issuer-api)
