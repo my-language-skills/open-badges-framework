@@ -4,7 +4,7 @@
 	* Templates for the Static Pages of the Plugin.
 	*
 	* All the content to show in the front-end is wrapped in the __() function
-	* for internationalization purposes 	
+	* for internationalization purposes
 	*
 	* @author      @Kongat
 	* @since       1.0.0
@@ -16,9 +16,9 @@ namespace templates;
 
 
 
-	 
+
 final class StaticPagesTemp {
-	
+
 	/**
      * The function that shows the 'About us' page template.
      *
@@ -27,14 +27,14 @@ final class StaticPagesTemp {
      *
      * @return void
      */
-	 
+
 	public static function aboutTab() {
         ?>
         <div class="container admin">
 			 <h1><?php _e('About us','open-badges-framework');?></h1>
             <div class="intro-dash">
                 <div class="cont-title-dash">
-                   
+
                     <p class="lead">
                        <?php _e('The main function of this plugin is to create, manage and send badges. <br>
                         Once a badge has been sent, the receiver has the possibility to take his badge through a link
@@ -50,6 +50,9 @@ final class StaticPagesTemp {
                         <b>[send-badge form="a"] </b>:<?php _e('to send the badge to yourself.','open-badges-framework');?><br>
                         <b>[send-badge form="b"] </b>:<?php _e('to send the badge to one user at a time.','open-badges-framework');?><br>
                         <b>[send-badge form="c"] </b>:<?php _e('to send the badge to multiple users at a time.','open-badges-framework');?>
+												<b>[send_badge] or [send-badge form="all"] </b>:<?php _e('to have all types available.','open-badges-framework');?>
+												<b>[send-badge ... sec-form="..."] </b>:<?php _e('add a second form (a/b/c) that will be show with the first.','open-badges-framework');?>
+
                     </p>
                     <H2><?php _e('Documentation','open-badges-framework');?></h2>
                     <p class="lead">
@@ -67,7 +70,7 @@ final class StaticPagesTemp {
         </div>
         <?php
     }
-	
-	
-	
+
+
+
 }

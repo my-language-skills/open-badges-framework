@@ -88,10 +88,10 @@ You can see all of the screenshots of the plugin [here](doc/screenshots.md "scre
   * multiple emails limitation #68
   * Teachers Statistics ( Ratio ) #219
   * Basic stadistical information #67
-  * To reset the badge / user database #207
+  * To reset the badge / user database #207 #156
   * Delete users(teachers and students) intergrated with WP
   * ~~Deletion of the custom db tables when uninstall #224~~
-  * Get the badge page basic personalization #64
+  * Get the badge page basic personalization (+login/register) #64 #105
 
 * **ENHANCEMENTS**
  	* Fix the email security issue #205
