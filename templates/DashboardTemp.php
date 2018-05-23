@@ -15,6 +15,9 @@ use Inc\Utils\Statistics;
  * Provide an admin area view. This file is used to
  * markup the admin-facing aspects of the plugin.
  *
+ * All the content to show in the front-end is wrapped in the __() function
+ * for internationalization purposes
+ *
  * @author      @AleRiccardi
  * @since       1.0.0
  *
@@ -33,12 +36,12 @@ final class DashboardTemp extends BaseController {
     public static function main() {
         ?>
         <div class="wrap">
-            <h1 class="obf-title">Open Badge Framework
+            <h1 class="obf-title"><?php _e('Open Badge Framework','open-badges-framework'); ?>
             </h1>
             <ul class="nav nav-tabs">
-                <li class="active"><a href="#tab-1">Action</a></li>
-                <li class=""><a href="#tab-2">Badges</a></li>
-                <li class=""><a href="#tab-3">About</a></li>
+                <li class="active"><a href="#tab-1"><?php _e('Action','open-badges-framework'); ?></a></li>
+                <li class=""><a href="#tab-2"> <?php _e('Badges','open-badges-framework'); ?></a></li>
+                <li class=""><a href="#tab-3"> <?php _e('Teachers','open-badges-framework'); ?></a></li>
             </ul>
 
             <div class="tab-content-page">
@@ -49,8 +52,9 @@ final class DashboardTemp extends BaseController {
                     <?php self::badgesTab(); ?>
                 </div>
                 <div id="tab-3" class="tab-pane">
-                    <?php self::aboutTab(); ?>
-                </div>
+                    <?php self::teachersTab(); ?>
+                </div>				
+
             </div>
         </div>
 
@@ -70,59 +74,59 @@ final class DashboardTemp extends BaseController {
         <div class="container admin">
             <div class="intro-dash">
                 <div class="cont-title-dash">
-                    <h2>Action control</h2>
+                    <h2><?php _e('Action control','open-badges-framework'); ?></h2>
                     <p class="lead">
-                        Here you can see the statistics of the Badges.
+                        <?php _e('Here you can see the statistics of the Badges.','open-badges-framework'); ?>
                     </p>
                 </div>
 
                 <div class="content-dash">
                     <div class="row-dash">
                         <div class="col-dash">
-                            <h4>Badges</h4>
+                            <h4><?php _e('Badges','open-badges-framework'); ?></h4>
                         </div>
                         <div class="col-dash">
                             <div class="vert-hr"></div>
                         </div>
                         <div class="col-dash">
-                            Number of badge:
+                            <?php _e('Number of badge:','open-badges-framework'); ?>
                             <span class="number-stc"><?php echo Statistics::getNumberPost(Admin::POST_TYPE_BADGES); ?></span>
                         </div>
                         <div class="col-dash">
                             <a href="<?php echo admin_url("edit.php?post_type=" . Admin::POST_TYPE_BADGES); ?>"
-                               class="manage-link">Manage</a>
+                               class="manage-link"><?php _e('Manage','open-badges-framework'); ?></a>
                         </div>
                     </div>
                     <div class="row-dash">
                         <div class="col-dash">
-                            <h4>Fields</h4>
+                            <h4><?php _e('Fields','open-badges-framework'); ?></h4>
                         </div>
                         <div class="col-dash">
                             <div class="vert-hr"></div>
                         </div>
                         <div class="col-dash">
-                            Number of Fields:
+                            <?php _e('Number of Fields:','open-badges-framework'); ?>
                             <span class="number-stc"><?php echo Statistics::getNumberTerm(Admin::TAX_FIELDS); ?></span>
                         </div>
                         <div class="col-dash">
                             <a href="<?php echo admin_url("edit-tags.php?taxonomy=" . Admin::TAX_FIELDS . "&post_type=" . Admin::POST_TYPE_BADGES); ?>"
-                               class="manage-link">Manage</a>
+                               class="manage-link"><?php _e('Manage','open-badges-framework'); ?></a>
                         </div>
                     </div>
                     <div class="row-dash">
                         <div class="col-dash">
-                            <h4>Levels</h4>
+                            <h4><?php _e('Levels','open-badges-framework'); ?></h4>
                         </div>
                         <div class="col-dash">
                             <div class="vert-hr"></div>
                         </div>
                         <div class="col-dash">
-                            Number of Levels:
+                            <?php _e('Number of Levels','open-badges-framework'); ?>
                             <span class="number-stc"><?php echo Statistics::getNumberTerm(Admin::TAX_LEVELS); ?></span>
                         </div>
                         <div class="col-dash">
                             <a href="<?php echo admin_url("edit-tags.php?taxonomy=" . Admin::TAX_LEVELS . "&post_type=" . Admin::POST_TYPE_BADGES); ?>"
-                               class="manage-link">Manage</a>
+                               class="manage-link"><?php _e('Manage','open-badges-framework'); ?></a>
                         </div>
                     </div>
                     <?php
@@ -131,18 +135,18 @@ final class DashboardTemp extends BaseController {
 
                         <div class="row-dash">
                             <div class="col-dash">
-                                <h4>Classes</h4>
+                                <h4><?php _e('Classes','open-badges-framework'); ?></h4>
                             </div>
                             <div class="col-dash">
                                 <div class="vert-hr"></div>
                             </div>
                             <div class="col-dash">
-                                Number of Classes:
+                                <?php _e('Number of Classes:','open-badges-framework'); ?>
                                 <span class="number-stc"><?php echo Statistics::getNumberPost(Admin::POST_TYPE_CLASS_JL); ?></span>
                             </div>
                             <div class="col-dash">
                                 <a href="<?php echo admin_url("edit.php?post_type=" . Admin::POST_TYPE_CLASS_JL); ?>"
-                                   class="manage-link">Manage</a>
+                                   class="manage-link"><?php _e('Manage','open-badges-framework'); ?></a>
                             </div>
                         </div>
 
@@ -167,10 +171,10 @@ final class DashboardTemp extends BaseController {
         <div class="container admin">
             <div class="intro-dash">
                 <div class="cont-title-dash">
-                    <h2>Badges list</h2>
+                    <h2><?php _e('Badges list','open-badges-framework'); ?></h2>
                     <p class="lead">
-                        In this section we have the possibility to see all the badges that are sent.
-
+                        
+						<?php _e('In this section we can see all sent badges.','open-badges-framework'); ?>
                 </div>
                 <div id="form-badges-list" class="content-dash badges-list-dash">
                     <?php DisplayFunction::badgesTable(); ?>
@@ -188,42 +192,27 @@ final class DashboardTemp extends BaseController {
      *
      * @return void
      */
-    public static function aboutTab() {
-        ?>
+	 
+    public static function teachersTab() {
+
+        ?> 
         <div class="container admin">
             <div class="intro-dash">
                 <div class="cont-title-dash">
-                    <h2>About us</h2>
+                    <h2><?php _e('Teachers list','open-badges-framework'); ?></h2>
                     <p class="lead">
-                        The main function of this plugin is to create, manage and send badges. <br>
-                        Once a badge has been sent, the receiver has the possibility to take his badge through a link
-                        that is inserted in the email.<br>
-                        After successive steps, the user can get his own badge also he has the possibility to send
-                        it to the <a href="https://openbadges.org/">Mozilla Open Badges</a> platform.
-                    </p>
-                    <H2>Shortcodes</h2>
-                    <p class="lead">
-                        The front-end function can be used in any page with the shortcode  <b>[send_badge]</b>.<br><br>
-
-                        If we need to show just one of the 3 types, we can use the following shortcodes:<br>
-                        <b>[send-badge form="a"] </b>: to send the badge to yourself.<br>
-                        <b>[send-badge form="b"] </b>: to send the badge to one user at a time.<br>
-                        <b>[send-badge form="c"] </b>: to send the badge to multiple users at a time.
-                    </p>
-                    <H2>Documentation</h2>
-                    <p class="lead">
-                        The official documentation can be found at <a href="https://github.com/Badges4Languages/OpenBadgesFramework/">GitHub.</a><br>
-                        <ul>
-                          <li><a href="https://github.com/Badges4Languages/OpenBadgesFramework/blob/master/doc/badges-for-languages.md">Badges4Languages.</a></li>
-                          <li><a href="https://github.com/Badges4Languages/OpenBadgesFramework/blob/master/doc/documentation-general.md">General documentation.</a></li>
-                          <li><a href="https://github.com/Badges4Languages/OpenBadgesFramework/blob/master/doc/documentation-technical.md">Technical documentation.</a></li>
-                          <li><a href="https://github.com/Badges4Languages/OpenBadgesFramework/blob/master/doc/documentation-integrations.md">Integrations.</a></li>
-                          <li><a href="https://github.com/Badges4Languages/OpenBadgesFramework/blob/master/doc/folder-structure.md">The folder structure.</a></li>
-                        </ul>
-                    </p>
+                        
+						<?php _e('In this section we can see a number of the badges sent by teachers.','open-badges-framework'); ?>
+                </div>
+                <div id="form-badges-list" class="content-dash badges-list-dash">
+                    <!--?php DisplayFunction::badgesTable(); ?> -->
+					<?php DisplayFunction::usersTable(); ?>
                 </div>
             </div>
         </div>
         <?php
     }
+	 
+	 
+ 
 }

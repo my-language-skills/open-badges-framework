@@ -1,6 +1,6 @@
 <?php
 /**
- * The plugin bootstrap file
+* The plugin bootstrap file
  *
  * This file is read by WordPress to generate the plugin information in the plugin
  * admin area. This file also includes all of the dependencies used by the plugin,
@@ -16,7 +16,7 @@
  * Plugin URI:        www.badges4languages.com
  * Description:       Open Badges Framework allows you to distribute and receive certifications of level language skills.
  * area.
- * Version:           1.0.0
+ * Version:           1.0.1 dev
  * Author:            My language skills team
  * Author URI:        www.badges4languages.com
  * License:           GPL-2.0+
@@ -57,10 +57,24 @@ define( 'PLUGIN', plugin_basename( __FILE__ ) );
  *
  * @since 1.0.0
  */
+
+
 function open_badges_framework_activation() {
     Inc\Base\Activate::activate();
 }
 register_activation_hook(__FILE__, 'open_badges_framework_activation');
+
+/**
+ * This piece of code loads the text domain.
+ * It is used for internationalization purposes.
+ * It should be executed before the rest of the plugin is loaded, so all the strings of the plugin
+ * are internationalized
+ */
+ function my_plugin_load_plugin_textdomain() {
+	load_plugin_textdomain( 'open-badges-framework', FALSE, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+}
+add_action( 'init', 'my_plugin_load_plugin_textdomain' );	 
+
 
 /**
  * The code that runs during plugin deactivation
@@ -78,17 +92,23 @@ register_deactivation_hook(__FILE__, 'open_badges_framework_deactivation');
  * @since 1.0.0
  */
 if (class_exists('Inc\\Init')) {
-    Inc\Init::register_services();
-
+		
+    Inc\Init::register_services();	
 }
 
+/**
+ * Add custom fields for registration form and profile editor
+ *
+ * @since 1.0.0
+ */
+require_once( "inc/rcp-member-custom_fields.php" );
+require_once( "inc/wp-user-custom_fields.php" );
 
-/*
+/**
  * Auto update from github
  *
  * @since 1.0.0
  */
-
  require 'vendor/plugin-update-checker/plugin-update-checker.php';
 $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
 	'https://github.com/Badges4Languages/open-badges-framework/',

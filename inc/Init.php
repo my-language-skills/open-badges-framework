@@ -40,6 +40,7 @@ final class Init {
             Utils\Statistics::class,
             Database\DbBadge::class,
             Database\DbUser::class,
+			Base\ExtendComment::class
         );
     }
 

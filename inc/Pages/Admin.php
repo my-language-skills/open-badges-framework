@@ -13,6 +13,8 @@ use Templates\SendBadgeTemp;
 use Templates\SettingsTemp;
 use Templates\SingleBadgeTemp;
 use Templates\UserTemp;
+use Templates\StaticPagesTemp;
+
 
 /**
  * The WordPress Admin generator.
@@ -41,6 +43,8 @@ class Admin extends BaseController {
     const PAGE_PROFILE = 'profile-obf';
     const PAGE_BADGES = 'badges-obf';
     const PAGE_SINGLE_BADGES = 'single-badge-obf';
+	const PAGE_ABOUT = 'about-us';
+	
 
     private $settings;
     private $pages;
@@ -99,7 +103,8 @@ class Admin extends BaseController {
         $userTemp = new UserTemp();
         $badgesTemp = new BadgesTemp();
         $singleBadgesTemp = new SingleBadgeTemp();
-
+		$staticPagesTemp = new StaticPagesTemp();
+	
         $this->subpages = array(
             // ## Badges ##
             array(
@@ -164,15 +169,35 @@ class Admin extends BaseController {
                 'menu_slug' => self::PAGE_SETTINGS,
                 'callback' => array($settingTemp, 'main')
             ),
-            // ## Single Badge ##
+			
+			// ## About us ##
             array(
                 'parent_slug' => self::SLUG_PLUGIN,
+                'page_title' => 'About us',
+                'menu_title' => 'About us',
+                'capability' => 'read',
+                'menu_slug' => self::PAGE_ABOUT,
+                'callback' => array($staticPagesTemp, 'aboutTab')
+            ),
+			
+			// ## Single Badge ##
+			
+			/**
+			*
+			* We set the 'parent_slug' = null so this page is not displayed 
+			* at the admin menu
+			*
+			*/
+            array(
+                'parent_slug' => null,
                 'page_title' => 'Badge',
                 'menu_title' => null,
                 'capability' => 'read',
                 'menu_slug' => self::PAGE_SINGLE_BADGES,
                 'callback' => array($singleBadgesTemp, 'main')
             ),
+		
+
         );
 
 
@@ -220,7 +245,7 @@ class Admin extends BaseController {
                     'show_in_admin_bar'   => true,
                     'show_ui' => true,
                     'show_in_menu' => false, // adding to custom menu manually
-                    'supports' => array('title', 'editor', 'author', 'thumbnail',),
+                    'supports' => array('title', 'editor', 'author', 'thumbnail','comments'),
                     // Capabilities that are debilitated waiting a solution
                     // already explained in the User class.
                     /*

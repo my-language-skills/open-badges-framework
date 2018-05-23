@@ -18,6 +18,27 @@ class DbBadge extends DbModel {
     const ER_ERROR = "There's an error in the database.\n";
     // database name
     static $tableName = 'obf_badge';
+	
+    /**
+     * Constructor that add filters for the child theme.
+     *
+     * @author      @leocharlier
+     * @since       1.0.1 dev
+     */
+    public function __construct(){
+        $this->register_callbacks();
+    }
+	
+    /**
+     * Add the filter to use the function get in the child theme.
+     *
+     * @author      @leocharlier
+     * @since       1.0.1 dev
+     */
+    protected function register_callbacks()
+    {
+        add_filter( 'theme_DbBadge_get', array( $this, 'get' ) );
+    }
 
     /**
      * Always loaded from the Init class and permit to create
@@ -35,6 +56,10 @@ class DbBadge extends DbModel {
      * In that function, called from the Init class,
      * permit to create the db table.
      *
+	 * We have added "on cascade" at the foreign key(idUser),that means that when a user is deleted
+	 * from the obf_user table,the badges that are related to him are also deleted from the
+	 * obf_badge table.
+	 *
      * @author      @AleRiccardi
      * @since       1.0.0
      *
@@ -61,13 +86,34 @@ class DbBadge extends DbModel {
             gotMozillaDate datetime,
             json varchar(64) NOT NULL,
             info text,
+			description text, 
             evidence varchar(1500),
             PRIMARY KEY (id),
             UNIQUE KEY  (idUser, idBadge, idField, idLevel),
-            FOREIGN KEY (idUser) REFERENCES " . $userTable . "(id)
+            FOREIGN KEY (idUser) REFERENCES " . $userTable . "(id) ON DELETE CASCADE
         ) $charset_collate;";
         return dbDelta($sql);
     }
+	
+	
+	
+	
+	
+	
+	public function updateTable(){
+	
+		//this is way to add a new column to db tables if they dont exist
+		//just replace 'description' with the field that you want to add
+		//and reactivate the plugin
+		global $wpdb;
+		$row = $wpdb->get_results("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS
+		WHERE table_name = '".$this->getTableName()."' AND column_name = 'description'"  );
+
+		if(empty($row)){
+		   $wpdb->query("ALTER TABLE  ".$this->getTableName()."  ADD description text");
+		}
+	}
+
 
     /**
      * Get a badge/s by the id.

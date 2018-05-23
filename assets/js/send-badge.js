@@ -10,8 +10,8 @@ window.onload = function () {
     var btn = document.getElementById("myBtn");
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
-
-
+	
+	
     // Prevent "enter" pressing when filling the text fields
     jQuery(window).keydown(function (event) {
         if (event.keyCode == 13) {
@@ -73,6 +73,7 @@ window.onload = function () {
 
                     /******* (2) KIND OF BADGE */
                     case 2:
+					    
                         return load_description(currentForm, form_a);
                         break;
 
@@ -147,6 +148,7 @@ window.onload = function () {
                     /******* (2) KIND OF BADGE */
                     case 2:
                         return load_description(currentForm, form_b);
+						
                         break;
                     /******* (3) LANGUAGE */
                     case 3:
@@ -227,6 +229,7 @@ window.onload = function () {
                     /******* (2) KIND OF BADGE */
                     case 2:
                         return load_description(currentForm, form_c);
+						
                         break;
                     /******* (3) LANGUAGE */
                     case 3:
@@ -399,7 +402,7 @@ window.onload = function () {
      */
     function load_description(currentForm, form) {
         var badgeId = "";
-
+		
         // Check if we selected a badge to permit to switch the page
         jQuery("input[name='badge_" + currentForm + "']")  // check if one badge is selected
             .each(function () {  // first pass, create name mapping
@@ -431,11 +434,20 @@ window.onload = function () {
                 jQuery("#desc_" + currentForm).html(response);
             }
         );
-
+		
+		//Dropdown values about languages
+		jQuery(document).ajaxComplete(function(){
+			jQuery("#translation_"+ currentForm).change(function(){
+				 //jQuery("#description_"+ currentForm).empty();
+				 jQuery("#description_"+ currentForm).html(this.value); 
+			});
+		});
+			
         form.validate().settings.ignore = ":disabled,:hidden";
         return form.valid();
     }
-
+	
+	
     /**
      * @description To load the CLASS.
      *
@@ -474,7 +486,7 @@ window.onload = function () {
         form.validate().settings.ignore = ":disabled,:hidden";
         return form.valid();
     }
-
+	
     /**
      * @description Check if is selected the class.
      *
@@ -523,18 +535,40 @@ window.onload = function () {
 
         if (mails) {
             var patEmail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
+            
+			
             if (currentForm == 'c') {
                 mails = mails[0].split(",");
+				
                 for (var i = 0; i < mails.length; i++) {
                     mails[i] = mails[i].replace(/ /g, '')
                 }
+				
+                //checks if the teacher is trying to send a badge to more than 5 students			
+				if ( mails.length > 5 ){
+					 alert("You cant Send to more than 5 people at one time.");
+					 return false;
+				}
             }
+			
+			//checks if the teacher is trying to send a badge to himself
+			for (var i = 0; i < mails.length; i++) {
+				
+				var $teacher_academy_email = jQuery("#teacher_academy_email").text();
+		
+				if  (mails[i] === $teacher_academy_email){
+					alert('You cant send a badge to yourself this way');
+					return false;
+				}
+				
+			}
 
             for (var i = 0; i < mails.length; i++) {
                 res = patEmail.test(mails[i]);
                 if (!res && mails[i] <= 220) return false;
             }
+			
+	
 
             // Everything good
             form.validate().settings.ignore = ":disabled,:hidden";
@@ -597,6 +631,7 @@ window.onload = function () {
             var receivers;
             var info;
             var evidence;
+			var translation;
 
             /* # FIELD ID # */
             fieldId = jQuery("#form_" + currentForm + " #field :selected").val();
@@ -620,11 +655,18 @@ window.onload = function () {
                     if (jQuery(this).is(':checked')) {
                         theClassId = jQuery(this).val();
                     }
-                });
+                }); 
+				
+			/* # DESCRIPTION # */
+            translation = jQuery("#translation_" + currentForm).val();
+			   
+					
             /* # MAIL # */
             receivers = [jQuery("#mail_" + currentForm).val()];
             if (currentForm == 'c') {
                 receivers = receivers[0].split(",");
+				console.log(receivers);
+			
                 for (var i = 0; i < receivers.length; i++) {
                     receivers[i] = receivers[i].replace(/ /g, '')
                 }
@@ -644,6 +686,7 @@ window.onload = function () {
                 'info': info,
                 'evidence': evidence,
                 'receivers': receivers,
+				'description':translation,
             };
 
             jQuery.post(
@@ -722,6 +765,5 @@ window.onload = function () {
             jQuery(this).addClass("disabled");
         });
     }
-
 
 }

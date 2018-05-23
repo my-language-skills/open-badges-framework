@@ -1,5 +1,4 @@
 <?php
-
 namespace Inc\Base;
 use Inc\Database\DbBadge;
 use Inc\Database\DbUser;
@@ -25,15 +24,17 @@ class Activate {
      */
     public static function activate() {
         flush_rewrite_rules();
-
+		
         # Database
         $dbUser = new DbUser();
-        $dbBadge = new DbBadge();
         $dbUser->createTable();
-        $dbBadge->createTable();
+		$dbBadge = new DbBadge();
+        $dbBadge->createTable(); 
+		
+		
+		$dbBadge->updateTable();
 
         # Settings
         SettingsTemp::init();
-
     }
 }

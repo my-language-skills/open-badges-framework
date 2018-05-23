@@ -1,7 +1,7 @@
 # Open Badges Framework
 A WordPress plugin for open badges
 
-Contributors: @colomet, @@AleRiccardi, @ntorion, @uzair043, @CorentinPerrot, @alevacher
+Contributors: @colomet, @AleRiccardi, @ntorion, @uzair043, @CorentinPerrot, @alevacher, @Kongat, @leocharlier
 
 Tags: badges
 
@@ -70,7 +70,36 @@ You can see all of the screenshots of the plugin [here](doc/screenshots.md "scre
 
 ## Changelog
 
+### 1.0.1 dev
+
+* **ADDITIONS**
+ 	* Add two filters in order to use them to display the badges earned by a user.
+	* Add custom fields in the Restrict Content Pro regitration form (this datas are saved in the WP user profile and not in the RCP member).
+	* Add custom fields in the WP profile editor.
+	* Add fields in the registration form during the "Get a badge" process. #212
+	* Add the 'Lost password' link to the login form during the "Get a badge" process. #216
+
 ### 1.0
+
+* **ADDITIONS**
+
+  * Plugin Internationalization( notes,not bug ) #220
+  * Badges can be now translated #181
+  * multiple emails limitation #68
+  * Teachers Statistics ( Ratio ) #219
+  * Basic stadistical information #67
+  * To reset the badge / user database #207
+  * Delete users(teachers and students) intergrated with WP
+  * ~~Deletion of the custom db tables when uninstall #224~~
+  * Get the badge page basic personalization #64
+
+* **ENHANCEMENTS**
+ 	* Fix the email security issue #205
+
+
+* BUGFIXES
+
+### 1.0 RC
 
 Completely overhauled design, from top to bottom. The plugin has been completely rewritten. Version 1.0 just basic functionalities.
 * Aceptation badge email.

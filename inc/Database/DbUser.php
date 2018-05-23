@@ -16,6 +16,26 @@ class DbUser extends DbModel {
     const ER_ERROR = "There's an error in the database.\n";
     // database name
     static $tableName = 'obf_user';
+    
+    /**
+     * Constructor that add filters.
+     *
+     * @author      @leocharlier
+     * @since       1.0.1 dev
+     */
+    public function __construct(){
+        $this->register_callbacks();
+    }
+    /**
+     * Function called in constructor to add filter.
+     * The filter added permit to use the funtion getSingle in the child theme.
+     * @author      @leocharlier
+     * @since       1.0.1 dev
+     */
+    protected function register_callbacks()
+    {
+        add_filter( 'theme_DbUser_get_single', array( $this, 'getSingle' ) );
+    }
 
     /**
      * Always loaded from the Init class and permit to create
@@ -27,7 +47,64 @@ class DbUser extends DbModel {
     public function register(){
         // Create table if not exist - not used
         //$this->createTable();
+		self::deleteStudent();
+		self::updateStudent();
     }
+	
+	 /**
+     * Call the delete_user hook with our custom method my_delete_user()
+     *  
+     */
+	private function deleteStudent() {
+		
+        add_action( 'delete_user', array($this, 'my_delete_user') );
+		
+    }
+
+	/**
+     * Call the profile_update hook with our custom method my_update_user()
+     *  
+     */
+	private function updateStudent() {
+		
+		add_action( 'profile_update', array($this,'my_update_user'), 10, 2 );
+		
+    }	
+	
+	/**
+     * While the user is being deleted from the Wordpress user table
+     *  is also being deleted from the obf_user table
+     */
+	public function my_delete_user( $user_id ) {
+		global $wpdb;
+		$user_obj = get_userdata( $user_id );
+		
+		
+		/*Delete Data from obf user table*/  
+		$data_users= $wpdb->query("DELETE FROM ".$wpdb->prefix."obf_user where `idWP` = ".$user_obj->ID."");
+		
+	}
+	
+	/**
+     * While the user upstaed his email through the Wordpress system
+     * his email is also updated to the obf_user custom table
+     */
+	function my_update_user( $user_id, $old_user_data ) {
+	 
+	  $user = get_userdata( $user_id );
+	  if($old_user_data->user_email != $user->user_email) {
+		
+		global $wpdb;
+		
+		$newemail = $user->user_email;
+		$userid = $user->ID;
+		
+		$wpdb->query( $wpdb->prepare("UPDATE `".$wpdb->prefix."obf_user` SET email = %s WHERE idWP = %s",$newemail, $userid));
+	  }
+	 
+	}
+	
+
 
     /**
      * In that function, called from the Init class,

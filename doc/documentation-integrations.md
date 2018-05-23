@@ -2,13 +2,13 @@
 
 
 ## Installing Required Plugins
-If we were to try to create our plugin without the use of existing plugin solutions we simply would not exist. There is no sustainable way to develop all the functionality needed for our plugin while still being able to offer a competitive price.
+If we were to create our Plugin without the use of existing Plugin solutions we would simply not exist. There is no sustainable way to develop all the functionality needed for our Plugin while still being able to offer a competitive price.
 
 * [WP Job Manager (free)](https://wordpress.org/plugins/wp-job-manager/)
 * [Reviews for Job Manager (free)](https://astoundify.com/products/wp-job-manager-reviews/)
 
 ## Installing Recomended Plugins for the Site
-Not all the plugins are 100% integrated with OpenBadgesFramework, some of them works in the site for an enhancement of the features of the site.
+Not all the Plugins are 100% integrated with OpenBadgesFramework, some of them work in the site for enhancement of the features of the site.
 * [Restrict Content Pro or RCP (paid)](https://restrictcontentpro.com/) here the free download alternative from [GitHub](https://github.com/restrictcontentpro/restrict-content-pro)
   - [Restric Content](https://es.wordpress.org/plugins/restrict-content/) can it be a simple option.
 * [The Seo Framework OR TSF (free)](https://theseoframework.com/) here the download alternative from [GitHub](https://github.com/sybrew/the-seo-framework)
@@ -21,7 +21,7 @@ Not all the plugins are 100% integrated with OpenBadgesFramework, some of them w
 * Social Media Feather 1.7.12 (Newer version have bad performance)
 
 ## Integrated Theme
-Any theme can work with OpenBadgesFramework, but just themes that are integrated with Job Manager can use al the features of the plugin as both plugins are integrated.
+Any theme can work with OpenBadgesFramework, but just themes that are integrated with Job Manager can use all the features of the plugin as these two plugins (OBF and WP Job Manager) are integrated.
 
 At Books for Languages we use [Listify](https://themeforest.net/item/listify-wordpress-directory-theme/9602611?ref=colomet] as the theme for the platform. Here is the link to the (documentation)[http://listify.astoundify.com/).
 
@@ -67,18 +67,18 @@ Show Your Love for Listings
 
 
 ### Creation of Classes with [WP Job Manager (free)](https://wordpress.org/plugins/wp-job-manager/)
-By activating the plugin, we have an integration that allow to save information in Job Manager CPT, to have reviews and ratings of the teachers' classes.
+By activating the Plugin, we have an integration that allows us to save information in Job Manager CPT, to have reviews and ratings of the Teachers' Classes.
 
-Each new user have a new post with the user name as name of the post. That is the post 0 where all the inforamtion is save by default. If you can create new classes (CPT Job of WP Job Manager), you can organice your students trough different groups.
+Each new user has a new post with the user name as name of the post. That is the post 0 where all the information is saved by default. If you can create new classes (CPT Job of WP Job Manager), you can organize your Students through different groups.
 
-Academy role or a role withthe cappability obf_job_listing_integration, can create a class from the send badges page class section.
+Academy role or a role with the capability obf_job_listing_integration, can create a Class from the Send Badges page class section.
 
 Open Badges Framework will show a link to the registration page (if it exist) and to the creation of post page (if exist).
 
 ### Porfolio Integration
 OpenBadgesFramework-Languages-Portfolio allow to create a portfolio for teacher and students of second languages.
 
-Once activated, the portfolio will use the OpenBadges API for delivery of specific type of badges. Also the portfolio is used for the comprobation of the level of the teachers.
+Once activated, the portfolio will use the OpenBadges API for delivery of specific type of badges. Also the portfolio is used for the comprobation of the teachers' level.
 
 
 Manage Listings and Content Organization

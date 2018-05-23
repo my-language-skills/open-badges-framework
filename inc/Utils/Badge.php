@@ -112,7 +112,13 @@ class Badge {
      * @var string
      */
     public $evidence = null;
-
+	
+	 /**
+     * The description of the badge(could be translated also)
+     * @var string
+     */
+    public $description = null;
+	
     /**
      * Object of the user that received the badge
      *
@@ -130,21 +136,22 @@ class Badge {
      */
     public function setTeacherRole($id) {
         $teacher = get_user_by("id", $id);
-
-        foreach ($teacher->roles as $role) {
-            switch ($role) {
-                case WPUser::ROLE_STUDENT:
-                    $this->teacherRole = $role;
-                    return $role;
-                case WPUser::ROLE_TEACHER:
-                    $this->teacherRole = $role;
-                    return $role;
-                case WPUser::ROLE_ACADEMY:
-                    $this->teacherRole = $role;
-                    return $role;
-            }
-        }
-        $this->teacherRole = $teacher->roles[0];
+		if ($teacher){
+			foreach ($teacher->roles as $role) {
+				switch ($role) {
+					case WPUser::ROLE_STUDENT:
+						$this->teacherRole = $role;
+						return $role;
+					case WPUser::ROLE_TEACHER:
+						$this->teacherRole = $role;
+						return $role;
+					case WPUser::ROLE_ACADEMY:
+						$this->teacherRole = $role;
+						return $role;
+				}
+			}
+			$this->teacherRole = $teacher->roles[0];
+		}
     }
 
 
@@ -181,6 +188,7 @@ class Badge {
             $this->json = $badgeDb->json;
             $this->info = $badgeDb->info;
             $this->evidence = $badgeDb->evidence;
+			 $this->description = $badgeDb->description;
 
             $user = DbUser::getById($this->idUser);
             if($user){
@@ -216,7 +224,8 @@ class Badge {
             'creationDate' => $this->creationDate,
             'json' => $jsonName,
             'info' => $this->info,
-            'evidence' => $this->evidence
+            'evidence' => $this->evidence,
+			'description' => $this->description,
         );
 
         foreach ($dataBadge as $item) {

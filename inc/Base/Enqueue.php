@@ -36,8 +36,9 @@ class Enqueue extends BaseController {
      */
     public function register() {
         self::setAdminEnqueue();
-        self::setPublicEnqueue();
+        self::setPublicEnqueue();	
     }
+	
 
     /**
      * Call the Admin WordPress enqueue hook.

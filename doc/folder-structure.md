@@ -33,6 +33,7 @@ Plugins/OpenBadgesFramework/                    # → Plugin root
 │   │   │   │── BaseController.php              # → Retrieve information about paths and urls
 │   │   │   │── Deactivate.php                  # → Contain code that execute at the deactivation
 │   │   │   │── Enqueue.php                     # → Load all the styles and scripts
+│   │   │   │── ExtendComment.php               # → Extend the WP comments for creating the translations of the Badges
 │   │   │   │── Metabox.php                     # → Contain code to create metaboxes
 │   │   │   │── Secondary.php                   # → Allow to add feature to the plugin
 │   │   │   └── SettingsLinks.php               # → Create the setting link for the plugin admin page
@@ -61,7 +62,10 @@ Plugins/OpenBadgesFramework/                    # → Plugin root
 │   │── GetBadgeTemp.php                        # → Provide a get badge template
 │   │── SendBadgeTemp.php                       # → Provide a send badge template
 │   │── SettingsTemp.php                        # → Provide a settings template
-│   └── UserTemp.php                            # → Provide a user template
+│   │── SingleBadgeTemp.php                     # → Provide a single badge template
+│   │── StaticPageTemp.php                      # → Provide static pages templates
+│   │── UserTemp.php                  		    # → Provide a user template
+│   
 ├── vendor/                                     # → Composer folder for the autoloading of the files
 ├── README.md                                   # → Read-me file .md
 ├── Readme.txt                                  # → Read-me file .txt
