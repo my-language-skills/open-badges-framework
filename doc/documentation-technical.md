@@ -16,7 +16,7 @@ Remember, permalink in Post name option activated is necesary.
 Open Badges need some key information for the delivery of the Badge. Without that information, the Plugin will not work:
 * Site Name (by default, take the site name from ```get_bloginfo ('name')```)
 * WebSite URL (by default, take the url from ```get_bloginfo ('url')```)
-* Image URL
+* Image URL 
 * Backpack account (by default, take the mail administrator from ) ```get_bloginfo ('admin_email')```)
 
 ![settings_profile](../readme-assets/settings_profile.png "Settings: profile")
