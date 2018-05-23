@@ -266,13 +266,15 @@ final class SettingsTemp {
             self::SECT_PAGE_REF
         );
         /* --> Add Class Page________ */
-        add_settings_field(
-            self::FI_ADD_CLASS,
-            __('Add Class','open-badges-framework'),// Title,
-            array($this, 'addClassPageCallback'),
-            self::PAGE_LINKS,
-            self::SECT_PAGE_REF
-        );
+        if( is_plugin_active( 'wp-job-manager/wp-job-manager.php' ) ){
+            add_settings_field(
+                self::FI_ADD_CLASS,
+                __('Add Class','open-badges-framework'),// Title,
+                array($this, 'addClassPageCallback'),
+                self::PAGE_LINKS,
+                self::SECT_PAGE_REF
+            );            
+        }
         /* --> Register Page__________ */
         add_settings_field(
             self::FI_GET_BADGE,
