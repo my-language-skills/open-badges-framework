@@ -247,37 +247,72 @@ final class GetBadgeTemp extends BaseController {
         <main role="main" class="inner cover registration">
             <div class="container">
                 <form id="gb-form-registration" id="needs-validation" novalidate>
-                    <div class="form-group row">
-                        <div class="col-sm-12">
-                            <input type="text" class="form-control" id="reg-first-name" placeholder="<?php _e('First name','open-badges-framework')?>"
-                                   required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-sm-12">
-                            <input type="text" class="form-control" id="reg-last-name" placeholder="<?php _e('Last name','open-badges-framework')?>"
-                                   required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-sm-12">
-                            <select name="reg-year" id="reg-year" class="form-control" style="text-align-last: center;">
-                                <option value="none">Year of birth</option>
-                                <?php
-                                    //Propose the years between 1920 and 2018.
-                                    for ($i = 1920; $i <= 2018; $i++) {
-                                        echo '<option value="' . $i . '">' . $i . '</option>';
-                                    }
-                                ?>
-                            </select>
-                        </div>
-                    </div>
+
+                    <h3>Login Information</h3>
+                    <!-- EMAIL -->
                     <div class="form-group row">
                         <div class="col-sm-12">
                             <input type="email" class="form-control" id="reg-email" placeholder="<?php _e('Email','open-badges-framework')?>"
                                     required>
                         </div>
                     </div>
+
+                    <!-- USERNAME -->
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" id="reg-user-name" placeholder="<?php _e('Username','open-badges-framework')?>"
+                                   required>
+                        </div>
+                    </div>
+
+                    <!-- PASSWORD -->
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            <input type="password" class="form-control" id="reg-pass" placeholder="<?php _e('Password','open-badges-framework')?>"
+                                   required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            <input type="password" class="form-control" id="reg-repeat-pass"
+                                   placeholder="Repeat password" required>
+                        </div>
+                    </div>
+
+                    <h3>Personal Information</h3>
+
+                    <!-- FIRST NAME -->
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" id="reg-first-name" placeholder="<?php _e('First name','open-badges-framework')?>"
+                                   required>
+                        </div>
+                    </div>
+
+                    <!-- LAST NAME -->
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" id="reg-last-name" placeholder="<?php _e('Last name','open-badges-framework')?>"
+                                   required>
+                        </div>
+                    </div>
+
+                    <!-- YEAR OF BIRTH -->
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            <select name="reg-year" id="reg-year" class="form-control" style="text-align-last: center;">
+                                <option value="none">Year of birth</option>
+                                <?php
+                                    //Propose the years between 1920 and 2018.
+                                    for ($i = 2018; $i >= 1920; $i--) {
+                                        echo '<option value="' . $i . '">' . $i . '</option>';
+                                    }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- COUNTRY -->
                     <div class="form-group row">
                         <div class="col-sm-12">
                             <?php
@@ -296,52 +331,48 @@ final class GetBadgeTemp extends BaseController {
                             </select>
                         </div>
                     </div>
+
+                    <!-- CITY -->
                     <div class="form-group row">
                         <div class="col-sm-12">
                             <input type="text" class="form-control" id="reg-city" placeholder="<?php _e('City','open-badges-framework')?>"
                                     required>
                         </div>
                     </div>
+
+                    <h3>Academy Information</h3>
+
+                    <!-- MOTHER TOUNGUE -->
                     <div class="form-group row">
                         <div class="col-sm-12">
                             <input type="text" class="form-control" id="reg-mother-tongue" placeholder="<?php _e('Mother tongue','open-badges-framework')?>"
                                     required>
                         </div>
                     </div>
+
+                    <!-- PRIMARY DEGREE -->
                     <div class="form-group row">
                         <div class="col-sm-12">
                             <input type="text" class="form-control" id="reg-primary-degree" placeholder="<?php _e('Primary degree','open-badges-framework')?>"
                                     required>
                         </div>
                     </div>
+
+                    <!-- SECONDARY DEGREE -->
                     <div class="form-group row">
                         <div class="col-sm-12">
                             <input type="text" class="form-control" id="reg-secondary-degree" placeholder="<?php _e('Secondary degree','open-badges-framework')?>">
                         </div>
                     </div>
+
+                    <!-- TERTIARY DEGREE -->
                     <div class="form-group row">
                         <div class="col-sm-12">
                             <input type="text" class="form-control" id="reg-tertiary-degree" placeholder="<?php _e('Tertiary degree','open-badges-framework')?>">
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <div class="col-sm-12">
-                            <input type="text" class="form-control" id="reg-user-name" placeholder="<?php _e('Username','open-badges-framework')?>"
-                                   required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-sm-12">
-                            <input type="password" class="form-control" id="reg-pass" placeholder="<?php _e('Password','open-badges-framework')?>"
-                                   required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-sm-12">
-                            <input type="password" class="form-control" id="reg-repeat-pass"
-                                   placeholder="Repeat password" required>
-                        </div>
-                    </div>
+                    
+                    
                     <div class="cont-btn-form-reg">
                         <div id="gb-resp-register">
 

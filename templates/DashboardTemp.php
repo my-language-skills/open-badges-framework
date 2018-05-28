@@ -36,7 +36,7 @@ final class DashboardTemp extends BaseController {
     public static function main() {
         ?>
         <div class="wrap">
-            <h1 class="obf-title"><?php _e('Open Badge Framework','open-badges-framework'); ?>
+            <h1 class="obf-title"><?php _e('Open Badges Framework','open-badges-framework'); ?>
             </h1>
             <ul class="nav nav-tabs">
                 <li class="active"><a href="#tab-1"><?php _e('Action','open-badges-framework'); ?></a></li>
