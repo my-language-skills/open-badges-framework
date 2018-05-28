@@ -17,6 +17,7 @@ function pw_rcp_add_user_fields() {
 
   ?>
 
+    <h1>Personal Information</h1>
 
     <p>
         <label for="year_of_birth"><?php _e( 'Year of birth', 'rcp' ); ?></label>

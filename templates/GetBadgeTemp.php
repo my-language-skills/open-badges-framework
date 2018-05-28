@@ -249,19 +249,19 @@ final class GetBadgeTemp extends BaseController {
                 <form id="gb-form-registration" id="needs-validation" novalidate>
 
                     <h3>Login Information</h3>
-                    <!-- EMAIL -->
-                    <div class="form-group row">
-                        <div class="col-sm-12">
-                            <input type="email" class="form-control" id="reg-email" placeholder="<?php _e('Email','open-badges-framework')?>"
-                                    required>
-                        </div>
-                    </div>
-
                     <!-- USERNAME -->
                     <div class="form-group row">
                         <div class="col-sm-12">
                             <input type="text" class="form-control" id="reg-user-name" placeholder="<?php _e('Username','open-badges-framework')?>"
                                    required>
+                        </div>
+                    </div>
+
+                     <!-- EMAIL -->
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            <input type="email" class="form-control" id="reg-email" placeholder="<?php _e('Email','open-badges-framework')?>"
+                                    required>
                         </div>
                     </div>
 
@@ -340,7 +340,7 @@ final class GetBadgeTemp extends BaseController {
                         </div>
                     </div>
 
-                    <h3>Academy Information</h3>
+                    <h3>Other Information</h3>
 
                     <!-- MOTHER TOUNGUE -->
                     <div class="form-group row">
