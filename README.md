@@ -78,6 +78,8 @@ You can see all of the screenshots of the plugin [here](doc/screenshots.md "scre
 	* Add custom fields in the WP profile editor.
 	* Add fields in the registration form during the "Get a badge" process. #212
 	* Add the 'Lost password' link to the login form during the "Get a badge" process. #216
+	* Enable reCAPTCHA in the RCP registration form.
+	* Add CAPTCHA in the registration form during the "Get a badge" process (with Really Simple Captcha plugin). #217
 * BUGFIXES
 	* Remove the "Add Class" link in Settings->Links when the WP Job Manager plugin is not activated. #195
 
