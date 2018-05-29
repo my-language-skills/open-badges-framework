@@ -26,10 +26,12 @@ final class SettingsTemp {
     const PAGE_PROFILE = "setting_page";
     const PAGE_LINKS = "links_page";
 	const PAGE_EMAIL_SETTINGS = "email_settings_page";
+    const PAGE_MISC = "misc_page";
     //SECTIONS
     CONST SECT_COMPANY_PROFILE = 'company_profile_sect';
     CONST SECT_PAGE_REF = 'page_link_sect';
 	CONST SECT_EMAIL_SETTINGS = 'page_link_sect';
+    CONST SECT_CAPTCHA = 'captcha_sect';
     // PROFILE FIELDS
 	
     const FI_SITE_NAME_FIELD = "site_name_field";
@@ -52,6 +54,9 @@ final class SettingsTemp {
 	const FI_IMAGE_URL_EMAIL_FIELD = 'image_url_email_field';
 	const FI_CONTACT_EMAIL_FIELD = 'contact_email_field';
 	const FI_MESSAGE_EMAIL_FIELD = 'message_email_field';
+
+    //MISC FIELDS
+    const FI_CAPTCHA = "captcha_field";
 	
     private $options;
     /**
@@ -146,6 +151,7 @@ final class SettingsTemp {
                 <li class="active"><a href="#tab-1"><?php _e('Profile','open-badges-framework');?></a></li>
                 <li class=""><a href="#tab-2"><?php _e('Links','open-badges-framework');?></a></li>
 				<li class=""><a href="#tab-3"><?php _e('Email Settings','open-badges-framework');?></a></li>
+                <li class=""><a href="#tab-4"><?php _e('Misc','open-badges-framework');?></a></li>
             </ul>
 			
 
@@ -174,7 +180,14 @@ final class SettingsTemp {
                         settings_fields(self::OPTION_GROUP);
                         do_settings_sections(self::PAGE_EMAIL_SETTINGS);
                         ?>
-                    </div>					
+                    </div>
+                    <div id="tab-4" class="tab-pane">
+                        <?php
+                        // This prints out all hidden setting fields
+                        settings_fields(self::OPTION_GROUP);
+                        do_settings_sections(self::PAGE_MISC);
+                        ?>
+                    </div>				
                 </div>
 				<?php
 					submit_button(__('Save Settings','open-badges-framework'), 'primary', 'wpdocs-save-settings');
@@ -253,14 +266,14 @@ final class SettingsTemp {
         /* #PAGES LINKS_________________________________________ */
         add_settings_section(
             self::SECT_PAGE_REF, // ID
-            __('Pages Links','open-badges-framework'),// Title, // Title
+            __('Pages Links','open-badges-framework'),// Title
             array($this, 'printPageLinksInfo'), // Callback
             self::PAGE_LINKS // Page
         );
         /* --> Become Premium Page____*/
         add_settings_field(
             self::FI_BECOME_PREMIUM, // ID
-            __('Become Premium','open-badges-framework'),// Title // Title
+            __('Become Premium','open-badges-framework'),// Title
             array($this, 'becomePremiumPageCallback'), // Callback
             self::PAGE_LINKS, // Page
             self::SECT_PAGE_REF
@@ -341,8 +354,25 @@ final class SettingsTemp {
             array($this, 'messageTextCallbackEmailSec'),
             self::PAGE_EMAIL_SETTINGS,
             self::SECT_EMAIL_SETTINGS
-        );	
-		
+        );
+        /* #PAGE MISC_________________________________________ */
+        //Only if the ReallySimpleCaptcha plugin is active
+        if ( is_plugin_active( 'really-simple-captcha/really-simple-captcha.php') ){
+            add_settings_section(
+                self::SECT_CAPTCHA, // ID
+                __('Captcha Settings','open-badges-framework'),// Title
+                array($this, 'printCaptchaSettingsInfo'), // Callback
+                self::PAGE_MISC // Page
+            );
+            /* --> Captcha____*/
+            add_settings_field(
+                self::FI_CAPTCHA, // ID
+                __('Enable Captcha','open-badges-framework'),// Title
+                array($this, 'captchaCallback'), // Callback
+                self::PAGE_MISC, // Page
+                self::SECT_CAPTCHA
+            );
+        }
  	   /*function shortcode(){
 			$link = $options[self::FI_SITE_NAME_FIELD];
 			return '<img src="' . sanitize_text_field( $input_examples[ 'textarea_example' ] ) . '">';
@@ -409,7 +439,10 @@ final class SettingsTemp {
             $new_input[self::FI_MESSAGE_EMAIL_FIELD] = sanitize_text_field($input[self::FI_MESSAGE_EMAIL_FIELD]);
         if (isset($input[self::FI_CONTACT_EMAIL_FIELD]))
             $new_input[self::FI_CONTACT_EMAIL_FIELD] = sanitize_text_field(
-                $input[self::FI_CONTACT_EMAIL_FIELD] ? $input[self::FI_CONTACT_EMAIL_FIELD] : get_bloginfo('admin_email'));		
+                $input[self::FI_CONTACT_EMAIL_FIELD] ? $input[self::FI_CONTACT_EMAIL_FIELD] : get_bloginfo('admin_email'));
+        if (isset($input[self::FI_CAPTCHA])) {
+            $new_input[self::FI_CAPTCHA] = sanitize_text_field($input[self::FI_CAPTCHA]);
+        }        	
         return $new_input;
     }
     /**
@@ -445,6 +478,18 @@ final class SettingsTemp {
      */
     public function printEmailSettingsInfo() {
 		_e( 'Complete the settings for the email send.', 'open-badges-framework' );	
+    }
+
+    /**
+     * Print the Email Settings text.
+     *
+     * @author      @AleRiccardi
+     * @since       1.0.0
+     *
+     * @return void
+     */
+    public function printCaptchaSettingsInfo() {
+        _e( 'Here you can chose to use captcha or not in your registration form.', 'open-badges-framework' ); 
     }
 	
     /**
@@ -794,6 +839,22 @@ final class SettingsTemp {
 		<p class="description" id="tagline-description"><?php _e('Select a page that will be used as a container for the Get Badge process.','open-badges-framework.');?></p>
 		<?php
     }
+    /**
+     * Print the captcha settings field (checked or not)).
+     *
+     * @author      @leocharlier
+     * @since       1.0.1
+     *
+     * @return void
+     */
+    public function captchaCallback() { ?>
+
+        <input type="checkbox" value="1" name="<?php echo self::OPTION_NAME . '[' . self::FI_CAPTCHA . ']' ?>" id="<?php echo self::FI_CAPTCHA ?>" <?php if( isset( $this->options[self::FI_CAPTCHA] ) ) checked('1', $this->options[self::FI_CAPTCHA] ); ?> />
+        <span class="description"><?php _e( 'Check this to enable Captcha on the registration form.', 'open-badges-framework.' ); ?></span>
+
+        <?php
+    }
+
     /**
      * Retrieve the link from thw id of a the page.
      *

@@ -9,6 +9,7 @@ use Inc\Utils\Badge;
 use Inc\Utils\JsonManagement;
 use Inc\Utils\WPBadge;
 use ReallySimpleCaptcha;
+use templates\SettingsTemp;
 
 /**
  * Template for the Get Badge page.
@@ -375,7 +376,8 @@ final class GetBadgeTemp extends BaseController {
 
                     <!-- CAPTCHA -->
                     <?php
-                        if( is_plugin_active( 'really-simple-captcha' ) ){
+                        //Check if the ReallySimpleCaptcha plugin is active and if the capthca is enabled in the settings page
+                        if( is_plugin_active( 'really-simple-captcha/really-simple-captcha.php' && SettingsTemp::getOption(SettingsTemp::FI_CAPTCHA)==1 )  ){
                             //Instantiate a ReallySimpleCaptcha object
                             $captcha_instance = new ReallySimpleCaptcha();
                             //Set the captcha image size
