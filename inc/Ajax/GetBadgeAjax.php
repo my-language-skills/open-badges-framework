@@ -9,6 +9,7 @@ use Inc\Database\DbUser;
 use Inc\Utils\Badge;
 use Inc\Utils\JsonManagement;
 use Templates\GetBadgeTemp;
+use ReallySimpleCaptcha;
 
 /**
  * This class is a wrap for all the functions that are
@@ -120,6 +121,8 @@ class GetBadgeAjax extends BaseController {
             $badge->retrieveBadge($_POST['idBadge']);
 			$user = DbUser::getById($badge->idUser);
 			$userEmail = $user->email;
+
+            $captcha_instance = new ReallySimpleCaptcha();
 		
 			$user = array(
 				'userEmail' => $_POST['userEmail'],
@@ -143,9 +146,14 @@ class GetBadgeAjax extends BaseController {
 				
 				echo "Please register with the email we contacted you!";
 				
-			}else{
+			}else if ( !$captcha_instance->check( $_POST['captchaPrefix'], $_POST['captchaAnswer'] ) ) {
+
+                echo "Please check if you're not a robot!";
+
+            }else{
 				
 				$regRet = WPUser::registerUser($user);
+                $captcha_instance->remove( $_POST['captchaPrefix'] );
 				
 				if (!$regRet) {
 					// connecting the user with the dbUser

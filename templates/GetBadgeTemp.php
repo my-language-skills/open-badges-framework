@@ -8,6 +8,7 @@ use Inc\Pages\Admin;
 use Inc\Utils\Badge;
 use Inc\Utils\JsonManagement;
 use Inc\Utils\WPBadge;
+use ReallySimpleCaptcha;
 
 /**
  * Template for the Get Badge page.
@@ -371,6 +372,46 @@ final class GetBadgeTemp extends BaseController {
                             <input type="text" class="form-control" id="reg-tertiary-degree" placeholder="<?php _e('Tertiary degree','open-badges-framework')?>">
                         </div>
                     </div>
+
+                    <!-- REALLY SIMPLE CAPTCHA TEST -->
+                    <?php
+                        $captcha_instance = new ReallySimpleCaptcha();
+                        $captcha_instance->img_size = array( 175, 50 );
+                        $captcha_instance->base = array( 6, 40 );
+                        $captcha_instance->font_size = 39;
+                        $captcha_instance->font_char_width = 42;
+                        $word = $captcha_instance->generate_random_word();
+                        $prefix = mt_rand();
+                        $captcha_instance->generate_image( $prefix, $word );
+                    ?>
+
+                    <div class="form-group row" style="margin-top: 75px;">
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" id="reg-captcha-answer" placeholder="<?php _e('Copy the word below','open-badges-framework')?>">
+                            <input id="reg-captcha-prefix" name="prefix" type="hidden" value="<?php echo $prefix ?>">
+                            <img src="<?php echo plugin_dir_url() . 'really-simple-captcha/tmp/' . $prefix . '.png'?>">
+                        </div>
+                    </div>
+
+                    <!-- RESTRICT CONTENT PRO ReCAPTCHA TEST -->
+                    <?php 
+                        /*function rcp_is_recaptcha_enabled() {
+
+                            global $rcp_options;
+
+                            return ( ! empty( $rcp_options['enable_recaptcha'] ) && ! empty( $rcp_options['recaptcha_public_key'] ) && ! empty( $rcp_options['recaptcha_private_key'] ) );
+
+                        }
+
+                        global $rcp_options;
+
+
+
+                        if( rcp_is_recaptcha_enabled() ) :*/ ?>
+                            <!-- <div id="rcp_recaptcha" data-callback="rcp_validate_recaptcha" class="g-recaptcha" data-sitekey="<?php //echo esc_attr( $rcp_options['recaptcha_public_key'] ); ?>"></div>
+                            <input type="hidden" name="g-recaptcha-remoteip" value=<?php //echo esc_attr( rcp_get_ip() ); ?> /><br/> -->
+                        <?php //endif;
+                    ?>
                     
                     
                     <div class="cont-btn-form-reg">

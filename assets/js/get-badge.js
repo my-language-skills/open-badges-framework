@@ -243,7 +243,9 @@ jQuery(function (event) {
             jQuery(this).find("#reg-mother-tongue"),
             jQuery(this).find("#reg-primary-degree"),
             jQuery(this).find("#reg-secondary-degree"),
-            jQuery(this).find("#reg-tertiary-degree")
+            jQuery(this).find("#reg-tertiary-degree"),
+            jQuery(this).find("#reg-captcha-answer"),
+            jQuery(this).find("#reg-captcha-prefix")
         ];
 
         if (this.checkValidity() === false) {
@@ -270,7 +272,9 @@ jQuery(function (event) {
                 'userMotherTongue': inputFields[9].val(),
                 'userPrimaryDegree': inputFields[10].val(),
                 'userSecondaryDegree': inputFields[11].val(),
-                'userTertiaryDegree': inputFields[12].val()
+                'userTertiaryDegree': inputFields[12].val(),
+                'captchaAnswer': inputFields[13].val(),
+                'captchaPrefix': inputFields[14].val()
             };
 
             var func = function (response) {
