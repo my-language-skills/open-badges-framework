@@ -121,8 +121,6 @@ class GetBadgeAjax extends BaseController {
             $badge->retrieveBadge($_POST['idBadge']);
 			$user = DbUser::getById($badge->idUser);
 			$userEmail = $user->email;
-
-            $captcha_instance = new ReallySimpleCaptcha();
 		
 			$user = array(
 				'userEmail' => $_POST['userEmail'],
@@ -146,13 +144,18 @@ class GetBadgeAjax extends BaseController {
 				
 				echo "Please register with the email we contacted you!";
 				
-			}else if ( !$captcha_instance->check( $_POST['captchaPrefix'], $_POST['captchaAnswer'] ) ) {
+			}else if ( is_plugin_active( 'really-simple-captcha' ) ){
+                $captcha_instance = new ReallySimpleCaptcha();
+                //Check if the user answer match with the right answer
+                if( !$captcha_instance->check( $_POST['captchaPrefix'], $_POST['captchaAnswer'] ) ) {
 
-                echo "Please check if you're not a robot!";
-
+                    echo "Please check if you're not a robot!";
+                }
             }else{
 				
 				$regRet = WPUser::registerUser($user);
+
+                //Delete the temporary image and text files
                 $captcha_instance->remove( $_POST['captchaPrefix'] );
 				
 				if (!$regRet) {

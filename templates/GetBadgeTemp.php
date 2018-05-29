@@ -373,47 +373,37 @@ final class GetBadgeTemp extends BaseController {
                         </div>
                     </div>
 
-                    <!-- REALLY SIMPLE CAPTCHA TEST -->
+                    <!-- CAPTCHA -->
                     <?php
-                        $captcha_instance = new ReallySimpleCaptcha();
-                        $captcha_instance->img_size = array( 175, 50 );
-                        $captcha_instance->base = array( 6, 40 );
-                        $captcha_instance->font_size = 39;
-                        $captcha_instance->font_char_width = 42;
-                        $word = $captcha_instance->generate_random_word();
-                        $prefix = mt_rand();
-                        $captcha_instance->generate_image( $prefix, $word );
-                    ?>
+                        if( is_plugin_active( 'really-simple-captcha' ) ){
+                            //Instantiate a ReallySimpleCaptcha object
+                            $captcha_instance = new ReallySimpleCaptcha();
+                            //Set the captcha image size
+                            $captcha_instance->img_size = array( 175, 50 );
+                            //Ajust the place of the captcha image
+                            $captcha_instance->base = array( 6, 40 );
+                            //Set the size of the captcha font size
+                            $captcha_instance->font_size = 39;
+                            //Set the captcha font width
+                            $captcha_instance->font_char_width = 42;
+                            //Generate a random word
+                            $word = $captcha_instance->generate_random_word();
+                            //Generate a random prefix for the files (.png and .txt)
+                            $prefix = mt_rand();
+                            //Generate the image and text files to use captcha
+                            $captcha_instance->generate_image( $prefix, $word );
+                            ?>
 
-                    <div class="form-group row" style="margin-top: 75px;">
-                        <div class="col-sm-12">
-                            <input type="text" class="form-control" id="reg-captcha-answer" placeholder="<?php _e('Copy the word below','open-badges-framework')?>">
-                            <input id="reg-captcha-prefix" name="prefix" type="hidden" value="<?php echo $prefix ?>">
-                            <img src="<?php echo plugin_dir_url() . 'really-simple-captcha/tmp/' . $prefix . '.png'?>">
-                        </div>
-                    </div>
+                            <div class="form-group row" style="margin-top: 75px;">
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control" id="reg-captcha-answer" placeholder="<?php _e('Copy the word below','open-badges-framework')?>">
+                                    <input id="reg-captcha-prefix" name="prefix" type="hidden" value="<?php echo $prefix ?>">
+                                    <img src="<?php echo plugin_dir_url() . 'really-simple-captcha/tmp/' . $prefix . '.png'?>">
+                                </div>
+                            </div>
 
-                    <!-- RESTRICT CONTENT PRO ReCAPTCHA TEST -->
-                    <?php 
-                        /*function rcp_is_recaptcha_enabled() {
+                    <?php } ?>
 
-                            global $rcp_options;
-
-                            return ( ! empty( $rcp_options['enable_recaptcha'] ) && ! empty( $rcp_options['recaptcha_public_key'] ) && ! empty( $rcp_options['recaptcha_private_key'] ) );
-
-                        }
-
-                        global $rcp_options;
-
-
-
-                        if( rcp_is_recaptcha_enabled() ) :*/ ?>
-                            <!-- <div id="rcp_recaptcha" data-callback="rcp_validate_recaptcha" class="g-recaptcha" data-sitekey="<?php //echo esc_attr( $rcp_options['recaptcha_public_key'] ); ?>"></div>
-                            <input type="hidden" name="g-recaptcha-remoteip" value=<?php //echo esc_attr( rcp_get_ip() ); ?> /><br/> -->
-                        <?php //endif;
-                    ?>
-                    
-                    
                     <div class="cont-btn-form-reg">
                         <div id="gb-resp-register">
 
