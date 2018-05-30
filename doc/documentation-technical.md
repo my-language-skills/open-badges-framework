@@ -45,7 +45,7 @@ In this section the user can fill the information that will be displayed to the 
 
 #### Misc
 In this section you can manage some features to enable or not
-* Enable captcha on the registration form
+* Enable captcha on the registration form (require Really Simple Captcha plugin)
 
 ![settings_misc](../readme-assets/misc-settings.png "Settings: Misc")
 
@@ -326,7 +326,7 @@ Login page contains :
 
 Register page contains :
 * Registration form (login information, personal information, other information)
-* Captcha test
+* Captcha test (require Really Simple Captcha plugin)
 
 ## User profile
 All the roles have a profile for tracking the information of the received Badges.
