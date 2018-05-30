@@ -82,6 +82,7 @@ You can see all of the screenshots of the plugin [here](doc/screenshots.md "scre
 	* Add CAPTCHA in the registration form during the "Get a badge" process (with Really Simple Captcha plugin). #217
 * BUGFIXES
 	* Remove the "Add Class" link in Settings->Links when the WP Job Manager plugin is not activated. #195
+	* Export the custom datas created (year of birth, country, etc.) during the WP "Export Personal Data" process.
 
 ### 1.0
 
