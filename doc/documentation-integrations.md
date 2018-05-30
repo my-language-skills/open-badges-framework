@@ -76,7 +76,7 @@ Academy role or a role with the capability obf_job_listing_integration, can crea
 Open Badges Framework will show a link to the registration page (if it exist) and to the creation of post page (if exist).
 
 ### User Registration with [Restrict Content Pro](https://github.com/restrictcontentpro/restrict-content-pro)
-By activating the Plugin, we have an integration that allows us to have new registration fields. Those fields are also in the RCP registration page and in the Edit your profile page.
+By activating the plugin, we can use the new profile fields created by the OBF plugin. These are displayed in the RCP registration form and edit profile page.
 
 ### Porfolio Integration
 OpenBadgesFramework-Languages-Portfolio allow to create a portfolio for teacher and students of second languages.
