@@ -40,9 +40,14 @@ In this section the user can fill the information that will be displayed to the 
 * Header
 * Message
 
-#### Email Settings
+![settings_email1](../readme-assets/email-settings-1.png "Settings: Email")
+![settings_email2](../readme-assets/email-settings-2.png "Settings: Email")
+
+#### Misc
 In this section you can manage some features to enable or not
 * Enable captcha on the registration form
+
+![settings_misc](../readme-assets/misc-settings.png "Settings: Misc")
 
 #### About us
 
