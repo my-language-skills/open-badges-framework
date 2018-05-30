@@ -40,6 +40,10 @@ In this section the user can fill the information that will be displayed to the 
 * Header
 * Message
 
+#### Email Settings
+In this section you can manage some features to enable or not
+* Enable captcha on the registration form
+
 #### About us
 
 General information for the administrators of the site
@@ -308,8 +312,16 @@ Example of the file name: cc8197a1a66bd28d240934e16a895183f7a59e2285eb5e8b408ebb
 
 ```
 ## Getting Badges
-The user must login and register to the site using the email account from which he retrieved the link for the 'Get Badge' page
+The user must login (or register if he's not) using the email account from which he retrieved the link for the 'Get Badge' page.
 
+Login page contains :
+* Email and password fields
+* Lost password link
+* Remember me check box
+
+Register page contains :
+* Registration form (login information, personal information, other information)
+* Captcha test
 
 ## User profile
 All the roles have a profile for tracking the information of the received Badges.
