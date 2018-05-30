@@ -83,6 +83,11 @@ OpenBadgesFramework-Languages-Portfolio allow to create a portfolio for teacher 
 
 Once activated, the portfolio will use the Open Badges API for delivery of specific type of badges. Also the portfolio is used for the comprobation of the teachers' level.
 
+### Captcha Integration with [Reaaly Simple Captcha](https://es.wordpress.org/plugins/really-simple-captcha/)
+By activating the Plugin, we have an integration that allows us to have a captcha test in the registration form displayed during the 'Get a badge' process (if th user is not registered yet). 
+
+We can enable it or not in the OBF Settings -> Misc. If the plugin is not activated, the registration is still accessible but without the captcha test and the settings section disappears.
+
 
 Manage Listings and Content Organization
 
