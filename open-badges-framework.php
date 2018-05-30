@@ -102,7 +102,8 @@ if (class_exists('Inc\\Init')) {
  * @since 1.0.0
  */
 require_once( "inc/Integrations/RCP-custom_registration_fields.php" );
-require_once( "inc/wp-user-custom_fields.php" );
+require_once( "inc/Integrations/wp-user-custom_fields.php" );
+require_once( "inc/Integrations/wp_custom_data_exporter.php" );
 
 /**
  * Auto update from github

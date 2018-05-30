@@ -69,7 +69,7 @@ final class UserTemp {
                         <ul>
                             <li>
                                 <span class="dashicons dashicons-admin-users"></span>
-                                <?php echo $userData->nickname; ?>
+                                <?php echo $userData->display_name; ?>
                             </li>
                             <li>
                                 <span class="dashicons dashicons-calendar"></span>
@@ -81,7 +81,7 @@ final class UserTemp {
                             </li>
                             <li>
                                 <span class="dashicons dashicons-admin-tools"></span>
-                                <?php echo get_user_meta(get_queried_object_id(), 'rcp_profession', true); ?>
+                                <?php echo implode(', ', $userData->roles); ?>
                             </li>
                             <li>
                                 <?php
@@ -101,6 +101,36 @@ final class UserTemp {
                                         </div>
                                     <?php }
                                 } ?>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="username-user flex-item">
+                    <div class="txt-info center-item">
+                        <ul>
+                            <li>
+                                <span class="dashicons dashicons-info"></span>
+                                Year of birth : <?php echo get_the_author_meta( 'year_of_birth', $idUser ); ?>
+                            </li>
+                            <li>
+                                <span class="dashicons dashicons-admin-site"></span>
+                                <?php echo get_the_author_meta( 'country', $idUser ); ?> - <?php echo get_the_author_meta( 'city', $idUser ); ?>
+                            </li>
+                            <li>
+                                <span class="dashicons dashicons-translation"></span>
+                                <?php echo get_the_author_meta( 'mother_tongue', $idUser ); ?>
+                            </li>
+                            <li>
+                                <span class="dashicons dashicons-welcome-learn-more"></span>
+                                <?php 
+                                    echo get_the_author_meta( 'primary_degree', $idUser );
+                                    if( !empty( get_the_author_meta( 'secondary_degree', $idUser ) ) ){
+                                        echo ' - ' . get_the_author_meta( 'secondary_degree', $idUser );
+                                    }
+                                    if( !empty( get_the_author_meta( 'tertiary_degree', $idUser ) ) ){
+                                        echo ' - ' . get_the_author_meta( 'tertiary_degree', $idUser );
+                                    }
+                                ?>
                             </li>
                         </ul>
                     </div>
