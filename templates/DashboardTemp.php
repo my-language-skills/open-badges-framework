@@ -99,7 +99,7 @@ final class DashboardTemp extends BaseController {
                     </div>
                     <div class="row-dash">
                         <div class="col-dash">
-                            <h4><?php _e('Fields','open-badges-framework'); ?></h4>
+                            <h4><?php _e('Fields of education','open-badges-framework'); ?></h4>
                         </div>
                         <div class="col-dash">
                             <div class="vert-hr"></div>
@@ -174,7 +174,7 @@ final class DashboardTemp extends BaseController {
                     <h2><?php _e('Badges list','open-badges-framework'); ?></h2>
                     <p class="lead">
                         
-						<?php _e('In this section we can see all sent badges.','open-badges-framework'); ?>
+						<?php _e('In this section you can see all sent badges.','open-badges-framework'); ?>
                 </div>
                 <div id="form-badges-list" class="content-dash badges-list-dash">
                     <?php DisplayFunction::badgesTable(); ?>
@@ -202,7 +202,7 @@ final class DashboardTemp extends BaseController {
                     <h2><?php _e('Teachers list','open-badges-framework'); ?></h2>
                     <p class="lead">
                         
-						<?php _e('In this section we can see a number of the badges sent by teachers.','open-badges-framework'); ?>
+						<?php _e('In this section you can see the number of badges sent by teachers.','open-badges-framework'); ?>
                 </div>
                 <div id="form-badges-list" class="content-dash badges-list-dash">
                     <!--?php DisplayFunction::badgesTable(); ?> -->

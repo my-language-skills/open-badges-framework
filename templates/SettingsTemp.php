@@ -250,7 +250,7 @@ final class SettingsTemp {
         /* --> Image URL______________ */
         add_settings_field(
             self::FI_IMAGE_URL_FIELD,
-			__('Image of the Entity','open-badges-framework'),// Title
+			__('Company Logo','open-badges-framework'),// Title
             array($this, 'imageUrlCallback'),
             self::PAGE_PROFILE,
             self::SECT_COMPANY_PROFILE
@@ -282,7 +282,7 @@ final class SettingsTemp {
         if( is_plugin_active( 'wp-job-manager/wp-job-manager.php' ) ){
             add_settings_field(
                 self::FI_ADD_CLASS,
-                __('Add Class','open-badges-framework'),// Title,
+                __('Add Class Page','open-badges-framework'),// Title,
                 array($this, 'addClassPageCallback'),
                 self::PAGE_LINKS,
                 self::SECT_PAGE_REF
@@ -291,7 +291,7 @@ final class SettingsTemp {
         /* --> Register Page__________ */
         add_settings_field(
             self::FI_GET_BADGE,
-            __('Get Badge','open-badges-framework'),// Title
+            __('Get Badge Page','open-badges-framework'),// Title
             array($this, 'getBadgePageCallback'),
             self::PAGE_LINKS,
             self::SECT_PAGE_REF
@@ -301,7 +301,7 @@ final class SettingsTemp {
         add_settings_section(
             self::SECT_EMAIL_SETTINGS, // ID
             __('Email Settings','open-badges-framework'), // Title
-            array($this, 'printEmailSettingsInfo'), // Callback
+            array(), // Callback
             self::PAGE_EMAIL_SETTINGS // Page
         );
         /* --> Site Name______________ */
@@ -332,7 +332,7 @@ final class SettingsTemp {
         /* --> Image URL______________ */
         add_settings_field(
             self::FI_IMAGE_URL_EMAIL_FIELD,
-            __('Image of the Entity','open-badges-framework'),
+            __('Email Logo','open-badges-framework'),
             array($this, 'imageUrlCallbackEmailSec'),
             self::PAGE_EMAIL_SETTINGS,
             self::SECT_EMAIL_SETTINGS
@@ -360,8 +360,8 @@ final class SettingsTemp {
         if ( is_plugin_active( 'really-simple-captcha/really-simple-captcha.php') ){
             add_settings_section(
                 self::SECT_CAPTCHA, // ID
-                __('Captcha Settings','open-badges-framework'),// Title
-                array($this, 'printCaptchaSettingsInfo'), // Callback
+                '',// Title
+                array(), // Callback
                 self::PAGE_MISC // Page
             );
             /* --> Captcha____*/
@@ -465,31 +465,7 @@ final class SettingsTemp {
      * @return void
      */
     public function printPageLinksInfo() {
-		_e( 'Create and select the page that you will use for these options:', 'open-badges-framework' );	
-    }
-	
-	 /**
-     * Print the Email Settings text.
-     *
-     * @author      @AleRiccardi
-     * @since       1.0.0
-     *
-     * @return void
-     */
-    public function printEmailSettingsInfo() {
-		_e( 'Complete the settings for the email send.', 'open-badges-framework' );	
-    }
-
-    /**
-     * Print the Email Settings text.
-     *
-     * @author      @AleRiccardi
-     * @since       1.0.0
-     *
-     * @return void
-     */
-    public function printCaptchaSettingsInfo() {
-        _e( 'Here you can chose to use captcha or not in your registration form.', 'open-badges-framework' ); 
+		_e( 'Create and select the page that you will use for the following options:', 'open-badges-framework' );	
     }
 	
     /**
@@ -562,7 +538,7 @@ final class SettingsTemp {
                 <a href="#" class="remove-image-obf-settings" style="display: inline-block; display:' . $display . '">Remove image</a>
               </div>';
 		?>
-		<p class="description" id="tagline-description"><?php _e('Upload an image that represent your company.','open-badges-framework.');?></p>
+		<p class="description" id="tagline-description"><?php _e('Upload an image that represents your company.','open-badges-framework.');?></p>
 		<?php	       
     }
 	
@@ -597,7 +573,7 @@ final class SettingsTemp {
                 <a href="#" class="remove-image-obf-settings" style="display: inline-block; display:' . $display . '">Remove image</a>
               </div>';
 		?>
-		<p class="description" id="tagline-description"><?php _e('Upload an image that represent your company.','open-badges-framework.');?></p>
+		<p class="description" id="tagline-description"><?php _e('Upload an image that represents your company.','open-badges-framework.');?></p>
 		<?php	
     }
     /**
@@ -727,7 +703,7 @@ final class SettingsTemp {
 
 		wp_editor( $headerText, self::FI_HEADER_EMAIL_FIELD, $args );
 		?>
-		<p class="description" id="tagline-description"><?php _e('This is the header of the email.','open-badges-framework.');?></p>
+		<p class="description" id="tagline-description"><?php _e('The text before the badge.','open-badges-framework.');?></p>
 		<?php			
        /*  printf(
             '<input id="%s" class="regular-text" type="text" name="%s[%s]" value="%s"/>',
@@ -756,7 +732,7 @@ final class SettingsTemp {
 
 		wp_editor( $messageText, self::FI_MESSAGE_EMAIL_FIELD, $args );
 		?>
-		<p class="description" id="tagline-description"><?php _e('This is the the message of the email.','open-badges-framework.');?></p>
+		<p class="description" id="tagline-description"><?php _e('Text after the badge.','open-badges-framework.');?></p>
 		<?php	
 	}
 	
@@ -780,7 +756,9 @@ final class SettingsTemp {
                 'show_option_none' => 'None', // string
                 'show_option_no_change ' => '-1',
             ));
-            echo self::showPreviewLink($val);
+            echo self::showPreviewLink($val); ?>
+            <p class="description" id="tagline-description"><?php _e('Select the page where you’ve used a shortcode from a membership Plugin. This lets the plugin know the location of the form. This lets the plugin know the location of the form.','open-badges-framework.');?></p>
+            <?php
         } else { ?>
             <select id="<?php echo self::FI_BECOME_PREMIUM ?>"
                     name="<?php echo self::OPTION_NAME . '[' . self::FI_BECOME_PREMIUM . ']' ?>" disabled>
@@ -807,13 +785,15 @@ final class SettingsTemp {
                 'selected' => $val,
                 'show_option_none' => 'None', // string
             ));
-            echo self::showPreviewLink($val);
+            echo self::showPreviewLink($val); ?>
+            <p class="description" id="tagline-description"><?php _e('Select the page where you’ve used the [submit_job_form] shortcode from WP Job Manager Plugin. This lets the plugin know the location of the form.','open-badges-framework.');?></p>
+            <?php
         } else { ?>
             <select id="<?php echo self::FI_BECOME_PREMIUM ?>"
                     name="<?php echo self::OPTION_NAME . '[' . self::FI_BECOME_PREMIUM . ']' ?>" disabled>
                 <option>None</option>
             </select>
-            <p class="description" id="tagline-description">WP Job Listing deactivated.</p>
+            <p class="description" id="tagline-description">WP Job Manager deactivated.</p>
             <?php
         }
     }
@@ -836,7 +816,7 @@ final class SettingsTemp {
         echo self::showPreviewLink($val);
         
 		?>
-		<p class="description" id="tagline-description"><?php _e('Select a page that will be used as a container for the Get Badge process.','open-badges-framework.');?></p>
+		<p class="description" id="tagline-description"><?php _e('Select a page that will be used for the Get Badge process. This lets the plugin know the location of the form.','open-badges-framework.');?></p>
 		<?php
     }
     /**

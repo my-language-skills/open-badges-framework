@@ -53,6 +53,7 @@ final class UserTemp {
         $rcp_options = get_option('rcp_settings');
         ?>
 
+        <!-- User Description -->
         <div class="author-name">
             <h1 class=""><?php echo $userData->first_name; ?>&nbsp;<?php echo $userData->last_name; ?></h1>
             <?php
@@ -63,8 +64,11 @@ final class UserTemp {
                 </div>
             <?php } ?>
         </div>
+
+        <!-- User Information -->
         <section>
-            <div class="user-info-admin flex-container">
+            <!-- Display for tablets and large screens -->
+            <div class="user-info-admin flex-container user-info-large-screen">
                 <div class="img-user flex-item">
                     <img class="circle-img" src="<?php echo $urlImg; ?>">
                 </div>
@@ -122,7 +126,59 @@ final class UserTemp {
                     </div>
                 </div>
             </div>
-            <h2>Find me on :</h2>
+
+            <!-- Display for phone screens -->
+            <div class="user-info-admin flex-container user-info-little-screen">
+                <div class="username-user center-container flex-item">
+                    <div class="txt-info center-item">
+                        <ul>
+                            <li>
+                                <span class="dashicons dashicons-admin-users"></span>
+                                <?php echo $userData->display_name; ?>
+                            </li>
+                            <li>
+                                <span class="dashicons dashicons-calendar"></span>
+                                <span> <?php _e('Member since: ','open-badges-framework'); echo date("d M Y", strtotime($userData->user_registered)); ?></span>
+                            </li>
+                            <li>
+                                <span class="dashicons dashicons-email-alt"></span>
+                                <?php echo $userData->user_email; ?>
+                            </li>
+                            <li>
+                                <span class="dashicons dashicons-admin-tools"></span>
+                                <?php echo implode(', ', $userData->roles); ?>
+                            </li>
+                            <li>
+                                <span class="dashicons dashicons-info"></span>
+                                Year of birth : <?php echo get_the_author_meta( 'year_of_birth', $idUser ); ?>
+                            </li>
+                            <li>
+                                <span class="dashicons dashicons-flag"></span>
+                                <?php echo get_the_author_meta( 'country', $idUser ); ?> - <?php echo get_the_author_meta( 'city', $idUser ); ?>
+                            </li>
+                            <li>
+                                <span class="dashicons dashicons-translation"></span>
+                                <?php echo get_the_author_meta( 'mother_tongue', $idUser ); ?>
+                            </li>
+                            <li>
+                                <span class="dashicons dashicons-welcome-learn-more"></span>
+                                <?php 
+                                    echo get_the_author_meta( 'primary_degree', $idUser );
+                                    if( !empty( get_the_author_meta( 'secondary_degree', $idUser ) ) ){
+                                        echo ' - ' . get_the_author_meta( 'secondary_degree', $idUser );
+                                    }
+                                    if( !empty( get_the_author_meta( 'tertiary_degree', $idUser ) ) ){
+                                        echo ' - ' . get_the_author_meta( 'tertiary_degree', $idUser );
+                                    }
+                                ?>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- User Social Links -->
+            <h2 class="social-links-title">Find me on :</h2>
             <div class="user-info-admin flex-container">
                 <div class="username-user center-container flex-item">
                     <div class="txt-info center-item">

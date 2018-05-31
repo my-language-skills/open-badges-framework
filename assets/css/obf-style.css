@@ -193,7 +193,7 @@
 }
 
 .container.admin {
-
+    margin-right: 18px;
 }
 
 .intro-dash {
@@ -507,6 +507,10 @@ th {
     width: 40px;
 }
 
+.social-links-title{
+    margin: auto;
+}
+
 /* ==============================
     SINGLE BADGE PAGE SBP (.sbp)
    ============================== */
@@ -556,5 +560,21 @@ th {
 
 .obf-sbp-cont-btn .btn {
     color: white;
+}
+
+/* ============
+    RESPONSIVE
+   ============ */
+
+@media (max-width: 509px) {
+    .user-info-large-screen{
+        display: none;
+    }
+}
+
+@media (min-width: 510px) {
+    .user-info-little-screen{
+        display: none;
+    }
 }
 

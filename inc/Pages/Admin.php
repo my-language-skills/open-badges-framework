@@ -291,7 +291,7 @@ class Admin extends BaseController {
                         'parent_item_colon' => __('Parent Field:'),
                         'edit_item' => __('Edit Field'),
                         'update_item' => __('Update Field'),
-                        'add_new_item' => __('Add New Field'),
+                        'add_new_item' => __('Add New Field of education'),
                         'new_item_name' => __('New Field Name'),
                         'menu_name' => __('Field of Education'),
                     ),

@@ -232,19 +232,19 @@ final class SendBadgeTemp extends BaseController {
         if ($form == "a") {
            
 			?>
-			<p class='text-large'><?php _e('This permits you to send badges to yourself.','open-badges-framework');?></p>
+			<p class='text-large'><?php _e('Send badges to yourself.','open-badges-framework');?></p>
 			<?php
 			
         } else if ($form == "b") {
             
 			?>
-			<p class='text-large'><?php _e('This permits you to send the badge only to another student.','open-badges-framework');?></p>
+			<p class='text-large'><?php _e('Send badges Individually. You can send a badge to each of your students, one at a time.','open-badges-framework');?></p>
 			<?php
 			
         } else if ($form == "c") {
            
 			?>
-			<p class='text-large'><?php _e('This permits you to send the badges to more students.','open-badges-framework');?></p>
+			<p class='text-large'><?php _e('Send badges Collectively. You can send multiple badges to all your students, at the same time.','open-badges-framework');?></p>
 			<?php			
         }
         ?>
