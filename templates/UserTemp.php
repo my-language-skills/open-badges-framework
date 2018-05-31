@@ -54,9 +54,14 @@ final class UserTemp {
         ?>
 
         <div class="author-name">
-            <h1 class="">
-                <?php echo $userData->first_name; ?>&nbsp;<?php echo $userData->last_name; ?>
-            </h1>
+            <h1 class=""><?php echo $userData->first_name; ?>&nbsp;<?php echo $userData->last_name; ?></h1>
+            <?php
+            if( !empty( get_the_author_meta( 'description', $idUser ) ) ){ ?>
+                <div style = "margin-top: 10px;">
+                    <h2 style = "display: inline;">Bio : </h2>
+                    <p style="font-size: 17px; display: inline;"><?php echo get_the_author_meta( 'description', $idUser ); ?></p>
+                </div>
+            <?php } ?>
         </div>
         <section>
             <div class="user-info-admin flex-container">
@@ -73,7 +78,7 @@ final class UserTemp {
                             </li>
                             <li>
                                 <span class="dashicons dashicons-calendar"></span>
-                                <span> <?php _e('Member since','open-badges-framework'); echo date("d M Y", strtotime($userData->user_registered)); ?></span>
+                                <span> <?php _e('Member since: ','open-badges-framework'); echo date("d M Y", strtotime($userData->user_registered)); ?></span>
                             </li>
                             <li>
                                 <span class="dashicons dashicons-email-alt"></span>
@@ -83,29 +88,10 @@ final class UserTemp {
                                 <span class="dashicons dashicons-admin-tools"></span>
                                 <?php echo implode(', ', $userData->roles); ?>
                             </li>
-                            <li>
-                                <?php
-                                if ($userData->ID == wp_get_current_user()->ID) {
-                                    if (esc_url(get_permalink($rcp_options['edit_profile'])) && Secondary::isRCPActive()) {
-
-                                        ?>
-                                        <div class="btn-update-container">
-                                            <a href="<?php echo esc_url(get_permalink($rcp_options['edit_profile'])); ?>"
-                                               class="btn btn-secondary"><?php _e('Edit your profile','open-badges-framework'); ?></a>
-                                        </div>
-                                        <?php
-                                    } else { ?>
-                                        <div class="btn-update-container">
-                                            <a href="profile.php"
-                                               class="btn btn-secondary"><?php _e('Edit your profile','open-badges-framework'); ?></a>
-                                        </div>
-                                    <?php }
-                                } ?>
-                            </li>
                         </ul>
                     </div>
                 </div>
-                <div class="username-user flex-item">
+                <div class="username-user center-container flex-item">
                     <div class="txt-info center-item">
                         <ul>
                             <li>
@@ -113,7 +99,7 @@ final class UserTemp {
                                 Year of birth : <?php echo get_the_author_meta( 'year_of_birth', $idUser ); ?>
                             </li>
                             <li>
-                                <span class="dashicons dashicons-admin-site"></span>
+                                <span class="dashicons dashicons-flag"></span>
                                 <?php echo get_the_author_meta( 'country', $idUser ); ?> - <?php echo get_the_author_meta( 'city', $idUser ); ?>
                             </li>
                             <li>
@@ -136,6 +122,118 @@ final class UserTemp {
                     </div>
                 </div>
             </div>
+            <h2>Find me on :</h2>
+            <div class="user-info-admin flex-container">
+                <div class="username-user center-container flex-item">
+                    <div class="txt-info center-item">
+                        <ul>
+                            <li>
+                                <span class="dashicons dashicons-admin-site"></span>
+                                <?php 
+                                if( !empty( $userData->user_url ) ){
+                                    echo '<a href="<?php echo $userData->user_url; ?>">Website</a>';
+                                } else{
+                                    echo 'No Website';
+                                }
+                                ?>
+                            </li>
+                            <li>
+                                <span class="dashicons dashicons-facebook"></span>
+                                <?php 
+                                if( !empty( get_the_author_meta( 'facebook', $idUser ) ) ){
+                                    echo '<a href="'. get_the_author_meta( 'facebook', $idUser ) .'">Facebook</a>';
+                                } else{
+                                    echo 'No Facebook';
+                                }
+                                ?>
+                            </li>
+                            <li>
+                                <span class="dashicons dashicons-twitter"></span>
+                                <?php 
+                                if( !empty( get_the_author_meta( 'twitter', $idUser ) ) ){
+                                    echo '<a href="'. get_the_author_meta( 'twitter', $idUser ) .'">Twitter</a>';
+                                } else{
+                                    echo 'No Twitter';
+                                }
+                                ?>
+                            </li>
+                            <li>
+                                <span class="dashicons dashicons-googleplus"></span>
+                                <?php 
+                                if( !empty( get_the_author_meta( 'googleplus', $idUser ) ) ){
+                                    echo '<a href="'. get_the_author_meta( 'googleplus', $idUser ) .'">Google+</a>';
+                                } else{
+                                    echo 'No Google+';
+                                }
+                                ?>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="username-user center-container flex-item">
+                    <div class="txt-info center-item">
+                        <ul>
+                            <li>
+                                <span class="dashicons dashicons-share"></span>
+                                <?php 
+                                if( !empty( get_the_author_meta( 'pinterest', $idUser ) ) ){
+                                    echo '<a href="'. get_the_author_meta( 'pinterest', $idUser ) .'">Pinterest</a>';
+                                } else{
+                                    echo 'No Pinterest';
+                                }
+                                ?>
+                            </li>
+                            <li>
+                                <span class="dashicons dashicons-admin-links"></span>
+                                <?php 
+                                if( !empty( get_the_author_meta( 'linkedin', $idUser ) ) ){
+                                    echo '<a href="'. get_the_author_meta( 'linkedin', $idUser ) .'">LinkedIn</a>';
+                                } else{
+                                    echo 'No LinkedIn';
+                                }
+                                ?>
+                            </li>
+                            <li>
+                                <span class="dashicons dashicons-businessman"></span>
+                                <?php 
+                                if( !empty( get_the_author_meta( 'github', $idUser ) ) ){
+                                    echo '<a href="'. get_the_author_meta( 'github', $idUser ) .'">GitHub</a>';
+                                } else{
+                                    echo 'No GitHub';
+                                }
+                                ?>
+                            </li>
+                            <li>
+                                <span class="dashicons dashicons-camera"></span>
+                                <?php 
+                                if( !empty( get_the_author_meta( 'instagram', $idUser ) ) ){
+                                    echo '<a href="'. get_the_author_meta( 'instagram', $idUser ) .'">Instagram</a>';
+                                } else{
+                                    echo 'No Instagram';
+                                }
+                                ?>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <?php
+            if ($userData->ID == wp_get_current_user()->ID) {
+                if (esc_url(get_permalink($rcp_options['edit_profile'])) && Secondary::isRCPActive()) {
+
+                    ?>
+                    <div class="btn-update-container" style="text-align: center;">
+                        <a href="<?php echo esc_url(get_permalink($rcp_options['edit_profile'])); ?>"
+                           class="btn btn-secondary"><?php _e('Edit your profile','open-badges-framework'); ?></a>
+                    </div>
+                    <?php
+                } else { ?>
+                    <div class="btn-update-container" style="text-align: center;">
+                        <a href="profile.php"
+                           class="btn btn-secondary"><?php _e('Edit your profile','open-badges-framework'); ?></a>
+                    </div>
+                <?php }
+            } ?>
         </section>
         <?php
         self::showBadgeEarned($userData->ID, $isAdmin);
