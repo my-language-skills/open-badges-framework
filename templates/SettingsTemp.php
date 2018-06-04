@@ -530,7 +530,10 @@ final class SettingsTemp {
                      </a>';
             $display = 'inline-block';
         } else {
-            $core = '<a href="#" class="upload-image-obf-settings button">Upload image</a>';
+            $core = '<a href="#" class="upload-image-obf-settings">
+                        <img class="image-setting-prev" src="' . plugin_dir_url() . 'open-badges-framework/assets/images/default-badge.png" />
+                     </a>';
+            $display = 'inline-block';
         }
         echo '<div>
                 ' . $core . '

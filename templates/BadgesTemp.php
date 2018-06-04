@@ -29,29 +29,37 @@ class BadgesTemp {
         ?>
         <div class="wrap">
             <h1 class="obf-title"><?php _e('Badges','open-badges-framework'); ?></h1>
-        <section class="user-badges-cont">
-            <div class="title-badges-cont">
-                <h3><?php _e('Number of Badges : ','open-badges-framework'); ?><?php echo sizeof($badges)?></h3>
-            </div>
-            <div class="user-badges flex-container">
-                <?php
-                foreach ($badges as $badge) { ?>
-                    <div class="badge flex-item">
-                        <a class="wrap-link"
-                           href="<?php echo admin_url('admin.php?page=' . Admin::PAGE_SINGLE_BADGES, $protocol) . "&badge=$badge->ID&db=0"; ?>">
-                            <div class="cont-img-badge">
-                                <img class="circle-img" src="<?php echo WPBadge::getUrlImage($badge->ID); ?>">
-                            </div>
-                            <div>
-                                <span><?php echo $badge->post_title; ?></span>
-                            </div>
-                        </a>
-                    </div>
+            <?php if( sizeof($badges) <= 0 ){ ?>
+                <p>In this section, you will see all the badges available. <a href="<?php echo admin_url('post-new.php?post_type=open-badge');?>">Add the first one.</a></p>
+            <?php } else{ ?>
+                <p>In this section, you can see all the badges available.</p>
+            <?php } ?>
+        <?php
+        if( sizeof($badges) > 0 ){ ?>
+            <section class="user-badges-cont">
+                <div class="title-badges-cont">
+                    <h3><?php _e('Number of Badges : ','open-badges-framework'); ?><?php echo sizeof($badges)?></h3>
+                </div>
+                <div class="user-badges flex-container">
                     <?php
-                }
-                ?>
-            </div>
-        </section>
+                    foreach ($badges as $badge) { ?>
+                        <div class="badge flex-item">
+                            <a class="wrap-link"
+                               href="<?php echo admin_url('admin.php?page=' . Admin::PAGE_SINGLE_BADGES, $protocol) . "&badge=$badge->ID&db=0"; ?>">
+                                <div class="cont-img-badge">
+                                    <img class="circle-img" src="<?php echo WPBadge::getUrlImage($badge->ID); ?>">
+                                </div>
+                                <div>
+                                    <span><?php echo $badge->post_title; ?></span>
+                                </div>
+                            </a>
+                        </div>
+                        <?php
+                    }
+                    ?>
+                </div>
+            </section>
+        <?php } ?>
         </div>
         <?php
     }
