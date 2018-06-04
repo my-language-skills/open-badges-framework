@@ -760,14 +760,14 @@ final class SettingsTemp {
                 'show_option_no_change ' => '-1',
             ));
             echo self::showPreviewLink($val); ?>
-            <p class="description" id="tagline-description"><?php _e('Select the page where you’ve used a shortcode from a membership Plugin. This lets the plugin know the location of the form. This lets the plugin know the location of the form.','open-badges-framework.');?></p>
+            <p class="description" id="tagline-description"><?php _e('Select the page where you’ve used a shortcode from a membership Plugin. This lets the plugin know the location of the form.','open-badges-framework.');?></p>
             <?php
         } else { ?>
             <select id="<?php echo self::FI_BECOME_PREMIUM ?>"
                     name="<?php echo self::OPTION_NAME . '[' . self::FI_BECOME_PREMIUM . ']' ?>" disabled>
                 <option>None</option>
             </select>
-            <p class="description" id="tagline-description">WP Job Listing deactivated.</p>
+            <p class="description" id="tagline-description">WP Job Manager deactivated.</p>
             <?php
         }
     }
