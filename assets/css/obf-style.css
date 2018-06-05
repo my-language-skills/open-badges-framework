@@ -567,13 +567,13 @@ th {
    ============ */
 
 @media (max-width: 509px) {
-    .user-info-large-screen{
+    .user-info-large-screen.flex-container{
         display: none;
     }
 }
 
 @media (min-width: 510px) {
-    .user-info-little-screen{
+    .user-info-little-screen.flex-container{
         display: none;
     }
 }

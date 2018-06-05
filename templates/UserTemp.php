@@ -55,7 +55,14 @@ final class UserTemp {
 
         <!-- User Description -->
         <div class="author-name">
-            <h1 class=""><?php echo $userData->first_name; ?>&nbsp;<?php echo $userData->last_name; ?></h1>
+            <h1 class="">
+                <?php 
+                if( !empty( $userData->first_name ) && !empty( $userData->last_name ) ){
+                    echo $userData->first_name; ?>&nbsp;<?php echo $userData->last_name; 
+                } else{
+                    echo get_the_author_meta( 'display_name', $idUser );
+                }?>
+            </h1>
             <?php
             if( !empty( get_the_author_meta( 'description', $idUser ) ) ){ ?>
                 <div style = "margin-top: 10px;">
