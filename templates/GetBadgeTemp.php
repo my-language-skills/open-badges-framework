@@ -377,7 +377,7 @@ final class GetBadgeTemp extends BaseController {
                     <!-- CAPTCHA -->
                     <?php
                         //Check if the ReallySimpleCaptcha plugin is active and if the capthca is enabled in the settings page
-                        if( is_plugin_active( 'really-simple-captcha/really-simple-captcha.php' && SettingsTemp::getOption(SettingsTemp::FI_CAPTCHA)==1 )  ){
+                        if( is_plugin_active( 'really-simple-captcha/really-simple-captcha.php' ) && SettingsTemp::getOption(SettingsTemp::FI_CAPTCHA)==1 )  {
                             //Instantiate a ReallySimpleCaptcha object
                             $captcha_instance = new ReallySimpleCaptcha();
                             //Set the captcha image size

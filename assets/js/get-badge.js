@@ -273,7 +273,6 @@ jQuery(function (event) {
                 'userPrimaryDegree': inputFields[10].val(),
                 'userSecondaryDegree': inputFields[11].val(),
                 'userTertiaryDegree': inputFields[12].val(),
-                //Captcha fields (file prefix and user answer)
                 'captchaAnswer': inputFields[13].val(),
                 'captchaPrefix': inputFields[14].val()
             };

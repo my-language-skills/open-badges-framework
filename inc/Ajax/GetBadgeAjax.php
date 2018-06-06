@@ -138,32 +138,31 @@ class GetBadgeAjax extends BaseController {
                 'userTertiaryDegree' => $_POST['userTertiaryDegree']
 			);
 			
+            $captcha_instance = new ReallySimpleCaptcha();
 			
 			//condition to see if the user is using the right email to register
 			if ( $userEmail != $user['userEmail']){
 				
 				echo "Please register with the email we contacted you!";
 				
-			}else if ( is_plugin_active( 'really-simple-captcha' ) ){
-                $captcha_instance = new ReallySimpleCaptcha();
-                //Check if the user answer match with the right answer
-                if( !$captcha_instance->check( $_POST['captchaPrefix'], $_POST['captchaAnswer'] ) ) {
+			}else if ( is_plugin_active( 'really-simple-captcha/really-simple-captcha.php' ) && !$captcha_instance->check( $_POST['captchaPrefix'], $_POST['captchaAnswer'] ) ){
 
                     echo "Please check if you're not a robot!";
-                }
+
             }else{
 				
 				$regRet = WPUser::registerUser($user);
-
-                if ( is_plugin_active( 'really-simple-captcha' ) ){
-                    //Delete the temporary image and text files
-                    $captcha_instance->remove( $_POST['captchaPrefix'] );
-                }
 				
 				if (!$regRet) {
 					// connecting the user with the dbUser
 					WPUser::insertUserInDB($user["userEmail"]);
 					$loginRet = WPUser::loginUser($user);
+
+                    if ( is_plugin_active( 'really-simple-captcha/really-simple-captcha.php' ) ){
+                        //Delete the temporary image and text files
+                        $captcha_instance->remove( $_POST['captchaPrefix'] );
+                    }
+
 					echo $loginRet;
 				} else {
 					echo $regRet;
