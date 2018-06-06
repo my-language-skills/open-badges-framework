@@ -153,13 +153,24 @@ class DisplayFunction {
                                 if (Secondary::isJobManagerActive()) {
                                     echo "<td><a href='" . get_edit_post_link($badge->idClass) . "'>" . (get_post($badge->idClass) ? get_post($badge->idClass)->post_title : "") . "</a></td>";
                                 }
-                                echo "<td><a href='" . get_edit_user_link($badge->idTeacher) . "'>" . (get_user_by('id', $badge->idTeacher) ? get_user_by('id', $badge->idTeacher)->userEmail : "") . "</a></td>";
+
+                                if( $badge->idTeacher == get_user_by('id', $student->idWP)->ID ){
+                                    echo "<td>Self sent</td>";
+                                }else{
+                                    if( $teacher = get_user_by('id', $badge->idTeacher) ){
+                                        if( !empty( $teacher->first_name ) && !empty( $teacher->last_name ) ){
+                                            echo "<td><a href='" . get_edit_user_link($teacher->ID) . "'>" . $teacher->first_name . ' ' . $teacher->last_name . "</a></td>";
+                                        }else{
+                                            echo "<td><a href='" . get_edit_user_link($teacher->ID) . "'>" . $teacher->display_name . "</a></td>";
+                                        }
+                                    }
+                                }
+
                                 echo "<td>" . $badge->creationDate . "</td>";
                                 echo "<td>" . $badge->gotDate . "</td>";
                                 echo "<td>" . $badge->gotMozillaDate . "</td>";
                             }
-                        }
-                        ?>
+                        } ?>
                         </tbody>
                     </table>
                 </div>

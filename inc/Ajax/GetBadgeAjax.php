@@ -155,8 +155,10 @@ class GetBadgeAjax extends BaseController {
 				
 				$regRet = WPUser::registerUser($user);
 
-                //Delete the temporary image and text files
-                $captcha_instance->remove( $_POST['captchaPrefix'] );
+                if ( is_plugin_active( 'really-simple-captcha' ) ){
+                    //Delete the temporary image and text files
+                    $captcha_instance->remove( $_POST['captchaPrefix'] );
+                }
 				
 				if (!$regRet) {
 					// connecting the user with the dbUser

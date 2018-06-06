@@ -27,23 +27,25 @@ function my_plugin_exporter( $email_address, $page = 1 ) {
   $badges_earned = array();
 
   $userDb = DbUser::getSingle( ["idWP" => $user->ID] );
-  $dbBadges = DbBadge::get( Array( "idUser" => $userDb->id ) );
+  $dbBadgesEarned = DbBadge::get( Array( "idUser" => $userDb->id ) );
 
   if ( !Secondary::isJobManagerActive() ) {
-    foreach ($dbBadges as $dbBadge) {
+    foreach ($dbBadgesEarned as $dbBadge) {
       $badge = new Badge();
       $badge->retrieveBadge( $dbBadge->id );
       if ( $dbBadge->gotDate ) {
-        array_push( $badges_earned, get_the_title( $badge->idBadge ) );
+        ( $badge->idTeacher == $user->ID ) ? array_push( $badges_earned, get_the_title( $badge->idBadge ) . ' (Self sent)' ) : array_push( $badges_earned, get_the_title( $badge->idBadge ) );
       }
     }
   } else{
-    foreach ($dbBadges as $dbBadge) {
+    foreach ($dbBadgesEarned as $dbBadge) {
+      $badge = new Badge();
+      $badge->retrieveBadge( $dbBadge->id );
       if ( $dbBadge->gotDate ) {
         if( get_post( $dbBadge->idClass ) ){
           array_push( $badges_earned, get_the_title( $dbBadge->idBadge ) . ' (Class: ' . get_post( $dbBadge->idClass )->post_title . ')');
         }else{
-          array_push( $badges_earned, get_the_title( $dbBadge->idBadge ) );
+          ( $badge->idTeacher == $user->ID ) ? array_push( $badges_earned, get_the_title( $badge->idBadge ) . ' (Self sent)' ) : array_push( $badges_earned, get_the_title( $badge->idBadge ) );
         }
       }
     }
@@ -52,10 +54,24 @@ function my_plugin_exporter( $email_address, $page = 1 ) {
   //Badges sent information
   $badges_sent = array();
 
-  global $wpdb;
-  $countBadges = $wpdb->get_var("SELECT idTeacher FROM ".$wpdb->prefix."obf_badge WHERE `idTeacher`=".$user->ID.";");
+  $dbBadgesSent = DbBadge::get( Array( "idTeacher" => $user->ID ) );
 
-  array_push( $badges_sent, $countBadges );
+  if ( !Secondary::isJobManagerActive() ) {
+    foreach ($dbBadgesSent as $dbBadge) {
+      $badge = new Badge();
+      $badge->retrieveBadge( $dbBadge->id );
+      array_push( $badges_sent, get_the_title( $badge->idBadge ) );
+    }
+  } else{
+    foreach ($dbBadgesSent as $dbBadge) {
+      if( get_post( $dbBadge->idClass ) ){
+        array_push( $badges_sent, get_the_title( $dbBadge->idBadge ) . ' (Class: ' . get_post( $dbBadge->idClass )->post_title . ')');
+      }else{
+        array_push( $badges_sent, get_the_title( $dbBadge->idBadge ) );
+      }
+    }
+  }
+  
 
   if( ! empty( $year_of_birth ) ){
     array_push( $data, array( 'name' => __( 'User year of birth' ), 'value' => $year_of_birth ) );
@@ -88,10 +104,9 @@ function my_plugin_exporter( $email_address, $page = 1 ) {
   if( ! empty( $badges_earned ) ){
     array_push( $data, array( 'name' => __( 'Badges earned' ), 'value' => implode( ', ', $badges_earned ) ) );
   }
-  if( in_array( "academy", $user->roles) || in_array( "teacher", $user->roles) ){
-    if( ! empty( $badges_sent ) ){
-      array_push( $data, array( 'name' => __( 'Badges Sent' ), 'value' =>  implode( ', ', $countBadges ) ) );
-    }
+
+  if( ! empty( $badges_sent ) ){
+    array_push( $data, array( 'name' => __( 'Badges Sent' ), 'value' => implode( ', ', $badges_sent ) ) );
   }
 
   $export_items[] = array(
