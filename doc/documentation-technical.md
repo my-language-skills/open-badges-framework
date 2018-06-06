@@ -377,7 +377,7 @@ it is planed for the future to create a column about 'Ratio' instead of 'Nothing
 
 #### Translation of the Description of the Badges
 
-Theis feature is being done by adding a new field(a dropdown list that contains the languages) at the default WP comment form.
+This feature is being done by adding a new field(a dropdown list that contains the languages) at the default WP comment form.
 The user picks a language from the list and then writes a comment(translation).
 Only administrators and academy teachers can create translations for the description of the Badge.
 For each language only one translation of the decription should exist.
@@ -388,6 +388,38 @@ badge with the default description.
 
 The file that this feature is developed is ExtendComment.php
 
+## GDPR Integration
+
+The new GPDR law allows user to ask for consulting and erase their data from the website and database. Wordpress now provides two new tools to answer this rules : a personal data exporter and a personal data eraser.
+
+### Export Personal data
+
+The default personal data exporter of Wordpress exports the default data of Wordpress as user ID, user name, user email, etc. Because we created custom data in the OBF plugin, we have to export this data too.
+
+Wordpress data exported:
+* ID
+* Login Name
+* Nice Name
+* Email
+* Registration Date
+* Display Name
+* Nickname
+* First Name
+* Last Name
+	
+OBF data exported:
+* Year of birth
+* Country
+* City
+* Mother toungue
+* Primary, secondary and tertiary degree
+* Badges earned and sent (name and class of the badge)
+
+### Erase Personal data
+
+For now, we didn't create a custom personal data eraser but we can still delete a user in the Wordpress way. By deleting a user in this way, you can chose between two options :
+* "Delete all content" : Delete all the data related to the user.
+* "Attribute all content to" : Delete all the data and attribute the posts created by the user to another user.
 
 
 ---
