@@ -184,10 +184,6 @@ class DisplayFunction {
 
     }
 	
-	
-	
-	
-	
 	public static function usersTable() {
         $table = DbBadge::get();
         if ($table) {

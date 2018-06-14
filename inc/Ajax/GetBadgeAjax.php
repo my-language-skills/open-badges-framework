@@ -10,6 +10,7 @@ use Inc\Utils\Badge;
 use Inc\Utils\JsonManagement;
 use Templates\GetBadgeTemp;
 use ReallySimpleCaptcha;
+use templates\SettingsTemp;
 
 /**
  * This class is a wrap for all the functions that are
@@ -107,7 +108,7 @@ class GetBadgeAjax extends BaseController {
      * that we passed. For every control that goes wrong we trigger an
      * error that have a specific message.
      *
-     * @author @AleRiccardi
+     * @author @AleRiccardi, @leocharlier
      * @since  1.0.0
      *
      * @return string RET_LOGIN_SUCCESS          registration success.
@@ -140,12 +141,14 @@ class GetBadgeAjax extends BaseController {
 			
             $captcha_instance = new ReallySimpleCaptcha();
 			
-			//condition to see if the user is using the right email to register
+			//Condition to see if the user is using the right email to register
 			if ( $userEmail != $user['userEmail']){
 				
 				echo "Please register with the email we contacted you!";
 				
-			}else if ( is_plugin_active( 'really-simple-captcha/really-simple-captcha.php' ) && !$captcha_instance->check( $_POST['captchaPrefix'], $_POST['captchaAnswer'] ) ){
+			}
+            //Condition to see if the user passed the CAPTCHA test
+            else if ( is_plugin_active( 'really-simple-captcha/really-simple-captcha.php' ) && SettingsTemp::getOption(SettingsTemp::FI_CAPTCHA)==1 && !$captcha_instance->check( $_POST['captchaPrefix'], $_POST['captchaAnswer'] ) ){
 
                     echo "Please check if you're not a robot!";
 
@@ -158,7 +161,7 @@ class GetBadgeAjax extends BaseController {
 					WPUser::insertUserInDB($user["userEmail"]);
 					$loginRet = WPUser::loginUser($user);
 
-                    if ( is_plugin_active( 'really-simple-captcha/really-simple-captcha.php' ) ){
+                    if ( is_plugin_active( 'really-simple-captcha/really-simple-captcha.php' ) && SettingsTemp::getOption(SettingsTemp::FI_CAPTCHA)==1 ){
                         //Delete the temporary image and text files
                         $captcha_instance->remove( $_POST['captchaPrefix'] );
                     }

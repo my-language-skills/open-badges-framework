@@ -20,7 +20,7 @@ class DbBadge extends DbModel {
     static $tableName = 'obf_badge';
 	
     /**
-     * Constructor that add filters for the child theme.
+     * Constructor that add filters.
      *
      * @author      @leocharlier
      * @since       1.0.1 dev
@@ -30,7 +30,7 @@ class DbBadge extends DbModel {
     }
 	
     /**
-     * Add the filter to use the function get in the child theme.
+     * Add the filter to use the function 'get' in the child theme (or somewhere else).
      *
      * @author      @leocharlier
      * @since       1.0.1 dev

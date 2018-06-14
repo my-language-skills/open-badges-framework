@@ -27,8 +27,8 @@ class DbUser extends DbModel {
         $this->register_callbacks();
     }
     /**
-     * Function called in constructor to add filter.
-     * The filter added permit to use the funtion getSingle in the child theme.
+     * Add the filter to use the function 'getSingle' in the child theme (or somewhere else).
+     *
      * @author      @leocharlier
      * @since       1.0.1 dev
      */

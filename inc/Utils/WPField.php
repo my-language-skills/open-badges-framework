@@ -20,7 +20,7 @@ class WPField {
      * This constructor load the main fields and
      * also the sub field if they exist.
      *
-     * @author   @AleRiccardi
+     * @author   @AleRiccardi, @leocharlier
      * @since    1.0.0
      */
     public function __construct() {
@@ -46,6 +46,14 @@ class WPField {
                 $this->sub["$parent->slug"] = $children;
             }
         }
+
+        //Add a filter to use the function 'getSub' in other plugins (or somewhere else).
+        add_filter( 'plugin_get_sub', array ( $this, 'getSub' ) );
+    }
+
+    public static function getSub(){
+        $field = new WPField();
+        return $field->sub;
     }
 
     /**

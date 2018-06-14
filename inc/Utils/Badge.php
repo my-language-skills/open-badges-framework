@@ -188,7 +188,7 @@ class Badge {
             $this->json = $badgeDb->json;
             $this->info = $badgeDb->info;
             $this->evidence = $badgeDb->evidence;
-			 $this->description = $badgeDb->description;
+			$this->description = $badgeDb->description;
 
             $user = DbUser::getById($this->idUser);
             if($user){

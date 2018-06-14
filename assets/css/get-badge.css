@@ -289,6 +289,22 @@ input {
 	max-width: 350px;	
 }
 
+#reg-year {
+    text-align-last: center;
+}
+
+#reg-country {
+    text-align-last: center;
+}
+
+#div-captcha {
+    margin-top: 75px;
+}
+
+#submit-form {
+    display: none;
+}
+
 .logo-open-badges {
     margin-bottom: 30px;
 }

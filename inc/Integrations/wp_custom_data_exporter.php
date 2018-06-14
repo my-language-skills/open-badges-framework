@@ -5,6 +5,12 @@ use Inc\Database\DbUser;
 use Inc\Base\Secondary;
 use Inc\Utils\Badge;
 
+/**
+ * Create a custom WP Personal Data Exporter to export the custom data created
+ *
+ * @author @leocharlier
+ * @since 1.0.1
+ */
 function my_plugin_exporter( $email_address, $page = 1 ) {
   $page = (int) $page;
  
@@ -29,11 +35,13 @@ function my_plugin_exporter( $email_address, $page = 1 ) {
   $userDb = DbUser::getSingle( ["idWP" => $user->ID] );
   $dbBadgesEarned = DbBadge::get( Array( "idUser" => $userDb->id ) );
 
+  //Display the class only if WP Job Manager is activated
   if ( !Secondary::isJobManagerActive() ) {
     foreach ($dbBadgesEarned as $dbBadge) {
       $badge = new Badge();
       $badge->retrieveBadge( $dbBadge->id );
       if ( $dbBadge->gotDate ) {
+        //Check if the badge is self sent or not
         ( $badge->idTeacher == $user->ID ) ? array_push( $badges_earned, get_the_title( $badge->idBadge ) . ' (Self sent)' ) : array_push( $badges_earned, get_the_title( $badge->idBadge ) );
       }
     }
@@ -45,6 +53,7 @@ function my_plugin_exporter( $email_address, $page = 1 ) {
         if( get_post( $dbBadge->idClass ) ){
           array_push( $badges_earned, get_the_title( $dbBadge->idBadge ) . ' (Class: ' . get_post( $dbBadge->idClass )->post_title . ')');
         }else{
+          //Check if the badge is self sent or not
           ( $badge->idTeacher == $user->ID ) ? array_push( $badges_earned, get_the_title( $badge->idBadge ) . ' (Self sent)' ) : array_push( $badges_earned, get_the_title( $badge->idBadge ) );
         }
       }
@@ -56,6 +65,7 @@ function my_plugin_exporter( $email_address, $page = 1 ) {
 
   $dbBadgesSent = DbBadge::get( Array( "idTeacher" => $user->ID ) );
 
+  //Display the class only if WP Job Manager is activated
   if ( !Secondary::isJobManagerActive() ) {
     foreach ($dbBadgesSent as $dbBadge) {
       $badge = new Badge();
@@ -72,7 +82,7 @@ function my_plugin_exporter( $email_address, $page = 1 ) {
     }
   }
   
-
+  // Stores user information
   if( ! empty( $year_of_birth ) ){
     array_push( $data, array( 'name' => __( 'User year of birth' ), 'value' => $year_of_birth ) );
   }
@@ -110,8 +120,8 @@ function my_plugin_exporter( $email_address, $page = 1 ) {
   }
 
   $export_items[] = array(
-    'group_id' => 'user',
-    'data' => $data,
+    'group_id' => 'user', //Section where the data will be display
+    'data' => $data, //Data exported
   );
  
   // Tell core if we have more comments to work on still
@@ -121,6 +131,12 @@ function my_plugin_exporter( $email_address, $page = 1 ) {
   );
 }
 
+/**
+ * Register the custom WP Personal Data Exporter for the OBF plugin
+ *
+ * @author @leocharlier
+ * @since 1.0.1
+ */
 function register_my_plugin_exporter( $exporters ) {
   $exporters['open-badges-framework'] = array(
     'exporter_friendly_name' => __( 'Open Badges Framework' ),

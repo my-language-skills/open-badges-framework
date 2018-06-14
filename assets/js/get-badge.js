@@ -212,7 +212,7 @@ jQuery(function (event) {
     /**
      * @description Click event of the button registration.
      *
-     * @author @AleRiccardi
+     * @author @AleRiccardi, @leocharlier
      * @since  1.0.0
      *
      * @param {array} event of the click.

@@ -191,6 +191,7 @@ final class UserTemp {
                     <div class="txt-info center-item">
                         <ul>
                             <li>
+                                <!-- User Web Site -->
                                 <span class="dashicons dashicons-admin-site"></span>
                                 <?php 
                                 if( !empty( $userData->user_url ) ){
@@ -201,6 +202,7 @@ final class UserTemp {
                                 ?>
                             </li>
                             <li>
+                                <!-- Facebook -->
                                 <span class="dashicons dashicons-facebook"></span>
                                 <?php 
                                 if( !empty( get_the_author_meta( 'facebook', $idUser ) ) ){
@@ -211,6 +213,7 @@ final class UserTemp {
                                 ?>
                             </li>
                             <li>
+                                <!-- Twitter -->
                                 <span class="dashicons dashicons-twitter"></span>
                                 <?php 
                                 if( !empty( get_the_author_meta( 'twitter', $idUser ) ) ){
@@ -221,6 +224,7 @@ final class UserTemp {
                                 ?>
                             </li>
                             <li>
+                                <!-- Google + -->
                                 <span class="dashicons dashicons-googleplus"></span>
                                 <?php 
                                 if( !empty( get_the_author_meta( 'googleplus', $idUser ) ) ){
@@ -237,6 +241,7 @@ final class UserTemp {
                     <div class="txt-info center-item">
                         <ul>
                             <li>
+                                <!-- Pinterest -->
                                 <span class="dashicons dashicons-share"></span>
                                 <?php 
                                 if( !empty( get_the_author_meta( 'pinterest', $idUser ) ) ){
@@ -247,6 +252,7 @@ final class UserTemp {
                                 ?>
                             </li>
                             <li>
+                                <!-- LinkedIn -->
                                 <span class="dashicons dashicons-admin-links"></span>
                                 <?php 
                                 if( !empty( get_the_author_meta( 'linkedin', $idUser ) ) ){
@@ -257,6 +263,7 @@ final class UserTemp {
                                 ?>
                             </li>
                             <li>
+                                <!-- GitHub -->
                                 <span class="dashicons dashicons-businessman"></span>
                                 <?php 
                                 if( !empty( get_the_author_meta( 'github', $idUser ) ) ){
@@ -267,6 +274,7 @@ final class UserTemp {
                                 ?>
                             </li>
                             <li>
+                                <!-- Instagram -->
                                 <span class="dashicons dashicons-camera"></span>
                                 <?php 
                                 if( !empty( get_the_author_meta( 'instagram', $idUser ) ) ){

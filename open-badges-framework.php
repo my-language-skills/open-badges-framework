@@ -57,8 +57,6 @@ define( 'PLUGIN', plugin_basename( __FILE__ ) );
  *
  * @since 1.0.0
  */
-
-
 function open_badges_framework_activation() {
     Inc\Base\Activate::activate();
 }
@@ -98,8 +96,8 @@ if (class_exists('Inc\\Init')) {
 
 /**
  * Add custom fields for registration form and profile editor
- *
- * @since 1.0.0
+ * Add custom WP Personal Data Exporter
+ * @since 1.0.1
  */
 require_once( "inc/Integrations/RCP-custom_registration_fields.php" );
 require_once( "inc/Integrations/wp-user-custom_fields.php" );
