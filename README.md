@@ -73,14 +73,13 @@ You can see all of the screenshots of the plugin [here](doc/screenshots.md "scre
 ### 1.0.1 dev
 
 * **ADDITIONS**
- 	* Add two filters in order to use them to display the badges earned by a user.
 	* Add custom fields in the Restrict Content Pro regitration form (this datas are saved in the WP user profile and not in the RCP member).
 	* Add custom fields in the WP profile editor.
 	* Add fields in the registration form during the "Get a badge" process. #212
 	* Add the 'Lost password' link to the login form during the "Get a badge" process. #216
 	* Enable reCAPTCHA in the RCP registration form.
 	* Add CAPTCHA in the registration form during the "Get a badge" process (with Really Simple Captcha plugin). #217
-	* Add all the WP editore fields in the OBF user page (all the information is displayed).
+	* Add all the WP editor fields in the OBF user page (all the information is displayed).
 	* Propose to add the first badge in the "All Badges" section if no one is found.
 	* Load a default company logo if no one is set.
 	* Responsive design.
