@@ -18,6 +18,8 @@ Not all the Plugins are 100% integrated with Open Badges Framework, some of them
 * [Members](https://es.wordpress.org/plugins/members/)
 * [wp-sweep](https://es.wordpress.org/plugins/wp-sweep/)
 * [wp-dbmanager](https://es.wordpress.org/plugins/wp-dbmanager/)
+* [If Menu](https://fr.wordpress.org/plugins/if-menu/)
+* [Search&Filter Pro](https://www.designsandcode.com/wordpress-plugins/search-filter-pro/)
 * Social Media Feather 1.7.12 (Newer version have bad performance)
 
 ## Integrated Theme
@@ -61,7 +63,12 @@ Tag and Organize by Terms
 Filter by Predefined Regions
 * [Bookmarks/Favorites](http://listify.astoundify.com/category/345-bookmarksfavorites)
 Show Your Love for Listings
-
+* [Really Simple Captcha](https://wordpress.org/plugins/really-simple-captcha/)
+Captcha for registration form
+* [If Menu](https://fr.wordpress.org/plugins/if-menu/)
+Custom menu depends on the user
+* [Search&Filter Pro](https://www.designsandcode.com/wordpress-plugins/search-filter-pro/)
+Search form for badges
 
 ## Other Integrations
 
@@ -79,12 +86,19 @@ Open Badges Framework will show a link to the registration page (if it exist) an
 By activating the plugin, we can use the new profile fields created by the OBF plugin. These are displayed in the RCP registration form and edit profile page.
 
 ### Porfolio Integration
-OpenBadgesFramework-Languages-Portfolio allow to create a portfolio for teacher and students of second languages.
+Badges4Languages-Portfolio allow to create a portfolio for students of second languages.
 
-Once activated, the portfolio will use the Open Badges API for delivery of specific type of badges. Also the portfolio is used for the comprobation of the teachers' level.
+Once activated, the portfolio will allows students to make an auto-evaluation of their level in all the languages they want.
+
+### Profiling Grid Integration
+B4L-Profiling-Grid-for-Teachers allow to create a profiling grid for teacher and students.
+
+For the students, this plugin allows them to ask for some badges by providing an evidence of their level. Once an administrator checked the validation of this evidence, the badge is sent to the student.
+
+For the teachers, this plugin permits them to prove their level of certification by providing evidences. Once an administrator checked the validation of the evidences, the teacher is (or not) well certified and get the corresponding badge.
 
 ### Captcha Integration with [Really Simple Captcha](https://es.wordpress.org/plugins/really-simple-captcha/)
-By activating the Plugin, we have an integration that allows us to have a captcha test in the registration form displayed during the 'Get a badge' process (if th user is not registered yet). 
+By activating the Plugin, we have an integration that allows us to have a captcha test in the registration form displayed during the 'Get a badge' process (if the user is not registered yet). 
 
 We can enable it or not in the OBF Settings -> Misc. If the plugin is not activated (or disabled), the registration is still accessible but without the captcha test and the settings section disappears.
 
