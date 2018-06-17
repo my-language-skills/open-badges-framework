@@ -200,6 +200,17 @@ An Academy Teacher role can send Multiple Badges to Multiple Students (Certified
 * Information:
   * Addition information
   * Criteria
+  
+#### Fields of education
+During the "Send a badge" process, you have to choose a field of education. Their are different ways to create this fields. First you can add only main fields of education (fields without parents). Then you will be able to choose one of them when you want to send a badge. Or you can create parent fields AND their children. In this way, during the "Send a badge" process you will be able to choose one of the parent field to get the list of this field's children and choose one of them.
+
+![send_badge](../readme-assets/send-badge.png "Send Badge")
+
+Note :
+
+* You have to know that if you create child fields of education, the parents are not considered anymore as a "real" field of education. It becomes only a group of fields. So, you can't choose parent fields anymore to send a badge.
+* Creating sub-sub fields of education is useless, they will be considered as normal sub field of education.
+* Creating only one parent field and its children makes no sense because it would be the same if you create only parent fields of education (you don't need sub section during the "Send a badge" process).
 
 #### Send Badges Notice
 The plugin is developed in that way that doesnt allow a Teacher/Academy Teacher to send a badge to himself in the Single or Multiple way,
