@@ -1,4 +1,7 @@
 # Open Badges Framework
+
+[![Join the chat at https://gitter.im/my-language-skills/open-badges-framework](https://badges.gitter.im/my-language-skills/open-badges-framework.svg)](https://gitter.im/my-language-skills/open-badges-framework?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 A WordPress plugin for open badges
 
 Contributors: @colomet, @AleRiccardi, @ntorion, @uzair043, @CorentinPerrot, @alevacher, @Kongat, @leocharlier
