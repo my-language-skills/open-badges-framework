@@ -97,7 +97,17 @@ final class UserTemp {
                             </li>
                             <li>
                                 <span class="dashicons dashicons-admin-tools"></span>
-                                <?php echo implode(', ', $userData->roles); ?>
+
+                                <?php 
+                                    //If Restrict Content Pro plugin is activated, we display the user subscription
+                                    if (is_plugin_active( 'restrict-content-pro/restrict-content-pro.php' ) ){
+                                        echo rcp_get_subscription( get_queried_object_id() );
+                                    } 
+                                    //If not, we display the WP roles
+                                    else{
+                                        echo implode(', ', $userData->roles);
+                                    }
+                                ?>
                             </li>
                         </ul>
                     </div>
@@ -107,25 +117,49 @@ final class UserTemp {
                         <ul>
                             <li>
                                 <span class="dashicons dashicons-info"></span>
-                                Year of birth : <?php echo get_the_author_meta( 'year_of_birth', $idUser ); ?>
+                                <?php 
+                                    if( get_the_author_meta( 'year_of_birth', $idUser ) ){
+                                        echo 'Year of birth : ' . get_the_author_meta( 'year_of_birth', $idUser );
+                                    } else{
+                                        echo 'No year of birth';
+                                    }
+                                ?>
                             </li>
                             <li>
                                 <span class="dashicons dashicons-flag"></span>
-                                <?php echo get_the_author_meta( 'country', $idUser ); ?> - <?php echo get_the_author_meta( 'city', $idUser ); ?>
+                                <?php   
+                                    if( get_the_author_meta( 'country', $idUser ) && get_the_author_meta( 'city', $idUser ) ){
+                                        echo get_the_author_meta( 'country', $idUser ) . ' - ' . get_the_author_meta( 'city', $idUser );
+                                    } else if( get_the_author_meta( 'country', $idUser ) || get_the_author_meta( 'city', $idUser ) ) {
+                                        echo get_the_author_meta( 'country', $idUser ) . get_the_author_meta( 'city', $idUser );
+                                    } else{
+                                        echo 'No country and city';
+                                    }
+                                ?>
                             </li>
                             <li>
                                 <span class="dashicons dashicons-translation"></span>
-                                <?php echo get_the_author_meta( 'mother_tongue', $idUser ); ?>
+                                <?php 
+                                    if( get_the_author_meta( 'mother_tongue', $idUser ) ){
+                                        echo 'Mother tongue : ' . get_the_author_meta( 'mother_tongue', $idUser );
+                                    } else{
+                                        echo 'No Mother tongue';
+                                    }
+                                ?>
                             </li>
                             <li>
                                 <span class="dashicons dashicons-welcome-learn-more"></span>
                                 <?php 
-                                    echo get_the_author_meta( 'primary_degree', $idUser );
-                                    if( !empty( get_the_author_meta( 'secondary_degree', $idUser ) ) ){
-                                        echo ' - ' . get_the_author_meta( 'secondary_degree', $idUser );
-                                    }
-                                    if( !empty( get_the_author_meta( 'tertiary_degree', $idUser ) ) ){
-                                        echo ' - ' . get_the_author_meta( 'tertiary_degree', $idUser );
+                                    if( get_the_author_meta( 'primary_degree', $idUser ) ){
+                                        echo get_the_author_meta( 'primary_degree', $idUser );
+                                        if( !empty( get_the_author_meta( 'secondary_degree', $idUser ) ) ){
+                                            echo ' - ' . get_the_author_meta( 'secondary_degree', $idUser );
+                                        }
+                                        if( !empty( get_the_author_meta( 'tertiary_degree', $idUser ) ) ){
+                                            echo ' - ' . get_the_author_meta( 'tertiary_degree', $idUser );
+                                        }
+                                    } else{
+                                        echo 'No degree';
                                     }
                                 ?>
                             </li>
@@ -157,25 +191,49 @@ final class UserTemp {
                             </li>
                             <li>
                                 <span class="dashicons dashicons-info"></span>
-                                Year of birth : <?php echo get_the_author_meta( 'year_of_birth', $idUser ); ?>
+                                <?php 
+                                    if( get_the_author_meta( 'year_of_birth', $idUser ) ){
+                                        echo 'Year of birth : ' . get_the_author_meta( 'year_of_birth', $idUser );
+                                    } else{
+                                        echo 'No year of birth';
+                                    }
+                                ?>
                             </li>
                             <li>
                                 <span class="dashicons dashicons-flag"></span>
-                                <?php echo get_the_author_meta( 'country', $idUser ); ?> - <?php echo get_the_author_meta( 'city', $idUser ); ?>
+                                <?php   
+                                    if( get_the_author_meta( 'country', $idUser ) && get_the_author_meta( 'city', $idUser ) ){
+                                        echo get_the_author_meta( 'country', $idUser ) . ' - ' . get_the_author_meta( 'city', $idUser );
+                                    } else if( get_the_author_meta( 'country', $idUser ) || get_the_author_meta( 'city', $idUser ) ) {
+                                        echo get_the_author_meta( 'country', $idUser ) . get_the_author_meta( 'city', $idUser );
+                                    } else{
+                                        echo 'Np country and city';
+                                    }
+                                ?>
                             </li>
                             <li>
                                 <span class="dashicons dashicons-translation"></span>
-                                <?php echo get_the_author_meta( 'mother_tongue', $idUser ); ?>
+                                <?php 
+                                    if( get_the_author_meta( 'mother_tongue', $idUser ) ){
+                                        echo 'Mother tongue : ' . get_the_author_meta( 'mother_tongue', $idUser );
+                                    } else{
+                                        echo 'No Mother tongue';
+                                    }
+                                ?>
                             </li>
                             <li>
                                 <span class="dashicons dashicons-welcome-learn-more"></span>
                                 <?php 
-                                    echo get_the_author_meta( 'primary_degree', $idUser );
-                                    if( !empty( get_the_author_meta( 'secondary_degree', $idUser ) ) ){
-                                        echo ' - ' . get_the_author_meta( 'secondary_degree', $idUser );
-                                    }
-                                    if( !empty( get_the_author_meta( 'tertiary_degree', $idUser ) ) ){
-                                        echo ' - ' . get_the_author_meta( 'tertiary_degree', $idUser );
+                                    if( get_the_author_meta( 'primary_degree', $idUser ) ){
+                                        echo get_the_author_meta( 'primary_degree', $idUser );
+                                        if( !empty( get_the_author_meta( 'secondary_degree', $idUser ) ) ){
+                                            echo ' - ' . get_the_author_meta( 'secondary_degree', $idUser );
+                                        }
+                                        if( !empty( get_the_author_meta( 'tertiary_degree', $idUser ) ) ){
+                                            echo ' - ' . get_the_author_meta( 'tertiary_degree', $idUser );
+                                        }
+                                    } else{
+                                        echo 'No degree';
                                     }
                                 ?>
                             </li>
@@ -290,7 +348,7 @@ final class UserTemp {
             </div>
             <?php
             if ($userData->ID == wp_get_current_user()->ID) {
-                if (esc_url(get_permalink($rcp_options['edit_profile'])) && Secondary::isRCPActive()) {
+                if ( esc_url( get_permalink( $rcp_options['edit_profile'] ) ) && Secondary::isRCPActive() ) {
 
                     ?>
                     <div class="btn-update-container" style="text-align: center;">

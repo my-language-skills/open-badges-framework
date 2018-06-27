@@ -105,7 +105,7 @@ add_action( 'rcp_before_subscription_form_fields', 'pw_rcp_add_user_registration
  */
 function pw_rcp_add_user_editor_fields() {
 
-    //Prepare all post meta (if they are set)
+    //Prepare all post meta
     $year = get_the_author_meta( 'year_of_birth', get_current_user_id() );
     $country = get_the_author_meta( 'country', get_current_user_id() );
     $city = get_the_author_meta( 'city', get_current_user_id() );
@@ -113,6 +113,16 @@ function pw_rcp_add_user_editor_fields() {
     $secondary_degree = get_the_author_meta( 'secondary_degree', get_current_user_id() );
     $tertiary_degree = get_the_author_meta( 'tertiary_degree', get_current_user_id() );
     $mother_tongue = get_the_author_meta( 'mother_tongue', get_current_user_id() );
+
+    $user_data = get_userdata( get_current_user_id() );
+    $website = $user_data->user_url;
+    $facebook = get_the_author_meta( 'facebook', get_current_user_id() );
+    $twitter = get_the_author_meta( 'twitter', get_current_user_id() );
+    $googleplus = get_the_author_meta( 'googleplus', get_current_user_id() );
+    $pinterest = get_the_author_meta( 'pinterest', get_current_user_id() );
+    $linkedin = get_the_author_meta( 'linkedin', get_current_user_id() );
+    $github = get_the_author_meta( 'github', get_current_user_id() );
+    $instagram = get_the_author_meta( 'instagram', get_current_user_id() );
 
   ?>
     <h1>Personal Information</h1>
@@ -186,6 +196,56 @@ function pw_rcp_add_user_editor_fields() {
         <input name="tertiary_degree" id="tertiary_degree" type="text" value="<?php echo esc_attr( $tertiary_degree ); ?>"/>
     </p>
 
+    <h1>Social links</h1>
+    <p>Enter the URL of your social link</p>
+    <!--  Web site -->
+    <p>
+        <label for="website"><?php _e( 'Web site', 'rcp' ); ?></label>
+        <input name="website" id="website" type="text" value="<?php echo esc_attr( $website ); ?>"/>
+    </p>
+
+    <!--  Facebook -->
+    <p>
+        <label for="facebook"><?php _e( 'Facebook', 'rcp' ); ?></label>
+        <input name="facebook" id="facebook" type="text" value="<?php echo esc_attr( $facebook ); ?>"/>
+    </p>
+
+    <!--  Twitter -->
+    <p>
+        <label for="twitter"><?php _e( 'Twitter', 'rcp' ); ?></label>
+        <input name="twitter" id="twitter" type="text" value="<?php echo esc_attr( $twitter ); ?>"/>
+    </p>
+
+    <!--  Google + -->
+    <p>
+        <label for="googleplus"><?php _e( 'Google +', 'rcp' ); ?></label>
+        <input name="googleplus" id="googleplus" type="text" value="<?php echo esc_attr( $googleplus ); ?>"/>
+    </p>
+
+    <!--  Pinterest -->
+    <p>
+        <label for="pinterest"><?php _e( 'Pinterest', 'rcp' ); ?></label>
+        <input name="pinterest" id="pinterest" type="text" value="<?php echo esc_attr( $pinterest ); ?>"/>
+    </p>
+
+    <!--  LinkedIn -->
+    <p>
+        <label for="linkedin"><?php _e( 'LinkedIn', 'rcp' ); ?></label>
+        <input name="linkedin" id="linkedin" type="text" value="<?php echo esc_attr( $linkedin ); ?>"/>
+    </p>
+
+    <!--  GitHub -->
+    <p>
+        <label for="github"><?php _e( 'GitHub', 'rcp' ); ?></label>
+        <input name="github" id="github" type="text" value="<?php echo esc_attr( $github ); ?>"/>
+    </p>
+
+    <!--  Instagram -->
+    <p>
+        <label for="instagram"><?php _e( 'Instagram', 'rcp' ); ?></label>
+        <input name="instagram" id="instagram" type="text" value="<?php echo esc_attr( $instagram ); ?>"/>
+    </p>
+
   <?php
 }
 add_action( 'rcp_profile_editor_after', 'pw_rcp_add_user_editor_fields' );
@@ -251,6 +311,31 @@ function pw_rcp_save_user_fields_on_profile_save( $user_id ) {
   }
   if( ! empty( $_POST['tertiary_degree'] ) ) {
     update_user_meta( $user_id, 'tertiary_degree', sanitize_text_field( $_POST['tertiary_degree'] ) );
+  }
+
+  if( ! empty( $_POST['website'] ) ) {
+    update_user_meta( $user_id, 'user_url', sanitize_text_field( $_POST['website'] ) );
+  }
+  if( ! empty( $_POST['facebook'] ) ) {
+    update_user_meta( $user_id, 'facebook', sanitize_text_field( $_POST['facebook'] ) );
+  }
+  if( ! empty( $_POST['twitter'] ) ) {
+    update_user_meta( $user_id, 'twitter', sanitize_text_field( $_POST['twitter'] ) );
+  }
+  if( ! empty( $_POST['googleplus'] ) ) {
+    update_user_meta( $user_id, 'googleplus', sanitize_text_field( $_POST['googleplus'] ) );
+  }
+  if( ! empty( $_POST['pinterest'] ) ) {
+    update_user_meta( $user_id, 'pinterest', sanitize_text_field( $_POST['pinterest'] ) );
+  }
+  if( ! empty( $_POST['linkedin'] ) ) {
+    update_user_meta( $user_id, 'linkedin', sanitize_text_field( $_POST['linkedin'] ) );
+  }
+  if( ! empty( $_POST['github'] ) ) {
+    update_user_meta( $user_id, 'github', sanitize_text_field( $_POST['github'] ) );
+  }
+  if( ! empty( $_POST['instagram'] ) ) {
+    update_user_meta( $user_id, 'instagram', sanitize_text_field( $_POST['instagram'] ) );
   }
 }
 

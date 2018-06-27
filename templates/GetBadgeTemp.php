@@ -204,7 +204,11 @@ final class GetBadgeTemp extends BaseController {
                     <label for="inputPassword" class="sr-only"><?php _e('Password','open-badges-framework')?></label>
                     <input type="password" id="inputPassword" class="form-control" placeholder="<?php _e('Password','open-badges-framework')?>"
                            required>
-                    <a href= <?php echo '"' . get_permalink( 177 ) . '?rcp_action=lostpassword"' ?> >Lost Password ?</a>
+                    <?php
+                        if( is_plugin_active( 'restrict-content-pro/restrict-content-pro.php' ) ){
+                    ?>
+                        <a href= <?php echo '"' . get_permalink( get_page_by_path( 'sign-in' ) ) . '?rcp_action=lostpassword"' ?> >Lost Password ?</a>
+                    <?php } ?>
                     <div class="checkbox">
                         <label>
                             <input id="inputRemember" type="checkbox" value="remember-me"> <?php _e('Remember me','open-badges-framework')?>
