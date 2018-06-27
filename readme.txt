@@ -24,7 +24,7 @@ Thanks to this plugin, you will be able to manage badges for students, teachers 
 
 Users have their own profile when they connect to wordpress and can access to these functionalities. In their profile, they can provide their year of birth, location, mother tongue, different degrees (maximum of 3) and social links. They will also be able to see the badges they earned.
 
-As a non wordpress user, you will only be able to see all the catalog od badges.
+As a non wordpress user, you will only be able to see all the catalog of badges.
  
 == Installation ==
  
