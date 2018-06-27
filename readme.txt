@@ -1,6 +1,6 @@
 === Open Badges Framework ===
 Contributors: leocharlier
-Donate link: http://example.com/
+Donate link: https://mylanguageskills.wordpress.com/
 Tags:
 Requires at least: 4.9.6
 Tested up to: 4.9.6
