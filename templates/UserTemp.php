@@ -119,9 +119,9 @@ final class UserTemp {
                                 <span class="dashicons dashicons-info"></span>
                                 <?php 
                                     if( get_the_author_meta( 'year_of_birth', $idUser ) ){
-                                        echo 'Year of birth : ' . get_the_author_meta( 'year_of_birth', $idUser );
+                                        echo __('Year of birth : ','open-badges-framework') . get_the_author_meta( 'year_of_birth', $idUser );
                                     } else{
-                                        echo 'No year of birth';
+                                        _e('No year of birth','open-badges-framework');
                                     }
                                 ?>
                             </li>
@@ -133,7 +133,7 @@ final class UserTemp {
                                     } else if( get_the_author_meta( 'country', $idUser ) || get_the_author_meta( 'city', $idUser ) ) {
                                         echo get_the_author_meta( 'country', $idUser ) . get_the_author_meta( 'city', $idUser );
                                     } else{
-                                        echo 'No country and city';
+                                        _e('No country and city','open-badges-framework');
                                     }
                                 ?>
                             </li>
@@ -141,9 +141,9 @@ final class UserTemp {
                                 <span class="dashicons dashicons-translation"></span>
                                 <?php 
                                     if( get_the_author_meta( 'mother_tongue', $idUser ) ){
-                                        echo 'Mother tongue : ' . get_the_author_meta( 'mother_tongue', $idUser );
+                                        echo __('Mother tongue : ','open-badges-framework') . get_the_author_meta( 'mother_tongue', $idUser );
                                     } else{
-                                        echo 'No Mother tongue';
+                                        _e('No Mother tongue','open-badges-framework');
                                     }
                                 ?>
                             </li>
@@ -159,7 +159,7 @@ final class UserTemp {
                                             echo ' - ' . get_the_author_meta( 'tertiary_degree', $idUser );
                                         }
                                     } else{
-                                        echo 'No degree';
+                                        _e('No degree','open-badges-framework');
                                     }
                                 ?>
                             </li>
@@ -193,9 +193,9 @@ final class UserTemp {
                                 <span class="dashicons dashicons-info"></span>
                                 <?php 
                                     if( get_the_author_meta( 'year_of_birth', $idUser ) ){
-                                        echo 'Year of birth : ' . get_the_author_meta( 'year_of_birth', $idUser );
+                                        echo __('Year of birth : ','open-badges-framework') . get_the_author_meta( 'year_of_birth', $idUser );
                                     } else{
-                                        echo 'No year of birth';
+                                        _e('No year of birth','open-badges-framework');
                                     }
                                 ?>
                             </li>
@@ -207,7 +207,7 @@ final class UserTemp {
                                     } else if( get_the_author_meta( 'country', $idUser ) || get_the_author_meta( 'city', $idUser ) ) {
                                         echo get_the_author_meta( 'country', $idUser ) . get_the_author_meta( 'city', $idUser );
                                     } else{
-                                        echo 'Np country and city';
+                                        _e('No country and city','open-badges-framework');
                                     }
                                 ?>
                             </li>
@@ -215,9 +215,9 @@ final class UserTemp {
                                 <span class="dashicons dashicons-translation"></span>
                                 <?php 
                                     if( get_the_author_meta( 'mother_tongue', $idUser ) ){
-                                        echo 'Mother tongue : ' . get_the_author_meta( 'mother_tongue', $idUser );
+                                        echo __('Mother tongue : ','open-badges-framework') . get_the_author_meta( 'mother_tongue', $idUser );
                                     } else{
-                                        echo 'No Mother tongue';
+                                        _e('No Mother tongue','open-badges-framework');
                                     }
                                 ?>
                             </li>
@@ -233,7 +233,7 @@ final class UserTemp {
                                             echo ' - ' . get_the_author_meta( 'tertiary_degree', $idUser );
                                         }
                                     } else{
-                                        echo 'No degree';
+                                        _e('No degree','open-badges-framework');
                                     }
                                 ?>
                             </li>
@@ -243,7 +243,7 @@ final class UserTemp {
             </div>
 
             <!-- User Social Links -->
-            <h2 class="social-links-title">Find me on :</h2>
+            <h2 class="social-links-title"><?php _e('Find me on :','open-badges-framework'); ?></h2>
             <div class="user-info-admin flex-container">
                 <div class="username-user center-container flex-item">
                     <div class="txt-info center-item">
@@ -255,7 +255,7 @@ final class UserTemp {
                                 if( !empty( $userData->user_url ) ){
                                     echo '<a href="<?php echo $userData->user_url; ?>">Website</a>';
                                 } else{
-                                    echo 'No Website';
+                                    _e('No Website','open-badges-framework');
                                 }
                                 ?>
                             </li>
@@ -266,7 +266,7 @@ final class UserTemp {
                                 if( !empty( get_the_author_meta( 'facebook', $idUser ) ) ){
                                     echo '<a href="'. get_the_author_meta( 'facebook', $idUser ) .'">Facebook</a>';
                                 } else{
-                                    echo 'No Facebook';
+                                    _e('No Facebook','open-badges-framework');
                                 }
                                 ?>
                             </li>
@@ -277,7 +277,7 @@ final class UserTemp {
                                 if( !empty( get_the_author_meta( 'twitter', $idUser ) ) ){
                                     echo '<a href="'. get_the_author_meta( 'twitter', $idUser ) .'">Twitter</a>';
                                 } else{
-                                    echo 'No Twitter';
+                                    _e('No Twitter','open-badges-framework');
                                 }
                                 ?>
                             </li>
@@ -288,7 +288,7 @@ final class UserTemp {
                                 if( !empty( get_the_author_meta( 'googleplus', $idUser ) ) ){
                                     echo '<a href="'. get_the_author_meta( 'googleplus', $idUser ) .'">Google+</a>';
                                 } else{
-                                    echo 'No Google+';
+                                    _e('No Google+','open-badges-framework');
                                 }
                                 ?>
                             </li>
@@ -305,7 +305,7 @@ final class UserTemp {
                                 if( !empty( get_the_author_meta( 'pinterest', $idUser ) ) ){
                                     echo '<a href="'. get_the_author_meta( 'pinterest', $idUser ) .'">Pinterest</a>';
                                 } else{
-                                    echo 'No Pinterest';
+                                    _e('No Pinterest','open-badges-framework');
                                 }
                                 ?>
                             </li>
@@ -316,7 +316,7 @@ final class UserTemp {
                                 if( !empty( get_the_author_meta( 'linkedin', $idUser ) ) ){
                                     echo '<a href="'. get_the_author_meta( 'linkedin', $idUser ) .'">LinkedIn</a>';
                                 } else{
-                                    echo 'No LinkedIn';
+                                    _e('No LinkedIn','open-badges-framework');
                                 }
                                 ?>
                             </li>
@@ -327,7 +327,7 @@ final class UserTemp {
                                 if( !empty( get_the_author_meta( 'github', $idUser ) ) ){
                                     echo '<a href="'. get_the_author_meta( 'github', $idUser ) .'">GitHub</a>';
                                 } else{
-                                    echo 'No GitHub';
+                                    _e('No GitHub','open-badges-framework');
                                 }
                                 ?>
                             </li>
@@ -338,7 +338,7 @@ final class UserTemp {
                                 if( !empty( get_the_author_meta( 'instagram', $idUser ) ) ){
                                     echo '<a href="'. get_the_author_meta( 'instagram', $idUser ) .'">Instagram</a>';
                                 } else{
-                                    echo 'No Instagram';
+                                    _e('No Instagram','open-badges-framework');
                                 }
                                 ?>
                             </li>
