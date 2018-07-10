@@ -751,7 +751,6 @@ final class SettingsTemp {
      */
     public function becomePremiumPageCallback() {
         $val = isset($this->options[self::FI_BECOME_PREMIUM]) ? esc_attr($this->options[self::FI_BECOME_PREMIUM]) : '';
-        if (Secondary::isJobManagerActive()) {
             wp_dropdown_pages(array(
                 'id' => self::FI_BECOME_PREMIUM,
                 'name' => self::OPTION_NAME . '[' . self::FI_BECOME_PREMIUM . ']',
@@ -762,14 +761,6 @@ final class SettingsTemp {
             echo self::showPreviewLink($val); ?>
             <p class="description" id="tagline-description"><?php _e('Select the page where you’ve used a shortcode from a membership Plugin. This lets the plugin know the location of the form.','open-badges-framework.');?></p>
             <?php
-        } else { ?>
-            <select id="<?php echo self::FI_BECOME_PREMIUM ?>"
-                    name="<?php echo self::OPTION_NAME . '[' . self::FI_BECOME_PREMIUM . ']' ?>" disabled>
-                <option>None</option>
-            </select>
-            <p class="description" id="tagline-description">WP Job Manager deactivated.</p>
-            <?php
-        }
     }
     /**
      * Print the add class page field with also the value (if exist).
