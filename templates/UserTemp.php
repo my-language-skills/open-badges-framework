@@ -100,7 +100,7 @@ final class UserTemp {
 
                                 <?php 
                                     //If Restrict Content Pro plugin is activated, we display the user subscription
-                                    if (is_plugin_active( 'restrict-content-pro/restrict-content-pro.php' ) ){
+                                    if (is_plugin_active( 'restrict-content-pro/restrict-content-pro.php' ) && rcp_get_subscription( get_queried_object_id() ) != null ){
                                         echo rcp_get_subscription( get_queried_object_id() );
                                     } 
                                     //If not, we display the WP roles
@@ -115,54 +115,42 @@ final class UserTemp {
                 <div class="username-user center-container flex-item">
                     <div class="txt-info center-item">
                         <ul>
-                            <li>
-                                <span class="dashicons dashicons-info"></span>
-                                <?php 
-                                    if( get_the_author_meta( 'year_of_birth', $idUser ) ){
-                                        echo __('Year of birth : ','open-badges-framework') . get_the_author_meta( 'year_of_birth', $idUser );
-                                    } else{
-                                        _e('No year of birth','open-badges-framework');
+                            <?php 
+                            if( get_the_author_meta( 'year_of_birth', $idUser ) ){ ?>
+                                <li>
+                                    <span class="dashicons dashicons-info"></span>
+                                    <?php echo __('Year of birth : ','open-badges-framework') . get_the_author_meta( 'year_of_birth', $idUser ); ?>
+                                </li>
+                            <?php }
+                            if( get_the_author_meta( 'country', $idUser ) && get_the_author_meta( 'city', $idUser ) ){ ?>
+                                <li>
+                                    <span class="dashicons dashicons-flag"></span>
+                                    <?php echo get_the_author_meta( 'country', $idUser ) . ' - ' . get_the_author_meta( 'city', $idUser ); ?>
+                                </li>
+                            <?php } else if( get_the_author_meta( 'country', $idUser ) || get_the_author_meta( 'city', $idUser ) ){ ?>
+                                <li>
+                                    <span class="dashicons dashicons-flag"></span>
+                                    <?php echo get_the_author_meta( 'country', $idUser ) . get_the_author_meta( 'city', $idUser ); ?>
+                                </li>
+                            <?php }
+                            if( get_the_author_meta( 'mother_tongue', $idUser ) ){ ?>
+                                <li>
+                                    <span class="dashicons dashicons-translation"></span>
+                                    <?php echo __('Mother tongue : ','open-badges-framework') . get_the_author_meta( 'mother_tongue', $idUser ); ?>
+                                </li>
+                            <?php }
+                            if( get_the_author_meta( 'primary_degree', $idUser ) ){ ?>
+                                <li>
+                                    <span class="dashicons dashicons-info"></span>
+                                    <?php echo get_the_author_meta( 'primary_degree', $idUser );
+                                    if( !empty( get_the_author_meta( 'secondary_degree', $idUser ) ) ){
+                                        echo ' - ' . get_the_author_meta( 'secondary_degree', $idUser );
                                     }
-                                ?>
-                            </li>
-                            <li>
-                                <span class="dashicons dashicons-flag"></span>
-                                <?php   
-                                    if( get_the_author_meta( 'country', $idUser ) && get_the_author_meta( 'city', $idUser ) ){
-                                        echo get_the_author_meta( 'country', $idUser ) . ' - ' . get_the_author_meta( 'city', $idUser );
-                                    } else if( get_the_author_meta( 'country', $idUser ) || get_the_author_meta( 'city', $idUser ) ) {
-                                        echo get_the_author_meta( 'country', $idUser ) . get_the_author_meta( 'city', $idUser );
-                                    } else{
-                                        _e('No country and city','open-badges-framework');
-                                    }
-                                ?>
-                            </li>
-                            <li>
-                                <span class="dashicons dashicons-translation"></span>
-                                <?php 
-                                    if( get_the_author_meta( 'mother_tongue', $idUser ) ){
-                                        echo __('Mother tongue : ','open-badges-framework') . get_the_author_meta( 'mother_tongue', $idUser );
-                                    } else{
-                                        _e('No Mother tongue','open-badges-framework');
-                                    }
-                                ?>
-                            </li>
-                            <li>
-                                <span class="dashicons dashicons-welcome-learn-more"></span>
-                                <?php 
-                                    if( get_the_author_meta( 'primary_degree', $idUser ) ){
-                                        echo get_the_author_meta( 'primary_degree', $idUser );
-                                        if( !empty( get_the_author_meta( 'secondary_degree', $idUser ) ) ){
-                                            echo ' - ' . get_the_author_meta( 'secondary_degree', $idUser );
-                                        }
-                                        if( !empty( get_the_author_meta( 'tertiary_degree', $idUser ) ) ){
-                                            echo ' - ' . get_the_author_meta( 'tertiary_degree', $idUser );
-                                        }
-                                    } else{
-                                        _e('No degree','open-badges-framework');
-                                    }
-                                ?>
-                            </li>
+                                    if( !empty( get_the_author_meta( 'tertiary_degree', $idUser ) ) ){
+                                        echo ' - ' . get_the_author_meta( 'tertiary_degree', $idUser );
+                                    } ?>
+                                </li>
+                            <?php } ?>
                         </ul>
                     </div>
                 </div>
