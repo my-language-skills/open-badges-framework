@@ -286,8 +286,7 @@ final class UserTemp {
             </div>
             <?php
             if ($userData->ID == wp_get_current_user()->ID) {
-                if ( esc_url( get_permalink( $rcp_options['edit_profile'] ) ) && Secondary::isRCPActive() ) {
-
+                if ( esc_url( get_permalink( $rcp_options['edit_profile'] ) ) && is_plugin_active('restrict-content-pro/restrict-content-pro.php') ) {
                     ?>
                     <div class="btn-update-container" style="text-align: center;">
                         <a href="<?php echo esc_url(get_permalink($rcp_options['edit_profile'])); ?>"
