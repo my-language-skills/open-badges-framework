@@ -123,6 +123,7 @@ Completely overhauled design, from top to bottom. The plugin has been completely
 * Send badges to Self, Single student or Multiple students.
 * Settings pages.
 * Integration with wp Job Manager for the creation of Classes.
+* Archive Badge page : you can filter your search by clicking on one badge's specificitie (level, certification, FoE, target). #235
 
 ### Older Changelog
 
