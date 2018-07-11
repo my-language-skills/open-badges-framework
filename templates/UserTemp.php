@@ -218,6 +218,9 @@ final class UserTemp {
                 </div>
             </div>
 
+            <?php
+            if( !empty( $userData->user_url ) || !empty( get_the_author_meta( 'facebook', $idUser ) ) || !empty( get_the_author_meta( 'twitter', $idUser ) ) || !empty( get_the_author_meta( 'googleplus', $idUser ) ) || !empty( get_the_author_meta( 'pinterest', $idUser ) ) || !empty( get_the_author_meta( 'linkedin', $idUser ) ) || !empty( get_the_author_meta( 'github', $idUser ) ) || !empty( get_the_author_meta( 'instagram', $idUser ) ) ){
+            ?>
             <!-- User Social Links -->
             <h2 class="social-links-title"><?php _e('Find me on :','open-badges-framework'); ?></h2>
             <div class="user-info-admin flex-container">
@@ -284,7 +287,8 @@ final class UserTemp {
                     </div>
                 </div>
             </div>
-            <?php
+            <?php }
+            
             if ($userData->ID == wp_get_current_user()->ID) {
                 if ( esc_url( get_permalink( $rcp_options['edit_profile'] ) ) && is_plugin_active('restrict-content-pro/restrict-content-pro.php') ) {
                     ?>
