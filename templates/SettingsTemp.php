@@ -26,12 +26,14 @@ final class SettingsTemp {
     const PAGE_PROFILE = "setting_page";
     const PAGE_LINKS = "links_page";
 	const PAGE_EMAIL_SETTINGS = "email_settings_page";
-    const PAGE_MISC = "misc_page";
+    const PAGE_EXTENSIONS = "extensions_page";
     //SECTIONS
     CONST SECT_COMPANY_PROFILE = 'company_profile_sect';
     CONST SECT_PAGE_REF = 'page_link_sect';
 	CONST SECT_EMAIL_SETTINGS = 'page_link_sect';
+    CONST SECT_EXTENSIONS = 'page_extensions_sect';
     CONST SECT_CAPTCHA = 'captcha_sect';
+    CONST SECT_WP_JOBMANAGER = 'wp_jobmanage_sect';
     // PROFILE FIELDS
 	
     const FI_SITE_NAME_FIELD = "site_name_field";
@@ -55,7 +57,7 @@ final class SettingsTemp {
 	const FI_CONTACT_EMAIL_FIELD = 'contact_email_field';
 	const FI_MESSAGE_EMAIL_FIELD = 'message_email_field';
 
-    //MISC FIELDS
+    //EXTENSIONS FIELDS
     const FI_CAPTCHA = "captcha_field";
 	
     private $options;
@@ -151,7 +153,7 @@ final class SettingsTemp {
                 <li class="active"><a href="#tab-1"><?php _e('Profile','open-badges-framework');?></a></li>
                 <li class=""><a href="#tab-2"><?php _e('Links','open-badges-framework');?></a></li>
 				<li class=""><a href="#tab-3"><?php _e('Email Settings','open-badges-framework');?></a></li>
-                <li class=""><a href="#tab-4"><?php _e('Misc','open-badges-framework');?></a></li>
+                <li class=""><a href="#tab-4"><?php _e('Extensions','open-badges-framework');?></a></li>
             </ul>
 			
 
@@ -185,7 +187,7 @@ final class SettingsTemp {
                         <?php
                         // This prints out all hidden setting fields
                         settings_fields(self::OPTION_GROUP);
-                        do_settings_sections(self::PAGE_MISC);
+                        do_settings_sections(self::PAGE_EXTENSIONS);
                         ?>
                     </div>				
                 </div>
@@ -278,16 +280,6 @@ final class SettingsTemp {
             self::PAGE_LINKS, // Page
             self::SECT_PAGE_REF
         );
-        /* --> Add Class Page________ */
-        if( is_plugin_active( 'wp-job-manager/wp-job-manager.php' ) ){
-            add_settings_field(
-                self::FI_ADD_CLASS,
-                __('Add Class Page','open-badges-framework'),// Title,
-                array($this, 'addClassPageCallback'),
-                self::PAGE_LINKS,
-                self::SECT_PAGE_REF
-            );            
-        }
         /* --> Register Page__________ */
         add_settings_field(
             self::FI_GET_BADGE,
@@ -355,35 +347,46 @@ final class SettingsTemp {
             self::PAGE_EMAIL_SETTINGS,
             self::SECT_EMAIL_SETTINGS
         );
-        /* #PAGE MISC_________________________________________ */
+        /* #PAGE EXTENSIONS_________________________________________ */
         add_settings_section(
-            self::SECT_CAPTCHA, // ID
-            __('Miscellaneous','open-badges-framework'),// Title
+            self::SECT_EXTENSIONS, // ID
+            __('Extensions','open-badges-framework'),// Title
             array(), // Callback
-            self::PAGE_MISC // Page
+            self::PAGE_EXTENSIONS // Page
         );
         //Only if the ReallySimpleCaptcha plugin is active
         if ( is_plugin_active( 'really-simple-captcha/really-simple-captcha.php') ){
             add_settings_section(
                 self::SECT_CAPTCHA, // ID
-                '',// Title
+                'Really Simple Captcha',// Title
                 array(), // Callback
-                self::PAGE_MISC // Page
+                self::PAGE_EXTENSIONS // Page
             );
             /* --> Captcha____*/
             add_settings_field(
                 self::FI_CAPTCHA, // ID
                 __('Enable Captcha','open-badges-framework'),// Title
                 array($this, 'captchaCallback'), // Callback
-                self::PAGE_MISC, // Page
+                self::PAGE_EXTENSIONS, // Page
                 self::SECT_CAPTCHA
             );
         }
- 	   /*function shortcode(){
-			$link = $options[self::FI_SITE_NAME_FIELD];
-			return '<img src="' . sanitize_text_field( $input_examples[ 'textarea_example' ] ) . '">';
-		} 
-		add_shortcode('shortcode', 'shortcode');*/
+        /* --> Add Class Page________ */
+        if( is_plugin_active( 'wp-job-manager/wp-job-manager.php' ) ){
+            add_settings_section(
+                self::SECT_WP_JOBMANAGER, // ID
+                'WP Job Manager',// Title
+                array(), // Callback
+                self::PAGE_EXTENSIONS // Page
+            );
+            add_settings_field(
+                self::FI_ADD_CLASS,
+                __('Add Class Page','open-badges-framework'),// Title,
+                array($this, 'addClassPageCallback'),
+                self::PAGE_EXTENSIONS,
+                self::SECT_WP_JOBMANAGER
+            );            
+        }
     }
     /**
      * Sanitize each setting field as needed.
