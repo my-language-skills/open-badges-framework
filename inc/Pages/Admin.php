@@ -80,8 +80,8 @@ class Admin extends BaseController {
     public function setPages() {
         $this->pages = array(
             array(
-                'page_title' => 'Open Badge',
-                'menu_title' => 'Open Badge',
+                'page_title' => 'OBF',
+                'menu_title' => 'OBF',
                 'capability' => 'manage_options',
                 'menu_slug' => self::SLUG_PLUGIN,
                 'callback' => array(DashboardTemp::class, 'main'),
