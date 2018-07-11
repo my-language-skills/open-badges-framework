@@ -28,11 +28,11 @@ class BadgesTemp {
         $badges = WPBadge::getAll();
         ?>
         <div class="wrap">
-            <h1 class="obf-title"><?php _e('Badges','open-badges-framework'); ?></h1>
+            <h1><?php _e('Badges','open-badges-framework'); ?></h1>
             <?php if( sizeof($badges) <= 0 ){ ?>
-                <p><?php _e('In this section, you will see all the badges available.','open-badges-framework'); ?> <a href="<?php echo admin_url('post-new.php?post_type=open-badge');?>"><?php _e('Add the first one.','open-badges-framework'); ?></a></p>
+                <p style="margin-bottom: 0px; margin-top: 0px;"><?php _e('In this section, you will see all the badges available.','open-badges-framework'); ?> <a href="<?php echo admin_url('post-new.php?post_type=open-badge');?>"><?php _e('Add the first one.','open-badges-framework'); ?></a></p>
             <?php } else{ ?>
-                <p><?php _e('In this section, you can see all the badges available.','open-badges-framework'); ?></p>
+                <p style="margin-bottom: 0px; margin-top: 0px;"><?php _e('In this section, you can see all the badges available.','open-badges-framework'); ?></p>
             <?php } ?>
         <?php
         if( sizeof($badges) > 0 ){ ?>

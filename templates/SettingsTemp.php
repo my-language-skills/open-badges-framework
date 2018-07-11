@@ -356,6 +356,12 @@ final class SettingsTemp {
             self::SECT_EMAIL_SETTINGS
         );
         /* #PAGE MISC_________________________________________ */
+        add_settings_section(
+            self::SECT_CAPTCHA, // ID
+            __('Miscellaneous','open-badges-framework'),// Title
+            array(), // Callback
+            self::PAGE_MISC // Page
+        );
         //Only if the ReallySimpleCaptcha plugin is active
         if ( is_plugin_active( 'really-simple-captcha/really-simple-captcha.php') ){
             add_settings_section(

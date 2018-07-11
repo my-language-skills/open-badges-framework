@@ -54,23 +54,23 @@ final class UserTemp {
         ?>
 
         <!-- User Description -->
-        <div class="author-name">
-            <h1 class="">
-                <?php 
-                if( !empty( $userData->first_name ) && !empty( $userData->last_name ) ){
-                    echo $userData->first_name; ?>&nbsp;<?php echo $userData->last_name; 
-                } else{
-                    echo get_the_author_meta( 'display_name', $idUser );
-                }?>
-            </h1>
-            <?php
-            if( !empty( get_the_author_meta( 'description', $idUser ) ) ){ ?>
-                <div style = "margin-top: 10px;">
-                    <h2 style = "display: inline;">Bio : </h2>
-                    <p style="font-size: 17px; display: inline;"><?php echo get_the_author_meta( 'description', $idUser ); ?></p>
-                </div>
-            <?php } ?>
-        </div>
+
+        <h1>
+            <?php 
+            if( !empty( $userData->first_name ) && !empty( $userData->last_name ) ){
+                echo "User Profile: " . $userData->first_name; ?>&nbsp;<?php echo $userData->last_name; 
+            } else{
+                echo "User Profile: " . get_the_author_meta( 'display_name', $idUser );
+            }?>
+        </h1>
+        <?php
+        if( !empty( get_the_author_meta( 'description', $idUser ) ) ){ ?>
+            <div style = "margin-top: 10px;">
+                <h2 style = "display: inline;">Bio : </h2>
+                <p style="font-size: 17px; display: inline;"><?php echo get_the_author_meta( 'description', $idUser ); ?></p>
+            </div>
+        <?php } ?>
+
 
         <!-- User Information -->
         <section>
@@ -294,12 +294,7 @@ final class UserTemp {
                            class="btn btn-secondary"><?php _e('Edit your profile','open-badges-framework'); ?></a>
                     </div>
                     <?php
-                } else { ?>
-                    <div class="btn-update-container" style="text-align: center;">
-                        <a href="profile.php"
-                           class="btn btn-secondary"><?php _e('Edit your profile','open-badges-framework'); ?></a>
-                    </div>
-                <?php }
+                }
             } ?>
         </section>
         <?php
