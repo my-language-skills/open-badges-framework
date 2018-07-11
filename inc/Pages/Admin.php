@@ -154,8 +154,8 @@ class Admin extends BaseController {
             // ## User ##
             array(
                 'parent_slug' => self::SLUG_PLUGIN,
-                'page_title' => 'User',
-                'menu_title' => 'User',
+                'page_title' => 'User Profile',
+                'menu_title' => 'User Profile',
                 'capability' => 'read',
                 'menu_slug' => self::PAGE_PROFILE,
                 'callback' => array($userTemp, 'main')
