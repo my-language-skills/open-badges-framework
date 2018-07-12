@@ -39,14 +39,14 @@ final class DashboardTemp extends BaseController {
             <h1><?php _e('Open Badges Framework','open-badges-framework'); ?></h1>
 
             <ul class="nav nav-tabs">
-                <li class="active"><a href="#tab-1"><?php _e('Action','open-badges-framework'); ?></a></li>
+                <li class="active"><a href="#tab-1"><?php _e('Statistics','open-badges-framework'); ?></a></li>
                 <li class=""><a href="#tab-2"> <?php _e('Badges','open-badges-framework'); ?></a></li>
                 <li class=""><a href="#tab-3"> <?php _e('Teachers','open-badges-framework'); ?></a></li>
             </ul>
 
             <div class="tab-content-page">
                 <div id="tab-1" class="tab-pane active">
-                    <?php self::actionTab(); ?>
+                    <?php self::statisticsTab(); ?>
                 </div>
                 <div id="tab-2" class="tab-pane">
                     <?php self::badgesTab(); ?>
@@ -62,14 +62,14 @@ final class DashboardTemp extends BaseController {
     }
 
     /**
-     * The action tab, loaded as a first tab.
+     * The statistics tab, loaded as a first tab.
      *
      * @author      @AleRiccardi
      * @since       1.0.0
      *
      * @return void
      */
-    public static function actionTab() {
+    public static function statisticsTab() {
         ?>
         <div class="container admin">
             <div class="intro-dash">
