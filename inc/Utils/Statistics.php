@@ -62,15 +62,6 @@ class Statistics {
         }
 
         return $count;
-        
-        /*$numTerms = wp_count_terms($slug);
-
-        if (isset($numTerms)) {
-            return $numTerms;
-        } else {
-            return 0;
-        }*/
-        
     }
 
     /**

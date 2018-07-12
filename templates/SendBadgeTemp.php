@@ -411,11 +411,13 @@ final class SendBadgeTemp extends BaseController {
         if ($fields->haveChildren()) {
             echo '<div class="btns-parent-field">';
             foreach ($fields->main as $parent) {
-                if (!$i) {
-                    $i = 1;
-                    echo '<a class="btn-change-children active" id="' . $parent->slug . '">' . __('Display','open-badges-framework') . ' ' . $parent->name . '</a>';
-                } else {
-                    echo '<a class="btn-change-children" id="' . $parent->slug . '">' . __('Display','open-badges-framework') . ' ' . $parent->name . '</a>';
+                if( get_term_children($parent->term_id, 'field_of_education'  ) ){
+                    if (!$i) {
+                        $i = 1;
+                        echo '<a class="btn-change-children active" id="' . $parent->slug . '">' . __('Display','open-badges-framework') . ' ' . $parent->name . '</a>';
+                    } else {
+                        echo '<a class="btn-change-children" id="' . $parent->slug . '">' . __('Display','open-badges-framework') . ' ' . $parent->name . '</a>';
+                    }
                 }
             }
             echo '<a class="btn-change-children" id="all_field">' . __('Display all Fields','open-badges-framework') . '</a>';
