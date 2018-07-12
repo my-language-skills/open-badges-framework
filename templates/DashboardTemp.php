@@ -53,7 +53,7 @@ final class DashboardTemp extends BaseController {
                 </div>
                 <div id="tab-3" class="tab-pane">
                     <?php self::teachersTab(); ?>
-                </div>				
+                </div>
 
             </div>
         </div>
@@ -74,7 +74,7 @@ final class DashboardTemp extends BaseController {
         <div class="container admin">
             <div class="intro-dash">
                 <div class="cont-title-dash">
-                    <h3 style="margin-bottom: 0px;"><?php _e('Action control','open-badges-framework'); ?></h3>
+                    <h3 style="margin-bottom: 0px;"><?php _e('Statistics','open-badges-framework'); ?></h3>
                     <p style="margin-bottom: 0px; margin-top: 0px;">
                         <?php _e('Here you can see the statistics of the Badges.','open-badges-framework'); ?>
                     </p>
@@ -190,10 +190,10 @@ final class DashboardTemp extends BaseController {
      *
      * @return void
      */
-	 
+
     public static function teachersTab() {
 
-        ?> 
+        ?>
         <div class="container admin">
             <div class="intro-dash">
                 <div class="cont-title-dash">
@@ -210,7 +210,7 @@ final class DashboardTemp extends BaseController {
         </div>
         <?php
     }
-	 
-	 
- 
+
+
+
 }
