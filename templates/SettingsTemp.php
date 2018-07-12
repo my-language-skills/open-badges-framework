@@ -12,7 +12,7 @@ use Inc\Base\Secondary;
  * @todo        https://www.youtube.com/watch?v=QYt5Ry3os88
  *
  * All the content to show in the front-end is wrapped in the __() function
- * for internationalization purposes 
+ * for internationalization purposes
  *
  * @author      @AleRiccardi
  * @since       1.0.0
@@ -35,31 +35,31 @@ final class SettingsTemp {
     CONST SECT_CAPTCHA = 'captcha_sect';
     CONST SECT_WP_JOBMANAGER = 'wp_jobmanage_sect';
     // PROFILE FIELDS
-	
+
     const FI_SITE_NAME_FIELD = "site_name_field";
     const FI_WEBSITE_URL_FIELD = 'website_url_field';
     const FI_TELEPHONE_FIELD = 'telephone_field';
     const FI_DESCRIPTION_FIELD = 'information_field';
     const FI_IMAGE_URL_FIELD = 'image_url_field';
     const FI_EMAIL_FIELD = 'email_field';
-	
+
 	// LINK FIELDS
     const FI_ADD_CLASS = 'add_class_page';
     const FI_BECOME_PREMIUM = 'become_premium_page';
     const FI_GET_BADGE = 'get-badge-page';
-	
+
 	//EMAIL SETTINGS FIELDS
 	const FI_HEADER_EMAIL_FIELD = "header_email_field";
 	const FI_SITE_NAME_EMAIL_FIELD = "site_name_email_field";
     const FI_WEBSITE_URL_EMAIL_FIELD = 'website_url_email_field';
-	
+
 	const FI_IMAGE_URL_EMAIL_FIELD = 'image_url_email_field';
 	const FI_CONTACT_EMAIL_FIELD = 'contact_email_field';
 	const FI_MESSAGE_EMAIL_FIELD = 'message_email_field';
 
     //EXTENSIONS FIELDS
     const FI_CAPTCHA = "captcha_field";
-	
+
     private $options;
     /**
      * The construct allow to call th admin_init hook initializing the
@@ -81,22 +81,22 @@ final class SettingsTemp {
      */
     public static function init() {
         $options = get_option(self::OPTION_NAME);
-		
+
         $fiName = $options[self::FI_SITE_NAME_FIELD];
         $fiWebUrl = $options[self::FI_WEBSITE_URL_FIELD];
         $fiTel = $options[self::FI_TELEPHONE_FIELD];
         $fiDesc = $options[self::FI_DESCRIPTION_FIELD];
         $fiImageUrl = $options[self::FI_IMAGE_URL_FIELD];
         $fiEmail = $options[self::FI_EMAIL_FIELD];
-		
-		
+
+
         $emailFiName = $options[self::FI_SITE_NAME_EMAIL_FIELD];
         $emailFiWebUrl = $options[self::FI_WEBSITE_URL_EMAIL_FIELD];
-		$emailFiEmail = $options[self::FI_CONTACT_EMAIL_FIELD];	
-        $emailFiImageUrl = $options[self::FI_IMAGE_URL_EMAIL_FIELD];	
-		$emailFiHeader = $options[self::FI_HEADER_EMAIL_FIELD];	
-		$emailFiMessage = $options[self::FI_MESSAGE_EMAIL_FIELD];	
-		
+		$emailFiEmail = $options[self::FI_CONTACT_EMAIL_FIELD];
+        $emailFiImageUrl = $options[self::FI_IMAGE_URL_EMAIL_FIELD];
+		$emailFiHeader = $options[self::FI_HEADER_EMAIL_FIELD];
+		$emailFiMessage = $options[self::FI_MESSAGE_EMAIL_FIELD];
+
         $fiClass = $options[self::FI_ADD_CLASS];
         $fiPremium = $options[self::FI_BECOME_PREMIUM];
         $fiBadge = $options[self::FI_GET_BADGE];
@@ -155,7 +155,7 @@ final class SettingsTemp {
 				<li class=""><a href="#tab-3"><?php _e('Email Settings','open-badges-framework');?></a></li>
                 <li class=""><a href="#tab-4"><?php _e('Extensions','open-badges-framework');?></a></li>
             </ul>
-			
+
 
             <form method="post" action="options.php">
                 <?php
@@ -189,7 +189,7 @@ final class SettingsTemp {
                         settings_fields(self::OPTION_GROUP);
                         do_settings_sections(self::PAGE_EXTENSIONS);
                         ?>
-                    </div>				
+                    </div>
                 </div>
 				<?php
 					submit_button(__('Save Settings','open-badges-framework'), 'primary', 'wpdocs-save-settings');
@@ -227,7 +227,7 @@ final class SettingsTemp {
         );
         /* --> WebSite URL______________ */
         add_settings_field(
-            self::FI_WEBSITE_URL_FIELD,    
+            self::FI_WEBSITE_URL_FIELD,
 			__('Website URL','open-badges-framework'),// Title
             array($this, 'websiteUrlCallback'),
             self::PAGE_PROFILE,
@@ -288,7 +288,7 @@ final class SettingsTemp {
             self::PAGE_LINKS,
             self::SECT_PAGE_REF
         );
-		
+
         /* #EMAIL SETTINGS________________________________ */
         add_settings_section(
             self::SECT_EMAIL_SETTINGS, // ID
@@ -304,10 +304,10 @@ final class SettingsTemp {
             self::PAGE_EMAIL_SETTINGS, // Page
             self::SECT_EMAIL_SETTINGS // Section
         );
-        /* --> WebSite URL______________ */
+        /* --> More information URL______________ */
         add_settings_field(
             self::FI_WEBSITE_URL_EMAIL_FIELD,
-            __('Website URL','open-badges-framework'),
+            __('More information URL','open-badges-framework'),
             array($this, 'websiteUrlCallbackEmailSec'),
             self::PAGE_EMAIL_SETTINGS,
             self::SECT_EMAIL_SETTINGS
@@ -319,8 +319,8 @@ final class SettingsTemp {
             array($this, 'emailCallbackEmailSec'),
             self::PAGE_EMAIL_SETTINGS,
             self::SECT_EMAIL_SETTINGS
-        );	       
-		
+        );
+
         /* --> Image URL______________ */
         add_settings_field(
             self::FI_IMAGE_URL_EMAIL_FIELD,
@@ -329,7 +329,7 @@ final class SettingsTemp {
             self::PAGE_EMAIL_SETTINGS,
             self::SECT_EMAIL_SETTINGS
         );
-		
+
 		 /* --> Header______________ */
         add_settings_field(
             self::FI_HEADER_EMAIL_FIELD,
@@ -337,8 +337,8 @@ final class SettingsTemp {
             array($this, 'headerTextCallbackEmailSec'),
             self::PAGE_EMAIL_SETTINGS,
             self::SECT_EMAIL_SETTINGS
-        );		
-		
+        );
+
 		 /* --> Message______________ */
         add_settings_field(
             self::FI_MESSAGE_EMAIL_FIELD,
@@ -385,7 +385,7 @@ final class SettingsTemp {
                 array($this, 'addClassPageCallback'),
                 self::PAGE_EXTENSIONS,
                 self::SECT_WP_JOBMANAGER
-            );            
+            );
         }
     }
     /**
@@ -451,7 +451,7 @@ final class SettingsTemp {
                 $input[self::FI_CONTACT_EMAIL_FIELD] ? $input[self::FI_CONTACT_EMAIL_FIELD] : get_bloginfo('admin_email'));
         if (isset($input[self::FI_CAPTCHA])) {
             $new_input[self::FI_CAPTCHA] = sanitize_text_field($input[self::FI_CAPTCHA]);
-        }        	
+        }
         return $new_input;
     }
     /**
@@ -474,9 +474,9 @@ final class SettingsTemp {
      * @return void
      */
     public function printPageLinksInfo() {
-		_e( 'Create and select the page that you will use for the following options:', 'open-badges-framework' );	
+		_e( 'Create and select the page that you will use for the following options:', 'open-badges-framework' );
     }
-	
+
     /**
      * Print the Site Name field with also the value (if exist).
      *
@@ -494,7 +494,7 @@ final class SettingsTemp {
             isset($this->options[self::FI_SITE_NAME_FIELD]) ? esc_attr($this->options[self::FI_SITE_NAME_FIELD]) : ''
         );
     }
-	
+
 	 /**
      * Print the Site Name field with also the value (if exist) for the Email Settings section.
      *
@@ -503,7 +503,7 @@ final class SettingsTemp {
      *
      * @return void
      */
-	
+
 	public function siteNameCallbackEmailSec() {
         printf(
             '<input id="%s" class="regular-text" type="text" name="%s[%s]" value="%s" />',
@@ -514,7 +514,7 @@ final class SettingsTemp {
         );
 		?>
 		<p class="description" id="tagline-description"><?php _e('Enter the name of your company.','open-badges-framework.');?></p>
-		<?php	  
+		<?php
     }
     /**
      * Print the Url of the image field with also the value (if exist).
@@ -551,9 +551,9 @@ final class SettingsTemp {
               </div>';
 		?>
 		<p class="description" id="tagline-description"><?php _e('Upload an image that represents your company.','open-badges-framework.');?></p>
-		<?php	       
+		<?php
     }
-	
+
     /**
      * Print the Url of the image field with also the value (if exist) for the Email Settings section.
      *
@@ -561,7 +561,7 @@ final class SettingsTemp {
      * @since       1.0.0
      *
      * @return void
-     */	
+     */
 	public function imageUrlCallbackEmailSec() {
         $name = self::OPTION_NAME . "[" . self::FI_IMAGE_URL_EMAIL_FIELD . "]";
         $value = isset($this->options[self::FI_IMAGE_URL_EMAIL_FIELD]) ? esc_attr($this->options[self::FI_IMAGE_URL_EMAIL_FIELD]) : '';
@@ -586,7 +586,7 @@ final class SettingsTemp {
               </div>';
 		?>
 		<p class="description" id="tagline-description"><?php _e('Upload an image that represents your company.','open-badges-framework.');?></p>
-		<?php	
+		<?php
     }
     /**
      * Print the Website Url field with also the value (if exist).
@@ -607,13 +607,13 @@ final class SettingsTemp {
     }
 
     /**
-     * Print the Website Url field with also the value (if exist) for the Email Settings section.
+     * Print the More information URL field with also the value (if exist) for the Email Settings section.
      *
      * @author      @AleRiccardi
      * @since       1.0.0
      *
      * @return void
-     */	
+     */
 	 public function websiteUrlCallbackEmailSec() {
         printf(
             '<input id="%s" class="regular-text" type="text" name="%s[%s]" value="%s"/>',
@@ -623,7 +623,7 @@ final class SettingsTemp {
             isset($this->options[self::FI_WEBSITE_URL_EMAIL_FIELD]) ? esc_attr($this->options[self::FI_WEBSITE_URL_EMAIL_FIELD]) : ''
         );
 		?>
-		<p class="description" id="tagline-description"><?php _e('Enter the URL of your website.','open-badges-framework');?></p>
+		<p class="description" id="tagline-description"><?php _e('Enter the URL where users can find more information.','open-badges-framework');?></p>
 		<?php
     }
     /**
@@ -642,8 +642,8 @@ final class SettingsTemp {
             self::FI_TELEPHONE_FIELD,
             isset($this->options[self::FI_TELEPHONE_FIELD]) ? esc_attr($this->options[self::FI_TELEPHONE_FIELD]) : ''
         );
-    } 
-	 
+    }
+
     /**
      * Print the Company Description field with also the value (if exist).
      *
@@ -661,7 +661,7 @@ final class SettingsTemp {
             isset($this->options[self::FI_DESCRIPTION_FIELD]) ? esc_attr($this->options[self::FI_DESCRIPTION_FIELD]) : ''
         );
     }
-	
+
 
     /**
      * Print the Company Email field with also the value (if exist).
@@ -680,14 +680,14 @@ final class SettingsTemp {
             isset($this->options[self::FI_EMAIL_FIELD]) ? esc_attr($this->options[self::FI_EMAIL_FIELD]) : ''
         );
     }
-	
+
     /**
      * Print the Contact Company Email field with also the value (if exist) for Email Settings section.
      *
      *
      * @return void
-     */	
-	 
+     */
+
 	public function emailCallbackEmailSec() {
         printf(
             '<input id="%s" class="regular-text" type="text" name="%s[%s]" value="%s"/>',
@@ -698,17 +698,17 @@ final class SettingsTemp {
         );
 		?>
 		<p class="description" id="tagline-description"><?php _e('Enter the contact email of your company.','open-badges-framework.');?></p>
-		<?php	
+		<?php
     }
-	
+
     /**
      * Print the Header field with also the value (if exist) for Email Settings section.
      *
      * @return void
-     */	
-	 
+     */
+
 	public function headerTextCallbackEmailSec() {
-		
+
 		$headerText = isset($this->options[self::FI_HEADER_EMAIL_FIELD]) ? esc_attr($this->options[self::FI_HEADER_EMAIL_FIELD]) : '';
 		$args = array('textarea_name' => 'option_name[header_email_field]');
 
@@ -716,7 +716,7 @@ final class SettingsTemp {
 		wp_editor( $headerText, self::FI_HEADER_EMAIL_FIELD, $args );
 		?>
 		<p class="description" id="tagline-description"><?php _e('The text before the badge.','open-badges-framework.');?></p>
-		<?php			
+		<?php
        /*  printf(
             '<input id="%s" class="regular-text" type="text" name="%s[%s]" value="%s"/>',
             self::FI_HEADER_EMAIL_FIELD,
@@ -724,20 +724,20 @@ final class SettingsTemp {
             self::FI_HEADER_EMAIL_FIELD,
             isset($this->options[self::FI_HEADER_EMAIL_FIELD]) ? esc_attr($this->options[self::FI_HEADER_EMAIL_FIELD]) : ''
         );		 */
-		
+
 		//$editor_id = 'mycustomeditor';
 
 		//wp_editor( isset($this->options[self::FI_HEADER_EMAIL_FIELD]) ? esc_attr($this->options[self::FI_HEADER_EMAIL_FIELD]) : '', $editor_id );
     }
-	
-	
+
+
 	/**
      * Print the Message field with also the value (if exist) for Email Settings section.
      *
      * @return void
-     */		
+     */
 	public function messageTextCallbackEmailSec() {
-	
+
 		$messageText = isset($this->options[self::FI_MESSAGE_EMAIL_FIELD]) ? esc_attr($this->options[self::FI_MESSAGE_EMAIL_FIELD]) : '';
 		$args = array('textarea_name' => 'option_name[message_email_field]');
 
@@ -745,11 +745,11 @@ final class SettingsTemp {
 		wp_editor( $messageText, self::FI_MESSAGE_EMAIL_FIELD, $args );
 		?>
 		<p class="description" id="tagline-description"><?php _e('Text after the badge.','open-badges-framework.');?></p>
-		<?php	
+		<?php
 	}
-	
-	
-	
+
+
+
     /**
      * Print the become premium page field with also the value (if exist).
      *
@@ -817,7 +817,7 @@ final class SettingsTemp {
             'show_option_none' => 'None', // string
         ));
         echo self::showPreviewLink($val);
-        
+
 		?>
 		<p class="description" id="tagline-description"><?php _e('Select a page that will be used for the Get Badge process. This lets the plugin know the location of the form.','open-badges-framework.');?></p>
 		<?php
@@ -869,6 +869,6 @@ final class SettingsTemp {
         $options = get_option(SettingsTemp::OPTION_NAME);
         return $options[$field_option] ? $options[$field_option] : null;
     }
-	
-	
+
+
 }
