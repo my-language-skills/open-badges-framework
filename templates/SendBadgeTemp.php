@@ -295,7 +295,7 @@ final class SendBadgeTemp extends BaseController {
                     <div class="fit-height-section flex-center-cont">
                         <div class="flex-center-item sb-cont">
                             <?php self::displayLeadInfo(_e('This is the description of the badge.','open-badges-framework')); ?>
-                             <div id="desc_<?php echo $form; ?>" class="desc-badge"></div> 
+                             <div id="desc_<?php echo $form; ?>" class="desc-badge" style="overflow-y: auto; height: 150px;"></div> 
                         </div>
                     </div>
                 </section>
