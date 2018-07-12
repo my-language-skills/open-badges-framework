@@ -55,8 +55,7 @@ final class StaticPagesTemp {
           <p class="lead">
 						<?php _e('The official Open Badges documentation can be found at','open-badges-framework');?> <a href="						https://openbadges.org/
 ">OpenBadges.</a> or the Open Badges specification at <a href="						https://github.com/mozilla/openbadges-specification
-">Github.</a><br>
-
+">Github.</a><br><br>
               <?php _e('The official Open Badges Framework documentation can be found at','open-badges-framework');?> <a href="https://github.com/my-language-skills/open-badges-framework/blob/master/README.md/">GitHub.</a><br>
               <ul>
                 <li><a href="https://github.com/my-language-skills/open-badges-framework/blob/master/doc/badges-for-languages.md">Badges4Languages</a></li>
