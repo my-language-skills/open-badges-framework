@@ -238,13 +238,14 @@ final class SendBadgeTemp extends BaseController {
         } else if ($form == "b") {
             
 			?>
-			<p class='text-large'><?php _e('Send badges Individually. You can send a badge to each of your students, one at a time.','open-badges-framework');?></p>
+			<p class='text-large'><?php _e('Send badges Individually.'); ?>
+        
 			<?php
 			
         } else if ($form == "c") {
            
 			?>
-			<p class='text-large'><?php _e('Send badges Collectively. You can send multiple badges to all your students, at the same time.','open-badges-framework');?></p>
+			<p class='text-large'><?php _e('Send badges Collectively.','open-badges-framework');?></p>
 			<?php			
         }
         ?>
@@ -294,7 +295,7 @@ final class SendBadgeTemp extends BaseController {
                     <div class="fit-height-section flex-center-cont">
                         <div class="flex-center-item sb-cont">
                             <?php self::displayLeadInfo(_e('This is the description of the badge.','open-badges-framework')); ?>
-                             <div id="desc_<?php echo $form; ?>" class="desc-badge"></div> 
+                             <div id="desc_<?php echo $form; ?>" class="desc-badge" style="overflow-y: auto; height: 150px;"></div> 
                         </div>
                     </div>
                 </section>
@@ -410,14 +411,16 @@ final class SendBadgeTemp extends BaseController {
         if ($fields->haveChildren()) {
             echo '<div class="btns-parent-field">';
             foreach ($fields->main as $parent) {
-                if (!$i) {
-                    $i = 1;
-                    echo '<a class="btn-change-children active" id="' . $parent->slug . '">Display ' . $parent->name . '</a>';
-                } else {
-                    echo '<a class="btn-change-children" id="' . $parent->slug . '">Display ' . $parent->name . '</a>';
+                if( get_term_children($parent->term_id, 'field_of_education'  ) ){
+                    if (!$i) {
+                        $i = 1;
+                        echo '<a class="btn-change-children active" id="' . $parent->slug . '">' . __('Display','open-badges-framework') . ' ' . $parent->name . '</a>';
+                    } else {
+                        echo '<a class="btn-change-children" id="' . $parent->slug . '">' . __('Display','open-badges-framework') . ' ' . $parent->name . '</a>';
+                    }
                 }
             }
-            echo '<a class="btn-change-children" id="all_field">Display all Fields</a>';
+            echo '<a class="btn-change-children" id="all_field">' . __('Display all Fields','open-badges-framework') . '</a>';
         }
     }
 }

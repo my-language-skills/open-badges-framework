@@ -239,7 +239,7 @@ class DisplayFunction {
 							 echo "<td><a href='" . get_edit_user_link($user->ID) . "'>" . $user->user_email . "</a></td>";
 							 echo "<td>" . $countBadges . "</td>";
 							 echo "<td>" . $date . "</td>";
-							  echo "<td>-</td>";
+							 echo "<td>-</td>";
 						}
 						
                         ?>

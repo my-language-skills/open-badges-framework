@@ -53,13 +53,15 @@ class Statistics {
      * @return int the number of term.
      */
     public static function getNumberTerm($slug) {
-        $numTerms = wp_count_terms($slug);
-
-        if (isset($numTerms)) {
-            return $numTerms;
-        } else {
-            return 0;
+        $count = 0;
+        $terms = get_terms($slug, array('hide_empty' => false));
+        foreach($terms as $term) {
+            if ($term->parent != 0) { // avoid parent categories
+                $count++;
+            }
         }
+
+        return $count;
     }
 
     /**

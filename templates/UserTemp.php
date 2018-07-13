@@ -54,23 +54,23 @@ final class UserTemp {
         ?>
 
         <!-- User Description -->
-        <div class="author-name">
-            <h1 class="">
-                <?php 
-                if( !empty( $userData->first_name ) && !empty( $userData->last_name ) ){
-                    echo $userData->first_name; ?>&nbsp;<?php echo $userData->last_name; 
-                } else{
-                    echo get_the_author_meta( 'display_name', $idUser );
-                }?>
-            </h1>
-            <?php
-            if( !empty( get_the_author_meta( 'description', $idUser ) ) ){ ?>
-                <div style = "margin-top: 10px;">
-                    <h2 style = "display: inline;">Bio : </h2>
-                    <p style="font-size: 17px; display: inline;"><?php echo get_the_author_meta( 'description', $idUser ); ?></p>
-                </div>
-            <?php } ?>
-        </div>
+
+        <h1>
+            <?php 
+            if( !empty( $userData->first_name ) && !empty( $userData->last_name ) ){
+                echo "User Profile: " . $userData->first_name; ?>&nbsp;<?php echo $userData->last_name; 
+            } else{
+                echo "User Profile: " . get_the_author_meta( 'display_name', $idUser );
+            }?>
+        </h1>
+        <?php
+        if( !empty( get_the_author_meta( 'description', $idUser ) ) ){ ?>
+            <div style = "margin-top: 10px;">
+                <h2 style = "display: inline;">Bio : </h2>
+                <p style="font-size: 17px; display: inline;"><?php echo get_the_author_meta( 'description', $idUser ); ?></p>
+            </div>
+        <?php } ?>
+
 
         <!-- User Information -->
         <section>
@@ -97,7 +97,17 @@ final class UserTemp {
                             </li>
                             <li>
                                 <span class="dashicons dashicons-admin-tools"></span>
-                                <?php echo implode(', ', $userData->roles); ?>
+
+                                <?php 
+                                    //If Restrict Content Pro plugin is activated, we display the user subscription
+                                    if (is_plugin_active( 'restrict-content-pro/restrict-content-pro.php' ) && rcp_get_subscription( get_queried_object_id() ) != null ){
+                                        echo rcp_get_subscription( get_queried_object_id() );
+                                    } 
+                                    //If not, we display the WP roles
+                                    else{
+                                        echo implode(', ', $userData->roles);
+                                    }
+                                ?>
                             </li>
                         </ul>
                     </div>
@@ -105,30 +115,42 @@ final class UserTemp {
                 <div class="username-user center-container flex-item">
                     <div class="txt-info center-item">
                         <ul>
-                            <li>
-                                <span class="dashicons dashicons-info"></span>
-                                Year of birth : <?php echo get_the_author_meta( 'year_of_birth', $idUser ); ?>
-                            </li>
-                            <li>
-                                <span class="dashicons dashicons-flag"></span>
-                                <?php echo get_the_author_meta( 'country', $idUser ); ?> - <?php echo get_the_author_meta( 'city', $idUser ); ?>
-                            </li>
-                            <li>
-                                <span class="dashicons dashicons-translation"></span>
-                                <?php echo get_the_author_meta( 'mother_tongue', $idUser ); ?>
-                            </li>
-                            <li>
-                                <span class="dashicons dashicons-welcome-learn-more"></span>
-                                <?php 
-                                    echo get_the_author_meta( 'primary_degree', $idUser );
+                            <?php 
+                            if( get_the_author_meta( 'year_of_birth', $idUser ) ){ ?>
+                                <li>
+                                    <span class="dashicons dashicons-info"></span>
+                                    <?php echo __('Year of birth : ','open-badges-framework') . get_the_author_meta( 'year_of_birth', $idUser ); ?>
+                                </li>
+                            <?php }
+                            if( get_the_author_meta( 'country', $idUser ) && get_the_author_meta( 'city', $idUser ) ){ ?>
+                                <li>
+                                    <span class="dashicons dashicons-flag"></span>
+                                    <?php echo get_the_author_meta( 'country', $idUser ) . ' - ' . get_the_author_meta( 'city', $idUser ); ?>
+                                </li>
+                            <?php } else if( get_the_author_meta( 'country', $idUser ) || get_the_author_meta( 'city', $idUser ) ){ ?>
+                                <li>
+                                    <span class="dashicons dashicons-flag"></span>
+                                    <?php echo get_the_author_meta( 'country', $idUser ) . get_the_author_meta( 'city', $idUser ); ?>
+                                </li>
+                            <?php }
+                            if( get_the_author_meta( 'mother_tongue', $idUser ) ){ ?>
+                                <li>
+                                    <span class="dashicons dashicons-translation"></span>
+                                    <?php echo __('Mother tongue : ','open-badges-framework') . get_the_author_meta( 'mother_tongue', $idUser ); ?>
+                                </li>
+                            <?php }
+                            if( get_the_author_meta( 'primary_degree', $idUser ) ){ ?>
+                                <li>
+                                    <span class="dashicons dashicons-info"></span>
+                                    <?php echo get_the_author_meta( 'primary_degree', $idUser );
                                     if( !empty( get_the_author_meta( 'secondary_degree', $idUser ) ) ){
                                         echo ' - ' . get_the_author_meta( 'secondary_degree', $idUser );
                                     }
                                     if( !empty( get_the_author_meta( 'tertiary_degree', $idUser ) ) ){
                                         echo ' - ' . get_the_author_meta( 'tertiary_degree', $idUser );
-                                    }
-                                ?>
-                            </li>
+                                    } ?>
+                                </li>
+                            <?php } ?>
                         </ul>
                     </div>
                 </div>
@@ -155,155 +177,127 @@ final class UserTemp {
                                 <span class="dashicons dashicons-admin-tools"></span>
                                 <?php echo implode(', ', $userData->roles); ?>
                             </li>
-                            <li>
-                                <span class="dashicons dashicons-info"></span>
-                                Year of birth : <?php echo get_the_author_meta( 'year_of_birth', $idUser ); ?>
-                            </li>
-                            <li>
-                                <span class="dashicons dashicons-flag"></span>
-                                <?php echo get_the_author_meta( 'country', $idUser ); ?> - <?php echo get_the_author_meta( 'city', $idUser ); ?>
-                            </li>
-                            <li>
-                                <span class="dashicons dashicons-translation"></span>
-                                <?php echo get_the_author_meta( 'mother_tongue', $idUser ); ?>
-                            </li>
-                            <li>
-                                <span class="dashicons dashicons-welcome-learn-more"></span>
-                                <?php 
-                                    echo get_the_author_meta( 'primary_degree', $idUser );
+                            <?php 
+                            if( get_the_author_meta( 'year_of_birth', $idUser ) ){ ?>
+                                <li>
+                                    <span class="dashicons dashicons-info"></span>
+                                    <?php echo __('Year of birth : ','open-badges-framework') . get_the_author_meta( 'year_of_birth', $idUser ); ?>
+                                </li>
+                            <?php }
+                            if( get_the_author_meta( 'country', $idUser ) && get_the_author_meta( 'city', $idUser ) ){ ?>
+                                <li>
+                                    <span class="dashicons dashicons-flag"></span>
+                                    <?php echo get_the_author_meta( 'country', $idUser ) . ' - ' . get_the_author_meta( 'city', $idUser ); ?>
+                                </li>
+                            <?php } else if( get_the_author_meta( 'country', $idUser ) || get_the_author_meta( 'city', $idUser ) ){ ?>
+                                <li>
+                                    <span class="dashicons dashicons-flag"></span>
+                                    <?php echo get_the_author_meta( 'country', $idUser ) . get_the_author_meta( 'city', $idUser ); ?>
+                                </li>
+                            <?php }
+                            if( get_the_author_meta( 'mother_tongue', $idUser ) ){ ?>
+                                <li>
+                                    <span class="dashicons dashicons-translation"></span>
+                                    <?php echo __('Mother tongue : ','open-badges-framework') . get_the_author_meta( 'mother_tongue', $idUser ); ?>
+                                </li>
+                            <?php }
+                            if( get_the_author_meta( 'primary_degree', $idUser ) ){ ?>
+                                <li>
+                                    <span class="dashicons dashicons-info"></span>
+                                    <?php echo get_the_author_meta( 'primary_degree', $idUser );
                                     if( !empty( get_the_author_meta( 'secondary_degree', $idUser ) ) ){
                                         echo ' - ' . get_the_author_meta( 'secondary_degree', $idUser );
                                     }
                                     if( !empty( get_the_author_meta( 'tertiary_degree', $idUser ) ) ){
                                         echo ' - ' . get_the_author_meta( 'tertiary_degree', $idUser );
-                                    }
-                                ?>
-                            </li>
+                                    } ?>
+                                </li>
+                            <?php } ?>
                         </ul>
                     </div>
                 </div>
             </div>
 
+            <?php
+            if( !empty( $userData->user_url ) || !empty( get_the_author_meta( 'facebook', $idUser ) ) || !empty( get_the_author_meta( 'twitter', $idUser ) ) || !empty( get_the_author_meta( 'googleplus', $idUser ) ) || !empty( get_the_author_meta( 'pinterest', $idUser ) ) || !empty( get_the_author_meta( 'linkedin', $idUser ) ) || !empty( get_the_author_meta( 'github', $idUser ) ) || !empty( get_the_author_meta( 'instagram', $idUser ) ) ){
+            ?>
             <!-- User Social Links -->
-            <h2 class="social-links-title">Find me on :</h2>
+            <h2 class="social-links-title"><?php _e('Find me on :','open-badges-framework'); ?></h2>
             <div class="user-info-admin flex-container">
                 <div class="username-user center-container flex-item">
                     <div class="txt-info center-item">
                         <ul>
-                            <li>
-                                <!-- User Web Site -->
-                                <span class="dashicons dashicons-admin-site"></span>
-                                <?php 
-                                if( !empty( $userData->user_url ) ){
-                                    echo '<a href="<?php echo $userData->user_url; ?>">Website</a>';
-                                } else{
-                                    echo 'No Website';
-                                }
-                                ?>
-                            </li>
-                            <li>
-                                <!-- Facebook -->
-                                <span class="dashicons dashicons-facebook"></span>
-                                <?php 
-                                if( !empty( get_the_author_meta( 'facebook', $idUser ) ) ){
-                                    echo '<a href="'. get_the_author_meta( 'facebook', $idUser ) .'">Facebook</a>';
-                                } else{
-                                    echo 'No Facebook';
-                                }
-                                ?>
-                            </li>
-                            <li>
-                                <!-- Twitter -->
-                                <span class="dashicons dashicons-twitter"></span>
-                                <?php 
-                                if( !empty( get_the_author_meta( 'twitter', $idUser ) ) ){
-                                    echo '<a href="'. get_the_author_meta( 'twitter', $idUser ) .'">Twitter</a>';
-                                } else{
-                                    echo 'No Twitter';
-                                }
-                                ?>
-                            </li>
-                            <li>
-                                <!-- Google + -->
-                                <span class="dashicons dashicons-googleplus"></span>
-                                <?php 
-                                if( !empty( get_the_author_meta( 'googleplus', $idUser ) ) ){
-                                    echo '<a href="'. get_the_author_meta( 'googleplus', $idUser ) .'">Google+</a>';
-                                } else{
-                                    echo 'No Google+';
-                                }
-                                ?>
-                            </li>
+                            <?php
+                            if( !empty( $userData->user_url ) ){ ?>
+                                <li>
+                                    <span class="dashicons dashicons-admin-site"></span>
+                                    <?php echo '<a href="<?php echo $userData->user_url; ?>">Website</a>'; ?>
+                                </li>
+                            <?php }
+                            if( !empty( get_the_author_meta( 'facebook', $idUser ) ) ){ ?>
+                                <li>
+                                    <span class="dashicons dashicons-facebook"></span>
+                                    <?php echo '<a href="'. get_the_author_meta( 'facebook', $idUser ) .'">Facebook</a>'; ?>
+                                </li>
+                            <?php }
+                            if( !empty( get_the_author_meta( 'twitter', $idUser ) ) ){ ?>
+                                <li>
+                                    <span class="dashicons dashicons-twitter"></span>
+                                    <?php echo '<a href="'. get_the_author_meta( 'twitter', $idUser ) .'">Twitter</a>'; ?>
+                                </li>
+                            <?php }
+                            if( !empty( get_the_author_meta( 'googleplus', $idUser ) ) ){ ?>
+                                <li>
+                                    <span class="dashicons dashicons-googleplus"></span>
+                                    <?php echo '<a href="'. get_the_author_meta( 'googleplus', $idUser ) .'">Google+</a>'; ?>
+                                </li>
+                            <?php } ?>
                         </ul>
                     </div>
                 </div>
                 <div class="username-user center-container flex-item">
                     <div class="txt-info center-item">
                         <ul>
-                            <li>
-                                <!-- Pinterest -->
-                                <span class="dashicons dashicons-share"></span>
-                                <?php 
-                                if( !empty( get_the_author_meta( 'pinterest', $idUser ) ) ){
-                                    echo '<a href="'. get_the_author_meta( 'pinterest', $idUser ) .'">Pinterest</a>';
-                                } else{
-                                    echo 'No Pinterest';
-                                }
-                                ?>
-                            </li>
-                            <li>
-                                <!-- LinkedIn -->
-                                <span class="dashicons dashicons-admin-links"></span>
-                                <?php 
-                                if( !empty( get_the_author_meta( 'linkedin', $idUser ) ) ){
-                                    echo '<a href="'. get_the_author_meta( 'linkedin', $idUser ) .'">LinkedIn</a>';
-                                } else{
-                                    echo 'No LinkedIn';
-                                }
-                                ?>
-                            </li>
-                            <li>
-                                <!-- GitHub -->
-                                <span class="dashicons dashicons-businessman"></span>
-                                <?php 
-                                if( !empty( get_the_author_meta( 'github', $idUser ) ) ){
-                                    echo '<a href="'. get_the_author_meta( 'github', $idUser ) .'">GitHub</a>';
-                                } else{
-                                    echo 'No GitHub';
-                                }
-                                ?>
-                            </li>
-                            <li>
-                                <!-- Instagram -->
-                                <span class="dashicons dashicons-camera"></span>
-                                <?php 
-                                if( !empty( get_the_author_meta( 'instagram', $idUser ) ) ){
-                                    echo '<a href="'. get_the_author_meta( 'instagram', $idUser ) .'">Instagram</a>';
-                                } else{
-                                    echo 'No Instagram';
-                                }
-                                ?>
-                            </li>
+                            <?php
+                            if( !empty( get_the_author_meta( 'pinterest', $idUser ) ) ){ ?>
+                                <li>
+                                    <span class="dashicons dashicons-share"></span>
+                                    <?php echo '<a href="'. get_the_author_meta( 'pinterest', $idUser ) .'">Pinterest</a>'; ?>
+                                </li>
+                            <?php }
+                            if( !empty( get_the_author_meta( 'linkedin', $idUser ) ) ){ ?>
+                                <li>
+                                    <span class="dashicons dashicons-admin-links"></span>
+                                    <?php echo '<a href="'. get_the_author_meta( 'linkedin', $idUser ) .'">LinkedIn</a>'; ?>
+                                </li>
+                            <?php }
+                            if( !empty( get_the_author_meta( 'github', $idUser ) ) ){ ?>
+                                <li>
+                                    <span class="dashicons dashicons-businessman"></span>
+                                    <?php echo '<a href="'. get_the_author_meta( 'github', $idUser ) .'">GitHub</a>'; ?>
+                                </li>
+                            <?php }
+                            if( !empty( get_the_author_meta( 'instagram', $idUser ) ) ){ ?>
+                                <li>
+                                    <span class="dashicons dashicons-camera"></span>
+                                    <?php echo '<a href="'. get_the_author_meta( 'instagram', $idUser ) .'">Instagram</a>'; ?>
+                                </li>
+                            <?php } ?>
                         </ul>
                     </div>
                 </div>
             </div>
-            <?php
+            <?php }
+            
             if ($userData->ID == wp_get_current_user()->ID) {
-                if (esc_url(get_permalink($rcp_options['edit_profile'])) && Secondary::isRCPActive()) {
-
+                if ( esc_url( get_permalink( $rcp_options['edit_profile'] ) ) && is_plugin_active('restrict-content-pro/restrict-content-pro.php') ) {
                     ?>
                     <div class="btn-update-container" style="text-align: center;">
                         <a href="<?php echo esc_url(get_permalink($rcp_options['edit_profile'])); ?>"
                            class="btn btn-secondary"><?php _e('Edit your profile','open-badges-framework'); ?></a>
                     </div>
                     <?php
-                } else { ?>
-                    <div class="btn-update-container" style="text-align: center;">
-                        <a href="profile.php"
-                           class="btn btn-secondary"><?php _e('Edit your profile','open-badges-framework'); ?></a>
-                    </div>
-                <?php }
+                }
             } ?>
         </section>
         <?php

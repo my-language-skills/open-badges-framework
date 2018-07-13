@@ -21,7 +21,7 @@ use Templates\StaticPagesTemp;
  * This class allow to create array that will be pass
  * to the SettingApi class that will initialize them.
  *
- * @todo       Restrict Access linked to open-badge-framework - go to Class:SettingApi Function:setCurrentMenu() to manage it
+ * @todo       Restrict Access linked to open-badges-framework - go to Class:SettingApi Function:setCurrentMenu() to manage it
  *
  * @author     @AleRiccardi
  * @since      1.0.0
@@ -80,8 +80,8 @@ class Admin extends BaseController {
     public function setPages() {
         $this->pages = array(
             array(
-                'page_title' => 'Open Badge',
-                'menu_title' => 'Open Badge',
+                'page_title' => 'OBF',
+                'menu_title' => 'OBF',
                 'capability' => 'manage_options',
                 'menu_slug' => self::SLUG_PLUGIN,
                 'callback' => array(DashboardTemp::class, 'main'),
@@ -154,8 +154,8 @@ class Admin extends BaseController {
             // ## User ##
             array(
                 'parent_slug' => self::SLUG_PLUGIN,
-                'page_title' => 'User',
-                'menu_title' => 'User',
+                'page_title' => 'User Profile',
+                'menu_title' => 'User Profile',
                 'capability' => 'read',
                 'menu_slug' => self::PAGE_PROFILE,
                 'callback' => array($userTemp, 'main')
@@ -226,19 +226,19 @@ class Admin extends BaseController {
                 'post_type' => self::POST_TYPE_BADGES,
                 'args' => array(
                     'labels' => array(
-                        'name' => 'Badges',
-                        'singular_name' => 'Badge',
-                        'add_new' => 'Add New',
-                        'add_new_item' => 'Add New Badge',
-                        'edit' => 'Edit',
-                        'edit_item' => 'Edit Badge',
-                        'new_item' => 'New Badge',
-                        'view' => 'View',
-                        'view_item' => 'View Badge',
-                        'search_items' => 'Search Badges',
-                        'not_found' => 'No Badges found',
-                        'not_found_in_trash' => 'No Badges found in Trash',
-                        'parent' => 'Parent Badges'
+                        'name' => __('Badges','open-badges-framework'),
+                        'singular_name' => __('Badge','open-badges-framework'),
+                        'add_new' => __('Add New','open-badges-framework'),
+                        'add_new_item' => __('Add New Badge','open-badges-framework'),
+                        'edit' => __('Edit','open-badges-framework'),
+                        'edit_item' => __('Edit Badge','open-badges-framework'),
+                        'new_item' => __('New Badge','open-badges-framework'),
+                        'view' => __('View','open-badges-framework'),
+                        'view_item' => __('View Badge','open-badges-framework'),
+                        'search_items' => __('Search Badges','open-badges-framework'),
+                        'not_found' => __('No Badges found','open-badges-framework'),
+                        'not_found_in_trash' => __('No Badges found in Trash','open-badges-framework'),
+                        'parent' => __('Parent Badges','open-badges-framework')
                     ),
                     'public' => true,
                     'has_archive' => true,
@@ -285,15 +285,15 @@ class Admin extends BaseController {
                     'labels' => array(
                         'name' => _x('Fields of education', 'taxonomy general name'),
                         'singular_name' => _x('Field of education', 'taxonomy singular name'),
-                        'search_items' => __('Search Fields of education'),
-                        'all_items' => __('All Fields of education'),
-                        'parent_item' => __('Parent Field'),
-                        'parent_item_colon' => __('Parent Field:'),
-                        'edit_item' => __('Edit Field'),
-                        'update_item' => __('Update Field'),
-                        'add_new_item' => __('Add New Field of education'),
-                        'new_item_name' => __('New Field Name'),
-                        'menu_name' => __('Field of Education'),
+                        'search_items' => __('Search Fields of education','open-badges-framework'),
+                        'all_items' => __('All Fields of education','open-badges-framework'),
+                        'parent_item' => __('Parent Field','open-badges-framework'),
+                        'parent_item_colon' => __('Parent Field:','open-badges-framework'),
+                        'edit_item' => __('Edit Field','open-badges-framework'),
+                        'update_item' => __('Update Field','open-badges-framework'),
+                        'add_new_item' => __('Add New Field of education','open-badges-framework'),
+                        'new_item_name' => __('New Field Name','open-badges-framework'),
+                        'menu_name' => __('Field of Education','open-badges-framework'),
                     ),
                     'rewrite' => array('slug' => self::TAX_FIELDS),
                     'hierarchical' => true,
@@ -310,15 +310,15 @@ class Admin extends BaseController {
                     'labels' => array(
                         'name' => _x('Levels', 'taxonomy general name'),
                         'singular_name' => _x('Levels', 'taxonomy singular name'),
-                        'search_items' => __('Search Levels'),
-                        'all_items' => __('All Levels'),
-                        'parent_item' => __('Parent Level'),
-                        'parent_item_colon' => __('Parent Level:'),
-                        'edit_item' => __('Edit Level'),
-                        'update_item' => __('Update Level'),
-                        'add_new_item' => __('Add New Level'),
-                        'new_item_name' => __('New Level Name'),
-                        'menu_name' => __('Level of Education'),
+                        'search_items' => __('Search Levels','open-badges-framework'),
+                        'all_items' => __('All Levels','open-badges-framework'),
+                        'parent_item' => __('Parent Level','open-badges-framework'),
+                        'parent_item_colon' => __('Parent Level:','open-badges-framework'),
+                        'edit_item' => __('Edit Level','open-badges-framework'),
+                        'update_item' => __('Update Level','open-badges-framework'),
+                        'add_new_item' => __('Add New Level','open-badges-framework'),
+                        'new_item_name' => __('New Level Name','open-badges-framework'),
+                        'menu_name' => __('Level of Education','open-badges-framework'),
                     ),
                     'rewrite' => array('slug' => self::TAX_LEVELS),
                     'hierarchical' => false,
@@ -345,7 +345,7 @@ class Admin extends BaseController {
             // ## Certification ##
             array(
                 'id' => self::MTB_CERT,
-                'title' => 'Certification Type',
+                'title' => __('Certification Type','open-badges-framework'),
                 'callback' => array($metaboxTemp, 'certification'),
                 'screen' => self::POST_TYPE_BADGES,
                 'context' => 'side',
@@ -354,7 +354,7 @@ class Admin extends BaseController {
             // ## Target ##
             array(
                 'id' => self::MTB_TARGET,
-                'title' => 'Target Type',
+                'title' => __('Target Type','open-badges-framework'),
                 'callback' => array($metaboxTemp, 'target'),
                 'screen' => self::POST_TYPE_BADGES,
                 'context' => 'side',

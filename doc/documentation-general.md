@@ -90,10 +90,12 @@ Open Badges Framework integrate in one place several digital tools for Language 
   - **Single Badge issue**
 
     Teachers send Badges to the Students (one Student at a time).
+    You can send a badge to each of your students, one at a time.
 
   - **Multiple Badges issue**
 
     Academy Role teachers send Badges to the Class (multiple Students at once).
+    You can send multiple badges to all your students, at the same time.
 
 #### Soon
 
