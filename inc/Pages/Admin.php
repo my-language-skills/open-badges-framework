@@ -199,18 +199,6 @@ class Admin extends BaseController {
 		
 
         );
-
-
-        // ## Restrict Access ##
-        // Be careful HERE, this sub-page is created only for rcp-restrict-post-type
-        $this->subpages[] = array(
-            'parent_slug' => self::SLUG_PLUGIN,
-            'page_title' => 'Restrict Access',
-            'menu_title' => 'Restrict Access',
-            'capability' => 'manage_options',
-            'menu_slug' => 'admin.php?page=rcp-restrict-post-type-' . self::POST_TYPE_BADGES,
-            'callback' => ''
-        );
     }
 
     /**

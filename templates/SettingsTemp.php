@@ -34,6 +34,7 @@ final class SettingsTemp {
     CONST SECT_EXTENSIONS = 'page_extensions_sect';
     CONST SECT_CAPTCHA = 'captcha_sect';
     CONST SECT_WP_JOBMANAGER = 'wp_jobmanage_sect';
+    CONST SECT_RCP = 'rcp_sect';
     // PROFILE FIELDS
 
     const FI_SITE_NAME_FIELD = "site_name_field";
@@ -44,7 +45,6 @@ final class SettingsTemp {
     const FI_EMAIL_FIELD = 'email_field';
 
 	// LINK FIELDS
-    const FI_ADD_CLASS = 'add_class_page';
     const FI_BECOME_PREMIUM = 'become_premium_page';
     const FI_GET_BADGE = 'get-badge-page';
 
@@ -59,6 +59,8 @@ final class SettingsTemp {
 
     //EXTENSIONS FIELDS
     const FI_CAPTCHA = "captcha_field";
+    const FI_ADD_CLASS = 'add_class_page';
+    const FI_RCP = 'rcp_field';
 
     private $options;
     /**
@@ -385,6 +387,22 @@ final class SettingsTemp {
                 array($this, 'addClassPageCallback'),
                 self::PAGE_EXTENSIONS,
                 self::SECT_WP_JOBMANAGER
+            );
+        }
+
+        if( is_plugin_active( 'restrict-content-pro/restrict-content-pro.php' ) ){
+            add_settings_section(
+                self::SECT_RCP, // ID
+                'Restrict Content Pro',// Title
+                array(), // Callback
+                self::PAGE_EXTENSIONS // Page
+            );
+            add_settings_field(
+                self::FI_RCP,
+                __('Restrict Access','open-badges-framework'),// Title,
+                array($this, 'rcpCallback'),
+                self::PAGE_EXTENSIONS,
+                self::SECT_RCP
             );
         }
     }
@@ -823,7 +841,7 @@ final class SettingsTemp {
 		<?php
     }
     /**
-     * Print the captcha settings field (checked or not)).
+     * Print the captcha settings field (checked or not).
      *
      * @author      @leocharlier
      * @since       1.0.1
@@ -834,6 +852,21 @@ final class SettingsTemp {
 
         <input type="checkbox" value="1" name="<?php echo self::OPTION_NAME . '[' . self::FI_CAPTCHA . ']' ?>" id="<?php echo self::FI_CAPTCHA ?>" <?php if( isset( $this->options[self::FI_CAPTCHA] ) ) checked('1', $this->options[self::FI_CAPTCHA] ); ?> />
         <span class="description"><?php _e( 'Check this to enable Captcha on the registration form.', 'open-badges-framework.' ); ?></span>
+
+        <?php
+    }
+    /**
+     * Print the restrict content pro settings.
+     *
+     * @author      @leocharlier
+     * @since       1.0.1
+     *
+     * @return void
+     */
+    public function rcpCallback() { ?>
+
+        <a href="/wp-admin/admin.php?page=rcp-restrict-post-type-open-badge" class="button button-primary">Restrict Access Page</a>
+        <p class="description">Restrict the access of the Open Badges posts to certain roles or subscription levels.</p>
 
         <?php
     }
