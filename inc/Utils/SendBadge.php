@@ -167,7 +167,7 @@ class SendBadge{
                     <body>
                         <div id='b4l-award-actions-wrap'>
                             <div align='center'>
-								<img src='" . $compUrlImg[0] . "' width='150' height='150'/>
+								<img src='" . $compUrlImg[0] . "/>
                                 <h1>$compName</h1>
                                  $header	
                                 <center>
