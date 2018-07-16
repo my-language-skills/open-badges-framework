@@ -41,6 +41,11 @@ Plugins/OpenBadgesFramework/                    # → Plugin root
 │   │   │   │── DbBadge.php                     # → Manage the badges database table
 │   │   │   │── DbModel.php                     # → Parent class for management of the database
 │   │   │   └── DbUser.php                      # → Manage the user database table
+|   |   │── Integrations/
+|   |   |   │── RCP-allow_extension.php         # → Allow to restrict OBF content with Restrict Content Pro
+|   |   |   │── RCP-registration_fiels.php      # → Add custom registration field in RCP registration form
+|   |   |   │── wp-user-custom_fields.php       # → Add custom fiels for users (Year of birth, degrees, ...)
+│   │   │   └── wp_custom_data_exporter.php     # → Add the custom fields when you export data using WP tool
 │   │   │── Pages/                              # → WordPress component folder
 │   │   │   └── Admin.php                       # → Contain all the WordPress component (Sub-pages, CPT, ...)
 │   │   │── Utils/                              # → Utils folder
