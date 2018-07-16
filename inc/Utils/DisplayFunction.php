@@ -69,6 +69,7 @@ class DisplayFunction {
                         }
                         break;
                     }
+
                     /*foreach ($parents as $parent) {
                         if( get_term_children($main->term_id, 'field_of_education' ) ){
                             foreach ($parent as $language) {
@@ -78,6 +79,7 @@ class DisplayFunction {
                             break;
                         }
                     }*/
+                    
                 }
                 echo $selectionContClose;
 

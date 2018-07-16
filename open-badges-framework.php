@@ -102,7 +102,6 @@ if (class_exists('Inc\\Init')) {
 require_once( "inc/Integrations/RCP-registration_fields.php" );
 require_once( "inc/Integrations/wp-user-custom_fields.php" );
 require_once( "inc/Integrations/wp_custom_data_exporter.php" );
-require_once( "inc/Integrations/RCP-allow_extension.php" );
 
 /**
  * Auto update from github
