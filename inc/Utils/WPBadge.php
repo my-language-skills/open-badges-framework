@@ -31,7 +31,7 @@ class WPBadge {
             'post_type' => Admin::POST_TYPE_BADGES,
             'orderby' => 'name',
             'order' => 'ASC',
-            'numberposts' => -1,
+            'numberposts' => -1
         ));
     }
 

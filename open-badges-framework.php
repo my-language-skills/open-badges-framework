@@ -99,10 +99,9 @@ if (class_exists('Inc\\Init')) {
  * Add custom WP Personal Data Exporter
  * @since 1.0.1
  */
-require_once( "inc/Integrations/RCP-registration_fields.php" );
+require_once( "inc/Integrations/RCP-custom_registration_fields.php" );
 require_once( "inc/Integrations/wp-user-custom_fields.php" );
 require_once( "inc/Integrations/wp_custom_data_exporter.php" );
-require_once( "inc/Integrations/RCP-allow_extension.php" );
 
 /**
  * Auto update from github
