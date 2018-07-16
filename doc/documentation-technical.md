@@ -43,9 +43,11 @@ In this section the user can fill the information that will be displayed to the 
 ![settings_email1](../readme-assets/email-settings-1.png "Settings: Email")
 ![settings_email2](../readme-assets/email-settings-2.png "Settings: Email")
 
-#### Misc
-In this section you can manage some features to enable or not
-* Enable captcha on the registration form (require Really Simple Captcha plugin)
+#### Extensions
+In this section, you can see all the settings about the different external plugins that can be used :
+* Really Simple Captcha : enable captcha on the registration form.
+* WP Job Manager : choose the page for the "Add Class" page.
+* Restrict Content Pro : access to the "Restrict Access" page.
 
 ![settings_misc](../readme-assets/misc-settings.png "Settings: Misc")
 
