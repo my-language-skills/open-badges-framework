@@ -26,7 +26,6 @@ function crf_show_extra_profile_fields( $user ) {
             <td>
                  <!-- Year of birth (between 1920 and the current year) -->
                 <select name="year_of_birth" id="year_of_birth">
-                    <option value="none">Select</option>
                     <?php
                         for ($i = date("Y"); $i >= 1920; $i--) {
                             if( $i == intval( esc_attr( $year ) ) ){
@@ -52,9 +51,8 @@ function crf_show_extra_profile_fields( $user ) {
                     ?>
                 <select name="country" id="country">
                     <?php
-                        foreach ($countries as $country_option){ ?>
-                            <option value="none">Select</option>
-                            <?php if( $country_option == esc_attr( $country ) ){
+                        foreach ($countries as $country_option){
+                            if( $country_option == esc_attr( $country ) ){
                                 echo '<option selected="selected" value="' . $country_option . '">' . $country_option . '</option>';
                             } else{
                                 echo '<option value="' . $country_option . '">' . $country_option . '</option>';
