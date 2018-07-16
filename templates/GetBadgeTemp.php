@@ -151,8 +151,8 @@ final class GetBadgeTemp extends BaseController {
                 <h1 class="badge-title-obf cover-heading">
                     <strong><?php echo $this->badgeWP->post_title; ?></strong>
                 </h1>
-                <h5 class="badge-field"> <?php _e('Field of education: ','open-badges-framework')?><strong><?php echo $this->fieldWP->name; ?></strong> 
-					<?php _e('- Level:','open-badges-framework')?>
+                <h5 class="badge-field"> <?php _e('Field of education: ','open-badges-framework')?><strong><?php echo $this->fieldWP->name; ?></strong> </br>
+					<?php _e('Level:','open-badges-framework')?>
                     <strong><?php echo $this->levelWP->name; ?></strong></h5>
                 <p class="lead">
                     <?php //echo $this->badgeWP->post_content; 
