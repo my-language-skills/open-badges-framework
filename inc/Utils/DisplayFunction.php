@@ -58,14 +58,26 @@ class DisplayFunction {
             if ($p_parent === "") {
                 // Display the DEFAULT parent
                 $parents = $fieldsInstance->sub;
+                $mains = $fieldsInstance->main;
                 echo $selectionContOpen;
 
-                foreach ($parents as $parent) {
-                    foreach ($parent as $language) {
-                        echo '<option value="' . $language->term_id . '">';
-                        echo $language->name . '</option>';
+                foreach ($mains as $main) {
+                    if( get_term_children($main->term_id, 'field_of_education' ) ){
+                        foreach ((array)$parents[$main->slug] as $language) {
+                            echo '<option value="' . $language->term_id . '">';
+                            echo $language->name . '</option>';
+                        }
+                        break;
                     }
-                    break;
+                    /*foreach ($parents as $parent) {
+                        if( get_term_children($main->term_id, 'field_of_education' ) ){
+                            foreach ($parent as $language) {
+                                echo '<option value="' . $language->term_id . '">';
+                                echo $language->name . '</option>';
+                            }
+                            break;
+                        }
+                    }*/
                 }
                 echo $selectionContClose;
 
