@@ -258,30 +258,27 @@ final class GetBadgeTemp extends BaseController {
                     <!-- USERNAME -->
                     <div class="form-group row">
                         <div class="col-sm-12">
-                            <input type="text" class="form-control" id="reg-user-name" placeholder="<?php _e('Username','open-badges-framework')?>"
-                                   required>
+                            <input type="text" class="form-control" id="reg-user-name" placeholder="<?php _e('Username','open-badges-framework')?>*" required>
                         </div>
                     </div>
 
                      <!-- EMAIL -->
                     <div class="form-group row">
                         <div class="col-sm-12">
-                            <input type="email" class="form-control" id="reg-email" placeholder="<?php _e('Email','open-badges-framework')?>"
-                                    required>
+                            <input type="email" class="form-control" id="reg-email" placeholder="<?php _e('Email','open-badges-framework')?>*"
+                                required>
                         </div>
                     </div>
 
                     <!-- PASSWORD -->
                     <div class="form-group row">
                         <div class="col-sm-12">
-                            <input type="password" class="form-control" id="reg-pass" placeholder="<?php _e('Password','open-badges-framework')?>"
-                                   required>
+                            <input type="password" class="form-control" id="reg-pass" placeholder="<?php _e('Password','open-badges-framework')?>*" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-12">
-                            <input type="password" class="form-control" id="reg-repeat-pass"
-                                   placeholder="Repeat password" required>
+                            <input type="password" class="form-control" id="reg-repeat-pass" placeholder="Repeat password*" required>
                         </div>
                     </div>
 
@@ -290,16 +287,14 @@ final class GetBadgeTemp extends BaseController {
                     <!-- FIRST NAME -->
                     <div class="form-group row">
                         <div class="col-sm-12">
-                            <input type="text" class="form-control" id="reg-first-name" placeholder="<?php _e('First name','open-badges-framework')?>"
-                                   required>
+                            <input type="text" class="form-control" id="reg-first-name" placeholder="<?php _e('First name','open-badges-framework')?>*" required>
                         </div>
                     </div>
 
                     <!-- LAST NAME -->
                     <div class="form-group row">
                         <div class="col-sm-12">
-                            <input type="text" class="form-control" id="reg-last-name" placeholder="<?php _e('Last name','open-badges-framework')?>"
-                                   required>
+                            <input type="text" class="form-control" id="reg-last-name" placeholder="<?php _e('Last name','open-badges-framework')?>*" required>
                         </div>
                     </div>
 
@@ -341,8 +336,7 @@ final class GetBadgeTemp extends BaseController {
                     <!-- CITY -->
                     <div class="form-group row">
                         <div class="col-sm-12">
-                            <input type="text" class="form-control" id="reg-city" placeholder="<?php _e('City','open-badges-framework')?>"
-                                    required>
+                            <input type="text" class="form-control" id="reg-city" placeholder="<?php _e('City','open-badges-framework')?>">
                         </div>
                     </div>
 
@@ -351,16 +345,14 @@ final class GetBadgeTemp extends BaseController {
                     <!-- MOTHER TOUNGUE -->
                     <div class="form-group row">
                         <div class="col-sm-12">
-                            <input type="text" class="form-control" id="reg-mother-tongue" placeholder="<?php _e('Mother tongue','open-badges-framework')?>"
-                                    required>
+                            <input type="text" class="form-control" id="reg-mother-tongue" placeholder="<?php _e('Mother tongue','open-badges-framework')?>">
                         </div>
                     </div>
 
                     <!-- PRIMARY DEGREE -->
                     <div class="form-group row">
                         <div class="col-sm-12">
-                            <input type="text" class="form-control" id="reg-primary-degree" placeholder="<?php _e('Primary degree','open-badges-framework')?>"
-                                    required>
+                            <input type="text" class="form-control" id="reg-primary-degree" placeholder="<?php _e('Primary degree','open-badges-framework')?>">
                         </div>
                     </div>
 
@@ -402,7 +394,7 @@ final class GetBadgeTemp extends BaseController {
 
                             <div class="form-group row" id="div-captcha">
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control" id="reg-captcha-answer" placeholder="<?php _e('Copy the word below','open-badges-framework')?>">
+                                    <input type="text" class="form-control" id="reg-captcha-answer" placeholder="<?php _e('Copy the word below','open-badges-framework')?>*" required>
                                     <!-- Permit to keep the files prefix in data (we need them to call the RSC functions in other files) -->
                                     <input id="reg-captcha-prefix" name="prefix" type="hidden" value="<?php echo $prefix ?>">
                                     <img src="<?php echo plugin_dir_url() . 'really-simple-captcha/tmp/' . $prefix . '.png'?>">
@@ -410,6 +402,10 @@ final class GetBadgeTemp extends BaseController {
                             </div>
 
                     <?php } ?>
+
+                    <div class="cont-btn-form-reg">
+                        <p class="description">*Mandatory fields
+                    </div>
 
                     <div class="cont-btn-form-reg">
                         <div id="gb-resp-register">

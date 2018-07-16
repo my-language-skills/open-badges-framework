@@ -67,18 +67,31 @@ jQuery(function (event) {
      * @return void
      */
     var checkValue = function (input) {
-        if (input.val() == "") {
+        if (input.val() == "" && input.prop('required')) {
             input.addClass("is-invalid");
             input.on("input", function (event) {
                 if (input.val() != "") {
                     input.removeClass("is-invalid");
                     input.addClass("is-valid");
-                } else {
+                } else {   
                     input.removeClass("is-valid");
                     input.addClass("is-invalid");
                 }
             });
         }
+    }
+
+    var validateEmail = function (email) {
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        email.on("input", function (event) {
+            if(re.test(email.val())){
+                email.removeClass("is-invalid");
+                email.addClass("is-valid");
+            } else {   
+                email.removeClass("is-valid");
+                email.addClass("is-invalid");
+            }
+        });
     }
 
     /**
@@ -253,6 +266,8 @@ jQuery(function (event) {
             inputFields.forEach(function (field) {
                 checkValue(field);
             });
+            mail = jQuery(this).find("#reg-email");
+            validateEmail(mail);
             jQuery(btnRegister).prop('disabled', false);
             jQuery(lblRegister).removeClass("disabled");
         } else {
