@@ -11,6 +11,7 @@ use Inc\Utils\SendBadge;
 use Inc\Utils\Classes;
 use Inc\Base\BaseController;
 use templates\SettingsTemp;
+use Inc\Pages\Admin;
 
 /**
  * This class is a wrap for all the public function that are
@@ -45,21 +46,50 @@ class SendBadgeAjax extends BaseController {
     public function ajaxShowLevels() {
         $form = $_POST['form'];
         $fieldId = $_POST['fieldId'];
-        $level = new WPLevel();
-        $levels = $level->getAllLevels($fieldId);
+        $badges = array();
 
-        if ($levels) {
-            // Display the level ...
-            foreach ($levels as $level) {
-                if ($level) {
-                    echo '<div class="rdi-tab">';
-                    echo "<input id='level-$level->name-form-$form' value='$level->term_id' class='radio-input level' name='level_$form' type='radio'>
-                  <label for='level-$level->name-form-$form' class='radio-label'>$level->name</label>";
-                    echo '</div>';
-                }
+        $allBadges = get_posts(array(
+            'post_type' => Admin::POST_TYPE_BADGES,
+            'orderby' => 'name',
+            'order' => 'ASC',
+            'numberposts' => -1
+        ));
+
+        $badge_without_level = false;
+
+        foreach ($allBadges as $badge) {
+            if( in_array( get_term($fieldId), get_the_terms($badge->ID, Admin::TAX_FIELDS) ) ){
+                array_push($badges, $badge);
+            }    
+        }
+
+        foreach ($badges as $badge) {
+            if( !get_the_terms($badge->ID, Admin::TAX_LEVELS) ){
+                $badge_without_level = true;
+                break;
             }
+        }
+
+        //If there is one, we display all the levels
+        //(because a badge without level is a general badge)
+        if($badge_without_level){
+            $levels = get_terms( Admin::TAX_LEVELS, array( 'hide_empty' => false ) );
         } else {
-            echo "There aren't badges with this field of education!";
+            $level = new WPLevel();
+            $levels = $level->getAllLevels($fieldId);
+            if (!$levels) {
+                echo "There aren't badges with this field of education!";
+            }
+        }
+
+        // Display the level ...
+        foreach ($levels as $level) {
+            if ($level) {
+                echo '<div class="rdi-tab">';
+                echo "<input id='level-$level->name-form-$form' value='$level->term_id' class='radio-input level' name='level_$form' type='radio'>
+              <label for='level-$level->name-form-$form' class='radio-label'>$level->name</label>";
+                echo '</div>';
+            }
         }
 
         wp_die();
@@ -78,8 +108,45 @@ class SendBadgeAjax extends BaseController {
         $form = $_POST['form'];
         $field = $_POST['fieldId'];
         $level = $_POST['level'];
+        $badgesRightFoE = array();
 
         $badges = $badges->getFiltered($field, $level);
+
+        $badge_without_level = false;
+
+        $allBadges = get_posts(array(
+            'post_type' => Admin::POST_TYPE_BADGES,
+            'orderby' => 'name',
+            'order' => 'ASC',
+            'numberposts' => -1
+        ));
+
+        foreach ($allBadges as $badge) {
+            if( in_array( get_term($field), get_the_terms($badge->ID, Admin::TAX_FIELDS) ) ){
+                array_push($badgesRightFoE, $badge);
+                $badge_without_level = true;
+            }    
+        }
+
+        if( $badge_without_level ){
+            foreach ($badgesRightFoE as $badge) {
+                if(!get_the_terms($badge->ID, Admin::TAX_LEVELS)){?>
+                    <!-- HTML -->
+                    <div class="cont-badge-sb">
+                        <label for="<?php echo "badge-$badge->ID-form-$form" ?>" class="badge-cont">
+                            <input id="<?php echo "badge-$badge->ID-form-$form" ?>" type="radio"
+                                   name="badge_<?php echo $form; ?>"
+                                   class="input-badge" value="<?php echo $badge->ID; ?>"/>
+                            <img class="img-badge" src=" <?php echo WPBadge::getUrlImage($badge->ID); ?>"/>
+                        </label>
+                        <br>
+                        <b><?php echo $badge->post_title; ?></b>
+                        </label>
+                    </div>
+                    <?php
+                }
+            }
+        }
 
         if ($badges) {
             foreach ($badges as $badge) { ?>
@@ -98,7 +165,9 @@ class SendBadgeAjax extends BaseController {
                 <?php
             }
         } else {
-            echo "There aren't badges with this field of education!";
+            if(!$badge_without_level){
+                echo "There aren't badges with this field of education!";
+            }
         }
 
         wp_die();
@@ -115,21 +184,21 @@ class SendBadgeAjax extends BaseController {
         $form = $_POST['form'];
         $badgeId = $_POST['badgeId'];
         $badge = $badges->get($badgeId);
-		
-		
-		global $wpdb;
-		$available_traslated_descriptions =  $wpdb->get_results($wpdb->prepare("SELECT meta_value,comment_content FROM ".$wpdb->prefix."commentmeta as a,".$wpdb->prefix."comments as b where a.comment_id = b.comment_ID and comment_post_ID=%s and comment_approved = 1 and meta_key='language' ORDER BY meta_value",$badgeId));
+        
+        
+        global $wpdb;
+        $available_traslated_descriptions =  $wpdb->get_results($wpdb->prepare("SELECT meta_value,comment_content FROM ".$wpdb->prefix."commentmeta as a,".$wpdb->prefix."comments as b where a.comment_id = b.comment_ID and comment_post_ID=%s and comment_approved = 1 and meta_key='language' ORDER BY meta_value",$badgeId));
      
-		echo "<div name='description_$form' id='description_$form'>$badge->post_content</div>";
-	    echo "<select name='translation_$form' id='translation_$form'>";
-		echo "<option value='$badge->post_content'>Select a translation(Default Description)</option>";
-		foreach($available_traslated_descriptions as $value){
-			
-			echo "<option value='$value->comment_content'>$value->meta_value</option>";
-			
-		}
-		echo "</select>";
-		
+        echo "<div name='description_$form' id='description_$form'>$badge->post_content</div>";
+        echo "<select name='translation_$form' id='translation_$form'>";
+        echo "<option value='$badge->post_content'>Select a translation(Default Description)</option>";
+        foreach($available_traslated_descriptions as $value){
+            
+            echo "<option value='$value->comment_content'>$value->meta_value</option>";
+            
+        }
+        echo "</select>";
+        
         wp_die();
     }
 
@@ -196,7 +265,7 @@ class SendBadgeAjax extends BaseController {
         $receivers = isset($_POST["receivers"]) ? $_POST['receivers'] : null;
         $info = isset($_POST["info"]) ? $_POST['info'] : null;
         $evidence = isset($_POST["evidence"]) ? $_POST['evidence'] : null;
-		$description = isset($_POST["description"]) ? $_POST['description'] : null;
+        $description = isset($_POST["description"]) ? $_POST['description'] : null;
 
         // For the A form the receiver is the user (Self)
         if ($form === 'a') {

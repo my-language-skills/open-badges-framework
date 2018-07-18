@@ -53,13 +53,29 @@ class Statistics {
      * @return int the number of term.
      */
     public static function getNumberTerm($slug) {
+        $only_parents = false;
         $count = 0;
         $terms = get_terms($slug, array('hide_empty' => false));
+
         foreach($terms as $term) {
-            if ($term->parent != 0) { // avoid parent categories
+            if($term->parent != 0){
+                $only_parents = true;
+                break;
+            }
+        }
+
+        if($only_parents){
+            foreach($terms as $term) {
+                if ($term->parent != 0) { // avoid parent categories
+                    $count++;
+                }
+            }
+        } else {
+            foreach($terms as $term) {
                 $count++;
             }
         }
+        
 
         return $count;
     }
