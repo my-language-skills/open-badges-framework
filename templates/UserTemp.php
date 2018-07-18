@@ -116,18 +116,18 @@ final class UserTemp {
                     <div class="txt-info center-item">
                         <ul>
                             <?php 
-                            if( get_the_author_meta( 'year_of_birth', $idUser ) != 'none' && get_the_author_meta( 'year_of_birth', $idUser ) != '0'){ ?>
+                            if( get_the_author_meta( 'year_of_birth', $idUser ) && get_the_author_meta( 'year_of_birth', $idUser ) != 'none' ){ ?>
                                 <li>
                                     <span class="dashicons dashicons-info"></span>
                                     <?php echo __('Year of birth : ','open-badges-framework') . get_the_author_meta( 'year_of_birth', $idUser ); ?>
                                 </li>
                             <?php }
-                            if( get_the_author_meta( 'country', $idUser ) != 'none' && get_the_author_meta( 'city', $idUser ) || !get_the_author_meta( 'country', $idUser ) ){ ?>
+                            if( get_the_author_meta( 'country', $idUser ) && get_the_author_meta( 'country', $idUser ) != 'none' && get_the_author_meta( 'city', $idUser ) ){ ?>
                                 <li>
                                     <span class="dashicons dashicons-flag"></span>
                                     <?php echo get_the_author_meta( 'country', $idUser ) . ' - ' . get_the_author_meta( 'city', $idUser ); ?>
                                 </li>
-                            <?php } else if( get_the_author_meta( 'country', $idUser ) != 'none' || get_the_author_meta( 'city', $idUser ) || !get_the_author_meta( 'country', $idUser )){ ?>
+                            <?php } else if( ( get_the_author_meta( 'country', $idUser ) && get_the_author_meta( 'country', $idUser ) != 'none' ) || get_the_author_meta( 'city', $idUser ) ){ ?>
                                 <li>
                                     <span class="dashicons dashicons-flag"></span>
                                     <?php echo get_the_author_meta( 'country', $idUser ) . get_the_author_meta( 'city', $idUser ); ?>
