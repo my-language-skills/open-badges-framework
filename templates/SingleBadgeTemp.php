@@ -108,19 +108,16 @@ final class SingleBadgeTemp {
         <div class="obf-bsp-badge-image">
             <img class="circle-img" src="<?php echo WPBadge::getUrlImage($badge->ID); ?>">
         </div>
-        <section class="user-cont-obf">
-            <h1 class="obf-title"><?php _e('Badge','open-badges-framework.');?><strong><?php echo $badge->post_title; ?></strong></h1>
-            <section>
-                <h3><?php _e('Badge information','open-badges-framework.');?></h3>
-                <p> <?php _e('Name: ','open-badges-framework.');?><strong><?php echo $badge->post_title; ?></strong></p>
-                <p> <?php _e('Level: ','open-badges-framework.');?><strong><?php foreach ($levels as $level) echo $level->name . " "; ?></strong></p>
-                <p> <?php _e('Field of education: ','open-badges-framework.');?><strong><?php foreach ($fields as $field) echo $field->name;
-                        echo !$fields ? "All" : ""; ?></strong></p>
-                <p> <?php _e('Description: ','open-badges-framework.');?><strong><?php echo $badge->post_content; ?></strong></p>
-                <?php if (current_user_can("manage_options")) { ?>
-                    <a href="<?php echo get_edit_post_link($badge->ID) ?>"> <?php _e('Edit post ','open-badges-framework.');?></a>
-                <?php } ?>
-            </section>
+        <section>
+            <h1><?php _e('Badge information','open-badges-framework.');?></h1>
+            <p> <?php _e('Name: ','open-badges-framework.');?><strong><?php echo $badge->post_title; ?></strong></p>
+            <p> <?php _e('Level: ','open-badges-framework.');?><strong><?php foreach ($levels as $level) echo $level->name . " "; ?></strong></p>
+            <p> <?php _e('Field of education: ','open-badges-framework.');?><strong><?php foreach ($fields as $field) echo $field->name;
+                    echo !$fields ? "All" : ""; ?></strong></p>
+            <p> <?php _e('Description: ','open-badges-framework.');?><strong><?php echo $badge->post_content; ?></strong></p>
+            <?php if (current_user_can("manage_options")) { ?>
+                <a href="<?php echo get_edit_post_link($badge->ID) ?>"> <?php _e('Edit post ','open-badges-framework.');?></a>
+            <?php } ?>
         </section>
         <?php
     }
@@ -151,10 +148,8 @@ final class SingleBadgeTemp {
         <div class="obf-bsp-badge-image">
             <img class="circle-img" src="<?php echo WPBadge::getUrlImage($badgeWP->ID); ?>">
         </div>
-        <section class="user-cont-obf">
-            <h1 class="obf-title"><strong><?php echo $badgeWP->post_title; ?></strong></h1>
             <section>
-                <h3><?php _e('Badge information ','open-badges-framework.');?></h3>
+                <h1><?php _e('Badge information ','open-badges-framework.');?></h1>
                 <p><?php _e('Name: ','open-badges-framework.');?><strong><?php echo $badgeWP->post_title; ?></strong></p>
                 <p><?php _e('Level: ','open-badges-framework.');?><strong><?php echo $level->name; ?></strong></p>
                 <p><?php _e('Field of education: ','open-badges-framework.');?><strong><?php echo $field->name; ?></strong></p>
@@ -169,7 +164,6 @@ final class SingleBadgeTemp {
 				<?php } else { ?>
 					<p><strong><?php _e('Teacher no longer available!!!','open-badges-framework.');?></strong></p>
 				<?php }	?>
-                <p><?php _e('Info: ','open-badges-framework.');?><strong><?php echo $badge->info; ?></strong></p>
                 <p>
                     <?php _e('Evidence: ','open-badges-framework.');?>
                     <strong>
@@ -183,6 +177,7 @@ final class SingleBadgeTemp {
             </section>
             <section>
                 <h3><?php _e('General information','open-badges-framework.');?></h3>
+                <p><?php _e('Info: ','open-badges-framework.');?><strong><?php echo $badge->info; ?></strong></p>
                 <p><?php _e('Received: ','open-badges-framework.');?><strong><?php echo date("d M Y", strtotime($badge->creationDate)); ?></strong></p>
                 <p><?php _e('Earned: ','open-badges-framework.');?>
                     <strong><?php echo $badge->gotDate ? date("d M Y", strtotime($badge->gotDate)) : "on hold"; ?></strong>
@@ -209,7 +204,6 @@ final class SingleBadgeTemp {
                 }
             }
             ?>
-        </section>
         <?php
     }
 
