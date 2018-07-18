@@ -15,7 +15,6 @@ use Templates\SingleBadgeTemp;
 use Templates\UserTemp;
 use Templates\StaticPagesTemp;
 
-
 /**
  * The WordPress Admin generator.
  * This class allow to create array that will be pass
@@ -175,7 +174,7 @@ class Admin extends BaseController {
                 'parent_slug' => self::SLUG_PLUGIN,
                 'page_title' => 'About us',
                 'menu_title' => 'About us',
-                'capability' => 'read',
+                'capability' => 'administrator',
                 'menu_slug' => self::PAGE_ABOUT,
                 'callback' => array($staticPagesTemp, 'aboutTab')
             ),
