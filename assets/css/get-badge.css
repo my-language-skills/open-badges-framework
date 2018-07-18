@@ -234,6 +234,475 @@ input {
 }
 
 .logo-badge-cont img {
+    height: 150px;
+    width: 150px;
+    
+}
+
+.logo-badge-got-cont {
+    margin-bottom: 30px;
+}
+
+.logo-badge-got-cont img {
+    height: 100px;
+    width: 100px;
+}
+
+.badge-got-title {
+    font-weight: 400;
+    margin-top: 20px;
+    text-transform: uppercase;
+}
+
+/*
+ * Login
+ */
+
+.cont-form {
+    max-width: 350px;
+}
+
+#wrap-login .gb-form {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.register-cont-link {
+    margin-top: 5px;
+}
+
+.checkbox {
+    padding-top: 8px;
+}
+
+/*
+ * Register
+ */
+
+.mastfoot {
+    color: rgba(255, 255, 255, .5);
+}
+
+#gb-resp-login {
+    max-width: 350px;   
+}
+
+#reg-year {
+    text-align-last: center;
+}
+
+#reg-country {
+    text-align-last: center;
+}
+
+#div-captcha {
+    margin-top: 75px;
+}
+
+#submit-form {
+    display: none;
+}
+
+.logo-open-badges {
+    margin-bottom: 30px;
+}
+
+.logo-open-badges img {
+    width: 200px;
+}
+
+.cover #gb-form-registration {
+    max-width: 500px;
+    margin: auto;
+    text-align: center;
+}
+
+.col-form-label {
+    text-align: right;
+    font-weight: 400;
+}
+
+.cont-btn-form-reg {
+    height: 10px;
+    margin-top: 20px;
+}
+
+.label-p {
+    padding: .75rem 1.5rem;
+    font-size: 1.25rem;
+    border-radius: .3rem;
+    color: #fff;
+    background-color: #0275d8;
+    border-color: #0275d8;
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.25;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .5rem 1rem;
+    font-size: 1rem;
+    border-radius: .25rem;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+
+}
+
+/*
+ * Open Badges Mozilla
+ */
+
+.jumb-obm {
+    padding: 40px 20px 20px 20px;
+    border-bottom: 7px solid #cccccc;
+}
+
+.cont-btn-standar {
+    padding: 30px 0px 10px 0px;
+
+}
+
+#gb-ob-get-badge {
+    min-height: 25px;
+    min-width: 150px;
+}
+
+#gb-ob-response {
+    height: 10px;
+    color: #cd0000;
+    font-size: 15px;
+}
+
+/*
+ * Congratulation
+ */
+
+.cong-title-obf {
+    font-weight: 300;
+    font-size: 35px;
+}
+
+.cont-button-redirect {
+    margin-top: 60px;
+}
+
+.btn-redirect {
+    border-color: #01549b;
+    display: block;
+    color: #01549b;
+    padding: 12px 0 12px 0 !important;
+    font-weight: 300 !important;
+    font-size: 18px !important;
+}
+
+.btn-redirect:hover {
+    color: #0166c3;
+}
+
+/*
+ * Footer
+ */
+.mastfoot {
+    color: rgba(255, 255, 255, .5);
+}
+
+#footer_login{
+    padding-top:0px;
+}
+
+/*
+ !*
+ * Affix and center
+ *!
+
+@media (min-width: 40em) {
+    !* Pull out the header and footer *!
+    .masthead {
+        position: fixed;
+        top: 0;
+    }
+
+    .mastfoot {
+        position: fixed;
+        bottom: 0;
+    }
+
+    !* Start the vertical centering *!
+    .site-wrapper-inner {
+        vertical-align: middle;
+    }
+
+    !* Handle the widths *!
+    .masthead,
+    .mastfoot,
+    .cover-container {
+        width: 100%; !* Must be percentage or pixels for horizontal alignment *!
+    }
+}
+
+@media (min-width: 62em) {
+    .masthead,
+    .mastfoot,
+    .cover-container {
+        width: 100%;
+    }
+}
+*/
+
+/*
+ * VALIDATION fields
+ */
+
+.is-invalid {
+    border-color: #dc3545 !important;
+}
+
+.is-valid {
+    border-color: #28a745 !important;
+}
+body, body:after, body:before {
+    all: unset !important;
+}
+
+html {
+    height: 100% !important;
+}
+
+body {
+
+}
+
+body * {
+    text-align: center !important;
+}
+
+.cover-container {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+input {
+    box-sizing: border-box
+}
+
+.container {
+    max-width: 46rem;
+}
+
+.container-wrap {
+    display: block;
+    height: 100%;
+}
+
+.info-header-obf {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: #d6d6d6;
+}
+
+.info-header-obf a {
+    color: #5a5a5a !important;
+}
+
+/* Extra markup and styles for table-esque vertical and horizontal centering */
+.site-wrapper {
+    display: table;
+    width: 100%;
+    height: 100%; /* For at least Firefox */
+    min-height: 100%;
+    background-color: white;
+}
+
+.site-wrapper-inner {
+    display: table-cell;
+    vertical-align: top;
+
+}
+
+.inner {
+    padding: 2rem;
+}
+
+/*
+ * Default Header
+ */
+
+.masthead {
+    margin-bottom: 2rem;
+}
+
+.masthead-brand {
+    margin-bottom: 0;
+}
+
+.nav-masthead .nav-link {
+    padding: .25rem 0;
+    font-weight: 700;
+    color: rgba(255, 255, 255, .5);
+    background-color: transparent;
+    border-bottom: .25rem solid transparent;
+}
+
+.nav-masthead .nav-link:hover,
+.nav-masthead .nav-link:focus {
+    border-bottom-color: rgba(255, 255, 255, .25);
+}
+
+.nav-masthead .nav-link + .nav-link {
+    margin-left: 1rem;
+}
+
+.nav-masthead .active {
+    color: #fff;
+    border-bottom-color: #fff;
+}
+
+@media (min-width: 48em) {
+    .masthead-brand {
+        float: left;
+    }
+
+    .nav-masthead {
+        float: right;
+    }
+}
+
+/*
+ * Styled Header
+ */
+
+.cont-title {
+    display: inline-block;
+    font-weight: 200;
+    font-size: 50px;
+}
+
+.cont-title.small {
+    display: inline-block;
+    font-weight: 200;
+    font-size: 30px;
+}
+
+.masthead {
+    margin-bottom: 2rem;
+}
+
+.masthead-brand {
+    margin-bottom: 0;
+}
+
+.nav-masthead .nav-link {
+    padding: .25rem 0;
+    font-weight: 700;
+    color: rgba(255, 255, 255, .5);
+    background-color: transparent;
+    border-bottom: .25rem solid transparent;
+}
+
+.ob-menu {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.ob-menu span {
+    vertical-align: middle;
+    line-height: 50px;
+}
+
+.ob-cont-title {
+    font-size: 30px;
+    font-weight: 300;
+}
+
+.ob-user-info {
+    margin-left: auto;
+}
+
+.ob-user-info img {
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    margin-right: 10px;
+}
+
+@media (min-width: 48em) {
+
+    .ob-menu span {
+        display: inline-block;
+        float: left;
+    }
+}
+
+@media (max-width: 480px) {
+    .ob-menu {
+        text-align: center;
+        display: inline-block;
+    }
+
+    .ob-menu span {
+        margin: auto;
+        display: inline-block;
+    }
+}
+
+/*
+ * Default Cover
+ */
+.cover {
+    padding: 0 1.5rem;
+}
+
+.cover .btn-lg {
+    padding: .75rem 1.25rem;
+    font-weight: 700;
+}
+
+/*
+ * Styled Cover
+ */
+
+.cover {
+    padding: 0 1.5rem;
+}
+
+.cover .btn-lg {
+    padding: .75rem 1.25rem;
+    font-weight: 700;
+}
+
+.gb-info {
+    margin-top: 70px;
+}
+
+.badge-title-obf {
+    font-weight: 300;
+    font-size: 50px;
+}
+
+.badge-field {
+    font-weight: 300;
+}
+
+.badge-level {
+    display: inline-block;
+    font-weight: 300;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #d6d6d6;
+}
+
+.logo-badge-cont {
+    margin-top: 30px;
+}
+
+.logo-badge-cont img {
     /*height: 150px;
       width: 150px;
 	*/
