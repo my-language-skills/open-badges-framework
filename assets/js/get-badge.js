@@ -83,15 +83,18 @@ jQuery(function (event) {
 
     var validateEmail = function (email) {
         var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        email.on("input", function (event) {
-            if(re.test(email.val())){
-                email.removeClass("is-invalid");
-                email.addClass("is-valid");
-            } else {   
-                email.removeClass("is-valid");
-                email.addClass("is-invalid");
-            }
-        });
+        if( !re.test(email.val() ) ){
+            email.addClass("is-invalid");
+            email.on("input", function (event) {
+                if( re.test(email.val() ) ){
+                    email.removeClass("is-invalid");
+                    email.addClass("is-valid");
+                } else {   
+                    email.removeClass("is-valid");
+                    email.addClass("is-invalid");
+                }
+            });
+        }
     }
 
     /**

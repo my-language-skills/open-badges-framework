@@ -138,8 +138,10 @@ class GetBadgeAjax extends BaseController {
                 'userSecondaryDegree' => $_POST['userSecondaryDegree'],
                 'userTertiaryDegree' => $_POST['userTertiaryDegree']
 			);
-			
-            $captcha_instance = new ReallySimpleCaptcha();
+
+			if ( is_plugin_active( 'really-simple-captcha/really-simple-captcha.php' ) ){
+                $captcha_instance = new ReallySimpleCaptcha();
+            }
 			
 			//Condition to see if the user is using the right email to register
 			if ( $userEmail != $user['userEmail']){
