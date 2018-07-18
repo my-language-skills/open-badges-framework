@@ -67,7 +67,7 @@ class WPBadge {
                 $fieldOK = 0; // Var that determinate if the field match with the badge
 
                 $badgeFields = get_the_terms($badge->ID, Admin::TAX_FIELDS);
-                $badgeLevel = get_the_terms($badge->ID, Admin::TAX_LEVELS);
+                $badgeLevel = get_the_terms($badge->ID, Admin::TAX_LEVELS)[0];
 
                 // Here is checked if the badge MATCH with the $fieldId
                 if (is_array($badgeFields) || is_object($badgeFields)) {
@@ -96,10 +96,7 @@ class WPBadge {
                 //
                 // !in_array($badge, $retBadges)    --> return 1 if is not already stored the badge in the
                 // $retBadges array.
-
-                $selectedLevel = get_term($levelId, Admin::TAX_LEVELS);
-
-                if ((!$badgeFields || $fieldOK) && in_array($selectedLevel, $badgeLevel) && !in_array($badge, $retBadges)) {
+                if ((!$badgeFields || $fieldOK) && $badgeLevel->term_id == $levelId && !in_array($badge, $retBadges)) {
                     self::checkCapInsertBadgeOrLevel($retBadges, $badge);
                 }
             }
