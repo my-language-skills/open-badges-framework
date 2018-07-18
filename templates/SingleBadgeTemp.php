@@ -157,9 +157,19 @@ final class SingleBadgeTemp {
             </section>
             <section>
                 <h3><?php _e('Teacher information','open-badges-framework.');?></h3>
-				 <?php if ($teacherWP ) { ?>
-					<p><?php _e('Name: ','open-badges-framework.');?><strong><?php echo $teacherWP->first_name; ?></strong></p>
-					<p><?php _e('Last name: ','open-badges-framework.');?><strong><?php echo $teacherWP->last_name; ?></strong></p>
+				 <?php if ( $teacherWP ) {
+
+                        if( $teacherWP->ID == $studentWP->ID ){ ?>
+                            <p><strong><?php _e('Self sent','open-badges-framework.');?></strong></p>
+                        <?php } else { 
+                                if( $teacherWP->first_name && $teacherWP->last_name ){?>
+                                    <p><?php _e('Name: ','open-badges-framework.');?><strong><?php echo $teacherWP->first_name; ?></strong></p>
+                                    <p><?php _e('Last name: ','open-badges-framework.');?><strong><?php echo $teacherWP->last_name; ?></strong></p>
+                                <?php } else { ?>
+                                    <p><?php _e('Name: ','open-badges-framework.');?><strong><?php echo $teacherWP->display_name; ?></strong></p>
+                                <?php }
+                        } ?>
+
 					<p><?php _e('Email: ','open-badges-framework.');?><strong><?php echo $teacherWP->user_email; ?></strong></p>
 				<?php } else { ?>
 					<p><strong><?php _e('Teacher no longer available!!!','open-badges-framework.');?></strong></p>
