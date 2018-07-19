@@ -211,6 +211,8 @@ During the "Send a badge" process, you have to choose a field of education. Thei
 
 A badge can have multiple, one or none field of education. So when you select the field of education during the "Send a badge" process (first step), the badges are filtered with this field of education. A badge without any field of education means it's related to all the fields so whatever the field that has been choosen, the user will be able to send these general badges. For a badge with multiple fields of education, if the field selected is in the list of fields of education, the user will be able to send it.
 
+(((( if we have badges of one foe, just those badges would work, if we have badges with one fod and badges with no foe assigned, both will work, but if we have not badges with no foe selected, as the foe would be abaliable, the second part would not work because we will have not badges for that foe. Always is necesary to have at least one badge with no foe)))
+
 *Note :*
 
 * You have to know that if you create child fields of education, the parents are not considered anymore as a "real" field of education. It becomes only a group of fields. So, you can't choose parent fields anymore to send a badge.
