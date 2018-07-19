@@ -209,13 +209,15 @@ During the "Send a badge" process, you have to choose a field of education. Thei
 * Normal way : You can add fields of education without parents, then you will be able to choose one of them when you want to send a badge. 
 * Parents and children way : You can create parent fields AND their children. In this way, during the "Send a badge" process you will be able to choose one of the parent field to get the list of this field's children and choose one of them.
 
-![send_badge](../readme-assets/send-badge.png "Send Badge")
+A badge can have multiple, one or none field of education. So when you select the field of education during the "Send a badge" process (first step), the badges are filtered with this field of education. A badge without any field of education means it's related to all the fields so whatever the field that has been choosen, the user will be able to send these general badges. For a badge with multiple fields of education, if the field selected is in the list of fields of education, the user will be able to send it.
 
-Note :
+*Note :*
 
 * You have to know that if you create child fields of education, the parents are not considered anymore as a "real" field of education. It becomes only a group of fields. So, you can't choose parent fields anymore to send a badge.
 * Creating sub-sub fields of education is useless, they will be considered as normal sub field of education.
 * Creating only one parent field and its children makes no sense because it would be the same if you create only parent fields of education (you don't need sub section during the "Send a badge" process).
+
+![send_badge](../readme-assets/send-badge.png "Send Badge")
 
 #### Send Badges Notice
 The plugin is developed in that way that doesnt allow a Teacher/Academy Teacher to send a badge to himself in the Single or Multiple way,
