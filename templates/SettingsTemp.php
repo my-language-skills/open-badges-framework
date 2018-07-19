@@ -788,6 +788,7 @@ final class SettingsTemp {
                 'show_option_no_change ' => '-1',
             ));
             echo self::showPreviewLink($val); ?>
+            <p class="description" id="tagline-description"><?php _e('Select the page where you’ve used a shortcode from a membership Plugin to become Premium. This feature belong to users that have the capability of becoming Premium (teacher role only).','open-badges-framework.');?></p>
             <?php
     }
     /**
