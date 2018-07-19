@@ -135,7 +135,7 @@ final class DashboardTemp extends BaseController {
 
                         <div class="row-dash">
                             <div class="col-dash">
-                                <h4><?php _e('Classes','open-badges-framework'); ?></h4>
+                                <h3><?php _e('Classes','open-badges-framework'); ?></h3>
                             </div>
                             <div class="col-dash">
                                 <div class="vert-hr"></div>

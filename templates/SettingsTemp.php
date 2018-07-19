@@ -274,14 +274,16 @@ final class SettingsTemp {
             array($this, 'printPageLinksInfo'), // Callback
             self::PAGE_LINKS // Page
         );
-        /* --> Become Premium Page____*/
-        add_settings_field(
-            self::FI_BECOME_PREMIUM, // ID
-            __('Become Premium','open-badges-framework'),// Title
-            array($this, 'becomePremiumPageCallback'), // Callback
-            self::PAGE_LINKS, // Page
-            self::SECT_PAGE_REF
-        );
+        if ( is_plugin_active( 'wp-job-manager/wp-job-manager.php') ){
+            /* --> Become Premium Page____*/
+            add_settings_field(
+                self::FI_BECOME_PREMIUM, // ID
+                __('Become Premium','open-badges-framework'),// Title
+                array($this, 'becomePremiumPageCallback'), // Callback
+                self::PAGE_LINKS, // Page
+                self::SECT_PAGE_REF
+            );
+        }
         /* --> Register Page__________ */
         add_settings_field(
             self::FI_GET_BADGE,
@@ -786,7 +788,6 @@ final class SettingsTemp {
                 'show_option_no_change ' => '-1',
             ));
             echo self::showPreviewLink($val); ?>
-            <p class="description" id="tagline-description"><?php _e('Select the page where you’ve used a shortcode from a membership Plugin. This lets the plugin know the location of the form.','open-badges-framework.');?></p>
             <?php
     }
     /**
