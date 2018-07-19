@@ -153,7 +153,7 @@ class SendBadge{
         $compName = isset($options[SettingsTemp::FI_SITE_NAME_EMAIL_FIELD]) ? $options[SettingsTemp::FI_SITE_NAME_EMAIL_FIELD] : '';
         $compUrl = isset($options[SettingsTemp::FI_WEBSITE_URL_EMAIL_FIELD]) ? $options[SettingsTemp::FI_WEBSITE_URL_EMAIL_FIELD] : '';
 		$compEmail = isset($options[SettingsTemp::FI_CONTACT_EMAIL_FIELD]) ? $options[SettingsTemp::FI_CONTACT_EMAIL_FIELD] : '';
-        $compUrlImg = isset($options[SettingsTemp::FI_IMAGE_URL_EMAIL_FIELD]) ? wp_get_attachment_image_src($options[SettingsTemp::FI_IMAGE_URL_EMAIL_FIELD]) : '';
+        $compUrlImg = isset($options[SettingsTemp::FI_IMAGE_URL_EMAIL_FIELD]) ? wp_get_attachment_image_src($options[SettingsTemp::FI_IMAGE_URL_EMAIL_FIELD], 'full') : '';
         $header = isset($options[SettingsTemp::FI_HEADER_EMAIL_FIELD]) ? $options[SettingsTemp::FI_HEADER_EMAIL_FIELD] : '';
         $message = isset($options[SettingsTemp::FI_MESSAGE_EMAIL_FIELD]) ? $options[SettingsTemp::FI_MESSAGE_EMAIL_FIELD] : '';
 		
@@ -167,10 +167,10 @@ class SendBadge{
                     <body>
                         <div id='b4l-award-actions-wrap'>
                             <div align='center'>
-								<img src='" . $compUrlImg[0] . "/>
+								<img src='" . $compUrlImg[0] . "'/>
                                 <h1>$compName</h1>
                                  $header	
-                                <center>
+                                <center style='margin-top: 10px;'>
                                     <a href='" . $badgeLink . "'>
                                         <img src='" . WPBadge::getUrlImage($this->wpBadge->ID) . "' width='150' height='150'/>
                                     </a>
