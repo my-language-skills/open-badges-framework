@@ -175,7 +175,7 @@ class SendBadge{
                                         <img src='" . WPBadge::getUrlImage($this->wpBadge->ID) . "' width='150' height='150'/>
                                     </a>
                                 </center>
-                                <h2>" . $this->wpBadge->post_title . " - " . $this->field->name . "</h2>
+                                <h2>" . $this->field->name . ' - ' . $this->level->name . "</h2>
                                 <p>$message</p>
                                 <a href='" . $badgeLink . "'>$badgeLink</a>
                                 <br><br><hr>
