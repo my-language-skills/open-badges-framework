@@ -8,7 +8,7 @@ about: Create a report to help us improve
 - Please check the boxes after you've created your issue.
 - Please use the latest version the theme.-->
 
-* [ ] I've read and understood the [contribution guidelines](https://github.com/my-language-skills/open-badges-framework-listify-child/blob/master/.github/CONTRIBUTING.md).
+* [ ] I've read and understood the [contribution guidelines](https://github.com/my-language-skills/open-badges-framework/blob/master/.github/CONTRIBUTING.md).
 * [ ] I've searched for any related issues and avoided creating a duplicate issue.
 
 ### Please give us a description of what happened.
@@ -34,7 +34,6 @@ about: Create a report to help us improve
 <!-- Add any other context about the problem here. -->
 
 ### Technical info
-* Open Badges Framework - B4L Child Theme: [  ] <!-- Theme version here -->
-* Listify theme version: [  ] <!-- Enter Listify version here -->
+* Open Badges Framework: [  ] <!-- Plugin version here -->
 * WordPress version: [  ] <!-- Enter WordPress version here -->
 * Relevant plugins in case of a bug:      <!-- Please make sure you can reproduce this bug with no plugins activated. Sometimes issues may occur due to plugin conflicts. -->
