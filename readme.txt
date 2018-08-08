@@ -46,7 +46,7 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
  
 == Changelog ==
  
-= 1.0.1 dev =
+= 1.0.0 =
 * **ADDITIONS**
 	* Add custom fields in the Restrict Content Pro regitration form (this datas are saved in the WP user profile and not in the RCP member).
 	* Add custom fields in the WP profile editor.
@@ -62,7 +62,7 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 	* Remove the "Add Class" link in Settings->Links when the WP Job Manager plugin is not activated. #195
 	* Export the custom datas created (year of birth, country, badges earned, etc.) during the WP "Export Personal Data" process.
  
-= 1.0 =
+= 1.0 RC 2=
 * **ADDITIONS**
 
   * Plugin Internationalization( notes,not bug ) #220
@@ -78,7 +78,7 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 * **ENHANCEMENTS**
  	* Fix the email security issue #205
 
-= 1.0 RC =
+= 1.0 RC 1=
 Completely overhauled design, from top to bottom. The plugin has been completely rewritten. Version 1.0 just basic functionalities.
 
 * Aceptation badge email.

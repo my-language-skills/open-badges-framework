@@ -7,7 +7,7 @@ Tags: badges
 
 ## Community / Support
 
-You can join our [Chat](https://gitter.im/open-badges-framework "chat" ) and talk with us.
+You can join our [Chat](https://gitter.im/my-language-skills/open-badges-framework "chat" ) and talk with us.
 
 
 ## Description
@@ -70,7 +70,7 @@ You can see all of the screenshots of the plugin [here](doc/screenshots.md "scre
 
 ## Changelog
 
-### 1.0.1 dev
+### 1.0.0
 
 * **ADDITIONS**
 	* Add custom fields in the Restrict Content Pro regitration form (this datas are saved in the WP user profile and not in the RCP member).
@@ -87,7 +87,7 @@ You can see all of the screenshots of the plugin [here](doc/screenshots.md "scre
 	* Remove the "Add Class" link in Settings->Links when the WP Job Manager plugin is not activated. #195
 	* Export the custom datas created (year of birth, country, badges earned, etc.) during the WP "Export Personal Data" process.
 
-### 1.0
+### 1.0 RC2
 
 * **ADDITIONS**
 
@@ -107,7 +107,7 @@ You can see all of the screenshots of the plugin [here](doc/screenshots.md "scre
 
 * BUGFIXES
 
-### 1.0 RC
+### 1.0 RC1
 
 Completely overhauled design, from top to bottom. The plugin has been completely rewritten. Version 1.0 just basic functionalities.
 * Aceptation badge email.
