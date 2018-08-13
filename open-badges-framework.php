@@ -19,7 +19,7 @@
  * Version:           1.0.0
  * Author:            My language skills team
  * Author URI:        www.badges4languages.com
- * License:           GPL-2.0+
+ * License:           GPL-3.0
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       open-badges-framework
  * Domain Path:       /languages
