@@ -70,6 +70,11 @@ You can see all of the screenshots of the plugin [here](doc/screenshots.md "scre
 
 ## Changelog
 
+### 1.0.1
+
+* **ADDITIONS**
+	* Add wordpress assets images.
+
 ### 1.0.0
 
 * **ADDITIONS**

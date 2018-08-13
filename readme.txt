@@ -45,6 +45,10 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 (or jpg, jpeg, gif).
  
 == Changelog ==
+
+= 1.0.1 =
+* **ADDITIONS**
+	* Add wordpress assets images.
  
 = 1.0.0 =
 * **ADDITIONS**
