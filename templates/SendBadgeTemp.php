@@ -210,18 +210,18 @@ final class SendBadgeTemp extends BaseController {
 
         if ($form == self::FORM_SELF) {
             if (!current_user_can(WPUser::CAP_SELF)) {
-                echo "You don't have the permission to access to this functionality. Please, sign up.";
+                echo "You don't have the permission to access to this functionality.";
                 return false;
             }
 
         } else if ($form == self::FORM_ISSUE) {
             if (!current_user_can(WPUser::CAP_SINGLE)) {
-                echo "You don't have the permission to access to this functionality. Please, sign in as Teacher.";
+                echo "You don't have the permission to access to this functionality.";
                 return false;
             }
         } else if ($form == self::FORM_MULTIPLE) {
             if (!current_user_can(WPUser::CAP_MULTIPLE)) {
-                echo "You don't have the permission to access to this functionality. Please, sign in as Academy.";
+                echo "You don't have the permission to access to this functionality.";
                 return false;
             }
         }

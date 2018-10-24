@@ -51,9 +51,10 @@ function crf_show_extra_profile_fields( $user ) {
                         
                     ?>
                 <select name="country" id="country">
+					<option value="none">Select</option>
                     <?php
                         foreach ($countries as $country_option){ ?>
-                            <option value="none">Select</option>
+                            
                             <?php if( $country_option == esc_attr( $country ) ){
                                 echo '<option selected="selected" value="' . $country_option . '">' . $country_option . '</option>';
                             } else{
@@ -83,7 +84,7 @@ function crf_show_extra_profile_fields( $user ) {
         </tr>
         <tr>
             <!-- Degrees -->
-            <th><label for="degrees"><?php esc_html_e( 'Degrees', 'crf' ); ?></label></th>
+            <th><label for="degrees"><?php esc_html_e( 'Education', 'crf' ); ?></label></th>
             <!--  Primary degree -->
             <td>
                 <input name="primary_degree" id="primary_degree" type="text" value="<?php echo esc_attr( $primary_degree ); ?>"/>
