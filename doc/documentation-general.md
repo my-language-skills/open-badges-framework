@@ -51,11 +51,11 @@ Open Badges Framework integrate in one place several digital tools for Language 
 
 * **Different Roles**
 
-  Students, Teachers and Academies Teachers roles have different permissions for each specific situation.
+  Students, Teachers and Academies have different permissions for each specific role.
 
 * **Manual Academies Role approval**
 
-  Only real Teachers receive the Academy Role Teacher and unlock the extended features.
+  Only real Teachers receive the Academy Role and unlock the extended features.
 
 * **Update of information not allowed**
 
