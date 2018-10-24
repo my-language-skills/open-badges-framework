@@ -68,6 +68,12 @@ You can see all of the screenshots of the plugin [here](doc/screenshots.md "scre
  * Fixing spam problem with email.
  * To delete all the information of the plugin option if we wish by deleting the plugin.
 
+### 1.0.1 dev
+ * **BUGFIXES**
+  * Company site picture BUG
+  * User profile country selector BUG
+
+
 ## Changelog
 
 ### 1.0.1
