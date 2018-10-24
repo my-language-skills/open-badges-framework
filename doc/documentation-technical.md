@@ -204,7 +204,7 @@ An Academy Teacher role can send Multiple Badges to Multiple Students (Certified
   * Criteria
   
 #### Fields of education
-During the "Send a badge" process, you have to choose a field of education. Their are two different ways to create this fields :
+During the "Send a badge" process, you have to choose a field of education. There are two different ways to create this field :
 
 * Normal way : You can add fields of education without parents, then you will be able to choose one of them when you want to send a badge. 
 * Parents and children way : You can create parent fields AND their children. In this way, during the "Send a badge" process you will be able to choose one of the parent field to get the list of this field's children and choose one of them.
