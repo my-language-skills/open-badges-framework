@@ -150,7 +150,7 @@ Open Badges Framework allow to issue badges in 3 ways:
 Administrators have the same functionalities as the Academy Teacher role plus the issue of certified Teacher Badges.
 
 Those are the options before sending a Badge:
-* **Field of education**: the student's learning subject.
+* **Field of education (FOE)**: the student's learning subject.
 * **Level**: the level of the Class.
 * **Badge**: the Badge name.
 * **Description**: the Reference Level Descriptors of the Badge. By default Badges are in English, but translations are available.
