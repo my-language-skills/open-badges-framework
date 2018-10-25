@@ -154,7 +154,7 @@ Those are the options before sending a Badge:
 * **Level**: the level of the Class.
 * **Badge**: the Badge name.
 * **Description**: the Reference Level Descriptors of the Badge. By default Badges are in English, but translations are available.
-* **Class**: the Student Class name with information like starting date and place (Just Academy teachers role). It requires [Job Manager](https://wpjobmanager.com/ "WP Job Manager plugin") Plugin activation.
+* **Class**: the Student Class name with information like starting date and place (available only on Academy Teacher role). It requires [Job Manager](https://wpjobmanager.com/ "WP Job Manager plugin") Plugin activation.
 * **Mail**: the Student's email.
 * Information:
   * **Additional information**: Some information that will be showed in the description of Badge.
