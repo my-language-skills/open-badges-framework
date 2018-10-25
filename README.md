@@ -72,6 +72,7 @@ You can see all of the screenshots of the plugin [here](doc/screenshots.md "scre
  * **BUGFIXES**
   * Company site picture BUG
   * User profile country selector BUG
+  * Alert message in the Information Section of the Sending Badges Page (#278)
 
 
 ## Changelog
