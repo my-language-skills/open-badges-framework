@@ -157,7 +157,7 @@ Those are the options before sending a Badge:
 * **Class**: the Student Class name with information like starting date and place (Just Academy teachers role). It requires [Job Manager](https://wpjobmanager.com/ "WP Job Manager plugin") Plugin activation.
 * **Mail**: the Student's email.
 * Information:
-  * **Addition information**: Some information that will be showed in the description of Badge.
+  * **Additional information**: Some information that will be showed in the description of Badge.
   * **Criteria**: Url of the work or of the document that the recipient did to earn the Badge.
 
 If the Student has a Badge and a Teacher send the same Badge again, no updates are done in the database.
