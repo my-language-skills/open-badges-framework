@@ -258,8 +258,7 @@ final class SendBadgeTemp extends BaseController {
                     <div class="fit-height-section flex-center-cont">
                         <div class="flex-center-item sb-cont">
                             <?php
-                            self::displayLeadInfo(_e('Change the visualization of the fields of education with the
-                                                    buttons below and then select the field','open-badges-framework'));
+                            self::displayLeadInfo(_e('Find your general Category below and select the specific Field of Education.','open-badges-framework'));
                             self::displayFieldsButtons(); ?>
                             <div id="field_<?php echo $form; ?>">
                                 <?php DisplayFunction::field(""); ?>
