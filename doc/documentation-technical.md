@@ -102,12 +102,12 @@ With a Plugin of roles and capabilities (like [Members](https://es.wordpress.org
 
 #### Student role
 * Can receive Badges and keep the profile information.
-* Can self issue a non certified badge.
+* Can self issue a non certified Badge.
 * Can comment the class after receiving the Badge.
 
 #### Teacher role
 The same as Student role plus:
-* Can self issue a teacher Badge.
+* Can self issue a a non certified teacher Badge.
 * Can send a non certified Badge to one Student at a time.
 * Save all the Students information in one single class.
 * Can answer the class Studens' comments.
