@@ -111,7 +111,7 @@ The same as Student role plus:
 * Can send a non certified Badge to one Student at a time.
 * Save all the Students information in one single class.
 * Can answer the class Studens' comments.
-* The profile can be deleted but the Classes information cannot ever be deleted.
+* The profile can be deleted but the Classes information cannot ever be deleted (activation of the Job Manager plugin is needed).
 
 #### Academy Teacher role
 The same as Teacher role plus:
@@ -175,7 +175,7 @@ A Student/Teacher/Academy teacher role can receive a Badge as Student or Teacher
   * Addition information
   * Criteria
 
-#### Issuer page Issue mode
+#### Issuer page Single mode
 A Teacher/Academy Teacher role can send a Student Badge (Non-Certified).
 
 An Academy teacher role can send a Student Badge (Certified)
@@ -184,13 +184,13 @@ An Academy teacher role can send a Student Badge (Certified)
 * Level
 * Badge
 * Description
-* Class (Just available if activate)
+* Class (Available only if the Job Manager plugin is activated)
 * Mail
 * Information:
   * Addition information
   * Criteria
 
-#### Issuer page Multiple issue mode
+#### Issuer page Multiple mode
 An Academy Teacher role can send Multiple Badges to Multiple Students (Certified and Non-Certified).
 
 * Field of education
@@ -211,7 +211,7 @@ During the "Send a badge" process, you have to choose a field of education. Ther
 
 A badge can have multiple, one or none field of education. So when you select the field of education during the "Send a badge" process (first step), the badges are filtered with this field of education. A badge without any field of education means it's related to all the fields so whatever the field that has been choosen, the user will be able to send these general badges. For a badge with multiple fields of education, if the field selected is in the list of fields of education, the user will be able to send it.
 
-(((( if we have badges of one FOE, just those badges would work, if we have badges with one FOE and badges with no FOE assigned, both will work, but if we have not badges with no FOE selected, as the FOE would be abaliable, the second part would not work because we will have not badges for that FOE. Always is necesary to have at least one badge with no FOE)))
+If we have badges of one Field of Education (FOE), just those badges would work. If we have badges with one FOE and badges with no FOE assigned, then still both of them will work, but if we don't have badges with any FOE selected, as the FOE would be available, the second part won't work because we won't have badges for that FOE. So, it is always necessary to have at least one badge with no FOE.
 
 *Note :*
 
