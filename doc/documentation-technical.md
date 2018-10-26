@@ -197,7 +197,7 @@ An Academy Teacher role can send Multiple Badges to Multiple Students (Certified
 * Level
 * Badge
 * Description
-* Class (Just available if activate)
+* Class (Available only if the Job Manager plugin is activated)
 * Mail (Multiple)
 * Information:
   * Addition information
