@@ -84,12 +84,11 @@ final class SendBadgeTemp extends BaseController {
             ?>
             <ul class="nav nav-tabs">
                 
-                 <li class="active"><a href="#tab-1"><?php _e('Self','open-badges-framework');?></a></li>
 				 <?php
 
                 if (current_user_can(WPUser::CAP_SINGLE)) {
 					?>
-                    <li class=""><a href="#tab-2"><?php _e('Single','open-badges-framework');?></a></li>
+                    <li class="active"><a href="#tab-2"><?php _e('Single','open-badges-framework');?></a></li>
 					<?php
                 }
 
@@ -99,13 +98,15 @@ final class SendBadgeTemp extends BaseController {
 					<?php
                 }
                 ?>
+				<li class=""><a href="#tab-1"><?php _e('Self','open-badges-framework');?></a></li>
+
             </ul>
 
             <div class="tab-content-page">
-                <div id="tab-1" class="tab-pane active">
+                <div id="tab-1" class="tab-pane">
                     <?php self::getForm("a"); ?>
                 </div>
-                <div id="tab-2" class="tab-pane">
+                <div id="tab-2" class="tab-pane active">
                     <?php self::getForm("b"); ?>
                 </div>
                 <div id="tab-3" class="tab-pane">

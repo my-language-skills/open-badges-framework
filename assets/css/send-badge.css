@@ -559,7 +559,7 @@ color: red !important;
 }
 
 /* ### Change the location of the error message in the textarea ### */
-.error{display:block;}
+.error{display:block; color:#ea0000;}
 
 
 
