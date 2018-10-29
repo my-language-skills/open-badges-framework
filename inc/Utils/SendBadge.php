@@ -113,18 +113,19 @@ class SendBadge{
                                 ### 5) send the email
                                 $retEmail = wp_mail($email, $subject, $message, $headers);
                                 if (!$retEmail) return self::ER_SEND_EMAIL;
-                            } else {
-                                echo "Error send email for $email \n";
                             }
-                        } else {
-                            echo "Error save badge in db for $email \n";
-                        }
-                    } else {
-                        echo "Error insert user in db for $email \n";
-                    }
-                } else {
-                    return self::ER_JSON_FILE;
-                }
+							else 
+								{ echo "Error send email for $email \n";  }
+                            
+                        } else 
+							{ echo "Error save badge in db for $email \n"; }
+                        
+                    } else 
+						{ echo "Error insert user in db for $email \n"; }
+                    
+                } else 
+					{ return self::ER_JSON_FILE; }
+                
             }
             return self::SUCCESS;
         } else {
