@@ -524,7 +524,7 @@ final class GetBadgeTemp extends BaseController {
         <main role="main" class="inner cover">
             <div class="container">
                 <h1 class="cong-title-obf cover-heading">
-                    <?php echo WPUser::getCurrentUser()->first_name . " "; _e('You just added a new badge!','open-badges-framework');?>
+                    <?php echo WPUser::getCurrentUser()->first_name . ", "; _e('You just added a new badge!','open-badges-framework');?>
                 </h1>
                 <div class="container cont-button-redirect">
                     <div class="row justify-content-around">
