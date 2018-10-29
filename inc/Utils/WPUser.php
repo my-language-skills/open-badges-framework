@@ -25,9 +25,9 @@ class WPUser {
     const CAP_TEACHER = "obf_send_teacher";
     const CAP_JOB_LISTING = "obf_job_listing_integration";
 
-    // That capability are created with the propose to allow the academy
+    // This capability is created with the propose to allow the academy
     // role to manage the backend of our plugin, but right now we only
-    // assigned the capability without give the possibility to the see
+    // assigned the capability without give the possibility to see
     // the backend. Propose for the future -> show the plugin section in
     // admin bar.
     /*
