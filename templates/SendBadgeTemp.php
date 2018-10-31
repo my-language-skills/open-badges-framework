@@ -84,11 +84,12 @@ final class SendBadgeTemp extends BaseController {
             ?>
             <ul class="nav nav-tabs">
                 
+                 <li class="active"><a href="#tab-1"><?php _e('Self','open-badges-framework');?></a></li>
 				 <?php
 
                 if (current_user_can(WPUser::CAP_SINGLE)) {
 					?>
-                    <li class="active"><a href="#tab-2"><?php _e('Single','open-badges-framework');?></a></li>
+                    <li class=""><a href="#tab-2"><?php _e('Single','open-badges-framework');?></a></li>
 					<?php
                 }
 
@@ -98,15 +99,13 @@ final class SendBadgeTemp extends BaseController {
 					<?php
                 }
                 ?>
-				<li class=""><a href="#tab-1"><?php _e('Self','open-badges-framework');?></a></li>
-
             </ul>
 
             <div class="tab-content-page">
-                <div id="tab-1" class="tab-pane">
+                <div id="tab-1" class="tab-pane active">
                     <?php self::getForm("a"); ?>
                 </div>
-                <div id="tab-2" class="tab-pane active">
+                <div id="tab-2" class="tab-pane">
                     <?php self::getForm("b"); ?>
                 </div>
                 <div id="tab-3" class="tab-pane">
@@ -325,10 +324,10 @@ final class SendBadgeTemp extends BaseController {
 
                                 if ($form == 'b') {
                                     self::displayLeadInfo(_e("Write the email of the receiver badge",'open-badges-framework'));
-                                    echo "<input id='mail_$form' name='mail' class='mail' style='width: 300px; text-align: center;'>";
+                                    echo "<input id='mail_$form' name='mail' class='mail' placeholder='example@example.com' style='width: 300px; text-align: center;'>";
                                 } elseif ($form == 'c') {
-                                    self::displayLeadInfo(_e('Write the emails of the receivers badge (to send multiple email, write each address separeted by \",\")'),'open-badges-framework');
-                                    echo "<textarea id='mail_$form' name='mail' class='mail' rows='10' cols='50' style='width: 300px; text-align: center;'></textarea>";
+                                    self::displayLeadInfo(_e('Write the emails of the receivers badge (to send multiple email, write each address separeted by ",")'),'open-badges-framework');
+                                    echo "<textarea id='mail_$form' name='mail' class='mail change' placeholder='example@example.com' rows='10' cols='50' style='width: 300px; text-align: center;'></textarea>";
                                 }
                                 ?>
                             </div>
