@@ -122,7 +122,7 @@ input {
 }
 
 .masthead {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
 .masthead-brand {
@@ -527,7 +527,7 @@ input {
 }
 
 .inner {
-    padding: 2rem;
+    padding: 7rem;
 }
 
 /*
@@ -591,7 +591,7 @@ input {
 }
 
 .masthead {
-    margin-bottom: 2rem;
+    margin-bottom: 7rem;
 }
 
 .masthead-brand {
@@ -920,7 +920,7 @@ input {
 @media (min-width: 62em) {
     .masthead,
     .mastfoot,
-    .cover-container {
+    .cover-container { 
         width: 100%;
     }
 }
@@ -937,3 +937,7 @@ input {
 .is-valid {
     border-color: #28a745 !important;
 }
+
+.continueLink{
+	cursor:pointer;	
+}  
