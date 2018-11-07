@@ -89,7 +89,7 @@ class JsonManagement extends BaseController {
         $badge = WPBadge::get($this->badge->idBadge);
         $field = get_term($this->badge->idField, Admin::TAX_FIELDS);
         $level = get_term($this->badge->idLevel, Admin::TAX_LEVELS);
-
+ 
         // function var
         $hashFile = "badge-" . $hashNameMain . ".json";
         $pathFile = parent::getJsonFolderPath() . $hashFile;

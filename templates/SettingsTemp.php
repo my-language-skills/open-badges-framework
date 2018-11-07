@@ -874,7 +874,7 @@ final class SettingsTemp {
     }
 
     /**
-     * Retrieve the link from thw id of a the page.
+     * Retrieve the link from the id of a the page.
      *
      * @author      @AleRiccardi
      * @since       1.0.0

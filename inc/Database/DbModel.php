@@ -96,7 +96,7 @@ class DbModel {
     }
 
     /**
-     * Get a badges.
+     * Get a badge.
      *
      * @author      @AleRiccardi
      * @since       1.0.0
