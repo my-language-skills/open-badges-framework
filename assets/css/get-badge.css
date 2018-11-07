@@ -202,6 +202,7 @@ input {
 
 .cover {
     padding: 0 1.5rem;
+	padding-bottom: 20px;
 }
 
 .cover .btn-lg {
@@ -658,6 +659,8 @@ input {
  */
 .cover {
     padding: 0 1.5rem;
+	padding-bottom:20px;
+
 }
 
 .cover .btn-lg {
@@ -671,6 +674,7 @@ input {
 
 .cover {
     padding: 0 1.5rem;
+	padding-bottom:20px;
 }
 
 .cover .btn-lg {
