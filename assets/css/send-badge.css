@@ -540,26 +540,27 @@ section.current {
 }
 
 
-/* ### Change the color of the placeholder into red in the textarea ### */
-
-textarea::-webkit-input-placeholder {
-color: red !important;
-}
-					
-textarea:-moz-placeholder { /* Firefox 18- */
-color: red !important;  
-}
-					
-textarea::-moz-placeholder {  /* Firefox 19+ */
-color: red !important;  
-}
-					
-textarea:-ms-input-placeholder {  
-color: red !important;  
-}
-
 /* ### Change the location of the error message in the textarea ### */
 .error{display:block; color:#ea0000;}
+
+.stylePlaceholder::-webkit-input-placeholder {
+color: #ea0000;
+}
+					
+.stylePlaceholder:-moz-placeholder { /* Firefox 18- */
+color: #ea0000;  
+}
+					
+.stylePlaceholder::-moz-placeholder {  /* Firefox 19+ */
+color: #ea0000 ;  
+}
+					
+.stylePlaceholder:-ms-input-placeholder {  
+color: #ea0000;   
+}
+
+
+
 
 
 
