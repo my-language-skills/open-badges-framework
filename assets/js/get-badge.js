@@ -162,7 +162,7 @@ jQuery(function (event) {
      * @param {array} event of the click
      * @return vodi
      */
-    var btnContinue = "#gb-continue";
+    var btnContinue = ".continueLink";
     jQuery(document).on("click", btnContinue, function (event) {
         jQuery(btnContinue).prop('disabled', true);
 
@@ -339,9 +339,9 @@ jQuery(function (event) {
                 }
                 jQuery(btnGetBadgeMob).prop('disabled', false);
 
-            });
+            }); 
         }
-        ajaxCall(data, func);
+        ajaxCall(data, func); 
 
     });
 
@@ -362,3 +362,4 @@ jQuery(function (event) {
         jQuery(btnGetBadgeStandard).prop('disabled', true);
     });
 });
+ 

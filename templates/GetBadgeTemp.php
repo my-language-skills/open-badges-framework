@@ -160,18 +160,20 @@ final class GetBadgeTemp extends BaseController {
 					?>
                 </p>
                 <div class="logo-badge-cont">
-                    <img src="<?php echo WPBadge::getUrlImage($this->badgeWP->ID); ?>">
-                </div>
+					<a class="continueLink">
+						<img src="<?php echo WPBadge::getUrlImage($this->badgeWP->ID); ?>">
+					</a>
+                </div> 
             </div>
         </main>
 
         <footer class="mastfoot mt-auto">
             <div class="inner" id="footer_login">
                 <p class="lead">
-                    <button id="gb-continue" class="btn btn-lg btn-secondary" type="submit"><?php _e('Continue','open-badges-framework');?></button>
+                    <button id="gb-continue" class="btn btn-lg btn-secondary continueLink" type="submit"><?php _e('Continue','open-badges-framework');?></button>
                 </p>
             </div>
-        </footer>
+        </footer>  
 
 
         <?php
