@@ -209,7 +209,7 @@ final class GetBadgeTemp extends BaseController {
                     <?php
                         if( is_plugin_active( 'restrict-content-pro/restrict-content-pro.php' ) ){
                     ?>
-                        <a href= <?php echo '"' . get_permalink( get_page_by_path( 'sign-in' ) ) . '?rcp_action=lostpassword"' ?> >Lost Password ?</a>
+                        <a href= <?php echo '"' . get_permalink( get_page_by_path( 'sign-in' ) ) . '?rcp_action=lostpassword"' ?> class="aDecor">Lost Password ?</a>
                     <?php } ?>
                     <div class="checkbox">
                         <label>

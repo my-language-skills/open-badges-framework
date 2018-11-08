@@ -274,7 +274,8 @@ input {
 }
 
 .checkbox {
-    padding-top: 8px;
+    padding-top: 7px;
+	margin-top: 23px;
 }
 
 /*
@@ -747,7 +748,8 @@ input {
 }
 
 .checkbox {
-    padding-top: 8px;
+    padding-top: 7px;
+	
 }
 
 /*
@@ -945,3 +947,16 @@ input {
 .continueLink{
 	cursor:pointer;	
 }  
+
+.aDecor{
+	position: absolute;
+	bottom: 67%;
+	right: 35%;
+}
+
+.form-signin-heading{
+	margin-bottom: 1rem;
+}
+
+
+
