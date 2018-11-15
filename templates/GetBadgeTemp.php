@@ -195,7 +195,7 @@ final class GetBadgeTemp extends BaseController {
         <header class="masthead mb-auto">
             <?php $this->getInfoHeader(); ?>
         </header>
-
+		<?php wp_logout(); ?>
         <main role="main" class="inner cover">
             <div class="container cont-form">
                 <form method="post" id="gb-form-login" class="gb-form">
@@ -448,9 +448,9 @@ final class GetBadgeTemp extends BaseController {
                 <div class="ob-menu">
                     <span class="ob-cont-title">Mozilla Open Badges</span>
                     <span class="ob-user-info">
-                                <?php echo get_avatar(WPUser::getCurrentUser()->ID); ?>
-                                <?php echo WPUser::getCurrentUser()->user_login; ?>
-                            </span>
+                            <?php echo get_avatar(WPUser::getCurrentUser()->ID); ?>
+                            <?php echo WPUser::getCurrentUser()->user_login; ?>	
+                    </span>
                 </div>
             </div>
         </header>
