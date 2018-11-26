@@ -62,7 +62,7 @@ Plugins/OpenBadgesFramework/                    # → Plugin root
 │   │   └── Init.php                            # → The first class that make start all the process
 ├── languages/                                  # → Translation folder
 ├── templates/                                  # → Template pages folder
-│   │── BadgesTemp.php                          # → Provide to shows all the badgea created
+│   │── BadgesTemp.php                          # → Provide to shows all the badges created
 │   │── DashboardTemp.php                       # → Provide an admin area view
 │   │── GetBadgeTemp.php                        # → Provide a get badge template
 │   │── SendBadgeTemp.php                       # → Provide a send badge template
