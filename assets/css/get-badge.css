@@ -529,7 +529,7 @@ input {
 }
 
 .inner {
-    padding: 7rem;
+    padding: 4rem;
 }
 
 /*
@@ -933,7 +933,7 @@ input {
 */
 
 /*
- * VALIDATION fields
+ * Style margins - paddings
  */
 
 .is-invalid {
@@ -948,11 +948,7 @@ input {
 	cursor:pointer;	
 }  
 
-.aDecor{
-	position: absolute;
-	bottom: 67%;
-	right: 35%;
-}
+
 
 .form-signin-heading{
 	margin-bottom: 1rem;
