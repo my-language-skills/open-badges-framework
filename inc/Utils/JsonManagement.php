@@ -57,12 +57,15 @@ class JsonManagement extends BaseController {
         $urlJsonMain = parent::getJsonFolderUrl() . $hashFile;
         $urlJsonBadge = $this->createJsonBadge($hashName);
         $assertion = array(
+			"@context" => "https://w3id.org/openbadges/v2",
+			"type" => "Assertion",
             "uid" => uniqid(),
             "recipient" => array("type" => "email", "identity" => $receiver, "hashed" => false),
             "badge" => $urlJsonBadge,
             "verify" => array("url" => $urlJsonMain, "type" => "hosted"),
-            "issuedOn" => date('Y-m-d'),
-            "evidence" => $this->badge->evidence != "none" ? $this->badge->evidence : ""
+            "issuedOn" => date('Y-m-d\TH:i:sO'),
+			"narrative" => "This is the work that the recipient did to earn the achievement.",
+            //"evidence" => $this->badge->evidence != "none" ? $this->badge->evidence : "" 
         );
 
         if (file_put_contents($pathFile, json_encode($assertion, JSON_UNESCAPED_SLASHES))) {
@@ -88,21 +91,27 @@ class JsonManagement extends BaseController {
         // wordpress var
         $badge = WPBadge::get($this->badge->idBadge);
         $field = get_term($this->badge->idField, Admin::TAX_FIELDS);
-        $level = get_term($this->badge->idLevel, Admin::TAX_LEVELS);
+        $level = get_term($this->badge->idLevel, Admin::TAX_LEVELS);			
  
         // function var
+		$options = get_option(SettingsTemp::OPTION_NAME);
+		$compUrl = isset($options[SettingsTemp::FI_WEBSITE_URL_FIELD]) ? $options[SettingsTemp::FI_WEBSITE_URL_FIELD] : '';
         $hashFile = "badge-" . $hashNameMain . ".json";
         $pathFile = parent::getJsonFolderPath() . $hashFile;
         $urlFile = parent::getJsonFolderUrl() . $hashFile;
         $urlIssuer = $this->createIssuerCompany();
         $badgeDesc = $this->createBadgeDescription();
         $jsonInfo = array(
+			"@context" => "https://w3id.org/openbadges/v2",
+			"type" => "BadgeClass",
             "name" => $badge->post_title . " " . $field->name,
             "description" => $badgeDesc,
             "image" => WPBadge::getUrlImage($badge->ID),
             "criteria" => get_permalink($badge->ID),
             "tags" => array($field->name . "", $level->name . ""),
             "issuer" => $urlIssuer,
+			//"alignment" => array("targetName" => "Education", "targetUrl" => $compUrl, "targetCode" =>   "CCSS.ELA-Literacy.RST.11-12.3", "targetDescription" => "Description of the Alignment")
+			
         );
 
         if (file_put_contents($pathFile, json_encode($jsonInfo, JSON_UNESCAPED_SLASHES))) {
@@ -130,15 +139,20 @@ class JsonManagement extends BaseController {
         $compName = isset($options[SettingsTemp::FI_SITE_NAME_FIELD]) ? $options[SettingsTemp::FI_SITE_NAME_FIELD] : '';
         $compUrl = isset($options[SettingsTemp::FI_WEBSITE_URL_FIELD]) ? $options[SettingsTemp::FI_WEBSITE_URL_FIELD] : '';
         $compDesc = isset($options[SettingsTemp::FI_DESCRIPTION_FIELD]) ? $options[SettingsTemp::FI_DESCRIPTION_FIELD] : '';
+		$compTel = isset($options[SettingsTemp::FI_TELEPHONE_FIELD]) ? $options[SettingsTemp::FI_TELEPHONE_FIELD] : '';
         $compUrlImg = isset($options[SettingsTemp::FI_IMAGE_URL_FIELD]) ? wp_get_attachment_url($options[SettingsTemp::FI_IMAGE_URL_FIELD]) : '';
         $compEmail = isset($options[SettingsTemp::FI_EMAIL_FIELD]) ? $options[SettingsTemp::FI_EMAIL_FIELD] : '';
 
         $jsonInfo = array(
-            "name" => $compName,
+			"@context" => "https://w3id.org/openbadges/v2",
+			"type" => "Profile",
+			"name" => $compName,
             "url" => $compUrl,
             "description" => $compDesc,
+			"telephone" => $compTel,
             "image" => $compUrlImg,
             "email" => $compEmail,
+			
         );
 
         if (file_put_contents($pathFile, json_encode($jsonInfo, JSON_UNESCAPED_SLASHES))) {
