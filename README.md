@@ -1,7 +1,7 @@
 # Open Badges Framework
 A WordPress plugin for open badges
 
-Contributors: @colomet, @AleRiccardi, @ntorion, @uzair043, @CorentinPerrot, @alevacher, @Kongat, @leocharlier
+Contributors: @colomet, @AleRiccardi, @ntorion, @uzair043, @CorentinPerrot, @alevacher, @Kongat, @leocharlier, @ioanna
 
 Tags: badges
 
@@ -67,6 +67,15 @@ You can see all of the screenshots of the plugin [here](doc/screenshots.md "scre
  * To use schema metadata for the badges information.
  * Fixing spam problem with email.
  * To delete all the information of the plugin option if we wish by deleting the plugin.
+
+### 1.1
+ * Create an alignment metabox (#288)
+ * Update the Json File to version 2.0 (#198)
+
+
+### 1.0.2
+ * Show the username in the "getBadge" pages, if the user has no FirstName (#275)
+
 
 ### 1.0.1 dev
  * **BUGFIXES**
