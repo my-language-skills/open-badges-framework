@@ -1,6 +1,7 @@
 <?php
 namespace templates;
 use Inc\Base\Secondary;
+
 /**
  * Template for the Settings page, this class create and manage the settings page.
  *
@@ -41,6 +42,7 @@ final class SettingsTemp {
     const FI_WEBSITE_URL_FIELD = 'website_url_field';
     const FI_TELEPHONE_FIELD = 'telephone_field';
     const FI_DESCRIPTION_FIELD = 'information_field';
+	const FI_CHECKBOX_FIELD = 'checkbox_field';
     const FI_IMAGE_URL_FIELD = 'image_url_field';
     const FI_EMAIL_FIELD = 'email_field';
 
@@ -88,6 +90,7 @@ final class SettingsTemp {
         $fiWebUrl = $options[self::FI_WEBSITE_URL_FIELD];
         $fiTel = $options[self::FI_TELEPHONE_FIELD];
         $fiDesc = $options[self::FI_DESCRIPTION_FIELD];
+		$fiCheck = $options[self::FI_CHECKBOX_FIELD];
         $fiImageUrl = $options[self::FI_IMAGE_URL_FIELD];
         $fiEmail = $options[self::FI_EMAIL_FIELD];
 
@@ -124,6 +127,7 @@ final class SettingsTemp {
             self::FI_WEBSITE_URL_FIELD => $fiWebUrl ? $fiWebUrl : get_bloginfo('url'),
             self::FI_TELEPHONE_FIELD => $fiTel ? $fiTel : '',
             self::FI_DESCRIPTION_FIELD => $fiDesc ? $fiDesc : '',
+			self::FI_CHECKBOX_FIELD => $fiCheck ? $fiCheck : '',
             self::FI_IMAGE_URL_FIELD => $fiImageUrl ? $fiImageUrl : '',
             self::FI_EMAIL_FIELD => $fiEmail ? $fiEmail : get_bloginfo('admin_email'),
             self::FI_ADD_CLASS => $fiClass ? $fiClass : '',
@@ -251,6 +255,17 @@ final class SettingsTemp {
             self::PAGE_PROFILE,
             self::SECT_COMPANY_PROFILE
         );
+		
+		/* --> Checkbox______________ */
+		add_settings_field(
+            self::FI_CHECKBOX_FIELD,
+			__('Is your site for Education?','open-badges-framework'), // Title
+            array($this, 'checkerCallback'),
+            self::PAGE_PROFILE,
+            self::SECT_COMPANY_PROFILE
+        );
+		
+		
         /* --> Image URL______________ */
         add_settings_field(
             self::FI_IMAGE_URL_FIELD,
@@ -438,7 +453,9 @@ final class SettingsTemp {
             $new_input[self::FI_TELEPHONE_FIELD] = sanitize_text_field($input[self::FI_TELEPHONE_FIELD]);
         if (isset($input[self::FI_DESCRIPTION_FIELD]))
             $new_input[self::FI_DESCRIPTION_FIELD] = sanitize_text_field($input[self::FI_DESCRIPTION_FIELD]);
-        if (isset($input[self::FI_EMAIL_FIELD]))
+        if (isset($input[self::FI_CHECKBOX_FIELD]))
+            $new_input[self::FI_CHECKBOX_FIELD] = $input[self::FI_CHECKBOX_FIELD];
+		if (isset($input[self::FI_EMAIL_FIELD]))
             $new_input[self::FI_EMAIL_FIELD] = sanitize_text_field(
                 $input[self::FI_EMAIL_FIELD] ? $input[self::FI_EMAIL_FIELD] : get_bloginfo('admin_email'));
         if (isset($input[self::FI_BECOME_PREMIUM]))
@@ -681,7 +698,29 @@ final class SettingsTemp {
             isset($this->options[self::FI_DESCRIPTION_FIELD]) ? esc_attr($this->options[self::FI_DESCRIPTION_FIELD]) : ''
         );
     }
-
+	
+	 
+	/**
+     * Print the Checkbox field.
+     *
+     * @author      @Ioanna
+     * @since       1.0.0
+     *
+     * @return void
+     **/
+	 
+    public function checkerCallback() {
+		
+        isset($this->options[self::FI_CHECKBOX_FIELD]) ? $isChecked="checked" : $isChecked="";
+		printf(
+			'<input id="%s" type="checkbox" name="%s[%s]" %s />',
+            self::FI_CHECKBOX_FIELD,
+            self::OPTION_NAME,
+            self::FI_CHECKBOX_FIELD,
+			$isChecked
+        );
+    }
+	
 
     /**
      * Print the Company Email field with also the value (if exist).
