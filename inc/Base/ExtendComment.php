@@ -36,7 +36,7 @@ class ExtendComment {
 	
 	
 	/**
-     * This function is responsible for setting the default commnent
+     * This function is responsible for setting the default comment
      * fields when the post type of the post is not open-badge
      */
 	public function custom_fields($fields) {

@@ -9,7 +9,7 @@ use Inc\Utils\JsonManagement;
 use templates\SingleBadgeTemp;
 
 /**
- * AdminAjax class that contain all the the general ajax function.
+ * AdminAjax class that contain all the general ajax function.
  * This functions is initialized from the InitAjax Class.
  *
  * @author      @AleRiccardi
@@ -31,7 +31,7 @@ class AdminAjax extends BaseController {
     }
 
     /**
-     * Delete a specific badge throw the id.
+     * Delete a specific badge through the id.
      *
      * @author @AleRiccardi
      * @since  1.0.0
