@@ -36,6 +36,7 @@ class Admin extends BaseController {
     const TAX_LEVELS = "level";
     const MTB_CERT = "certification_obf_mtb";
     const MTB_TARGET = "target_obf_mtb";
+	const MTB_ALIGNMENT = "alignment_obf_mtb";
     const MTB_LBADGE = "lbadge_obf_mtb";
     const PAGE_SEND_BADGE = 'send-badge_obf';
     const PAGE_SETTINGS = 'settings-obf';
@@ -347,13 +348,22 @@ class Admin extends BaseController {
                 'context' => 'side',
                 'priority' => 'high',
             ),
+			// ## Alignment ##
+            array(
+                'id' => self::MTB_ALIGNMENT,
+                'title' => __('Alignment Type','open-badges-framework'),
+                'callback' => array($metaboxTemp, 'alignment'),
+                'screen' => self::POST_TYPE_BADGES,
+                'context' => 'side',
+                'priority' => 'high',
+            ),
         );
 
         $this->settings->loadMetaBoxes($args);
     }
 
     /**
-     * This function permit to load al the front-end page
+     * This function permit to load all the front-end page
      * that is set in the setting page.
      *
      * @author   @AleRiccardi
