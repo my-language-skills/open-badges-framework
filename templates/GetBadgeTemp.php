@@ -244,7 +244,6 @@ final class GetBadgeTemp extends BaseController {
      * @return void
      */
     public function showRegisterPage($email) { ?>
-
         <header class="masthead mb-auto">
             <?php $this->getInfoHeader(); ?>
             <div class="inner">
@@ -449,7 +448,13 @@ final class GetBadgeTemp extends BaseController {
                     <span class="ob-cont-title">Mozilla Open Badges</span>
                     <span class="ob-user-info">
                             <?php echo get_avatar(WPUser::getCurrentUser()->ID); ?>
-                            <?php echo WPUser::getCurrentUser()->user_login; ?>	
+                            <?php 
+							if (WPUser::getCurrentUser()->first_name){
+									echo WPUser::getCurrentUser()->first_name;
+								}
+							else
+							 {echo WPUser::getCurrentUser()->user_login;}
+							?>
                     </span>
                 </div>
             </div>
@@ -526,7 +531,13 @@ final class GetBadgeTemp extends BaseController {
         <main role="main" class="inner cover">
             <div class="container">
                 <h1 class="cong-title-obf cover-heading">
-                    <?php echo WPUser::getCurrentUser()->first_name . ", "; _e('You just added a new badge!','open-badges-framework');?>
+                    <?php 
+							if (WPUser::getCurrentUser()->first_name){
+									echo WPUser::getCurrentUser()->first_name . ", "; _e('You just added a new badge!','open-badges-framework');
+								}
+							else
+							 {echo WPUser::getCurrentUser()->user_login . ", "; _e('You just added a new badge!','open-badges-framework');}
+					?>
                 </h1>
                 <div class="container cont-button-redirect">
                     <div class="row justify-content-around">
