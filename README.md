@@ -69,20 +69,19 @@ You can see all of the screenshots of the plugin [here](doc/screenshots.md "scre
  * To delete all the information of the plugin option if we wish by deleting the plugin.
 
 ### 1.1
- * Create an alignment metabox (#288)
- * Update the Json File to version 2.0 (#198)
-
+ * **ADDITIONS**
+ 	* Create an alignment metabox (#288)
+	* Update the Json File to version 2.0 (#198)
 
 ### 1.0.2
- * Show the username in the "getBadge" pages, if the user has no FirstName (#275)
-
+ * **ADDITIONS**
+ 	* Show the username in the "getBadge" pages, if the user has no FirstName (#275)
 
 ### 1.0.1 dev
  * **BUGFIXES**
-  * Company site picture BUG
-  * User profile country selector BUG
-  * Alert message in the Information Section of the Sending Badges Page (#278)
-
+	* Company site picture BUG
+	* User profile country selector BUG
+  	* Alert message in the Information Section of the Sending Badges Page (#278)
 
 ## Changelog
 
@@ -104,7 +103,8 @@ You can see all of the screenshots of the plugin [here](doc/screenshots.md "scre
 	* Propose to add the first badge in the "All Badges" section if no one is found.
 	* Load a default company logo if no one is set.
 	* Responsive design.
-* BUGFIXES
+	
+* **BUGFIXES**
 	* Remove the "Add Class" link in Settings->Links when the WP Job Manager plugin is not activated. #195
 	* Export the custom datas created (year of birth, country, badges earned, etc.) during the WP "Export Personal Data" process.
 
@@ -124,10 +124,7 @@ You can see all of the screenshots of the plugin [here](doc/screenshots.md "scre
 
 * **ENHANCEMENTS**
  	* Fix the email security issue #205
-
-
-* BUGFIXES
-
+	
 ### 1.0 RC1
 
 Completely overhauled design, from top to bottom. The plugin has been completely rewritten. Version 1.0 just basic functionalities.
