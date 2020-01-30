@@ -1,3 +1,4 @@
+# This branch is the plugin code previously used by https://dev.badges4languages.com/. 
 # Open Badges Framework
 A WordPress plugin for open badges
 
