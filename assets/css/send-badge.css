@@ -539,30 +539,3 @@ section.current {
     border-left-color: #b42300;
 }
 
-
-/* ### Change the location of the error message in the textarea ### */
-.error{display:block; color:#ea0000;}
-
-.stylePlaceholder::-webkit-input-placeholder {
-color: #ea0000;
-}
-					
-.stylePlaceholder:-moz-placeholder { /* Firefox 18- */
-color: #ea0000;  
-}
-					
-.stylePlaceholder::-moz-placeholder {  /* Firefox 19+ */
-color: #ea0000 ;  
-}
-					
-.stylePlaceholder:-ms-input-placeholder {  
-color: #ea0000;   
-}
-
-
-
-
-
-
-
-

@@ -329,12 +329,15 @@ jQuery(function (event) {
             'action': 'ajaxGbGetJsonUrl',
             'idBadge': urlParam('v'),
         };
-
+        console.log("clicked for badge");
         var func = function (response) {
+            console.log("response:"+response);
             OpenBadges.issue([response], function (errors, successes) {
                 if (successes.length) {
+                    console.log("success");
                     showConclusion(1);
                 } else if (errors.length) {
+                    console.log("errors");
                     jQuery("#gb-ob-response").html("Badge not sent!")
                 }
                 jQuery(btnGetBadgeMob).prop('disabled', false);

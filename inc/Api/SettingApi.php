@@ -155,10 +155,11 @@ class SettingApi {
      *
      * @param array $metaboxes metaboxes
      *
-     * @return $this The instance of the class
+     * @return $this The instance of tha class
      */
     public function loadMetaBoxes(array $metaboxes) {
         $this->metaboxes = $metaboxes;
+
         return $this;
     }
 

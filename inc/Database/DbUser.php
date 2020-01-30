@@ -86,7 +86,7 @@ class DbUser extends DbModel {
 	}
 	
 	/**
-     * While the user updated his email through the Wordpress system
+     * While the user upstaed his email through the Wordpress system
      * his email is also updated to the obf_user custom table
      */
 	function my_update_user( $user_id, $old_user_data ) {
