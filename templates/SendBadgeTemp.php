@@ -258,7 +258,8 @@ final class SendBadgeTemp extends BaseController {
                     <div class="fit-height-section flex-center-cont">
                         <div class="flex-center-item sb-cont">
                             <?php
-                            self::displayLeadInfo(_e('Find your general Category below and select the specific Field of Education.','open-badges-framework'));
+                            self::displayLeadInfo(_e('Change the visualization of the fields of education with the
+                                                    buttons below and then select the field','open-badges-framework'));
                             self::displayFieldsButtons(); ?>
                             <div id="field_<?php echo $form; ?>">
                                 <?php DisplayFunction::field(""); ?>
@@ -324,10 +325,10 @@ final class SendBadgeTemp extends BaseController {
 
                                 if ($form == 'b') {
                                     self::displayLeadInfo(_e("Write the email of the receiver badge",'open-badges-framework'));
-                                    echo "<input id='mail_$form' name='mail' class='mail' placeholder='example@example.com' style='width: 300px; text-align: center;'>";
+                                    echo "<input id='mail_$form' name='mail' class='mail' style='width: 300px; text-align: center;'>";
                                 } elseif ($form == 'c') {
-                                    self::displayLeadInfo(_e('Write the emails of the receivers badge (to send multiple email, write each address separeted by ",")'),'open-badges-framework');
-                                    echo "<textarea id='mail_$form' name='mail' class='mail' placeholder='example@example.com' rows='10' cols='50' style='width: 300px; text-align: center;'></textarea>";
+                                    self::displayLeadInfo(_e('Write the emails of the receivers badge (to send multiple email, write each address separeted by \",\")'),'open-badges-framework');
+                                    echo "<textarea id='mail_$form' name='mail' class='mail' rows='10' cols='50' style='width: 300px; text-align: center;'></textarea>";
                                 }
                                 ?>
                             </div>
@@ -340,8 +341,8 @@ final class SendBadgeTemp extends BaseController {
                     <div class="fit-height-section flex-center-cont">
                         <div class="flex-center-item sb-cont">
                             <?php self::displayLeadInfo(_e('Write some information that will be showed in the description of badge *','open-badges-framework')); ?>
-                            <textarea class="stylePlaceholder" id="comment_<?php echo $form; ?>" placeholder="More than 10 characters..."
-                                      name="comment" rows="5" cols="80" minlength="10"></textarea>
+                            <textarea id="comment_<?php echo $form; ?>" placeholder="More than 10 characters..."
+                                      name="comment" rows="5" cols="80"></textarea>
                             <br><br>
                             <?php self::displayLeadInfo(_e('Url of the work or of the document that the recipient did to earn the badge','open-badges-framework')); ?>
                             <input id='evidence_<?php echo $form; ?>' name='mail' class='mail'
