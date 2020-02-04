@@ -1,9 +1,16 @@
 # Open Badges Framework
 A WordPress plugin for open badges
 
-Contributors: @colomet, @AleRiccardi, @ntorion, @uzair043, @CorentinPerrot, @alevacher, @Kongat, @leocharlier, @ioanna
+Contributors: @colomet, @AleRiccardi, @ntorion, @uzair043, @CorentinPerrot, @alevacher, @Kongat, @leocharlier, @ioanna, @CharalamposTheodorou
 
 Tags: badges
+
+## BadgrAPI
+
+### Status
+- In development, restructure of stored data into the requierd format for the new API.
+- Checks for Token if created and valid.
+- Checks for Issuer if created and entity_id is valid.
 
 ## Community / Support
 

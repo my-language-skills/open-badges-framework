@@ -199,7 +199,6 @@ final class SingleBadgeTemp {
             <?php
 
             if ($studentWP->ID === wp_get_current_user()->ID) {
-
                 if (!$badge->gotDate) { ?>
 
                     <div class="obf-sbp-cont-btn">
