@@ -468,7 +468,7 @@ final class GetBadgeTemp extends BaseController {
                         permit you to share your progress with all the community.','open-badges-framework');?>
                         <br><br>
                         <?php _e('If you don’t have an Open Badge account, please click','open-badges-framework');?>
-                        <a href="https://backpack.openbadges.org/backpack/signup" target="_blank"
+                        <a href="https://eu.badgr.com/auth/login" target="_blank"
                            style="font-size: 25px;"><?php _e('here','open-badges-framework');?></a>
                         <?php _e('and create a new account with the same email address of the registration of this website and
                         then','open-badges-framework');?> <strong><?php _e('get the badge','open-badges-framework');?></strong>.

@@ -312,36 +312,7 @@ class GetBadgeAjax extends BaseController {
                 echo 'fail';
             }
         }
-            //$badge_info = json_decode(file_get_contents($badhe_file));
-            /* if ($_POST['section'] == "issuer")
-            {//check for issuer. if file that contains token then safe to proceed to issuer requests and checks
-                $location_file = parent::getJsonFolderPath() . "issuer_token_info.json";
-                $issuer_token_info = json_decode(file_get_contents($location_file));
-                if (!$issuer_info)
-                    echo 'token file not found';
-                else
-                {//get the data from uploads-folder using the data in post body.
-                    if (!empty($_POST['data']))
-                    {
-                        $profile_file = 
-                    }
-                    else
-                    {
-                        echo 'error data not found';
-                    }
-                    echo 'issuer';
-                }
-            }
-            else if ($_POST['section'] == "badgeClass")
-            {
-                echo 'badgeClass';
-                //checks for token,issuer configured
-            }
-            else if ($_POST['section'] == "assertion")
-            {
-                echo 'assertion';
-                //checks for token,issuer configured
-            } */
+            
         wp_die();
     }
     /**TOKEN ACTIONS */
@@ -436,7 +407,8 @@ class GetBadgeAjax extends BaseController {
     }
 
 
-    /**ISSUER ACTIONS */
+    /**MAIN ACTIONS */
+    
     /**
      * Token exists in the installation folders.
      * Get request to badgrAPI to see if this user exists as issuer.
@@ -467,47 +439,179 @@ class GetBadgeAjax extends BaseController {
                     $args = $_POST['issuer_profile'];
                     $args['body']['email'] ='charalampostheodorou2@gmail.com';//this should be removed later. email given dynamically but not configured yet.
                     $response = json_decode(wp_remote_post($url,$args)['body']);
-                    print_r($response);
+                    if ($response->status->description == "ok")
+                        echo 'issuer creation successful';
+                    else
+                        echo 'error in issuer request';
                 }
             }
             else
-            {print_r($response);    echo 'already exists';}
+            {   echo 'issuer already exists';}
 
         }
         wp_die();
-/* 
-        $url = "https://api.eu.badgr.io/v2/users/self";
-        $args['headers']['Authorization'] = $issuer_info['token_type'].$issuer_info['access_token'];
-        //$response = wp_remote_get($url,$args);
-        print_r($response['body']);
-
-        //if user exists as issuer:
-        if (property_exists($response['body'],'entityId'))
-        {
-            echo 'exists';
-        }
-        else
-        {
-            echo 'create new issuer';
-            $url = "https://api.eu.badgr.io/v2/issuers";
-            $args['headers']['Authorization'] = $issuer_info['token_type'].$issuer_info['access_token'];
-            $args['body'] = $_POST['issuer_profile_data'];
-            //$response = wp_remote_post($url,)
-        } */
     }
     
-    public function ajaxImageDataURIRequest()
+      /**
+     * Issuer is considered valid.
+     * Checking if badgeclass exists or should be created now.
+     * 
+     * @author  @CharalamposTheodorou
+     * @since   2.0
+     */
+    public function ajaxBadgeClassExistRequest()
     {
-        if (!empty($_POST['image_path']))
-        {   
-            $path = $_POST['image_path'];
-            $data = file_get_contents($path);
-            $base64 = 'data:image/png;base64,' . base64_encode($data);
-            echo $base64; 
-        } 
+        $location_file = parent::getJsonFolderPath() . "issuer_token_info.json";
+        $issuer_info = json_decode(file_get_contents($location_file));
+         //this shouldn't be triggered. Token is taken cared before.
+        if (!$issuer_info)
+        {
+            echo "Not Found";
+        }
+        else if (!empty($_POST['BadgeClass']))
+        {//token file exists   
+
+            $args['headers']['Authorization'] = $issuer_info->token_type.' '.$issuer_info->access_token;
+            //get request if issuer exists.
+            $url = "https://api.eu.badgr.io/v2/issuers";
+            $response =  json_decode(wp_remote_get($url,$args)['body']);
+            if (count($response->result)==0)
+            {
+                echo 'Issuer is not created';
+            }
+            else
+            {//issuer exists here
+                //issuer id for issuing further api calls.
+                $issuer_id = $response->result[0]->entityId;
+                //get request for badge class if exists.
+                $url = "https://api.eu.badgr.io/v2/issuers/".$issuer_id."/badgeclasses";
+                $response = json_decode(wp_remote_get($url,$args)['body']);
+                //looping through BadgeClass from this issuer
+                $found = "false";
+                for($pos=0; $pos<count($response->result);$pos++)
+                {   //Check if BadgeClass already exists in backpack.
+                    if ($response->result[$pos]->name == $_POST['BadgeClass']['body']['name'])
+                    {
+                        $found = "true";
+                        break;
+                    }
+                }
+                if ($found == "false")
+                {//create new badge class here. first badge class ever case and not found in results case.
+                    //post request for new badge class.
+                    $args = $_POST['BadgeClass'];
+                    $args['body']['issuer'] = $issuer_id;   
+                    $url = "https://api.eu.badgr.io/v2/issuers/".$issuer_id."/badgeclasses";
+                    $response = json_decode(wp_remote_post($url,$args)['body']);
+                    if ($response->status->description == "ok")
+                        echo 'Badge Class creation successful';
+                    else
+                        echo 'error in badge class request';
+                }
+                else
+                    echo 'badge class already exists'; 
+                
+            }
+        }
         else
-            echo 'fail';  
+            echo 'fail';
         wp_die();
     }
+
+    public function ajaxAssertionRequest()
+    {
+        $location_file = parent::getJsonFolderPath() . "issuer_token_info.json";
+        $issuer_info = json_decode(file_get_contents($location_file));
+         //this shouldn't be triggered. Token is taken cared before.
+        if (!$issuer_info)
+        {
+            echo "Not Found";
+        }
+        else if (!empty($_POST['Assertion']))
+        {
+            $args['headers']['Authorization'] = $issuer_info->token_type.' '.$issuer_info->access_token;
+            //get request if issuer exists.
+            $url = "https://api.eu.badgr.io/v2/issuers";
+            $response =  json_decode(wp_remote_get($url,$args)['body']);
+            if (count($response->result)==0)
+            {
+                echo 'Issuer is not created';
+            }
+            else
+            {//issuer exists. proceeding to badge class check.
+                 //issuer id for issuing further api calls.
+                 $issuer_id = $response->result[0]->entityId;
+                 //get request to get all badge classes issued from this issuer
+                 $url = "https://api.eu.badgr.io/v2/issuers/".$issuer_id."/badgeclasses";
+                 $response = json_decode(wp_remote_get($url,$args)['body']);
+
+
+                 //accessing the local file that stores the badge class to get its name and see if created before.
+                 $badge_file_location = parent::getJsonFolderPath().str_replace('http://dev.badges4languages.com/wp-content/uploads/open-badges-framework/json/','',$_POST['Assertion']['body']['badge']);
+                 $badge_data = json_decode(file_get_contents($badge_file_location));
+                 $badge_name = $badge_data->name;
+
+                 //get request for badge class if exists.
+                $url = "https://api.eu.badgr.io/v2/issuers/".$issuer_id."/badgeclasses";
+                $response = json_decode(wp_remote_get($url,$args)['body']);
+
+                //to store the badge entity_id to compare if asserted before to that user. 
+                //need to compare user id with all assertions for that badge id.
+                //first step get the badge id.
+                $badge_id="false";
+                for($pos=0; $pos<count($response->result);$pos++)
+                {   //Check if BadgeClass already exists in backpack.
+                    if ($response->result[$pos]->name == $badge_name)
+                    {
+                        $badge_id = $response->result[$pos]->entityId;
+                        break;
+                    }
+                }
+                if ($badge_id != "false")
+                {
+                    //we have badge_entity_id. 
+                    //get all assertions for that badge id.
+                    //new get request
+
+                    $url = 'https://api.eu.badgr.io/v2/badgeclasses/'.$badge_id.'/assertions';
+                    $response = json_decode(wp_remote_get($url,$args)['body']);
+                    //response contains all assertions for that badge class
+                
+                    //if empty then never given to anyone.
+                    //loop through assertions to check for email of recipient
+                    $recipient_email = $_POST['Assertion']['body']['recipient']['identity'];
+                    $found = "false";
+                    for ($pos= 0;$pos<count($response->result);$pos)
+                    {
+                        if ($response->result[$pos]->recipient->identity == $recipient_email)
+                        {
+                            $found ="true";
+                            break;
+                        }
+                    }
+                    if ($found == "false")
+                    {//assertion doesn't exists for this badgeclass and recipient email.
+                        //create new POST request for issuing this badge to the user.
+                        $args = $_POST['Assertion'];
+                        $args['body']['badge'] = $badge_id;
+                        echo $badge_id.':';
+                        //sending the code to be handle in jquery.
+                        print_r(json_encode($args['body'],JSON_UNESCAPED_SLASHES));
+                    }
+                    else
+                        echo 'assertion for this user and badge already exists';
+                }
+                else
+                {
+                    echo 'badge id not found';
+                }
+                
+            }
+        }
+        else
+            echo 'fail';
+        wp_die();
+    }
+
 
 }

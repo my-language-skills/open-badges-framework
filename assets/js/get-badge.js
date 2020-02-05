@@ -341,7 +341,6 @@ jQuery(function (event) {
     var btnGetBadgeMob = "#gb-ob-get-badge"
     jQuery(document).on("click", btnGetBadgeMob, function (event) {
         jQuery(btnGetBadgeMob).prop('disabled', true);
-        
         var data = {
             'action': 'ajaxGbGetJsonUrl',
             'idBadge': urlParam('v'),
@@ -371,29 +370,6 @@ jQuery(function (event) {
         ajaxCall(data, func); 
 
     });
-    /**
-     * @description Gets the URL of the picture and creates a data URI for the picture
-     * 
-     * @author      @CharalamposTheodorou
-     * @since       @2.0
-     * 
-     * @param {String} imageURL: url of the request image. 
-     * 
-     * @return      data IRI of image
-     */
-    var imageTransformation = async function(imageURL)
-    {
-        let blob = await fetch(imageURL).then(r => r.blob());
-        let dataUrl = await new Promise(resolve => {
-        let reader = new FileReader();
-        reader.onload = () => resolve(reader.result);
-        reader.readAsDataURL(blob);
-        });
-        //image format for the POST request
-        return JSON.stringify(dataUrl);
-        
-        //return dataUrl;
-    }
 
     /**
      * @description Creates the new format of the request for the new API and calls the
@@ -423,18 +399,15 @@ jQuery(function (event) {
             //response will have error or data to send for each case.
             if (data.body.type == "Profile")
             {
-                console.log(data);
-                //issuer(data);
+                issuer(data);
             }
             else if (data.body.type == "BadgeClass")
             {
-                console.log(data);
-                //badgeClass();
+                badgeClass(data);
             }
             else if (data.body.type == "Assertion")
             {
-                console.log(data);
-                //assertion();
+                assertion(data);
             }
             else
             {
@@ -464,7 +437,7 @@ jQuery(function (event) {
     {
         var token_configured = function(response)
         {//Here token is configured and checked if expired (Requested again if expired).
-            console.log(    );
+            
             if (response!="saved")
             {//something is wrong with requests for the token. disabling the form.
                 jQuery("#gb-ob-response").html("Badge not sent!");
@@ -503,7 +476,7 @@ jQuery(function (event) {
      * 
      * @author      @CharalamposTheodorou
      * @since       @2.0
-     * s
+     * 
      * @return      void
      */
     var issuer = function(data)
@@ -511,140 +484,70 @@ jQuery(function (event) {
        var issuer_reply = function(response)
         {//request for if user exists as Issuer, if not then requested here.
             console.log(response);
-            if (response == "Not Found")
-            {//issuer token file doesn't exist. This should not be triggered. Token is being taker of before.
-                console.log("token not found");
-                //issuer token doesn't exists.
-            }
-            else
-            {//token file exists.
-                console.log("Issuer is created");
-            }
         }
         ajaxCall({'action':'ajaxIssuerExistRequest','issuer_profile':data},issuer_reply);
         
     }
-
+    
+    /**
+     * @description Makes all necessary checks for the badgeClass, requests for new badgeClass if not configured.
+     * 
+     * @author      @CharalamposTheodorou
+     * @since       @2.0
+     * 
+     * @return      void
+     */
     var badgeClass = function(data)
     {
-        console.log(data);
-        /* var badgeClass_reply = function(response)
+        var badgeClass_reply = function(response)
         {//request for if user exists as Issuer, if not then requested here.
             console.log(response);
-            if (response == "Not Found")
-            {//issuer token file doesn't exist. This should not be triggered. Token is being taker of before.
-                console.log("token not found");
-                //issuer token doesn't exists.
+        }
+        ajaxCall({'action':'ajaxBadgeClassExistRequest','BadgeClass':data},badgeClass_reply);
+    }
+    
+    /**
+     * @description Makes all necessary checks for the Assertion, requests for new Assertion if not configured. makes the request here.
+     * 
+     * @author      @CharalamposTheodorou
+     * @since       @2.0
+     * 
+     * @return      void
+     */
+    var assertion = function(data)
+    {
+        //console.log(data);
+        var assertion_reply = function(response)
+        { 
+            if (response.includes("{"))
+            {
+                var badge_id = response.substring(0,response.indexOf(':'));
+                var settings = {
+                    "url": "https://api.eu.badgr.io/v2/badgeclasses/"+badge_id+"/assertions",
+                    "method": "POST",
+                    "timeout": 0,
+                    "headers": {
+                      "Authorization": "Bearer laG8VYQ2BAIOWpjRq3Vms0X8agHeEM",
+                      "Content-Type": "application/json"
+                    },
+                    "data": response.substring(response.indexOf(":")+1,response.length),
+                  };
+                  
+                  jQuery.ajax(settings).done(function (response) {
+                    if (response.status.description == "ok")
+                        console.log("Assertion Success");
+                    else
+                    {
+                        console.log("Assertion failure:"+response.status.description);
+                    }
+                  });
             }
             else
-            {//token file exists.
-                console.log("Issuer is created");
-            }
+                console.log(response);
         }
-        ajaxCall({'action':'ajaxBadgeClassExistRequest','BadgeClass':data},badgeClass_reply); */
-    }
-    /**
-     * @description Makes the assertion request. In this step of the process all necessary checks for
-     *              issuer and badgeclasses have already happen. last request to send the badge to student backpack.
-     * @author      @CharalamposTheodorou
-     * @since       @2.0
-     * 
-     * @param {JSON Object} data_obj json object for the data of the assertion POST request. 
-     * 
-     * @return      void
-     */
-    var assertionRequest = function(data_obj)
-    {
-        var settings = {
-            "url": "https://api.badge.io/v2/badgeclasses/"+BADGECLASS_ENTITY_ID+"/assertions",
-            "method": "POST",
-            "timeout": 0,
-            "headers": {
-                "Authorization": "Bearer "+ISSUER_TOKEN_ID,
-                "Content-Type": "application/json"
-            },
-            "data": JSON.stringify(data_obj),
-        };
-
-        jQuery.ajax(settings).done(function(response) {
-            console.log(response);
-        }).fail(function(response,error)
-        {   
-            console.log(response+":"+error);
-        });
-    }
-
-     /**
-     * @description Makes the badgeClass request. In this step of the process all necessary checks for
-     *              issuer and badgeclasses have already happen. BadgeClass created and stored on backpack only once.
-     * @author      @CharalamposTheodorou
-     * @since       @2.0
-     * 
-     * @param {JSON Object} data_obj json object for the data of the BadgeClass POST request. 
-     * 
-     * @return      void
-     */
-    var badgeClassRequest = function(data_obj)
-    {
-        var settings = {
-            "url": "https://api.badgr.io/v2/issuers/"+ISSUER_ENTITY_ID+"/badgeclasses",
-            "method": "POST",
-            "timeout": 0,
-            "headers": {
-                "Authorization": "Bearer "+ISSUER_TOKEN_ID,
-            },
-            "processData": false,
-            "mimeType": "multipart/form-data",
-            "contentType": false,
-            "data": data_obj
-        };
-        jQuery.ajax(settings).done(function(response){
-            console.log(response);
-        }).fail(function(response,error)
-        {
-            console.log(response+":"+error);
-        });
-    }
-
-     /**
-     * @description Makes the assertion request. In this step of the process all necessary checks for
-     *              issuer. Issuer request happens only once, very first time the get badge is pressed.
-     * @author      @CharalamposTheodorou
-     * @since       @2.0
-     * 
-     * @param {JSON Object} data_obj json object for the data of the issuer POST request. 
-     * 
-     * @return      void
-     */
-    var issuerRequest = function()
-    {
-        var settings = {
-            "url": "https://api.badgr.io/v2/issuers",
-            "method": "POST",
-            "timeout": 0,
-            "headers": {
-              "Authorization": "Bearer 1682dPZvNZF7Xo3wKQmhvFaQXQouuf"
-            },
-            "processData": false,
-            "mimeType": "multipart/form-data",
-            "contentType": false,
-            "data": data_obj
-          };
-          
-          jQuery.ajax(settings).done(function (response) {
-            console.log(response);
-          }).fail(function(response,error){
-              console.log(response+":"+error);
-          });
-
-          //this should return the token id created previously and then we create the user an issuer
-          var issuer_request = function(response) {
-
-          }
-          ajaxCall()
+        ajaxCall({'action':'ajaxAssertionRequest','Assertion':data},assertion_reply);
 
     }
-
     
 });
  

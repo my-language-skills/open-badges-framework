@@ -11,6 +11,16 @@ Tags: badges
 - In development, restructure of stored data into the requierd format for the new API.
 - Checks for Token if created and valid.
 - Checks for Issuer if created and entity_id is valid.
+- Checks for BadgeClass if created.
+- Checks for Assertion if exists for same user.
+- All requests are done and checked for sending badges to Badgr Backpack.
+- Link to new API site changed, to create new account.
+
+### Assumptions
+- Account for issuer in badgr.eu exists.
+- if token json file doens't exists, then it means that token was never created. requesting for first time. Creates new file in installation to store the token details.
+- If token json file exists it must be uploaded to accordinate location in the installation.
+- If Recipient of badge doesn't have a Badgr account, the badge will be awarder. just waiting the user to activate it when the account is registered with same email.
 
 ## Community / Support
 
