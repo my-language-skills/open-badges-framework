@@ -238,6 +238,391 @@ class GetBadgeAjax extends BaseController {
     /** API v2 ACTIONS */
 
      /**
+     * Checks if the file exists with all information about ids (token,issuer_entity_id,badges_ids,assertions_ids)
+     * Creates the file if not and stores the requests info.
+     * 
+     * @author  @CharalamposTheodorou
+     * @since   2.0
+     */
+    public function storeBadgrInfo()
+    {
+        
+        //file that contains the information about ids for issuer,badgeClass and assertions
+        $badgr_ids_file = parent::getJsonFolderPath()."badgr-entity_ids.json";
+        $entities_info = json_decode(file_get_contents($badgr_ids_file));
+        if ($entities_info)
+        {//file exists
+            array_push($ajax_response['errors'],'no errors');
+        }
+        else
+        {//create new file with the info
+            $badgr_info = Array();
+            $badgr_info['issuer'] = Array();
+            $badgr_info['badgeClasses'] = Array();
+            $badgr_info['badgeClasses']['Assertions'] = Array();    
+
+            
+                //setting issuer id and name.
+                $badgr_info['issuer']['entityId'] = $response->result[0]->entityId;
+                $badgr_info['issuer']['name'] = $response->result[0]->name;
+}
+
+        wp_die();
+    }
+
+    public function updateBadgrEntitiesFile()
+    {
+        $ajax_response;
+        if (!empty($_POST['section']) && !empty($_POST['data']))
+        {
+            $badgr_entities_location = parent::getJsonFolderPath()."badgr-entity_ids.json";
+            $badgr_entities = json_decode(file_get_contents($badgr_entities_location));
+            
+            if ($_POST['section'] == "issuer")
+            {//update issuer info (should only happen once)
+                if (!$badgr_entities || $badgr_entities['issuer']['entity_id'] != $_POST['data']['entityId'])
+                {//update badgr content file here
+                    $badgr_entities['issuer']['entity_id'] = $_POST['data']['entityId'];
+                    $badgr_entities['issuer']['name'] = $_POST['data']['name'];
+                    if (file_put_contents($badgr_entities_location,json_encode($badgr_entities,JSON_UNESCAPED_SLASHES)))
+                    {    
+                        $ajax_response['update'] = "Issuer info updated to local file";
+                        $ajax_response['success'] = "success";
+                    }
+                    else
+                        $ajax_response['errors'] = "error in storing issuer info to local file";
+                    
+                }
+            }
+            else if ($_POST['section'] == "badge")
+            {//update badge classes info
+                //new entry to badgeClasses field
+                //check if already created or should create first entry
+                $ajax_response['before'] = $badgr_entities;
+
+                $new_entry['entity_id'] = $_POST['data']['entityId'];
+                $new_entry['name'] = $_POST['data']['name'];
+                $new_entry['assertions'] = $POST['data']['assertions'];
+                //if created before
+                if (property_exists($badgr_entities,"issuer"))
+                {//first time adding a badge class to file
+                    $badgr_entities->badgeClasses = [];
+                }
+                //adding the new badge information to badgr content file.
+                array_push($badgr_entities->badgeClasses,$new_entry);
+                $ajax_response['after'] = $badgr_entities;
+                if (file_put_contents($badgr_entities_location,json_encode($badgr_entities,JSON_UNESCAPED_SLASHES)))
+                {
+                    $ajax_response['udpate'] = "First Badge Class created and added to local file";
+                    $ajax_response['success'] = "success";
+                }
+                else
+                    $ajax_response['errors'] = "error in storing badge info to local file";
+            }
+            else if ($_POST['section'] == "assertion")
+            {//update assertion field in badgeclasses 
+                $new_entry['entity_id'] = $_POST['data']['entityId'];
+                $new_entry['recipient'] = $_POST['data']['recipient'];
+                $badge_id = $_POST['data']['badge_id'];
+                $pos =0;
+                for ($pos; $pos<count($badgr_entities->badgeClasses);$pos++)
+                    if ($badgr_entities->badgeClasses[$pos]->entity_id == $_POST['data']['badge_id'])
+                        break;
+                array_push($badgr_entities->badgeClasses[$pos],$new_entry);
+                if (file_put_contents($badgr_entities_location,json_encode($badgr_entities,JSON_UNESCAPED_SLASHES)))
+                {
+                    $ajax_response['udpate'] = "Assertion added to badge class";
+                    $ajax_response['succes'] = "success";
+                }
+                else
+                    $ajax_response['errors'] = "error in storing assertion info to local file";
+            }
+
+        }
+        else
+            array_push($ajax_response['errors']="data to store is not found");
+        
+        print_r(json_encode($ajax_response,JSON_UNESCAPED_SLASHES));
+        wp_die();
+    }
+    /**
+     * Creates the issuer entity for the next post request for BadgrAPI.
+     * Makes all necessary checks about necessary files and properties.
+     * 
+     * @author  @CharalamposTheodorou
+     * @since   2.0
+     */
+    public function checkAndCreateIssuerEntity()
+    {
+        $ajax_response;
+        //stores the entities that need to be created via post request to the api
+        $ajax_response['create'] = Array();
+        //stores the errors encountered in the process of creating the requests format.
+        $ajax_response['errors'] = Array();
+        
+        //file that stores the issuer token information.
+        $location_file = parent::getJsonFolderPath() . "issuer_token_info.json";
+        $issuer_token_info = json_decode(file_get_contents($location_file));
+        if (!empty($_POST['data']))
+        {//if data not given then nothing to do to proceed
+            if ($issuer_token_info)
+            {//token file exists and previous checks about refresh were already done.
+                //cheching if issuer exists. POST request
+                $args['headers']['Authorization'] = $issuer_token_info->token_type.' '.$issuer_token_info->access_token;
+                $url = "https://api.eu.badgr.io/v2/issuers";
+                $response =  json_decode(wp_remote_get($url,$args)['body']);
+                if (count($response->result)==0)
+                {//issuer is not created. Prepare issuer body for request.
+
+                    //getting the issuer information from already stored json file (plugin file)
+                    $issuer_file_location = parent::getJsonFolderPath().'issuer-info.json';
+                    $issuer_data = json_decode(file_get_contents($issuer_file_location));
+                    if ($issuer_data)
+                    {//issuer plugin file exists (always true)
+                        //field that lists the requests to happen.
+                        array_push($ajax_response['create'],"issuer");
+                        //creating body of request.
+
+                        //image must be changed to data base64 data URI format.
+                        $image_path = wp_upload_dir()['baseurl'].substr($issuer_data->image,strpos($issuer_data->image,'uploads')+strlen('uploads'));
+                        $image_relative_path =  str_replace('http:/','/var/www/vhosts/badges4languages.com',$image_path);  
+                        //raw format of picture.
+                        $image_data  = file_get_contents($image_relative_path);
+                        if (!$image_data)
+                        {
+                            array_push($ajax_response['errors'],"issuer image doesn't exists in ".$image_path);
+                        }
+                        else
+                        {//image is found, creating base64 format.
+                            //image in base64 data URI format. for issuer POST request.
+                            $base64 = 'data:image/png;base64,' . base64_encode($image_data);
+                            $issuer_data->image = $base64;
+                            //all checks are completed, image created. creating the issuer request format.
+                            $ajax_response['issuer']['url'] = "https://api.eu.badgr.io/v2/issuers";
+                            $ajax_response['issuer']['method'] = "POST";
+                            $ajax_response['issuer']['timeout'] = 0;
+                            $ajax_response['issuer']['headers']['Authorization'] = $issuer_token_info->token_type.' '.$issuer_token_info->access_token;
+                            $ajax_response['issuer']['headers']['Content_type'] = "application/json";
+                             //temp change for email.
+                            $issuer_data->email =  "charalampostheodorou2@gmail.com";
+                            $ajax_response['issuer']['data'] = $issuer_data;
+                           
+                        }
+                    }
+                    else
+                    {
+                        array_push($ajax_response['errors'],'issuer-info.json file is missing from /uploads/open-badges-framework');
+                    }
+                }
+                $ajax_response['data'] = $_POST['data'];//carries the data for the badge process.
+            }
+            else
+            {//token doesn't exists
+                array_push($ajax_response['errors'],'token is not configured correctly');
+            }
+        }
+        else
+        {//cannot continue with no data.
+            array_push($ajax_response['errors'],'data is not received to create the requests');
+        }
+        
+        print_r(json_encode($ajax_response,JSON_UNESCAPED_SLASHES));
+        wp_die();
+    }
+
+    /**
+     * Creates the badge class entity for the next post request for BadgrAPI.
+     * Makes all necessary checks about necessary files and properties.
+     * 
+     * @author  @CharalamposTheodorou
+     * @since   2.0
+     */
+    public function checkAndCreateBadgeClassEntity()
+    {
+        $ajax_response;
+        //stores the entities that need to be created via post request to the api
+        $ajax_response['create'] = Array();
+        //stores the errors encountered in the process of creating the requests format.
+        $ajax_response['errors'] = Array();
+
+        //file that stores the issuer token information.
+        $location_file = parent::getJsonFolderPath() . "issuer_token_info.json";
+        $issuer_token_info = json_decode(file_get_contents($location_file));
+        if (!empty($_POST['data']))
+        {//if data not given then nothing to do to proceed
+            if ($issuer_token_info)
+            {//token file exists and previous checks about refresh were already done.
+                //file that contains the ids of issuer, badge classes and assertions.
+                $badgr_file_location = parent::getJsonFolderPath() . "badgr-entity_ids.json";
+                $badgr_file_contents = json_decode(file_get_contents($badgr_file_location));
+                if ($badgr_file_contents)
+                {//badgr entities retrieved 
+                    
+                    $issuer_id = $badgr_file_contents->issuer->entity_id;//to be used for the POST request if required.
+                    $badgeClasses = $badgr_file_contents->badgeClasses;//access all badge classes published to Badgr.
+                    
+                    //next step is to get the badge file (previous format) and get it's data.
+                    $badge_file_location =  parent::getJsonFolderPath().substr($_POST['data']['badge'],strpos($_POST['data']['badge'],'/json/')+6);
+                    $badge_file_contents = json_decode(file_get_contents($badge_file_location));
+                    if ($badge_file_contents)
+                    {//previous file of badge info exists. continue process
+                        
+                        //loop through badge contents of badge file (entities - names)
+                        $found = "false";
+                        if ($badgeClasses != null)
+                        {//already issued some badge classes. check if already created this one.
+                            for ($pos = 0 ; $pos<count($badgeClasses); $pos++)
+                            {//looping through badge classes issued before (if a match is found with this request)
+                                if ($badgeClasses[$pos]->name == $badge_file_contents->name)
+                                {
+                                    $found = "true";
+                                    break;
+                                }
+                            }
+                        }
+                        if ($found == "true")
+                        {//badgeClass found, nothing to do here.
+                            array_push($ajax_response['update'],'badge class exists');
+                        }
+                        else
+                        {//badge class not found, creating format for post request here
+                            array_push($ajax_response['update'],'badge class not exists');
+                            //creating the badge class request.
+                            array_push($ajax_response['create'],"badgeClass");
+                            //creating body of request.
+
+                            //image must be changed to data base64 data URI format.
+                            $image_path = wp_upload_dir()['baseurl'].substr($badge_file_contents->image,strpos($badge_file_contents->image,'uploads')+strlen('uploads'));
+                            $image_relative_path =  str_replace('http:/','/var/www/vhosts/badges4languages.com',$image_path);
+                            $image_data = file_get_contents($image_relative_path);
+                            if (!$image_data)
+                            {//image file not found
+                                array_push($ajax_response['errors'],"badge image file not found");
+                            }
+                            else
+                            {  
+                                //image in base64 data URI format. for issuer POST request.
+                                $base64 = 'data:image/png;base64,' . base64_encode($image_data);
+                                $badge_file_contents->image = $base64;
+                                $badge_file_contents->issuer = $issuer_id;
+                                //all checks are completed, image created. creating the badge class request format.
+                                $ajax_response['badge']['url'] = "https://api.eu.badgr.io/v2/issuers/".$issuer_id."/badgeclasses";
+                                $ajax_response['badge']['method'] = "POST";
+                                $ajax_response['badge']['timeout'] = 0;
+                                $ajax_response['badge']['headers']['Authorization'] = $issuer_token_info->token_type.' '.$issuer_token_info->access_token;
+                                $ajax_response['badge']['headers']['Content_type'] = "application/json";
+                                $ajax_response['badge']['data'] = $badge_file_contents;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        array_push($ajax_response['errors'],'badge json file not found');
+                    }
+                }
+                else
+                {//badgr file doesn't exist. MUST for getting the issuer entity id
+                    array_push($ajax_response['errors'],'badgr entities file not found');
+                }
+                $ajax_response['data'] = $_POST['data'];//carries the data for assertion request.
+            }
+            else
+            {//token doesn't exists
+                array_push($ajax_response['errors'],'token is not configured correctly');
+            }
+            
+        }
+        else
+        {//cannot continue with no data.
+            array_push($ajax_response['errors'],'data is not received to create the requests');
+        }
+
+        print_r(json_encode($ajax_response,JSON_UNESCAPED_SLASHES));
+        wp_die();
+    }
+
+    /**
+     * Creates the assertion entity for the next post request for BadgrAPI.
+     * Makes all necessary checks about necessary files and properties.
+     * 
+     * @author  @CharalamposTheodorou
+     * @since   2.0
+     */
+    public function checkAndCreateAssertionEntity()
+    {
+        /* $ajax_response;
+        //stores the entities that need to be created via post request to the api
+        $ajax_response['create'] = Array();
+        //stores the errors encountered in the process of creating the requests format.
+        $ajax_response['errors'] = Array();
+        
+        //file that stores the issuer token information.
+        $location_file = parent::getJsonFolderPath() . "issuer_token_info.json";
+        $issuer_token_info = json_decode(file_get_contents($location_file));
+        if (!empty($_POST['data']))
+        {
+            if ($issuer_token_info)
+            {//token file exists and previous checks about refresh were already done.
+                //cheching if issuer exists. POST request
+                $args['headers']['Authorization'] = $issuer_token_info->token_type.' '.$issuer_token_info->access_token;
+                $url = "https://api.eu.badgr.io/v2/issuers";
+                $response =  json_decode(wp_remote_get($url,$args)['body']);
+                if (count($response->result)==0)
+                {//issuer is not created. Prepare issuer body for request.
+
+                    //getting the issuer information from already stored json file (plugin file)
+                    $issuer_file_location = parent::getJsonFolderPath().'issuer-info.json';
+                    $issuer_data = json_decode(file_get_contents($issuer_file_location));
+                    if ($issuer_data)
+                    {//issuer plugin file exists (always true)
+                        //field that lists the requests to happen.
+                        array_push($ajax_response['create'],"issuer");
+                        //creating body of request.
+
+                            //image must be change to data base64 data URI format.
+                        $image_path = wp_upload_dir()['baseurl'].substr($issuer_data->image,strpos($issuer_data->image,'uploads')+strlen('uploads'));
+                        $image_relative_path =  str_replace('http:/','/var/www/vhosts/badges4languages.com',$image_path);  
+                        //raw format of picture.
+                        $image_data  = file_get_contents($image_relative_path);
+                        if (!$image_data)
+                        {
+                            array_push($ajax_response['errors'],"issuer image doesn't exists in ".$image_path);
+                        }
+                        else
+                        {//image is found, creating base64 format.
+                            //image in base64 data URI format. for issuer POST request.
+                            $base64 = 'data:image/png;base64,' . base64_encode($image_data);
+                            $issuer_data->image = $base64;
+                            //all checks are completed, image created. creating the issuer request format.
+                            $ajax_response['issuer']['url'] = "https://api.eu.badgr.io/v2/issuers";
+                            $ajax_response['issuer']['method'] = "POST";
+                            $ajax_response['issuer']['timeout'] = 0;
+                            $ajax_response['issuer']['headers']['Authorization'] = $issuer_token_info->token_type.' '.$issuer_token_info->access_token;
+                            $ajax_response['issuer']['headers']['Content-Type'] = "application/json";
+                            $ajax_response['issuer']['data'] = $issuer_data;
+                        }
+                    }
+                    else
+                    {
+                        array_push($ajax_response['errors'],'issuer-info.json file is missing from /uploads/open-badges-framework');
+                    }
+                }
+            }
+            else
+            {//token doesn't exists
+                array_push($ajax_response['errors'],'token is not configured correctly');
+            }
+        }
+        else
+        {//cannot continue with no data.
+            array_push($ajax_response['errors'],'data is not received to create the requests');
+        }
+        
+        print_r(json_encode($ajax_response,JSON_UNESCAPED_SLASHES)); */
+        print_r(json_encode(Array("test","assert"),JSON_UNESCAPED_SLASHES));
+        wp_die();
+    }
+     /**
      * Given section as POST parameter is checked whether was configured correctly
      * Action called by all 3 POST request before issuing the assertion to the user.
      * Data received is the assertion post request to previous API.

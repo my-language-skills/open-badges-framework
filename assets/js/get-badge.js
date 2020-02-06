@@ -370,6 +370,180 @@ jQuery(function (event) {
         ajaxCall(data, func); 
 
     });
+    /**
+     * @description Checks for any issuer problems/erros and makes the post request for new issuer if
+     *              not found.
+     * @author      @CharalamposTheodorou
+     * @since       @2.0
+     *  
+     * @return      void
+     */
+    function issuer_process(data)
+    {
+        var check_to_proceed = function(response)
+        {
+            var data = JSON.parse(response);
+            if (data.errors.length == 0)
+            {//checking if everything was okay with the issuer creation. 
+
+                //check if any uppdates happen to issuer (post request for new issuer).
+                if (data.create.includes("issuer"))
+                {
+                    var settings = {
+                        "url": data.issuer.url,
+                        "method": data.issuer.method,
+                        "timeout": data.issuer.timeout,
+                        "headers": {
+                            "Authorization": data.issuer.headers.Authorization,
+                            "Content-Type": data.issuer.headers.Content_type,
+                        },
+                        "data": JSON.stringify(data.issuer.data),
+                    };
+                    jQuery.ajax(settings).done(function (response) {
+                        if (response.status.description == "ok")
+                        {    
+                            console.log("Issuer POST request Success");
+                            //data to store to file.
+                            var data_to_store= new Object();
+                            data_to_store.entityId = response.result[0].entityId;
+                            data_to_store.name = response.result[0].name;
+                            //issuer is registered here
+                            //updating badgr file contents
+                            var update_reply = function(response)
+                            {
+                                var data_response = JSON.parse(response);
+                                console.log(data_response);
+                                if(data_response.success == "success")
+                                {    
+                                    console.log("data stored to badgr file");
+                                    console.log("here:");
+                                    console.log(data.data);
+                                    //issuer process is done, safe to proceed to badge class process
+                                    badgeClass_process(data.data);
+                                }
+                                else
+                                    console.log('problem with issuer data stored to badgr file');
+                            }
+                            ajaxCall({'action':'updateBadgrEntitiesFile','section':'issuer','data':data_to_store,},update_reply);
+
+                        }
+                        else
+                        {
+                            console.log("Issuer POST request failure:"+response.status.description);
+                        }
+                      });
+                }
+                else
+                {    
+                    //console.log("go to badge?");
+                    //console.log(data.data);
+                    //issuer process is done, safe to proceed to badge class process
+                    badgeClass_process(data.data);
+                }
+            }
+            else
+                console.log("errors existing:"+data.errors);
+        }
+        ajaxCall({'action':'checkAndCreateIssuerEntity','data':data,},check_to_proceed);
+    }
+
+    /**
+     * @description Checks for any badge class problems/erros and makes the post request for new 
+     *              badge class if not found.
+     * @author      @CharalamposTheodorou
+     * @since       @2.0
+     *  
+     * @return      void
+     */
+    function badgeClass_process(data)
+    {
+        var check_to_proceed = function(response)
+        {
+            var data = JSON.parse(response);
+            if(data.errors.length == 0)
+            {//checking if everything was okay with the badge creation.
+                
+                //check if any uppdates happen to issuer (post request for new issuer).
+                if (data.create.includes("badgeClass"))
+                {
+                    var settings = {
+                        "url": data.badge.url,
+                        "method": data.badge.method,
+                        "timeout": data.badge.timeout,
+                        "headers": {
+                            "Authorization": data.badge.headers.Authorization,
+                            "Content-Type": data.badge.headers.Content_type,
+                        },
+                        "data": JSON.stringify(data.badge.data),
+                    };
+                    console.log(settings);
+                    jQuery.ajax(settings).done(function (response) {
+                        if (response.status.description == "ok")
+                        {
+                            console.log("Badge Class POST request Success");
+                            //data to store to the identities file.
+                            var data_to_store = new Object();
+                            data_to_store.entityId = response.result[0].entityId;
+                            data_to_store.name = response.result[0].name;
+                            data_to_store.assertions = [];
+                            var update_reply = function(response)
+                            {
+                                var data_response = JSON.parse(response);
+                                console.log(data_response);
+                                if (data_response.success == "success")
+                                {
+                                    console.log("data stored to badgr file");
+                                    console.log("here");
+                                    console.log(data.data)
+                                    //issuer process is done, safe to proceed to assertion process
+                                    //Assertion_process(data.data);
+                                }
+                                else
+                                    console.log("problem with badge data stored to badgr file")
+                            }
+                            ajaxCall({'action':'updateBadgrEntitiesFile','section':'badge','data':data_to_store,},update_reply);
+
+                        }
+                    });
+                }
+                else
+                {    
+                   console.log("go to assertion?");
+                   console.log(data.data);
+                   //issuer process is done, safe to proceed to assertion process
+                   //Assertion_process(data.data);
+                }
+            }
+            else
+                    console.log("errors existing:"+data.errors);
+        }
+        ajaxCall({'action':'checkAndCreateBadgeClassEntity','data':data,},check_to_proceed);
+    }
+
+    /**
+     * @description Checks for any assertion problems/erros and makes the post request for new assertion if
+     *              not found.
+     * @author      @CharalamposTheodorou
+     * @since       @2.0
+     *  
+     * @return      void
+     */
+    function assertion_process(data)
+    {
+        var check_to_proceed = function(response)
+        {
+            console.log(JSON.parse(response));
+           /*  jQuery.ajax(settings).done(function (response) {
+                if (response.status.description == "ok")
+                    console.log("Assertion Success");
+                else
+                {
+                    console.log("Assertion failure:"+response.status.description);
+                }
+              }); */
+        }
+        ajaxCall({'action':'checkAndCreateAssertionEntity','data':data,},check_to_proceed);
+    }
 
     /**
      * @description Creates the new format of the request for the new API and calls the
@@ -386,7 +560,30 @@ jQuery(function (event) {
         console.log(data);
         //token actions for creating/refreshing token.
         token();
-        var check_to_proceed = function(response)
+        issuer_process(data);
+        /* var check_to_proceed = function(response)
+        {
+            console.log(JSON.parse(response));
+            if (response == "create issuer")
+            {//POST request for new issuer
+                console.log('creating new issuer');
+                //badgrRequest(data,'issuer');
+            }
+            else if (response == "create BadgeClass")
+            {//POST request for new badge class
+                console.log('creating new badge class');
+                //badgrRequest(data,'badgeClass');
+            }
+            else if (response == "create Assertion")
+            {//POST request for new assertion
+                console.log('creating new assertion');
+                //badgrRequest(data,'Assertion');
+            }
+            //upddate_badgr_file();
+        }
+        ajaxCall({'action':'checkAndCreateEntities','data':data,},check_to_proceed); */
+        
+        /* var check_to_proceed = function(response)
         {
             //fail scenario for previous checks
             if (response == "fail")
@@ -419,7 +616,7 @@ jQuery(function (event) {
         //checks if issuer exists. creates data format for new request
         ajaxCall({'action':'ajaxBadgrRequestcheck','section':'BadgeClass','data':data,},check_to_proceed);
         //checks if badgeclass exists. creates data format for new request
-        ajaxCall({'action':'ajaxBadgrRequestcheck','section':'Assertion','data':data,},check_to_proceed);
+        ajaxCall({'action':'ajaxBadgrRequestcheck','section':'Assertion','data':data,},check_to_proceed); */
 
         jQuery("#gb-ob-response").html("So far so good!")
         jQuery(btnGetBadgeMob).prop('disabled', false);
