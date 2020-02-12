@@ -15,6 +15,8 @@ Tags: badges
 - Checks for Assertion if exists for same user.
 - All requests are done and checked for sending badges to Badgr Backpack.
 - Link to new API site changed, to create new account.
+- Badges are updated for each state for the user.
+- get-the-badge page (from email) changes on the context.
 
 ### Assumptions
 - Account for issuer in badgr.eu exists.

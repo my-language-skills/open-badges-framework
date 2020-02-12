@@ -466,14 +466,15 @@ final class GetBadgeTemp extends BaseController {
                     <p class="lead">
                         <?php _e('Mozilla Open Badges give you the opportunity to store your badges in its platform which
                         permit you to share your progress with all the community.','open-badges-framework');?>
-                        <br><br>
-                        <?php _e('If you don’t have an Open Badge account, please click','open-badges-framework');?>
-                        <a href="https://eu.badgr.com/auth/login" target="_blank"
-                           style="font-size: 25px;"><?php _e('here','open-badges-framework');?></a>
-                        <?php _e('and create a new account with the same email address of the registration of this website and
-                        then','open-badges-framework');?> <strong><?php _e('get the badge','open-badges-framework');?></strong>.
+                        <!-- <br><br> -->
+                        <?php /* _e('If you don’t have an Open Badge account, please click','open-badges-framework'); */?>
+                        <!-- <a href="https://eu.badgr.com/auth/login" target="_blank"
+                           style="font-size: 25px;"> --><?php/*  _e('here','open-badges-framework'); */?></a>
+                        <?php/*  _e('and create a new account with the same email address of the registration of this website and
+                        then','open-badges-framework'); */?> <!-- <strong><?php /* _e('get the badge','open-badges-framework'); */?></strong>. -->
 
                     </p>
+                    <? echo '<script>console.log("connector to check if isMozillaGotDate");</script>';?>
                     <div class="cont-btn-standar">
                         <button id="gb-ob-get-badge" class="btn btn-lg btn-primary" type="submit"><?php _e('Get the Badge','open-badges-framework');?>
                         </button>

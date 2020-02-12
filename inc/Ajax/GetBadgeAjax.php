@@ -235,10 +235,34 @@ class GetBadgeAjax extends BaseController {
         }
         wp_die();
     }
+
+
     /** API Badgr ACTIONS */
 
-     
-
+     /**
+      * When the assension of the badge is accepted as valid, this gets the badge_id 
+      * and updates the database as gotMozillaDate: true.
+      *
+      * @author  @CharalamposTheodorou
+      * @since   2.0
+      */
+    /* public function updateBadgeforBackpackIssued()
+    {
+        if (isset($_POST['idBadge']) && !empty($_POST['idBadge']))
+        {
+            $badge = new Badge();
+            $badge->retrieveBadge($_POST['idBadge']);
+            echo $badge->id;
+        }
+        wp_die();
+    } */
+    /**
+     * Updates the contens to the local file that stores all the info about issuer,
+     * Badge Classes and Assertions to users.
+     *  
+     * @author  @CharalamposTheodorou
+     * @since   2.0
+     */
     public function updateBadgrEntitiesFile()
     {
         $ajax_response;
