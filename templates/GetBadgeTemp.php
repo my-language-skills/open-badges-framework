@@ -445,7 +445,7 @@ final class GetBadgeTemp extends BaseController {
             <?php $this->getInfoHeader(); ?>
             <div class="inner container">
                 <div class="ob-menu">
-                    <span class="ob-cont-title">Mozilla Open Badges</span>
+                    <span class="ob-cont-title">Badgr Open Badges</span>
                     <span class="ob-user-info">
                             <?php echo get_avatar(WPUser::getCurrentUser()->ID); ?>
                             <?php 
@@ -464,7 +464,7 @@ final class GetBadgeTemp extends BaseController {
             <div class="container">
                 <div class="jumbotron jumbotron-fluid jumb-obm">
                     <p class="lead">
-                        <?php _e('Mozilla Open Badges give you the opportunity to store your badges in its platform which
+                        <?php _e('Badgr Open Badges give you the opportunity to store your badges in its platform which
                         permit you to share your progress with all the community.','open-badges-framework');?>
                         <!-- <br><br> -->
                         <?php /* _e('If you don’t have an Open Badge account, please click','open-badges-framework'); */?>
@@ -474,7 +474,6 @@ final class GetBadgeTemp extends BaseController {
                         then','open-badges-framework'); */?> <!-- <strong><?php /* _e('get the badge','open-badges-framework'); */?></strong>. -->
 
                     </p>
-                    <? echo '<script>console.log("connector to check if isMozillaGotDate");</script>';?>
                     <div class="cont-btn-standar">
                         <button id="gb-ob-get-badge" class="btn btn-lg btn-primary" type="submit"><?php _e('Get the Badge','open-badges-framework');?>
                         </button>
@@ -502,7 +501,7 @@ final class GetBadgeTemp extends BaseController {
         <footer class="mastfoot mt-auto">
             <div class="inner">
                 <div class="logo-open-badges">
-                    <img src="<?php echo $this->plugin_url; ?>/assets/images/open-badges-mz-logo.png">
+                    <img src="<?php echo $this->plugin_url; ?>/assets/images/open-badges-badgr-logo.png"> <!-- Previous api logo open-badges-mz-logo.png"> -->
                 </div>
             </div>
         </footer>
@@ -545,6 +544,7 @@ final class GetBadgeTemp extends BaseController {
                         <div class="col-3">
                             <a class="btn btn-redirect" href="<?php echo get_bloginfo('url'); ?>"
                                role="button"> <?php _e('Home','open-badges-framework');?></a>
+                               ADD HERE ANOTHER BUTTON FOR BACKPACK CONNECTION.
                         </div>
                     </div>
                 </div>

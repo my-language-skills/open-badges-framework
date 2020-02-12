@@ -108,7 +108,6 @@
         var showGetMOBOpenBadges = function () {
             jQuery("#gb-wrap").fadeOut(400, function (event) {
                 jQuery("#gb-wrap").html(loadingPage(event));
-
                 // If the user have an account in Open Badge BackPack,
                 // have also the permission to get the badge.
                 var data = {
@@ -198,7 +197,6 @@
         jQuery(document).on("submit", btnLogin, function (event) {
             jQuery(btnLogin).prop('disabled', true);
             event.preventDefault();
-
             var email = jQuery("#staticEmail").val();
             var password = jQuery("#inputPassword").val();
             var remember = jQuery("#inputRemember").is(':checked');
