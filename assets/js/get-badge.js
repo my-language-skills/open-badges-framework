@@ -206,7 +206,6 @@
                 'userEmail': email,
                 'userPassword': password,
                 'remember': remember,
-
             };
 
             var func = function (response) {
@@ -388,9 +387,9 @@
         {//we create the request for the assertion if badgeclass is not created we create it, if issuer to setup, we setup..
             
             //token actions for creating/refreshing token.
-            token();
+            token(data);
             //initiating the new API process. Checks if Issuer created, then if current badge created and finally checks and creates the Assertion.
-            issuer_process(data);
+            
             jQuery(btnGetBadgeMob).prop('disabled', false);
         }
         
@@ -402,7 +401,7 @@
          * 
          * @return      void
          */
-        var token = function()
+        var token = function(data)
         {
             var token_configured = function(response)
             {//Here token is configured and checked if expired (Requested again if expired).
@@ -412,6 +411,8 @@
                     jQuery("#gb-ob-response").html("Badge not sent!");
                     jQuery(btnGetBadgeMob).prop('disabled', false);
                 }
+                else
+                    issuer_process(data);
 
             }
             var token_exists_reply = function(response)

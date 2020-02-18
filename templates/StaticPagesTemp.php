@@ -36,8 +36,7 @@ final class StaticPagesTemp {
              <?php _e('The main function of this plugin is to create, manage and send badges. <br>
               Once a badge has been sent, the receiver has the possibility to take his badge through a link
               that is inserted in the email.<br>
-              After successive steps, the user can get his own badge and also has the possibility to send
-              it to the','open-badges-framework');?> <a href="https://backpack.openbadges.org/backpack/welcome">Mozilla Open Badges backpack</a> <?php _e('platform.','open-badges-framework');?>
+              After successive steps, the user can get his own badge and also has the possibility to receive it on the','open-badges-framework');?> <a href="https://eu.badgr.com/">Badgr European Server</a><?php _e(' Open Badges backpack platform asserted by our Issuer Profile.','open-badges-framework');?>
           </p>
           <H2><?php _e('Shortcodes','open-badges-framework');?></h2>
           <p class="lead">

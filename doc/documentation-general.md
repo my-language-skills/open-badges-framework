@@ -176,7 +176,8 @@ Each Open Badge is associated with an image and information about the badge, its
 ### Developers Guide
 Badges for Languages use [Mozilla's Open Badges Infrastructure (OBI)](https://support.mozilla.org/en-US/kb/what-open-badges-infrastructure "What is the Open Badges Infrastructure?") witch provides the open, core technology to support the ecosystem of badges.
 
-The badges go from the Plugin to the [Backpack](https://backpack.openbadges.org/backpack/welcome).
+The badges go from the Plugin to the [Backpack](https://site.imsglobal.org/certifications?refinementList%5Bstandards_lvlx%5D%5B0%5D=Open%20Badges#backpacks) of choice. 
+Currently, the plugin usses the [Badgr](https://badgr.com/backpack/) Backpack service and API calls.
 
 This section provides a set of technical resources to guide you through the processes of creating, issuing and displaying Open Badges. The Specification provides technical documentation and code examples. These guides will build on those examples.
 
@@ -198,6 +199,39 @@ With the Issuer API, the user must grant permission every time you attempt to pu
 To manage your interaction with the earner Backpack, the Connect API uses access tokens.
 
  [Using the Backpack Connect API](https://github.com/mozilla/openbadges-backpack/wiki/using-the-backpack-connect-api)
+
+## Badgr API Platform
+The previous section explains the format of how the badges are created and stored in our back-end process.
+After Mozilla retired its Open Badges Backpack platform, the company decided to integrate the Badgr API platform into the plugin for the process of issuing badges and storing them. The following section will explain the basic structure of the usage of the Badgr API.
+
+### Developers Guide
+All necessarry information about using the new Badgr API, as an issuer or user can be found [here](https://badgr.org/app-developers/api-guide/). 
+This guide explains the process of Authentication and how Tokens are used in the whole process of the badge exchange. 
+It also explains the process of creating the Issuer, BadgeClass and Assertion Object formats, providing examples of usage.
+
+[Badge API references](https://api.badgr.io/docs/v2/).
+
+### Technical strcuctures
+All objects of Assertions and badges created with the previous API are stored and can be reused as the new update of the plugin takes the stored badge and assertion information and restructures it for the new API format requirements when a badge is being accepted by the recipient of the badge (after the user received the email awarding him the badge).
+
+As an issuer of a badge, you must follow these steps in creating a new account as an issuer in order to be validated and authenticated. In addition, any future issuing of the already established issuer will be considered valid when a special key for authentication is used, which is mandatory for every request to the Badgr backpack service.
+
+[Badgr Connected Application](https://badgr.org/app-developers/) 
+
+### Plugin Integration
+The plugin integration with the Badgr platform is really simple. When a user recieves an email with an award about a badge then the user is redirected to page where then, if the user chooses to receive the badge on the backpack too, a set of requests are send to the [Badgr EU Server](https://eu.badgr.com/) to validate this action and finally award the badge to the backpack of the recipient.
+
+This process goes though many steps for validation and authentication of the action of awarding the badge to the recipient's backpack. 
+
+* Token: Used to authenticate all future requests done to the Badgr API from the corresponding issuer profile. If the file that contains this Token doesn't exist then it will be created, restarting the whole process of issuer creation from the start (First step when issuing the first badge as a new Issuer).
+
+* Issuer: Used to issue all requests, trusted entity with Authorization Token for awarding badges to recipients. A check is done if it exists as an official Issuer to the appropriate server. A new Issuer profile is created if it doesn't exists (Second step when issuing the first badge as a new Issuer).
+
+* Badge Class: The badge class of the badge being awarder. It is send to the recipient's backpack using the issuer's authorization token. If a badge class doesn't exists then it is created and issued (an existance check is made for each badge before awarded).
+
+* Assertion: The final step of the badge awardness to the recipient's backpack. A thorough check is made here to make sure that this particular badge was not awarded again to the current recipient. After this, the badge is succesfully awarded to the user.
+
+All information for Issuer, Badge Classes and Assertions issued are stored on a file, locally created for the plugin to update for each new assertion.  
 
 ---
 Back to [Readme](../README.md).

@@ -336,6 +336,57 @@ Example of the file name: cc8197a1a66bd28d240934e16a895183f7a59e2285eb5e8b408ebb
 }
 
 ```
+#### Issuer Token Info
+This file stores the token information used from the Issuer according to the new Badgr API. This should be created seperately or else it will require an email and password for an Issuer Profile account one the first attempt of a user activating the badge for the Badgr platform (used for all requests to the new API).
+
+Example of an issuer_token_info file:
+```
+{
+  "access_token":"YOURACCESSTOKEN",
+  "token_type":"Bearer",
+  "expires_in":86400,
+  "refresh_token":"YOURREFRESHTOKEN",
+  "scope":"rw:profile rw:issuer rw:backpack"
+}
+```
+#### Badgr Entities
+This file stores all information about all the assertions of all badges from a current issuer profile. This is used when checking for duplication of assertions (preventing from happening).
+
+Example of the badgr-entity_ids file:
+```
+{
+  "issuer":
+  {
+    "entity_id":"ISSUER_ENTITY_ID",
+    "name":"Badges for Languages"
+  },
+  "badgeClasses":
+  [
+    {
+      "entity_id":"BADGE_CLASS_ENTITY_ID",
+      "name":"A1.1 Japanese",
+      "assertions":
+      [
+        {
+          "entity_id":"ASSERTION_ENTITIY_ID",
+          "recipient_email":"recipient_example@email.com"
+        }
+      ]
+    },
+    {
+      "entity_id":"BADGE_CLASS_ENTITY_ID",
+      "name":"B1.1 German",
+      "assertions":
+      [
+        {
+          "entity_id":"ASSERTION_ENTITIY_ID",
+          "recipient_email":"recipient_example@email.com"
+        }
+      ]
+    },
+  ]
+}
+```
 ## Getting Badges
 The user must login (or register if he's not) using the email account from which he retrieved the link for the 'Get Badge' page.
 

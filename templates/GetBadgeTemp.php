@@ -501,7 +501,7 @@ final class GetBadgeTemp extends BaseController {
         <footer class="mastfoot mt-auto">
             <div class="inner">
                 <div class="logo-open-badges">
-                    <img src="<?php echo $this->plugin_url; ?>/assets/images/open-badges-badgr-logo.png"> <!-- Previous api logo open-badges-mz-logo.png"> -->
+                    <img src="<?php echo $this->plugin_url; ?>/assets/images/open-badges-mz-logo.png"> <!-- new api logo test: open-badges-mz-logo.png">  open-badges-badgr-logo.png-->
                 </div>
             </div>
         </footer>
@@ -544,7 +544,6 @@ final class GetBadgeTemp extends BaseController {
                         <div class="col-3">
                             <a class="btn btn-redirect" href="<?php echo get_bloginfo('url'); ?>"
                                role="button"> <?php _e('Home','open-badges-framework');?></a>
-                               ADD HERE ANOTHER BUTTON FOR BACKPACK CONNECTION.
                         </div>
                     </div>
                 </div>
@@ -592,6 +591,14 @@ final class GetBadgeTemp extends BaseController {
                 <h2 class="badge-got-title">
                     <?php _e('Badge already got! ','open-badges-framework');?>
                 </h2>
+                <div class="container cont-button-redirect">
+                    <div class="row justify-content-around">
+                        <div class="col-3">
+                            <a class="btn btn-redirect" href="<?php echo get_bloginfo('url'); ?>"
+                               role="button"> <?php _e('Home','open-badges-framework');?></a>
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </main>

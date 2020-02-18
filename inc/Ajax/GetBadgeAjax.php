@@ -239,23 +239,7 @@ class GetBadgeAjax extends BaseController {
 
     /** API Badgr ACTIONS */
 
-     /**
-      * When the assension of the badge is accepted as valid, this gets the badge_id 
-      * and updates the database as gotMozillaDate: true.
-      *
-      * @author  @CharalamposTheodorou
-      * @since   2.0
-      */
-    /* public function updateBadgeforBackpackIssued()
-    {
-        if (isset($_POST['idBadge']) && !empty($_POST['idBadge']))
-        {
-            $badge = new Badge();
-            $badge->retrieveBadge($_POST['idBadge']);
-            echo $badge->id;
-        }
-        wp_die();
-    } */
+
     /**
      * Updates the contens to the local file that stores all the info about issuer,
      * Badge Classes and Assertions to users.
@@ -688,7 +672,7 @@ class GetBadgeAjax extends BaseController {
         wp_die();
     }
 
-     /**
+    /**
      * Token exists to the folder of the installation.
      * Checks if Token is expired
      * If Expired makes request for a new one using the refrest_token value.
@@ -718,7 +702,7 @@ class GetBadgeAjax extends BaseController {
             echo "saved";
         wp_die();
     }
-    
+
     /**
      * Makes the Token request on the server side so it can be stored on the database directly
      * Checks if given email is valid before proceeding.

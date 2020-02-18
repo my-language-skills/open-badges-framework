@@ -192,7 +192,7 @@ final class SingleBadgeTemp {
                 <p><?php _e('Earned: ','open-badges-framework.');?>
                     <strong><?php echo $badge->gotDate ? date("d M Y", strtotime($badge->gotDate)) : "on hold"; ?></strong>
                 </p>
-                <p><?php _e('Earned in Mozilla Open Badge: ','open-badges-framework.');?>
+                <p><?php _e('Open Badge earned in Badgr Backpack : ','open-badges-framework.');?>
                     <strong><?php echo $badge->gotMozillaDate ? date("d M Y", strtotime($badge->gotMozillaDate)) : "on hold"; ?></strong>
                 </p>
             </section>
@@ -207,7 +207,7 @@ final class SingleBadgeTemp {
                     <?php
                 } else if (!$badge->gotMozillaDate) { ?>
                     <div class="obf-sbp-cont-btn">
-                        <a class="btn btn-lg btn-secondary" href="<?php echo $badgeLink; ?>"><?php _e('Get Mozilla Open Badge','open-badges-framework.');?></a>
+                        <a class="btn btn-lg btn-secondary" href="<?php echo $badgeLink; ?>"><?php _e('Get the Badgr Open Badge','open-badges-framework.');?></a>
                     </div>
                     <?php
                 }
