@@ -45,6 +45,7 @@ final class SettingsTemp {
 	const FI_CHECKBOX_FIELD = 'checkbox_field';
     const FI_IMAGE_URL_FIELD = 'image_url_field';
     const FI_EMAIL_FIELD = 'email_field';
+    const FI_BADGR_PASSWORD = 'badgr_pass_field';
 
 	// LINK FIELDS
     const FI_BECOME_PREMIUM = 'become_premium_page';
@@ -85,7 +86,6 @@ final class SettingsTemp {
      */
     public static function init() {
         $options = get_option(self::OPTION_NAME);
-
         $fiName = $options[self::FI_SITE_NAME_FIELD];
         $fiWebUrl = $options[self::FI_WEBSITE_URL_FIELD];
         $fiTel = $options[self::FI_TELEPHONE_FIELD];
@@ -93,7 +93,7 @@ final class SettingsTemp {
 		$fiCheck = $options[self::FI_CHECKBOX_FIELD];
         $fiImageUrl = $options[self::FI_IMAGE_URL_FIELD];
         $fiEmail = $options[self::FI_EMAIL_FIELD];
-
+        $fiBadgrPass = $options[self::FI_BADGR_PASSWORD];
 
         $emailFiName = $options[self::FI_SITE_NAME_EMAIL_FIELD];
         $emailFiWebUrl = $options[self::FI_WEBSITE_URL_EMAIL_FIELD];
@@ -130,6 +130,7 @@ final class SettingsTemp {
 			self::FI_CHECKBOX_FIELD => $fiCheck ? $fiCheck : '',
             self::FI_IMAGE_URL_FIELD => $fiImageUrl ? $fiImageUrl : '',
             self::FI_EMAIL_FIELD => $fiEmail ? $fiEmail : get_bloginfo('admin_email'),
+            self::FI_BADGR_PASSWORD => $fiBadgrPass ? $fiBadgrPass : '',
             self::FI_ADD_CLASS => $fiClass ? $fiClass : '',
             self::FI_BECOME_PREMIUM => $fiPremium ? $fiPremium : '',
             self::FI_GET_BADGE => $fiBadge ? $fiBadge : '',
@@ -279,6 +280,13 @@ final class SettingsTemp {
             self::FI_EMAIL_FIELD,
             __('Email','open-badges-framework'),// Title
             array($this, 'emailCallback'),
+            self::PAGE_PROFILE,
+            self::SECT_COMPANY_PROFILE
+        );
+        add_settings_field(
+            self::FI_BADGR_PASSWORD,
+            __('Badgr Issuer Password','open-badgrs-framework'),
+            array($this,'badgrPassCallback'),
             self::PAGE_PROFILE,
             self::SECT_COMPANY_PROFILE
         );
@@ -458,6 +466,8 @@ final class SettingsTemp {
 		if (isset($input[self::FI_EMAIL_FIELD]))
             $new_input[self::FI_EMAIL_FIELD] = sanitize_text_field(
                 $input[self::FI_EMAIL_FIELD] ? $input[self::FI_EMAIL_FIELD] : get_bloginfo('admin_email'));
+        if (isset($input[self::FI_BADGR_PASSWORD]))
+                $new_input[self::FI_BADGR_PASSWORD] = $input[self::FI_BADGR_PASSWORD];
         if (isset($input[self::FI_BECOME_PREMIUM]))
             $new_input[self::FI_BECOME_PREMIUM] = sanitize_text_field($input[self::FI_BECOME_PREMIUM]);
         if (isset($input[self::FI_ADD_CLASS]))
@@ -737,9 +747,20 @@ final class SettingsTemp {
             self::OPTION_NAME,
             self::FI_EMAIL_FIELD,
             isset($this->options[self::FI_EMAIL_FIELD]) ? esc_attr($this->options[self::FI_EMAIL_FIELD]) : ''
+            
         );
     }
 
+    public function badgrPassCallback()
+    {
+        printf(
+            '<input id="%s" class="regular-text" type="password" name="%s[%s]" value="%s"/>',
+            self::FI_BADGR_PASSWORD,
+            self::OPTION_NAME,
+            self::FI_BADGR_PASSWORD,
+            isset($this->options[self::FI_BADGR_PASSWORD]) ? esc_attr($this->options[self::FI_BADGR_PASSWORD]) : ''
+        );
+    }
     /**
      * Print the Contact Company Email field with also the value (if exist) for Email Settings section.
      *

@@ -18,6 +18,7 @@ Open Badges need some key information for the delivery of the Badge. Without tha
 * WebSite URL (by default, take the url from ```get_bloginfo ('url')```)
 * Image URL 
 * Backpack account (by default, take the mail administrator from ) ```get_bloginfo ('admin_email')```)
+* Backpack account password (need to create and update here)
 
 ![settings_profile](../readme-assets/settings_profile.png "Settings: profile")
 

@@ -309,12 +309,14 @@ class GetBadgeAjax extends BaseController {
                     $ajax_response['errors'] = "Problem locating position in badgr content file";
                 }
                 else
-                {
+                {   //check to see if first time adding an assertion to a badgeclass
                     if (!property_exists($badgr_entities->badgeClasses[$pos],"assertions"))
                     {
                         $badgr_entities->badgeClasses[$pos]->assertions = [];
                     }
+                    //adding new assertion to badge class 
                     array_push($badgr_entities->badgeClasses[$pos]->assertions,$new_entry);
+                    //updating file of badgr_entities
                     if (file_put_contents($badgr_entities_location,json_encode($badgr_entities,JSON_UNESCAPED_SLASHES)))
                     {
                         $ajax_response['udpate'] = "Assertion added to badge class";
@@ -391,8 +393,6 @@ class GetBadgeAjax extends BaseController {
                             $ajax_response['issuer']['timeout'] = 0;
                             $ajax_response['issuer']['headers']['Authorization'] = $issuer_token_info->token_type.' '.$issuer_token_info->access_token;
                             $ajax_response['issuer']['headers']['Content_type'] = "application/json";
-                             //temp change for email.
-                            $issuer_data->email =  "charalampostheodorou2@gmail.com";
                             $ajax_response['issuer']['data'] = $issuer_data;
                            
                         }
@@ -715,17 +715,20 @@ class GetBadgeAjax extends BaseController {
     public function ajaxIssuerTokenRequest()
     {
         $location_file = parent::getJsonFolderPath() . "issuer_token_info.json";
-        if (!empty($_POST['issuer_username']) && !empty($_POST['issuer_password']))
+        
+        $pass = SettingsTemp::getOption(SettingsTemp::FI_BADGR_PASSWORD);
+        $email = SettingsTemp::getOption(SettingsTemp::FI_EMAIL_FIELD);
+        if (!empty($pass) && !empty($email))
         {     
             //checking if email given is valid.
-            if (!is_email($_POST['issuer_username']))
+            if (!is_email($email))
             {
                 echo "Email Not Valid";
             }
             else
             {//assuming that account is created but first time requesting token.
                 //current assumption email and password given manually at the time.
-                $url =  "https://api.eu.badgr.io/o/token?username=".$_POST['issuer_username']."&password=".$_POST['issuer_password'];
+                $url =  "https://api.eu.badgr.io/o/token?username=".$email."&password=".$pass;
                 $response =  json_decode(wp_remote_post($url)['body']);
                 if (property_exists($response,'error'))
                 {
@@ -739,6 +742,13 @@ class GetBadgeAjax extends BaseController {
                         echo "problem saving to file";
                 }
             }
+        }
+        else
+        {
+            if (empty($email))
+                echo "Email is empty";
+            else
+                echo "Password is not given";
         }
         wp_die();
     }  

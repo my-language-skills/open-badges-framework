@@ -405,14 +405,14 @@
         {
             var token_configured = function(response)
             {//Here token is configured and checked if expired (Requested again if expired).
-                
                 if (response!="saved")
                 {//something is wrong with requests for the token. disabling the form.
                     jQuery("#gb-ob-response").html("Badge not sent!");
                     jQuery(btnGetBadgeMob).prop('disabled', false);
+                    console.log(response);
                 }
-                else
-                    issuer_process(data);
+                /* else
+                    issuer_process(data); */
 
             }
             var token_exists_reply = function(response)
@@ -421,14 +421,7 @@
                 {//token json file doesn't exists. No account is registered. Assumption that badgr account exists for issuer
                     console.log("Token doesn't exists.Moving to Token creation");
                     console.log("Token will be created for eu badgr server");
-                    var username = prompt("Enter email here for issuer account creation:");
-                    while (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(username))
-                    {
-                        console.log("Not valid email");
-                        username = prompt("Enter email here for issuer account creation:");
-                    }
-                    var password = prompt("Enter password here for issuer account creation:");
-                    ajaxCall({'action':'ajaxIssuerTokenRequest','issuer_username':username,'issuer_password':password,},token_configured);
+                    ajaxCall({'action':'ajaxIssuerTokenRequest',},token_configured);
                 }
                 else
                 {//token exists check if expired or not.

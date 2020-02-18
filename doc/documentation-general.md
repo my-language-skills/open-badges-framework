@@ -223,7 +223,7 @@ The plugin integration with the Badgr platform is really simple. When a user rec
 
 This process goes though many steps for validation and authentication of the action of awarding the badge to the recipient's backpack. 
 
-* Token: Used to authenticate all future requests done to the Badgr API from the corresponding issuer profile. If the file that contains this Token doesn't exist then it will be created, restarting the whole process of issuer creation from the start (First step when issuing the first badge as a new Issuer).
+* Token: Used to authenticate all future requests done to the Badgr API from the corresponding issuer profile. If the file that contains this Token doesn't exist then it will be created, restarting the whole process of issuer creation from the start This should be created automatically on the first attempt to get a badge on the Badgr platform. Uses credentials from admin settings page to activate this.
 
 * Issuer: Used to issue all requests, trusted entity with Authorization Token for awarding badges to recipients. A check is done if it exists as an official Issuer to the appropriate server. A new Issuer profile is created if it doesn't exists (Second step when issuing the first badge as a new Issuer).
 
