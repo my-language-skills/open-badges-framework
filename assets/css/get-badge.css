@@ -281,7 +281,7 @@ input {
 /*
  * Register
  */
-
+ 
 .mastfoot {
     color: rgba(255, 255, 255, .5);
 }
@@ -755,7 +755,18 @@ input {
 /*
  * Register
  */
-
+/* to make all mandatory fields placeholder in color red */
+#reg-user-name::placeholder,#reg-email::placeholder,#reg-pass::placeholder,#reg-repeat-pass::placeholder,#reg-first-name::placeholder,#reg-last-name::placeholder,.red-required-field{
+    color:red;
+}
+/*for the privacy and terms and conditions*/
+.obf_legal{
+float:left;
+margin-left:3%;
+}
+.obf_legal#terms_conditions{
+    margin-top:5%;
+}
 .mastfoot {
     color: rgba(255, 255, 255, .5);
 }

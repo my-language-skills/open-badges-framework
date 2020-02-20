@@ -374,13 +374,13 @@ class GetBadgeAjax extends BaseController {
                         //creating body of request.
 
                         //image must be changed to data base64 data URI format.
-                        $image_path = wp_upload_dir()['baseurl'].substr($issuer_data->image,strpos($issuer_data->image,'uploads')+strlen('uploads'));
-                        $image_relative_path =  str_replace('http:/','/var/www/vhosts/badges4languages.com',$image_path);  
+                        //if not working change to "$issuer_data->image";
+                        $image_relative_path = wp_upload_dir()['basedir'].substr($badge_file_contents->image,strpos($badge_file_contents->image,'uploads')+strlen('uploads'));
                         //raw format of picture.
                         $image_data  = file_get_contents($image_relative_path);
                         if (!$image_data)
                         {
-                            array_push($ajax_response['errors'],"issuer image doesn't exists in ".$image_path);
+                            array_push($ajax_response['errors'],"issuer image doesn't exists in ".$image_relative_path);
                         }
                         else
                         {//image is found, creating base64 format.
@@ -480,12 +480,12 @@ class GetBadgeAjax extends BaseController {
                             //creating body of request.
 
                             //image must be changed to data base64 data URI format.
-                            $image_path = wp_upload_dir()['baseurl'].substr($badge_file_contents->image,strpos($badge_file_contents->image,'uploads')+strlen('uploads'));
-                            $image_relative_path =  str_replace('http:/','/var/www/vhosts/badges4languages.com',$image_path);
+                            $image_relative_path = wp_upload_dir()['basedir'].substr($badge_file_contents->image,strpos($badge_file_contents->image,'uploads')+strlen('uploads'));
+                            
                             $image_data = file_get_contents($image_relative_path);
                             if (!$image_data)
                             {//image file not found
-                                array_push($ajax_response['errors'],"badge image file not found");
+                                array_push($ajax_response['errors'],"badge image file not found in: ".$image_relative_path);
                             }
                             else
                             {  

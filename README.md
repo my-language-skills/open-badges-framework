@@ -19,8 +19,8 @@ Tags: badges
 - get-the-badge page (from email) changes on the context.
 
 ### Assumptions
-- Account for issuer in badgr.eu exists.
-- if token json file doens't exists, then it means that token was never created. requesting for first time. Creates new file in installation to store the token details.
+- Account for issuer in badgr europe server exists.
+- If token json file doens't exists, then it means that token was never created. requesting for first time. Creates new file in installation to store the token details.
 - If token json file exists it must be uploaded to accordinate location in the installation.
 - If Recipient of badge doesn't have a Badgr account, the badge will be awarder. just waiting the user to activate it when the account is registered with same email.
 
@@ -103,6 +103,12 @@ You can see all of the screenshots of the plugin [here](doc/screenshots.md "scre
   	* Alert message in the Information Section of the Sending Badges Page (#278)
 
 ## Changelog
+
+### 2.0
+* **ADDITIONS**
+	* Migration to a new API for the backpack platform of the badges
+	* Small changes in context to fit new API description and necessary direction links
+	* Badgr fully integrated to work with old badges craeted for previous backpack platform.
 
 ### 1.0.1
 

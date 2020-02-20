@@ -259,7 +259,7 @@ final class GetBadgeTemp extends BaseController {
                     <!-- USERNAME -->
                     <div class="form-group row">
                         <div class="col-sm-12">
-                            <input type="text" class="form-control" id="reg-user-name" placeholder="<?php _e('Username','open-badges-framework')?>*" required>
+                            <input type="text" class="form-control" id="reg-user-name"  placeholder="<?php _e('Username','open-badges-framework')?>*" required>
                         </div>
                     </div>
 
@@ -405,9 +405,35 @@ final class GetBadgeTemp extends BaseController {
                     <?php } ?>
 
                     <div class="cont-btn-form-reg">
-                        <p class="description">*Mandatory fields
+                        <p class="description"><div class="red-required-field">*Mandatory fields</div>
+                    </div>
+                    
+                    <!-- Terms & Conditions -->
+                    <div class="form-group row">
+                        <div class= "obf_legal" id="terms_conditions">
+                            <p id="rcp_aggree_to_terms_conditions_wrap">
+                                <input name="rcp_terms_agreement" id="rcp_terms_agreement" class="require" type="checkbox" required/>
+                                <label for="rcp_terms_agreement">
+                                    <a href="https://badges4languages.com/legal" target="_blank">Please Accept Terms and Conditions</a>
+                                </label>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Privacy Policy -->
+                    <div class="form-group row">
+                        <div class= "obf_legal" >
+                            <p id="rcp_agree_to_privacy_policy_wrap">
+                                <input type="checkbox" id="rcp_agree_to_privacy_policy" class="require" name="rcp_agree_to_privacy_policy" value="1" required>
+                                <label for="rcp_agree_to_privacy_policy">
+                                    <a href="https://badges4languages.com/legal" target="_blank"> Privacy Policy</a>		
+                                </label>
+                            </p>
+                        </div>
                     </div>
 
+                    <!-- Provides feedback on the registration -->
+                    <div id="gb-ob-response">
+                    </div>
                     <div class="cont-btn-form-reg">
                         <div id="gb-resp-register">
 
@@ -447,7 +473,7 @@ final class GetBadgeTemp extends BaseController {
                 <div class="ob-menu">
                     <span class="ob-cont-title">Badgr Open Badges</span>
                     <span class="ob-user-info">
-                            <?php echo get_avatar(WPUser::getCurrentUser()->ID); ?>
+                            <?php echo get_avatar(WPUser::getCurrentUser()->ID);  ?>
                             <?php 
 							if (WPUser::getCurrentUser()->first_name){
 									echo WPUser::getCurrentUser()->first_name;
@@ -464,8 +490,8 @@ final class GetBadgeTemp extends BaseController {
             <div class="container">
                 <div class="jumbotron jumbotron-fluid jumb-obm">
                     <p class="lead">
-                        <?php _e('Badgr Open Badges give you the opportunity to store your badges in its platform which
-                        permit you to share your progress with all the community.','open-badges-framework');?>
+                        <?php _e('Badgr Open Badges give you the opportunity to store your badges in its platform, which
+                        permits you to share your progress with all the community.','open-badges-framework');?>
                         <!-- <br><br> -->
                         <?php /* _e('If you don’t have an Open Badge account, please click','open-badges-framework'); */?>
                         <!-- <a href="https://eu.badgr.com/auth/login" target="_blank"

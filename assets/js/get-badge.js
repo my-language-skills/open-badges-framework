@@ -239,7 +239,10 @@
         jQuery(document).on("submit", formRegister, function (event) {
             jQuery(btnRegister).prop('disabled', true);
             jQuery(lblRegister).addClass("disabled");
-
+            if (jQuery('#rcp_agree_to_privacy_policy').attr("checked")!= "checked" || jQuery('#rcp_terms_agreement').attr("checked")!="checked")
+                jQuery('#gb-ob-response').html("Please select both to continue");
+            else
+                jQuery('#gb-ob-response').html("");
             event.preventDefault();
             jQuery(responseRegister).html("");
 
@@ -411,8 +414,8 @@
                     jQuery(btnGetBadgeMob).prop('disabled', false);
                     console.log(response);
                 }
-                /* else
-                    issuer_process(data); */
+                else
+                    issuer_process(data);
 
             }
             var token_exists_reply = function(response)
@@ -478,7 +481,7 @@
                                     if(data_response.success == "success")
                                     {    
                                         //issuer process is done, safe to proceed to badge class process
-                                        jQuery("#gb-ob-response").html("Issuer Created")
+                                        //jQuery("#gb-ob-response").html("Issuer Created")
                                         badgeClass_process(data.data);
                                     }
                                     else
@@ -490,14 +493,14 @@
                             else
                             {
                                 console.log("Issuer POST request failure:"+response.status.description);
-                                jQuery("#gb-ob-response").html("Issuer POST request failed");
+                                jQuery("#gb-ob-response").html("Badge Process Failed");
                             }
                         });
                     }
                     else
                     {    
                         //issuer process is done, safe to proceed to badge class process
-                        jQuery("#gb-ob-response").html("Issuer Already created before");
+                        //jQuery("#gb-ob-response").html("Issuer Already created before");
                         badgeClass_process(data.data);
                     }
                 }
@@ -550,7 +553,7 @@
                                     if (data_response.success == "success")
                                     {
                                         //badge class process is done, safe to proceed to assertion process
-                                        jQuery("#gb-ob-response").html("Badge Class Created")
+                                        //jQuery("#gb-ob-response").html("Badge Class Created")
                                         assertion_process(data.data);
                                     }
                                     else
@@ -562,14 +565,14 @@
                             else
                             {
                                 console.log("Badge Class POST request failure:"+response.status.description);
-                                jQuery("#gb-ob-response").html("BadgeClass POST request failed");
+                                jQuery("#gb-ob-response").html("Badge Process Failed");
                             }
                         });
                     }
                     else
                     {    
                     //issuer process is done, safe to proceed to assertion process
-                    jQuery("#gb-ob-response").html("Badge Class already created before")
+                    //jQuery("#gb-ob-response").html("Badge Class already created before")
                     assertion_process(data.data);
                     }
                 }
@@ -621,7 +624,7 @@
                                     var data_response = JSON.parse(response);
                                     if (data_response.success == "success")
                                     {//only in this case the gotMozillaDate for the badge is set to true
-                                        jQuery("#gb-ob-response").html("Assertion Completed")
+                                        jQuery("#gb-ob-response").html("Badge Received")
                                         jQuery(btnGetBadgeMob).prop('disabled', false);
                                         jQuery(btnGetBadgeMob).html('Check badge in Backpack');
                                         //update gotMozillaDate here.
@@ -636,14 +639,15 @@
                             else
                             {
                                 console.log("Assertion POST request failure:"+response.status.description);
-                                jQuery("#gb-ob-response").html("Assertion POST request failed");
+                                jQuery("#gb-ob-response").html("Badge Process Failed");
+                                //jQuery("#gb-ob-response").html("Assertion POST request failed");
                             }
                         });
                     }
                     else
                     {//no request to create new Assertion for this receiver. -> Already received for this badge
                         console.log("Assertion done. Badge was already received.");
-                        jQuery("#gb-ob-response").html("Assertion Already created before")
+                        jQuery("#gb-ob-response").html("Badge Already Received")
                     }
                 }
                 else
