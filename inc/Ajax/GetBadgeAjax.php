@@ -375,7 +375,7 @@ class GetBadgeAjax extends BaseController {
 
                         //image must be changed to data base64 data URI format.
                         //if not working change to "$issuer_data->image";
-                        $image_relative_path = wp_upload_dir()['basedir'].substr($badge_file_contents->image,strpos($badge_file_contents->image,'uploads')+strlen('uploads'));
+                        $image_relative_path = wp_upload_dir()['basedir'].substr($issuer_data->image,strpos($issuer_data->image,'uploads')+strlen('uploads'));
                         //raw format of picture.
                         $image_data  = file_get_contents($image_relative_path);
                         if (!$image_data)
@@ -510,7 +510,7 @@ class GetBadgeAjax extends BaseController {
                 }
                 else
                 {//badgr file doesn't exist. MUST for getting the issuer entity id
-                    array_push($ajax_response['errors'],'badgr entities file not found');
+                    array_push($ajax_response['errors'],'badgr entities file not found in: '.$badgr_file_location);
                 }
                 $ajax_response['data'] = $_POST['data'];//carries the data for assertion request.
             }
