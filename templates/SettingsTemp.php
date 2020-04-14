@@ -285,7 +285,7 @@ final class SettingsTemp {
         );
         add_settings_field(
             self::FI_BADGR_PASSWORD,
-            __('Badgr Issuer Password','open-badgrs-framework'),
+            __('BadgrEU Issuer Password','open-badgrs-framework'),
             array($this,'badgrPassCallback'),
             self::PAGE_PROFILE,
             self::SECT_COMPANY_PROFILE
