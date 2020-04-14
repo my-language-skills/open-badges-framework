@@ -283,6 +283,7 @@ final class SettingsTemp {
             self::PAGE_PROFILE,
             self::SECT_COMPANY_PROFILE
         );
+        /* --> BadgrEU_____________ */
         add_settings_field(
             self::FI_BADGR_PASSWORD,
             __('BadgrEU Issuer Password','open-badgrs-framework'),
