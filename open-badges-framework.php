@@ -102,15 +102,3 @@ if (class_exists('Inc\\Init')) {
 require_once( "inc/Integrations/RCP-registration_fields.php" );
 require_once( "inc/Integrations/wp-user-custom_fields.php" );
 require_once( "inc/Integrations/wp_custom_data_exporter.php" );
-
-/**
- * Auto update from github
- *
- * @since 1.0.0
- */
- require 'vendor/plugin-update-checker/plugin-update-checker.php';
-$myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
-	'https://github.com/Badges4Languages/open-badges-framework/',
-	__FILE__,
-	'open-badges-framework'
-);
