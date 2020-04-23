@@ -374,8 +374,8 @@ class GetBadgeAjax extends BaseController {
                         //creating body of request.
 
                         //image must be changed to data base64 data URI format.
-                        //if not working change to "$issuer_data->image";
-                        $image_relative_path = wp_upload_dir()['basedir'].substr($issuer_data->image,strpos($issuer_data->image,'uploads')+strlen('uploads'));
+                        //restructuring the relative url to access the file system and retrieve the image
+                        $image_relative_path = substr(wp_upload_dir()['basedir'],0,strpos(wp_upload_dir()['basedir'],"wp-content")).substr($issuer_data->image,strpos($issuer_data->image,"wp-content"));
                         //raw format of picture.
                         $image_data  = file_get_contents($image_relative_path);
                         if (!$image_data)
@@ -480,7 +480,8 @@ class GetBadgeAjax extends BaseController {
                             //creating body of request.
 
                             //image must be changed to data base64 data URI format.
-                            $image_relative_path = wp_upload_dir()['basedir'].substr($badge_file_contents->image,strpos($badge_file_contents->image,'uploads')+strlen('uploads'));
+                            //restructuring the relative url to access the file system and retrieve the image
+                            $image_relative_path = substr(wp_upload_dir()['basedir'],0,strpos(wp_upload_dir()['basedir'],"wp-content")).substr($badge_file_contents->image,strpos($badge_file_contents->image,"wp-content"));
                             
                             $image_data = file_get_contents($image_relative_path);
                             if (!$image_data)
