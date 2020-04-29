@@ -155,7 +155,7 @@ final class GetBadgeTemp extends BaseController {
 					<?php _e('Level:','open-badges-framework')?>
                     <strong><?php echo $this->levelWP->name; ?></strong></h5>
                 <p class="lead">
-                    <?php //echo $this->badgeWP->post_content; 
+                    <?php //echo $this->badgeWP->post_content;
 							echo $this->badgeDB->description;
 					?>
                 </p>
@@ -163,7 +163,7 @@ final class GetBadgeTemp extends BaseController {
 					<a class="continueLink">
 						<img src="<?php echo WPBadge::getUrlImage($this->badgeWP->ID); ?>">
 					</a>
-                </div> 
+                </div>
             </div>
         </main>
 
@@ -173,7 +173,7 @@ final class GetBadgeTemp extends BaseController {
                     <button id="gb-continue" class="btn btn-lg btn-secondary continueLink" type="submit"><?php _e('Continue','open-badges-framework');?></button>
                 </p>
             </div>
-        </footer>  
+        </footer>
 
 
         <?php
@@ -313,7 +313,7 @@ final class GetBadgeTemp extends BaseController {
                             </select>
                         </div>
                     </div>
-                    
+
                     <!-- COUNTRY -->
                     <div class="form-group row">
                         <div class="col-sm-12">
@@ -407,12 +407,12 @@ final class GetBadgeTemp extends BaseController {
                     <div class="cont-btn-form-reg">
                         <p class="description"><div class="red-required-field">*Mandatory fields</div>
                     </div>
-                    
+
                     <!-- Terms & Conditions -->
                     <div class="form-group row">
                         <div class= "obf_legal" id="terms_conditions">
                             <p id="rcp_aggree_to_terms_conditions_wrap">
-                                <input name="rcp_terms_agreement" id="rcp_terms_agreement" class="require" type="checkbox" required/>
+                                <input name="rcp_terms_agreement" style="background-color: #ff9999" id="rcp_terms_agreement" class="require" type="checkbox" required/>
                                 <label for="rcp_terms_agreement">
                                     <a href="https://badges4languages.com/legal" target="_blank">Please Accept Terms and Conditions</a>
                                 </label>
@@ -423,9 +423,9 @@ final class GetBadgeTemp extends BaseController {
                     <div class="form-group row">
                         <div class= "obf_legal" >
                             <p id="rcp_agree_to_privacy_policy_wrap">
-                                <input type="checkbox" id="rcp_agree_to_privacy_policy" class="require" name="rcp_agree_to_privacy_policy" value="1" required>
+                                <input type="checkbox" style="background-color: #ff9999" id="rcp_agree_to_privacy_policy" class="require" name="rcp_agree_to_privacy_policy" value="1" required>
                                 <label for="rcp_agree_to_privacy_policy">
-                                    <a href="https://badges4languages.com/legal" target="_blank"> Privacy Policy</a>		
+                                    <a href="https://badges4languages.com/legal" target="_blank"> Privacy Policy</a>
                                 </label>
                             </p>
                         </div>
@@ -474,7 +474,7 @@ final class GetBadgeTemp extends BaseController {
                     <span class="ob-cont-title">Badgr Open Badges</span>
                     <span class="ob-user-info">
                             <?php echo get_avatar(WPUser::getCurrentUser()->ID);  ?>
-                            <?php 
+                            <?php
 							if (WPUser::getCurrentUser()->first_name){
 									echo WPUser::getCurrentUser()->first_name;
 								}
@@ -557,7 +557,7 @@ final class GetBadgeTemp extends BaseController {
         <main role="main" class="inner cover">
             <div class="container">
                 <h1 class="cong-title-obf cover-heading">
-                    <?php 
+                    <?php
 							if (WPUser::getCurrentUser()->first_name){
 									echo WPUser::getCurrentUser()->first_name . ", "; _e('You just added a new badge!','open-badges-framework');
 								}
@@ -662,13 +662,13 @@ final class GetBadgeTemp extends BaseController {
                 <?php
                 if ($error == self::PREVIEW) { ?>
                     <h1><?php _e('GET BADGE PAGE PREVIEW','open-badges-framework');?></h1>
-                    <p class="lead">                       
+                    <p class="lead">
 						<?php _e('his page is set as a default page that permits you to get the badge.','open-badges-framework');?>
                     </p>
                     <?php
                 } elseif ($error == self::ERROR_JSON) { ?>
                     <h1><?php _e('BADGE ERROR','open-badges-framework');?></h1>
-                    <p class="lead">                       
+                    <p class="lead">
 						<?php _e('Your badge is not anymore stored in our server.','open-badges-framework');?>
                     </p>
                     <?php
