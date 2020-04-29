@@ -25,7 +25,7 @@ class SendBadge{
     private $level = null;
     private $receivers = null;
     private $evidence = null;
-    
+
     /**
      * Initialization of all the variable.
      *
@@ -47,7 +47,7 @@ class SendBadge{
         $this->level = get_term($idLevel, Admin::TAX_LEVELS);
         $this->receivers = $receivers;
         $this->evidence = $evidence;
-		
+
         //$this->badge->setIdUser($idUser); --> we will set it after for each student
         $this->badge->idBadge = $this->wpBadge->ID;
         $this->badge->idField = $this->field->term_id;
@@ -78,13 +78,13 @@ class SendBadge{
     public function send() {
         $options = get_option(SettingsTemp::OPTION_NAME);
         //$subject = "Badge: " . $this->wpBadge->post_title . " Field: " . $this->field->name;
-		
+
 		$teacherID = WPUser::getCurrentUser()->ID;
 		$teacherObj =  get_userdata($teacherID);
 		$teacherFirst = $teacherObj->first_name;
 		$teacherLast = $teacherObj->last_name;
 		$teacherUserName = $teacherObj->user_login;
-		
+
 		if(($teacherFirst) && ($teacherLast)){
 			$subject =$teacherFirst." ".$teacherLast." has sent you a Badge for your ".$this->field->name." class";
 		}else if((!$teacherFirst)&& (!$teacherLast)){
@@ -94,7 +94,7 @@ class SendBadge{
 		}else if((!$teacherFirst)&& ($teacherLast)){
 			$subject =$teacherLast." has sent you a Badge for your ".$this->field->name." class";
 		}
-		
+
         $headers = array(
             'Content-Type: text/html; charset=UTF-8',
             "From: " . isset($options[SettingsTemp::FI_SITE_NAME_FIELD]) ? $options[SettingsTemp::FI_SITE_NAME_FIELD] : '' .
@@ -114,18 +114,18 @@ class SendBadge{
                                 $retEmail = wp_mail($email, $subject, $message, $headers);
                                 if (!$retEmail) return self::ER_SEND_EMAIL;
                             }
-							else 
+							else
 								{ echo "Error send email for $email \n";  }
-                            
-                        } else 
+
+                        } else
 							{ echo "Error save badge in db for $email \n"; }
-                        
-                    } else 
+
+                    } else
 						{ echo "Error insert user in db for $email \n"; }
-                    
-                } else 
+
+                } else
 					{ return self::ER_JSON_FILE; }
-                
+
             }
             return self::SUCCESS;
         } else {
@@ -145,20 +145,20 @@ class SendBadge{
     private function getBodyEmail($idDbBadge) {
         $badgeLink = Badge::getLinkGetBadge($idDbBadge);
         $options = get_option(SettingsTemp::OPTION_NAME);
-		
 
-		
-		
+
+
+
         // retrieving the values of the Email Settings section and displaying to the email that we send
-		
+
         $compName = isset($options[SettingsTemp::FI_SITE_NAME_EMAIL_FIELD]) ? $options[SettingsTemp::FI_SITE_NAME_EMAIL_FIELD] : '';
         $compUrl = isset($options[SettingsTemp::FI_WEBSITE_URL_EMAIL_FIELD]) ? $options[SettingsTemp::FI_WEBSITE_URL_EMAIL_FIELD] : '';
 		$compEmail = isset($options[SettingsTemp::FI_CONTACT_EMAIL_FIELD]) ? $options[SettingsTemp::FI_CONTACT_EMAIL_FIELD] : '';
         $compUrlImg = isset($options[SettingsTemp::FI_IMAGE_URL_EMAIL_FIELD]) ? wp_get_attachment_image_src($options[SettingsTemp::FI_IMAGE_URL_EMAIL_FIELD], 'medium') : '';
         $header = isset($options[SettingsTemp::FI_HEADER_EMAIL_FIELD]) ? $options[SettingsTemp::FI_HEADER_EMAIL_FIELD] : '';
         $message = isset($options[SettingsTemp::FI_MESSAGE_EMAIL_FIELD]) ? $options[SettingsTemp::FI_MESSAGE_EMAIL_FIELD] : '';
-		
-		
+
+
          $body = "
             <!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
                 <html xmlns='http://www.w3.org/1999/xhtml'>
@@ -170,7 +170,7 @@ class SendBadge{
                             <div align='center'>
 								<img src='" . $compUrlImg[0] . "' style='max-height: 300px; max-width: 300px;'/>
                                 <h1>$compName</h1>
-                                 $header	
+                                 $header
                                 <center style='margin-top: 10px;'>
                                     <a href='" . $badgeLink . "'>
                                         <img src='" . WPBadge::getUrlImage($this->wpBadge->ID) . "' width='150' height='150'/>
@@ -181,7 +181,7 @@ class SendBadge{
                                 <a href='" . $badgeLink . "'>$badgeLink</a>
                                 <br><br><hr>
                                 <p style='font-size:9px; color:grey '>$compName </p>
-                                
+
 								<p style='font-size:9px; color:grey '>
                                More information <a href='$compUrl'>here</a>.
 							   Contact us <a href='mailto:$compEmail'>here</a>.;
@@ -191,6 +191,6 @@ class SendBadge{
                     </body>
             </html>
                 ";
-        return $body; 
+        return $body;
     }
 }
